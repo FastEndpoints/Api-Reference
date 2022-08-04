@@ -1,0 +1,841 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.BaseEndpoint
+  commentId: T:FastEndpoints.BaseEndpoint
+  id: BaseEndpoint
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.BaseEndpoint.Config
+  - FastEndpoints.BaseEndpoint.Configure
+  - FastEndpoints.BaseEndpoint.Definition
+  - FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
+  - FastEndpoints.BaseEndpoint.HttpContext
+  - FastEndpoints.BaseEndpoint.ValidationFailures
+  - FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  langs:
+  - csharp
+  - vb
+  name: BaseEndpoint
+  nameWithType: BaseEndpoint
+  fullName: FastEndpoints.BaseEndpoint
+  type: Class
+  source:
+    id: BaseEndpoint
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 11
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: 'public abstract class BaseEndpoint : IEndpoint'
+    content.vb: >-
+      Public MustInherit Class BaseEndpoint
+
+          Implements IEndpoint
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - FastEndpoints.Endpoint`2
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  id: Verbs(FastEndpoints.Http[])
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Verbs(Http[])
+  nameWithType: BaseEndpoint.Verbs(Http[])
+  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  type: Method
+  source:
+    id: Verbs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 19
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public virtual void Verbs(params Http[] methods)
+    parameters:
+    - id: methods
+      type: FastEndpoints.Http[]
+    content.vb: Public Overridable Sub Verbs(ParamArray methods As Http())
+  overload: FastEndpoints.BaseEndpoint.Verbs*
+  nameWithType.vb: BaseEndpoint.Verbs(Http())
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
+  name.vb: Verbs(Http())
+- uid: FastEndpoints.BaseEndpoint.Definition
+  commentId: P:FastEndpoints.BaseEndpoint.Definition
+  id: Definition
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Definition
+  nameWithType: BaseEndpoint.Definition
+  fullName: FastEndpoints.BaseEndpoint.Definition
+  type: Property
+  source:
+    id: Definition
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 24
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ngets the endpoint definition which contains all the configuration info for the endpoint\n"
+  example: []
+  syntax:
+    content: public EndpointDefinition Definition { get; }
+    parameters: []
+    return:
+      type: FastEndpoints.EndpointDefinition
+    content.vb: Public ReadOnly Property Definition As EndpointDefinition
+  overload: FastEndpoints.BaseEndpoint.Definition*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FastEndpoints.BaseEndpoint.Config
+  commentId: P:FastEndpoints.BaseEndpoint.Config
+  id: Config
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Config
+  nameWithType: BaseEndpoint.Config
+  fullName: FastEndpoints.BaseEndpoint.Config
+  type: Property
+  source:
+    id: Config
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 29
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ngives access to the configuration. if you need to access this property from within the endpoint Configure() method, make sure to pass in the config to <code>.AddFastEndpoints(config: builder.Configuration)</code>\n"
+  example: []
+  syntax:
+    content: public IConfiguration Config { get; }
+    parameters: []
+    return:
+      type: Microsoft.Extensions.Configuration.IConfiguration
+    content.vb: Public ReadOnly Property Config As IConfiguration
+  overload: FastEndpoints.BaseEndpoint.Config*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FastEndpoints.BaseEndpoint.HttpContext
+  commentId: P:FastEndpoints.BaseEndpoint.HttpContext
+  id: HttpContext
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: HttpContext
+  nameWithType: BaseEndpoint.HttpContext
+  fullName: FastEndpoints.BaseEndpoint.HttpContext
+  type: Property
+  source:
+    id: HttpContext
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 37
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe http context of the current request\n"
+  example: []
+  syntax:
+    content: public HttpContext HttpContext { get; }
+    parameters: []
+    return:
+      type: Microsoft.AspNetCore.Http.HttpContext
+    content.vb: Public ReadOnly Property HttpContext As HttpContext
+  overload: FastEndpoints.BaseEndpoint.HttpContext*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FastEndpoints.BaseEndpoint.ValidationFailures
+  commentId: P:FastEndpoints.BaseEndpoint.ValidationFailures
+  id: ValidationFailures
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: ValidationFailures
+  nameWithType: BaseEndpoint.ValidationFailures
+  fullName: FastEndpoints.BaseEndpoint.ValidationFailures
+  type: Property
+  source:
+    id: ValidationFailures
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 42
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe list of validation failures for the current request dto\n"
+  example: []
+  syntax:
+    content: public List<ValidationFailure> ValidationFailures { get; }
+    parameters: []
+    return:
+      type: List{ValidationFailure}
+    content.vb: Public ReadOnly Property ValidationFailures As List(Of ValidationFailure)
+  overload: FastEndpoints.BaseEndpoint.ValidationFailures*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FastEndpoints.BaseEndpoint.Configure
+  commentId: M:FastEndpoints.BaseEndpoint.Configure
+  id: Configure
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Configure()
+  nameWithType: BaseEndpoint.Configure()
+  fullName: FastEndpoints.BaseEndpoint.Configure()
+  type: Method
+  source:
+    id: Configure
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 48
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nuse this method to configure how the endpoint should be listening to incoming requests.\n<p>HINT: it is only called once during endpoint auto registration during app startup.</p>\n"
+  example: []
+  syntax:
+    content: public virtual void Configure()
+    content.vb: Public Overridable Sub Configure
+  overload: FastEndpoints.BaseEndpoint.Configure*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
+  commentId: M:FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
+  id: FormFileSectionsAsync(CancellationToken)
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: FormFileSectionsAsync(CancellationToken)
+  nameWithType: BaseEndpoint.FormFileSectionsAsync(CancellationToken)
+  fullName: FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
+  type: Method
+  source:
+    id: FormFileSectionsAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 55
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ngets a stream of nullable FileMultipartSections from the incoming multipart/form-data without buffering the whole file to memory/disk as done with IFormFile\n"
+  example: []
+  syntax:
+    content: public async IAsyncEnumerable<FileMultipartSection> FormFileSectionsAsync(CancellationToken cancellation = null)
+    parameters:
+    - id: cancellation
+      type: CancellationToken
+      description: optional cancellation token
+    return:
+      type: IAsyncEnumerable{Microsoft.AspNetCore.WebUtilities.FileMultipartSection}
+    content.vb: Public Function FormFileSectionsAsync(cancellation As CancellationToken = Nothing) As IAsyncEnumerable(Of FileMultipartSection)
+  overload: FastEndpoints.BaseEndpoint.FormFileSectionsAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.BaseEndpoint.Verbs*
+  commentId: Overload:FastEndpoints.BaseEndpoint.Verbs
+  name: Verbs
+  nameWithType: BaseEndpoint.Verbs
+  fullName: FastEndpoints.BaseEndpoint.Verbs
+- uid: FastEndpoints.Http[]
+  isExternal: true
+  name: Http[]
+  nameWithType: Http[]
+  fullName: FastEndpoints.Http[]
+  nameWithType.vb: Http()
+  fullName.vb: FastEndpoints.Http()
+  name.vb: Http()
+  spec.csharp:
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: FastEndpoints.BaseEndpoint.Definition*
+  commentId: Overload:FastEndpoints.BaseEndpoint.Definition
+  name: Definition
+  nameWithType: BaseEndpoint.Definition
+  fullName: FastEndpoints.BaseEndpoint.Definition
+- uid: FastEndpoints.EndpointDefinition
+  commentId: T:FastEndpoints.EndpointDefinition
+  parent: FastEndpoints
+  name: EndpointDefinition
+  nameWithType: EndpointDefinition
+  fullName: FastEndpoints.EndpointDefinition
+- uid: FastEndpoints.BaseEndpoint.Config*
+  commentId: Overload:FastEndpoints.BaseEndpoint.Config
+  name: Config
+  nameWithType: BaseEndpoint.Config
+  fullName: FastEndpoints.BaseEndpoint.Config
+- uid: Microsoft.Extensions.Configuration.IConfiguration
+  commentId: T:Microsoft.Extensions.Configuration.IConfiguration
+  parent: Microsoft.Extensions.Configuration
+  isExternal: true
+  name: IConfiguration
+  nameWithType: IConfiguration
+  fullName: Microsoft.Extensions.Configuration.IConfiguration
+- uid: Microsoft.Extensions.Configuration
+  commentId: N:Microsoft.Extensions.Configuration
+  isExternal: true
+  name: Microsoft.Extensions.Configuration
+  nameWithType: Microsoft.Extensions.Configuration
+  fullName: Microsoft.Extensions.Configuration
+- uid: FastEndpoints.BaseEndpoint.HttpContext*
+  commentId: Overload:FastEndpoints.BaseEndpoint.HttpContext
+  name: HttpContext
+  nameWithType: BaseEndpoint.HttpContext
+  fullName: FastEndpoints.BaseEndpoint.HttpContext
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+- uid: FastEndpoints.BaseEndpoint.ValidationFailures*
+  commentId: Overload:FastEndpoints.BaseEndpoint.ValidationFailures
+  name: ValidationFailures
+  nameWithType: BaseEndpoint.ValidationFailures
+  fullName: FastEndpoints.BaseEndpoint.ValidationFailures
+- uid: List{ValidationFailure}
+  commentId: '!:List{ValidationFailure}'
+  definition: List`1
+  name: List<ValidationFailure>
+  nameWithType: List<ValidationFailure>
+  fullName: List<ValidationFailure>
+  nameWithType.vb: List(Of ValidationFailure)
+  fullName.vb: List(Of ValidationFailure)
+  name.vb: List(Of ValidationFailure)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: ValidationFailure
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.BaseEndpoint.Configure*
+  commentId: Overload:FastEndpoints.BaseEndpoint.Configure
+  name: Configure
+  nameWithType: BaseEndpoint.Configure
+  fullName: FastEndpoints.BaseEndpoint.Configure
+- uid: FastEndpoints.BaseEndpoint.FormFileSectionsAsync*
+  commentId: Overload:FastEndpoints.BaseEndpoint.FormFileSectionsAsync
+  name: FormFileSectionsAsync
+  nameWithType: BaseEndpoint.FormFileSectionsAsync
+  fullName: FastEndpoints.BaseEndpoint.FormFileSectionsAsync
+- uid: CancellationToken
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: CancellationToken
+- uid: IAsyncEnumerable{Microsoft.AspNetCore.WebUtilities.FileMultipartSection}
+  commentId: '!:IAsyncEnumerable{Microsoft.AspNetCore.WebUtilities.FileMultipartSection}'
+  definition: IAsyncEnumerable`1
+  name: IAsyncEnumerable<FileMultipartSection>
+  nameWithType: IAsyncEnumerable<FileMultipartSection>
+  fullName: IAsyncEnumerable<Microsoft.AspNetCore.WebUtilities.FileMultipartSection>
+  nameWithType.vb: IAsyncEnumerable(Of FileMultipartSection)
+  fullName.vb: IAsyncEnumerable(Of Microsoft.AspNetCore.WebUtilities.FileMultipartSection)
+  name.vb: IAsyncEnumerable(Of FileMultipartSection)
+  spec.csharp:
+  - uid: IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: IAsyncEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
+    name: FileMultipartSection
+    nameWithType: FileMultipartSection
+    fullName: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: IAsyncEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
+    name: FileMultipartSection
+    nameWithType: FileMultipartSection
+    fullName: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IAsyncEnumerable`1
+  isExternal: true
+  name: IAsyncEnumerable<>
+  nameWithType: IAsyncEnumerable<>
+  fullName: IAsyncEnumerable<>
+  nameWithType.vb: IAsyncEnumerable(Of )
+  fullName.vb: IAsyncEnumerable(Of )
+  name.vb: IAsyncEnumerable(Of )
+  spec.csharp:
+  - uid: IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: IAsyncEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: IAsyncEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
