@@ -7,7 +7,7 @@ items:
   children:
   - FastEndpoints.VersioningOptions.DefaultVersion
   - FastEndpoints.VersioningOptions.Prefix
-  - FastEndpoints.VersioningOptions.SuffixedVersion
+  - FastEndpoints.VersioningOptions.PrependToRoute
   langs:
   - csharp
   - vb
@@ -17,7 +17,7 @@ items:
   type: Class
   source:
     id: VersioningOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\VersioningOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\VersioningOptions.cs
     startLine: 5
   assemblies:
   - FastEndpoints
@@ -56,7 +56,7 @@ items:
   type: Property
   source:
     id: Prefix
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\VersioningOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\VersioningOptions.cs
     startLine: 10
   assemblies:
   - FastEndpoints
@@ -64,18 +64,18 @@ items:
   summary: "\nthe prefix used in front of the version (for example &apos;v&apos; produces &apos;v{version}&apos;).\n"
   example: []
   syntax:
-    content: public string Prefix { get; set; }
+    content: public string Prefix { set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property Prefix As String
+    content.vb: Public WriteOnly Property Prefix As String
   overload: FastEndpoints.VersioningOptions.Prefix*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
+  - WriteOnly
 - uid: FastEndpoints.VersioningOptions.DefaultVersion
   commentId: P:FastEndpoints.VersioningOptions.DefaultVersion
   id: DefaultVersion
@@ -89,7 +89,7 @@ items:
   type: Property
   source:
     id: DefaultVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\VersioningOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\VersioningOptions.cs
     startLine: 15
   assemblies:
   - FastEndpoints
@@ -97,51 +97,51 @@ items:
   summary: "\nthis value will be used on endpoints that does not specify a version\n"
   example: []
   syntax:
-    content: public int DefaultVersion { get; set; }
+    content: public int DefaultVersion { set; }
     parameters: []
     return:
       type: System.Int32
-    content.vb: Public Property DefaultVersion As Integer
+    content.vb: Public WriteOnly Property DefaultVersion As Integer
   overload: FastEndpoints.VersioningOptions.DefaultVersion*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
-- uid: FastEndpoints.VersioningOptions.SuffixedVersion
-  commentId: P:FastEndpoints.VersioningOptions.SuffixedVersion
-  id: SuffixedVersion
+  - WriteOnly
+- uid: FastEndpoints.VersioningOptions.PrependToRoute
+  commentId: P:FastEndpoints.VersioningOptions.PrependToRoute
+  id: PrependToRoute
   parent: FastEndpoints.VersioningOptions
   langs:
   - csharp
   - vb
-  name: SuffixedVersion
-  nameWithType: VersioningOptions.SuffixedVersion
-  fullName: FastEndpoints.VersioningOptions.SuffixedVersion
+  name: PrependToRoute
+  nameWithType: VersioningOptions.PrependToRoute
+  fullName: FastEndpoints.VersioningOptions.PrependToRoute
   type: Property
   source:
-    id: SuffixedVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\VersioningOptions.cs
+    id: PrependToRoute
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\VersioningOptions.cs
     startLine: 20
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nset to false if you&apos;d like to prefix the version to the route instead of being suffixed\n"
+  summary: "\nset to true if you&apos;d like to prefix the version to the route instead of being suffixed which is the default\n"
   example: []
   syntax:
-    content: public bool SuffixedVersion { get; set; }
+    content: public bool? PrependToRoute { set; }
     parameters: []
     return:
-      type: System.Boolean
-    content.vb: Public Property SuffixedVersion As Boolean
-  overload: FastEndpoints.VersioningOptions.SuffixedVersion*
+      type: System.Nullable{System.Boolean}
+    content.vb: Public WriteOnly Property PrependToRoute As Boolean?
+  overload: FastEndpoints.VersioningOptions.PrependToRoute*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
+  - WriteOnly
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -464,15 +464,91 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: FastEndpoints.VersioningOptions.SuffixedVersion*
-  commentId: Overload:FastEndpoints.VersioningOptions.SuffixedVersion
-  name: SuffixedVersion
-  nameWithType: VersioningOptions.SuffixedVersion
-  fullName: FastEndpoints.VersioningOptions.SuffixedVersion
-- uid: System.Boolean
-  commentId: T:System.Boolean
+- uid: FastEndpoints.VersioningOptions.PrependToRoute*
+  commentId: Overload:FastEndpoints.VersioningOptions.PrependToRoute
+  name: PrependToRoute
+  nameWithType: VersioningOptions.PrependToRoute
+  fullName: FastEndpoints.VersioningOptions.PrependToRoute
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
   parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

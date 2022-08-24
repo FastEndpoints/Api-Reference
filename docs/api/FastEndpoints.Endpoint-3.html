@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Endpoint&lt;TRequest, TResponse, TMapper&gt;
    | FastEndpoints ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -92,6 +92,10 @@
     <div class="level1"><a class="xref" href="FastEndpoints.BaseEndpoint.html">BaseEndpoint</a></div>
     <div class="level2"><a class="xref" href="FastEndpoints.Endpoint-2.html">Endpoint</a>&lt;TRequest, TResponse&gt;</div>
     <div class="level3"><span class="xref">Endpoint&lt;TRequest, TResponse, TMapper&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="FastEndpoints.IHasMapper-1.html">IHasMapper</a>&lt;TMapper&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -264,6 +268,9 @@
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontThrowIfValidationFails">Endpoint&lt;TRequest, TResponse&gt;.DontThrowIfValidationFails()</a>
     </div>
     <div>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontCatchExceptions">Endpoint&lt;TRequest, TResponse&gt;.DontCatchExceptions()</a>
+    </div>
+    <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_RequestBinder_FastEndpoints_IRequestBinder__0__">Endpoint&lt;TRequest, TResponse&gt;.RequestBinder(IRequestBinder&lt;TRequest&gt;)</a>
     </div>
     <div>
@@ -339,13 +346,16 @@
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ScopedValidator">Endpoint&lt;TRequest, TResponse&gt;.ScopedValidator()</a>
     </div>
     <div>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Validator__1_System_Boolean_">Endpoint&lt;TRequest, TResponse&gt;.Validator&lt;TValidator&gt;(Boolean)</a>
+    </div>
+    <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_RoutePrefixOverride_System_String_">Endpoint&lt;TRequest, TResponse&gt;.RoutePrefixOverride(String)</a>
     </div>
     <div>
-      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_AddError_System_String_System_String_Severity_">Endpoint&lt;TRequest, TResponse&gt;.AddError(String, String, Severity)</a>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_AddError_System_String_System_String_FluentValidation_Severity_">Endpoint&lt;TRequest, TResponse&gt;.AddError(String, String, Severity)</a>
     </div>
     <div>
-      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_Func__0_System_Object___System_String_System_String_Severity_">Endpoint&lt;TRequest, TResponse&gt;.AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</a>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_">Endpoint&lt;TRequest, TResponse&gt;.AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowIfAnyErrors">Endpoint&lt;TRequest, TResponse&gt;.ThrowIfAnyErrors()</a>
@@ -403,11 +413,9 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Endpoint_3_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse, TMapper&gt; : Endpoint&lt;TRequest, TResponse&gt;, IEndpoint, IServiceResolver where TRequest : new()
+    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse, TMapper&gt; : Endpoint&lt;TRequest, TResponse&gt;, IEndpoint, IHasMapper&lt;TMapper&gt; where TRequest : new()
 
-    where TResponse : new()
-
-    where TMapper : IEntityMapper, new()</code></pre>
+    where TMapper : IMapper, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -464,6 +472,10 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FastEndpoints.IHasMapper-1.html">IHasMapper&lt;TMapper&gt;</a>
+  </div>
 </article>
           </div>
           

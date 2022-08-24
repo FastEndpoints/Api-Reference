@@ -23,7 +23,7 @@ items:
   type: Class
   source:
     id: Mapper
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 11
   assemblies:
   - FastEndpoints
@@ -31,10 +31,7 @@ items:
   summary: "\nuse this base class to define domain entity mappers for your endpoints.\n<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>\n"
   example: []
   syntax:
-    content: >-
-      public abstract class Mapper<TRequest, TResponse, TEntity> : IEntityMapper, IServiceResolver where TRequest : new()
-
-          where TResponse : new()
+    content: 'public abstract class Mapper<TRequest, TResponse, TEntity> : IMapper where TRequest : new()'
     typeParameters:
     - id: TRequest
       description: the type of request dto
@@ -43,13 +40,13 @@ items:
     - id: TEntity
       description: the type of domain entity to map to/from
     content.vb: >-
-      Public MustInherit Class Mapper(Of TRequest As New, TResponse As New, TEntity)
+      Public MustInherit Class Mapper(Of TRequest As New, TResponse, TEntity)
 
-          Implements IEntityMapper, IServiceResolver
+          Implements IMapper
   inheritance:
   - System.Object
   implements:
-  - FastEndpoints.IEntityMapper
+  - FastEndpoints.IMapper
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -82,7 +79,7 @@ items:
   type: Method
   source:
     id: ToEntity
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 17
   assemblies:
   - FastEndpoints
@@ -120,7 +117,7 @@ items:
   type: Method
   source:
     id: ToEntityAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 22
   assemblies:
   - FastEndpoints
@@ -158,7 +155,7 @@ items:
   type: Method
   source:
     id: FromEntity
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 28
   assemblies:
   - FastEndpoints
@@ -196,7 +193,7 @@ items:
   type: Method
   source:
     id: FromEntityAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 33
   assemblies:
   - FastEndpoints
@@ -234,7 +231,7 @@ items:
   type: Method
   source:
     id: UpdateEntity
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 40
   assemblies:
   - FastEndpoints
@@ -275,7 +272,7 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 46
   assemblies:
   - FastEndpoints
@@ -314,7 +311,7 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 53
   assemblies:
   - FastEndpoints
@@ -350,7 +347,7 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 61
   assemblies:
   - FastEndpoints
@@ -389,7 +386,7 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Mapper.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Mapper.cs
     startLine: 69
   assemblies:
   - FastEndpoints
@@ -425,12 +422,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: FastEndpoints.IEntityMapper
-  commentId: T:FastEndpoints.IEntityMapper
+- uid: FastEndpoints.IMapper
+  commentId: T:FastEndpoints.IMapper
   parent: FastEndpoints
-  name: IEntityMapper
-  nameWithType: IEntityMapper
-  fullName: FastEndpoints.IEntityMapper
+  name: IMapper
+  nameWithType: IMapper
+  fullName: FastEndpoints.IMapper
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

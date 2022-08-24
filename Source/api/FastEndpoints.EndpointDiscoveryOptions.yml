@@ -8,6 +8,7 @@ items:
   - FastEndpoints.EndpointDiscoveryOptions.Assemblies
   - FastEndpoints.EndpointDiscoveryOptions.AssemblyFilter
   - FastEndpoints.EndpointDiscoveryOptions.DisableAutoDiscovery
+  - FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators
   - FastEndpoints.EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes
   langs:
   - csharp
@@ -18,8 +19,8 @@ items:
   type: Class
   source:
     id: EndpointDiscoveryOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Extensions\EndpointDiscoveryOptions.cs
-    startLine: 7
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\EndpointDiscoveryOptions.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -57,26 +58,26 @@ items:
   type: Property
   source:
     id: Assemblies
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Extensions\EndpointDiscoveryOptions.cs
-    startLine: 14
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\EndpointDiscoveryOptions.cs
+    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nan optional collection of assemblies to discover endpoints from.\nif DisableAutoDiscovery is set to true, this must be provided.\n<p>NOTE: not applicable when using FastEndpoints.Generator package</p>\n"
   example: []
   syntax:
-    content: public IEnumerable<Assembly>? Assemblies { get; set; }
+    content: public IEnumerable<Assembly>? Assemblies { set; }
     parameters: []
     return:
       type: System.Nullable{IEnumerable{System.Reflection.Assembly}}
-    content.vb: Public Property Assemblies As IEnumerable(Of Assembly)?
+    content.vb: Public WriteOnly Property Assemblies As IEnumerable(Of Assembly)?
   overload: FastEndpoints.EndpointDiscoveryOptions.Assemblies*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
+  - WriteOnly
 - uid: FastEndpoints.EndpointDiscoveryOptions.DisableAutoDiscovery
   commentId: P:FastEndpoints.EndpointDiscoveryOptions.DisableAutoDiscovery
   id: DisableAutoDiscovery
@@ -90,26 +91,26 @@ items:
   type: Property
   source:
     id: DisableAutoDiscovery
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Extensions\EndpointDiscoveryOptions.cs
-    startLine: 21
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\EndpointDiscoveryOptions.cs
+    startLine: 22
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nset to true if only the provided Assemblies should be scanned for endpoints.\nif the Assemblies property is null and this is set to true, an exception will be thrown.\n<p>NOTE: not applicable when using FastEndpoints.Generator package</p>\n"
   example: []
   syntax:
-    content: public bool DisableAutoDiscovery { get; set; }
+    content: public bool DisableAutoDiscovery { set; }
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public Property DisableAutoDiscovery As Boolean
+    content.vb: Public WriteOnly Property DisableAutoDiscovery As Boolean
   overload: FastEndpoints.EndpointDiscoveryOptions.DisableAutoDiscovery*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
+  - WriteOnly
 - uid: FastEndpoints.EndpointDiscoveryOptions.AssemblyFilter
   commentId: P:FastEndpoints.EndpointDiscoveryOptions.AssemblyFilter
   id: AssemblyFilter
@@ -123,26 +124,26 @@ items:
   type: Property
   source:
     id: AssemblyFilter
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Extensions\EndpointDiscoveryOptions.cs
-    startLine: 27
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\EndpointDiscoveryOptions.cs
+    startLine: 28
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nan optional predicate to filter out the final collection of assemblies before scanning for endpoints.\n<p>NOTE: not applicable when using FastEndpoints.Generator package</p>\n"
   example: []
   syntax:
-    content: public Func<Assembly, bool>? AssemblyFilter { get; set; }
+    content: public Func<Assembly, bool>? AssemblyFilter { set; }
     parameters: []
     return:
       type: System.Nullable{Func{System.Reflection.Assembly,System.Boolean}}
-    content.vb: Public Property AssemblyFilter As Func(Of Assembly, Boolean)?
+    content.vb: Public WriteOnly Property AssemblyFilter As Func(Of Assembly, Boolean)?
   overload: FastEndpoints.EndpointDiscoveryOptions.AssemblyFilter*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
+  - WriteOnly
 - uid: FastEndpoints.EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes
   commentId: P:FastEndpoints.EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes
   id: SourceGeneratorDiscoveredTypes
@@ -156,26 +157,59 @@ items:
   type: Property
   source:
     id: SourceGeneratorDiscoveredTypes
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Extensions\EndpointDiscoveryOptions.cs
-    startLine: 33
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\EndpointDiscoveryOptions.cs
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nif using the FastEndpoints.Generator package, assign <code>DiscoveredTypes.All</code> to this property.\ndoing so will use the types discovered during source generation instead of reflection based type discovery.\n"
   example: []
   syntax:
-    content: public Type[] SourceGeneratorDiscoveredTypes { get; set; }
+    content: public Type[] SourceGeneratorDiscoveredTypes { set; }
     parameters: []
     return:
       type: Type[]
-    content.vb: Public Property SourceGeneratorDiscoveredTypes As Type()
+    content.vb: Public WriteOnly Property SourceGeneratorDiscoveredTypes As Type()
   overload: FastEndpoints.EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes*
   modifiers.csharp:
   - public
-  - get
   - set
   modifiers.vb:
   - Public
+  - WriteOnly
+- uid: FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators
+  commentId: P:FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators
+  id: IncludeAbstractValidators
+  parent: FastEndpoints.EndpointDiscoveryOptions
+  langs:
+  - csharp
+  - vb
+  name: IncludeAbstractValidators
+  nameWithType: EndpointDiscoveryOptions.IncludeAbstractValidators
+  fullName: FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators
+  type: Property
+  source:
+    id: IncludeAbstractValidators
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\EndpointDiscoveryOptions.cs
+    startLine: 40
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nby default only validators inheriting <xref href=\"FastEndpoints.Validator%601\" data-throw-if-not-resolved=\"false\"></xref> are auto registered.\nif you&apos;d like to also include validators inheriting <xref href=\"FluentValidation.AbstractValidator%601\" data-throw-if-not-resolved=\"false\"></xref>, set this to true.\n"
+  example: []
+  syntax:
+    content: public bool IncludeAbstractValidators { set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public WriteOnly Property IncludeAbstractValidators As Boolean
+  overload: FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -714,3 +748,83 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: FastEndpoints.Validator`1
+  commentId: T:FastEndpoints.Validator`1
+  name: Validator<TRequest>
+  nameWithType: Validator<TRequest>
+  fullName: FastEndpoints.Validator<TRequest>
+  nameWithType.vb: Validator(Of TRequest)
+  fullName.vb: FastEndpoints.Validator(Of TRequest)
+  name.vb: Validator(Of TRequest)
+  spec.csharp:
+  - uid: FastEndpoints.Validator`1
+    name: Validator
+    nameWithType: Validator
+    fullName: FastEndpoints.Validator
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.Validator`1
+    name: Validator
+    nameWithType: Validator
+    fullName: FastEndpoints.Validator
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FluentValidation.AbstractValidator`1
+  commentId: T:FluentValidation.AbstractValidator`1
+  isExternal: true
+  name: AbstractValidator<T>
+  nameWithType: AbstractValidator<T>
+  fullName: FluentValidation.AbstractValidator<T>
+  nameWithType.vb: AbstractValidator(Of T)
+  fullName.vb: FluentValidation.AbstractValidator(Of T)
+  name.vb: AbstractValidator(Of T)
+  spec.csharp:
+  - uid: FluentValidation.AbstractValidator`1
+    name: AbstractValidator
+    nameWithType: AbstractValidator
+    fullName: FluentValidation.AbstractValidator
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FluentValidation.AbstractValidator`1
+    name: AbstractValidator
+    nameWithType: AbstractValidator
+    fullName: FluentValidation.AbstractValidator
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators*
+  commentId: Overload:FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators
+  name: IncludeAbstractValidators
+  nameWithType: EndpointDiscoveryOptions.IncludeAbstractValidators
+  fullName: FastEndpoints.EndpointDiscoveryOptions.IncludeAbstractValidators

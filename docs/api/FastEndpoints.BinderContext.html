@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct BinderContext
    | FastEndpoints ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -111,19 +111,20 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_BinderContext_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct BinderContext : IServiceResolver</code></pre>
+    <pre><code class="lang-csharp hljs">public struct BinderContext</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
   <a id="FastEndpoints_BinderContext__ctor_" data-uid="FastEndpoints.BinderContext.#ctor*"></a>
-  <h4 id="FastEndpoints_BinderContext__ctor_Microsoft_AspNetCore_Http_HttpContext_List_ValidationFailure__System_Text_Json_Serialization_JsonSerializerContext_" data-uid="FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext)">BinderContext(HttpContext, List&lt;ValidationFailure&gt;, JsonSerializerContext)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="FastEndpoints_BinderContext__ctor_Microsoft_AspNetCore_Http_HttpContext_List_FluentValidation_Results_ValidationFailure__System_Text_Json_Serialization_JsonSerializerContext_System_Boolean_" data-uid="FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)">BinderContext(HttpContext, List&lt;ValidationFailure&gt;, JsonSerializerContext, Boolean)</h4>
+  <div class="markdown level1 summary"><p>constructor of the binder context</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BinderContext(HttpContext httpContext, List&lt;ValidationFailure&gt; validationFailures, JsonSerializerContext jsonSerializerContext)</code></pre>
+    <pre><code class="lang-csharp hljs">public BinderContext(HttpContext httpContext, List&lt;ValidationFailure&gt; validationFailures, JsonSerializerContext jsonSerializerContext, bool dontAutoBindForms)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,22 +139,58 @@
       <tr>
         <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
         <td><span class="parametername">httpContext</span></td>
-        <td></td>
+        <td><p>the http context of the current request</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">List</span>&lt;<span class="xref">ValidationFailure</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">FluentValidation.Results.ValidationFailure</span>&gt;</td>
         <td><span class="parametername">validationFailures</span></td>
-        <td></td>
+        <td><p>the validation failure collection of the endpoint</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Text.Json.Serialization.JsonSerializerContext</span></td>
         <td><span class="parametername">jsonSerializerContext</span></td>
-        <td></td>
+        <td><p>json serializer context of the endpoint if applicable</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">dontAutoBindForms</span></td>
+        <td><p>whether or not to enable auto binding of form data</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
   </h3>
+  
+  
+  <a id="FastEndpoints_BinderContext_DontAutoBindForms_" data-uid="FastEndpoints.BinderContext.DontAutoBindForms*"></a>
+  <h4 id="FastEndpoints_BinderContext_DontAutoBindForms" data-uid="FastEndpoints.BinderContext.DontAutoBindForms">DontAutoBindForms</h4>
+  <div class="markdown level1 summary"><p>set 'true' to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.
+you can access the multipart sections for reading via the FormFileSectionsAsync() method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DontAutoBindForms { readonly get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="FastEndpoints_BinderContext_HttpContext_" data-uid="FastEndpoints.BinderContext.HttpContext*"></a>
@@ -253,7 +290,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<span class="xref">ValidationFailure</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">FluentValidation.Results.ValidationFailure</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>

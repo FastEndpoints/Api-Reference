@@ -18,26 +18,25 @@ items:
   type: Class
   source:
     id: EndpointWithoutRequest
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.cs
-    startLine: 191
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
+    startLine: 216
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nuse this base class for defining endpoints that doesn&apos;t need a request dto. usually used for routes that doesn&apos;t have any parameters.\n"
   example: []
   syntax:
-    content: 'public abstract class EndpointWithoutRequest : Endpoint<EmptyRequest>, IEndpoint, IServiceResolver'
+    content: 'public abstract class EndpointWithoutRequest : Endpoint<EmptyRequest, object>, IEndpoint'
     content.vb: >-
       Public MustInherit Class EndpointWithoutRequest
 
-          Inherits Endpoint(Of EmptyRequest)
+          Inherits Endpoint(Of EmptyRequest, Object)
 
-          Implements IEndpoint, IServiceResolver
+          Implements IEndpoint
   inheritance:
   - System.Object
   - FastEndpoints.BaseEndpoint
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest}
   inheritedMembers:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.HandleAsync(FastEndpoints.EmptyRequest,CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.ExecuteAsync(FastEndpoints.EmptyRequest,CancellationToken)
@@ -95,6 +94,7 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.Routes(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.Verbs(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.DontThrowIfValidationFails
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.DontCatchExceptions
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.DontAutoTag
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AllowAnonymous(FastEndpoints.Http[])
@@ -120,9 +120,10 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.Throttle(System.Int32,System.Double,System.String)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.SerializerContext``1({TContext})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.ScopedValidator
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.Validator``1(System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.RoutePrefixOverride(System.String)
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.String,System.String,Severity)
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,Severity)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.ThrowIfAnyErrors
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.ThrowError(System.String)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.ThrowError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String)
@@ -161,8 +162,8 @@ items:
   type: Method
   source:
     id: HandleAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.cs
-    startLine: 197
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
+    startLine: 222
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -197,8 +198,8 @@ items:
   type: Method
   source:
     id: HandleAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.cs
-    startLine: 203
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
+    startLine: 228
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -237,8 +238,8 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.cs
-    startLine: 210
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
+    startLine: 235
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -273,8 +274,8 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Endpoint\Endpoint.cs
-    startLine: 216
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
+    startLine: 241
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -372,46 +373,6 @@ references:
     nameWithType: Object
     fullName: System.Object
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest}
-  commentId: T:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest}
-  parent: FastEndpoints
-  definition: FastEndpoints.Endpoint`1
-  name: Endpoint<EmptyRequest>
-  nameWithType: Endpoint<EmptyRequest>
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest>
-  nameWithType.vb: Endpoint(Of EmptyRequest)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest)
-  name.vb: Endpoint(Of EmptyRequest)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`1
-    name: Endpoint
-    nameWithType: Endpoint
-    fullName: FastEndpoints.Endpoint
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.EmptyRequest
-    name: EmptyRequest
-    nameWithType: EmptyRequest
-    fullName: FastEndpoints.EmptyRequest
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`1
-    name: Endpoint
-    nameWithType: Endpoint
-    fullName: FastEndpoints.Endpoint
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.EmptyRequest
-    name: EmptyRequest
-    nameWithType: EmptyRequest
-    fullName: FastEndpoints.EmptyRequest
   - name: )
     nameWithType: )
     fullName: )
@@ -3350,6 +3311,37 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.DontCatchExceptions
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.DontCatchExceptions
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
+  definition: FastEndpoints.Endpoint`2.DontCatchExceptions
+  name: DontCatchExceptions()
+  nameWithType: Endpoint<EmptyRequest, Object>.DontCatchExceptions()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.DontCatchExceptions()
+  nameWithType.vb: Endpoint(Of EmptyRequest, Object).DontCatchExceptions()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).DontCatchExceptions()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint<EmptyRequest, Object>.DontCatchExceptions
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint(Of EmptyRequest, Object).DontCatchExceptions
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
@@ -4752,6 +4744,48 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.Validator``1(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.Validator``1(System.Boolean)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
+  definition: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  name: Validator<TValidator>(Boolean)
+  nameWithType: Endpoint<EmptyRequest, Object>.Validator<TValidator>(Boolean)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.Validator<TValidator>(System.Boolean)
+  nameWithType.vb: Endpoint(Of EmptyRequest, Object).Validator(Of TValidator)(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).Validator(Of TValidator)(System.Boolean)
+  name.vb: Validator(Of TValidator)(Boolean)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator<TValidator>
+    nameWithType: Endpoint<EmptyRequest, Object>.Validator<TValidator>
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.Validator<TValidator>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator(Of TValidator)
+    nameWithType: Endpoint(Of EmptyRequest, Object).Validator(Of TValidator)
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).Validator(Of TValidator)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.RoutePrefixOverride(System.String)
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.RoutePrefixOverride(System.String)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
@@ -4793,17 +4827,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.String,System.String,Severity)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.String,System.String,Severity)
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
-  definition: FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
+  definition: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   name: AddError(String, String, Severity)
   nameWithType: Endpoint<EmptyRequest, Object>.AddError(String, String, Severity)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.AddError(System.String, System.String, Severity)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.AddError(System.String, System.String, FluentValidation.Severity)
   nameWithType.vb: Endpoint(Of EmptyRequest, Object).AddError(String, String, Severity)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).AddError(System.String, System.String, Severity)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).AddError(System.String, System.String, FluentValidation.Severity)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint<EmptyRequest, Object>.AddError
     fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.AddError
@@ -4826,16 +4860,16 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint(Of EmptyRequest, Object).AddError
     fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).AddError
@@ -4858,26 +4892,26 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,Severity)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,Severity)
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,System.Object}
-  definition: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
+  definition: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   name: AddError(Expression<Func<EmptyRequest, Object>>, String, String, Severity)
   nameWithType: Endpoint<EmptyRequest, Object>.AddError(Expression<Func<EmptyRequest, Object>>, String, String, Severity)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.AddError(System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>, System.String, System.String, Severity)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.AddError(System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>, System.String, System.String, FluentValidation.Severity)
   nameWithType.vb: Endpoint(Of EmptyRequest, Object).AddError(Expression(Of Func(Of EmptyRequest, Object)), String, String, Severity)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).AddError(System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)), System.String, System.String, Severity)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).AddError(System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)), System.String, System.String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of EmptyRequest, Object)), String, String, Severity)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint<EmptyRequest, Object>.AddError
     fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, System.Object>.AddError
@@ -4937,16 +4971,16 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint(Of EmptyRequest, Object).AddError
     fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, System.Object).AddError
@@ -5006,10 +5040,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
@@ -5668,42 +5702,6 @@ references:
   - name: TResponse
     nameWithType: TResponse
     fullName: TResponse
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`1
-  commentId: T:FastEndpoints.Endpoint`1
-  name: Endpoint<TRequest>
-  nameWithType: Endpoint<TRequest>
-  fullName: FastEndpoints.Endpoint<TRequest>
-  nameWithType.vb: Endpoint(Of TRequest)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest)
-  name.vb: Endpoint(Of TRequest)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`1
-    name: Endpoint
-    nameWithType: Endpoint
-    fullName: FastEndpoints.Endpoint
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`1
-    name: Endpoint
-    nameWithType: Endpoint
-    fullName: FastEndpoints.Endpoint
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
   - name: )
     nameWithType: )
     fullName: )
@@ -8523,6 +8521,35 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+  commentId: M:FastEndpoints.Endpoint`2.DontCatchExceptions
+  name: DontCatchExceptions()
+  nameWithType: Endpoint<TRequest, TResponse>.DontCatchExceptions()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontCatchExceptions()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontCatchExceptions()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontCatchExceptions()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint<TRequest, TResponse>.DontCatchExceptions
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint(Of TRequest, TResponse).DontCatchExceptions
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
   commentId: M:FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
   name: RequestBinder(IRequestBinder<TRequest>)
@@ -9879,6 +9906,47 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  isExternal: true
+  name: Validator<TValidator>(Boolean)
+  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>(Boolean)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>(System.Boolean)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(System.Boolean)
+  name.vb: Validator(Of TValidator)(Boolean)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator<TValidator>
+    nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator(Of TValidator)
+    nameWithType: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
   commentId: M:FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
   isExternal: true
@@ -9919,16 +9987,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
-  commentId: M:FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
+- uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   isExternal: true
   name: AddError(String, String, Severity)
   nameWithType: Endpoint<TRequest, TResponse>.AddError(String, String, Severity)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(System.String, System.String, Severity)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(System.String, System.String, FluentValidation.Severity)
   nameWithType.vb: Endpoint(Of TRequest, TResponse).AddError(String, String, Severity)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(System.String, System.String, Severity)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(System.String, System.String, FluentValidation.Severity)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint<TRequest, TResponse>.AddError
     fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError
@@ -9951,16 +10019,16 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint(Of TRequest, TResponse).AddError
     fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError
@@ -9983,25 +10051,25 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
-  commentId: M:FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
+- uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   isExternal: true
   name: AddError(Expression<Func<TRequest, Object>>, String, String, Severity)
   nameWithType: Endpoint<TRequest, TResponse>.AddError(Expression<Func<TRequest, Object>>, String, String, Severity)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(System.Linq.Expressions.Expression<Func<TRequest, System.Object>>, System.String, System.String, Severity)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(System.Linq.Expressions.Expression<Func<TRequest, System.Object>>, System.String, System.String, FluentValidation.Severity)
   nameWithType.vb: Endpoint(Of TRequest, TResponse).AddError(Expression(Of Func(Of TRequest, Object)), String, String, Severity)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)), System.String, System.String, Severity)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)), System.String, System.String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of TRequest, Object)), String, String, Severity)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint<TRequest, TResponse>.AddError
     fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError
@@ -10060,16 +10128,16 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)
+  - uid: FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
     nameWithType: Endpoint(Of TRequest, TResponse).AddError
     fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError
@@ -10128,10 +10196,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Severity
+  - uid: FluentValidation.Severity
     name: Severity
     nameWithType: Severity
-    fullName: Severity
+    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
     nameWithType: )

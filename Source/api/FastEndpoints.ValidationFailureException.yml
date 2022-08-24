@@ -6,8 +6,10 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.ValidationFailureException.#ctor
+  - FastEndpoints.ValidationFailureException.#ctor(IEnumerable{FluentValidation.Results.ValidationFailure},System.String)
   - FastEndpoints.ValidationFailureException.#ctor(System.String)
   - FastEndpoints.ValidationFailureException.#ctor(System.String,System.Nullable{Exception})
+  - FastEndpoints.ValidationFailureException.Failures
   langs:
   - csharp
   - vb
@@ -17,12 +19,12 @@ items:
   type: Class
   source:
     id: ValidationFailureException
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Exceptions.cs
-    startLine: 5
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Exceptions.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe exception thrown when a validation error has occured. this class is only useful in unit tests.\n"
+  summary: "\nthe exception thrown when validation failure occurs.\ninspect the `Failures` property for details.\n"
   example: []
   syntax:
     content: 'public class ValidationFailureException : Exception'
@@ -38,6 +40,39 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: FastEndpoints.ValidationFailureException.Failures
+  commentId: P:FastEndpoints.ValidationFailureException.Failures
+  id: Failures
+  parent: FastEndpoints.ValidationFailureException
+  langs:
+  - csharp
+  - vb
+  name: Failures
+  nameWithType: ValidationFailureException.Failures
+  fullName: FastEndpoints.ValidationFailureException.Failures
+  type: Property
+  source:
+    id: Failures
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Exceptions.cs
+    startLine: 13
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe collection of failures that have occured.\n"
+  example: []
+  syntax:
+    content: public IEnumerable<ValidationFailure>? Failures { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{IEnumerable{FluentValidation.Results.ValidationFailure}}
+    content.vb: Public Property Failures As IEnumerable(Of ValidationFailure)?
+  overload: FastEndpoints.ValidationFailureException.Failures*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
 - uid: FastEndpoints.ValidationFailureException.#ctor
   commentId: M:FastEndpoints.ValidationFailureException.#ctor
   id: '#ctor'
@@ -51,8 +86,8 @@ items:
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Exceptions.cs
-    startLine: 7
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Exceptions.cs
+    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -77,8 +112,8 @@ items:
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Exceptions.cs
-    startLine: 9
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Exceptions.cs
+    startLine: 17
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -106,8 +141,8 @@ items:
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Exceptions.cs
-    startLine: 11
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Exceptions.cs
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -127,6 +162,40 @@ items:
   - Public
   fullName.vb: FastEndpoints.ValidationFailureException.ValidationFailureException(System.String, System.Nullable(Of Exception))
   name.vb: ValidationFailureException(String, Nullable(Of Exception))
+- uid: FastEndpoints.ValidationFailureException.#ctor(IEnumerable{FluentValidation.Results.ValidationFailure},System.String)
+  commentId: M:FastEndpoints.ValidationFailureException.#ctor(IEnumerable{FluentValidation.Results.ValidationFailure},System.String)
+  id: '#ctor(IEnumerable{FluentValidation.Results.ValidationFailure},System.String)'
+  parent: FastEndpoints.ValidationFailureException
+  langs:
+  - csharp
+  - vb
+  name: ValidationFailureException(IEnumerable<ValidationFailure>, String)
+  nameWithType: ValidationFailureException.ValidationFailureException(IEnumerable<ValidationFailure>, String)
+  fullName: FastEndpoints.ValidationFailureException.ValidationFailureException(IEnumerable<FluentValidation.Results.ValidationFailure>, System.String)
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Exceptions.cs
+    startLine: 21
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public ValidationFailureException(IEnumerable<ValidationFailure> failures, string message)
+    parameters:
+    - id: failures
+      type: IEnumerable{FluentValidation.Results.ValidationFailure}
+    - id: message
+      type: System.String
+    content.vb: Public Sub New(failures As IEnumerable(Of ValidationFailure), message As String)
+  overload: FastEndpoints.ValidationFailureException.#ctor*
+  nameWithType.vb: ValidationFailureException.ValidationFailureException(IEnumerable(Of ValidationFailure), String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.ValidationFailureException.ValidationFailureException(IEnumerable(Of FluentValidation.Results.ValidationFailure), System.String)
+  name.vb: ValidationFailureException(IEnumerable(Of ValidationFailure), String)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -146,6 +215,116 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.ValidationFailureException.Failures*
+  commentId: Overload:FastEndpoints.ValidationFailureException.Failures
+  name: Failures
+  nameWithType: ValidationFailureException.Failures
+  fullName: FastEndpoints.ValidationFailureException.Failures
+- uid: System.Nullable{IEnumerable{FluentValidation.Results.ValidationFailure}}
+  commentId: T:System.Nullable{IEnumerable{FluentValidation.Results.ValidationFailure}}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<IEnumerable<ValidationFailure>>
+  nameWithType: Nullable<IEnumerable<ValidationFailure>>
+  fullName: System.Nullable<IEnumerable<FluentValidation.Results.ValidationFailure>>
+  nameWithType.vb: Nullable(Of IEnumerable(Of ValidationFailure))
+  fullName.vb: System.Nullable(Of IEnumerable(Of FluentValidation.Results.ValidationFailure))
+  name.vb: Nullable(Of IEnumerable(Of ValidationFailure))
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.ValidationFailureException.#ctor*
   commentId: Overload:FastEndpoints.ValidationFailureException.#ctor
   name: ValidationFailureException
@@ -202,42 +381,85 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
-  isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
+- uid: IEnumerable{FluentValidation.Results.ValidationFailure}
+  commentId: '!:IEnumerable{FluentValidation.Results.ValidationFailure}'
+  definition: IEnumerable`1
+  name: IEnumerable<ValidationFailure>
+  nameWithType: IEnumerable<ValidationFailure>
+  fullName: IEnumerable<FluentValidation.Results.ValidationFailure>
+  nameWithType.vb: IEnumerable(Of ValidationFailure)
+  fullName.vb: IEnumerable(Of FluentValidation.Results.ValidationFailure)
+  name.vb: IEnumerable(Of ValidationFailure)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IEnumerable`1
+  commentId: '!:IEnumerable`1'
+  isExternal: true
+  name: IEnumerable<>
+  nameWithType: IEnumerable<>
+  fullName: IEnumerable<>
+  nameWithType.vb: IEnumerable(Of )
+  fullName.vb: IEnumerable(Of )
+  name.vb: IEnumerable(Of )
+  spec.csharp:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

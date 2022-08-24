@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace FastEndpoints
    | FastEndpoints ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -110,11 +110,17 @@
       <h4><a class="xref" href="FastEndpoints.EndpointDiscoveryOptions.html">EndpointDiscoveryOptions</a></h4>
       <section><p>defines how endpoint discovery and registration should be done at startup</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.EndpointOptions.html">EndpointOptions</a></h4>
+      <section><p>endpoint registration options</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.EndpointSummary.html">EndpointSummary</a></h4>
       <section><p>a class used for providing a textual description about an endpoint for swagger</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.EndpointSummary-1.html">EndpointSummary&lt;TRequest&gt;</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.EndpointWithMapper-2.html">EndpointWithMapper&lt;TRequest, TMapper&gt;</a></h4>
+      <section><p>use this base class for defining endpoints that only use a request dto and don't use a response dto but uses a request mapper.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.EndpointWithMapping-3.html">EndpointWithMapping&lt;TRequest, TResponse, TEntity&gt;</a></h4>
       <section><p>use this base class for defining endpoints that use both request and response dtos as well as require mapping to and from a domain entity.</p>
 </section>
@@ -124,8 +130,14 @@
       <h4><a class="xref" href="FastEndpoints.EndpointWithoutRequest-1.html">EndpointWithoutRequest&lt;TResponse&gt;</a></h4>
       <section><p>use this base class for defining endpoints that doesn't need a request dto but return a response dto.</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.EndpointWithoutRequest-2.html">EndpointWithoutRequest&lt;TResponse, TMapper&gt;</a></h4>
+      <section><p>use this base class for defining endpoints that doesn't need a request dto but return a response dto and uses a response mapper.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.EpVersion.html">EpVersion</a></h4>
       <section><p>represents an enpoint version</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.ErrorOptions.html">ErrorOptions</a></h4>
+      <section><p>error response customization settings</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.ErrorResponse.html">ErrorResponse</a></h4>
       <section><p>the dto used to send an error response to the client</p>
@@ -181,6 +193,9 @@ this is a shorter alias for the [FromClaim] attribute.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.HttpResponseExtensions.html">HttpResponseExtensions</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.InternalErrorResponse.html">InternalErrorResponse</a></h4>
+      <section><p>the dto used to send an error response to the client when an unhandled exception occurs on the server</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.MainExtensions.html">MainExtensions</a></h4>
       <section><p>provides extensions to easily bootstrap fastendpoints in the asp.net middleware pipeline</p>
 </section>
@@ -194,8 +209,24 @@ this is a shorter alias for the [FromClaim] attribute.</p>
       <h4><a class="xref" href="FastEndpoints.QueryParamAttribute.html">QueryParamAttribute</a></h4>
       <section><p>properties decorated with this attribute will have a corresponding request parameter added to the swagger schema</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.RoutingOptions.html">RoutingOptions</a></h4>
-      <section><p>routing options for the endpoints</p>
+      <h4><a class="xref" href="FastEndpoints.RequestBinder-1.html">RequestBinder&lt;TRequest&gt;</a></h4>
+      <section><p>the default request binder for a given request dto type</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.RequestMapper-2.html">RequestMapper&lt;TRequest, TEntity&gt;</a></h4>
+      <section><p>use this base class to define a domain entity mapper for your endpoints that only has a request dto and no response dto.</p>
+<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.ResponseMapper-2.html">ResponseMapper&lt;TResponse, TEntity&gt;</a></h4>
+      <section><p>use this base class to define a domain entity mapper for your endpoints that only has a response dto and no request dto.</p>
+<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.RouteHandlerBuilderExtensions.html">RouteHandlerBuilderExtensions</a></h4>
+      <section></section>
+      <h4><a class="xref" href="FastEndpoints.SecurityOptions.html">SecurityOptions</a></h4>
+      <section><p>global security options</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.SerializerOptions.html">SerializerOptions</a></h4>
+      <section><p>serialization options for the endpoints</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.Summary-1.html">Summary&lt;TEndpoint&gt;</a></h4>
       <section></section>
@@ -205,7 +236,8 @@ this is a shorter alias for the [FromClaim] attribute.</p>
       <section><p>global settings for throttling</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.ValidationFailureException.html">ValidationFailureException</a></h4>
-      <section><p>the exception thrown when a validation error has occured. this class is only useful in unit tests.</p>
+      <section><p>the exception thrown when validation failure occurs.
+inspect the <code>Failures</code> property for details.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.Validator-1.html">Validator&lt;TRequest&gt;</a></h4>
       <section><p>inherit from this base class to define your dto validators</p>
@@ -227,7 +259,16 @@ this is a shorter alias for the [FromClaim] attribute.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
-      <h4><a class="xref" href="FastEndpoints.IEntityMapper.html">IEntityMapper</a></h4>
+      <h4><a class="xref" href="FastEndpoints.IGlobalPostProcessor.html">IGlobalPostProcessor</a></h4>
+      <section><p>interface for defining global post-processors to be executed after the main endpoint handler is done</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IGlobalPreProcessor.html">IGlobalPreProcessor</a></h4>
+      <section><p>interface for defining global pre-processors to be executed before the main endpoint handler is called</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IHasMapper-1.html">IHasMapper&lt;TMapper&gt;</a></h4>
+      <section><p>marker/constraint for endpoints that have a mapper generic argument</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IMapper.html">IMapper</a></h4>
       <section><p>marker interface for entity mappers</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IPlainTextRequest.html">IPlainTextRequest</a></h4>
@@ -241,6 +282,12 @@ this is a shorter alias for the [FromClaim] attribute.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IRequestBinder-1.html">IRequestBinder&lt;TRequest&gt;</a></h4>
       <section><p>create custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the endpoint.</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IRequestMapper.html">IRequestMapper</a></h4>
+      <section><p>marker interface for request only mappers</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IResponseMapper.html">IResponseMapper</a></h4>
+      <section><p>marker interface for response only mappers</p>
 </section>
     <h3 id="enums">Enums
   </h3>

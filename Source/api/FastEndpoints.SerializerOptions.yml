@@ -1,0 +1,908 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.SerializerOptions
+  commentId: T:FastEndpoints.SerializerOptions
+  id: SerializerOptions
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.SerializerOptions.Options
+  - FastEndpoints.SerializerOptions.RequestDeserializer
+  - FastEndpoints.SerializerOptions.ResponseSerializer
+  langs:
+  - csharp
+  - vb
+  name: SerializerOptions
+  nameWithType: SerializerOptions
+  fullName: FastEndpoints.SerializerOptions
+  type: Class
+  source:
+    id: SerializerOptions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\SerializerOptions.cs
+    startLine: 10
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nserialization options for the endpoints\n"
+  example: []
+  syntax:
+    content: public class SerializerOptions
+    content.vb: Public Class SerializerOptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FastEndpoints.SerializerOptions.Options
+  commentId: P:FastEndpoints.SerializerOptions.Options
+  id: Options
+  parent: FastEndpoints.SerializerOptions
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: SerializerOptions.Options
+  fullName: FastEndpoints.SerializerOptions.Options
+  type: Property
+  source:
+    id: Options
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\SerializerOptions.cs
+    startLine: 15
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe json serializer options\n"
+  example: []
+  syntax:
+    content: public JsonSerializerOptions Options { get; }
+    parameters: []
+    return:
+      type: System.Text.Json.JsonSerializerOptions
+    content.vb: Public ReadOnly Property Options As JsonSerializerOptions
+  overload: FastEndpoints.SerializerOptions.Options*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FastEndpoints.SerializerOptions.RequestDeserializer
+  commentId: P:FastEndpoints.SerializerOptions.RequestDeserializer
+  id: RequestDeserializer
+  parent: FastEndpoints.SerializerOptions
+  langs:
+  - csharp
+  - vb
+  name: RequestDeserializer
+  nameWithType: SerializerOptions.RequestDeserializer
+  fullName: FastEndpoints.SerializerOptions.RequestDeserializer
+  type: Property
+  source:
+    id: RequestDeserializer
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\SerializerOptions.cs
+    startLine: 25
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\na function for deserializing the incoming http request body. this function will be executed for each request received if it has a json request body.\nthe parameters of the func are as follows:\n<p>HttpRequest: the incoming request</p>\n<p>Type: the type of the request dto which the request body will be deserialized into</p>\n<p>JsonSerializerContext?: json serializer context if code generation is used</p>\n<p>CancellationToken: a cancellation token</p>\n"
+  example: []
+  syntax:
+    content: public Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<object>> RequestDeserializer { set; }
+    parameters: []
+    return:
+      type: Func{Microsoft.AspNetCore.Http.HttpRequest,Type,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,ValueTask{System.Object}}
+    content.vb: Public WriteOnly Property RequestDeserializer As Func(Of HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask(Of Object))
+  overload: FastEndpoints.SerializerOptions.RequestDeserializer*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+- uid: FastEndpoints.SerializerOptions.ResponseSerializer
+  commentId: P:FastEndpoints.SerializerOptions.ResponseSerializer
+  id: ResponseSerializer
+  parent: FastEndpoints.SerializerOptions
+  langs:
+  - csharp
+  - vb
+  name: ResponseSerializer
+  nameWithType: SerializerOptions.ResponseSerializer
+  fullName: FastEndpoints.SerializerOptions.ResponseSerializer
+  type: Property
+  source:
+    id: ResponseSerializer
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\SerializerOptions.cs
+    startLine: 51
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\na function for writing serialized response dtos to the response body.\nthis function will be executed whenever a json response is being sent to the client.\nyou should set the content-type and write directly to the http response body stream in this function.\nthe parameters of the func are as follows:\n<p>HttpResponse: the http response object</p>\n<p>object: the response dto to be serialized</p>\n<p>string: the response content-type</p>\n<p>JsonSerializerContext?: json serializer context if code generation is used</p>\n<p>CancellationToken: a cancellation token</p>\n<pre><code>config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =>\n{\n    rsp.ContentType = cType;\n    return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);\n};</code></pre>\n"
+  example: []
+  syntax:
+    content: public Func<HttpResponse, object, string, JsonSerializerContext, CancellationToken, Task> ResponseSerializer { set; }
+    parameters: []
+    return:
+      type: Func{Microsoft.AspNetCore.Http.HttpResponse,System.Object,System.String,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,Task}
+    content.vb: Public WriteOnly Property ResponseSerializer As Func(Of HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task)
+  overload: FastEndpoints.SerializerOptions.ResponseSerializer*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.SerializerOptions.Options*
+  commentId: Overload:FastEndpoints.SerializerOptions.Options
+  name: Options
+  nameWithType: SerializerOptions.Options
+  fullName: FastEndpoints.SerializerOptions.Options
+- uid: System.Text.Json.JsonSerializerOptions
+  commentId: T:System.Text.Json.JsonSerializerOptions
+  parent: System.Text.Json
+  isExternal: true
+  name: JsonSerializerOptions
+  nameWithType: JsonSerializerOptions
+  fullName: System.Text.Json.JsonSerializerOptions
+- uid: System.Text.Json
+  commentId: N:System.Text.Json
+  isExternal: true
+  name: System.Text.Json
+  nameWithType: System.Text.Json
+  fullName: System.Text.Json
+- uid: FastEndpoints.SerializerOptions.RequestDeserializer*
+  commentId: Overload:FastEndpoints.SerializerOptions.RequestDeserializer
+  name: RequestDeserializer
+  nameWithType: SerializerOptions.RequestDeserializer
+  fullName: FastEndpoints.SerializerOptions.RequestDeserializer
+- uid: Func{Microsoft.AspNetCore.Http.HttpRequest,Type,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,ValueTask{System.Object}}
+  commentId: '!:Func{Microsoft.AspNetCore.Http.HttpRequest,Type,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,ValueTask{System.Object}}'
+  definition: Func`5
+  name: Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<Object>>
+  nameWithType: Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<Object>>
+  fullName: Func<Microsoft.AspNetCore.Http.HttpRequest, Type, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, ValueTask<System.Object>>
+  nameWithType.vb: Func(Of HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask(Of Object))
+  fullName.vb: Func(Of Microsoft.AspNetCore.Http.HttpRequest, Type, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, ValueTask(Of System.Object))
+  name.vb: Func(Of HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask(Of Object))
+  spec.csharp:
+  - uid: Func`5
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Http.HttpRequest
+    name: HttpRequest
+    nameWithType: HttpRequest
+    fullName: Microsoft.AspNetCore.Http.HttpRequest
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.Json.Serialization.JsonSerializerContext
+    name: JsonSerializerContext
+    nameWithType: JsonSerializerContext
+    fullName: System.Text.Json.Serialization.JsonSerializerContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: ValueTask
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`5
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Http.HttpRequest
+    name: HttpRequest
+    nameWithType: HttpRequest
+    fullName: Microsoft.AspNetCore.Http.HttpRequest
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.Json.Serialization.JsonSerializerContext
+    name: JsonSerializerContext
+    nameWithType: JsonSerializerContext
+    fullName: System.Text.Json.Serialization.JsonSerializerContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: ValueTask
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`5
+  commentId: '!:Func`5'
+  isExternal: true
+  name: Func<, , , , >
+  nameWithType: Func<, , , , >
+  fullName: Func<, , , , >
+  nameWithType.vb: Func(Of , , , , )
+  fullName.vb: Func(Of , , , , )
+  name.vb: Func(Of , , , , )
+  spec.csharp:
+  - uid: Func`5
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`5
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.SerializerOptions.ResponseSerializer*
+  commentId: Overload:FastEndpoints.SerializerOptions.ResponseSerializer
+  name: ResponseSerializer
+  nameWithType: SerializerOptions.ResponseSerializer
+  fullName: FastEndpoints.SerializerOptions.ResponseSerializer
+- uid: Func{Microsoft.AspNetCore.Http.HttpResponse,System.Object,System.String,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,Task}
+  commentId: '!:Func{Microsoft.AspNetCore.Http.HttpResponse,System.Object,System.String,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,Task}'
+  definition: Func`6
+  name: Func<HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task>
+  nameWithType: Func<HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task>
+  fullName: Func<Microsoft.AspNetCore.Http.HttpResponse, System.Object, System.String, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, Task>
+  nameWithType.vb: Func(Of HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task)
+  fullName.vb: Func(Of Microsoft.AspNetCore.Http.HttpResponse, System.Object, System.String, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, Task)
+  name.vb: Func(Of HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task)
+  spec.csharp:
+  - uid: Func`6
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Http.HttpResponse
+    name: HttpResponse
+    nameWithType: HttpResponse
+    fullName: Microsoft.AspNetCore.Http.HttpResponse
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.Json.Serialization.JsonSerializerContext
+    name: JsonSerializerContext
+    nameWithType: JsonSerializerContext
+    fullName: System.Text.Json.Serialization.JsonSerializerContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`6
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Http.HttpResponse
+    name: HttpResponse
+    nameWithType: HttpResponse
+    fullName: Microsoft.AspNetCore.Http.HttpResponse
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.Json.Serialization.JsonSerializerContext
+    name: JsonSerializerContext
+    nameWithType: JsonSerializerContext
+    fullName: System.Text.Json.Serialization.JsonSerializerContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`6
+  commentId: '!:Func`6'
+  isExternal: true
+  name: Func<, , , , , >
+  nameWithType: Func<, , , , , >
+  fullName: Func<, , , , , >
+  nameWithType.vb: Func(Of , , , , , )
+  fullName.vb: Func(Of , , , , , )
+  name.vb: Func(Of , , , , , )
+  spec.csharp:
+  - uid: Func`6
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`6
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

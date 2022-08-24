@@ -5,7 +5,8 @@ items:
   id: BinderContext
   parent: FastEndpoints
   children:
-  - FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext)
+  - FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)
+  - FastEndpoints.BinderContext.DontAutoBindForms
   - FastEndpoints.BinderContext.HttpContext
   - FastEndpoints.BinderContext.JsonSerializerContext
   - FastEndpoints.BinderContext.Resolve(Type)
@@ -23,7 +24,7 @@ items:
   type: Struct
   source:
     id: BinderContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
     startLine: 13
   assemblies:
   - FastEndpoints
@@ -31,11 +32,8 @@ items:
   summary: "\nbinder context supplied to custom request binders.\n"
   example: []
   syntax:
-    content: 'public struct BinderContext : IServiceResolver'
-    content.vb: >-
-      Public Structure BinderContext
-
-          Implements IServiceResolver
+    content: public struct BinderContext
+    content.vb: Public Structure BinderContext
   inheritedMembers:
   - System.ValueType.Equals(System.Object)
   - System.ValueType.GetHashCode
@@ -62,7 +60,7 @@ items:
   type: Property
   source:
     id: HttpContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
     startLine: 18
   assemblies:
   - FastEndpoints
@@ -95,7 +93,7 @@ items:
   type: Property
   source:
     id: ValidationFailures
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
     startLine: 23
   assemblies:
   - FastEndpoints
@@ -106,7 +104,7 @@ items:
     content: public List<ValidationFailure> ValidationFailures { readonly get; set; }
     parameters: []
     return:
-      type: List{ValidationFailure}
+      type: List{FluentValidation.Results.ValidationFailure}
     content.vb: Public Property ValidationFailures As List(Of ValidationFailure)
   overload: FastEndpoints.BinderContext.ValidationFailures*
   modifiers.csharp:
@@ -128,7 +126,7 @@ items:
   type: Property
   source:
     id: SerializerOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
     startLine: 28
   assemblies:
   - FastEndpoints
@@ -162,7 +160,7 @@ items:
   type: Property
   source:
     id: JsonSerializerContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
     startLine: 33
   assemblies:
   - FastEndpoints
@@ -182,42 +180,83 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext)
-  commentId: M:FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext)
-  id: '#ctor(Microsoft.AspNetCore.Http.HttpContext,List{ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext)'
+- uid: FastEndpoints.BinderContext.DontAutoBindForms
+  commentId: P:FastEndpoints.BinderContext.DontAutoBindForms
+  id: DontAutoBindForms
   parent: FastEndpoints.BinderContext
   langs:
   - csharp
   - vb
-  name: BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext)
-  nameWithType: BinderContext.BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext)
-  fullName: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, List<ValidationFailure>, System.Text.Json.Serialization.JsonSerializerContext)
-  type: Constructor
+  name: DontAutoBindForms
+  nameWithType: BinderContext.DontAutoBindForms
+  fullName: FastEndpoints.BinderContext.DontAutoBindForms
+  type: Property
   source:
-    id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
-    startLine: 35
+    id: DontAutoBindForms
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nset &apos;true&apos; to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.\nyou can access the multipart sections for reading via the FormFileSectionsAsync() method.\n"
+  example: []
   syntax:
-    content: public BinderContext(HttpContext httpContext, List<ValidationFailure> validationFailures, JsonSerializerContext jsonSerializerContext)
+    content: public bool DontAutoBindForms { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property DontAutoBindForms As Boolean
+  overload: FastEndpoints.BinderContext.DontAutoBindForms*
+  modifiers.csharp:
+  - public
+  - readonly get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)
+  commentId: M:FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)
+  id: '#ctor(Microsoft.AspNetCore.Http.HttpContext,List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)'
+  parent: FastEndpoints.BinderContext
+  langs:
+  - csharp
+  - vb
+  name: BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext, Boolean)
+  nameWithType: BinderContext.BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext, Boolean)
+  fullName: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, List<FluentValidation.Results.ValidationFailure>, System.Text.Json.Serialization.JsonSerializerContext, System.Boolean)
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 48
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nconstructor of the binder context\n"
+  example: []
+  syntax:
+    content: public BinderContext(HttpContext httpContext, List<ValidationFailure> validationFailures, JsonSerializerContext jsonSerializerContext, bool dontAutoBindForms)
     parameters:
     - id: httpContext
       type: Microsoft.AspNetCore.Http.HttpContext
+      description: the http context of the current request
     - id: validationFailures
-      type: List{ValidationFailure}
+      type: List{FluentValidation.Results.ValidationFailure}
+      description: the validation failure collection of the endpoint
     - id: jsonSerializerContext
       type: System.Text.Json.Serialization.JsonSerializerContext
-    content.vb: Public Sub New(httpContext As HttpContext, validationFailures As List(Of ValidationFailure), jsonSerializerContext As JsonSerializerContext)
+      description: json serializer context of the endpoint if applicable
+    - id: dontAutoBindForms
+      type: System.Boolean
+      description: whether or not to enable auto binding of form data
+    content.vb: Public Sub New(httpContext As HttpContext, validationFailures As List(Of ValidationFailure), jsonSerializerContext As JsonSerializerContext, dontAutoBindForms As Boolean)
   overload: FastEndpoints.BinderContext.#ctor*
-  nameWithType.vb: BinderContext.BinderContext(HttpContext, List(Of ValidationFailure), JsonSerializerContext)
+  nameWithType.vb: BinderContext.BinderContext(HttpContext, List(Of ValidationFailure), JsonSerializerContext, Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, List(Of ValidationFailure), System.Text.Json.Serialization.JsonSerializerContext)
-  name.vb: BinderContext(HttpContext, List(Of ValidationFailure), JsonSerializerContext)
+  fullName.vb: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, List(Of FluentValidation.Results.ValidationFailure), System.Text.Json.Serialization.JsonSerializerContext, System.Boolean)
+  name.vb: BinderContext(HttpContext, List(Of ValidationFailure), JsonSerializerContext, Boolean)
 - uid: FastEndpoints.BinderContext.TryResolve``1
   commentId: M:FastEndpoints.BinderContext.TryResolve``1
   id: TryResolve``1
@@ -231,8 +270,8 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
-    startLine: 46
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 61
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -270,8 +309,8 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
-    startLine: 53
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 68
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -304,8 +343,8 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
-    startLine: 61
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 76
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -343,8 +382,8 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\BinderContext.cs
-    startLine: 69
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 84
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -661,14 +700,14 @@ references:
   name: ValidationFailures
   nameWithType: BinderContext.ValidationFailures
   fullName: FastEndpoints.BinderContext.ValidationFailures
-- uid: List{ValidationFailure}
-  commentId: '!:List{ValidationFailure}'
+- uid: List{FluentValidation.Results.ValidationFailure}
+  commentId: '!:List{FluentValidation.Results.ValidationFailure}'
   definition: List`1
   name: List<ValidationFailure>
   nameWithType: List<ValidationFailure>
-  fullName: List<ValidationFailure>
+  fullName: List<FluentValidation.Results.ValidationFailure>
   nameWithType.vb: List(Of ValidationFailure)
-  fullName.vb: List(Of ValidationFailure)
+  fullName.vb: List(Of FluentValidation.Results.ValidationFailure)
   name.vb: List(Of ValidationFailure)
   spec.csharp:
   - uid: List`1
@@ -679,10 +718,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: ValidationFailure
+  - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
     nameWithType: ValidationFailure
-    fullName: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: '>'
     nameWithType: '>'
@@ -696,10 +735,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: ValidationFailure
+  - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
     nameWithType: ValidationFailure
-    fullName: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
     nameWithType: )
@@ -778,6 +817,18 @@ references:
   name: System.Text.Json.Serialization
   nameWithType: System.Text.Json.Serialization
   fullName: System.Text.Json.Serialization
+- uid: FastEndpoints.BinderContext.DontAutoBindForms*
+  commentId: Overload:FastEndpoints.BinderContext.DontAutoBindForms
+  name: DontAutoBindForms
+  nameWithType: BinderContext.DontAutoBindForms
+  fullName: FastEndpoints.BinderContext.DontAutoBindForms
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: FastEndpoints.BinderContext.#ctor*
   commentId: Overload:FastEndpoints.BinderContext.#ctor
   name: BinderContext

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Endpoint&lt;TRequest, TResponse&gt;
    | FastEndpoints ">
-    <meta name="generator" content="docfx 2.58.4.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -93,7 +93,9 @@
     <div class="level2"><span class="xref">Endpoint&lt;TRequest, TResponse&gt;</span></div>
       <div class="level3"><a class="xref" href="FastEndpoints.Endpoint-1.html">Endpoint&lt;TRequest&gt;</a></div>
       <div class="level3"><a class="xref" href="FastEndpoints.Endpoint-3.html">Endpoint&lt;TRequest, TResponse, TMapper&gt;</a></div>
+      <div class="level3"><a class="xref" href="FastEndpoints.EndpointWithMapper-2.html">EndpointWithMapper&lt;TRequest, TMapper&gt;</a></div>
       <div class="level3"><a class="xref" href="FastEndpoints.EndpointWithMapping-3.html">EndpointWithMapping&lt;TRequest, TResponse, TEntity&gt;</a></div>
+      <div class="level3"><a class="xref" href="FastEndpoints.EndpointWithoutRequest.html">EndpointWithoutRequest</a></div>
       <div class="level3"><a class="xref" href="FastEndpoints.EndpointWithoutRequest-1.html">EndpointWithoutRequest&lt;TResponse&gt;</a></div>
   </div>
   <div class="inheritedMembers">
@@ -142,9 +144,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Endpoint_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse&gt; : BaseEndpoint, IEndpoint, IServiceResolver where TRequest : new()
-
-    where TResponse : new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse&gt; : BaseEndpoint, IEndpoint where TRequest : new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -434,13 +434,13 @@
   
   
   <a id="FastEndpoints_Endpoint_2_AddError_" data-uid="FastEndpoints.Endpoint`2.AddError*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_Func__0_System_Object___System_String_System_String_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,Severity)">AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)">AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</h4>
   <div class="markdown level1 summary"><p>adds an error message for the specified property of the request dto</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void AddError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage, string errorCode = null, Severity severity = null)</code></pre>
+    <pre><code class="lang-csharp hljs">protected void AddError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage, string errorCode = null, Severity severity = Severity.Error)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -471,7 +471,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Severity</span></td>
+        <td><span class="xref">FluentValidation.Severity</span></td>
         <td><span class="parametername">severity</span></td>
         <td><p>the severity of the error</p>
 </td>
@@ -481,13 +481,13 @@
   
   
   <a id="FastEndpoints_Endpoint_2_AddError_" data-uid="FastEndpoints.Endpoint`2.AddError*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_AddError_System_String_System_String_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.String,System.String,Severity)">AddError(String, String, Severity)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_AddError_System_String_System_String_FluentValidation_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)">AddError(String, String, Severity)</h4>
   <div class="markdown level1 summary"><p>adds a &quot;GeneralError&quot; to the current list of validation failures</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void AddError(string message, string errorCode = null, Severity severity = null)</code></pre>
+    <pre><code class="lang-csharp hljs">protected void AddError(string message, string errorCode = null, Severity severity = Severity.Error)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -512,7 +512,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Severity</span></td>
+        <td><span class="xref">FluentValidation.Severity</span></td>
         <td><span class="parametername">severity</span></td>
         <td><p>the severity of the error</p>
 </td>
@@ -755,9 +755,23 @@ EXAMPLE: <code>b => b.Accepts&lt;Request>(&quot;text/plain&quot;)</code>
   </div>
   
   
+  <a id="FastEndpoints_Endpoint_2_DontCatchExceptions_" data-uid="FastEndpoints.Endpoint`2.DontCatchExceptions*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_DontCatchExceptions" data-uid="FastEndpoints.Endpoint`2.DontCatchExceptions">DontCatchExceptions()</h4>
+  <div class="markdown level1 summary"><p>use this only if you have your own exception catching middleware.
+if this method is called in config, an automatic error response will not be sent to the client by the library.
+all exceptions will be thrown and it would be your exeception catching middleware to handle them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void DontCatchExceptions()</code></pre>
+  </div>
+  
+  
   <a id="FastEndpoints_Endpoint_2_DontThrowIfValidationFails_" data-uid="FastEndpoints.Endpoint`2.DontThrowIfValidationFails*"></a>
   <h4 id="FastEndpoints_Endpoint_2_DontThrowIfValidationFails" data-uid="FastEndpoints.Endpoint`2.DontThrowIfValidationFails">DontThrowIfValidationFails()</h4>
-  <div class="markdown level1 summary"><p>disable auto validation failure responses (400 bad request with error details) for this endpoint</p>
+  <div class="markdown level1 summary"><p>disable auto validation failure responses (400 bad request with error details) for this endpoint.</p>
+<p>HINT: this only applies to request dto validation.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3458,6 +3472,54 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
       <tr>
         <td><span class="parametername">TService</span></td>
         <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Validator_" data-uid="FastEndpoints.Endpoint`2.Validator*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Validator__1_System_Boolean_" data-uid="FastEndpoints.Endpoint`2.Validator``1(System.Boolean)">Validator&lt;TValidator&gt;(Boolean)</h4>
+  <div class="markdown level1 summary"><p>specify the validator that should be used for this endpoint.</p>
+<p>TIP: you only need to call this method if you have more than one validator for the same request dto in the solution or if you just want to be explicit about what validator is used by the endpoint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Validator&lt;TValidator&gt;(bool isScoped = false)
+
+    where TValidator : IValidator</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isScoped</span></td>
+        <td><p>set to true if you want to register the validator as scoped instead of singleton. which will enable constructor injection at the cost of performance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TValidator</span></td>
+        <td><p>the type of the validator</p>
 </td>
       </tr>
     </tbody>

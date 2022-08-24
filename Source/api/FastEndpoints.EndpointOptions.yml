@@ -1,0 +1,693 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.EndpointOptions
+  commentId: T:FastEndpoints.EndpointOptions
+  id: EndpointOptions
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.EndpointOptions.Configurator
+  - FastEndpoints.EndpointOptions.Filter
+  - FastEndpoints.EndpointOptions.RoutePrefix
+  - FastEndpoints.EndpointOptions.ShortNames
+  langs:
+  - csharp
+  - vb
+  name: EndpointOptions
+  nameWithType: EndpointOptions
+  fullName: FastEndpoints.EndpointOptions
+  type: Class
+  source:
+    id: EndpointOptions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\EndpointOptions.cs
+    startLine: 5
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nendpoint registration options\n"
+  example: []
+  syntax:
+    content: public class EndpointOptions
+    content.vb: Public Class EndpointOptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FastEndpoints.EndpointOptions.ShortNames
+  commentId: P:FastEndpoints.EndpointOptions.ShortNames
+  id: ShortNames
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: ShortNames
+  nameWithType: EndpointOptions.ShortNames
+  fullName: FastEndpoints.EndpointOptions.ShortNames
+  type: Property
+  source:
+    id: ShortNames
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\EndpointOptions.cs
+    startLine: 10
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nset to true if you&apos;d like the endpoint names/ swagger operation ids to be just the endpoint class names instead of the full names including namespace.\n"
+  example: []
+  syntax:
+    content: public bool ShortNames { set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public WriteOnly Property ShortNames As Boolean
+  overload: FastEndpoints.EndpointOptions.ShortNames*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+- uid: FastEndpoints.EndpointOptions.RoutePrefix
+  commentId: P:FastEndpoints.EndpointOptions.RoutePrefix
+  id: RoutePrefix
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: RoutePrefix
+  nameWithType: EndpointOptions.RoutePrefix
+  fullName: FastEndpoints.EndpointOptions.RoutePrefix
+  type: Property
+  source:
+    id: RoutePrefix
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\EndpointOptions.cs
+    startLine: 15
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nprefix for all routes (example &apos;api&apos;).\n"
+  example: []
+  syntax:
+    content: public string RoutePrefix { set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public WriteOnly Property RoutePrefix As String
+  overload: FastEndpoints.EndpointOptions.RoutePrefix*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+- uid: FastEndpoints.EndpointOptions.Filter
+  commentId: P:FastEndpoints.EndpointOptions.Filter
+  id: Filter
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: Filter
+  nameWithType: EndpointOptions.Filter
+  fullName: FastEndpoints.EndpointOptions.Filter
+  type: Property
+  source:
+    id: Filter
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\EndpointOptions.cs
+    startLine: 25
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\na function to filter out endpoints from auto registration.\nthe function you set here will be executed for each endpoint during startup.\nyou can inspect the EndpointSettings to check what the current endpoint is, if needed.\nreturn &apos;false&apos; from the function if you want to exclude an endpoint from registration.\nreturn &apos;true&apos; to include.\nthis function will executed for each endpoint that has been discovered during startup.\n"
+  example: []
+  syntax:
+    content: public Func<EndpointDefinition, bool>? Filter { set; }
+    parameters: []
+    return:
+      type: System.Nullable{Func{FastEndpoints.EndpointDefinition,System.Boolean}}
+    content.vb: Public WriteOnly Property Filter As Func(Of EndpointDefinition, Boolean)?
+  overload: FastEndpoints.EndpointOptions.Filter*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+- uid: FastEndpoints.EndpointOptions.Configurator
+  commentId: P:FastEndpoints.EndpointOptions.Configurator
+  id: Configurator
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: Configurator
+  nameWithType: EndpointOptions.Configurator
+  fullName: FastEndpoints.EndpointOptions.Configurator
+  type: Property
+  source:
+    id: Configurator
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\EndpointOptions.cs
+    startLine: 40
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\na configuration action to be performed on each endpoint definition during startup.\nsome of the same methods you use inside `Configure()` method are available to be called on the `EndpointDefinition` parameter.\nthis can be used to apply a set of common configuration settings globally to all endpoints.\ni.e. apply globally applicable settings here and specify only the settings applicable to individual endpoints from within each endpoints&apos; `Configure()` method.\n<pre><code>app.UseFastEndpoints(c => c.GlobalEndpointConfig = ep =>\n{\n    ep.AllowAnonymous();\n    ep.Description(b => b.Produces&lt;ErrorResponse>(400));\n});</code></pre>\n"
+  example: []
+  syntax:
+    content: public Action<EndpointDefinition>? Configurator { set; }
+    parameters: []
+    return:
+      type: System.Nullable{Action{FastEndpoints.EndpointDefinition}}
+    content.vb: Public WriteOnly Property Configurator As Action(Of EndpointDefinition)?
+  overload: FastEndpoints.EndpointOptions.Configurator*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.EndpointOptions.ShortNames*
+  commentId: Overload:FastEndpoints.EndpointOptions.ShortNames
+  name: ShortNames
+  nameWithType: EndpointOptions.ShortNames
+  fullName: FastEndpoints.EndpointOptions.ShortNames
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FastEndpoints.EndpointOptions.RoutePrefix*
+  commentId: Overload:FastEndpoints.EndpointOptions.RoutePrefix
+  name: RoutePrefix
+  nameWithType: EndpointOptions.RoutePrefix
+  fullName: FastEndpoints.EndpointOptions.RoutePrefix
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FastEndpoints.EndpointOptions.Filter*
+  commentId: Overload:FastEndpoints.EndpointOptions.Filter
+  name: Filter
+  nameWithType: EndpointOptions.Filter
+  fullName: FastEndpoints.EndpointOptions.Filter
+- uid: System.Nullable{Func{FastEndpoints.EndpointDefinition,System.Boolean}}
+  commentId: T:System.Nullable{Func{FastEndpoints.EndpointDefinition,System.Boolean}}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Func<EndpointDefinition, Boolean>>
+  nameWithType: Nullable<Func<EndpointDefinition, Boolean>>
+  fullName: System.Nullable<Func<FastEndpoints.EndpointDefinition, System.Boolean>>
+  nameWithType.vb: Nullable(Of Func(Of EndpointDefinition, Boolean))
+  fullName.vb: System.Nullable(Of Func(Of FastEndpoints.EndpointDefinition, System.Boolean))
+  name.vb: Nullable(Of Func(Of EndpointDefinition, Boolean))
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EndpointDefinition
+    name: EndpointDefinition
+    nameWithType: EndpointDefinition
+    fullName: FastEndpoints.EndpointDefinition
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EndpointDefinition
+    name: EndpointDefinition
+    nameWithType: EndpointDefinition
+    fullName: FastEndpoints.EndpointDefinition
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.EndpointOptions.Configurator*
+  commentId: Overload:FastEndpoints.EndpointOptions.Configurator
+  name: Configurator
+  nameWithType: EndpointOptions.Configurator
+  fullName: FastEndpoints.EndpointOptions.Configurator
+- uid: System.Nullable{Action{FastEndpoints.EndpointDefinition}}
+  commentId: T:System.Nullable{Action{FastEndpoints.EndpointDefinition}}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Action<EndpointDefinition>>
+  nameWithType: Nullable<Action<EndpointDefinition>>
+  fullName: System.Nullable<Action<FastEndpoints.EndpointDefinition>>
+  nameWithType.vb: Nullable(Of Action(Of EndpointDefinition))
+  fullName.vb: System.Nullable(Of Action(Of FastEndpoints.EndpointDefinition))
+  name.vb: Nullable(Of Action(Of EndpointDefinition))
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EndpointDefinition
+    name: EndpointDefinition
+    nameWithType: EndpointDefinition
+    fullName: FastEndpoints.EndpointDefinition
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EndpointDefinition
+    name: EndpointDefinition
+    nameWithType: EndpointDefinition
+    fullName: FastEndpoints.EndpointDefinition
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )

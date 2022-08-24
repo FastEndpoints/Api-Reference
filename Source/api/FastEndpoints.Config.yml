@@ -5,17 +5,12 @@ items:
   id: Config
   parent: FastEndpoints
   children:
-  - FastEndpoints.Config.EndpointRegistrationFilter
-  - FastEndpoints.Config.ErrorResponseBuilder
-  - FastEndpoints.Config.ErrorResponseStatusCode
-  - FastEndpoints.Config.GlobalEndpointOptions
-  - FastEndpoints.Config.RequestDeserializer
-  - FastEndpoints.Config.ResponseSerializer
-  - FastEndpoints.Config.RoutingOptions
-  - FastEndpoints.Config.SerializerOptions
-  - FastEndpoints.Config.ShortEndpointNames
-  - FastEndpoints.Config.ThrottleOptions
-  - FastEndpoints.Config.VersioningOptions
+  - FastEndpoints.Config.Endpoints
+  - FastEndpoints.Config.Errors
+  - FastEndpoints.Config.Security
+  - FastEndpoints.Config.Serializer
+  - FastEndpoints.Config.Throttle
+  - FastEndpoints.Config.Versioning
   langs:
   - csharp
   - vb
@@ -25,8 +20,8 @@ items:
   type: Class
   source:
     id: Config
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 12
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 7
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -51,369 +46,204 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: FastEndpoints.Config.ShortEndpointNames
-  commentId: P:FastEndpoints.Config.ShortEndpointNames
-  id: ShortEndpointNames
+- uid: FastEndpoints.Config.Endpoints
+  commentId: P:FastEndpoints.Config.Endpoints
+  id: Endpoints
   parent: FastEndpoints.Config
   langs:
   - csharp
   - vb
-  name: ShortEndpointNames
-  nameWithType: Config.ShortEndpointNames
-  fullName: FastEndpoints.Config.ShortEndpointNames
+  name: Endpoints
+  nameWithType: Config.Endpoints
+  fullName: FastEndpoints.Config.Endpoints
   type: Property
   source:
-    id: ShortEndpointNames
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 43
+    id: Endpoints
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nset to true if you&apos;d like the endpoint names/ swagger operation ids to be just the endpoint class names instead of the full names including namespace.\n"
+  summary: "\nendpoint dicovery &amp; registration settings\n"
   example: []
   syntax:
-    content: public bool ShortEndpointNames { set; }
+    content: public EndpointOptions Endpoints { get; }
     parameters: []
     return:
-      type: System.Boolean
-    content.vb: Public WriteOnly Property ShortEndpointNames As Boolean
-  overload: FastEndpoints.Config.ShortEndpointNames*
+      type: FastEndpoints.EndpointOptions
+    content.vb: Public ReadOnly Property Endpoints As EndpointOptions
+  overload: FastEndpoints.Config.Endpoints*
   modifiers.csharp:
   - public
-  - set
+  - get
   modifiers.vb:
   - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.SerializerOptions
-  commentId: P:FastEndpoints.Config.SerializerOptions
-  id: SerializerOptions
+  - ReadOnly
+- uid: FastEndpoints.Config.Errors
+  commentId: P:FastEndpoints.Config.Errors
+  id: Errors
   parent: FastEndpoints.Config
   langs:
   - csharp
   - vb
-  name: SerializerOptions
-  nameWithType: Config.SerializerOptions
-  fullName: FastEndpoints.Config.SerializerOptions
+  name: Errors
+  nameWithType: Config.Errors
+  fullName: FastEndpoints.Config.Errors
   type: Property
   source:
-    id: SerializerOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 48
+    id: Errors
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nsettings for configuring the json serializer\n"
+  summary: "\nerror response customization settings\n"
   example: []
   syntax:
-    content: public Action<JsonSerializerOptions> SerializerOptions { set; }
+    content: public ErrorOptions Errors { get; }
     parameters: []
     return:
-      type: Action{System.Text.Json.JsonSerializerOptions}
-    content.vb: Public WriteOnly Property SerializerOptions As Action(Of JsonSerializerOptions)
-  overload: FastEndpoints.Config.SerializerOptions*
+      type: FastEndpoints.ErrorOptions
+    content.vb: Public ReadOnly Property Errors As ErrorOptions
+  overload: FastEndpoints.Config.Errors*
   modifiers.csharp:
   - public
-  - set
+  - get
   modifiers.vb:
   - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.VersioningOptions
-  commentId: P:FastEndpoints.Config.VersioningOptions
-  id: VersioningOptions
+  - ReadOnly
+- uid: FastEndpoints.Config.Security
+  commentId: P:FastEndpoints.Config.Security
+  id: Security
   parent: FastEndpoints.Config
   langs:
   - csharp
   - vb
-  name: VersioningOptions
-  nameWithType: Config.VersioningOptions
-  fullName: FastEndpoints.Config.VersioningOptions
+  name: Security
+  nameWithType: Config.Security
+  fullName: FastEndpoints.Config.Security
   type: Property
   source:
-    id: VersioningOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 53
+    id: Security
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\noptions for enabling endpoint versioning support\n"
+  summary: "\nsecurity related settings\n"
   example: []
   syntax:
-    content: public Action<VersioningOptions> VersioningOptions { set; }
+    content: public SecurityOptions Security { get; }
     parameters: []
     return:
-      type: Action{FastEndpoints.VersioningOptions}
-    content.vb: Public WriteOnly Property VersioningOptions As Action(Of VersioningOptions)
-  overload: FastEndpoints.Config.VersioningOptions*
+      type: FastEndpoints.SecurityOptions
+    content.vb: Public ReadOnly Property Security As SecurityOptions
+  overload: FastEndpoints.Config.Security*
   modifiers.csharp:
   - public
-  - set
+  - get
   modifiers.vb:
   - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.RoutingOptions
-  commentId: P:FastEndpoints.Config.RoutingOptions
-  id: RoutingOptions
+  - ReadOnly
+- uid: FastEndpoints.Config.Serializer
+  commentId: P:FastEndpoints.Config.Serializer
+  id: Serializer
   parent: FastEndpoints.Config
   langs:
   - csharp
   - vb
-  name: RoutingOptions
-  nameWithType: Config.RoutingOptions
-  fullName: FastEndpoints.Config.RoutingOptions
+  name: Serializer
+  nameWithType: Config.Serializer
+  fullName: FastEndpoints.Config.Serializer
   type: Property
   source:
-    id: RoutingOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 63
+    id: Serializer
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nrouting options for all endpoints\n"
+  summary: "\nsettings for customizing serialization behavior\n"
   example: []
   syntax:
-    content: public Action<RoutingOptions> RoutingOptions { set; }
+    content: public SerializerOptions Serializer { get; }
     parameters: []
     return:
-      type: Action{FastEndpoints.RoutingOptions}
-    content.vb: Public WriteOnly Property RoutingOptions As Action(Of RoutingOptions)
-  overload: FastEndpoints.Config.RoutingOptions*
+      type: FastEndpoints.SerializerOptions
+    content.vb: Public ReadOnly Property Serializer As SerializerOptions
+  overload: FastEndpoints.Config.Serializer*
   modifiers.csharp:
   - public
-  - set
+  - get
   modifiers.vb:
   - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.ThrottleOptions
-  commentId: P:FastEndpoints.Config.ThrottleOptions
-  id: ThrottleOptions
+  - ReadOnly
+- uid: FastEndpoints.Config.Throttle
+  commentId: P:FastEndpoints.Config.Throttle
+  id: Throttle
   parent: FastEndpoints.Config
   langs:
   - csharp
   - vb
-  name: ThrottleOptions
-  nameWithType: Config.ThrottleOptions
-  fullName: FastEndpoints.Config.ThrottleOptions
+  name: Throttle
+  nameWithType: Config.Throttle
+  fullName: FastEndpoints.Config.Throttle
   type: Property
   source:
-    id: ThrottleOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 73
+    id: Throttle
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthrottling options for all endpoints\n"
+  summary: "\nendpoint throttling/ rate limiting settings\n"
   example: []
   syntax:
-    content: public Action<ThrottleOptions> ThrottleOptions { set; }
+    content: public ThrottleOptions Throttle { get; }
     parameters: []
     return:
-      type: Action{FastEndpoints.ThrottleOptions}
-    content.vb: Public WriteOnly Property ThrottleOptions As Action(Of ThrottleOptions)
-  overload: FastEndpoints.Config.ThrottleOptions*
+      type: FastEndpoints.ThrottleOptions
+    content.vb: Public ReadOnly Property Throttle As ThrottleOptions
+  overload: FastEndpoints.Config.Throttle*
   modifiers.csharp:
   - public
-  - set
+  - get
   modifiers.vb:
   - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.EndpointRegistrationFilter
-  commentId: P:FastEndpoints.Config.EndpointRegistrationFilter
-  id: EndpointRegistrationFilter
+  - ReadOnly
+- uid: FastEndpoints.Config.Versioning
+  commentId: P:FastEndpoints.Config.Versioning
+  id: Versioning
   parent: FastEndpoints.Config
   langs:
   - csharp
   - vb
-  name: EndpointRegistrationFilter
-  nameWithType: Config.EndpointRegistrationFilter
-  fullName: FastEndpoints.Config.EndpointRegistrationFilter
+  name: Versioning
+  nameWithType: Config.Versioning
+  fullName: FastEndpoints.Config.Versioning
   type: Property
   source:
-    id: EndpointRegistrationFilter
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 88
+    id: Versioning
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
+    startLine: 44
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function to filter out endpoints from auto registration.\nthe function you set here will be executed for each endpoint during startup.\nyou can inspect the EndpointSettings to check what the current endpoint is, if needed.\nreturn &apos;false&apos; from the function if you want to exclude an endpoint from registration.\nreturn &apos;true&apos; to include.\nthis function will executed for each endpoint that has been discovered during startup.\n"
+  summary: "\nendpoint versioning settings\n"
   example: []
   syntax:
-    content: public Func<EndpointDefinition, bool> EndpointRegistrationFilter { set; }
+    content: public VersioningOptions Versioning { get; }
     parameters: []
     return:
-      type: Func{FastEndpoints.EndpointDefinition,System.Boolean}
-    content.vb: Public WriteOnly Property EndpointRegistrationFilter As Func(Of EndpointDefinition, Boolean)
-  overload: FastEndpoints.Config.EndpointRegistrationFilter*
+      type: FastEndpoints.VersioningOptions
+    content.vb: Public ReadOnly Property Versioning As VersioningOptions
+  overload: FastEndpoints.Config.Versioning*
   modifiers.csharp:
   - public
-  - set
+  - get
   modifiers.vb:
   - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.GlobalEndpointOptions
-  commentId: P:FastEndpoints.Config.GlobalEndpointOptions
-  id: GlobalEndpointOptions
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: GlobalEndpointOptions
-  nameWithType: Config.GlobalEndpointOptions
-  fullName: FastEndpoints.Config.GlobalEndpointOptions
-  type: Property
-  source:
-    id: GlobalEndpointOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 97
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nan action to be performed on all endpoints during registration.\nthe action you set here will be executed for each endpoint during startup.\nyou can inspect the EndpointSettings to check what the current endpoint is, if needed.\nNOTE: this action is executed before Options() and Describe() of each individual endpoint.\nso, whatever you do here may get overridden or compounded by what you do in the Configure() method of each endpoint.\n"
-  example: []
-  syntax:
-    content: public Action<EndpointDefinition, RouteHandlerBuilder> GlobalEndpointOptions { set; }
-    parameters: []
-    return:
-      type: Action{FastEndpoints.EndpointDefinition,Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
-    content.vb: Public WriteOnly Property GlobalEndpointOptions As Action(Of EndpointDefinition, RouteHandlerBuilder)
-  overload: FastEndpoints.Config.GlobalEndpointOptions*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.ErrorResponseStatusCode
-  commentId: P:FastEndpoints.Config.ErrorResponseStatusCode
-  id: ErrorResponseStatusCode
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: ErrorResponseStatusCode
-  nameWithType: Config.ErrorResponseStatusCode
-  fullName: FastEndpoints.Config.ErrorResponseStatusCode
-  type: Property
-  source:
-    id: ErrorResponseStatusCode
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 102
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nthis http status code will be used for all automatically sent validation failure responses. defaults to 400.\n"
-  example: []
-  syntax:
-    content: public int ErrorResponseStatusCode { set; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public WriteOnly Property ErrorResponseStatusCode As Integer
-  overload: FastEndpoints.Config.ErrorResponseStatusCode*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.ErrorResponseBuilder
-  commentId: P:FastEndpoints.Config.ErrorResponseBuilder
-  id: ErrorResponseBuilder
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: ErrorResponseBuilder
-  nameWithType: Config.ErrorResponseBuilder
-  fullName: FastEndpoints.Config.ErrorResponseBuilder
-  type: Property
-  source:
-    id: ErrorResponseBuilder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 110
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\na function for transforming validation errors to an error response dto.\nset it to any func that returns an object that can be serialized to json.\nthis function will be run everytime an error response needs to be sent to the client.\nthe arguments for the func will be a collection of validation failures and an http status code.\n"
-  example: []
-  syntax:
-    content: public Func<IEnumerable<ValidationFailure>, int, object> ErrorResponseBuilder { set; }
-    parameters: []
-    return:
-      type: Func{IEnumerable{ValidationFailure},System.Int32,System.Object}
-    content.vb: Public WriteOnly Property ErrorResponseBuilder As Func(Of IEnumerable(Of ValidationFailure), Integer, Object)
-  overload: FastEndpoints.Config.ErrorResponseBuilder*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.RequestDeserializer
-  commentId: P:FastEndpoints.Config.RequestDeserializer
-  id: RequestDeserializer
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: RequestDeserializer
-  nameWithType: Config.RequestDeserializer
-  fullName: FastEndpoints.Config.RequestDeserializer
-  type: Property
-  source:
-    id: RequestDeserializer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 120
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\na function for deserializing the incoming http request body. this function will be executed for each request received if it has a json request body.\nthe parameters of the func are as follows:\n<p>HttpRequest: the incoming request</p>\n<p>Type: the type of the request dto which the request body will be deserialized into</p>\n<p>JsonSerializerContext?: json serializer context if code generation is used</p>\n<p>CancellationToken: a cancellation token</p>\n"
-  example: []
-  syntax:
-    content: public Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<object>> RequestDeserializer { set; }
-    parameters: []
-    return:
-      type: Func{Microsoft.AspNetCore.Http.HttpRequest,Type,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,ValueTask{System.Object}}
-    content.vb: Public WriteOnly Property RequestDeserializer As Func(Of HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask(Of Object))
-  overload: FastEndpoints.Config.RequestDeserializer*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
-- uid: FastEndpoints.Config.ResponseSerializer
-  commentId: P:FastEndpoints.Config.ResponseSerializer
-  id: ResponseSerializer
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: ResponseSerializer
-  nameWithType: Config.ResponseSerializer
-  fullName: FastEndpoints.Config.ResponseSerializer
-  type: Property
-  source:
-    id: ResponseSerializer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Api-Reference\Source\src\Library\Config\Config.cs
-    startLine: 140
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\na function for writing serialized response dtos to the response body.\nthis function will be executed whenever a json response is being sent to the client.\nyou should set the content-type and write directly to the http response body stream in this function.\nthe parameters of the func are as follows:\n<p>HttpResponse: the http response object</p>\n<p>object: the response dto to be serialized</p>\n<p>string: the response content-type</p>\n<p>JsonSerializerContext?: json serializer context if code generation is used</p>\n<p>CancellationToken: a cancellation token</p>\n<pre><code>config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =>\n{\n    rsp.ContentType = cType;\n    return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);\n};</code></pre>\n"
-  example: []
-  syntax:
-    content: public Func<HttpResponse, object, string, JsonSerializerContext, CancellationToken, Task> ResponseSerializer { set; }
-    parameters: []
-    return:
-      type: Func{Microsoft.AspNetCore.Http.HttpResponse,System.Object,System.String,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,Task}
-    content.vb: Public WriteOnly Property ResponseSerializer As Func(Of HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task)
-  overload: FastEndpoints.Config.ResponseSerializer*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
+  - ReadOnly
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -712,1090 +542,69 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.Config.ShortEndpointNames*
-  commentId: Overload:FastEndpoints.Config.ShortEndpointNames
-  name: ShortEndpointNames
-  nameWithType: Config.ShortEndpointNames
-  fullName: FastEndpoints.Config.ShortEndpointNames
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
-- uid: FastEndpoints.Config.SerializerOptions*
-  commentId: Overload:FastEndpoints.Config.SerializerOptions
+- uid: FastEndpoints.Config.Endpoints*
+  commentId: Overload:FastEndpoints.Config.Endpoints
+  name: Endpoints
+  nameWithType: Config.Endpoints
+  fullName: FastEndpoints.Config.Endpoints
+- uid: FastEndpoints.EndpointOptions
+  commentId: T:FastEndpoints.EndpointOptions
+  parent: FastEndpoints
+  name: EndpointOptions
+  nameWithType: EndpointOptions
+  fullName: FastEndpoints.EndpointOptions
+- uid: FastEndpoints.Config.Errors*
+  commentId: Overload:FastEndpoints.Config.Errors
+  name: Errors
+  nameWithType: Config.Errors
+  fullName: FastEndpoints.Config.Errors
+- uid: FastEndpoints.ErrorOptions
+  commentId: T:FastEndpoints.ErrorOptions
+  parent: FastEndpoints
+  name: ErrorOptions
+  nameWithType: ErrorOptions
+  fullName: FastEndpoints.ErrorOptions
+- uid: FastEndpoints.Config.Security*
+  commentId: Overload:FastEndpoints.Config.Security
+  name: Security
+  nameWithType: Config.Security
+  fullName: FastEndpoints.Config.Security
+- uid: FastEndpoints.SecurityOptions
+  commentId: T:FastEndpoints.SecurityOptions
+  parent: FastEndpoints
+  name: SecurityOptions
+  nameWithType: SecurityOptions
+  fullName: FastEndpoints.SecurityOptions
+- uid: FastEndpoints.Config.Serializer*
+  commentId: Overload:FastEndpoints.Config.Serializer
+  name: Serializer
+  nameWithType: Config.Serializer
+  fullName: FastEndpoints.Config.Serializer
+- uid: FastEndpoints.SerializerOptions
+  commentId: T:FastEndpoints.SerializerOptions
+  parent: FastEndpoints
   name: SerializerOptions
-  nameWithType: Config.SerializerOptions
-  fullName: FastEndpoints.Config.SerializerOptions
-- uid: Action{System.Text.Json.JsonSerializerOptions}
-  commentId: '!:Action{System.Text.Json.JsonSerializerOptions}'
-  definition: Action`1
-  name: Action<JsonSerializerOptions>
-  nameWithType: Action<JsonSerializerOptions>
-  fullName: Action<System.Text.Json.JsonSerializerOptions>
-  nameWithType.vb: Action(Of JsonSerializerOptions)
-  fullName.vb: Action(Of System.Text.Json.JsonSerializerOptions)
-  name.vb: Action(Of JsonSerializerOptions)
-  spec.csharp:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Text.Json.JsonSerializerOptions
-    name: JsonSerializerOptions
-    nameWithType: JsonSerializerOptions
-    fullName: System.Text.Json.JsonSerializerOptions
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Text.Json.JsonSerializerOptions
-    name: JsonSerializerOptions
-    nameWithType: JsonSerializerOptions
-    fullName: System.Text.Json.JsonSerializerOptions
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Action`1
-  isExternal: true
-  name: Action<>
-  nameWithType: Action<>
-  fullName: Action<>
-  nameWithType.vb: Action(Of )
-  fullName.vb: Action(Of )
-  name.vb: Action(Of )
-  spec.csharp:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.VersioningOptions*
-  commentId: Overload:FastEndpoints.Config.VersioningOptions
-  name: VersioningOptions
-  nameWithType: Config.VersioningOptions
-  fullName: FastEndpoints.Config.VersioningOptions
-- uid: Action{FastEndpoints.VersioningOptions}
-  commentId: '!:Action{FastEndpoints.VersioningOptions}'
-  definition: Action`1
-  name: Action<VersioningOptions>
-  nameWithType: Action<VersioningOptions>
-  fullName: Action<FastEndpoints.VersioningOptions>
-  nameWithType.vb: Action(Of VersioningOptions)
-  fullName.vb: Action(Of FastEndpoints.VersioningOptions)
-  name.vb: Action(Of VersioningOptions)
-  spec.csharp:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.VersioningOptions
-    name: VersioningOptions
-    nameWithType: VersioningOptions
-    fullName: FastEndpoints.VersioningOptions
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.VersioningOptions
-    name: VersioningOptions
-    nameWithType: VersioningOptions
-    fullName: FastEndpoints.VersioningOptions
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.RoutingOptions*
-  commentId: Overload:FastEndpoints.Config.RoutingOptions
-  name: RoutingOptions
-  nameWithType: Config.RoutingOptions
-  fullName: FastEndpoints.Config.RoutingOptions
-- uid: Action{FastEndpoints.RoutingOptions}
-  commentId: '!:Action{FastEndpoints.RoutingOptions}'
-  definition: Action`1
-  name: Action<RoutingOptions>
-  nameWithType: Action<RoutingOptions>
-  fullName: Action<FastEndpoints.RoutingOptions>
-  nameWithType.vb: Action(Of RoutingOptions)
-  fullName.vb: Action(Of FastEndpoints.RoutingOptions)
-  name.vb: Action(Of RoutingOptions)
-  spec.csharp:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.RoutingOptions
-    name: RoutingOptions
-    nameWithType: RoutingOptions
-    fullName: FastEndpoints.RoutingOptions
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.RoutingOptions
-    name: RoutingOptions
-    nameWithType: RoutingOptions
-    fullName: FastEndpoints.RoutingOptions
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.ThrottleOptions*
-  commentId: Overload:FastEndpoints.Config.ThrottleOptions
+  nameWithType: SerializerOptions
+  fullName: FastEndpoints.SerializerOptions
+- uid: FastEndpoints.Config.Throttle*
+  commentId: Overload:FastEndpoints.Config.Throttle
+  name: Throttle
+  nameWithType: Config.Throttle
+  fullName: FastEndpoints.Config.Throttle
+- uid: FastEndpoints.ThrottleOptions
+  commentId: T:FastEndpoints.ThrottleOptions
+  parent: FastEndpoints
   name: ThrottleOptions
-  nameWithType: Config.ThrottleOptions
-  fullName: FastEndpoints.Config.ThrottleOptions
-- uid: Action{FastEndpoints.ThrottleOptions}
-  commentId: '!:Action{FastEndpoints.ThrottleOptions}'
-  definition: Action`1
-  name: Action<ThrottleOptions>
-  nameWithType: Action<ThrottleOptions>
-  fullName: Action<FastEndpoints.ThrottleOptions>
-  nameWithType.vb: Action(Of ThrottleOptions)
-  fullName.vb: Action(Of FastEndpoints.ThrottleOptions)
-  name.vb: Action(Of ThrottleOptions)
-  spec.csharp:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.ThrottleOptions
-    name: ThrottleOptions
-    nameWithType: ThrottleOptions
-    fullName: FastEndpoints.ThrottleOptions
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.ThrottleOptions
-    name: ThrottleOptions
-    nameWithType: ThrottleOptions
-    fullName: FastEndpoints.ThrottleOptions
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.EndpointRegistrationFilter*
-  commentId: Overload:FastEndpoints.Config.EndpointRegistrationFilter
-  name: EndpointRegistrationFilter
-  nameWithType: Config.EndpointRegistrationFilter
-  fullName: FastEndpoints.Config.EndpointRegistrationFilter
-- uid: Func{FastEndpoints.EndpointDefinition,System.Boolean}
-  commentId: '!:Func{FastEndpoints.EndpointDefinition,System.Boolean}'
-  definition: Func`2
-  name: Func<EndpointDefinition, Boolean>
-  nameWithType: Func<EndpointDefinition, Boolean>
-  fullName: Func<FastEndpoints.EndpointDefinition, System.Boolean>
-  nameWithType.vb: Func(Of EndpointDefinition, Boolean)
-  fullName.vb: Func(Of FastEndpoints.EndpointDefinition, System.Boolean)
-  name.vb: Func(Of EndpointDefinition, Boolean)
-  spec.csharp:
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.EndpointDefinition
-    name: EndpointDefinition
-    nameWithType: EndpointDefinition
-    fullName: FastEndpoints.EndpointDefinition
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.EndpointDefinition
-    name: EndpointDefinition
-    nameWithType: EndpointDefinition
-    fullName: FastEndpoints.EndpointDefinition
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Func`2
-  commentId: '!:Func`2'
-  isExternal: true
-  name: Func<, >
-  nameWithType: Func<, >
-  fullName: Func<, >
-  nameWithType.vb: Func(Of , )
-  fullName.vb: Func(Of , )
-  name.vb: Func(Of , )
-  spec.csharp:
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.GlobalEndpointOptions*
-  commentId: Overload:FastEndpoints.Config.GlobalEndpointOptions
-  name: GlobalEndpointOptions
-  nameWithType: Config.GlobalEndpointOptions
-  fullName: FastEndpoints.Config.GlobalEndpointOptions
-- uid: Action{FastEndpoints.EndpointDefinition,Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
-  commentId: '!:Action{FastEndpoints.EndpointDefinition,Microsoft.AspNetCore.Builder.RouteHandlerBuilder}'
-  definition: Action`2
-  name: Action<EndpointDefinition, RouteHandlerBuilder>
-  nameWithType: Action<EndpointDefinition, RouteHandlerBuilder>
-  fullName: Action<FastEndpoints.EndpointDefinition, Microsoft.AspNetCore.Builder.RouteHandlerBuilder>
-  nameWithType.vb: Action(Of EndpointDefinition, RouteHandlerBuilder)
-  fullName.vb: Action(Of FastEndpoints.EndpointDefinition, Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
-  name.vb: Action(Of EndpointDefinition, RouteHandlerBuilder)
-  spec.csharp:
-  - uid: Action`2
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.EndpointDefinition
-    name: EndpointDefinition
-    nameWithType: EndpointDefinition
-    fullName: FastEndpoints.EndpointDefinition
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`2
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.EndpointDefinition
-    name: EndpointDefinition
-    nameWithType: EndpointDefinition
-    fullName: FastEndpoints.EndpointDefinition
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Action`2
-  commentId: '!:Action`2'
-  isExternal: true
-  name: Action<, >
-  nameWithType: Action<, >
-  fullName: Action<, >
-  nameWithType.vb: Action(Of , )
-  fullName.vb: Action(Of , )
-  name.vb: Action(Of , )
-  spec.csharp:
-  - uid: Action`2
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Action`2
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.ErrorResponseStatusCode*
-  commentId: Overload:FastEndpoints.Config.ErrorResponseStatusCode
-  name: ErrorResponseStatusCode
-  nameWithType: Config.ErrorResponseStatusCode
-  fullName: FastEndpoints.Config.ErrorResponseStatusCode
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: FastEndpoints.Config.ErrorResponseBuilder*
-  commentId: Overload:FastEndpoints.Config.ErrorResponseBuilder
-  name: ErrorResponseBuilder
-  nameWithType: Config.ErrorResponseBuilder
-  fullName: FastEndpoints.Config.ErrorResponseBuilder
-- uid: Func{IEnumerable{ValidationFailure},System.Int32,System.Object}
-  commentId: '!:Func{IEnumerable{ValidationFailure},System.Int32,System.Object}'
-  definition: Func`3
-  name: Func<IEnumerable<ValidationFailure>, Int32, Object>
-  nameWithType: Func<IEnumerable<ValidationFailure>, Int32, Object>
-  fullName: Func<IEnumerable<ValidationFailure>, System.Int32, System.Object>
-  nameWithType.vb: Func(Of IEnumerable(Of ValidationFailure), Int32, Object)
-  fullName.vb: Func(Of IEnumerable(Of ValidationFailure), System.Int32, System.Object)
-  name.vb: Func(Of IEnumerable(Of ValidationFailure), Int32, Object)
-  spec.csharp:
-  - uid: Func`3
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: ValidationFailure
-    name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: ValidationFailure
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`3
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: ValidationFailure
-    name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: ValidationFailure
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Func`3
-  commentId: '!:Func`3'
-  isExternal: true
-  name: Func<, , >
-  nameWithType: Func<, , >
-  fullName: Func<, , >
-  nameWithType.vb: Func(Of , , )
-  fullName.vb: Func(Of , , )
-  name.vb: Func(Of , , )
-  spec.csharp:
-  - uid: Func`3
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`3
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.RequestDeserializer*
-  commentId: Overload:FastEndpoints.Config.RequestDeserializer
-  name: RequestDeserializer
-  nameWithType: Config.RequestDeserializer
-  fullName: FastEndpoints.Config.RequestDeserializer
-- uid: Func{Microsoft.AspNetCore.Http.HttpRequest,Type,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,ValueTask{System.Object}}
-  commentId: '!:Func{Microsoft.AspNetCore.Http.HttpRequest,Type,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,ValueTask{System.Object}}'
-  definition: Func`5
-  name: Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<Object>>
-  nameWithType: Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<Object>>
-  fullName: Func<Microsoft.AspNetCore.Http.HttpRequest, Type, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, ValueTask<System.Object>>
-  nameWithType.vb: Func(Of HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask(Of Object))
-  fullName.vb: Func(Of Microsoft.AspNetCore.Http.HttpRequest, Type, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, ValueTask(Of System.Object))
-  name.vb: Func(Of HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask(Of Object))
-  spec.csharp:
-  - uid: Func`5
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.Http.HttpRequest
-    name: HttpRequest
-    nameWithType: HttpRequest
-    fullName: Microsoft.AspNetCore.Http.HttpRequest
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Type
-    name: Type
-    nameWithType: Type
-    fullName: Type
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Text.Json.Serialization.JsonSerializerContext
-    name: JsonSerializerContext
-    nameWithType: JsonSerializerContext
-    fullName: System.Text.Json.Serialization.JsonSerializerContext
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: CancellationToken
-    name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: CancellationToken
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: ValueTask`1
-    name: ValueTask
-    nameWithType: ValueTask
-    fullName: ValueTask
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`5
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.Http.HttpRequest
-    name: HttpRequest
-    nameWithType: HttpRequest
-    fullName: Microsoft.AspNetCore.Http.HttpRequest
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Type
-    name: Type
-    nameWithType: Type
-    fullName: Type
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Text.Json.Serialization.JsonSerializerContext
-    name: JsonSerializerContext
-    nameWithType: JsonSerializerContext
-    fullName: System.Text.Json.Serialization.JsonSerializerContext
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: CancellationToken
-    name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: CancellationToken
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: ValueTask`1
-    name: ValueTask
-    nameWithType: ValueTask
-    fullName: ValueTask
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Func`5
-  commentId: '!:Func`5'
-  isExternal: true
-  name: Func<, , , , >
-  nameWithType: Func<, , , , >
-  fullName: Func<, , , , >
-  nameWithType.vb: Func(Of , , , , )
-  fullName.vb: Func(Of , , , , )
-  name.vb: Func(Of , , , , )
-  spec.csharp:
-  - uid: Func`5
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`5
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Config.ResponseSerializer*
-  commentId: Overload:FastEndpoints.Config.ResponseSerializer
-  name: ResponseSerializer
-  nameWithType: Config.ResponseSerializer
-  fullName: FastEndpoints.Config.ResponseSerializer
-- uid: Func{Microsoft.AspNetCore.Http.HttpResponse,System.Object,System.String,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,Task}
-  commentId: '!:Func{Microsoft.AspNetCore.Http.HttpResponse,System.Object,System.String,System.Text.Json.Serialization.JsonSerializerContext,CancellationToken,Task}'
-  definition: Func`6
-  name: Func<HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task>
-  nameWithType: Func<HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task>
-  fullName: Func<Microsoft.AspNetCore.Http.HttpResponse, System.Object, System.String, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, Task>
-  nameWithType.vb: Func(Of HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task)
-  fullName.vb: Func(Of Microsoft.AspNetCore.Http.HttpResponse, System.Object, System.String, System.Text.Json.Serialization.JsonSerializerContext, CancellationToken, Task)
-  name.vb: Func(Of HttpResponse, Object, String, JsonSerializerContext, CancellationToken, Task)
-  spec.csharp:
-  - uid: Func`6
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.Http.HttpResponse
-    name: HttpResponse
-    nameWithType: HttpResponse
-    fullName: Microsoft.AspNetCore.Http.HttpResponse
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Text.Json.Serialization.JsonSerializerContext
-    name: JsonSerializerContext
-    nameWithType: JsonSerializerContext
-    fullName: System.Text.Json.Serialization.JsonSerializerContext
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: CancellationToken
-    name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: CancellationToken
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Task
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`6
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.Http.HttpResponse
-    name: HttpResponse
-    nameWithType: HttpResponse
-    fullName: Microsoft.AspNetCore.Http.HttpResponse
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Text.Json.Serialization.JsonSerializerContext
-    name: JsonSerializerContext
-    nameWithType: JsonSerializerContext
-    fullName: System.Text.Json.Serialization.JsonSerializerContext
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: CancellationToken
-    name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: CancellationToken
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Task
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Func`6
-  commentId: '!:Func`6'
-  isExternal: true
-  name: Func<, , , , , >
-  nameWithType: Func<, , , , , >
-  fullName: Func<, , , , , >
-  nameWithType.vb: Func(Of , , , , , )
-  fullName.vb: Func(Of , , , , , )
-  name.vb: Func(Of , , , , , )
-  spec.csharp:
-  - uid: Func`6
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Func`6
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
+  nameWithType: ThrottleOptions
+  fullName: FastEndpoints.ThrottleOptions
+- uid: FastEndpoints.Config.Versioning*
+  commentId: Overload:FastEndpoints.Config.Versioning
+  name: Versioning
+  nameWithType: Config.Versioning
+  fullName: FastEndpoints.Config.Versioning
+- uid: FastEndpoints.VersioningOptions
+  commentId: T:FastEndpoints.VersioningOptions
+  parent: FastEndpoints
+  name: VersioningOptions
+  nameWithType: VersioningOptions
+  fullName: FastEndpoints.VersioningOptions
