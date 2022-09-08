@@ -800,6 +800,7 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   <a id="FastEndpoints_EndpointDefinition_AuthSchemes_" data-uid="FastEndpoints.EndpointDefinition.AuthSchemes*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_AuthSchemes_System_String___" data-uid="FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])">AuthSchemes(String[])</h4>
   <div class="markdown level1 summary"><p>specify which authentication schemes to use for authenticating requests to this endpoint</p>
+<p>WARNING: setting auth schemes globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -829,6 +830,7 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   <a id="FastEndpoints_EndpointDefinition_Claims_" data-uid="FastEndpoints.EndpointDefinition.Claims*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_Claims_System_String___" data-uid="FastEndpoints.EndpointDefinition.Claims(System.String[])">Claims(String[])</h4>
   <div class="markdown level1 summary"><p>allows access if the claims principal has ANY of the given claim types</p>
+<p>WARNING: setting claims globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -858,6 +860,7 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   <a id="FastEndpoints_EndpointDefinition_ClaimsAll_" data-uid="FastEndpoints.EndpointDefinition.ClaimsAll*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_ClaimsAll_System_String___" data-uid="FastEndpoints.EndpointDefinition.ClaimsAll(System.String[])">ClaimsAll(String[])</h4>
   <div class="markdown level1 summary"><p>allows access if the claims principal has ALL of the given claim types</p>
+<p>WARNING: setting claims globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -990,6 +993,7 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   <a id="FastEndpoints_EndpointDefinition_Permissions_" data-uid="FastEndpoints.EndpointDefinition.Permissions*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_Permissions_System_String___" data-uid="FastEndpoints.EndpointDefinition.Permissions(System.String[])">Permissions(String[])</h4>
   <div class="markdown level1 summary"><p>allows access if the claims principal has ANY of the given permissions</p>
+<p>WARNING: setting permissions globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1019,6 +1023,7 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   <a id="FastEndpoints_EndpointDefinition_PermissionsAll_" data-uid="FastEndpoints.EndpointDefinition.PermissionsAll*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_PermissionsAll_System_String___" data-uid="FastEndpoints.EndpointDefinition.PermissionsAll(System.String[])">PermissionsAll(String[])</h4>
   <div class="markdown level1 summary"><p>allows access if the claims principal has ALL of the given permissions</p>
+<p>WARNING: setting permissions globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1048,6 +1053,7 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   <a id="FastEndpoints_EndpointDefinition_Policies_" data-uid="FastEndpoints.EndpointDefinition.Policies*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_Policies_System_String___" data-uid="FastEndpoints.EndpointDefinition.Policies(System.String[])">Policies(String[])</h4>
   <div class="markdown level1 summary"><p>specify one or more authorization policy names you have added to the middleware pipeline during app startup/ service configuration that should be applied to this endpoint.</p>
+<p>WARNING: setting policies globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1188,6 +1194,7 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   <a id="FastEndpoints_EndpointDefinition_Roles_" data-uid="FastEndpoints.EndpointDefinition.Roles*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_Roles_System_String___" data-uid="FastEndpoints.EndpointDefinition.Roles(System.String[])">Roles(String[])</h4>
   <div class="markdown level1 summary"><p>allows access if the claims principal has ANY of the given roles</p>
+<p>WARNING: setting roles globally will make the endpoint level call ineffective. i.e. the endpoint level call will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1219,6 +1226,7 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   <div class="markdown level1 summary"><p>specify an override route prefix for this endpoint if a global route prefix is enabled.
 this is ignored if a global route prefix is not configured.
 global prefix can be ignored by setting <code>string.Empty</code></p>
+<p>WARNING: setting a route prefix override globally makes the endpoint level override ineffective. i.e. RoutePrefixOverride() method call on endpoint level will be ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1247,8 +1255,7 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   
   <a id="FastEndpoints_EndpointDefinition_ScopedValidator_" data-uid="FastEndpoints.EndpointDefinition.ScopedValidator*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_ScopedValidator" data-uid="FastEndpoints.EndpointDefinition.ScopedValidator">ScopedValidator()</h4>
-  <div class="markdown level1 summary"><p>register the validator for this endpoint as scoped instead of singleton. which will enable constructor injection at the cost of performance.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">

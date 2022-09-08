@@ -215,13 +215,13 @@
   
   
   <a id="FastEndpoints_Swagger_Extensions_AddSwaggerDoc_" data-uid="FastEndpoints.Swagger.Extensions.AddSwaggerDoc*"></a>
-  <h4 id="FastEndpoints_Swagger_Extensions_AddSwaggerDoc_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Nullable_Action_NSwag_Generation_AspNetCore_AspNetCoreOpenApiDocumentGeneratorSettings___System_Nullable_Action_System_Text_Json_JsonSerializerOptions___System_Boolean_System_Int32_System_Int32_System_Boolean_" data-uid="FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Boolean)">AddSwaggerDoc(IServiceCollection, Nullable&lt;Action&lt;AspNetCoreOpenApiDocumentGeneratorSettings&gt;&gt;, Nullable&lt;Action&lt;JsonSerializerOptions&gt;&gt;, Boolean, Int32, Int32, Boolean)</h4>
+  <h4 id="FastEndpoints_Swagger_Extensions_AddSwaggerDoc_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Nullable_Action_NSwag_Generation_AspNetCore_AspNetCoreOpenApiDocumentGeneratorSettings___System_Nullable_Action_System_Text_Json_JsonSerializerOptions___System_Boolean_System_Int32_System_Int32_System_Boolean_System_Boolean_" data-uid="FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean)">AddSwaggerDoc(IServiceCollection, Nullable&lt;Action&lt;AspNetCoreOpenApiDocumentGeneratorSettings&gt;&gt;, Nullable&lt;Action&lt;JsonSerializerOptions&gt;&gt;, Boolean, Int32, Int32, Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>enable swagger support for FastEndpoints with a single call.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, Action&lt;AspNetCoreOpenApiDocumentGeneratorSettings&gt;? settings = null, Action&lt;JsonSerializerOptions&gt;? serializerSettings = null, bool addJWTBearerAuth = true, int tagIndex = 1, int maxEndpointVersion = 0, bool shortSchemaNames = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, Action&lt;AspNetCoreOpenApiDocumentGeneratorSettings&gt;? settings = null, Action&lt;JsonSerializerOptions&gt;? serializerSettings = null, bool addJWTBearerAuth = true, int tagIndex = 1, int maxEndpointVersion = 0, bool shortSchemaNames = false, bool removeEmptySchemas = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -272,6 +272,13 @@
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">shortSchemaNames</span></td>
         <td><p>set to true if you'd like schema names to be the class name intead of the full name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">removeEmptySchemas</span></td>
+        <td><p>set to true for removing empty schemas from the swagger document.</p>
+<p>WARNING: enabling this also flattens the inheritance hierachy of the schmemas.</p>
 </td>
       </tr>
     </tbody>
@@ -328,13 +335,13 @@
   
   
   <a id="FastEndpoints_Swagger_Extensions_EnableFastEndpoints_" data-uid="FastEndpoints.Swagger.Extensions.EnableFastEndpoints*"></a>
-  <h4 id="FastEndpoints_Swagger_Extensions_EnableFastEndpoints_NSwag_Generation_AspNetCore_AspNetCoreOpenApiDocumentGeneratorSettings_System_Int32_System_Int32_System_Boolean_" data-uid="FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Boolean)">EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Int32, Int32, Boolean)</h4>
+  <h4 id="FastEndpoints_Swagger_Extensions_EnableFastEndpoints_NSwag_Generation_AspNetCore_AspNetCoreOpenApiDocumentGeneratorSettings_System_Int32_System_Int32_System_Boolean_System_Boolean_" data-uid="FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Boolean,System.Boolean)">EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Int32, Int32, Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>enable support for FastEndpoints in swagger</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnableFastEndpoints(this AspNetCoreOpenApiDocumentGeneratorSettings settings, int tagIndex, int maxEndpointVersion, bool shortSchemaNames)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void EnableFastEndpoints(this AspNetCoreOpenApiDocumentGeneratorSettings settings, int tagIndex, int maxEndpointVersion, bool shortSchemaNames, bool removeEmptySchemas)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -367,6 +374,13 @@
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">shortSchemaNames</span></td>
         <td><p>set to true to make schema names just the name of the class instead of full type name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">removeEmptySchemas</span></td>
+        <td><p>set to true for removing empty schemas from the swagger document.</p>
+<p>WARNING: enabling this also flattens the inheritance hierachy of the schmemas.</p>
 </td>
       </tr>
     </tbody>

@@ -16,21 +16,21 @@ items:
   source:
     id: EndpointWithoutRequest
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 282
+    startLine: 305
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nuse this base class for defining endpoints that doesn&apos;t need a request dto but return a response dto and uses a response mapper.\n"
   example: []
   syntax:
-    content: 'public abstract class EndpointWithoutRequest<TResponse, TMapper> : EndpointWithoutRequest<TResponse>, IEndpoint, IHasMapper<TMapper> where TMapper : IResponseMapper, new()'
+    content: 'public abstract class EndpointWithoutRequest<TResponse, TMapper> : EndpointWithoutRequest<TResponse>, IEndpoint, IHasMapper<TMapper> where TMapper : IResponseMapper'
     typeParameters:
     - id: TResponse
       description: the type of the response dto
     - id: TMapper
       description: the type of the entity mapper
     content.vb: >-
-      Public MustInherit Class EndpointWithoutRequest(Of TResponse, TMapper As {IResponseMapper, New})
+      Public MustInherit Class EndpointWithoutRequest(Of TResponse, TMapper As IResponseMapper)
 
           Inherits EndpointWithoutRequest(Of TResponse)
 
@@ -53,6 +53,7 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.TryResolve(Type)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve``1
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve(Type)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.CreateScope
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PublishAsync``1({TEvent},FastEndpoints.Mode,CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Route``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Query``1(System.String,System.Boolean)
@@ -175,27 +176,25 @@ items:
   source:
     id: Map
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 288
+    startLine: 313
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe entity mapper for the endpoint\n<p>HINT: entity mappers are singletons for performance reasons. do not maintain state in the mappers.</p>\n"
-  example: []
   syntax:
-    content: public static TMapper Map { get; }
+    content: public TMapper Map { get; }
     parameters: []
     return:
       type: '{TMapper}'
-    content.vb: Public Shared ReadOnly Property Map As TMapper
+    content.vb: Public ReadOnly Property Map As TMapper
   overload: FastEndpoints.EndpointWithoutRequest`2.Map*
+  implements:
+  - FastEndpoints.IHasMapper{{TMapper}}.Map
   nameWithType.vb: EndpointWithoutRequest(Of TResponse, TMapper).Map
   modifiers.csharp:
   - public
-  - static
   - get
   modifiers.vb:
   - Public
-  - Shared
   - ReadOnly
   fullName.vb: FastEndpoints.EndpointWithoutRequest(Of TResponse, TMapper).Map
 references:
@@ -790,6 +789,37 @@ references:
     nameWithType: Type
     fullName: Type
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.CreateScope
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.CreateScope
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.CreateScope
+  name: CreateScope()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.CreateScope()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.CreateScope()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).CreateScope()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).CreateScope()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.CreateScope
+    name: CreateScope
+    nameWithType: Endpoint<EmptyRequest, TResponse>.CreateScope
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.CreateScope
+    name: CreateScope
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).CreateScope
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -6342,6 +6372,35 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.CreateScope
+  commentId: M:FastEndpoints.Endpoint`2.CreateScope
+  name: CreateScope()
+  nameWithType: Endpoint<TRequest, TResponse>.CreateScope()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateScope()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateScope()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateScope()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.CreateScope
+    name: CreateScope
+    nameWithType: Endpoint<TRequest, TResponse>.CreateScope
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.CreateScope
+    name: CreateScope
+    nameWithType: Endpoint(Of TRequest, TResponse).CreateScope
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
   commentId: M:FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
   isExternal: true
@@ -10786,12 +10845,28 @@ references:
   fullName: FastEndpoints.EndpointWithoutRequest<TResponse, TMapper>.Map
   nameWithType.vb: EndpointWithoutRequest(Of TResponse, TMapper).Map
   fullName.vb: FastEndpoints.EndpointWithoutRequest(Of TResponse, TMapper).Map
+- uid: FastEndpoints.IHasMapper{{TMapper}}.Map
+  commentId: P:FastEndpoints.IHasMapper{`1}.Map
+  parent: FastEndpoints.IHasMapper{{TMapper}}
+  definition: FastEndpoints.IHasMapper`1.Map
+  name: Map
+  nameWithType: IHasMapper<TMapper>.Map
+  fullName: FastEndpoints.IHasMapper<TMapper>.Map
+  nameWithType.vb: IHasMapper(Of TMapper).Map
+  fullName.vb: FastEndpoints.IHasMapper(Of TMapper).Map
 - uid: '{TMapper}'
   commentId: '!:TMapper'
   definition: TMapper
   name: TMapper
   nameWithType: TMapper
   fullName: TMapper
+- uid: FastEndpoints.IHasMapper`1.Map
+  commentId: P:FastEndpoints.IHasMapper`1.Map
+  name: Map
+  nameWithType: IHasMapper<TMapper>.Map
+  fullName: FastEndpoints.IHasMapper<TMapper>.Map
+  nameWithType.vb: IHasMapper(Of TMapper).Map
+  fullName.vb: FastEndpoints.IHasMapper(Of TMapper).Map
 - uid: TMapper
   name: TMapper
   nameWithType: TMapper

@@ -1,36 +1,31 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.Config
-  commentId: T:FastEndpoints.Config
-  id: Config
+- uid: FastEndpoints.HttpContextExtensions
+  commentId: T:FastEndpoints.HttpContextExtensions
+  id: HttpContextExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.Config.Binding
-  - FastEndpoints.Config.Endpoints
-  - FastEndpoints.Config.Errors
-  - FastEndpoints.Config.Security
-  - FastEndpoints.Config.Serializer
-  - FastEndpoints.Config.Throttle
-  - FastEndpoints.Config.Versioning
+  - FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  - FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  - FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  - FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
   langs:
   - csharp
   - vb
-  name: Config
-  nameWithType: Config
-  fullName: FastEndpoints.Config
+  name: HttpContextExtensions
+  nameWithType: HttpContextExtensions
+  fullName: FastEndpoints.HttpContextExtensions
   type: Class
   source:
-    id: Config
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 7
+    id: HttpContextExtensions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 5
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nglobal configuration settings for FastEndpoints\n"
-  example: []
   syntax:
-    content: public class Config
-    content.vb: Public Class Config
+    content: public static class HttpContextExtensions
+    content.vb: Public Module HttpContextExtensions
   inheritance:
   - System.Object
   inheritedMembers:
@@ -43,241 +38,191 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - static
   - class
   modifiers.vb:
   - Public
-  - Class
-- uid: FastEndpoints.Config.Endpoints
-  commentId: P:FastEndpoints.Config.Endpoints
-  id: Endpoints
-  parent: FastEndpoints.Config
+  - Module
+- uid: FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  id: TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
   langs:
   - csharp
   - vb
-  name: Endpoints
-  nameWithType: Config.Endpoints
-  fullName: FastEndpoints.Config.Endpoints
-  type: Property
+  name: TryResolve<TService>(HttpContext)
+  nameWithType: HttpContextExtensions.TryResolve<TService>(HttpContext)
+  fullName: FastEndpoints.HttpContextExtensions.TryResolve<TService>(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
   source:
-    id: Endpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 20
+    id: TryResolve
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 11
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nendpoint dicovery &amp; registration settings\n"
+  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
-    content: public EndpointOptions Endpoints { get; }
-    parameters: []
+    content: >-
+      public static TService TryResolve<TService>(this HttpContext ctx)
+
+          where TService : class
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
     return:
-      type: FastEndpoints.EndpointOptions
-    content.vb: Public ReadOnly Property Endpoints As EndpointOptions
-  overload: FastEndpoints.Config.Endpoints*
+      type: '{TService}'
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function TryResolve(Of TService As Class)(ctx As HttpContext) As TService
+  overload: FastEndpoints.HttpContextExtensions.TryResolve*
+  nameWithType.vb: HttpContextExtensions.TryResolve(Of TService)(HttpContext)
   modifiers.csharp:
   - public
-  - get
+  - static
   modifiers.vb:
   - Public
-  - ReadOnly
-- uid: FastEndpoints.Config.Errors
-  commentId: P:FastEndpoints.Config.Errors
-  id: Errors
-  parent: FastEndpoints.Config
+  - Shared
+  fullName.vb: FastEndpoints.HttpContextExtensions.TryResolve(Of TService)(Microsoft.AspNetCore.Http.HttpContext)
+  name.vb: TryResolve(Of TService)(HttpContext)
+- uid: FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  commentId: M:FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  id: TryResolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
   langs:
   - csharp
   - vb
-  name: Errors
-  nameWithType: Config.Errors
-  fullName: FastEndpoints.Config.Errors
-  type: Property
+  name: TryResolve(HttpContext, Type)
+  nameWithType: HttpContextExtensions.TryResolve(HttpContext, Type)
+  fullName: FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext, Type)
+  type: Method
   source:
-    id: Errors
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 25
+    id: TryResolve
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nerror response customization settings\n"
+  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
-    content: public ErrorOptions Errors { get; }
-    parameters: []
+    content: public static object TryResolve(this HttpContext ctx, Type typeOfService)
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: typeOfService
+      type: Type
+      description: the type of the service to resolve
     return:
-      type: FastEndpoints.ErrorOptions
-    content.vb: Public ReadOnly Property Errors As ErrorOptions
-  overload: FastEndpoints.Config.Errors*
+      type: System.Object
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function TryResolve(ctx As HttpContext, typeOfService As Type) As Object
+  overload: FastEndpoints.HttpContextExtensions.TryResolve*
   modifiers.csharp:
   - public
-  - get
+  - static
   modifiers.vb:
   - Public
-  - ReadOnly
-- uid: FastEndpoints.Config.Security
-  commentId: P:FastEndpoints.Config.Security
-  id: Security
-  parent: FastEndpoints.Config
+  - Shared
+- uid: FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  id: Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
   langs:
   - csharp
   - vb
-  name: Security
-  nameWithType: Config.Security
-  fullName: FastEndpoints.Config.Security
-  type: Property
+  name: Resolve<TService>(HttpContext)
+  nameWithType: HttpContextExtensions.Resolve<TService>(HttpContext)
+  fullName: FastEndpoints.HttpContextExtensions.Resolve<TService>(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
   source:
-    id: Security
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 30
+    id: Resolve
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nsecurity related settings\n"
+  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
-    content: public SecurityOptions Security { get; }
-    parameters: []
+    content: >-
+      public static TService Resolve<TService>(this HttpContext ctx)
+
+          where TService : class
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
     return:
-      type: FastEndpoints.SecurityOptions
-    content.vb: Public ReadOnly Property Security As SecurityOptions
-  overload: FastEndpoints.Config.Security*
+      type: '{TService}'
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Resolve(Of TService As Class)(ctx As HttpContext) As TService
+  overload: FastEndpoints.HttpContextExtensions.Resolve*
+  nameWithType.vb: HttpContextExtensions.Resolve(Of TService)(HttpContext)
   modifiers.csharp:
   - public
-  - get
+  - static
   modifiers.vb:
   - Public
-  - ReadOnly
-- uid: FastEndpoints.Config.Serializer
-  commentId: P:FastEndpoints.Config.Serializer
-  id: Serializer
-  parent: FastEndpoints.Config
+  - Shared
+  fullName.vb: FastEndpoints.HttpContextExtensions.Resolve(Of TService)(Microsoft.AspNetCore.Http.HttpContext)
+  name.vb: Resolve(Of TService)(HttpContext)
+- uid: FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  commentId: M:FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  id: Resolve(Microsoft.AspNetCore.Http.HttpContext,Type)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
   langs:
   - csharp
   - vb
-  name: Serializer
-  nameWithType: Config.Serializer
-  fullName: FastEndpoints.Config.Serializer
-  type: Property
+  name: Resolve(HttpContext, Type)
+  nameWithType: HttpContextExtensions.Resolve(HttpContext, Type)
+  fullName: FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext, Type)
+  type: Method
   source:
-    id: Serializer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 35
+    id: Resolve
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nsettings for customizing serialization behavior\n"
+  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
-    content: public SerializerOptions Serializer { get; }
-    parameters: []
+    content: public static object Resolve(this HttpContext ctx, Type typeOfService)
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: typeOfService
+      type: Type
+      description: the type of the service to resolve
     return:
-      type: FastEndpoints.SerializerOptions
-    content.vb: Public ReadOnly Property Serializer As SerializerOptions
-  overload: FastEndpoints.Config.Serializer*
+      type: System.Object
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Resolve(ctx As HttpContext, typeOfService As Type) As Object
+  overload: FastEndpoints.HttpContextExtensions.Resolve*
   modifiers.csharp:
   - public
-  - get
+  - static
   modifiers.vb:
   - Public
-  - ReadOnly
-- uid: FastEndpoints.Config.Throttle
-  commentId: P:FastEndpoints.Config.Throttle
-  id: Throttle
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: Throttle
-  nameWithType: Config.Throttle
-  fullName: FastEndpoints.Config.Throttle
-  type: Property
-  source:
-    id: Throttle
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 40
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nendpoint throttling/ rate limiting settings\n"
-  example: []
-  syntax:
-    content: public ThrottleOptions Throttle { get; }
-    parameters: []
-    return:
-      type: FastEndpoints.ThrottleOptions
-    content.vb: Public ReadOnly Property Throttle As ThrottleOptions
-  overload: FastEndpoints.Config.Throttle*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: FastEndpoints.Config.Versioning
-  commentId: P:FastEndpoints.Config.Versioning
-  id: Versioning
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: Versioning
-  nameWithType: Config.Versioning
-  fullName: FastEndpoints.Config.Versioning
-  type: Property
-  source:
-    id: Versioning
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 45
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nendpoint versioning settings\n"
-  example: []
-  syntax:
-    content: public VersioningOptions Versioning { get; }
-    parameters: []
-    return:
-      type: FastEndpoints.VersioningOptions
-    content.vb: Public ReadOnly Property Versioning As VersioningOptions
-  overload: FastEndpoints.Config.Versioning*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: FastEndpoints.Config.Binding
-  commentId: P:FastEndpoints.Config.Binding
-  id: Binding
-  parent: FastEndpoints.Config
-  langs:
-  - csharp
-  - vb
-  name: Binding
-  nameWithType: Config.Binding
-  fullName: FastEndpoints.Config.Binding
-  type: Property
-  source:
-    id: Binding
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\Config.cs
-    startLine: 50
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nrequest binding settings\n"
-  example: []
-  syntax:
-    content: public BindingOptions Binding { get; }
-    parameters: []
-    return:
-      type: FastEndpoints.BindingOptions
-    content.vb: Public ReadOnly Property Binding As BindingOptions
-  overload: FastEndpoints.Config.Binding*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
+  - Shared
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -576,80 +521,41 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.Config.Endpoints*
-  commentId: Overload:FastEndpoints.Config.Endpoints
-  name: Endpoints
-  nameWithType: Config.Endpoints
-  fullName: FastEndpoints.Config.Endpoints
-- uid: FastEndpoints.EndpointOptions
-  commentId: T:FastEndpoints.EndpointOptions
-  parent: FastEndpoints
-  name: EndpointOptions
-  nameWithType: EndpointOptions
-  fullName: FastEndpoints.EndpointOptions
-- uid: FastEndpoints.Config.Errors*
-  commentId: Overload:FastEndpoints.Config.Errors
-  name: Errors
-  nameWithType: Config.Errors
-  fullName: FastEndpoints.Config.Errors
-- uid: FastEndpoints.ErrorOptions
-  commentId: T:FastEndpoints.ErrorOptions
-  parent: FastEndpoints
-  name: ErrorOptions
-  nameWithType: ErrorOptions
-  fullName: FastEndpoints.ErrorOptions
-- uid: FastEndpoints.Config.Security*
-  commentId: Overload:FastEndpoints.Config.Security
-  name: Security
-  nameWithType: Config.Security
-  fullName: FastEndpoints.Config.Security
-- uid: FastEndpoints.SecurityOptions
-  commentId: T:FastEndpoints.SecurityOptions
-  parent: FastEndpoints
-  name: SecurityOptions
-  nameWithType: SecurityOptions
-  fullName: FastEndpoints.SecurityOptions
-- uid: FastEndpoints.Config.Serializer*
-  commentId: Overload:FastEndpoints.Config.Serializer
-  name: Serializer
-  nameWithType: Config.Serializer
-  fullName: FastEndpoints.Config.Serializer
-- uid: FastEndpoints.SerializerOptions
-  commentId: T:FastEndpoints.SerializerOptions
-  parent: FastEndpoints
-  name: SerializerOptions
-  nameWithType: SerializerOptions
-  fullName: FastEndpoints.SerializerOptions
-- uid: FastEndpoints.Config.Throttle*
-  commentId: Overload:FastEndpoints.Config.Throttle
-  name: Throttle
-  nameWithType: Config.Throttle
-  fullName: FastEndpoints.Config.Throttle
-- uid: FastEndpoints.ThrottleOptions
-  commentId: T:FastEndpoints.ThrottleOptions
-  parent: FastEndpoints
-  name: ThrottleOptions
-  nameWithType: ThrottleOptions
-  fullName: FastEndpoints.ThrottleOptions
-- uid: FastEndpoints.Config.Versioning*
-  commentId: Overload:FastEndpoints.Config.Versioning
-  name: Versioning
-  nameWithType: Config.Versioning
-  fullName: FastEndpoints.Config.Versioning
-- uid: FastEndpoints.VersioningOptions
-  commentId: T:FastEndpoints.VersioningOptions
-  parent: FastEndpoints
-  name: VersioningOptions
-  nameWithType: VersioningOptions
-  fullName: FastEndpoints.VersioningOptions
-- uid: FastEndpoints.Config.Binding*
-  commentId: Overload:FastEndpoints.Config.Binding
-  name: Binding
-  nameWithType: Config.Binding
-  fullName: FastEndpoints.Config.Binding
-- uid: FastEndpoints.BindingOptions
-  commentId: T:FastEndpoints.BindingOptions
-  parent: FastEndpoints
-  name: BindingOptions
-  nameWithType: BindingOptions
-  fullName: FastEndpoints.BindingOptions
+- uid: FastEndpoints.HttpContextExtensions.TryResolve*
+  commentId: Overload:FastEndpoints.HttpContextExtensions.TryResolve
+  name: TryResolve
+  nameWithType: HttpContextExtensions.TryResolve
+  fullName: FastEndpoints.HttpContextExtensions.TryResolve
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: '{TService}'
+  commentId: '!:TService'
+  definition: TService
+  name: TService
+  nameWithType: TService
+  fullName: TService
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+- uid: TService
+  name: TService
+  nameWithType: TService
+  fullName: TService
+- uid: Type
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: Type
+- uid: FastEndpoints.HttpContextExtensions.Resolve*
+  commentId: Overload:FastEndpoints.HttpContextExtensions.Resolve
+  name: Resolve
+  nameWithType: HttpContextExtensions.Resolve
+  fullName: FastEndpoints.HttpContextExtensions.Resolve

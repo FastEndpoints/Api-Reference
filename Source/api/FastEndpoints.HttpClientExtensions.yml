@@ -5,6 +5,10 @@ items:
   id: HttpClientExtensions
   parent: FastEndpoints
   children:
+  - FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient)
+  - FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient,``1)
+  - FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient,System.String,``0)
+  - FastEndpoints.HttpClientExtensions.DELETEAsync``3(HttpClient,``1)
   - FastEndpoints.HttpClientExtensions.GETAsync``2(HttpClient)
   - FastEndpoints.HttpClientExtensions.GETAsync``2(HttpClient,``1)
   - FastEndpoints.HttpClientExtensions.GETAsync``2(HttpClient,System.String,``0)
@@ -132,7 +136,7 @@ items:
     content: >-
       public static Task<(HttpResponseMessage? response, TResponse result)> POSTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -151,7 +155,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As BaseEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
   nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -187,7 +191,7 @@ items:
     content: >-
       public static async Task<HttpResponseMessage?> POSTAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -204,7 +208,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As BaseEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
   nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
   modifiers.csharp:
@@ -241,7 +245,7 @@ items:
     content: >-
       public static Task<(HttpResponseMessage? response, TResponse result)> POSTAsync<TEndpoint, TResponse>(this HttpClient client)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -255,7 +259,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As BaseEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
   nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -345,7 +349,7 @@ items:
     content: >-
       public static Task<(HttpResponseMessage? response, TResponse result)> PUTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -364,7 +368,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As BaseEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
   nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -400,7 +404,7 @@ items:
     content: >-
       public static async Task<HttpResponseMessage?> PUTAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -417,7 +421,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As BaseEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
   nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
   modifiers.csharp:
@@ -454,7 +458,7 @@ items:
     content: >-
       public static Task<(HttpResponseMessage? response, TResponse result)> PUTAsync<TEndpoint, TResponse>(this HttpClient client)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -468,7 +472,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As BaseEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
   nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -558,7 +562,7 @@ items:
     content: >-
       public static Task<(HttpResponseMessage? response, TResponse result)> GETAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -577,7 +581,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GETAsync(Of TEndpoint As BaseEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
   nameWithType.vb: HttpClientExtensions.GETAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -613,7 +617,7 @@ items:
     content: >-
       public static async Task<HttpResponseMessage?> GETAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -630,7 +634,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GETAsync(Of TEndpoint As BaseEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
+      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
   nameWithType.vb: HttpClientExtensions.GETAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
   modifiers.csharp:
@@ -667,7 +671,7 @@ items:
     content: >-
       public static Task<(HttpResponseMessage? response, TResponse result)> GETAsync<TEndpoint, TResponse>(this HttpClient client)
 
-          where TEndpoint : BaseEndpoint
+          where TEndpoint : IEndpoint
     parameters:
     - id: client
       type: HttpClient
@@ -681,7 +685,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GETAsync(Of TEndpoint As BaseEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
   nameWithType.vb: HttpClientExtensions.GETAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -692,6 +696,219 @@ items:
   - Shared
   fullName.vb: FastEndpoints.HttpClientExtensions.GETAsync(Of TEndpoint, TResponse)(HttpClient)
   name.vb: GETAsync(Of TEndpoint, TResponse)(HttpClient)
+- uid: FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient,System.String,``0)
+  commentId: M:FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient,System.String,``0)
+  id: DELETEAsync``2(HttpClient,System.String,``0)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: DELETEAsync<TRequest, TResponse>(HttpClient, String, TRequest)
+  nameWithType: HttpClientExtensions.DELETEAsync<TRequest, TResponse>(HttpClient, String, TRequest)
+  fullName: FastEndpoints.HttpClientExtensions.DELETEAsync<TRequest, TResponse>(HttpClient, System.String, TRequest)
+  type: Method
+  source:
+    id: DELETEAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpClientExtensions.cs
+    startLine: 213
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a DELETE request using a request dto and get back a response dto.\n"
+  example: []
+  syntax:
+    content: public static async Task<(HttpResponseMessage? response, TResponse result)> DELETEAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    parameters:
+    - id: client
+      type: HttpClient
+    - id: requestUri
+      type: System.String
+      description: the route url to post to
+    - id: request
+      type: '{TRequest}'
+      description: the request dto
+    typeParameters:
+    - id: TRequest
+      description: type of the requet dto
+    - id: TResponse
+      description: type of the response dto
+    return:
+      type: Task{System.ValueTuple{System.Nullable{HttpResponseMessage},{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DELETEAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+  overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
+  nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
+  modifiers.csharp:
+  - public
+  - static
+  - async
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.DELETEAsync(Of TRequest, TResponse)(HttpClient, System.String, TRequest)
+  name.vb: DELETEAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
+- uid: FastEndpoints.HttpClientExtensions.DELETEAsync``3(HttpClient,``1)
+  commentId: M:FastEndpoints.HttpClientExtensions.DELETEAsync``3(HttpClient,``1)
+  id: DELETEAsync``3(HttpClient,``1)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: DELETEAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
+  nameWithType: HttpClientExtensions.DELETEAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
+  fullName: FastEndpoints.HttpClientExtensions.DELETEAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
+  type: Method
+  source:
+    id: DELETEAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpClientExtensions.cs
+    startLine: 251
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a DELETE request to an endpoint using auto route discovery using a request dto and get back a response dto.\n"
+  example: []
+  syntax:
+    content: >-
+      public static Task<(HttpResponseMessage? response, TResponse result)> DELETEAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+
+          where TEndpoint : IEndpoint
+    parameters:
+    - id: client
+      type: HttpClient
+    - id: request
+      type: '{TRequest}'
+      description: the request dto
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint
+    - id: TRequest
+      description: the type of the request dto
+    - id: TResponse
+      description: the type of the response dto
+    return:
+      type: Task{System.ValueTuple{System.Nullable{HttpResponseMessage},{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+  overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
+  nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.DELETEAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
+  name.vb: DELETEAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
+- uid: FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient,``1)
+  commentId: M:FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient,``1)
+  id: DELETEAsync``2(HttpClient,``1)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: DELETEAsync<TEndpoint, TRequest>(HttpClient, TRequest)
+  nameWithType: HttpClientExtensions.DELETEAsync<TEndpoint, TRequest>(HttpClient, TRequest)
+  fullName: FastEndpoints.HttpClientExtensions.DELETEAsync<TEndpoint, TRequest>(HttpClient, TRequest)
+  type: Method
+  source:
+    id: DELETEAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpClientExtensions.cs
+    startLine: 260
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a DELETE request to an endpoint using auto route discovery using a request dto that does not send back a response dto.\n"
+  example: []
+  syntax:
+    content: >-
+      public static async Task<HttpResponseMessage?> DELETEAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request)
+
+          where TEndpoint : IEndpoint
+    parameters:
+    - id: client
+      type: HttpClient
+    - id: request
+      type: '{TRequest}'
+      description: the request dto
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint
+    - id: TRequest
+      description: the type of the request dto
+    return:
+      type: Task{System.Nullable{HttpResponseMessage}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage?)
+  overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
+  nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+  modifiers.csharp:
+  - public
+  - static
+  - async
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.DELETEAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+  name.vb: DELETEAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+- uid: FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient)
+  commentId: M:FastEndpoints.HttpClientExtensions.DELETEAsync``2(HttpClient)
+  id: DELETEAsync``2(HttpClient)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: DELETEAsync<TEndpoint, TResponse>(HttpClient)
+  nameWithType: HttpClientExtensions.DELETEAsync<TEndpoint, TResponse>(HttpClient)
+  fullName: FastEndpoints.HttpClientExtensions.DELETEAsync<TEndpoint, TResponse>(HttpClient)
+  type: Method
+  source:
+    id: DELETEAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpClientExtensions.cs
+    startLine: 271
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a DELETE request to an endpoint using auto route discovery without a request dto and get back a typed response dto.\n"
+  example: []
+  syntax:
+    content: >-
+      public static Task<(HttpResponseMessage? response, TResponse result)> DELETEAsync<TEndpoint, TResponse>(this HttpClient client)
+
+          where TEndpoint : IEndpoint
+    parameters:
+    - id: client
+      type: HttpClient
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint
+    - id: TResponse
+      description: the type of the response dto
+    return:
+      type: Task{System.ValueTuple{System.Nullable{HttpResponseMessage},{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage?, result As TResponse)(Of HttpResponseMessage? , TResponse))
+  overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
+  nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TEndpoint, TResponse)(HttpClient)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.DELETEAsync(Of TEndpoint, TResponse)(HttpClient)
+  name.vb: DELETEAsync(Of TEndpoint, TResponse)(HttpClient)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -1229,3 +1446,8 @@ references:
   name: GETAsync
   nameWithType: HttpClientExtensions.GETAsync
   fullName: FastEndpoints.HttpClientExtensions.GETAsync
+- uid: FastEndpoints.HttpClientExtensions.DELETEAsync*
+  commentId: Overload:FastEndpoints.HttpClientExtensions.DELETEAsync
+  name: DELETEAsync
+  nameWithType: HttpClientExtensions.DELETEAsync
+  fullName: FastEndpoints.HttpClientExtensions.DELETEAsync

@@ -26,11 +26,11 @@ items:
     content: >-
       public interface IHasMapper<TMapper>
 
-          where TMapper : IMapper, new()
+          where TMapper : IMapper
     typeParameters:
     - id: TMapper
       description: ''
-    content.vb: Public Interface IHasMapper(Of TMapper As {IMapper, New})
+    content.vb: Public Interface IHasMapper(Of TMapper As IMapper)
   nameWithType.vb: IHasMapper(Of TMapper)
   modifiers.csharp:
   - public
@@ -59,11 +59,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: static TMapper Map { get; }
+    content: TMapper Map { get; }
     parameters: []
     return:
       type: '{TMapper}'
-    content.vb: Shared ReadOnly Property Map As TMapper
+    content.vb: ReadOnly Property Map As TMapper
   overload: FastEndpoints.IHasMapper`1.Map*
   nameWithType.vb: IHasMapper(Of TMapper).Map
   modifiers.csharp:

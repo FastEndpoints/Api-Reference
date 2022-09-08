@@ -6,6 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)
+  - FastEndpoints.BinderContext.CreateScope
   - FastEndpoints.BinderContext.DontAutoBindForms
   - FastEndpoints.BinderContext.HttpContext
   - FastEndpoints.BinderContext.JsonSerializerContext
@@ -310,7 +311,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 68
+    startLine: 67
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -344,7 +345,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 76
+    startLine: 74
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -383,7 +384,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 84
+    startLine: 81
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -399,6 +400,36 @@ items:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.BinderContext.Resolve*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.BinderContext.CreateScope
+  commentId: M:FastEndpoints.BinderContext.CreateScope
+  id: CreateScope
+  parent: FastEndpoints.BinderContext
+  langs:
+  - csharp
+  - vb
+  name: CreateScope()
+  nameWithType: BinderContext.CreateScope()
+  fullName: FastEndpoints.BinderContext.CreateScope()
+  type: Method
+  source:
+    id: CreateScope
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    startLine: 92
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nif you&apos;d like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
+  example: []
+  syntax:
+    content: public IServiceScope CreateScope()
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceScope
+    content.vb: Public Function CreateScope As IServiceScope
+  overload: FastEndpoints.BinderContext.CreateScope*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -859,3 +890,21 @@ references:
   name: Resolve
   nameWithType: BinderContext.Resolve
   fullName: FastEndpoints.BinderContext.Resolve
+- uid: FastEndpoints.BinderContext.CreateScope*
+  commentId: Overload:FastEndpoints.BinderContext.CreateScope
+  name: CreateScope
+  nameWithType: BinderContext.CreateScope
+  fullName: FastEndpoints.BinderContext.CreateScope
+- uid: Microsoft.Extensions.DependencyInjection.IServiceScope
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceScope
+  parent: Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: IServiceScope
+  nameWithType: IServiceScope
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceScope
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class RequestMapper&lt;TRequest, TEntity&gt;
+    <title>Class HttpContextExtensions
    | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class RequestMapper&lt;TRequest, TEntity&gt;
+    <meta name="title" content="Class HttpContextExtensions
    | FastEndpoints ">
     <meta name="generator" content="docfx 2.59.3.0">
     <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
@@ -78,24 +78,17 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FastEndpoints.RequestMapper`2">
+            <article class="content wrap" id="_content" data-uid="FastEndpoints.HttpContextExtensions">
   
   
-  <h1 id="FastEndpoints_RequestMapper_2" data-uid="FastEndpoints.RequestMapper`2" class="text-break">Class RequestMapper&lt;TRequest, TEntity&gt;
+  <h1 id="FastEndpoints_HttpContextExtensions" data-uid="FastEndpoints.HttpContextExtensions" class="text-break">Class HttpContextExtensions
   </h1>
-  <div class="markdown level0 summary"><p>use this base class to define a domain entity mapper for your endpoints that only has a request dto and no response dto.</p>
-<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">RequestMapper&lt;TRequest, TEntity&gt;</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="FastEndpoints.IRequestMapper.html">IRequestMapper</a></div>
-    <div><a class="xref" href="FastEndpoints.IMapper.html">IMapper</a></div>
+    <div class="level1"><span class="xref">HttpContextExtensions</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -123,73 +116,22 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
-  <h5 id="FastEndpoints_RequestMapper_2_syntax">Syntax</h5>
+  <h5 id="FastEndpoints_HttpContextExtensions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class RequestMapper&lt;TRequest, TEntity&gt; : IRequestMapper, IMapper where TRequest : new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static class HttpContextExtensions</code></pre>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TRequest</span></td>
-        <td><p>the type of request dto</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TEntity</span></td>
-        <td><p>the type of domain entity to map to/from</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   
   
-  <a id="FastEndpoints_RequestMapper_2_CreateScope_" data-uid="FastEndpoints.RequestMapper`2.CreateScope*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_CreateScope" data-uid="FastEndpoints.RequestMapper`2.CreateScope">CreateScope()</h4>
-  <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.</p>
-<p>
-<pre><code>using var scope = CreateScope();
-var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
-</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IServiceScope CreateScope()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceScope</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="FastEndpoints_RequestMapper_2_Resolve_" data-uid="FastEndpoints.RequestMapper`2.Resolve*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_Resolve_Type_" data-uid="FastEndpoints.RequestMapper`2.Resolve(Type)">Resolve(Type)</h4>
+  <a id="FastEndpoints_HttpContextExtensions_Resolve_" data-uid="FastEndpoints.HttpContextExtensions.Resolve*"></a>
+  <h4 id="FastEndpoints_HttpContextExtensions_Resolve_Microsoft_AspNetCore_Http_HttpContext_Type_" data-uid="FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,Type)">Resolve(HttpContext, Type)</h4>
   <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Resolve(Type typeOfService)</code></pre>
+    <pre><code class="lang-csharp hljs">public static object Resolve(this HttpContext ctx, Type typeOfService)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -201,6 +143,11 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
+        <td><span class="parametername">ctx</span></td>
+        <td></td>
+      </tr>
       <tr>
         <td><span class="xref">Type</span></td>
         <td><span class="parametername">typeOfService</span></td>
@@ -226,17 +173,34 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   </table>
   
   
-  <a id="FastEndpoints_RequestMapper_2_Resolve_" data-uid="FastEndpoints.RequestMapper`2.Resolve*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_Resolve__1" data-uid="FastEndpoints.RequestMapper`2.Resolve``1">Resolve&lt;TService&gt;()</h4>
+  <a id="FastEndpoints_HttpContextExtensions_Resolve_" data-uid="FastEndpoints.HttpContextExtensions.Resolve*"></a>
+  <h4 id="FastEndpoints_HttpContextExtensions_Resolve__1_Microsoft_AspNetCore_Http_HttpContext_" data-uid="FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)">Resolve&lt;TService&gt;(HttpContext)</h4>
   <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TService Resolve&lt;TService&gt;()
+    <pre><code class="lang-csharp hljs">public static TService Resolve&lt;TService&gt;(this HttpContext ctx)
 
     where TService : class</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
+        <td><span class="parametername">ctx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -270,102 +234,14 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   </table>
   
   
-  <a id="FastEndpoints_RequestMapper_2_ToEntity_" data-uid="FastEndpoints.RequestMapper`2.ToEntity*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_ToEntity__0_" data-uid="FastEndpoints.RequestMapper`2.ToEntity(`0)">ToEntity(TRequest)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping the request dto to the desired domain entity</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual TEntity ToEntity(TRequest r)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TRequest</span></td>
-        <td><span class="parametername">r</span></td>
-        <td><p>the request dto</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TEntity</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="FastEndpoints_RequestMapper_2_ToEntityAsync_" data-uid="FastEndpoints.RequestMapper`2.ToEntityAsync*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_ToEntityAsync__0_" data-uid="FastEndpoints.RequestMapper`2.ToEntityAsync(`0)">ToEntityAsync(TRequest)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping the request dto to the desired domain entity</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;TEntity&gt; ToEntityAsync(TRequest r)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TRequest</span></td>
-        <td><span class="parametername">r</span></td>
-        <td><p>the request dto to map from</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;TEntity&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="FastEndpoints_RequestMapper_2_TryResolve_" data-uid="FastEndpoints.RequestMapper`2.TryResolve*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_TryResolve_Type_" data-uid="FastEndpoints.RequestMapper`2.TryResolve(Type)">TryResolve(Type)</h4>
+  <a id="FastEndpoints_HttpContextExtensions_TryResolve_" data-uid="FastEndpoints.HttpContextExtensions.TryResolve*"></a>
+  <h4 id="FastEndpoints_HttpContextExtensions_TryResolve_Microsoft_AspNetCore_Http_HttpContext_Type_" data-uid="FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,Type)">TryResolve(HttpContext, Type)</h4>
   <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object TryResolve(Type typeOfService)</code></pre>
+    <pre><code class="lang-csharp hljs">public static object TryResolve(this HttpContext ctx, Type typeOfService)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -377,6 +253,11 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
+        <td><span class="parametername">ctx</span></td>
+        <td></td>
+      </tr>
       <tr>
         <td><span class="xref">Type</span></td>
         <td><span class="parametername">typeOfService</span></td>
@@ -402,17 +283,34 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   </table>
   
   
-  <a id="FastEndpoints_RequestMapper_2_TryResolve_" data-uid="FastEndpoints.RequestMapper`2.TryResolve*"></a>
-  <h4 id="FastEndpoints_RequestMapper_2_TryResolve__1" data-uid="FastEndpoints.RequestMapper`2.TryResolve``1">TryResolve&lt;TService&gt;()</h4>
+  <a id="FastEndpoints_HttpContextExtensions_TryResolve_" data-uid="FastEndpoints.HttpContextExtensions.TryResolve*"></a>
+  <h4 id="FastEndpoints_HttpContextExtensions_TryResolve__1_Microsoft_AspNetCore_Http_HttpContext_" data-uid="FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)">TryResolve&lt;TService&gt;(HttpContext)</h4>
   <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TService TryResolve&lt;TService&gt;()
+    <pre><code class="lang-csharp hljs">public static TService TryResolve&lt;TService&gt;(this HttpContext ctx)
 
     where TService : class</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
+        <td><span class="parametername">ctx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -444,13 +342,6 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="FastEndpoints.IRequestMapper.html">IRequestMapper</a>
-  </div>
-  <div>
-      <a class="xref" href="FastEndpoints.IMapper.html">IMapper</a>
-  </div>
 </article>
           </div>
           

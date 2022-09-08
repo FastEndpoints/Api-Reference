@@ -83,13 +83,14 @@
   
   <h1 id="FastEndpoints_Event_1" data-uid="FastEndpoints.Event`1" class="text-break">Class Event&lt;TEvent&gt;
   </h1>
-  <div class="markdown level0 summary"><p>event notification hub which uses an in-process pub/sub messaging system based on .net events</p>
+  <div class="markdown level0 summary"><p>event notification bus which uses an in-process pub/sub messaging system</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Event&lt;TEvent&gt;</span></div>
+    <div class="level1"><a class="xref" href="FastEndpoints.EventBase.html">EventBase</a></div>
+    <div class="level2"><span class="xref">Event&lt;TEvent&gt;</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -119,7 +120,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Event_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Event&lt;TEvent&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class Event&lt;TEvent&gt; : EventBase</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -132,7 +133,38 @@
     <tbody>
       <tr>
         <td><span class="parametername">TEvent</span></td>
-        <td><p>the type of notification event</p>
+        <td><p>the type of notification event dto</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="FastEndpoints_Event_1__ctor_" data-uid="FastEndpoints.Event`1.#ctor*"></a>
+  <h4 id="FastEndpoints_Event_1__ctor_System_Nullable_IEnumerable_FastEndpoints_FastEventHandler__0____" data-uid="FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{`0}}})">Event(Nullable&lt;IEnumerable&lt;FastEventHandler&lt;TEvent&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>instantiates an event bus for the given event dto type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Event(IEnumerable&lt;FastEventHandler&lt;TEvent&gt;&gt;? eventHandlers = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">IEnumerable</span>&lt;<a class="xref" href="FastEndpoints.FastEventHandler-1.html">FastEventHandler</a>&lt;TEvent&gt;&gt;&gt;</td>
+        <td><span class="parametername">eventHandlers</span></td>
+        <td><p>a collection of concrete event handler implementations that should receive notifications from this event bus</p>
 </td>
       </tr>
     </tbody>
@@ -148,7 +180,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task PublishAsync(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task PublishAsync(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -192,9 +224,9 @@
       <tr>
         <td><span class="xref">Task</span></td>
         <td><p>a Task that matches the wait mode specified.
-Mode.WaitForNone returns an already completed Task (fire and forget).
-Mode.WaitForAny returns a Task that will complete when any of the subscribers complete their work.
-Mode.WaitForAll return a Task that will complete only when all of the subscribers complete their work.</p>
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForNone">WaitForNone</a> returns an already completed Task (fire and forget).
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAny">WaitForAny</a> returns a Task that will complete when any of the subscribers complete their work.
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAll">WaitForAll</a> return a Task that will complete only when all of the subscribers complete their work.</p>
 </td>
       </tr>
     </tbody>

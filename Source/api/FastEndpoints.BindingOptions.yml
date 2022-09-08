@@ -1,40 +1,32 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.Event`1
-  commentId: T:FastEndpoints.Event`1
-  id: Event`1
+- uid: FastEndpoints.BindingOptions
+  commentId: T:FastEndpoints.BindingOptions
+  id: BindingOptions
   parent: FastEndpoints
   children:
-  - FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{`0}}})
-  - FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
+  - FastEndpoints.BindingOptions.Modifier
   langs:
   - csharp
   - vb
-  name: Event<TEvent>
-  nameWithType: Event<TEvent>
-  fullName: FastEndpoints.Event<TEvent>
+  name: BindingOptions
+  nameWithType: BindingOptions
+  fullName: FastEndpoints.BindingOptions
   type: Class
   source:
-    id: Event
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Events\Event.cs
-    startLine: 16
+    id: BindingOptions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
+    startLine: 5
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nevent notification bus which uses an in-process pub/sub messaging system\n"
+  summary: "\nrequest binding options\n"
   example: []
   syntax:
-    content: 'public class Event<TEvent> : EventBase'
-    typeParameters:
-    - id: TEvent
-      description: the type of notification event dto
-    content.vb: >-
-      Public Class Event(Of TEvent)
-
-          Inherits EventBase
+    content: public class BindingOptions
+    content.vb: Public Class BindingOptions
   inheritance:
   - System.Object
-  - FastEndpoints.EventBase
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -43,100 +35,41 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  nameWithType.vb: Event(Of TEvent)
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-  fullName.vb: FastEndpoints.Event(Of TEvent)
-  name.vb: Event(Of TEvent)
-- uid: FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{`0}}})
-  commentId: M:FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{`0}}})
-  id: '#ctor(System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{`0}}})'
-  parent: FastEndpoints.Event`1
+- uid: FastEndpoints.BindingOptions.Modifier
+  commentId: F:FastEndpoints.BindingOptions.Modifier
+  id: Modifier
+  parent: FastEndpoints.BindingOptions
   langs:
   - csharp
   - vb
-  name: Event(Nullable<IEnumerable<FastEventHandler<TEvent>>>)
-  nameWithType: Event<TEvent>.Event(Nullable<IEnumerable<FastEventHandler<TEvent>>>)
-  fullName: FastEndpoints.Event<TEvent>.Event(System.Nullable<IEnumerable<FastEndpoints.FastEventHandler<TEvent>>>)
-  type: Constructor
+  name: Modifier
+  nameWithType: BindingOptions.Modifier
+  fullName: FastEndpoints.BindingOptions.Modifier
+  type: Field
   source:
-    id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Events\Event.cs
-    startLine: 24
+    id: Modifier
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
+    startLine: 17
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ninstantiates an event bus for the given event dto type.\n"
+  summary: "\nan optional action to be run after the endpoint level request binding has occured.\nit is intended as a way to perform common model binding logic that applies to all endpoints/requests.\nthe action is passed in the following arguments:\n<p><xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>: the request dto instance</p>\n<p><see cref=\"!:Type\"></see>: the type of the request dto</p>\n<p><xref href=\"FastEndpoints.BinderContext\" data-throw-if-not-resolved=\"false\"></xref>: the request binding context</p>\n<p><see cref=\"!:CancellationToken\"></see>: a cancellation token</p>\n<p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>\n"
   example: []
   syntax:
-    content: public Event(IEnumerable<FastEventHandler<TEvent>>? eventHandlers = null)
-    parameters:
-    - id: eventHandlers
-      type: System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{{TEvent}}}}
-      description: a collection of concrete event handler implementations that should receive notifications from this event bus
-    content.vb: Public Sub New(eventHandlers As IEnumerable(Of FastEventHandler(Of TEvent))? = Nothing)
-  overload: FastEndpoints.Event`1.#ctor*
-  nameWithType.vb: Event(Of TEvent).Event(Nullable(Of IEnumerable(Of FastEventHandler(Of TEvent))))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.Event(Of TEvent).Event(System.Nullable(Of IEnumerable(Of FastEndpoints.FastEventHandler(Of TEvent))))
-  name.vb: Event(Nullable(Of IEnumerable(Of FastEventHandler(Of TEvent))))
-- uid: FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
-  commentId: M:FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
-  id: PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
-  parent: FastEndpoints.Event`1
-  langs:
-  - csharp
-  - vb
-  name: PublishAsync(TEvent, Mode, CancellationToken)
-  nameWithType: Event<TEvent>.PublishAsync(TEvent, Mode, CancellationToken)
-  fullName: FastEndpoints.Event<TEvent>.PublishAsync(TEvent, FastEndpoints.Mode, CancellationToken)
-  type: Method
-  source:
-    id: PublishAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Events\Event.cs
-    startLine: 42
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\npublish the given model/dto to all the subscribers of the event notification\n"
-  example: []
-  syntax:
-    content: public Task PublishAsync(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
-    parameters:
-    - id: eventModel
-      type: '{TEvent}'
-      description: the notification event model/dto to publish
-    - id: waitMode
-      type: FastEndpoints.Mode
-      description: specify whether to wait for none, any or all of the subscribers to complete their work
-    - id: cancellation
-      type: CancellationToken
-      description: an optional cancellation token
+    content: public Action<object, Type, BinderContext, CancellationToken>? Modifier
     return:
-      type: Task
-      description: >-
-        a Task that matches the wait mode specified.
-
-        <xref href="FastEndpoints.Mode.WaitForNone" data-throw-if-not-resolved="false"></xref> returns an already completed Task (fire and forget).
-
-        <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
-
-        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all of the subscribers complete their work.
-    content.vb: Public Function PublishAsync(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
-  overload: FastEndpoints.Event`1.PublishAsync*
-  nameWithType.vb: Event(Of TEvent).PublishAsync(TEvent, Mode, CancellationToken)
+      type: System.Nullable{Action{System.Object,Type,FastEndpoints.BinderContext,CancellationToken}}
+    content.vb: Public Modifier As Action(Of Object, Type, BinderContext, CancellationToken)?
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Event(Of TEvent).PublishAsync(TEvent, FastEndpoints.Mode, CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -150,12 +83,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: FastEndpoints.EventBase
-  commentId: T:FastEndpoints.EventBase
-  parent: FastEndpoints
-  name: EventBase
-  nameWithType: EventBase
-  fullName: FastEndpoints.EventBase
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -441,23 +368,22 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.Event`1.#ctor*
-  commentId: Overload:FastEndpoints.Event`1.#ctor
-  name: Event
-  nameWithType: Event<TEvent>.Event
-  fullName: FastEndpoints.Event<TEvent>.Event
-  nameWithType.vb: Event(Of TEvent).Event
-  fullName.vb: FastEndpoints.Event(Of TEvent).Event
-- uid: System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{{TEvent}}}}
-  commentId: T:System.Nullable{IEnumerable{FastEndpoints.FastEventHandler{`0}}}
+- uid: FastEndpoints.BinderContext
+  commentId: T:FastEndpoints.BinderContext
+  parent: FastEndpoints
+  name: BinderContext
+  nameWithType: BinderContext
+  fullName: FastEndpoints.BinderContext
+- uid: System.Nullable{Action{System.Object,Type,FastEndpoints.BinderContext,CancellationToken}}
+  commentId: T:System.Nullable{Action{System.Object,Type,FastEndpoints.BinderContext,CancellationToken}}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<IEnumerable<FastEventHandler<TEvent>>>
-  nameWithType: Nullable<IEnumerable<FastEventHandler<TEvent>>>
-  fullName: System.Nullable<IEnumerable<FastEndpoints.FastEventHandler<TEvent>>>
-  nameWithType.vb: Nullable(Of IEnumerable(Of FastEventHandler(Of TEvent)))
-  fullName.vb: System.Nullable(Of IEnumerable(Of FastEndpoints.FastEventHandler(Of TEvent)))
-  name.vb: Nullable(Of IEnumerable(Of FastEventHandler(Of TEvent)))
+  name: Nullable<Action<Object, Type, BinderContext, CancellationToken>>
+  nameWithType: Nullable<Action<Object, Type, BinderContext, CancellationToken>>
+  fullName: System.Nullable<Action<System.Object, Type, FastEndpoints.BinderContext, CancellationToken>>
+  nameWithType.vb: Nullable(Of Action(Of Object, Type, BinderContext, CancellationToken))
+  fullName.vb: System.Nullable(Of Action(Of System.Object, Type, FastEndpoints.BinderContext, CancellationToken))
+  name.vb: Nullable(Of Action(Of Object, Type, BinderContext, CancellationToken))
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -467,27 +393,42 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: IEnumerable
+  - uid: Action`4
+    name: Action
+    nameWithType: Action
+    fullName: Action
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - uid: FastEndpoints.FastEventHandler`1
-    name: FastEventHandler
-    nameWithType: FastEventHandler
-    fullName: FastEndpoints.FastEventHandler
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TEvent
-    nameWithType: TEvent
-    fullName: TEvent
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.BinderContext
+    name: BinderContext
+    nameWithType: BinderContext
+    fullName: FastEndpoints.BinderContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -503,27 +444,42 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: IEnumerable
+  - uid: Action`4
+    name: Action
+    nameWithType: Action
+    fullName: Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: FastEndpoints.FastEventHandler`1
-    name: FastEventHandler
-    nameWithType: FastEventHandler
-    fullName: FastEndpoints.FastEventHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TEvent
-    nameWithType: TEvent
-    fullName: TEvent
-  - name: )
-    nameWithType: )
-    fullName: )
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.BinderContext
+    name: BinderContext
+    nameWithType: BinderContext
+    fullName: FastEndpoints.BinderContext
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -569,45 +525,3 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Mode.WaitForNone
-  commentId: F:FastEndpoints.Mode.WaitForNone
-  isExternal: true
-- uid: FastEndpoints.Mode.WaitForAny
-  commentId: F:FastEndpoints.Mode.WaitForAny
-  isExternal: true
-- uid: FastEndpoints.Mode.WaitForAll
-  commentId: F:FastEndpoints.Mode.WaitForAll
-  isExternal: true
-- uid: FastEndpoints.Event`1.PublishAsync*
-  commentId: Overload:FastEndpoints.Event`1.PublishAsync
-  name: PublishAsync
-  nameWithType: Event<TEvent>.PublishAsync
-  fullName: FastEndpoints.Event<TEvent>.PublishAsync
-  nameWithType.vb: Event(Of TEvent).PublishAsync
-  fullName.vb: FastEndpoints.Event(Of TEvent).PublishAsync
-- uid: '{TEvent}'
-  commentId: '!:TEvent'
-  definition: TEvent
-  name: TEvent
-  nameWithType: TEvent
-  fullName: TEvent
-- uid: FastEndpoints.Mode
-  commentId: T:FastEndpoints.Mode
-  parent: FastEndpoints
-  name: Mode
-  nameWithType: Mode
-  fullName: FastEndpoints.Mode
-- uid: CancellationToken
-  isExternal: true
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: Task
-  isExternal: true
-  name: Task
-  nameWithType: Task
-  fullName: Task
-- uid: TEvent
-  name: TEvent
-  nameWithType: TEvent
-  fullName: TEvent
