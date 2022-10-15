@@ -16,7 +16,7 @@ items:
   source:
     id: RequestBinder
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\RequestBinder.cs
-    startLine: 15
+    startLine: 17
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -66,16 +66,16 @@ items:
   source:
     id: BindAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\RequestBinder.cs
-    startLine: 69
+    startLine: 95
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\noverride this method to customize the request binding logic\n"
   example: []
   syntax:
-    content: public virtual async ValueTask<TRequest> BindAsync(BinderContext context, CancellationToken cancellation)
+    content: public virtual async ValueTask<TRequest> BindAsync(BinderContext ctx, CancellationToken cancellation)
     parameters:
-    - id: context
+    - id: ctx
       type: FastEndpoints.BinderContext
       description: the request binder context which holds all the data required for binding the incoming request
     - id: cancellation
@@ -83,7 +83,7 @@ items:
       description: cancellation token
     return:
       type: ValueTask{{TRequest}}
-    content.vb: Public Overridable Function BindAsync(context As BinderContext, cancellation As CancellationToken) As ValueTask(Of TRequest)
+    content.vb: Public Overridable Function BindAsync(ctx As BinderContext, cancellation As CancellationToken) As ValueTask(Of TRequest)
   overload: FastEndpoints.RequestBinder`1.BindAsync*
   exceptions:
   - type: FastEndpoints.ValidationFailureException

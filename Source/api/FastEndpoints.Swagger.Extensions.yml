@@ -6,11 +6,13 @@ items:
   parent: FastEndpoints.Swagger
   children:
   - FastEndpoints.Swagger.Extensions.AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings,System.String,NSwag.OpenApiSecurityScheme,System.Nullable{IEnumerable{System.String}})
-  - FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
   - FastEndpoints.Swagger.Extensions.ConfigureDefaults(NSwag.AspNetCore.SwaggerUi3Settings,System.Nullable{Action{NSwag.AspNetCore.SwaggerUi3Settings}})
-  - FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
   - FastEndpoints.Swagger.Extensions.EnableJWTBearerAuth(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
+  - FastEndpoints.Swagger.Extensions.EndpointFilter(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,Func{FastEndpoints.EndpointDefinition,System.Boolean})
   - FastEndpoints.Swagger.Extensions.SelectedJsonNamingPolicy
+  - FastEndpoints.Swagger.Extensions.TagDescriptions(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,NSwag.OpenApiTag[])
   langs:
   - csharp
   - vb
@@ -21,7 +23,7 @@ items:
   source:
     id: Extensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -61,7 +63,7 @@ items:
   source:
     id: SelectedJsonNamingPolicy
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -82,35 +84,38 @@ items:
   - Public
   - Shared
   - ReadOnly
-- uid: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  id: EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Boolean,System.Boolean)
+- uid: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  id: EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)
   isExtensionMethod: true
   parent: FastEndpoints.Swagger.Extensions
   langs:
   - csharp
   - vb
-  name: EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Int32, Int32, Boolean, Boolean)
-  nameWithType: Extensions.EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Int32, Int32, Boolean, Boolean)
-  fullName: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, System.Int32, System.Int32, System.Boolean, System.Boolean)
+  name: EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Int32, Int32, Int32, Boolean, Boolean)
+  nameWithType: Extensions.EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Int32, Int32, Int32, Boolean, Boolean)
+  fullName: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, System.Int32, System.Int32, System.Int32, System.Boolean, System.Boolean)
   type: Method
   source:
     id: EnableFastEndpoints
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 37
+    startLine: 39
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
   summary: "\nenable support for FastEndpoints in swagger\n"
   example: []
   syntax:
-    content: public static void EnableFastEndpoints(this AspNetCoreOpenApiDocumentGeneratorSettings settings, int tagIndex, int maxEndpointVersion, bool shortSchemaNames, bool removeEmptySchemas)
+    content: public static void EnableFastEndpoints(this AspNetCoreOpenApiDocumentGeneratorSettings settings, int tagIndex, int minEndpointVersion, int maxEndpointVersion, bool shortSchemaNames, bool removeEmptySchemas)
     parameters:
     - id: settings
       type: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
     - id: tagIndex
       type: System.Int32
       description: the index of the route path segment to use for tagging/grouping endpoints
+    - id: minEndpointVersion
+      type: System.Int32
+      description: endpoints lower than this vesion will not be included in the swagger doc
     - id: maxEndpointVersion
       type: System.Int32
       description: endpoints greater than this version will not be included in the swagger doc
@@ -123,7 +128,7 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Sub EnableFastEndpoints(settings As AspNetCoreOpenApiDocumentGeneratorSettings, tagIndex As Integer, maxEndpointVersion As Integer, shortSchemaNames As Boolean, removeEmptySchemas As Boolean)
+      Public Shared Sub EnableFastEndpoints(settings As AspNetCoreOpenApiDocumentGeneratorSettings, tagIndex As Integer, minEndpointVersion As Integer, maxEndpointVersion As Integer, shortSchemaNames As Boolean, removeEmptySchemas As Boolean)
   overload: FastEndpoints.Swagger.Extensions.EnableFastEndpoints*
   modifiers.csharp:
   - public
@@ -146,7 +151,7 @@ items:
   source:
     id: EnableJWTBearerAuth
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 49
+    startLine: 56
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -168,29 +173,72 @@ items:
   modifiers.vb:
   - Public
   - Shared
-- uid: FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  commentId: M:FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean)
-  id: AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean)
+- uid: FastEndpoints.Swagger.Extensions.TagDescriptions(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,NSwag.OpenApiTag[])
+  commentId: M:FastEndpoints.Swagger.Extensions.TagDescriptions(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,NSwag.OpenApiTag[])
+  id: TagDescriptions(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,NSwag.OpenApiTag[])
   isExtensionMethod: true
   parent: FastEndpoints.Swagger.Extensions
   langs:
   - csharp
   - vb
-  name: AddSwaggerDoc(IServiceCollection, Nullable<Action<AspNetCoreOpenApiDocumentGeneratorSettings>>, Nullable<Action<JsonSerializerOptions>>, Boolean, Int32, Int32, Boolean, Boolean)
-  nameWithType: Extensions.AddSwaggerDoc(IServiceCollection, Nullable<Action<AspNetCoreOpenApiDocumentGeneratorSettings>>, Nullable<Action<JsonSerializerOptions>>, Boolean, Int32, Int32, Boolean, Boolean)
-  fullName: FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable<Action<NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings>>, System.Nullable<Action<System.Text.Json.JsonSerializerOptions>>, System.Boolean, System.Int32, System.Int32, System.Boolean, System.Boolean)
+  name: TagDescriptions(AspNetCoreOpenApiDocumentGeneratorSettings, OpenApiTag[])
+  nameWithType: Extensions.TagDescriptions(AspNetCoreOpenApiDocumentGeneratorSettings, OpenApiTag[])
+  fullName: FastEndpoints.Swagger.Extensions.TagDescriptions(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, NSwag.OpenApiTag[])
+  type: Method
+  source:
+    id: TagDescriptions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
+    startLine: 71
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: "\nadd <xref href=\"NSwag.OpenApiTag\" data-throw-if-not-resolved=\"false\"></xref>s to a swagger document in order to provide tag descriptions\n"
+  example: []
+  syntax:
+    content: public static void TagDescriptions(this AspNetCoreOpenApiDocumentGeneratorSettings settings, params OpenApiTag[] documentTags)
+    parameters:
+    - id: settings
+      type: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
+    - id: documentTags
+      type: NSwag.OpenApiTag[]
+      description: the <xref href="NSwag.OpenApiTag" data-throw-if-not-resolved="false"></xref>s to be added to the swagger doc
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub TagDescriptions(settings As AspNetCoreOpenApiDocumentGeneratorSettings, ParamArray documentTags As OpenApiTag())
+  overload: FastEndpoints.Swagger.Extensions.TagDescriptions*
+  nameWithType.vb: Extensions.TagDescriptions(AspNetCoreOpenApiDocumentGeneratorSettings, OpenApiTag())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Swagger.Extensions.TagDescriptions(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, NSwag.OpenApiTag())
+  name.vb: TagDescriptions(AspNetCoreOpenApiDocumentGeneratorSettings, OpenApiTag())
+- uid: FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  id: AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}},System.Nullable{Action{System.Text.Json.JsonSerializerOptions}},System.Boolean,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)
+  isExtensionMethod: true
+  parent: FastEndpoints.Swagger.Extensions
+  langs:
+  - csharp
+  - vb
+  name: AddSwaggerDoc(IServiceCollection, Nullable<Action<AspNetCoreOpenApiDocumentGeneratorSettings>>, Nullable<Action<JsonSerializerOptions>>, Boolean, Int32, Int32, Int32, Boolean, Boolean, Boolean)
+  nameWithType: Extensions.AddSwaggerDoc(IServiceCollection, Nullable<Action<AspNetCoreOpenApiDocumentGeneratorSettings>>, Nullable<Action<JsonSerializerOptions>>, Boolean, Int32, Int32, Int32, Boolean, Boolean, Boolean)
+  fullName: FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable<Action<NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings>>, System.Nullable<Action<System.Text.Json.JsonSerializerOptions>>, System.Boolean, System.Int32, System.Int32, System.Int32, System.Boolean, System.Boolean, System.Boolean)
   type: Method
   source:
     id: AddSwaggerDoc
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 73
+    startLine: 96
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
   summary: "\nenable swagger support for FastEndpoints with a single call.\n"
   example: []
   syntax:
-    content: public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, Action<AspNetCoreOpenApiDocumentGeneratorSettings>? settings = null, Action<JsonSerializerOptions>? serializerSettings = null, bool addJWTBearerAuth = true, int tagIndex = 1, int maxEndpointVersion = 0, bool shortSchemaNames = false, bool removeEmptySchemas = false)
+    content: public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, Action<AspNetCoreOpenApiDocumentGeneratorSettings>? settings = null, Action<JsonSerializerOptions>? serializerSettings = null, bool addJWTBearerAuth = true, int tagIndex = 1, int minEndpointVersion = 0, int maxEndpointVersion = 0, bool shortSchemaNames = false, bool removeEmptySchemas = false, bool excludeNonFastEndpoints = false)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -206,6 +254,9 @@ items:
     - id: tagIndex
       type: System.Int32
       description: the index of the route path segment to use for tagging/grouping endpoints
+    - id: minEndpointVersion
+      type: System.Int32
+      description: endpoints lower than this vesion will not be included in the swagger doc
     - id: maxEndpointVersion
       type: System.Int32
       description: endpoints greater than this version will not be included in the swagger doc
@@ -215,22 +266,25 @@ items:
     - id: removeEmptySchemas
       type: System.Boolean
       description: "\nset to true for removing empty schemas from the swagger document.\n<p>WARNING: enabling this also flattens the inheritance hierachy of the schmemas.</p>\n"
+    - id: excludeNonFastEndpoints
+      type: System.Boolean
+      description: if set to true, only FastEndpoints will show up in the swagger doc
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function AddSwaggerDoc(services As IServiceCollection, settings As Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)? = Nothing, serializerSettings As Action(Of JsonSerializerOptions)? = Nothing, addJWTBearerAuth As Boolean = True, tagIndex As Integer = 1, maxEndpointVersion As Integer = 0, shortSchemaNames As Boolean = False, removeEmptySchemas As Boolean = False) As IServiceCollection
+      Public Shared Function AddSwaggerDoc(services As IServiceCollection, settings As Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)? = Nothing, serializerSettings As Action(Of JsonSerializerOptions)? = Nothing, addJWTBearerAuth As Boolean = True, tagIndex As Integer = 1, minEndpointVersion As Integer = 0, maxEndpointVersion As Integer = 0, shortSchemaNames As Boolean = False, removeEmptySchemas As Boolean = False, excludeNonFastEndpoints As Boolean = False) As IServiceCollection
   overload: FastEndpoints.Swagger.Extensions.AddSwaggerDoc*
-  nameWithType.vb: Extensions.AddSwaggerDoc(IServiceCollection, Nullable(Of Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)), Nullable(Of Action(Of JsonSerializerOptions)), Boolean, Int32, Int32, Boolean, Boolean)
+  nameWithType.vb: Extensions.AddSwaggerDoc(IServiceCollection, Nullable(Of Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)), Nullable(Of Action(Of JsonSerializerOptions)), Boolean, Int32, Int32, Int32, Boolean, Boolean, Boolean)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable(Of Action(Of NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)), System.Nullable(Of Action(Of System.Text.Json.JsonSerializerOptions)), System.Boolean, System.Int32, System.Int32, System.Boolean, System.Boolean)
-  name.vb: AddSwaggerDoc(IServiceCollection, Nullable(Of Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)), Nullable(Of Action(Of JsonSerializerOptions)), Boolean, Int32, Int32, Boolean, Boolean)
+  fullName.vb: FastEndpoints.Swagger.Extensions.AddSwaggerDoc(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable(Of Action(Of NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)), System.Nullable(Of Action(Of System.Text.Json.JsonSerializerOptions)), System.Boolean, System.Int32, System.Int32, System.Int32, System.Boolean, System.Boolean, System.Boolean)
+  name.vb: AddSwaggerDoc(IServiceCollection, Nullable(Of Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)), Nullable(Of Action(Of JsonSerializerOptions)), Boolean, Int32, Int32, Int32, Boolean, Boolean, Boolean)
 - uid: FastEndpoints.Swagger.Extensions.ConfigureDefaults(NSwag.AspNetCore.SwaggerUi3Settings,System.Nullable{Action{NSwag.AspNetCore.SwaggerUi3Settings}})
   commentId: M:FastEndpoints.Swagger.Extensions.ConfigureDefaults(NSwag.AspNetCore.SwaggerUi3Settings,System.Nullable{Action{NSwag.AspNetCore.SwaggerUi3Settings}})
   id: ConfigureDefaults(NSwag.AspNetCore.SwaggerUi3Settings,System.Nullable{Action{NSwag.AspNetCore.SwaggerUi3Settings}})
@@ -246,7 +300,7 @@ items:
   source:
     id: ConfigureDefaults
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 102
+    startLine: 127
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -289,7 +343,7 @@ items:
   source:
     id: AddAuth
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
-    startLine: 121
+    startLine: 146
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -326,6 +380,49 @@ items:
   - Shared
   fullName.vb: FastEndpoints.Swagger.Extensions.AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings, System.String, NSwag.OpenApiSecurityScheme, System.Nullable(Of IEnumerable(Of System.String)))
   name.vb: AddAuth(OpenApiDocumentGeneratorSettings, String, OpenApiSecurityScheme, Nullable(Of IEnumerable(Of String)))
+- uid: FastEndpoints.Swagger.Extensions.EndpointFilter(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,Func{FastEndpoints.EndpointDefinition,System.Boolean})
+  commentId: M:FastEndpoints.Swagger.Extensions.EndpointFilter(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,Func{FastEndpoints.EndpointDefinition,System.Boolean})
+  id: EndpointFilter(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,Func{FastEndpoints.EndpointDefinition,System.Boolean})
+  isExtensionMethod: true
+  parent: FastEndpoints.Swagger.Extensions
+  langs:
+  - csharp
+  - vb
+  name: EndpointFilter(AspNetCoreOpenApiDocumentGeneratorSettings, Func<EndpointDefinition, Boolean>)
+  nameWithType: Extensions.EndpointFilter(AspNetCoreOpenApiDocumentGeneratorSettings, Func<EndpointDefinition, Boolean>)
+  fullName: FastEndpoints.Swagger.Extensions.EndpointFilter(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, Func<FastEndpoints.EndpointDefinition, System.Boolean>)
+  type: Method
+  source:
+    id: EndpointFilter
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\Extensions.cs
+    startLine: 166
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: "\nspecify a function to filter out endpoints from the swagger document.\nthis function will be run against every fast endpoint discovered. return true to include the endpoint and return false to exclude the endpoint from the swagger doc.\n"
+  example: []
+  syntax:
+    content: public static void EndpointFilter(this AspNetCoreOpenApiDocumentGeneratorSettings x, Func<EndpointDefinition, bool> filter)
+    parameters:
+    - id: x
+      type: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
+    - id: filter
+      type: Func{FastEndpoints.EndpointDefinition,System.Boolean}
+      description: a function to use for filtering endpoints
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub EndpointFilter(x As AspNetCoreOpenApiDocumentGeneratorSettings, filter As Func(Of EndpointDefinition, Boolean))
+  overload: FastEndpoints.Swagger.Extensions.EndpointFilter*
+  nameWithType.vb: Extensions.EndpointFilter(AspNetCoreOpenApiDocumentGeneratorSettings, Func(Of EndpointDefinition, Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Swagger.Extensions.EndpointFilter(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, Func(Of FastEndpoints.EndpointDefinition, System.Boolean))
+  name.vb: EndpointFilter(AspNetCoreOpenApiDocumentGeneratorSettings, Func(Of EndpointDefinition, Boolean))
 references:
 - uid: FastEndpoints.Swagger
   commentId: N:FastEndpoints.Swagger
@@ -679,6 +776,40 @@ references:
   name: EnableJWTBearerAuth
   nameWithType: Extensions.EnableJWTBearerAuth
   fullName: FastEndpoints.Swagger.Extensions.EnableJWTBearerAuth
+- uid: NSwag.OpenApiTag
+  commentId: T:NSwag.OpenApiTag
+  isExternal: true
+- uid: FastEndpoints.Swagger.Extensions.TagDescriptions*
+  commentId: Overload:FastEndpoints.Swagger.Extensions.TagDescriptions
+  name: TagDescriptions
+  nameWithType: Extensions.TagDescriptions
+  fullName: FastEndpoints.Swagger.Extensions.TagDescriptions
+- uid: NSwag.OpenApiTag[]
+  isExternal: true
+  name: OpenApiTag[]
+  nameWithType: OpenApiTag[]
+  fullName: NSwag.OpenApiTag[]
+  nameWithType.vb: OpenApiTag()
+  fullName.vb: NSwag.OpenApiTag()
+  name.vb: OpenApiTag()
+  spec.csharp:
+  - uid: NSwag.OpenApiTag
+    name: OpenApiTag
+    nameWithType: OpenApiTag
+    fullName: NSwag.OpenApiTag
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: NSwag.OpenApiTag
+    name: OpenApiTag
+    nameWithType: OpenApiTag
+    fullName: NSwag.OpenApiTag
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: FastEndpoints.Swagger.Extensions.AddSwaggerDoc*
   commentId: Overload:FastEndpoints.Swagger.Extensions.AddSwaggerDoc
   name: AddSwaggerDoc
@@ -1056,3 +1187,116 @@ references:
   name: NSwag
   nameWithType: NSwag
   fullName: NSwag
+- uid: FastEndpoints.Swagger.Extensions.EndpointFilter*
+  commentId: Overload:FastEndpoints.Swagger.Extensions.EndpointFilter
+  name: EndpointFilter
+  nameWithType: Extensions.EndpointFilter
+  fullName: FastEndpoints.Swagger.Extensions.EndpointFilter
+- uid: Func{FastEndpoints.EndpointDefinition,System.Boolean}
+  commentId: '!:Func{FastEndpoints.EndpointDefinition,System.Boolean}'
+  definition: Func`2
+  name: Func<EndpointDefinition, Boolean>
+  nameWithType: Func<EndpointDefinition, Boolean>
+  fullName: Func<FastEndpoints.EndpointDefinition, System.Boolean>
+  nameWithType.vb: Func(Of EndpointDefinition, Boolean)
+  fullName.vb: Func(Of FastEndpoints.EndpointDefinition, System.Boolean)
+  name.vb: Func(Of EndpointDefinition, Boolean)
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EndpointDefinition
+    name: EndpointDefinition
+    nameWithType: EndpointDefinition
+    fullName: FastEndpoints.EndpointDefinition
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EndpointDefinition
+    name: EndpointDefinition
+    nameWithType: EndpointDefinition
+    fullName: FastEndpoints.EndpointDefinition
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`2
+  commentId: '!:Func`2'
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

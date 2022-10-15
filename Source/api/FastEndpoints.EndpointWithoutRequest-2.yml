@@ -16,7 +16,7 @@ items:
   source:
     id: EndpointWithoutRequest
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 305
+    startLine: 314
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -41,6 +41,7 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
   - FastEndpoints.EndpointWithoutRequest{{TResponse}}
   implements:
+  - FastEndpoints.IEndpoint
   - FastEndpoints.IHasMapper{{TMapper}}
   inheritedMembers:
   - FastEndpoints.EndpointWithoutRequest{{TResponse}}.HandleAsync(CancellationToken)
@@ -95,54 +96,56 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendStreamAsync(Stream,System.String,System.Nullable{System.Int64},System.String,System.Nullable{DateTimeOffset},System.Boolean,CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendEventStreamAsync``1(System.String,IAsyncEnumerable{{T}},CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendEmptyJsonObject(CancellationToken)
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Routes(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(FastEndpoints.Http[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontThrowIfValidationFails
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontCatchExceptions
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontAutoTag
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowAnonymous(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowFileUploads(System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowFormData
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Policies(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Roles(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Permissions(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PermissionsAll(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AuthSchemes(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Claims(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ClaimsAll(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AuthSchemes(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PostProcessors(FastEndpoints.IPostProcessor{FastEndpoints.EmptyRequest,{TResponse}}[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontAutoTag
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontCatchExceptions
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontThrowIfValidationFails
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Group``1
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Permissions(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PermissionsAll(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Policies(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PostProcessors(FastEndpoints.IPostProcessor{FastEndpoints.EmptyRequest,{TResponse}}[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Roles(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RoutePrefixOverride(System.String)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Routes(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ScopedValidator
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SerializerContext``1({TContext})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(Action{FastEndpoints.EndpointSummary})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(Action{FastEndpoints.EndpointSummary{FastEndpoints.EmptyRequest}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(FastEndpoints.EndpointSummary)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Tags(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Throttle(System.Int32,System.Double,System.String)
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SerializerContext``1({TContext})
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ScopedValidator
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1(System.Boolean)
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RoutePrefixOverride(System.String)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(FastEndpoints.Http[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowIfAnyErrors
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.String)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String)
-  - FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
   - FastEndpoints.BaseEndpoint.Definition
   - FastEndpoints.BaseEndpoint.Config
   - FastEndpoints.BaseEndpoint.HttpContext
   - FastEndpoints.BaseEndpoint.ValidationFailures
   - FastEndpoints.BaseEndpoint.Configure
+  - FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  - FastEndpoints.BaseEndpoint.Group``1
   - FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -176,16 +179,18 @@ items:
   source:
     id: Map
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 313
+    startLine: 322
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nthe entity mapper for the endpoint\n<p>HINT: entity mappers are singletons for performance reasons. do not maintain state in the mappers.</p>\n"
+  example: []
   syntax:
-    content: public TMapper Map { get; }
+    content: public TMapper Map { get; set; }
     parameters: []
     return:
       type: '{TMapper}'
-    content.vb: Public ReadOnly Property Map As TMapper
+    content.vb: Public Property Map As TMapper
   overload: FastEndpoints.EndpointWithoutRequest`2.Map*
   implements:
   - FastEndpoints.IHasMapper{{TMapper}}.Map
@@ -193,9 +198,9 @@ items:
   modifiers.csharp:
   - public
   - get
+  - set
   modifiers.vb:
   - Public
-  - ReadOnly
   fullName.vb: FastEndpoints.EndpointWithoutRequest(Of TResponse, TMapper).Map
 references:
 - uid: FastEndpoints
@@ -306,6 +311,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.IEndpoint
+  commentId: T:FastEndpoints.IEndpoint
+  parent: FastEndpoints
+  name: IEndpoint
+  nameWithType: IEndpoint
+  fullName: FastEndpoints.IEndpoint
 - uid: FastEndpoints.IHasMapper{{TMapper}}
   commentId: T:FastEndpoints.IHasMapper{`1}
   parent: FastEndpoints
@@ -3065,541 +3076,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Get(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Get(System.String[])
-  name: Get(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Get(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Get(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Get(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Get(System.String())
-  name.vb: Get(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
-    name: Get
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Get
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Get
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
-    name: Get
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Get
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Get
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Post(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Post(System.String[])
-  name: Post(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Post(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Post(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Post(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Post(System.String())
-  name.vb: Post(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
-    name: Post
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Post
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Post
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
-    name: Post
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Post
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Post
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Put(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Put(System.String[])
-  name: Put(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Put(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Put(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Put(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Put(System.String())
-  name.vb: Put(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
-    name: Put
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Put
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Put
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
-    name: Put
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Put
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Put
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Patch(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Patch(System.String[])
-  name: Patch(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Patch(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Patch(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Patch(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Patch(System.String())
-  name.vb: Patch(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
-    name: Patch
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Patch
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Patch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
-    name: Patch
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Patch
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Patch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Delete(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Delete(System.String[])
-  name: Delete(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Delete(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Delete(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Delete(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Delete(System.String())
-  name.vb: Delete(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
-    name: Delete
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Delete
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Delete
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
-    name: Delete
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Delete
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Delete
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Head(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Head(System.String[])
-  name: Head(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Head(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Head(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Head(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Head(System.String())
-  name.vb: Head(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
-    name: Head
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Head
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Head
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
-    name: Head
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Head
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Head
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Routes(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Routes(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Routes(System.String[])
-  name: Routes(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Routes(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Routes(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Routes(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Routes(System.String())
-  name.vb: Routes(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
-    name: Routes
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Routes
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Routes
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
-    name: Routes
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Routes
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Routes
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(FastEndpoints.Http[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Verbs(FastEndpoints.Http[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-  name: Verbs(Http[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Verbs(Http[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Verbs(FastEndpoints.Http[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Verbs(Http())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Verbs
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Verbs
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontThrowIfValidationFails
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.DontThrowIfValidationFails
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-  name: DontThrowIfValidationFails()
-  nameWithType: Endpoint<EmptyRequest, TResponse>.DontThrowIfValidationFails()
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontThrowIfValidationFails()
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).DontThrowIfValidationFails()
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontThrowIfValidationFails()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-    name: DontThrowIfValidationFails
-    nameWithType: Endpoint<EmptyRequest, TResponse>.DontThrowIfValidationFails
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontThrowIfValidationFails
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-    name: DontThrowIfValidationFails
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).DontThrowIfValidationFails
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontThrowIfValidationFails
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontCatchExceptions
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.DontCatchExceptions
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.DontCatchExceptions
-  name: DontCatchExceptions()
-  nameWithType: Endpoint<EmptyRequest, TResponse>.DontCatchExceptions()
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontCatchExceptions()
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).DontCatchExceptions()
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontCatchExceptions()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
-    name: DontCatchExceptions
-    nameWithType: Endpoint<EmptyRequest, TResponse>.DontCatchExceptions
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontCatchExceptions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
-    name: DontCatchExceptions
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).DontCatchExceptions
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontCatchExceptions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-  name: RequestBinder(IRequestBinder<EmptyRequest>)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.RequestBinder(IRequestBinder<EmptyRequest>)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RequestBinder(FastEndpoints.IRequestBinder<FastEndpoints.EmptyRequest>)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).RequestBinder(IRequestBinder(Of EmptyRequest))
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RequestBinder(FastEndpoints.IRequestBinder(Of FastEndpoints.EmptyRequest))
-  name.vb: RequestBinder(IRequestBinder(Of EmptyRequest))
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-    name: RequestBinder
-    nameWithType: Endpoint<EmptyRequest, TResponse>.RequestBinder
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RequestBinder
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.IRequestBinder`1
-    name: IRequestBinder
-    nameWithType: IRequestBinder
-    fullName: FastEndpoints.IRequestBinder
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FastEndpoints.EmptyRequest
-    name: EmptyRequest
-    nameWithType: EmptyRequest
-    fullName: FastEndpoints.EmptyRequest
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-    name: RequestBinder
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).RequestBinder
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RequestBinder
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.IRequestBinder`1
-    name: IRequestBinder
-    nameWithType: IRequestBinder
-    fullName: FastEndpoints.IRequestBinder
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.EmptyRequest
-    name: EmptyRequest
-    nameWithType: EmptyRequest
-    fullName: FastEndpoints.EmptyRequest
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontAutoTag
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.DontAutoTag
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.DontAutoTag
-  name: DontAutoTag()
-  nameWithType: Endpoint<EmptyRequest, TResponse>.DontAutoTag()
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontAutoTag()
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).DontAutoTag()
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontAutoTag()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.DontAutoTag
-    name: DontAutoTag
-    nameWithType: Endpoint<EmptyRequest, TResponse>.DontAutoTag
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontAutoTag
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.DontAutoTag
-    name: DontAutoTag
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).DontAutoTag
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontAutoTag
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowAnonymous(FastEndpoints.Http[])
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.AllowAnonymous(FastEndpoints.Http[])
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -3718,21 +3194,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Policies(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Policies(System.String[])
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AuthSchemes(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.AuthSchemes(System.String[])
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Policies(System.String[])
-  name: Policies(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Policies(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Policies(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Policies(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Policies(System.String())
-  name.vb: Policies(String())
+  definition: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+  name: AuthSchemes(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.AuthSchemes(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.AuthSchemes(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).AuthSchemes(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).AuthSchemes(System.String())
+  name.vb: AuthSchemes(String())
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
-    name: Policies
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Policies
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Policies
+  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+    name: AuthSchemes
+    nameWithType: Endpoint<EmptyRequest, TResponse>.AuthSchemes
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.AuthSchemes
   - name: (
     nameWithType: (
     fullName: (
@@ -3748,154 +3224,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
-    name: Policies
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Policies
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Policies
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Roles(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Roles(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Roles(System.String[])
-  name: Roles(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Roles(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Roles(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Roles(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Roles(System.String())
-  name.vb: Roles(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
-    name: Roles
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Roles
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Roles
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
-    name: Roles
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Roles
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Roles
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Permissions(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Permissions(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Permissions(System.String[])
-  name: Permissions(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Permissions(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Permissions(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Permissions(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Permissions(System.String())
-  name.vb: Permissions(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
-    name: Permissions
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Permissions
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Permissions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
-    name: Permissions
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Permissions
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Permissions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PermissionsAll(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.PermissionsAll(System.String[])
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-  name: PermissionsAll(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.PermissionsAll(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PermissionsAll(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).PermissionsAll(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PermissionsAll(System.String())
-  name.vb: PermissionsAll(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-    name: PermissionsAll
-    nameWithType: Endpoint<EmptyRequest, TResponse>.PermissionsAll
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PermissionsAll
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-    name: PermissionsAll
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).PermissionsAll
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PermissionsAll
+  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+    name: AuthSchemes
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).AuthSchemes
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).AuthSchemes
   - name: (
     nameWithType: (
     fullName: (
@@ -4006,21 +3338,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AuthSchemes(System.String[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.AuthSchemes(System.String[])
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Delete(System.String[])
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
-  name: AuthSchemes(String[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.AuthSchemes(String[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.AuthSchemes(System.String[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).AuthSchemes(String())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).AuthSchemes(System.String())
-  name.vb: AuthSchemes(String())
+  definition: FastEndpoints.Endpoint`2.Delete(System.String[])
+  name: Delete(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Delete(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Delete(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Delete(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Delete(System.String())
+  name.vb: Delete(String())
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
-    name: AuthSchemes
-    nameWithType: Endpoint<EmptyRequest, TResponse>.AuthSchemes
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.AuthSchemes
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
+    name: Delete
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Delete
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Delete
   - name: (
     nameWithType: (
     fullName: (
@@ -4036,10 +3368,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
-    name: AuthSchemes
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).AuthSchemes
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).AuthSchemes
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
+    name: Delete
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Delete
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Delete
   - name: (
     nameWithType: (
     fullName: (
@@ -4054,38 +3386,202 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-  name: PreProcessors(IPreProcessor<EmptyRequest>[])
-  nameWithType: Endpoint<EmptyRequest, TResponse>.PreProcessors(IPreProcessor<EmptyRequest>[])
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PreProcessors(FastEndpoints.IPreProcessor<FastEndpoints.EmptyRequest>[])
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).PreProcessors(IPreProcessor(Of EmptyRequest)())
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PreProcessors(FastEndpoints.IPreProcessor(Of FastEndpoints.EmptyRequest)())
-  name.vb: PreProcessors(IPreProcessor(Of EmptyRequest)())
+  definition: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  name: Description(Action<RouteHandlerBuilder>, Boolean)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Description(Action<RouteHandlerBuilder>, Boolean)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Description(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Description(Action(Of RouteHandlerBuilder), Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Description(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
+  name.vb: Description(Action(Of RouteHandlerBuilder), Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-    name: PreProcessors
-    nameWithType: Endpoint<EmptyRequest, TResponse>.PreProcessors
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PreProcessors
+  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+    name: Description
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Description
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Description
   - name: (
     nameWithType: (
     fullName: (
-  - uid: FastEndpoints.IPreProcessor`1
-    name: IPreProcessor
-    nameWithType: IPreProcessor
-    fullName: FastEndpoints.IPreProcessor
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - uid: FastEndpoints.EmptyRequest
-    name: EmptyRequest
-    nameWithType: EmptyRequest
-    fullName: FastEndpoints.EmptyRequest
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
   - name: '>'
     nameWithType: '>'
     fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+    name: Description
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Description
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Description
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontAutoTag
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.DontAutoTag
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.DontAutoTag
+  name: DontAutoTag()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.DontAutoTag()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontAutoTag()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).DontAutoTag()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontAutoTag()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontAutoTag
+    name: DontAutoTag
+    nameWithType: Endpoint<EmptyRequest, TResponse>.DontAutoTag
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontAutoTag
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontAutoTag
+    name: DontAutoTag
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).DontAutoTag
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontAutoTag
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontCatchExceptions
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.DontCatchExceptions
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.DontCatchExceptions
+  name: DontCatchExceptions()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.DontCatchExceptions()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontCatchExceptions()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).DontCatchExceptions()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontCatchExceptions()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint<EmptyRequest, TResponse>.DontCatchExceptions
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).DontCatchExceptions
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontThrowIfValidationFails
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.DontThrowIfValidationFails
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+  name: DontThrowIfValidationFails()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.DontThrowIfValidationFails()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontThrowIfValidationFails()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).DontThrowIfValidationFails()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontThrowIfValidationFails()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+    name: DontThrowIfValidationFails
+    nameWithType: Endpoint<EmptyRequest, TResponse>.DontThrowIfValidationFails
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.DontThrowIfValidationFails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+    name: DontThrowIfValidationFails
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).DontThrowIfValidationFails
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).DontThrowIfValidationFails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Get(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Get(System.String[])
+  name: Get(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Get(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Get(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Get(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Get(System.String())
+  name.vb: Get(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
+    name: Get
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Get
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Get
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
@@ -4093,27 +3589,402 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-    name: PreProcessors
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).PreProcessors
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PreProcessors
+  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
+    name: Get
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Get
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Get
   - name: (
     nameWithType: (
     fullName: (
-  - uid: FastEndpoints.IPreProcessor`1
-    name: IPreProcessor
-    nameWithType: IPreProcessor
-    fullName: FastEndpoints.IPreProcessor
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FastEndpoints.EmptyRequest
-    name: EmptyRequest
-    nameWithType: EmptyRequest
-    fullName: FastEndpoints.EmptyRequest
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Group``1
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Group``1
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Group``1
+  name: Group<TEndpointGroup>()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Group<TEndpointGroup>()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Group<TEndpointGroup>()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Group(Of TEndpointGroup)()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Group(Of TEndpointGroup)()
+  name.vb: Group(Of TEndpointGroup)()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Group``1
+    name: Group<TEndpointGroup>
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Group<TEndpointGroup>
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Group<TEndpointGroup>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Group``1
+    name: Group(Of TEndpointGroup)
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Group(Of TEndpointGroup)
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Group(Of TEndpointGroup)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Head(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Head(System.String[])
+  name: Head(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Head(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Head(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Head(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Head(System.String())
+  name.vb: Head(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
+    name: Head
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Head
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
+    name: Head
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Head
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  name: Options(Action<RouteHandlerBuilder>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Options(Action<RouteHandlerBuilder>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Options(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Options(Action(Of RouteHandlerBuilder))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Options(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
+  name.vb: Options(Action(Of RouteHandlerBuilder))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+    name: Options
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Options
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Options
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+    name: Options
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Options
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Options
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Patch(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Patch(System.String[])
+  name: Patch(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Patch(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Patch(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Patch(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Patch(System.String())
+  name.vb: Patch(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
+    name: Patch
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Patch
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
+    name: Patch
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Patch
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Permissions(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Permissions(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Permissions(System.String[])
+  name: Permissions(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Permissions(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Permissions(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Permissions(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Permissions(System.String())
+  name.vb: Permissions(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
+    name: Permissions
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Permissions
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Permissions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
+    name: Permissions
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Permissions
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Permissions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PermissionsAll(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.PermissionsAll(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+  name: PermissionsAll(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.PermissionsAll(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PermissionsAll(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).PermissionsAll(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PermissionsAll(System.String())
+  name.vb: PermissionsAll(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+    name: PermissionsAll
+    nameWithType: Endpoint<EmptyRequest, TResponse>.PermissionsAll
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PermissionsAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+    name: PermissionsAll
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).PermissionsAll
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PermissionsAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Policies(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Policies(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Policies(System.String[])
+  name: Policies(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Policies(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Policies(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Policies(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Policies(System.String())
+  name.vb: Policies(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
+    name: Policies
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Policies
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Policies
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
+    name: Policies
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Policies
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Policies
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Post(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Post(System.String[])
+  name: Post(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Post(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Post(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Post(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Post(System.String())
+  name.vb: Post(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
+    name: Post
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Post
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
+    name: Post
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Post
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: ()
     nameWithType: ()
     fullName: ()
@@ -4195,6 +4066,180 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+  name: PreProcessors(IPreProcessor<EmptyRequest>[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.PreProcessors(IPreProcessor<EmptyRequest>[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PreProcessors(FastEndpoints.IPreProcessor<FastEndpoints.EmptyRequest>[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).PreProcessors(IPreProcessor(Of EmptyRequest)())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PreProcessors(FastEndpoints.IPreProcessor(Of FastEndpoints.EmptyRequest)())
+  name.vb: PreProcessors(IPreProcessor(Of EmptyRequest)())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+    name: PreProcessors
+    nameWithType: Endpoint<EmptyRequest, TResponse>.PreProcessors
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.PreProcessors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IPreProcessor`1
+    name: IPreProcessor
+    nameWithType: IPreProcessor
+    fullName: FastEndpoints.IPreProcessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+    name: PreProcessors
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).PreProcessors
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).PreProcessors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IPreProcessor`1
+    name: IPreProcessor
+    nameWithType: IPreProcessor
+    fullName: FastEndpoints.IPreProcessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Put(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Put(System.String[])
+  name: Put(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Put(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Put(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Put(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Put(System.String())
+  name.vb: Put(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
+    name: Put
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Put
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
+    name: Put
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Put
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+  name: RequestBinder(IRequestBinder<EmptyRequest>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.RequestBinder(IRequestBinder<EmptyRequest>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RequestBinder(FastEndpoints.IRequestBinder<FastEndpoints.EmptyRequest>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).RequestBinder(IRequestBinder(Of EmptyRequest))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RequestBinder(FastEndpoints.IRequestBinder(Of FastEndpoints.EmptyRequest))
+  name.vb: RequestBinder(IRequestBinder(Of EmptyRequest))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+    name: RequestBinder
+    nameWithType: Endpoint<EmptyRequest, TResponse>.RequestBinder
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RequestBinder
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IRequestBinder`1
+    name: IRequestBinder
+    nameWithType: IRequestBinder
+    fullName: FastEndpoints.IRequestBinder
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+    name: RequestBinder
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).RequestBinder
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RequestBinder
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IRequestBinder`1
+    name: IRequestBinder
+    nameWithType: IRequestBinder
+    fullName: FastEndpoints.IRequestBinder
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -4310,147 +4355,209 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Roles(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Roles(System.String[])
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-  name: Options(Action<RouteHandlerBuilder>)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Options(Action<RouteHandlerBuilder>)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Options(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Options(Action(Of RouteHandlerBuilder))
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Options(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
-  name.vb: Options(Action(Of RouteHandlerBuilder))
+  definition: FastEndpoints.Endpoint`2.Roles(System.String[])
+  name: Roles(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Roles(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Roles(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Roles(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Roles(System.String())
+  name.vb: Roles(String())
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-    name: Options
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Options
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Options
+  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
+    name: Roles
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Roles
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Roles
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-    name: Options
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Options
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Options
+  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
+    name: Roles
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Roles
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Roles
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RoutePrefixOverride(System.String)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.RoutePrefixOverride(System.String)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-  name: Description(Action<RouteHandlerBuilder>, Boolean)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Description(Action<RouteHandlerBuilder>, Boolean)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Description(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Description(Action(Of RouteHandlerBuilder), Boolean)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Description(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
-  name.vb: Description(Action(Of RouteHandlerBuilder), Boolean)
+  definition: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
+  name: RoutePrefixOverride(String)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.RoutePrefixOverride(String)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RoutePrefixOverride(System.String)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).RoutePrefixOverride(String)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RoutePrefixOverride(System.String)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-    name: Description
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Description
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Description
+  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
+    name: RoutePrefixOverride
+    nameWithType: Endpoint<EmptyRequest, TResponse>.RoutePrefixOverride
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RoutePrefixOverride
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-    name: Description
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Description
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Description
+  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
+    name: RoutePrefixOverride
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).RoutePrefixOverride
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RoutePrefixOverride
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Routes(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Routes(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Routes(System.String[])
+  name: Routes(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Routes(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Routes(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Routes(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Routes(System.String())
+  name.vb: Routes(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
+    name: Routes
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Routes
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Routes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
+    name: Routes
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Routes
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Routes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ScopedValidator
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ScopedValidator
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.ScopedValidator
+  name: ScopedValidator()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.ScopedValidator()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ScopedValidator()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).ScopedValidator()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ScopedValidator()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ScopedValidator
+    name: ScopedValidator
+    nameWithType: Endpoint<EmptyRequest, TResponse>.ScopedValidator
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ScopedValidator
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ScopedValidator
+    name: ScopedValidator
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).ScopedValidator
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ScopedValidator
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SerializerContext``1({TContext})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SerializerContext``1(``0)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+  name: SerializerContext<TContext>(TContext)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.SerializerContext<TContext>(TContext)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.SerializerContext<TContext>(TContext)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).SerializerContext(Of TContext)(TContext)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).SerializerContext(Of TContext)(TContext)
+  name.vb: SerializerContext(Of TContext)(TContext)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+    name: SerializerContext<TContext>
+    nameWithType: Endpoint<EmptyRequest, TResponse>.SerializerContext<TContext>
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.SerializerContext<TContext>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TContext
+    nameWithType: TContext
+    fullName: TContext
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+    name: SerializerContext(Of TContext)
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).SerializerContext(Of TContext)
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).SerializerContext(Of TContext)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TContext
+    nameWithType: TContext
+    fullName: TContext
   - name: )
     nameWithType: )
     fullName: )
@@ -4685,6 +4792,167 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Throttle(System.Int32,System.Double,System.String)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Throttle(System.Int32,System.Double,System.String)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+  name: Throttle(Int32, Double, String)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Throttle(Int32, Double, String)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Throttle(System.Int32, System.Double, System.String)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Throttle(Int32, Double, String)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Throttle(System.Int32, System.Double, System.String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+    name: Throttle
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Throttle
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Throttle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+    name: Throttle
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Throttle
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Throttle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Validator``1(System.Boolean)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  name: Validator<TValidator>(Boolean)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>(Boolean)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>(System.Boolean)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)(System.Boolean)
+  name.vb: Validator(Of TValidator)(Boolean)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator<TValidator>
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator(Of TValidator)
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(FastEndpoints.Http[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Verbs(FastEndpoints.Http[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+  name: Verbs(Http[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Verbs(Http[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Verbs(FastEndpoints.Http[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Verbs(Http())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Verbs(FastEndpoints.Http())
+  name.vb: Verbs(Http())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+    name: Verbs
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Verbs
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+    name: Verbs
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Verbs
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Version(System.Int32,System.Nullable{System.Int32})
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -4762,231 +5030,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Throttle(System.Int32,System.Double,System.String)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Throttle(System.Int32,System.Double,System.String)
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-  name: Throttle(Int32, Double, String)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Throttle(Int32, Double, String)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Throttle(System.Int32, System.Double, System.String)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Throttle(Int32, Double, String)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Throttle(System.Int32, System.Double, System.String)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-    name: Throttle
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Throttle
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Throttle
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Double
-    name: Double
-    nameWithType: Double
-    fullName: System.Double
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-    name: Throttle
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Throttle
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Throttle
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Double
-    name: Double
-    nameWithType: Double
-    fullName: System.Double
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SerializerContext``1({TContext})
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SerializerContext``1(``0)
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-  name: SerializerContext<TContext>(TContext)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.SerializerContext<TContext>(TContext)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.SerializerContext<TContext>(TContext)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).SerializerContext(Of TContext)(TContext)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).SerializerContext(Of TContext)(TContext)
-  name.vb: SerializerContext(Of TContext)(TContext)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-    name: SerializerContext<TContext>
-    nameWithType: Endpoint<EmptyRequest, TResponse>.SerializerContext<TContext>
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.SerializerContext<TContext>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TContext
-    nameWithType: TContext
-    fullName: TContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-    name: SerializerContext(Of TContext)
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).SerializerContext(Of TContext)
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).SerializerContext(Of TContext)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TContext
-    nameWithType: TContext
-    fullName: TContext
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ScopedValidator
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ScopedValidator
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.ScopedValidator
-  name: ScopedValidator()
-  nameWithType: Endpoint<EmptyRequest, TResponse>.ScopedValidator()
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ScopedValidator()
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).ScopedValidator()
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ScopedValidator()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint<EmptyRequest, TResponse>.ScopedValidator
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).ScopedValidator
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1(System.Boolean)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Validator``1(System.Boolean)
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  name: Validator<TValidator>(Boolean)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>(Boolean)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>(System.Boolean)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)(Boolean)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)(System.Boolean)
-  name.vb: Validator(Of TValidator)(Boolean)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-    name: Validator<TValidator>
-    nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-    name: Validator(Of TValidator)
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RoutePrefixOverride(System.String)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.RoutePrefixOverride(System.String)
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-  name: RoutePrefixOverride(String)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.RoutePrefixOverride(String)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RoutePrefixOverride(System.String)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).RoutePrefixOverride(String)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RoutePrefixOverride(System.String)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-    name: RoutePrefixOverride
-    nameWithType: Endpoint<EmptyRequest, TResponse>.RoutePrefixOverride
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.RoutePrefixOverride
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-    name: RoutePrefixOverride
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).RoutePrefixOverride
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).RoutePrefixOverride
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -5399,51 +5442,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  parent: FastEndpoints.BaseEndpoint
-  name: Verbs(Http[])
-  nameWithType: BaseEndpoint.Verbs(Http[])
-  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  nameWithType.vb: BaseEndpoint.Verbs(Http())
-  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
-  spec.csharp:
-  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: BaseEndpoint.Verbs
-    fullName: FastEndpoints.BaseEndpoint.Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: BaseEndpoint.Verbs
-    fullName: FastEndpoints.BaseEndpoint.Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.BaseEndpoint.Definition
   commentId: P:FastEndpoints.BaseEndpoint.Definition
   parent: FastEndpoints.BaseEndpoint
@@ -5490,6 +5488,82 @@ references:
     name: Configure
     nameWithType: BaseEndpoint.Configure
     fullName: FastEndpoints.BaseEndpoint.Configure
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  parent: FastEndpoints.BaseEndpoint
+  name: Verbs(Http[])
+  nameWithType: BaseEndpoint.Verbs(Http[])
+  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  nameWithType.vb: BaseEndpoint.Verbs(Http())
+  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
+  name.vb: Verbs(Http())
+  spec.csharp:
+  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+    name: Verbs
+    nameWithType: BaseEndpoint.Verbs
+    fullName: FastEndpoints.BaseEndpoint.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+    name: Verbs
+    nameWithType: BaseEndpoint.Verbs
+    fullName: FastEndpoints.BaseEndpoint.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.BaseEndpoint.Group``1
+  commentId: M:FastEndpoints.BaseEndpoint.Group``1
+  parent: FastEndpoints.BaseEndpoint
+  name: Group<TEndpointGroup>()
+  nameWithType: BaseEndpoint.Group<TEndpointGroup>()
+  fullName: FastEndpoints.BaseEndpoint.Group<TEndpointGroup>()
+  nameWithType.vb: BaseEndpoint.Group(Of TEndpointGroup)()
+  fullName.vb: FastEndpoints.BaseEndpoint.Group(Of TEndpointGroup)()
+  name.vb: Group(Of TEndpointGroup)()
+  spec.csharp:
+  - uid: FastEndpoints.BaseEndpoint.Group``1
+    name: Group<TEndpointGroup>
+    nameWithType: BaseEndpoint.Group<TEndpointGroup>
+    fullName: FastEndpoints.BaseEndpoint.Group<TEndpointGroup>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.BaseEndpoint.Group``1
+    name: Group(Of TEndpointGroup)
+    nameWithType: BaseEndpoint.Group(Of TEndpointGroup)
+    fullName: FastEndpoints.BaseEndpoint.Group(Of TEndpointGroup)
   - name: (
     nameWithType: (
     fullName: (
@@ -8571,522 +8645,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.Get(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Get(System.String[])
-  isExternal: true
-  name: Get(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Get(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Get(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Get(System.String())
-  name.vb: Get(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
-    name: Get
-    nameWithType: Endpoint<TRequest, TResponse>.Get
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
-    name: Get
-    nameWithType: Endpoint(Of TRequest, TResponse).Get
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Get
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Post(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Post(System.String[])
-  isExternal: true
-  name: Post(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Post(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Post(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Post(System.String())
-  name.vb: Post(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
-    name: Post
-    nameWithType: Endpoint<TRequest, TResponse>.Post
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
-    name: Post
-    nameWithType: Endpoint(Of TRequest, TResponse).Post
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Post
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Put(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Put(System.String[])
-  isExternal: true
-  name: Put(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Put(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Put(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Put(System.String())
-  name.vb: Put(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
-    name: Put
-    nameWithType: Endpoint<TRequest, TResponse>.Put
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
-    name: Put
-    nameWithType: Endpoint(Of TRequest, TResponse).Put
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Put
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Patch(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Patch(System.String[])
-  isExternal: true
-  name: Patch(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Patch(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Patch(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch(System.String())
-  name.vb: Patch(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
-    name: Patch
-    nameWithType: Endpoint<TRequest, TResponse>.Patch
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
-    name: Patch
-    nameWithType: Endpoint(Of TRequest, TResponse).Patch
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Delete(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Delete(System.String[])
-  isExternal: true
-  name: Delete(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Delete(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete(System.String())
-  name.vb: Delete(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
-    name: Delete
-    nameWithType: Endpoint<TRequest, TResponse>.Delete
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
-    name: Delete
-    nameWithType: Endpoint(Of TRequest, TResponse).Delete
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Head(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Head(System.String[])
-  isExternal: true
-  name: Head(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Head(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Head(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head(System.String())
-  name.vb: Head(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
-    name: Head
-    nameWithType: Endpoint<TRequest, TResponse>.Head
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
-    name: Head
-    nameWithType: Endpoint(Of TRequest, TResponse).Head
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Head
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Routes(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Routes(System.String[])
-  isExternal: true
-  name: Routes(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Routes(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Routes(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Routes(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes(System.String())
-  name.vb: Routes(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
-    name: Routes
-    nameWithType: Endpoint<TRequest, TResponse>.Routes
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Routes
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
-    name: Routes
-    nameWithType: Endpoint(Of TRequest, TResponse).Routes
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-  commentId: M:FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-  name: Verbs(Http[])
-  nameWithType: Endpoint<TRequest, TResponse>.Verbs(Http[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs(FastEndpoints.Http[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(Http())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: Endpoint<TRequest, TResponse>.Verbs
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: Endpoint(Of TRequest, TResponse).Verbs
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-  commentId: M:FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-  name: DontThrowIfValidationFails()
-  nameWithType: Endpoint<TRequest, TResponse>.DontThrowIfValidationFails()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontThrowIfValidationFails()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-    name: DontThrowIfValidationFails
-    nameWithType: Endpoint<TRequest, TResponse>.DontThrowIfValidationFails
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontThrowIfValidationFails
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
-    name: DontThrowIfValidationFails
-    nameWithType: Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.DontCatchExceptions
-  commentId: M:FastEndpoints.Endpoint`2.DontCatchExceptions
-  name: DontCatchExceptions()
-  nameWithType: Endpoint<TRequest, TResponse>.DontCatchExceptions()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontCatchExceptions()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontCatchExceptions()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontCatchExceptions()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
-    name: DontCatchExceptions
-    nameWithType: Endpoint<TRequest, TResponse>.DontCatchExceptions
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontCatchExceptions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
-    name: DontCatchExceptions
-    nameWithType: Endpoint(Of TRequest, TResponse).DontCatchExceptions
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontCatchExceptions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-  commentId: M:FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-  name: RequestBinder(IRequestBinder<TRequest>)
-  nameWithType: Endpoint<TRequest, TResponse>.RequestBinder(IRequestBinder<TRequest>)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RequestBinder(FastEndpoints.IRequestBinder<TRequest>)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).RequestBinder(IRequestBinder(Of TRequest))
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).RequestBinder(FastEndpoints.IRequestBinder(Of TRequest))
-  name.vb: RequestBinder(IRequestBinder(Of TRequest))
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-    name: RequestBinder
-    nameWithType: Endpoint<TRequest, TResponse>.RequestBinder
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RequestBinder
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.IRequestBinder`1
-    name: IRequestBinder
-    nameWithType: IRequestBinder
-    fullName: FastEndpoints.IRequestBinder
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
-    name: RequestBinder
-    nameWithType: Endpoint(Of TRequest, TResponse).RequestBinder
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).RequestBinder
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.IRequestBinder`1
-    name: IRequestBinder
-    nameWithType: IRequestBinder
-    fullName: FastEndpoints.IRequestBinder
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.DontAutoTag
-  commentId: M:FastEndpoints.Endpoint`2.DontAutoTag
-  name: DontAutoTag()
-  nameWithType: Endpoint<TRequest, TResponse>.DontAutoTag()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoTag()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontAutoTag()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoTag()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.DontAutoTag
-    name: DontAutoTag
-    nameWithType: Endpoint<TRequest, TResponse>.DontAutoTag
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoTag
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.DontAutoTag
-    name: DontAutoTag
-    nameWithType: Endpoint(Of TRequest, TResponse).DontAutoTag
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoTag
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Endpoint`2.AllowAnonymous(FastEndpoints.Http[])
   commentId: M:FastEndpoints.Endpoint`2.AllowAnonymous(FastEndpoints.Http[])
   name: AllowAnonymous(Http[])
@@ -9200,20 +8758,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.Policies(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Policies(System.String[])
+- uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
   isExternal: true
-  name: Policies(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Policies(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Policies(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Policies(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Policies(System.String())
-  name.vb: Policies(String())
+  name: AuthSchemes(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.AuthSchemes(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AuthSchemes(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AuthSchemes(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AuthSchemes(System.String())
+  name.vb: AuthSchemes(String())
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
-    name: Policies
-    nameWithType: Endpoint<TRequest, TResponse>.Policies
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Policies
+  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+    name: AuthSchemes
+    nameWithType: Endpoint<TRequest, TResponse>.AuthSchemes
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AuthSchemes
   - name: (
     nameWithType: (
     fullName: (
@@ -9229,151 +8787,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
-    name: Policies
-    nameWithType: Endpoint(Of TRequest, TResponse).Policies
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Policies
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Roles(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Roles(System.String[])
-  isExternal: true
-  name: Roles(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Roles(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Roles(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Roles(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Roles(System.String())
-  name.vb: Roles(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
-    name: Roles
-    nameWithType: Endpoint<TRequest, TResponse>.Roles
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Roles
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
-    name: Roles
-    nameWithType: Endpoint(Of TRequest, TResponse).Roles
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Roles
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.Permissions(System.String[])
-  isExternal: true
-  name: Permissions(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.Permissions(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Permissions(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Permissions(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Permissions(System.String())
-  name.vb: Permissions(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
-    name: Permissions
-    nameWithType: Endpoint<TRequest, TResponse>.Permissions
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Permissions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
-    name: Permissions
-    nameWithType: Endpoint(Of TRequest, TResponse).Permissions
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Permissions
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-  isExternal: true
-  name: PermissionsAll(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.PermissionsAll(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PermissionsAll(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).PermissionsAll(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).PermissionsAll(System.String())
-  name.vb: PermissionsAll(String())
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-    name: PermissionsAll
-    nameWithType: Endpoint<TRequest, TResponse>.PermissionsAll
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PermissionsAll
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
-    name: PermissionsAll
-    nameWithType: Endpoint(Of TRequest, TResponse).PermissionsAll
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).PermissionsAll
+  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+    name: AuthSchemes
+    nameWithType: Endpoint(Of TRequest, TResponse).AuthSchemes
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AuthSchemes
   - name: (
     nameWithType: (
     fullName: (
@@ -9482,20 +8899,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
-  commentId: M:FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
+- uid: FastEndpoints.Endpoint`2.Delete(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Delete(System.String[])
   isExternal: true
-  name: AuthSchemes(String[])
-  nameWithType: Endpoint<TRequest, TResponse>.AuthSchemes(String[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AuthSchemes(System.String[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AuthSchemes(String())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AuthSchemes(System.String())
-  name.vb: AuthSchemes(String())
+  name: Delete(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Delete(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete(System.String())
+  name.vb: Delete(String())
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
-    name: AuthSchemes
-    nameWithType: Endpoint<TRequest, TResponse>.AuthSchemes
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AuthSchemes
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
+    name: Delete
+    nameWithType: Endpoint<TRequest, TResponse>.Delete
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete
   - name: (
     nameWithType: (
     fullName: (
@@ -9511,10 +8928,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
-    name: AuthSchemes
-    nameWithType: Endpoint(Of TRequest, TResponse).AuthSchemes
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AuthSchemes
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
+    name: Delete
+    nameWithType: Endpoint(Of TRequest, TResponse).Delete
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete
   - name: (
     nameWithType: (
     fullName: (
@@ -9529,35 +8946,194 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-  commentId: M:FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-  name: PreProcessors(IPreProcessor<TRequest>[])
-  nameWithType: Endpoint<TRequest, TResponse>.PreProcessors(IPreProcessor<TRequest>[])
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PreProcessors(FastEndpoints.IPreProcessor<TRequest>[])
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).PreProcessors(IPreProcessor(Of TRequest)())
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).PreProcessors(FastEndpoints.IPreProcessor(Of TRequest)())
-  name.vb: PreProcessors(IPreProcessor(Of TRequest)())
+- uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  isExternal: true
+  name: Description(Action<RouteHandlerBuilder>, Boolean)
+  nameWithType: Endpoint<TRequest, TResponse>.Description(Action<RouteHandlerBuilder>, Boolean)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Description(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Description(Action(Of RouteHandlerBuilder), Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Description(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
+  name.vb: Description(Action(Of RouteHandlerBuilder), Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-    name: PreProcessors
-    nameWithType: Endpoint<TRequest, TResponse>.PreProcessors
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PreProcessors
+  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+    name: Description
+    nameWithType: Endpoint<TRequest, TResponse>.Description
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Description
   - name: (
     nameWithType: (
     fullName: (
-  - uid: FastEndpoints.IPreProcessor`1
-    name: IPreProcessor
-    nameWithType: IPreProcessor
-    fullName: FastEndpoints.IPreProcessor
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
   - name: '>'
     nameWithType: '>'
     fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+    name: Description
+    nameWithType: Endpoint(Of TRequest, TResponse).Description
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Description
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.DontAutoTag
+  commentId: M:FastEndpoints.Endpoint`2.DontAutoTag
+  name: DontAutoTag()
+  nameWithType: Endpoint<TRequest, TResponse>.DontAutoTag()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoTag()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontAutoTag()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoTag()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontAutoTag
+    name: DontAutoTag
+    nameWithType: Endpoint<TRequest, TResponse>.DontAutoTag
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoTag
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontAutoTag
+    name: DontAutoTag
+    nameWithType: Endpoint(Of TRequest, TResponse).DontAutoTag
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoTag
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+  commentId: M:FastEndpoints.Endpoint`2.DontCatchExceptions
+  name: DontCatchExceptions()
+  nameWithType: Endpoint<TRequest, TResponse>.DontCatchExceptions()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontCatchExceptions()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontCatchExceptions()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontCatchExceptions()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint<TRequest, TResponse>.DontCatchExceptions
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontCatchExceptions
+    name: DontCatchExceptions
+    nameWithType: Endpoint(Of TRequest, TResponse).DontCatchExceptions
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontCatchExceptions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+  commentId: M:FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+  name: DontThrowIfValidationFails()
+  nameWithType: Endpoint<TRequest, TResponse>.DontThrowIfValidationFails()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontThrowIfValidationFails()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+    name: DontThrowIfValidationFails
+    nameWithType: Endpoint<TRequest, TResponse>.DontThrowIfValidationFails
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontThrowIfValidationFails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontThrowIfValidationFails
+    name: DontThrowIfValidationFails
+    nameWithType: Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).DontThrowIfValidationFails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Get(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Get(System.String[])
+  isExternal: true
+  name: Get(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Get(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Get(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Get(System.String())
+  name.vb: Get(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
+    name: Get
+    nameWithType: Endpoint<TRequest, TResponse>.Get
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
@@ -9565,26 +9141,393 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
-    name: PreProcessors
-    nameWithType: Endpoint(Of TRequest, TResponse).PreProcessors
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).PreProcessors
+  - uid: FastEndpoints.Endpoint`2.Get(System.String[])
+    name: Get
+    nameWithType: Endpoint(Of TRequest, TResponse).Get
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Get
   - name: (
     nameWithType: (
     fullName: (
-  - uid: FastEndpoints.IPreProcessor`1
-    name: IPreProcessor
-    nameWithType: IPreProcessor
-    fullName: FastEndpoints.IPreProcessor
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Group``1
+  commentId: M:FastEndpoints.Endpoint`2.Group``1
+  name: Group<TEndpointGroup>()
+  nameWithType: Endpoint<TRequest, TResponse>.Group<TEndpointGroup>()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Group<TEndpointGroup>()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Group(Of TEndpointGroup)()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Group(Of TEndpointGroup)()
+  name.vb: Group(Of TEndpointGroup)()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Group``1
+    name: Group<TEndpointGroup>
+    nameWithType: Endpoint<TRequest, TResponse>.Group<TEndpointGroup>
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Group<TEndpointGroup>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Group``1
+    name: Group(Of TEndpointGroup)
+    nameWithType: Endpoint(Of TRequest, TResponse).Group(Of TEndpointGroup)
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Group(Of TEndpointGroup)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Head(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Head(System.String[])
+  isExternal: true
+  name: Head(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Head(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Head(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head(System.String())
+  name.vb: Head(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
+    name: Head
+    nameWithType: Endpoint<TRequest, TResponse>.Head
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String[])
+    name: Head
+    nameWithType: Endpoint(Of TRequest, TResponse).Head
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  commentId: M:FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  isExternal: true
+  name: Options(Action<RouteHandlerBuilder>)
+  nameWithType: Endpoint<TRequest, TResponse>.Options(Action<RouteHandlerBuilder>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(Action(Of RouteHandlerBuilder))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
+  name.vb: Options(Action(Of RouteHandlerBuilder))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+    name: Options
+    nameWithType: Endpoint<TRequest, TResponse>.Options
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+    name: Options
+    nameWithType: Endpoint(Of TRequest, TResponse).Options
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Options
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    name: RouteHandlerBuilder
+    nameWithType: RouteHandlerBuilder
+    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Patch(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Patch(System.String[])
+  isExternal: true
+  name: Patch(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Patch(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Patch(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch(System.String())
+  name.vb: Patch(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
+    name: Patch
+    nameWithType: Endpoint<TRequest, TResponse>.Patch
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
+    name: Patch
+    nameWithType: Endpoint(Of TRequest, TResponse).Patch
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Permissions(System.String[])
+  isExternal: true
+  name: Permissions(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Permissions(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Permissions(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Permissions(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Permissions(System.String())
+  name.vb: Permissions(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
+    name: Permissions
+    nameWithType: Endpoint<TRequest, TResponse>.Permissions
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Permissions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
+    name: Permissions
+    nameWithType: Endpoint(Of TRequest, TResponse).Permissions
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Permissions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+  isExternal: true
+  name: PermissionsAll(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.PermissionsAll(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PermissionsAll(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).PermissionsAll(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).PermissionsAll(System.String())
+  name.vb: PermissionsAll(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+    name: PermissionsAll
+    nameWithType: Endpoint<TRequest, TResponse>.PermissionsAll
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PermissionsAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
+    name: PermissionsAll
+    nameWithType: Endpoint(Of TRequest, TResponse).PermissionsAll
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).PermissionsAll
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Policies(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Policies(System.String[])
+  isExternal: true
+  name: Policies(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Policies(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Policies(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Policies(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Policies(System.String())
+  name.vb: Policies(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
+    name: Policies
+    nameWithType: Endpoint<TRequest, TResponse>.Policies
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Policies
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
+    name: Policies
+    nameWithType: Endpoint(Of TRequest, TResponse).Policies
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Policies
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Post(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Post(System.String[])
+  isExternal: true
+  name: Post(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Post(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Post(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Post(System.String())
+  name.vb: Post(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
+    name: Post
+    nameWithType: Endpoint<TRequest, TResponse>.Post
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String[])
+    name: Post
+    nameWithType: Endpoint(Of TRequest, TResponse).Post
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: ()
     nameWithType: ()
     fullName: ()
@@ -9662,6 +9605,171 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+  commentId: M:FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+  name: PreProcessors(IPreProcessor<TRequest>[])
+  nameWithType: Endpoint<TRequest, TResponse>.PreProcessors(IPreProcessor<TRequest>[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PreProcessors(FastEndpoints.IPreProcessor<TRequest>[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).PreProcessors(IPreProcessor(Of TRequest)())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).PreProcessors(FastEndpoints.IPreProcessor(Of TRequest)())
+  name.vb: PreProcessors(IPreProcessor(Of TRequest)())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+    name: PreProcessors
+    nameWithType: Endpoint<TRequest, TResponse>.PreProcessors
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PreProcessors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IPreProcessor`1
+    name: IPreProcessor
+    nameWithType: IPreProcessor
+    fullName: FastEndpoints.IPreProcessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
+    name: PreProcessors
+    nameWithType: Endpoint(Of TRequest, TResponse).PreProcessors
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).PreProcessors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IPreProcessor`1
+    name: IPreProcessor
+    nameWithType: IPreProcessor
+    fullName: FastEndpoints.IPreProcessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Put(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Put(System.String[])
+  isExternal: true
+  name: Put(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Put(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Put(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Put(System.String())
+  name.vb: Put(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
+    name: Put
+    nameWithType: Endpoint<TRequest, TResponse>.Put
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String[])
+    name: Put
+    nameWithType: Endpoint(Of TRequest, TResponse).Put
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+  commentId: M:FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+  name: RequestBinder(IRequestBinder<TRequest>)
+  nameWithType: Endpoint<TRequest, TResponse>.RequestBinder(IRequestBinder<TRequest>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RequestBinder(FastEndpoints.IRequestBinder<TRequest>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).RequestBinder(IRequestBinder(Of TRequest))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).RequestBinder(FastEndpoints.IRequestBinder(Of TRequest))
+  name.vb: RequestBinder(IRequestBinder(Of TRequest))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+    name: RequestBinder
+    nameWithType: Endpoint<TRequest, TResponse>.RequestBinder
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RequestBinder
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IRequestBinder`1
+    name: IRequestBinder
+    nameWithType: IRequestBinder
+    fullName: FastEndpoints.IRequestBinder
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
+    name: RequestBinder
+    nameWithType: Endpoint(Of TRequest, TResponse).RequestBinder
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).RequestBinder
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.IRequestBinder`1
+    name: IRequestBinder
+    nameWithType: IRequestBinder
+    fullName: FastEndpoints.IRequestBinder
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -9776,145 +9884,202 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-  commentId: M:FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+- uid: FastEndpoints.Endpoint`2.Roles(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Roles(System.String[])
   isExternal: true
-  name: Options(Action<RouteHandlerBuilder>)
-  nameWithType: Endpoint<TRequest, TResponse>.Options(Action<RouteHandlerBuilder>)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(Action(Of RouteHandlerBuilder))
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
-  name.vb: Options(Action(Of RouteHandlerBuilder))
+  name: Roles(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Roles(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Roles(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Roles(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Roles(System.String())
+  name.vb: Roles(String())
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-    name: Options
-    nameWithType: Endpoint<TRequest, TResponse>.Options
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options
+  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
+    name: Roles
+    nameWithType: Endpoint<TRequest, TResponse>.Roles
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Roles
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-    name: Options
-    nameWithType: Endpoint(Of TRequest, TResponse).Options
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Options
+  - uid: FastEndpoints.Endpoint`2.Roles(System.String[])
+    name: Roles
+    nameWithType: Endpoint(Of TRequest, TResponse).Roles
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Roles
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-  commentId: M:FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+- uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
+  commentId: M:FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
   isExternal: true
-  name: Description(Action<RouteHandlerBuilder>, Boolean)
-  nameWithType: Endpoint<TRequest, TResponse>.Description(Action<RouteHandlerBuilder>, Boolean)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Description(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Description(Action(Of RouteHandlerBuilder), Boolean)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Description(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
-  name.vb: Description(Action(Of RouteHandlerBuilder), Boolean)
+  name: RoutePrefixOverride(String)
+  nameWithType: Endpoint<TRequest, TResponse>.RoutePrefixOverride(String)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RoutePrefixOverride(System.String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).RoutePrefixOverride(String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).RoutePrefixOverride(System.String)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-    name: Description
-    nameWithType: Endpoint<TRequest, TResponse>.Description
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Description
+  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
+    name: RoutePrefixOverride
+    nameWithType: Endpoint<TRequest, TResponse>.RoutePrefixOverride
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RoutePrefixOverride
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-    name: Description
-    nameWithType: Endpoint(Of TRequest, TResponse).Description
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Description
+  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
+    name: RoutePrefixOverride
+    nameWithType: Endpoint(Of TRequest, TResponse).RoutePrefixOverride
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).RoutePrefixOverride
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Action`1
-    name: Action
-    nameWithType: Action
-    fullName: Action
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+- uid: FastEndpoints.Endpoint`2.Routes(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Routes(System.String[])
+  isExternal: true
+  name: Routes(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Routes(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Routes(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Routes(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes(System.String())
+  name.vb: Routes(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
+    name: Routes
+    nameWithType: Endpoint<TRequest, TResponse>.Routes
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Routes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
     isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Routes(System.String[])
+    name: Routes
+    nameWithType: Endpoint(Of TRequest, TResponse).Routes
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.ScopedValidator
+  commentId: M:FastEndpoints.Endpoint`2.ScopedValidator
+  name: ScopedValidator()
+  nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ScopedValidator()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ScopedValidator
+    name: ScopedValidator
+    nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ScopedValidator
+    name: ScopedValidator
+    nameWithType: Endpoint(Of TRequest, TResponse).ScopedValidator
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+  commentId: M:FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+  name: SerializerContext<TContext>(TContext)
+  nameWithType: Endpoint<TRequest, TResponse>.SerializerContext<TContext>(TContext)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SerializerContext<TContext>(TContext)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)(TContext)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)(TContext)
+  name.vb: SerializerContext(Of TContext)(TContext)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+    name: SerializerContext<TContext>
+    nameWithType: Endpoint<TRequest, TResponse>.SerializerContext<TContext>
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SerializerContext<TContext>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TContext
+    nameWithType: TContext
+    fullName: TContext
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
+    name: SerializerContext(Of TContext)
+    nameWithType: Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TContext
+    nameWithType: TContext
+    fullName: TContext
   - name: )
     nameWithType: )
     fullName: )
@@ -10142,6 +10307,163 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+  commentId: M:FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+  isExternal: true
+  name: Throttle(Int32, Double, String)
+  nameWithType: Endpoint<TRequest, TResponse>.Throttle(Int32, Double, String)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Throttle(System.Int32, System.Double, System.String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Throttle(Int32, Double, String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Throttle(System.Int32, System.Double, System.String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+    name: Throttle
+    nameWithType: Endpoint<TRequest, TResponse>.Throttle
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Throttle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+    name: Throttle
+    nameWithType: Endpoint(Of TRequest, TResponse).Throttle
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Throttle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  isExternal: true
+  name: Validator<TValidator>(Boolean)
+  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>(Boolean)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>(System.Boolean)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(System.Boolean)
+  name.vb: Validator(Of TValidator)(Boolean)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator<TValidator>
+    nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+    name: Validator(Of TValidator)
+    nameWithType: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+  commentId: M:FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+  name: Verbs(Http[])
+  nameWithType: Endpoint<TRequest, TResponse>.Verbs(Http[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs(FastEndpoints.Http[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(Http())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(FastEndpoints.Http())
+  name.vb: Verbs(Http())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+    name: Verbs
+    nameWithType: Endpoint<TRequest, TResponse>.Verbs
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+    name: Verbs
+    nameWithType: Endpoint(Of TRequest, TResponse).Verbs
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
   isExternal: true
@@ -10218,224 +10540,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-  commentId: M:FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-  isExternal: true
-  name: Throttle(Int32, Double, String)
-  nameWithType: Endpoint<TRequest, TResponse>.Throttle(Int32, Double, String)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Throttle(System.Int32, System.Double, System.String)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Throttle(Int32, Double, String)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Throttle(System.Int32, System.Double, System.String)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-    name: Throttle
-    nameWithType: Endpoint<TRequest, TResponse>.Throttle
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Throttle
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Double
-    name: Double
-    nameWithType: Double
-    fullName: System.Double
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-    name: Throttle
-    nameWithType: Endpoint(Of TRequest, TResponse).Throttle
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Throttle
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Double
-    name: Double
-    nameWithType: Double
-    fullName: System.Double
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-  commentId: M:FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-  name: SerializerContext<TContext>(TContext)
-  nameWithType: Endpoint<TRequest, TResponse>.SerializerContext<TContext>(TContext)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SerializerContext<TContext>(TContext)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)(TContext)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)(TContext)
-  name.vb: SerializerContext(Of TContext)(TContext)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-    name: SerializerContext<TContext>
-    nameWithType: Endpoint<TRequest, TResponse>.SerializerContext<TContext>
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SerializerContext<TContext>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TContext
-    nameWithType: TContext
-    fullName: TContext
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
-    name: SerializerContext(Of TContext)
-    nameWithType: Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).SerializerContext(Of TContext)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: TContext
-    nameWithType: TContext
-    fullName: TContext
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.ScopedValidator
-  commentId: M:FastEndpoints.Endpoint`2.ScopedValidator
-  name: ScopedValidator()
-  nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ScopedValidator()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint(Of TRequest, TResponse).ScopedValidator
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  commentId: M:FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  isExternal: true
-  name: Validator<TValidator>(Boolean)
-  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>(Boolean)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>(System.Boolean)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(Boolean)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(System.Boolean)
-  name.vb: Validator(Of TValidator)(Boolean)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-    name: Validator<TValidator>
-    nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-    name: Validator(Of TValidator)
-    nameWithType: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-  commentId: M:FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-  isExternal: true
-  name: RoutePrefixOverride(String)
-  nameWithType: Endpoint<TRequest, TResponse>.RoutePrefixOverride(String)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RoutePrefixOverride(System.String)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).RoutePrefixOverride(String)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).RoutePrefixOverride(System.String)
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-    name: RoutePrefixOverride
-    nameWithType: Endpoint<TRequest, TResponse>.RoutePrefixOverride
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RoutePrefixOverride
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
-    name: RoutePrefixOverride
-    nameWithType: Endpoint(Of TRequest, TResponse).RoutePrefixOverride
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).RoutePrefixOverride
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )

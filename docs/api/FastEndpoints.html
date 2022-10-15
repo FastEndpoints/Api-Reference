@@ -88,7 +88,8 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="FastEndpoints.BaseEndpoint.html">BaseEndpoint</a></h4>
-      <section></section>
+      <section><p>the base class all fast endpoints inherit from</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.BindFromAttribute.html">BindFromAttribute</a></h4>
       <section><p>use this attribute to specify the name of route param, query param, or form field if it's different from the name of the property being bound to.</p>
 </section>
@@ -112,6 +113,10 @@
 </section>
       <h4><a class="xref" href="FastEndpoints.EndpointDiscoveryOptions.html">EndpointDiscoveryOptions</a></h4>
       <section><p>defines how endpoint discovery and registration should be done at startup</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.EndpointFactory.html">EndpointFactory</a></h4>
+      <section><p>the default endpoint factory. it resolves the <a class="xref" href="FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EndpointType">EndpointType</a> from the
+<span class="xref">Microsoft.AspNetCore.Http.HttpContext.RequestServices</span>. both constructor dependencies and property dependencies are injected.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.EndpointOptions.html">EndpointOptions</a></h4>
       <section><p>endpoint registration options</p>
@@ -174,6 +179,16 @@ this is a shorter alias for the [FromClaim] attribute.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.FromHeaderAttribute.html">FromHeaderAttribute</a></h4>
       <section><p>properties decorated with this attribute will have their values auto bound from the relevant http header of the current request.</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.FromQueryParamsAttribute.html">FromQueryParamsAttribute</a></h4>
+      <section><p>properties decorated with this attribute will be bound by obtaining the values from query string parameters with matching names.</p>
+<p>WARNING:
+valid only on complex types with at least one public property.
+only one dto property can be decorated with this attribute.
+</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.Group.html">Group</a></h4>
+      <section><p>common configuration for a group of endpoints can be specified by implementing this abstract class and calling <a class="xref" href="FastEndpoints.Group.html#FastEndpoints_Group_Configure_System_String_Action_FastEndpoints_EndpointDefinition__">Configure(String, Action&lt;EndpointDefinition&gt;)</a> in the constructor.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.HasPermissionAttribute.html">HasPermissionAttribute</a></h4>
       <section><p>boolean properties decorated with this attribute will have their values set to true if the current principal has the specified permission.</p>
@@ -239,10 +254,16 @@ this is a shorter alias for the [FromClaim] attribute.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.ServiceResolverExtensions.html">ServiceResolverExtensions</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.SubGroup-1.html">SubGroup&lt;TParent&gt;</a></h4>
+      <section><p>common configuration for a sub group of endpoints can be specified by implementing this abstract class and calling <a class="xref" href="FastEndpoints.SubGroup-1.html#FastEndpoints_SubGroup_1_Configure_System_String_Action_FastEndpoints_EndpointDefinition__">Configure(String, Action&lt;EndpointDefinition&gt;)</a> in the constructor.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.Summary-1.html">Summary&lt;TEndpoint&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="FastEndpoints.Summary-2.html">Summary&lt;TEndpoint, TRequest&gt;</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.ThrottleAttribute.html">ThrottleAttribute</a></h4>
+      <section><p>rate limit requests to this endpoint based on a request http header sent by the client.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.ThrottleOptions.html">ThrottleOptions</a></h4>
       <section><p>global settings for throttling</p>
 </section>
@@ -270,6 +291,12 @@ inspect the <code>Failures</code> property for details.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
+      <h4><a class="xref" href="FastEndpoints.IEndpoint.html">IEndpoint</a></h4>
+      <section><p>the common interface implemented by all endpoints</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IEndpointFactory.html">IEndpointFactory</a></h4>
+      <section><p>interface for the creation of endpoints.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.IGlobalPostProcessor.html">IGlobalPostProcessor</a></h4>
       <section><p>interface for defining global post-processors to be executed after the main endpoint handler is done</p>
 </section>

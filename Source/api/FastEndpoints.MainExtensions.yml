@@ -7,7 +7,7 @@ items:
   children:
   - FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}},Microsoft.Extensions.Configuration.ConfigurationManager)
   - FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  - FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.WebApplication,System.Nullable{Action{FastEndpoints.Config}})
+  - FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   - FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   langs:
   - csharp
@@ -93,51 +93,51 @@ items:
   - Shared
   fullName.vb: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable(Of Action(Of FastEndpoints.EndpointDiscoveryOptions)), Microsoft.Extensions.Configuration.ConfigurationManager)
   name.vb: AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)), ConfigurationManager)
-- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.WebApplication,System.Nullable{Action{FastEndpoints.Config}})
-  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.WebApplication,System.Nullable{Action{FastEndpoints.Config}})
-  id: UseFastEndpoints(Microsoft.AspNetCore.Builder.WebApplication,System.Nullable{Action{FastEndpoints.Config}})
+- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  id: UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   isExtensionMethod: true
   parent: FastEndpoints.MainExtensions
   langs:
   - csharp
   - vb
-  name: UseFastEndpoints(WebApplication, Nullable<Action<Config>>)
-  nameWithType: MainExtensions.UseFastEndpoints(WebApplication, Nullable<Action<Config>>)
-  fullName: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.WebApplication, System.Nullable<Action<FastEndpoints.Config>>)
+  name: UseFastEndpoints(IApplicationBuilder, Nullable<Action<Config>>)
+  nameWithType: MainExtensions.UseFastEndpoints(IApplicationBuilder, Nullable<Action<Config>>)
+  fullName: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Nullable<Action<FastEndpoints.Config>>)
   type: Method
   source:
     id: UseFastEndpoints
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: this is the combination of <code>app.UseFastEndpointsMiddleware()</code> and <code>app.MapFastEndpoints()</code>.\nyou can use those two methods separately if you have some special requirement such as using &quot;Startup.cs&quot;, etc.\n</p>\n"
+  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: this is the combination of <xref href=\"FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder%2cSystem.Nullable%7bAction%7bFastEndpoints.Config%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Nullable%7bAction%7bFastEndpoints.Config%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref>.\nyou can use those two methods separately if you have some special requirement such as using &quot;Startup.cs&quot;, etc.\n</p>\n"
   example: []
   syntax:
-    content: public static WebApplication UseFastEndpoints(this WebApplication app, Action<Config>? configAction = null)
+    content: public static IApplicationBuilder UseFastEndpoints(this IApplicationBuilder app, Action<Config>? configAction = null)
     parameters:
     - id: app
-      type: Microsoft.AspNetCore.Builder.WebApplication
+      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
     - id: configAction
       type: System.Nullable{Action{FastEndpoints.Config}}
       description: an optional action to configure FastEndpoints
     return:
-      type: Microsoft.AspNetCore.Builder.WebApplication
+      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function UseFastEndpoints(app As WebApplication, configAction As Action(Of Config)? = Nothing) As WebApplication
+      Public Shared Function UseFastEndpoints(app As IApplicationBuilder, configAction As Action(Of Config)? = Nothing) As IApplicationBuilder
   overload: FastEndpoints.MainExtensions.UseFastEndpoints*
-  nameWithType.vb: MainExtensions.UseFastEndpoints(WebApplication, Nullable(Of Action(Of Config)))
+  nameWithType.vb: MainExtensions.UseFastEndpoints(IApplicationBuilder, Nullable(Of Action(Of Config)))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.WebApplication, System.Nullable(Of Action(Of FastEndpoints.Config)))
-  name.vb: UseFastEndpoints(WebApplication, Nullable(Of Action(Of Config)))
+  fullName.vb: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Nullable(Of Action(Of FastEndpoints.Config)))
+  name.vb: UseFastEndpoints(IApplicationBuilder, Nullable(Of Action(Of Config)))
 - uid: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   commentId: M:FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   id: UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
@@ -153,7 +153,7 @@ items:
   source:
     id: UseFastEndpointsMiddleware
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 61
+    startLine: 64
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -190,7 +190,7 @@ items:
   source:
     id: MapFastEndpoints
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 67
+    startLine: 70
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -649,18 +649,31 @@ references:
   name: Microsoft.Extensions.Configuration
   nameWithType: Microsoft.Extensions.Configuration
   fullName: Microsoft.Extensions.Configuration
+- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  isExternal: true
+- uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  isExternal: true
+- uid: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+  commentId: T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+  parent: Microsoft.AspNetCore.Routing
+  isExternal: true
+  name: IEndpointRouteBuilder
+  nameWithType: IEndpointRouteBuilder
+  fullName: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
 - uid: FastEndpoints.MainExtensions.UseFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.UseFastEndpoints
   name: UseFastEndpoints
   nameWithType: MainExtensions.UseFastEndpoints
   fullName: FastEndpoints.MainExtensions.UseFastEndpoints
-- uid: Microsoft.AspNetCore.Builder.WebApplication
-  commentId: T:Microsoft.AspNetCore.Builder.WebApplication
+- uid: Microsoft.AspNetCore.Builder.IApplicationBuilder
+  commentId: T:Microsoft.AspNetCore.Builder.IApplicationBuilder
   parent: Microsoft.AspNetCore.Builder
   isExternal: true
-  name: WebApplication
-  nameWithType: WebApplication
-  fullName: Microsoft.AspNetCore.Builder.WebApplication
+  name: IApplicationBuilder
+  nameWithType: IApplicationBuilder
+  fullName: Microsoft.AspNetCore.Builder.IApplicationBuilder
 - uid: System.Nullable{Action{FastEndpoints.Config}}
   commentId: T:System.Nullable{Action{FastEndpoints.Config}}
   parent: System
@@ -725,6 +738,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.AspNetCore.Routing
+  commentId: N:Microsoft.AspNetCore.Routing
+  isExternal: true
+  name: Microsoft.AspNetCore.Routing
+  nameWithType: Microsoft.AspNetCore.Routing
+  fullName: Microsoft.AspNetCore.Routing
 - uid: Microsoft.AspNetCore.Builder
   commentId: N:Microsoft.AspNetCore.Builder
   isExternal: true
@@ -736,28 +755,8 @@ references:
   name: UseFastEndpointsMiddleware
   nameWithType: MainExtensions.UseFastEndpointsMiddleware
   fullName: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware
-- uid: Microsoft.AspNetCore.Builder.IApplicationBuilder
-  commentId: T:Microsoft.AspNetCore.Builder.IApplicationBuilder
-  parent: Microsoft.AspNetCore.Builder
-  isExternal: true
-  name: IApplicationBuilder
-  nameWithType: IApplicationBuilder
-  fullName: Microsoft.AspNetCore.Builder.IApplicationBuilder
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.MapFastEndpoints
   name: MapFastEndpoints
   nameWithType: MainExtensions.MapFastEndpoints
   fullName: FastEndpoints.MainExtensions.MapFastEndpoints
-- uid: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
-  commentId: T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
-  parent: Microsoft.AspNetCore.Routing
-  isExternal: true
-  name: IEndpointRouteBuilder
-  nameWithType: IEndpointRouteBuilder
-  fullName: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
-- uid: Microsoft.AspNetCore.Routing
-  commentId: N:Microsoft.AspNetCore.Routing
-  isExternal: true
-  name: Microsoft.AspNetCore.Routing
-  nameWithType: Microsoft.AspNetCore.Routing
-  fullName: Microsoft.AspNetCore.Routing

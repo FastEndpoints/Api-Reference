@@ -5,7 +5,8 @@ items:
   id: AuthExtensions
   parent: FastEndpoints.Security
   children:
-  - FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String)
+  - FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters})
+  - FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}})
   - FastEndpoints.Security.AuthExtensions.ClaimValue(System.Security.Claims.ClaimsPrincipal,System.String)
   - FastEndpoints.Security.AuthExtensions.HasClaimType(System.Security.Claims.ClaimsPrincipal,System.String)
   - FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
@@ -19,7 +20,7 @@ items:
   source:
     id: AuthExtensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 11
+    startLine: 13
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -45,29 +46,29 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String)
-  commentId: M:FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String)
-  id: AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String)
+- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}})
+  id: AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}})
   isExtensionMethod: true
   parent: FastEndpoints.Security.AuthExtensions
   langs:
   - csharp
   - vb
-  name: AddAuthenticationJWTBearer(IServiceCollection, String, String, String)
-  nameWithType: AuthExtensions.AddAuthenticationJWTBearer(IServiceCollection, String, String, String)
-  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.String, System.String, System.String)
+  name: AddAuthenticationJWTBearer(IServiceCollection, String, String, String, JWTBearer.TokenSigningStyle, Nullable<Action<TokenValidationParameters>>)
+  nameWithType: AuthExtensions.AddAuthenticationJWTBearer(IServiceCollection, String, String, String, JWTBearer.TokenSigningStyle, Nullable<Action<TokenValidationParameters>>)
+  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.String, System.String, System.String, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Nullable<Action<Microsoft.IdentityModel.Tokens.TokenValidationParameters>>)
   type: Method
   source:
     id: AddAuthenticationJWTBearer
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 19
+    startLine: 23
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
   summary: "\nconfigure and enable jwt bearer authentication\n"
   example: []
   syntax:
-    content: public static IServiceCollection AddAuthenticationJWTBearer(this IServiceCollection services, string tokenSigningKey, string issuer = null, string audience = null)
+    content: public static IServiceCollection AddAuthenticationJWTBearer(this IServiceCollection services, string tokenSigningKey, string issuer = null, string audience = null, JWTBearer.TokenSigningStyle tokenSigningStyle = JWTBearer.TokenSigningStyle.Symmetric, Action<TokenValidationParameters>? tokenValidationConfiguration = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -80,19 +81,76 @@ items:
     - id: audience
       type: System.String
       description: validates audience if set
+    - id: tokenSigningStyle
+      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
+      description: specify the token signing style
+    - id: tokenValidationConfiguration
+      type: System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}}
+      description: configuration action to specify additional token validation parameters
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function AddAuthenticationJWTBearer(services As IServiceCollection, tokenSigningKey As String, issuer As String = Nothing, audience As String = Nothing) As IServiceCollection
+      Public Shared Function AddAuthenticationJWTBearer(services As IServiceCollection, tokenSigningKey As String, issuer As String = Nothing, audience As String = Nothing, tokenSigningStyle As JWTBearer.TokenSigningStyle = JWTBearer.TokenSigningStyle.Symmetric, tokenValidationConfiguration As Action(Of TokenValidationParameters)? = Nothing) As IServiceCollection
   overload: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer*
+  nameWithType.vb: AuthExtensions.AddAuthenticationJWTBearer(IServiceCollection, String, String, String, JWTBearer.TokenSigningStyle, Nullable(Of Action(Of TokenValidationParameters)))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.String, System.String, System.String, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Nullable(Of Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters)))
+  name.vb: AddAuthenticationJWTBearer(IServiceCollection, String, String, String, JWTBearer.TokenSigningStyle, Nullable(Of Action(Of TokenValidationParameters)))
+- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters})
+  id: AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters})
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddAuthenticationJWTBearer(IServiceCollection, String, Action<TokenValidationParameters>)
+  nameWithType: AuthExtensions.AddAuthenticationJWTBearer(IServiceCollection, String, Action<TokenValidationParameters>)
+  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.String, Action<Microsoft.IdentityModel.Tokens.TokenValidationParameters>)
+  type: Method
+  source:
+    id: AddAuthenticationJWTBearer
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
+    startLine: 69
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: "\nconfigure and enable jwt bearer authentication\n"
+  example: []
+  syntax:
+    content: public static IServiceCollection AddAuthenticationJWTBearer(this IServiceCollection services, string tokenSigningKey, Action<TokenValidationParameters> tokenValidationConfiguration)
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    - id: tokenSigningKey
+      type: System.String
+      description: the secret key to use for verifying the jwt tokens
+    - id: tokenValidationConfiguration
+      type: Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}
+      description: configuration action to specify additional token validation parameters
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddAuthenticationJWTBearer(services As IServiceCollection, tokenSigningKey As String, tokenValidationConfiguration As Action(Of TokenValidationParameters)) As IServiceCollection
+  overload: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer*
+  nameWithType.vb: AuthExtensions.AddAuthenticationJWTBearer(IServiceCollection, String, Action(Of TokenValidationParameters))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.String, Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters))
+  name.vb: AddAuthenticationJWTBearer(IServiceCollection, String, Action(Of TokenValidationParameters))
 - uid: FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
   commentId: M:FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
   id: HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
@@ -108,7 +166,7 @@ items:
   source:
     id: HasPermission
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 47
+    startLine: 87
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -150,7 +208,7 @@ items:
   source:
     id: HasClaimType
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 54
+    startLine: 94
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -192,7 +250,7 @@ items:
   source:
     id: ClaimValue
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 61
+    startLine: 101
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -536,12 +594,204 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
+  commentId: T:FastEndpoints.Security.JWTBearer.TokenSigningStyle
+  parent: FastEndpoints.Security
+  name: JWTBearer.TokenSigningStyle
+  nameWithType: JWTBearer.TokenSigningStyle
+  fullName: FastEndpoints.Security.JWTBearer.TokenSigningStyle
+- uid: System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}}
+  commentId: T:System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Action<TokenValidationParameters>>
+  nameWithType: Nullable<Action<TokenValidationParameters>>
+  fullName: System.Nullable<Action<Microsoft.IdentityModel.Tokens.TokenValidationParameters>>
+  nameWithType.vb: Nullable(Of Action(Of TokenValidationParameters))
+  fullName.vb: System.Nullable(Of Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters))
+  name.vb: Nullable(Of Action(Of TokenValidationParameters))
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    name: TokenValidationParameters
+    nameWithType: TokenValidationParameters
+    fullName: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    name: TokenValidationParameters
+    nameWithType: TokenValidationParameters
+    fullName: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}
+  commentId: '!:Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}'
+  definition: Action`1
+  name: Action<TokenValidationParameters>
+  nameWithType: Action<TokenValidationParameters>
+  fullName: Action<Microsoft.IdentityModel.Tokens.TokenValidationParameters>
+  nameWithType.vb: Action(Of TokenValidationParameters)
+  fullName.vb: Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters)
+  name.vb: Action(Of TokenValidationParameters)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    name: TokenValidationParameters
+    nameWithType: TokenValidationParameters
+    fullName: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    name: TokenValidationParameters
+    nameWithType: TokenValidationParameters
+    fullName: Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Security.AuthExtensions.HasPermission*
   commentId: Overload:FastEndpoints.Security.AuthExtensions.HasPermission
   name: HasPermission

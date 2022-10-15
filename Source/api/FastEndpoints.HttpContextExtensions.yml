@@ -5,8 +5,10 @@ items:
   id: HttpContextExtensions
   parent: FastEndpoints
   children:
+  - FastEndpoints.HttpContextExtensions.MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,Type)
   - FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  - FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,Type)
   - FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
   langs:
@@ -217,6 +219,83 @@ items:
 
       Public Shared Function Resolve(ctx As HttpContext, typeOfService As Type) As Object
   overload: FastEndpoints.HttpContextExtensions.Resolve*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: FastEndpoints.HttpContextExtensions.MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.HttpContextExtensions.MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
+  id: MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: MarkResponseStart(HttpContext)
+  nameWithType: HttpContextExtensions.MarkResponseStart(HttpContext)
+  fullName: FastEndpoints.HttpContextExtensions.MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
+  source:
+    id: MarkResponseStart
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 41
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmarks the current response as started so that <xref href=\"FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)\" data-throw-if-not-resolved=\"false\"></xref> can return the correct result.\n"
+  example: []
+  syntax:
+    content: public static void MarkResponseStart(this HttpContext ctx)
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+      description: ''
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub MarkResponseStart(ctx As HttpContext)
+  overload: FastEndpoints.HttpContextExtensions.MarkResponseStart*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
+  id: ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: ResponseStarted(HttpContext)
+  nameWithType: HttpContextExtensions.ResponseStarted(HttpContext)
+  fullName: FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
+  source:
+    id: ResponseStarted
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 47
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ncheck if the current response has already started or not.\n"
+  example: []
+  syntax:
+    content: public static bool ResponseStarted(this HttpContext ctx)
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ResponseStarted(ctx As HttpContext) As Boolean
+  overload: FastEndpoints.HttpContextExtensions.ResponseStarted*
   modifiers.csharp:
   - public
   - static
@@ -559,3 +638,23 @@ references:
   name: Resolve
   nameWithType: HttpContextExtensions.Resolve
   fullName: FastEndpoints.HttpContextExtensions.Resolve
+- uid: FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
+  isExternal: true
+- uid: FastEndpoints.HttpContextExtensions.MarkResponseStart*
+  commentId: Overload:FastEndpoints.HttpContextExtensions.MarkResponseStart
+  name: MarkResponseStart
+  nameWithType: HttpContextExtensions.MarkResponseStart
+  fullName: FastEndpoints.HttpContextExtensions.MarkResponseStart
+- uid: FastEndpoints.HttpContextExtensions.ResponseStarted*
+  commentId: Overload:FastEndpoints.HttpContextExtensions.ResponseStarted
+  name: ResponseStarted
+  nameWithType: HttpContextExtensions.ResponseStarted
+  fullName: FastEndpoints.HttpContextExtensions.ResponseStarted
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

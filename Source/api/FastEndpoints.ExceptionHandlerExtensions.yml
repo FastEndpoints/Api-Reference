@@ -64,7 +64,7 @@ items:
   summary: "\nregisters the default global exception handler which will log the exceptions on the server and return a user-friendly json response to the client when unhandled exceptions occur.\nTIP: when using this exception handler, you may want to turn off the asp.net core exception middleware logging to avoid duplication like so:\n<pre><code>&quot;Logging&quot;: { &quot;LogLevel&quot;: { &quot;Default&quot;: &quot;Warning&quot;, &quot;Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware&quot;: &quot;None&quot; } }</code></pre>\n"
   example: []
   syntax:
-    content: public static void UseDefaultExceptionHandler(this IApplicationBuilder app, ILogger logger = null, bool logStructuredException = false)
+    content: public static IApplicationBuilder UseDefaultExceptionHandler(this IApplicationBuilder app, ILogger logger = null, bool logStructuredException = false)
     parameters:
     - id: app
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
@@ -74,10 +74,12 @@ items:
     - id: logStructuredException
       type: System.Boolean
       description: set to true if you&apos;d like to log the error in a structured manner
+    return:
+      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Sub UseDefaultExceptionHandler(app As IApplicationBuilder, logger As ILogger = Nothing, logStructuredException As Boolean = False)
+      Public Shared Function UseDefaultExceptionHandler(app As IApplicationBuilder, logger As ILogger = Nothing, logStructuredException As Boolean = False) As IApplicationBuilder
   overload: FastEndpoints.ExceptionHandlerExtensions.UseDefaultExceptionHandler*
   modifiers.csharp:
   - public

@@ -17,7 +17,7 @@ items:
   source:
     id: ErrorOptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -56,7 +56,7 @@ items:
   source:
     id: StatusCode
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -89,18 +89,18 @@ items:
   source:
     id: ResponseBuilder
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function for transforming validation errors to an error response dto.\nset it to any func that returns an object that can be serialized to json.\nthis function will be run everytime an error response needs to be sent to the client.\nthe arguments for the func will be a list of validation failures and an http status code.\n"
+  summary: "\na function for transforming validation errors to an error response dto.\nset it to any func that returns an object that can be serialized to json.\nthis function will be run everytime an error response needs to be sent to the client.\nthe arguments for the func will be a list of validation failures, the http context and an http status code.\n"
   example: []
   syntax:
-    content: public Func<List<ValidationFailure>, int, object> ResponseBuilder { set; }
+    content: public Func<List<ValidationFailure>, HttpContext, int, object> ResponseBuilder { set; }
     parameters: []
     return:
-      type: Func{List{FluentValidation.Results.ValidationFailure},System.Int32,System.Object}
-    content.vb: Public WriteOnly Property ResponseBuilder As Func(Of List(Of ValidationFailure), Integer, Object)
+      type: Func{List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
+    content.vb: Public WriteOnly Property ResponseBuilder As Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
   overload: FastEndpoints.ErrorOptions.ResponseBuilder*
   modifiers.csharp:
   - public
@@ -423,17 +423,17 @@ references:
   name: ResponseBuilder
   nameWithType: ErrorOptions.ResponseBuilder
   fullName: FastEndpoints.ErrorOptions.ResponseBuilder
-- uid: Func{List{FluentValidation.Results.ValidationFailure},System.Int32,System.Object}
-  commentId: '!:Func{List{FluentValidation.Results.ValidationFailure},System.Int32,System.Object}'
-  definition: Func`3
-  name: Func<List<ValidationFailure>, Int32, Object>
-  nameWithType: Func<List<ValidationFailure>, Int32, Object>
-  fullName: Func<List<FluentValidation.Results.ValidationFailure>, System.Int32, System.Object>
-  nameWithType.vb: Func(Of List(Of ValidationFailure), Int32, Object)
-  fullName.vb: Func(Of List(Of FluentValidation.Results.ValidationFailure), System.Int32, System.Object)
-  name.vb: Func(Of List(Of ValidationFailure), Int32, Object)
+- uid: Func{List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
+  commentId: '!:Func{List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}'
+  definition: Func`4
+  name: Func<List<ValidationFailure>, HttpContext, Int32, Object>
+  nameWithType: Func<List<ValidationFailure>, HttpContext, Int32, Object>
+  fullName: Func<List<FluentValidation.Results.ValidationFailure>, Microsoft.AspNetCore.Http.HttpContext, System.Int32, System.Object>
+  nameWithType.vb: Func(Of List(Of ValidationFailure), HttpContext, Int32, Object)
+  fullName.vb: Func(Of List(Of FluentValidation.Results.ValidationFailure), Microsoft.AspNetCore.Http.HttpContext, System.Int32, System.Object)
+  name.vb: Func(Of List(Of ValidationFailure), HttpContext, Int32, Object)
   spec.csharp:
-  - uid: Func`3
+  - uid: Func`4
     name: Func
     nameWithType: Func
     fullName: Func
@@ -457,6 +457,14 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    nameWithType: HttpContext
+    fullName: Microsoft.AspNetCore.Http.HttpContext
+    isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -477,7 +485,7 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Func`3
+  - uid: Func`4
     name: Func
     nameWithType: Func
     fullName: Func
@@ -504,6 +512,14 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    nameWithType: HttpContext
+    fullName: Microsoft.AspNetCore.Http.HttpContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - uid: System.Int32
     name: Int32
     nameWithType: Int32
@@ -520,17 +536,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Func`3
-  commentId: '!:Func`3'
+- uid: Func`4
+  commentId: '!:Func`4'
   isExternal: true
-  name: Func<, , >
-  nameWithType: Func<, , >
-  fullName: Func<, , >
-  nameWithType.vb: Func(Of , , )
-  fullName.vb: Func(Of , , )
-  name.vb: Func(Of , , )
+  name: Func<, , , >
+  nameWithType: Func<, , , >
+  fullName: Func<, , , >
+  nameWithType.vb: Func(Of , , , )
+  fullName.vb: Func(Of , , , )
+  name.vb: Func(Of , , , )
   spec.csharp:
-  - uid: Func`3
+  - uid: Func`4
     name: Func
     nameWithType: Func
     fullName: Func
@@ -553,11 +569,17 @@ references:
   - name: ''
     nameWithType: ''
     fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Func`3
+  - uid: Func`4
     name: Func
     nameWithType: Func
     fullName: Func
@@ -565,6 +587,12 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - name: ''
     nameWithType: ''
     fullName: ''

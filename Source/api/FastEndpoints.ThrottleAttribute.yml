@@ -1,0 +1,238 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.ThrottleAttribute
+  commentId: T:FastEndpoints.ThrottleAttribute
+  id: ThrottleAttribute
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.ThrottleAttribute.#ctor(System.Int32,System.Double,System.String)
+  - FastEndpoints.ThrottleAttribute.DurationSeconds
+  - FastEndpoints.ThrottleAttribute.HeaderName
+  - FastEndpoints.ThrottleAttribute.HitLimit
+  langs:
+  - csharp
+  - vb
+  name: ThrottleAttribute
+  nameWithType: ThrottleAttribute
+  fullName: FastEndpoints.ThrottleAttribute
+  type: Class
+  source:
+    id: ThrottleAttribute
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Attributes\ThrottleAttribute.cs
+    startLine: 5
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nrate limit requests to this endpoint based on a request http header sent by the client.\n"
+  example: []
+  syntax:
+    content: 'public class ThrottleAttribute : Attribute'
+    content.vb: >-
+      Public Class ThrottleAttribute
+
+          Inherits Attribute
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FastEndpoints.ThrottleAttribute.HitLimit
+  commentId: P:FastEndpoints.ThrottleAttribute.HitLimit
+  id: HitLimit
+  parent: FastEndpoints.ThrottleAttribute
+  langs:
+  - csharp
+  - vb
+  name: HitLimit
+  nameWithType: ThrottleAttribute.HitLimit
+  fullName: FastEndpoints.ThrottleAttribute.HitLimit
+  type: Property
+  source:
+    id: HitLimit
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Attributes\ThrottleAttribute.cs
+    startLine: 11
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nhow many requests are allowed within the given duration\n"
+  example: []
+  syntax:
+    content: public int HitLimit { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property HitLimit As Integer
+  overload: FastEndpoints.ThrottleAttribute.HitLimit*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.ThrottleAttribute.DurationSeconds
+  commentId: P:FastEndpoints.ThrottleAttribute.DurationSeconds
+  id: DurationSeconds
+  parent: FastEndpoints.ThrottleAttribute
+  langs:
+  - csharp
+  - vb
+  name: DurationSeconds
+  nameWithType: ThrottleAttribute.DurationSeconds
+  fullName: FastEndpoints.ThrottleAttribute.DurationSeconds
+  type: Property
+  source:
+    id: DurationSeconds
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Attributes\ThrottleAttribute.cs
+    startLine: 16
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe frequency in seconds where the accrued hit count should be reset\n"
+  example: []
+  syntax:
+    content: public double DurationSeconds { get; set; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public Property DurationSeconds As Double
+  overload: FastEndpoints.ThrottleAttribute.DurationSeconds*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.ThrottleAttribute.HeaderName
+  commentId: P:FastEndpoints.ThrottleAttribute.HeaderName
+  id: HeaderName
+  parent: FastEndpoints.ThrottleAttribute
+  langs:
+  - csharp
+  - vb
+  name: HeaderName
+  nameWithType: ThrottleAttribute.HeaderName
+  fullName: FastEndpoints.ThrottleAttribute.HeaderName
+  type: Property
+  source:
+    id: HeaderName
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Attributes\ThrottleAttribute.cs
+    startLine: 23
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe name of the request header used to uniquely identify clients.\nheader name can also be configured globally using <code>app.UseFastEndpoints(c=> c.Throttle...)</code>\nnot specifying a header name will first look for &apos;X-Forwarded-For&apos; header and if not present, will use `HttpContext.Connection.RemoteIpAddress`.\n"
+  example: []
+  syntax:
+    content: public string HeaderName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HeaderName As String
+  overload: FastEndpoints.ThrottleAttribute.HeaderName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.ThrottleAttribute.#ctor(System.Int32,System.Double,System.String)
+  commentId: M:FastEndpoints.ThrottleAttribute.#ctor(System.Int32,System.Double,System.String)
+  id: '#ctor(System.Int32,System.Double,System.String)'
+  parent: FastEndpoints.ThrottleAttribute
+  langs:
+  - csharp
+  - vb
+  name: ThrottleAttribute(Int32, Double, String)
+  nameWithType: ThrottleAttribute.ThrottleAttribute(Int32, Double, String)
+  fullName: FastEndpoints.ThrottleAttribute.ThrottleAttribute(System.Int32, System.Double, System.String)
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Attributes\ThrottleAttribute.cs
+    startLine: 35
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nrate limit requests to this endpoint based on a request http header sent by the client.\n"
+  example: []
+  syntax:
+    content: public ThrottleAttribute(int hitLimit, double durationSeconds, string headerName = null)
+    parameters:
+    - id: hitLimit
+      type: System.Int32
+      description: how many requests are allowed within the given duration
+    - id: durationSeconds
+      type: System.Double
+      description: the frequency in seconds where the accrued hit count should be reset
+    - id: headerName
+      type: System.String
+      description: "\nthe name of the request header used to uniquely identify clients.\nheader name can also be configured globally using <code>app.UseFastEndpoints(c=> c.ThrottleOptions...)</code>\nnot specifying a header name will first look for &apos;X-Forwarded-For&apos; header and if not present, will use `HttpContext.Connection.RemoteIpAddress`.\n"
+    content.vb: Public Sub New(hitLimit As Integer, durationSeconds As Double, headerName As String = Nothing)
+  overload: FastEndpoints.ThrottleAttribute.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.ThrottleAttribute.HitLimit*
+  commentId: Overload:FastEndpoints.ThrottleAttribute.HitLimit
+  name: HitLimit
+  nameWithType: ThrottleAttribute.HitLimit
+  fullName: FastEndpoints.ThrottleAttribute.HitLimit
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FastEndpoints.ThrottleAttribute.DurationSeconds*
+  commentId: Overload:FastEndpoints.ThrottleAttribute.DurationSeconds
+  name: DurationSeconds
+  nameWithType: ThrottleAttribute.DurationSeconds
+  fullName: FastEndpoints.ThrottleAttribute.DurationSeconds
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: FastEndpoints.ThrottleAttribute.HeaderName*
+  commentId: Overload:FastEndpoints.ThrottleAttribute.HeaderName
+  name: HeaderName
+  nameWithType: ThrottleAttribute.HeaderName
+  fullName: FastEndpoints.ThrottleAttribute.HeaderName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FastEndpoints.ThrottleAttribute.#ctor*
+  commentId: Overload:FastEndpoints.ThrottleAttribute.#ctor
+  name: ThrottleAttribute
+  nameWithType: ThrottleAttribute.ThrottleAttribute
+  fullName: FastEndpoints.ThrottleAttribute.ThrottleAttribute

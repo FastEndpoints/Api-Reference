@@ -9,6 +9,7 @@ items:
   - FastEndpoints.BaseEndpoint.Configure
   - FastEndpoints.BaseEndpoint.Definition
   - FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
+  - FastEndpoints.BaseEndpoint.Group``1
   - FastEndpoints.BaseEndpoint.HttpContext
   - FastEndpoints.BaseEndpoint.ValidationFailures
   - FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
@@ -22,10 +23,12 @@ items:
   source:
     id: BaseEndpoint
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nthe base class all fast endpoints inherit from\n"
+  example: []
   syntax:
     content: 'public abstract class BaseEndpoint : IEndpoint'
     content.vb: >-
@@ -36,6 +39,8 @@ items:
   - System.Object
   derivedClasses:
   - FastEndpoints.Endpoint`2
+  implements:
+  - FastEndpoints.IEndpoint
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -52,40 +57,6 @@ items:
   - Public
   - MustInherit
   - Class
-- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  id: Verbs(FastEndpoints.Http[])
-  parent: FastEndpoints.BaseEndpoint
-  langs:
-  - csharp
-  - vb
-  name: Verbs(Http[])
-  nameWithType: BaseEndpoint.Verbs(Http[])
-  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  type: Method
-  source:
-    id: Verbs
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 18
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  syntax:
-    content: public virtual void Verbs(params Http[] methods)
-    parameters:
-    - id: methods
-      type: FastEndpoints.Http[]
-    content.vb: Public Overridable Sub Verbs(ParamArray methods As Http())
-  overload: FastEndpoints.BaseEndpoint.Verbs*
-  nameWithType.vb: BaseEndpoint.Verbs(Http())
-  modifiers.csharp:
-  - public
-  - virtual
-  modifiers.vb:
-  - Public
-  - Overridable
-  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
 - uid: FastEndpoints.BaseEndpoint.Definition
   commentId: P:FastEndpoints.BaseEndpoint.Definition
   id: Definition
@@ -100,7 +71,7 @@ items:
   source:
     id: Definition
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -133,7 +104,7 @@ items:
   source:
     id: Config
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -166,7 +137,7 @@ items:
   source:
     id: HttpContext
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -179,6 +150,8 @@ items:
       type: Microsoft.AspNetCore.Http.HttpContext
     content.vb: Public ReadOnly Property HttpContext As HttpContext
   overload: FastEndpoints.BaseEndpoint.HttpContext*
+  implements:
+  - FastEndpoints.IEndpoint.HttpContext
   modifiers.csharp:
   - public
   - get
@@ -199,7 +172,7 @@ items:
   source:
     id: ValidationFailures
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -212,6 +185,8 @@ items:
       type: List{FluentValidation.Results.ValidationFailure}
     content.vb: Public ReadOnly Property ValidationFailures As List(Of ValidationFailure)
   overload: FastEndpoints.BaseEndpoint.ValidationFailures*
+  implements:
+  - FastEndpoints.IEndpoint.ValidationFailures
   modifiers.csharp:
   - public
   - get
@@ -232,7 +207,7 @@ items:
   source:
     id: Configure
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -248,6 +223,76 @@ items:
   modifiers.vb:
   - Public
   - Overridable
+- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  id: Verbs(FastEndpoints.Http[])
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Verbs(Http[])
+  nameWithType: BaseEndpoint.Verbs(Http[])
+  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  type: Method
+  source:
+    id: Verbs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 51
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public virtual void Verbs(params Http[] methods)
+    parameters:
+    - id: methods
+      type: FastEndpoints.Http[]
+    content.vb: Public Overridable Sub Verbs(ParamArray methods As Http())
+  overload: FastEndpoints.BaseEndpoint.Verbs*
+  nameWithType.vb: BaseEndpoint.Verbs(Http())
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
+  name.vb: Verbs(Http())
+- uid: FastEndpoints.BaseEndpoint.Group``1
+  commentId: M:FastEndpoints.BaseEndpoint.Group``1
+  id: Group``1
+  parent: FastEndpoints.BaseEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Group<TEndpointGroup>()
+  nameWithType: BaseEndpoint.Group<TEndpointGroup>()
+  fullName: FastEndpoints.BaseEndpoint.Group<TEndpointGroup>()
+  type: Method
+  source:
+    id: Group
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
+    startLine: 53
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: >-
+      protected virtual void Group<TEndpointGroup>()
+
+          where TEndpointGroup : Group, new()
+    typeParameters:
+    - id: TEndpointGroup
+    content.vb: Protected Overridable Sub Group(Of TEndpointGroup As {Group, New})
+  overload: FastEndpoints.BaseEndpoint.Group*
+  nameWithType.vb: BaseEndpoint.Group(Of TEndpointGroup)()
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: FastEndpoints.BaseEndpoint.Group(Of TEndpointGroup)()
+  name.vb: Group(Of TEndpointGroup)()
 - uid: FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
   commentId: M:FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
   id: FormFileSectionsAsync(CancellationToken)
@@ -262,7 +307,7 @@ items:
   source:
     id: FormFileSectionsAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 54
+    startLine: 59
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -296,6 +341,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: FastEndpoints.IEndpoint
+  commentId: T:FastEndpoints.IEndpoint
+  parent: FastEndpoints
+  name: IEndpoint
+  nameWithType: IEndpoint
+  fullName: FastEndpoints.IEndpoint
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -581,35 +632,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.BaseEndpoint.Verbs*
-  commentId: Overload:FastEndpoints.BaseEndpoint.Verbs
-  name: Verbs
-  nameWithType: BaseEndpoint.Verbs
-  fullName: FastEndpoints.BaseEndpoint.Verbs
-- uid: FastEndpoints.Http[]
-  isExternal: true
-  name: Http[]
-  nameWithType: Http[]
-  fullName: FastEndpoints.Http[]
-  nameWithType.vb: Http()
-  fullName.vb: FastEndpoints.Http()
-  name.vb: Http()
-  spec.csharp:
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  spec.vb:
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: ()
-    nameWithType: ()
-    fullName: ()
 - uid: FastEndpoints.BaseEndpoint.Definition*
   commentId: Overload:FastEndpoints.BaseEndpoint.Definition
   name: Definition
@@ -644,6 +666,12 @@ references:
   name: HttpContext
   nameWithType: BaseEndpoint.HttpContext
   fullName: FastEndpoints.BaseEndpoint.HttpContext
+- uid: FastEndpoints.IEndpoint.HttpContext
+  commentId: P:FastEndpoints.IEndpoint.HttpContext
+  parent: FastEndpoints.IEndpoint
+  name: HttpContext
+  nameWithType: IEndpoint.HttpContext
+  fullName: FastEndpoints.IEndpoint.HttpContext
 - uid: Microsoft.AspNetCore.Http.HttpContext
   commentId: T:Microsoft.AspNetCore.Http.HttpContext
   parent: Microsoft.AspNetCore.Http
@@ -662,6 +690,12 @@ references:
   name: ValidationFailures
   nameWithType: BaseEndpoint.ValidationFailures
   fullName: FastEndpoints.BaseEndpoint.ValidationFailures
+- uid: FastEndpoints.IEndpoint.ValidationFailures
+  commentId: P:FastEndpoints.IEndpoint.ValidationFailures
+  parent: FastEndpoints.IEndpoint
+  name: ValidationFailures
+  nameWithType: IEndpoint.ValidationFailures
+  fullName: FastEndpoints.IEndpoint.ValidationFailures
 - uid: List{FluentValidation.Results.ValidationFailure}
   commentId: '!:List{FluentValidation.Results.ValidationFailure}'
   definition: List`1
@@ -748,6 +782,40 @@ references:
   name: Configure
   nameWithType: BaseEndpoint.Configure
   fullName: FastEndpoints.BaseEndpoint.Configure
+- uid: FastEndpoints.BaseEndpoint.Verbs*
+  commentId: Overload:FastEndpoints.BaseEndpoint.Verbs
+  name: Verbs
+  nameWithType: BaseEndpoint.Verbs
+  fullName: FastEndpoints.BaseEndpoint.Verbs
+- uid: FastEndpoints.Http[]
+  isExternal: true
+  name: Http[]
+  nameWithType: Http[]
+  fullName: FastEndpoints.Http[]
+  nameWithType.vb: Http()
+  fullName.vb: FastEndpoints.Http()
+  name.vb: Http()
+  spec.csharp:
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: FastEndpoints.BaseEndpoint.Group*
+  commentId: Overload:FastEndpoints.BaseEndpoint.Group
+  name: Group
+  nameWithType: BaseEndpoint.Group
+  fullName: FastEndpoints.BaseEndpoint.Group
 - uid: FastEndpoints.BaseEndpoint.FormFileSectionsAsync*
   commentId: Overload:FastEndpoints.BaseEndpoint.FormFileSectionsAsync
   name: FormFileSectionsAsync

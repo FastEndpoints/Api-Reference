@@ -15,19 +15,22 @@ items:
   type: Interface
   source:
     id: IRequestBinder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Interfaces.cs
-    startLine: 91
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Interfaces\IRequestBinder.cs
+    startLine: 6
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\ncreate custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the endpoint.\n"
   example: []
   syntax:
-    content: public interface IRequestBinder<TRequest>
+    content: >-
+      public interface IRequestBinder<TRequest>
+
+          where TRequest : new()
     typeParameters:
     - id: TRequest
       description: the type of the request dto
-    content.vb: Public Interface IRequestBinder(Of TRequest)
+    content.vb: Public Interface IRequestBinder(Of TRequest As New)
   nameWithType.vb: IRequestBinder(Of TRequest)
   modifiers.csharp:
   - public
@@ -50,8 +53,8 @@ items:
   type: Method
   source:
     id: BindAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Interfaces.cs
-    startLine: 99
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Interfaces\IRequestBinder.cs
+    startLine: 14
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
