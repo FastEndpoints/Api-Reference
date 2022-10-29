@@ -475,6 +475,31 @@
   </table>
   
   
+  <a id="FastEndpoints_EndpointDefinition_MapperType_" data-uid="FastEndpoints.EndpointDefinition.MapperType*"></a>
+  <h4 id="FastEndpoints_EndpointDefinition_MapperType" data-uid="FastEndpoints.EndpointDefinition.MapperType">MapperType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type? MapperType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Type</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FastEndpoints_EndpointDefinition_OverriddenRoutePrefix_" data-uid="FastEndpoints.EndpointDefinition.OverriddenRoutePrefix*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_OverriddenRoutePrefix" data-uid="FastEndpoints.EndpointDefinition.OverriddenRoutePrefix">OverriddenRoutePrefix</h4>
   <div class="markdown level1 summary"></div>
@@ -625,31 +650,6 @@
   </table>
   
   
-  <a id="FastEndpoints_EndpointDefinition_ValidatorIsScoped_" data-uid="FastEndpoints.EndpointDefinition.ValidatorIsScoped*"></a>
-  <h4 id="FastEndpoints_EndpointDefinition_ValidatorIsScoped" data-uid="FastEndpoints.EndpointDefinition.ValidatorIsScoped">ValidatorIsScoped</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ValidatorIsScoped { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="FastEndpoints_EndpointDefinition_ValidatorType_" data-uid="FastEndpoints.EndpointDefinition.ValidatorType*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_ValidatorType" data-uid="FastEndpoints.EndpointDefinition.ValidatorType">ValidatorType</h4>
   <div class="markdown level1 summary"></div>
@@ -681,7 +681,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Http[] Verbs { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string[] Verbs { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -693,7 +693,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.Http.html">Http</a>[]</td>
+        <td><span class="xref">System.String</span>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -749,6 +749,34 @@ i.e. if the endpoint is listening to POST, PUT &amp; PATCH and you specify Allow
     <tbody>
       <tr>
         <td><a class="xref" href="FastEndpoints.Http.html">Http</a>[]</td>
+        <td><span class="parametername">verbs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_EndpointDefinition_AllowAnonymous_" data-uid="FastEndpoints.EndpointDefinition.AllowAnonymous*"></a>
+  <h4 id="FastEndpoints_EndpointDefinition_AllowAnonymous_System_String___" data-uid="FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])">AllowAnonymous(String[])</h4>
+  <div class="markdown level1 summary"><p>allow unauthenticated requests to this endpoint for a specified set of http verbs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AllowAnonymous(string[] verbs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">verbs</span></td>
         <td></td>
       </tr>
@@ -1116,14 +1144,13 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   
   
   <a id="FastEndpoints_EndpointDefinition_PostProcessors_" data-uid="FastEndpoints.EndpointDefinition.PostProcessors*"></a>
-  <h4 id="FastEndpoints_EndpointDefinition_PostProcessors_FastEndpoints_IGlobalPostProcessor___" data-uid="FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.IGlobalPostProcessor[])">PostProcessors(IGlobalPostProcessor[])</h4>
-  <div class="markdown level1 summary"><p>adds global post-processors to this endpoint definition. these post-processors are executed before the post-processors configured at the endpoint level.</p>
-<p>HINT: these post-processors will be applied in addition to endpoint level post-processors if there&apos;s any</p>
+  <h4 id="FastEndpoints_EndpointDefinition_PostProcessors_FastEndpoints_Order_FastEndpoints_IGlobalPostProcessor___" data-uid="FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])">PostProcessors(Order, IGlobalPostProcessor[])</h4>
+  <div class="markdown level1 summary"><p>adds global post-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void PostProcessors(params IGlobalPostProcessor[] postProcessors)</code></pre>
+    <pre><code class="lang-csharp hljs">public void PostProcessors(Order order, params IGlobalPostProcessor[] postProcessors)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1135,6 +1162,12 @@ all exceptions will be thrown and it would be your exeception catching middlewar
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.Order.html">Order</a></td>
+        <td><span class="parametername">order</span></td>
+        <td><p>set to <a class="xref" href="FastEndpoints.Order.html#FastEndpoints_Order_Before">Before</a> if the global post-processors should be executed before endpoint post-processors. <a class="xref" href="FastEndpoints.Order.html#FastEndpoints_Order_After">After</a> will execute global processors after endpoint level processors</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="FastEndpoints.IGlobalPostProcessor.html">IGlobalPostProcessor</a>[]</td>
         <td><span class="parametername">postProcessors</span></td>
@@ -1146,14 +1179,13 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   
   
   <a id="FastEndpoints_EndpointDefinition_PreProcessors_" data-uid="FastEndpoints.EndpointDefinition.PreProcessors*"></a>
-  <h4 id="FastEndpoints_EndpointDefinition_PreProcessors_FastEndpoints_IGlobalPreProcessor___" data-uid="FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.IGlobalPreProcessor[])">PreProcessors(IGlobalPreProcessor[])</h4>
-  <div class="markdown level1 summary"><p>adds global pre-processors to this endpoint definition. these pre-processors are executed before the pre-processors configured at the endpoint level.</p>
-<p>HINT: these pre-processors will be applied in addition to endpoint level pre-processors if there&apos;s any</p>
+  <h4 id="FastEndpoints_EndpointDefinition_PreProcessors_FastEndpoints_Order_FastEndpoints_IGlobalPreProcessor___" data-uid="FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])">PreProcessors(Order, IGlobalPreProcessor[])</h4>
+  <div class="markdown level1 summary"><p>adds global pre-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void PreProcessors(params IGlobalPreProcessor[] preProcessors)</code></pre>
+    <pre><code class="lang-csharp hljs">public void PreProcessors(Order order, params IGlobalPreProcessor[] preProcessors)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1165,6 +1197,12 @@ all exceptions will be thrown and it would be your exeception catching middlewar
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.Order.html">Order</a></td>
+        <td><span class="parametername">order</span></td>
+        <td><p>set to <a class="xref" href="FastEndpoints.Order.html#FastEndpoints_Order_Before">Before</a> if the global pre-processors should be executed before endpoint pre-processors. <a class="xref" href="FastEndpoints.Order.html#FastEndpoints_Order_After">After</a> will execute global processors after endpoint level processors</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="FastEndpoints.IGlobalPreProcessor.html">IGlobalPreProcessor</a>[]</td>
         <td><span class="parametername">preProcessors</span></td>
@@ -1290,16 +1328,6 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   </table>
   
   
-  <a id="FastEndpoints_EndpointDefinition_ScopedValidator_" data-uid="FastEndpoints.EndpointDefinition.ScopedValidator*"></a>
-  <h4 id="FastEndpoints_EndpointDefinition_ScopedValidator" data-uid="FastEndpoints.EndpointDefinition.ScopedValidator">ScopedValidator()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ScopedValidator()</code></pre>
-  </div>
-  
-  
   <a id="FastEndpoints_EndpointDefinition_Summary_" data-uid="FastEndpoints.EndpointDefinition.Summary*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_Summary_Action_FastEndpoints_EndpointSummary__" data-uid="FastEndpoints.EndpointDefinition.Summary(Action{FastEndpoints.EndpointSummary})">Summary(Action&lt;EndpointSummary&gt;)</h4>
   <div class="markdown level1 summary"><p>provide a summary/description for this endpoint to be used in swagger/ openapi</p>
@@ -1366,7 +1394,6 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Summary&lt;TRequest&gt;(Action&lt;EndpointSummary&lt;TRequest&gt;&gt; endpointSummary)
-
     where TRequest : new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1479,34 +1506,15 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
   
   
   <a id="FastEndpoints_EndpointDefinition_Validator_" data-uid="FastEndpoints.EndpointDefinition.Validator*"></a>
-  <h4 id="FastEndpoints_EndpointDefinition_Validator__1_System_Boolean_" data-uid="FastEndpoints.EndpointDefinition.Validator``1(System.Boolean)">Validator&lt;TValidator&gt;(Boolean)</h4>
+  <h4 id="FastEndpoints_EndpointDefinition_Validator__1" data-uid="FastEndpoints.EndpointDefinition.Validator``1">Validator&lt;TValidator&gt;()</h4>
   <div class="markdown level1 summary"><p>validator that should be used for this endpoint</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Validator&lt;TValidator&gt;(bool isScoped = false)
-
+    <pre><code class="lang-csharp hljs">public void Validator&lt;TValidator&gt;()
     where TValidator : IValidator</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">isScoped</span></td>
-        <td><p>set to true if you want to register the validator as scoped instead of singleton. which will enable constructor injection at the cost of performance.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>

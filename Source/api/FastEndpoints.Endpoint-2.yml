@@ -8,6 +8,7 @@ items:
   - FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint`2.AllowAnonymous(FastEndpoints.Http[])
+  - FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
   - FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)
   - FastEndpoints.Endpoint`2.AllowFormData
   - FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
@@ -15,6 +16,7 @@ items:
   - FastEndpoints.Endpoint`2.Claims(System.String[])
   - FastEndpoints.Endpoint`2.ClaimsAll(System.String[])
   - FastEndpoints.Endpoint`2.CreateScope
+  - FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Delete(System.String[])
   - FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   - FastEndpoints.Endpoint`2.DontAutoTag
@@ -24,9 +26,11 @@ items:
   - FastEndpoints.Endpoint`2.ExecuteAsync(`0,CancellationToken)
   - FastEndpoints.Endpoint`2.Files
   - FastEndpoints.Endpoint`2.Form
+  - FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Get(System.String[])
   - FastEndpoints.Endpoint`2.Group``1
   - FastEndpoints.Endpoint`2.HandleAsync(`0,CancellationToken)
+  - FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Head(System.String[])
   - FastEndpoints.Endpoint`2.HttpMethod
   - FastEndpoints.Endpoint`2.Logger
@@ -41,14 +45,17 @@ items:
   - FastEndpoints.Endpoint`2.OnValidationFailed
   - FastEndpoints.Endpoint`2.OnValidationFailedAsync(CancellationToken)
   - FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  - FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Patch(System.String[])
   - FastEndpoints.Endpoint`2.Permissions(System.String[])
   - FastEndpoints.Endpoint`2.PermissionsAll(System.String[])
   - FastEndpoints.Endpoint`2.Policies(System.String[])
+  - FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Post(System.String[])
   - FastEndpoints.Endpoint`2.PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])
   - FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])
   - FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  - FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Put(System.String[])
   - FastEndpoints.Endpoint`2.Query``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
@@ -61,7 +68,6 @@ items:
   - FastEndpoints.Endpoint`2.Route``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
   - FastEndpoints.Endpoint`2.Routes(System.String[])
-  - FastEndpoints.Endpoint`2.ScopedValidator
   - FastEndpoints.Endpoint`2.SendAsync(`1,System.Int32,CancellationToken)
   - FastEndpoints.Endpoint`2.SendBytesAsync(System.Byte[],System.String,System.String,System.Nullable{DateTimeOffset},System.Boolean,CancellationToken)
   - FastEndpoints.Endpoint`2.SendCreatedAtAsync(System.String,System.Object,`1,System.Boolean,CancellationToken)
@@ -93,8 +99,9 @@ items:
   - FastEndpoints.Endpoint`2.TryResolve``1
   - FastEndpoints.Endpoint`2.User
   - FastEndpoints.Endpoint`2.ValidationFailed
-  - FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  - FastEndpoints.Endpoint`2.Validator``1
   - FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
+  - FastEndpoints.Endpoint`2.Verbs(System.String[])
   - FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
   langs:
   - csharp
@@ -106,14 +113,14 @@ items:
   source:
     id: Endpoint
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 9
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nuse this base class for defining endpoints that use both request and response dtos.\n"
   example: []
   syntax:
-    content: 'public abstract class Endpoint<TRequest, TResponse> : BaseEndpoint, IEndpoint where TRequest : new()'
+    content: 'public abstract class Endpoint<TRequest, TResponse> : BaseEndpoint, IEndpoint, IEventBus, IServiceResolverBase where TRequest : new()'
     typeParameters:
     - id: TRequest
       description: the type of the request dto
@@ -121,10 +128,8 @@ items:
       description: the type of the response dto
     content.vb: >-
       Public MustInherit Class Endpoint(Of TRequest As New, TResponse)
-
           Inherits BaseEndpoint
-
-          Implements IEndpoint
+          Implements IEndpoint, IEventBus, IServiceResolverBase
   inheritance:
   - System.Object
   - FastEndpoints.BaseEndpoint
@@ -137,6 +142,8 @@ items:
   - FastEndpoints.EndpointWithoutRequest`1
   implements:
   - FastEndpoints.IEndpoint
+  - FastEndpoints.IEventBus
+  - FastEndpoints.IServiceResolverBase
   inheritedMembers:
   - FastEndpoints.BaseEndpoint.Definition
   - FastEndpoints.BaseEndpoint.Config
@@ -258,7 +265,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 121
+    startLine: 118
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -267,7 +274,6 @@ items:
   syntax:
     content: >-
       public TService TryResolve<TService>()
-
           where TService : class
     typeParameters:
     - id: TService
@@ -276,6 +282,8 @@ items:
       type: '{TService}'
     content.vb: Public Function TryResolve(Of TService As Class) As TService
   overload: FastEndpoints.Endpoint`2.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve``1
   nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve(Of TService)()
   modifiers.csharp:
   - public
@@ -297,7 +305,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 126
+    startLine: 120
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -313,6 +321,8 @@ items:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
   overload: FastEndpoints.Endpoint`2.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve(Type)
   nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve(Type)
   modifiers.csharp:
   - public
@@ -333,7 +343,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 132
+    startLine: 122
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -342,7 +352,6 @@ items:
   syntax:
     content: >-
       public TService Resolve<TService>()
-
           where TService : class
     typeParameters:
     - id: TService
@@ -351,6 +360,8 @@ items:
       type: '{TService}'
     content.vb: Public Function Resolve(Of TService As Class) As TService
   overload: FastEndpoints.Endpoint`2.Resolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve``1
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve(Of TService)()
   modifiers.csharp:
   - public
@@ -372,7 +383,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 138
+    startLine: 124
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -388,6 +399,8 @@ items:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.Endpoint`2.Resolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve(Type)
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve(Type)
   modifiers.csharp:
   - public
@@ -408,11 +421,11 @@ items:
   source:
     id: CreateScope
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 148
+    startLine: 126
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
+  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
   example: []
   syntax:
     content: public IServiceScope CreateScope()
@@ -420,6 +433,8 @@ items:
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
     content.vb: Public Function CreateScope As IServiceScope
   overload: FastEndpoints.Endpoint`2.CreateScope*
+  implements:
+  - FastEndpoints.IServiceResolverBase.CreateScope
   nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateScope()
   modifiers.csharp:
   - public
@@ -440,17 +455,14 @@ items:
   source:
     id: PublishAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 160
+    startLine: 129
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\npublish the given model/dto to all the subscribers of the event notification\n"
+  summary: "\npublishes a given event model to all subscribers registered to handle the that type of event.\n"
   example: []
   syntax:
-    content: >-
-      public Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
-
-          where TEvent : class
+    content: public Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
     parameters:
     - id: eventModel
       type: '{TEvent}'
@@ -463,18 +475,21 @@ items:
       description: an optional cancellation token
     typeParameters:
     - id: TEvent
+      description: the type of the event model
     return:
       type: Task
       description: >-
         a Task that matches the wait mode specified.
 
-        Mode.WaitForNone returns an already completed Task (fire and forget).
+        <xref href="FastEndpoints.Mode.WaitForNone" data-throw-if-not-resolved="false"></xref> returns an already completed Task (fire and forget).
 
-        Mode.WaitForAny returns a Task that will complete when any of the subscribers complete their work.
+        <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
 
-        Mode.WaitForAll return a Task that will complete only when all of the subscribers complete their work.
-    content.vb: Public Function PublishAsync(Of TEvent As Class)(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
+        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all of the subscribers complete their work.
+    content.vb: Public Function PublishAsync(Of TEvent)(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
   overload: FastEndpoints.Endpoint`2.PublishAsync*
+  implements:
+  - FastEndpoints.IEventBus.PublishAsync``1({TEvent},FastEndpoints.Mode,CancellationToken)
   nameWithType.vb: Endpoint(Of TRequest, TResponse).PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
   modifiers.csharp:
   - public
@@ -496,7 +511,7 @@ items:
   source:
     id: Route
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 171
+    startLine: 140
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -540,7 +555,7 @@ items:
   source:
     id: Query
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 201
+    startLine: 170
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -968,7 +983,7 @@ items:
   source:
     id: ValidationFailed
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Properties.cs
-    startLine: 22
+    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1003,7 +1018,7 @@ items:
   source:
     id: User
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Properties.cs
-    startLine: 27
+    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1038,7 +1053,7 @@ items:
   source:
     id: Response
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Properties.cs
-    startLine: 32
+    startLine: 31
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1369,7 +1384,6 @@ items:
   syntax:
     content: >-
       protected Task SendCreatedAtAsync<TEndpoint>(object routeValues, TResponse responseBody, Http? verb = null, int? routeNumber = null, bool generateAbsoluteUrl = false, CancellationToken cancellation = null)
-
           where TEndpoint : IEndpoint
     parameters:
     - id: routeValues
@@ -2091,7 +2105,7 @@ items:
   source:
     id: AllowAnonymous
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2111,6 +2125,40 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowAnonymous(FastEndpoints.Http())
   name.vb: AllowAnonymous(Http())
+- uid: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+  id: AllowAnonymous(System.String[])
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: AllowAnonymous(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.AllowAnonymous(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowAnonymous(System.String[])
+  type: Method
+  source:
+    id: AllowAnonymous
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 26
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nallow unauthenticated requests to this endpoint for a specified set of http verbs.\ni.e. if the endpoint is listening to POST, PUT &amp; PATCH and you specify AllowAnonymous(Http.POST), then only PUT &amp; PATCH will require authentication.\n"
+  example: []
+  syntax:
+    content: protected void AllowAnonymous(string[] verbs)
+    parameters:
+    - id: verbs
+      type: System.String[]
+    content.vb: Protected Sub AllowAnonymous(verbs As String())
+  overload: FastEndpoints.Endpoint`2.AllowAnonymous*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowAnonymous(String())
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowAnonymous(System.String())
+  name.vb: AllowAnonymous(String())
 - uid: FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)
   commentId: M:FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)
   id: AllowFileUploads(System.Boolean)
@@ -2125,7 +2173,7 @@ items:
   source:
     id: AllowFileUploads
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 28
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2159,7 +2207,7 @@ items:
   source:
     id: AllowFormData
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 33
+    startLine: 40
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2189,7 +2237,7 @@ items:
   source:
     id: AuthSchemes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 39
+    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2224,7 +2272,7 @@ items:
   source:
     id: Claims
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 45
+    startLine: 52
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2259,7 +2307,7 @@ items:
   source:
     id: ClaimsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 51
+    startLine: 58
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2294,7 +2342,7 @@ items:
   source:
     id: Delete
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 56
+    startLine: 63
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2314,6 +2362,44 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete(System.String())
   name.vb: Delete(String())
+- uid: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  id: Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Delete(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Delete(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  type: Method
+  source:
+    id: Delete
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 77
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify a DELETE route pattern using a replacement expression.\n"
+  example: []
+  syntax:
+    content: protected void Delete(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: "\nthe words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.\nthe replacement words do not have to match the request dto property names.\n<p><code>/invoice/{@id}/soft-delete</code></p>"
+    - id: members
+      type: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+      description: <code>r => new { r.InvoiceID }</code>
+    content.vb: Protected Sub Delete(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Delete*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete(String, Expression(Of Func(Of TRequest, Object)))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Delete(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   commentId: M:FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   id: Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
@@ -2328,7 +2414,7 @@ items:
   source:
     id: Description
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 70
+    startLine: 91
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2366,7 +2452,7 @@ items:
   source:
     id: DontAutoTag
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 75
+    startLine: 96
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2396,7 +2482,7 @@ items:
   source:
     id: DontCatchExceptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 82
+    startLine: 103
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2426,7 +2512,7 @@ items:
   source:
     id: DontThrowIfValidationFails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 88
+    startLine: 109
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2456,7 +2542,7 @@ items:
   source:
     id: Get
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 93
+    startLine: 114
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2476,6 +2562,44 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Get(System.String())
   name.vb: Get(String())
+- uid: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  id: Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Get(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Get(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  type: Method
+  source:
+    id: Get
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 128
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify a GET route pattern using a replacement expression.\n"
+  example: []
+  syntax:
+    content: protected void Get(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: "\nthe words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.\nthe replacement words do not have to match the request dto property names.\n<p><code>/invoice/{@id}/print/{@pageNum}</code></p>"
+    - id: members
+      type: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+      description: <code>r => new { r.InvoiceID, r.PageNumber }</code>
+    content.vb: Protected Sub Get(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Get*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Get(String, Expression(Of Func(Of TRequest, Object)))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Get(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Get(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Group``1
   commentId: M:FastEndpoints.Endpoint`2.Group``1
   id: Group``1
@@ -2490,7 +2614,7 @@ items:
   source:
     id: Group
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 107
+    startLine: 142
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2499,7 +2623,6 @@ items:
   syntax:
     content: >-
       protected sealed override void Group<TEndpointGroup>()
-
           where TEndpointGroup : Group, new()
     typeParameters:
     - id: TEndpointGroup
@@ -2532,7 +2655,7 @@ items:
   source:
     id: Head
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 119
+    startLine: 154
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2552,6 +2675,44 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head(System.String())
   name.vb: Head(String())
+- uid: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  id: Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Head(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Head(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  type: Method
+  source:
+    id: Head
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 168
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify a HEAD route pattern using a replacement expression.\n"
+  example: []
+  syntax:
+    content: protected void Head(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: "\nthe words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.\nthe replacement words do not have to match the request dto property names.\n<p><code>/invoice/{@id}/print/{@pageNum}</code></p>"
+    - id: members
+      type: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+      description: <code>r => new { r.InvoiceID, r.PageNumber }</code>
+    content.vb: Protected Sub Head(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Head*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Head(String, Expression(Of Func(Of TRequest, Object)))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Head(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   commentId: M:FastEndpoints.Endpoint`2.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   id: Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
@@ -2566,7 +2727,7 @@ items:
   source:
     id: Options
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 129
+    startLine: 178
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2601,7 +2762,7 @@ items:
   source:
     id: Patch
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 134
+    startLine: 183
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2621,6 +2782,44 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch(System.String())
   name.vb: Patch(String())
+- uid: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  id: Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Patch(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Patch(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  type: Method
+  source:
+    id: Patch
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 197
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify a PATCH route pattern using a replacement expression.\n"
+  example: []
+  syntax:
+    content: protected void Patch(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: "\nthe words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.\nthe replacement words do not have to match the request dto property names.\n<p><code>/invoice/{@id}</code></p>"
+    - id: members
+      type: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+      description: <code>r => new { r.InvoiceID }</code>
+    content.vb: Protected Sub Patch(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Patch*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Patch(String, Expression(Of Func(Of TRequest, Object)))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Patch(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Permissions(System.String[])
   commentId: M:FastEndpoints.Endpoint`2.Permissions(System.String[])
   id: Permissions(System.String[])
@@ -2635,7 +2834,7 @@ items:
   source:
     id: Permissions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 144
+    startLine: 207
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2670,7 +2869,7 @@ items:
   source:
     id: PermissionsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 150
+    startLine: 213
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2705,7 +2904,7 @@ items:
   source:
     id: Policies
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 156
+    startLine: 219
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2740,7 +2939,7 @@ items:
   source:
     id: Post
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 161
+    startLine: 224
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2760,6 +2959,44 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Post(System.String())
   name.vb: Post(String())
+- uid: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  id: Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Post(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Post(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  type: Method
+  source:
+    id: Post
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 238
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify a POST route pattern using a replacement expression.\n"
+  example: []
+  syntax:
+    content: protected void Post(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: "\nthe words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.\nthe replacement words do not have to match the request dto property names.\n<p><code>/invoice/{@id}/page/{@pageNum}</code></p>"
+    - id: members
+      type: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+      description: <code>r => new { r.InvoiceID, r.PageNumber }</code>
+    content.vb: Protected Sub Post(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Post*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Post(String, Expression(Of Func(Of TRequest, Object)))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Post(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Post(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])
   commentId: M:FastEndpoints.Endpoint`2.PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])
   id: PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])
@@ -2774,7 +3011,7 @@ items:
   source:
     id: PostProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 171
+    startLine: 248
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2809,7 +3046,7 @@ items:
   source:
     id: PreProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 183
+    startLine: 263
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2844,7 +3081,7 @@ items:
   source:
     id: Put
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 194
+    startLine: 277
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2864,6 +3101,44 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Put(System.String())
   name.vb: Put(String())
+- uid: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  id: Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Put(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Put(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  type: Method
+  source:
+    id: Put
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 291
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify a PUT route pattern using a replacement expression.\n"
+  example: []
+  syntax:
+    content: protected void Put(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: "\nthe words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.\nthe replacement words do not have to match the request dto property names.\n<p><code>/invoice/{@id}/page/{@pageNum}</code></p>"
+    - id: members
+      type: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+      description: <code>r => new { r.InvoiceID, r.PageNumber }</code>
+    content.vb: Protected Sub Put(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Put*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Put(String, Expression(Of Func(Of TRequest, Object)))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Put(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Put(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
   commentId: M:FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
   id: RequestBinder(FastEndpoints.IRequestBinder{`0})
@@ -2878,7 +3153,7 @@ items:
   source:
     id: RequestBinder
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 205
+    startLine: 302
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2913,7 +3188,7 @@ items:
   source:
     id: ResponseCache
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 215
+    startLine: 312
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2960,7 +3235,7 @@ items:
   source:
     id: Roles
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 221
+    startLine: 318
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2995,7 +3270,7 @@ items:
   source:
     id: RoutePrefixOverride
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 229
+    startLine: 326
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3029,7 +3304,7 @@ items:
   source:
     id: Routes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 234
+    startLine: 331
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3049,36 +3324,6 @@ items:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes(System.String())
   name.vb: Routes(String())
-- uid: FastEndpoints.Endpoint`2.ScopedValidator
-  commentId: M:FastEndpoints.Endpoint`2.ScopedValidator
-  id: ScopedValidator
-  parent: FastEndpoints.Endpoint`2
-  langs:
-  - csharp
-  - vb
-  name: ScopedValidator()
-  nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator()
-  type: Method
-  source:
-    id: ScopedValidator
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 239
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nregister the validator for this endpoint as scoped instead of singleton. which will enable constructor injection at the cost of performance.\n"
-  example: []
-  syntax:
-    content: protected void ScopedValidator()
-    content.vb: Protected Sub ScopedValidator
-  overload: FastEndpoints.Endpoint`2.ScopedValidator*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ScopedValidator()
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator()
 - uid: FastEndpoints.Endpoint`2.SerializerContext``1(``0)
   commentId: M:FastEndpoints.Endpoint`2.SerializerContext``1(``0)
   id: SerializerContext``1(``0)
@@ -3093,7 +3338,7 @@ items:
   source:
     id: SerializerContext
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 245
+    startLine: 337
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3102,7 +3347,6 @@ items:
   syntax:
     content: >-
       protected void SerializerContext<TContext>(TContext serializerContext)
-
           where TContext : JsonSerializerContext
     parameters:
     - id: serializerContext
@@ -3133,7 +3377,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 251
+    startLine: 343
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3168,7 +3412,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 257
+    startLine: 349
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3203,7 +3447,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 263
+    startLine: 355
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3237,7 +3481,7 @@ items:
   source:
     id: Tags
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 270
+    startLine: 362
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3272,7 +3516,7 @@ items:
   source:
     id: Throttle
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 282
+    startLine: 374
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3298,21 +3542,21 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Throttle(System.Int32, System.Double, System.String)
-- uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  commentId: M:FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  id: Validator``1(System.Boolean)
+- uid: FastEndpoints.Endpoint`2.Validator``1
+  commentId: M:FastEndpoints.Endpoint`2.Validator``1
+  id: Validator``1
   parent: FastEndpoints.Endpoint`2
   langs:
   - csharp
   - vb
-  name: Validator<TValidator>(Boolean)
-  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>(Boolean)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>(System.Boolean)
+  name: Validator<TValidator>()
+  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>()
   type: Method
   source:
     id: Validator
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 290
+    startLine: 381
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3320,25 +3564,20 @@ items:
   example: []
   syntax:
     content: >-
-      protected void Validator<TValidator>(bool isScoped = false)
-
+      protected void Validator<TValidator>()
           where TValidator : IValidator
-    parameters:
-    - id: isScoped
-      type: System.Boolean
-      description: set to true if you want to register the validator as scoped instead of singleton. which will enable constructor injection at the cost of performance.
     typeParameters:
     - id: TValidator
       description: the type of the validator
-    content.vb: Protected Sub Validator(Of TValidator As IValidator)(isScoped As Boolean = False)
+    content.vb: Protected Sub Validator(Of TValidator As IValidator)
   overload: FastEndpoints.Endpoint`2.Validator*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(Boolean)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)()
   modifiers.csharp:
   - protected
   modifiers.vb:
   - Protected
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(System.Boolean)
-  name.vb: Validator(Of TValidator)(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)()
+  name.vb: Validator(Of TValidator)()
 - uid: FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
   commentId: M:FastEndpoints.Endpoint`2.Verbs(FastEndpoints.Http[])
   id: Verbs(FastEndpoints.Http[])
@@ -3353,21 +3592,55 @@ items:
   source:
     id: Verbs
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 295
+    startLine: 386
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nspecify one or more http method verbs this endpoint should be accepting requests for\n"
   example: []
   syntax:
-    content: public sealed override void Verbs(params Http[] methods)
+    content: protected void Verbs(params Http[] methods)
     parameters:
     - id: methods
       type: FastEndpoints.Http[]
-    content.vb: Public NotOverridable Overrides Sub Verbs(ParamArray methods As Http())
-  overridden: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+    content.vb: Protected Sub Verbs(ParamArray methods As Http())
   overload: FastEndpoints.Endpoint`2.Verbs*
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(Http())
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(FastEndpoints.Http())
+  name.vb: Verbs(Http())
+- uid: FastEndpoints.Endpoint`2.Verbs(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Verbs(System.String[])
+  id: Verbs(System.String[])
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Verbs(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Verbs(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs(System.String[])
+  type: Method
+  source:
+    id: Verbs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
+    startLine: 394
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify one or more http method verbs this endpoint should be accepting requests for\n"
+  example: []
+  syntax:
+    content: public sealed override void Verbs(params string[] methods)
+    parameters:
+    - id: methods
+      type: System.String[]
+    content.vb: Public NotOverridable Overrides Sub Verbs(ParamArray methods As String())
+  overridden: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  overload: FastEndpoints.Endpoint`2.Verbs*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(String())
   modifiers.csharp:
   - public
   - sealed
@@ -3376,8 +3649,8 @@ items:
   - Public
   - Overrides
   - NotOverridable
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(System.String())
+  name.vb: Verbs(String())
 - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
   id: Version(System.Int32,System.Nullable{System.Int32})
@@ -3392,7 +3665,7 @@ items:
   source:
     id: Version
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 335
+    startLine: 434
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3430,7 +3703,7 @@ items:
   source:
     id: AddError
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 17
+    startLine: 16
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3470,7 +3743,7 @@ items:
   source:
     id: AddError
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 35
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3514,7 +3787,7 @@ items:
   source:
     id: ThrowIfAnyErrors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 49
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3544,7 +3817,7 @@ items:
   source:
     id: ThrowError
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 59
+    startLine: 58
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3578,7 +3851,7 @@ items:
   source:
     id: ThrowError
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 71
+    startLine: 70
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3627,6 +3900,18 @@ references:
   name: IEndpoint
   nameWithType: IEndpoint
   fullName: FastEndpoints.IEndpoint
+- uid: FastEndpoints.IEventBus
+  commentId: T:FastEndpoints.IEventBus
+  parent: FastEndpoints
+  name: IEventBus
+  nameWithType: IEventBus
+  fullName: FastEndpoints.IEventBus
+- uid: FastEndpoints.IServiceResolverBase
+  commentId: T:FastEndpoints.IServiceResolverBase
+  parent: FastEndpoints
+  name: IServiceResolverBase
+  nameWithType: IServiceResolverBase
+  fullName: FastEndpoints.IServiceResolverBase
 - uid: FastEndpoints.BaseEndpoint.Definition
   commentId: P:FastEndpoints.BaseEndpoint.Definition
   parent: FastEndpoints.BaseEndpoint
@@ -4121,6 +4406,37 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.TryResolve
   nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).TryResolve
+- uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1
+  parent: FastEndpoints.IServiceResolverBase
+  name: TryResolve<TService>()
+  nameWithType: IServiceResolverBase.TryResolve<TService>()
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>()
+  nameWithType.vb: IServiceResolverBase.TryResolve(Of TService)()
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)()
+  name.vb: TryResolve(Of TService)()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+    name: TryResolve<TService>
+    nameWithType: IServiceResolverBase.TryResolve<TService>
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+    name: TryResolve(Of TService)
+    nameWithType: IServiceResolverBase.TryResolve(Of TService)
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: '{TService}'
   commentId: '!:TService'
   definition: TService
@@ -4131,6 +4447,45 @@ references:
   name: TService
   nameWithType: TService
   fullName: TService
+- uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  name: TryResolve(Type)
+  nameWithType: IServiceResolverBase.TryResolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+    name: TryResolve
+    nameWithType: IServiceResolverBase.TryResolve
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+    name: TryResolve
+    nameWithType: IServiceResolverBase.TryResolve
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Type
   isExternal: true
   name: Type
@@ -4143,6 +4498,76 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Resolve
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Resolve
+- uid: FastEndpoints.IServiceResolverBase.Resolve``1
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1
+  parent: FastEndpoints.IServiceResolverBase
+  name: Resolve<TService>()
+  nameWithType: IServiceResolverBase.Resolve<TService>()
+  fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>()
+  nameWithType.vb: IServiceResolverBase.Resolve(Of TService)()
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(Of TService)()
+  name.vb: Resolve(Of TService)()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1
+    name: Resolve<TService>
+    nameWithType: IServiceResolverBase.Resolve<TService>
+    fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1
+    name: Resolve(Of TService)
+    nameWithType: IServiceResolverBase.Resolve(Of TService)
+    fullName: FastEndpoints.IServiceResolverBase.Resolve(Of TService)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(Type)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  name: Resolve(Type)
+  nameWithType: IServiceResolverBase.Resolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+    name: Resolve
+    nameWithType: IServiceResolverBase.Resolve
+    fullName: FastEndpoints.IServiceResolverBase.Resolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+    name: Resolve
+    nameWithType: IServiceResolverBase.Resolve
+    fullName: FastEndpoints.IServiceResolverBase.Resolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.CreateScope*
   commentId: Overload:FastEndpoints.Endpoint`2.CreateScope
   name: CreateScope
@@ -4150,6 +4575,34 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateScope
   nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateScope
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateScope
+- uid: FastEndpoints.IServiceResolverBase.CreateScope
+  commentId: M:FastEndpoints.IServiceResolverBase.CreateScope
+  parent: FastEndpoints.IServiceResolverBase
+  name: CreateScope()
+  nameWithType: IServiceResolverBase.CreateScope()
+  fullName: FastEndpoints.IServiceResolverBase.CreateScope()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.CreateScope
+    name: CreateScope
+    nameWithType: IServiceResolverBase.CreateScope
+    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.CreateScope
+    name: CreateScope
+    nameWithType: IServiceResolverBase.CreateScope
+    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection.IServiceScope
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceScope
   parent: Microsoft.Extensions.DependencyInjection
@@ -4170,6 +4623,74 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.PublishAsync
   nameWithType.vb: Endpoint(Of TRequest, TResponse).PublishAsync
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).PublishAsync
+- uid: FastEndpoints.IEventBus.PublishAsync``1({TEvent},FastEndpoints.Mode,CancellationToken)
+  commentId: M:FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  parent: FastEndpoints.IEventBus
+  definition: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  name: PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
+  nameWithType: IEventBus.PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
+  fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>(TEvent, FastEndpoints.Mode, CancellationToken)
+  nameWithType.vb: IEventBus.PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+  fullName.vb: FastEndpoints.IEventBus.PublishAsync(Of TEvent)(TEvent, FastEndpoints.Mode, CancellationToken)
+  name.vb: PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+    name: PublishAsync<TEvent>
+    nameWithType: IEventBus.PublishAsync<TEvent>
+    fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.Mode
+    name: Mode
+    nameWithType: Mode
+    fullName: FastEndpoints.Mode
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+    name: PublishAsync(Of TEvent)
+    nameWithType: IEventBus.PublishAsync(Of TEvent)
+    fullName: FastEndpoints.IEventBus.PublishAsync(Of TEvent)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.Mode
+    name: Mode
+    nameWithType: Mode
+    fullName: FastEndpoints.Mode
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: '{TEvent}'
   commentId: '!:TEvent'
   definition: TEvent
@@ -4182,6 +4703,73 @@ references:
   name: Mode
   nameWithType: Mode
   fullName: FastEndpoints.Mode
+- uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  commentId: M:FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  isExternal: true
+  name: PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
+  nameWithType: IEventBus.PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
+  fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>(TEvent, FastEndpoints.Mode, CancellationToken)
+  nameWithType.vb: IEventBus.PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+  fullName.vb: FastEndpoints.IEventBus.PublishAsync(Of TEvent)(TEvent, FastEndpoints.Mode, CancellationToken)
+  name.vb: PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+    name: PublishAsync<TEvent>
+    nameWithType: IEventBus.PublishAsync<TEvent>
+    fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.Mode
+    name: Mode
+    nameWithType: Mode
+    fullName: FastEndpoints.Mode
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+    name: PublishAsync(Of TEvent)
+    nameWithType: IEventBus.PublishAsync(Of TEvent)
+    fullName: FastEndpoints.IEventBus.PublishAsync(Of TEvent)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.Mode
+    name: Mode
+    nameWithType: Mode
+    fullName: FastEndpoints.Mode
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: TEvent
   name: TEvent
   nameWithType: TEvent
@@ -4996,27 +5584,6 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: FastEndpoints.Endpoint`2.AllowFileUploads*
-  commentId: Overload:FastEndpoints.Endpoint`2.AllowFileUploads
-  name: AllowFileUploads
-  nameWithType: Endpoint<TRequest, TResponse>.AllowFileUploads
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFileUploads
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFileUploads
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFileUploads
-- uid: FastEndpoints.Endpoint`2.AllowFormData*
-  commentId: Overload:FastEndpoints.Endpoint`2.AllowFormData
-  name: AllowFormData
-  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData
-- uid: FastEndpoints.Endpoint`2.AuthSchemes*
-  commentId: Overload:FastEndpoints.Endpoint`2.AuthSchemes
-  name: AuthSchemes
-  nameWithType: Endpoint<TRequest, TResponse>.AuthSchemes
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AuthSchemes
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AuthSchemes
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AuthSchemes
 - uid: System.String[]
   isExternal: true
   name: String[]
@@ -5043,6 +5610,27 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: FastEndpoints.Endpoint`2.AllowFileUploads*
+  commentId: Overload:FastEndpoints.Endpoint`2.AllowFileUploads
+  name: AllowFileUploads
+  nameWithType: Endpoint<TRequest, TResponse>.AllowFileUploads
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFileUploads
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFileUploads
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFileUploads
+- uid: FastEndpoints.Endpoint`2.AllowFormData*
+  commentId: Overload:FastEndpoints.Endpoint`2.AllowFormData
+  name: AllowFormData
+  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData
+- uid: FastEndpoints.Endpoint`2.AuthSchemes*
+  commentId: Overload:FastEndpoints.Endpoint`2.AuthSchemes
+  name: AuthSchemes
+  nameWithType: Endpoint<TRequest, TResponse>.AuthSchemes
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AuthSchemes
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AuthSchemes
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AuthSchemes
 - uid: FastEndpoints.Endpoint`2.Claims*
   commentId: Overload:FastEndpoints.Endpoint`2.Claims
   name: Claims
@@ -5064,6 +5652,129 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete
+- uid: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
+  commentId: T:System.Linq.Expressions.Expression{Func{`0,System.Object}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  name: Expression<Func<TRequest, Object>>
+  nameWithType: Expression<Func<TRequest, Object>>
+  fullName: System.Linq.Expressions.Expression<Func<TRequest, System.Object>>
+  nameWithType.vb: Expression(Of Func(Of TRequest, Object))
+  fullName.vb: System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object))
+  name.vb: Expression(Of Func(Of TRequest, Object))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TDelegate
+    nameWithType: TDelegate
+    fullName: TDelegate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
 - uid: FastEndpoints.Endpoint`2.Description*
   commentId: Overload:FastEndpoints.Endpoint`2.Description
   name: Description
@@ -5474,13 +6185,6 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Routes
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Routes
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes
-- uid: FastEndpoints.Endpoint`2.ScopedValidator*
-  commentId: Overload:FastEndpoints.Endpoint`2.ScopedValidator
-  name: ScopedValidator
-  nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ScopedValidator
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator
 - uid: FastEndpoints.Endpoint`2.SerializerContext*
   commentId: Overload:FastEndpoints.Endpoint`2.SerializerContext
   name: SerializerContext
@@ -5640,51 +6344,6 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator
-- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  parent: FastEndpoints.BaseEndpoint
-  name: Verbs(Http[])
-  nameWithType: BaseEndpoint.Verbs(Http[])
-  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  nameWithType.vb: BaseEndpoint.Verbs(Http())
-  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
-  spec.csharp:
-  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: BaseEndpoint.Verbs
-    fullName: FastEndpoints.BaseEndpoint.Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-    name: Verbs
-    nameWithType: BaseEndpoint.Verbs
-    fullName: FastEndpoints.BaseEndpoint.Verbs
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Endpoint`2.Verbs*
   commentId: Overload:FastEndpoints.Endpoint`2.Verbs
   name: Verbs
@@ -5692,6 +6351,54 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs
+- uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  commentId: M:FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  parent: FastEndpoints.BaseEndpoint
+  isExternal: true
+  name: Verbs(String[])
+  nameWithType: BaseEndpoint.Verbs(String[])
+  fullName: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  nameWithType.vb: BaseEndpoint.Verbs(String())
+  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(System.String())
+  name.vb: Verbs(String())
+  spec.csharp:
+  - uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+    name: Verbs
+    nameWithType: BaseEndpoint.Verbs
+    fullName: FastEndpoints.BaseEndpoint.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+    name: Verbs
+    nameWithType: BaseEndpoint.Verbs
+    fullName: FastEndpoints.BaseEndpoint.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.Version*
   commentId: Overload:FastEndpoints.Endpoint`2.Version
   name: Version
@@ -5719,129 +6426,6 @@ references:
   name: FluentValidation
   nameWithType: FluentValidation
   fullName: FluentValidation
-- uid: System.Linq.Expressions.Expression{Func{{TRequest},System.Object}}
-  commentId: T:System.Linq.Expressions.Expression{Func{`0,System.Object}}
-  parent: System.Linq.Expressions
-  definition: System.Linq.Expressions.Expression`1
-  name: Expression<Func<TRequest, Object>>
-  nameWithType: Expression<Func<TRequest, Object>>
-  fullName: System.Linq.Expressions.Expression<Func<TRequest, System.Object>>
-  nameWithType.vb: Expression(Of Func(Of TRequest, Object))
-  fullName.vb: System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object))
-  name.vb: Expression(Of Func(Of TRequest, Object))
-  spec.csharp:
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions.Expression`1
-  commentId: T:System.Linq.Expressions.Expression`1
-  isExternal: true
-  name: Expression<TDelegate>
-  nameWithType: Expression<TDelegate>
-  fullName: System.Linq.Expressions.Expression<TDelegate>
-  nameWithType.vb: Expression(Of TDelegate)
-  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
-  name.vb: Expression(Of TDelegate)
-  spec.csharp:
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TDelegate
-    nameWithType: TDelegate
-    fullName: TDelegate
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Linq.Expressions.Expression`1
-    name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TDelegate
-    nameWithType: TDelegate
-    fullName: TDelegate
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Expressions
-  commentId: N:System.Linq.Expressions
-  isExternal: true
-  name: System.Linq.Expressions
-  nameWithType: System.Linq.Expressions
-  fullName: System.Linq.Expressions
 - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors*
   commentId: Overload:FastEndpoints.Endpoint`2.ThrowIfAnyErrors
   name: ThrowIfAnyErrors

@@ -16,14 +16,14 @@ items:
   source:
     id: EndpointWithoutRequest
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 314
+    startLine: 284
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nuse this base class for defining endpoints that doesn&apos;t need a request dto but return a response dto and uses a response mapper.\n"
   example: []
   syntax:
-    content: 'public abstract class EndpointWithoutRequest<TResponse, TMapper> : EndpointWithoutRequest<TResponse>, IEndpoint, IHasMapper<TMapper> where TMapper : IResponseMapper'
+    content: 'public abstract class EndpointWithoutRequest<TResponse, TMapper> : EndpointWithoutRequest<TResponse>, IEndpoint, IEventBus, IServiceResolverBase, IHasMapper<TMapper>, IHasMapper where TMapper : IResponseMapper'
     typeParameters:
     - id: TResponse
       description: the type of the response dto
@@ -31,10 +31,8 @@ items:
       description: the type of the entity mapper
     content.vb: >-
       Public MustInherit Class EndpointWithoutRequest(Of TResponse, TMapper As IResponseMapper)
-
           Inherits EndpointWithoutRequest(Of TResponse)
-
-          Implements IEndpoint, IHasMapper(Of TMapper)
+          Implements IEndpoint, IEventBus, IServiceResolverBase, IHasMapper(Of TMapper), IHasMapper
   inheritance:
   - System.Object
   - FastEndpoints.BaseEndpoint
@@ -42,7 +40,10 @@ items:
   - FastEndpoints.EndpointWithoutRequest{{TResponse}}
   implements:
   - FastEndpoints.IEndpoint
+  - FastEndpoints.IEventBus
+  - FastEndpoints.IServiceResolverBase
   - FastEndpoints.IHasMapper{{TMapper}}
+  - FastEndpoints.IHasMapper
   inheritedMembers:
   - FastEndpoints.EndpointWithoutRequest{{TResponse}}.HandleAsync(CancellationToken)
   - FastEndpoints.EndpointWithoutRequest{{TResponse}}.HandleAsync(FastEndpoints.EmptyRequest,CancellationToken)
@@ -97,42 +98,49 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendEventStreamAsync``1(System.String,IAsyncEnumerable{{T}},CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendEmptyJsonObject(CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowAnonymous(FastEndpoints.Http[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowAnonymous(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowFileUploads(System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowFormData
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AuthSchemes(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Claims(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ClaimsAll(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontAutoTag
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontCatchExceptions
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.DontThrowIfValidationFails
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Group``1
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Permissions(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PermissionsAll(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Policies(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PostProcessors(FastEndpoints.IPostProcessor{FastEndpoints.EmptyRequest,{TResponse}}[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PreProcessors(FastEndpoints.IPreProcessor{FastEndpoints.EmptyRequest}[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RequestBinder(FastEndpoints.IRequestBinder{FastEndpoints.EmptyRequest})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Roles(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.RoutePrefixOverride(System.String)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Routes(System.String[])
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ScopedValidator
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SerializerContext``1({TContext})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(Action{FastEndpoints.EndpointSummary})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(Action{FastEndpoints.EndpointSummary{FastEndpoints.EmptyRequest}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(FastEndpoints.EndpointSummary)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Tags(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Throttle(System.Int32,System.Double,System.String)
-  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1(System.Boolean)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(FastEndpoints.Http[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AddError(System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity)
@@ -144,7 +152,7 @@ items:
   - FastEndpoints.BaseEndpoint.HttpContext
   - FastEndpoints.BaseEndpoint.ValidationFailures
   - FastEndpoints.BaseEndpoint.Configure
-  - FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  - FastEndpoints.BaseEndpoint.Verbs(System.String[])
   - FastEndpoints.BaseEndpoint.Group``1
   - FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
   - System.Object.Equals(System.Object)
@@ -179,7 +187,7 @@ items:
   source:
     id: Map
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 322
+    startLine: 292
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -317,6 +325,18 @@ references:
   name: IEndpoint
   nameWithType: IEndpoint
   fullName: FastEndpoints.IEndpoint
+- uid: FastEndpoints.IEventBus
+  commentId: T:FastEndpoints.IEventBus
+  parent: FastEndpoints
+  name: IEventBus
+  nameWithType: IEventBus
+  fullName: FastEndpoints.IEventBus
+- uid: FastEndpoints.IServiceResolverBase
+  commentId: T:FastEndpoints.IServiceResolverBase
+  parent: FastEndpoints
+  name: IServiceResolverBase
+  nameWithType: IServiceResolverBase
+  fullName: FastEndpoints.IServiceResolverBase
 - uid: FastEndpoints.IHasMapper{{TMapper}}
   commentId: T:FastEndpoints.IHasMapper{`1}
   parent: FastEndpoints
@@ -355,6 +375,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.IHasMapper
+  commentId: T:FastEndpoints.IHasMapper
+  parent: FastEndpoints
+  name: IHasMapper
+  nameWithType: IHasMapper
+  fullName: FastEndpoints.IHasMapper
 - uid: FastEndpoints.EndpointWithoutRequest{{TResponse}}.HandleAsync(CancellationToken)
   commentId: M:FastEndpoints.EndpointWithoutRequest{`0}.HandleAsync(CancellationToken)
   parent: FastEndpoints.EndpointWithoutRequest{{TResponse}}
@@ -3122,6 +3148,54 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowAnonymous(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.AllowAnonymous(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+  name: AllowAnonymous(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.AllowAnonymous(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.AllowAnonymous(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).AllowAnonymous(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).AllowAnonymous(System.String())
+  name.vb: AllowAnonymous(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+    name: AllowAnonymous
+    nameWithType: Endpoint<EmptyRequest, TResponse>.AllowAnonymous
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.AllowAnonymous
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+    name: AllowAnonymous
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).AllowAnonymous
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).AllowAnonymous
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AllowFileUploads(System.Boolean)
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.AllowFileUploads(System.Boolean)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -3386,6 +3460,122 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Delete(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  name: Delete(String, Expression<Func<EmptyRequest, Object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Delete(String, Expression<Func<EmptyRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Delete(System.String, System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Delete(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Delete(System.String, System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)))
+  name.vb: Delete(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Delete
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Delete
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Delete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Delete
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Delete
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Delete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -3607,6 +3797,122 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Get(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Get(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  name: Get(String, Expression<Func<EmptyRequest, Object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Get(String, Expression<Func<EmptyRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Get(System.String, System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Get(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Get(System.String, System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)))
+  name.vb: Get(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Get
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Get
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Get
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Get
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Get
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Get
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Group``1
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Group``1
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -3684,6 +3990,122 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Head(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  name: Head(String, Expression<Func<EmptyRequest, Object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Head(String, Expression<Func<EmptyRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Head(System.String, System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Head(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Head(System.String, System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)))
+  name.vb: Head(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Head
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Head
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Head
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Head
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -3796,6 +4218,122 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Patch(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  name: Patch(String, Expression<Func<EmptyRequest, Object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Patch(String, Expression<Func<EmptyRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Patch(System.String, System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Patch(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Patch(System.String, System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)))
+  name.vb: Patch(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Patch
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Patch
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Patch
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Patch
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -3991,6 +4529,122 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Post(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Post(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  name: Post(String, Expression<Func<EmptyRequest, Object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Post(String, Expression<Func<EmptyRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Post(System.String, System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Post(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Post(System.String, System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)))
+  name.vb: Post(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Post
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Post
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Post
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Post
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.PostProcessors(FastEndpoints.IPostProcessor{FastEndpoints.EmptyRequest,{TResponse}}[])
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.PostProcessors(FastEndpoints.IPostProcessor{FastEndpoints.EmptyRequest,`0}[])
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -4180,6 +4834,122 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Put(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Put(System.String,System.Linq.Expressions.Expression{Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  name: Put(String, Expression<Func<EmptyRequest, Object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Put(String, Expression<Func<EmptyRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Put(System.String, System.Linq.Expressions.Expression<Func<FastEndpoints.EmptyRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Put(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Put(System.String, System.Linq.Expressions.Expression(Of Func(Of FastEndpoints.EmptyRequest, System.Object)))
+  name.vb: Put(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Put
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Put
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Put
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Put
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    nameWithType: EmptyRequest
+    fullName: FastEndpoints.EmptyRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -4489,37 +5259,6 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ScopedValidator
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ScopedValidator
-  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.ScopedValidator
-  name: ScopedValidator()
-  nameWithType: Endpoint<EmptyRequest, TResponse>.ScopedValidator()
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ScopedValidator()
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).ScopedValidator()
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ScopedValidator()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint<EmptyRequest, TResponse>.ScopedValidator
-    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint(Of EmptyRequest, TResponse).ScopedValidator
-    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -4865,45 +5604,35 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1(System.Boolean)
-  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Validator``1(System.Boolean)
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Validator``1
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  name: Validator<TValidator>(Boolean)
-  nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>(Boolean)
-  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>(System.Boolean)
-  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)(Boolean)
-  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)(System.Boolean)
-  name.vb: Validator(Of TValidator)(Boolean)
+  definition: FastEndpoints.Endpoint`2.Validator``1
+  name: Validator<TValidator>()
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>()
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>()
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)()
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)()
+  name.vb: Validator(Of TValidator)()
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  - uid: FastEndpoints.Endpoint`2.Validator``1
     name: Validator<TValidator>
     nameWithType: Endpoint<EmptyRequest, TResponse>.Validator<TValidator>
     fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Validator<TValidator>
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  - uid: FastEndpoints.Endpoint`2.Validator``1
     name: Validator(Of TValidator)
     nameWithType: Endpoint(Of EmptyRequest, TResponse).Validator(Of TValidator)
     fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Validator(Of TValidator)
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -4947,6 +5676,54 @@ references:
     name: Http
     nameWithType: Http
     fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Verbs(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Verbs(System.String[])
+  name: Verbs(String[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Verbs(String[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Verbs(System.String[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Verbs(String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Verbs(System.String())
+  name.vb: Verbs(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Verbs(System.String[])
+    name: Verbs
+    nameWithType: Endpoint<EmptyRequest, TResponse>.Verbs
+    fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Verbs(System.String[])
+    name: Verbs
+    nameWithType: Endpoint(Of EmptyRequest, TResponse).Verbs
+    fullName: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: ()
     nameWithType: ()
     fullName: ()
@@ -5494,27 +6271,29 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  commentId: M:FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+- uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  commentId: M:FastEndpoints.BaseEndpoint.Verbs(System.String[])
   parent: FastEndpoints.BaseEndpoint
-  name: Verbs(Http[])
-  nameWithType: BaseEndpoint.Verbs(Http[])
-  fullName: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
-  nameWithType.vb: BaseEndpoint.Verbs(Http())
-  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http())
-  name.vb: Verbs(Http())
+  isExternal: true
+  name: Verbs(String[])
+  nameWithType: BaseEndpoint.Verbs(String[])
+  fullName: FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  nameWithType.vb: BaseEndpoint.Verbs(String())
+  fullName.vb: FastEndpoints.BaseEndpoint.Verbs(System.String())
+  name.vb: Verbs(String())
   spec.csharp:
-  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  - uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
     name: Verbs
     nameWithType: BaseEndpoint.Verbs
     fullName: FastEndpoints.BaseEndpoint.Verbs
   - name: (
     nameWithType: (
     fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
@@ -5522,17 +6301,18 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.BaseEndpoint.Verbs(FastEndpoints.Http[])
+  - uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
     name: Verbs
     nameWithType: BaseEndpoint.Verbs
     fullName: FastEndpoints.BaseEndpoint.Verbs
   - name: (
     nameWithType: (
     fullName: (
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: ()
     nameWithType: ()
     fullName: ()
@@ -8689,6 +9469,53 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+  isExternal: true
+  name: AllowAnonymous(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.AllowAnonymous(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowAnonymous(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowAnonymous(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowAnonymous(System.String())
+  name.vb: AllowAnonymous(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+    name: AllowAnonymous
+    nameWithType: Endpoint<TRequest, TResponse>.AllowAnonymous
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowAnonymous
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
+    name: AllowAnonymous
+    nameWithType: Endpoint(Of TRequest, TResponse).AllowAnonymous
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowAnonymous
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)
   commentId: M:FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)
   isExternal: true
@@ -8946,6 +9773,119 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  isExternal: true
+  name: Delete(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Delete(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Delete(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Delete
+    nameWithType: Endpoint<TRequest, TResponse>.Delete
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Delete
+    nameWithType: Endpoint(Of TRequest, TResponse).Delete
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   commentId: M:FastEndpoints.Endpoint`2.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   isExternal: true
@@ -9159,6 +10099,119 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  isExternal: true
+  name: Get(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Get(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Get(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Get(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Get(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Get
+    nameWithType: Endpoint<TRequest, TResponse>.Get
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Get
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Get
+    nameWithType: Endpoint(Of TRequest, TResponse).Get
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Get
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.Group``1
   commentId: M:FastEndpoints.Endpoint`2.Group``1
   name: Group<TEndpointGroup>()
@@ -9233,6 +10286,119 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  isExternal: true
+  name: Head(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Head(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Head(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Head(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Head
+    nameWithType: Endpoint<TRequest, TResponse>.Head
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Head
+    nameWithType: Endpoint(Of TRequest, TResponse).Head
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Head
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -9343,6 +10509,119 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  isExternal: true
+  name: Patch(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Patch(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Patch(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Patch(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Patch
+    nameWithType: Endpoint<TRequest, TResponse>.Patch
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Patch
+    nameWithType: Endpoint(Of TRequest, TResponse).Patch
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Patch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -9534,6 +10813,119 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  isExternal: true
+  name: Post(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Post(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Post(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Post(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Post(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Post
+    nameWithType: Endpoint<TRequest, TResponse>.Post
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Post
+    nameWithType: Endpoint(Of TRequest, TResponse).Post
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Post
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])
   commentId: M:FastEndpoints.Endpoint`2.PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])
   name: PostProcessors(IPostProcessor<TRequest, TResponse>[])
@@ -9714,6 +11106,119 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+  isExternal: true
+  name: Put(String, Expression<Func<TRequest, Object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Put(String, Expression<Func<TRequest, Object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put(System.String, System.Linq.Expressions.Expression<Func<TRequest, System.Object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Put(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Put(System.String, System.Linq.Expressions.Expression(Of Func(Of TRequest, System.Object)))
+  name.vb: Put(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Put
+    nameWithType: Endpoint<TRequest, TResponse>.Put
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})
+    name: Put
+    nameWithType: Endpoint(Of TRequest, TResponse).Put
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Put
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -10015,35 +11520,6 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.Endpoint`2.ScopedValidator
-  commentId: M:FastEndpoints.Endpoint`2.ScopedValidator
-  name: ScopedValidator()
-  nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ScopedValidator()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint<TRequest, TResponse>.ScopedValidator
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.ScopedValidator
-    name: ScopedValidator
-    nameWithType: Endpoint(Of TRequest, TResponse).ScopedValidator
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ScopedValidator
-  - name: (
-    nameWithType: (
-    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -10379,44 +11855,33 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  commentId: M:FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
-  isExternal: true
-  name: Validator<TValidator>(Boolean)
-  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>(Boolean)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>(System.Boolean)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(Boolean)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)(System.Boolean)
-  name.vb: Validator(Of TValidator)(Boolean)
+- uid: FastEndpoints.Endpoint`2.Validator``1
+  commentId: M:FastEndpoints.Endpoint`2.Validator``1
+  name: Validator<TValidator>()
+  nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)()
+  name.vb: Validator(Of TValidator)()
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  - uid: FastEndpoints.Endpoint`2.Validator``1
     name: Validator<TValidator>
     nameWithType: Endpoint<TRequest, TResponse>.Validator<TValidator>
     fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Validator<TValidator>
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Validator``1(System.Boolean)
+  - uid: FastEndpoints.Endpoint`2.Validator``1
     name: Validator(Of TValidator)
     nameWithType: Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
     fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Validator(Of TValidator)
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -10458,6 +11923,53 @@ references:
     name: Http
     nameWithType: Http
     fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.Verbs(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Verbs(System.String[])
+  isExternal: true
+  name: Verbs(String[])
+  nameWithType: Endpoint<TRequest, TResponse>.Verbs(String[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs(System.String[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(System.String())
+  name.vb: Verbs(String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Verbs(System.String[])
+    name: Verbs
+    nameWithType: Endpoint<TRequest, TResponse>.Verbs
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Verbs(System.String[])
+    name: Verbs
+    nameWithType: Endpoint(Of TRequest, TResponse).Verbs
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: ()
     nameWithType: ()
     fullName: ()

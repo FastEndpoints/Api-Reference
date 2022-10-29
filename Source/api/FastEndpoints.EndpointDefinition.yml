@@ -6,6 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.EndpointDefinition.AllowAnonymous(FastEndpoints.Http[])
+  - FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
   - FastEndpoints.EndpointDefinition.AllowAnyClaim
   - FastEndpoints.EndpointDefinition.AllowAnyPermission
   - FastEndpoints.EndpointDefinition.AllowedClaimTypes
@@ -30,20 +31,20 @@ items:
   - FastEndpoints.EndpointDefinition.EndpointType
   - FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32,System.Nullable{System.Int32})
   - FastEndpoints.EndpointDefinition.FormDataAllowed
+  - FastEndpoints.EndpointDefinition.MapperType
   - FastEndpoints.EndpointDefinition.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   - FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   - FastEndpoints.EndpointDefinition.Permissions(System.String[])
   - FastEndpoints.EndpointDefinition.PermissionsAll(System.String[])
   - FastEndpoints.EndpointDefinition.Policies(System.String[])
-  - FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.IGlobalPostProcessor[])
+  - FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
   - FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
-  - FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.IGlobalPreProcessor[])
+  - FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   - FastEndpoints.EndpointDefinition.ReqDtoType
   - FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   - FastEndpoints.EndpointDefinition.Roles(System.String[])
   - FastEndpoints.EndpointDefinition.RoutePrefixOverride(System.String)
   - FastEndpoints.EndpointDefinition.Routes
-  - FastEndpoints.EndpointDefinition.ScopedValidator
   - FastEndpoints.EndpointDefinition.SecurityPolicyName
   - FastEndpoints.EndpointDefinition.Summary(Action{FastEndpoints.EndpointSummary})
   - FastEndpoints.EndpointDefinition.Summary(FastEndpoints.EndpointSummary)
@@ -51,8 +52,7 @@ items:
   - FastEndpoints.EndpointDefinition.Tags(System.String[])
   - FastEndpoints.EndpointDefinition.Throttle(System.Int32,System.Double,System.String)
   - FastEndpoints.EndpointDefinition.ThrowIfValidationFails
-  - FastEndpoints.EndpointDefinition.Validator``1(System.Boolean)
-  - FastEndpoints.EndpointDefinition.ValidatorIsScoped
+  - FastEndpoints.EndpointDefinition.Validator``1
   - FastEndpoints.EndpointDefinition.ValidatorType
   - FastEndpoints.EndpointDefinition.Verbs
   - FastEndpoints.EndpointDefinition.Version
@@ -124,6 +124,37 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: FastEndpoints.EndpointDefinition.MapperType
+  commentId: P:FastEndpoints.EndpointDefinition.MapperType
+  id: MapperType
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: MapperType
+  nameWithType: EndpointDefinition.MapperType
+  fullName: FastEndpoints.EndpointDefinition.MapperType
+  type: Property
+  source:
+    id: MapperType
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 17
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public Type? MapperType { get; }
+    parameters: []
+    return:
+      type: System.Nullable{Type}
+    content.vb: Public ReadOnly Property MapperType As Type?
+  overload: FastEndpoints.EndpointDefinition.MapperType*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.ReqDtoType
   commentId: P:FastEndpoints.EndpointDefinition.ReqDtoType
   id: ReqDtoType
@@ -138,7 +169,7 @@ items:
   source:
     id: ReqDtoType
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -169,7 +200,7 @@ items:
   source:
     id: Routes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -180,6 +211,37 @@ items:
       type: System.String[]
     content.vb: Public ReadOnly Property Routes As String()
   overload: FastEndpoints.EndpointDefinition.Routes*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FastEndpoints.EndpointDefinition.SecurityPolicyName
+  commentId: P:FastEndpoints.EndpointDefinition.SecurityPolicyName
+  id: SecurityPolicyName
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: SecurityPolicyName
+  nameWithType: EndpointDefinition.SecurityPolicyName
+  fullName: FastEndpoints.EndpointDefinition.SecurityPolicyName
+  type: Property
+  source:
+    id: SecurityPolicyName
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 20
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public string SecurityPolicyName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property SecurityPolicyName As String
+  overload: FastEndpoints.EndpointDefinition.SecurityPolicyName*
   modifiers.csharp:
   - public
   - get
@@ -200,7 +262,7 @@ items:
   source:
     id: ValidatorType
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 19
+    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -231,48 +293,17 @@ items:
   source:
     id: Verbs
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Http[] Verbs { get; }
+    content: public string[] Verbs { get; }
     parameters: []
     return:
-      type: FastEndpoints.Http[]
-    content.vb: Public ReadOnly Property Verbs As Http()
+      type: System.String[]
+    content.vb: Public ReadOnly Property Verbs As String()
   overload: FastEndpoints.EndpointDefinition.Verbs*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: FastEndpoints.EndpointDefinition.SecurityPolicyName
-  commentId: P:FastEndpoints.EndpointDefinition.SecurityPolicyName
-  id: SecurityPolicyName
-  parent: FastEndpoints.EndpointDefinition
-  langs:
-  - csharp
-  - vb
-  name: SecurityPolicyName
-  nameWithType: EndpointDefinition.SecurityPolicyName
-  fullName: FastEndpoints.EndpointDefinition.SecurityPolicyName
-  type: Property
-  source:
-    id: SecurityPolicyName
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 21
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  syntax:
-    content: public string SecurityPolicyName { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public ReadOnly Property SecurityPolicyName As String
-  overload: FastEndpoints.EndpointDefinition.SecurityPolicyName*
   modifiers.csharp:
   - public
   - get
@@ -293,7 +324,7 @@ items:
   source:
     id: Version
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -324,7 +355,7 @@ items:
   source:
     id: AllowAnyPermission
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -355,7 +386,7 @@ items:
   source:
     id: AllowedPermissions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 26
+    startLine: 27
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -386,7 +417,7 @@ items:
   source:
     id: AllowAnyClaim
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -417,7 +448,7 @@ items:
   source:
     id: AllowedClaimTypes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -448,7 +479,7 @@ items:
   source:
     id: AllowedRoles
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -479,7 +510,7 @@ items:
   source:
     id: AnonymousVerbs
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -510,7 +541,7 @@ items:
   source:
     id: AuthSchemeNames
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -541,7 +572,7 @@ items:
   source:
     id: DontAutoTagEndpoints
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -572,7 +603,7 @@ items:
   source:
     id: DontBindFormData
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 33
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -603,7 +634,7 @@ items:
   source:
     id: DoNotCatchExceptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -634,7 +665,7 @@ items:
   source:
     id: EndpointSummary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 35
+    startLine: 36
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -665,7 +696,7 @@ items:
   source:
     id: EndpointTags
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -696,7 +727,7 @@ items:
   source:
     id: FormDataAllowed
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -727,7 +758,7 @@ items:
   source:
     id: OverriddenRoutePrefix
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 38
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -758,7 +789,7 @@ items:
   source:
     id: PreBuiltUserPolicies
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -789,7 +820,7 @@ items:
   source:
     id: ThrowIfValidationFails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -800,37 +831,6 @@ items:
       type: System.Boolean
     content.vb: Public ReadOnly Property ThrowIfValidationFails As Boolean
   overload: FastEndpoints.EndpointDefinition.ThrowIfValidationFails*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: FastEndpoints.EndpointDefinition.ValidatorIsScoped
-  commentId: P:FastEndpoints.EndpointDefinition.ValidatorIsScoped
-  id: ValidatorIsScoped
-  parent: FastEndpoints.EndpointDefinition
-  langs:
-  - csharp
-  - vb
-  name: ValidatorIsScoped
-  nameWithType: EndpointDefinition.ValidatorIsScoped
-  fullName: FastEndpoints.EndpointDefinition.ValidatorIsScoped
-  type: Property
-  source:
-    id: ValidatorIsScoped
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 41
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  syntax:
-    content: public bool ValidatorIsScoped { get; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public ReadOnly Property ValidatorIsScoped As Boolean
-  overload: FastEndpoints.EndpointDefinition.ValidatorIsScoped*
   modifiers.csharp:
   - public
   - get
@@ -851,7 +851,7 @@ items:
   source:
     id: AllowAnonymous
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 69
+    startLine: 72
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -871,6 +871,40 @@ items:
   - Public
   fullName.vb: FastEndpoints.EndpointDefinition.AllowAnonymous(FastEndpoints.Http())
   name.vb: AllowAnonymous(Http())
+- uid: FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
+  commentId: M:FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
+  id: AllowAnonymous(System.String[])
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: AllowAnonymous(String[])
+  nameWithType: EndpointDefinition.AllowAnonymous(String[])
+  fullName: FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
+  type: Method
+  source:
+    id: AllowAnonymous
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 83
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nallow unauthenticated requests to this endpoint for a specified set of http verbs.\n"
+  example: []
+  syntax:
+    content: public void AllowAnonymous(string[] verbs)
+    parameters:
+    - id: verbs
+      type: System.String[]
+    content.vb: Public Sub AllowAnonymous(verbs As String())
+  overload: FastEndpoints.EndpointDefinition.AllowAnonymous*
+  nameWithType.vb: EndpointDefinition.AllowAnonymous(String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.EndpointDefinition.AllowAnonymous(System.String())
+  name.vb: AllowAnonymous(String())
 - uid: FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
   commentId: M:FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
   id: AllowFileUploads(System.Boolean)
@@ -885,7 +919,7 @@ items:
   source:
     id: AllowFileUploads
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 84
+    startLine: 95
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -917,7 +951,7 @@ items:
   source:
     id: AllowFormData
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 93
+    startLine: 104
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -945,7 +979,7 @@ items:
   source:
     id: AuthSchemes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 100
+    startLine: 111
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -980,7 +1014,7 @@ items:
   source:
     id: Claims
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 111
+    startLine: 122
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1015,7 +1049,7 @@ items:
   source:
     id: ClaimsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 123
+    startLine: 134
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1050,7 +1084,7 @@ items:
   source:
     id: Description
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 138
+    startLine: 149
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1088,7 +1122,7 @@ items:
   source:
     id: DontAutoTag
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 148
+    startLine: 159
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1116,7 +1150,7 @@ items:
   source:
     id: DontCatchExceptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 155
+    startLine: 166
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1144,7 +1178,7 @@ items:
   source:
     id: DontThrowIfValidationFails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 161
+    startLine: 172
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1172,7 +1206,7 @@ items:
   source:
     id: EndpointVersion
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 168
+    startLine: 179
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1210,7 +1244,7 @@ items:
   source:
     id: Options
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 178
+    startLine: 189
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1245,7 +1279,7 @@ items:
   source:
     id: Permissions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 185
+    startLine: 196
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1280,7 +1314,7 @@ items:
   source:
     id: PermissionsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 197
+    startLine: 208
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1315,7 +1349,7 @@ items:
   source:
     id: Policies
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 209
+    startLine: 220
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1336,76 +1370,82 @@ items:
   - Public
   fullName.vb: FastEndpoints.EndpointDefinition.Policies(System.String())
   name.vb: Policies(String())
-- uid: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.IGlobalPostProcessor[])
-  commentId: M:FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.IGlobalPostProcessor[])
-  id: PostProcessors(FastEndpoints.IGlobalPostProcessor[])
+- uid: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
+  commentId: M:FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
+  id: PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
-  name: PostProcessors(IGlobalPostProcessor[])
-  nameWithType: EndpointDefinition.PostProcessors(IGlobalPostProcessor[])
-  fullName: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.IGlobalPostProcessor[])
+  name: PostProcessors(Order, IGlobalPostProcessor[])
+  nameWithType: EndpointDefinition.PostProcessors(Order, IGlobalPostProcessor[])
+  fullName: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPostProcessor[])
   type: Method
   source:
     id: PostProcessors
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 220
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nadds global post-processors to this endpoint definition. these post-processors are executed before the post-processors configured at the endpoint level.\n<p>HINT: these post-processors will be applied in addition to endpoint level post-processors if there&apos;s any</p>\n"
-  example: []
-  syntax:
-    content: public void PostProcessors(params IGlobalPostProcessor[] postProcessors)
-    parameters:
-    - id: postProcessors
-      type: FastEndpoints.IGlobalPostProcessor[]
-      description: the post-processors to add
-    content.vb: Public Sub PostProcessors(ParamArray postProcessors As IGlobalPostProcessor())
-  overload: FastEndpoints.EndpointDefinition.PostProcessors*
-  nameWithType.vb: EndpointDefinition.PostProcessors(IGlobalPostProcessor())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.IGlobalPostProcessor())
-  name.vb: PostProcessors(IGlobalPostProcessor())
-- uid: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.IGlobalPreProcessor[])
-  commentId: M:FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.IGlobalPreProcessor[])
-  id: PreProcessors(FastEndpoints.IGlobalPreProcessor[])
-  parent: FastEndpoints.EndpointDefinition
-  langs:
-  - csharp
-  - vb
-  name: PreProcessors(IGlobalPreProcessor[])
-  nameWithType: EndpointDefinition.PreProcessors(IGlobalPreProcessor[])
-  fullName: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.IGlobalPreProcessor[])
-  type: Method
-  source:
-    id: PreProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 231
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadds global pre-processors to this endpoint definition. these pre-processors are executed before the pre-processors configured at the endpoint level.\n<p>HINT: these pre-processors will be applied in addition to endpoint level pre-processors if there&apos;s any</p>\n"
+  summary: "\nadds global post-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.\n"
   example: []
   syntax:
-    content: public void PreProcessors(params IGlobalPreProcessor[] preProcessors)
+    content: public void PostProcessors(Order order, params IGlobalPostProcessor[] postProcessors)
     parameters:
-    - id: preProcessors
-      type: FastEndpoints.IGlobalPreProcessor[]
-      description: the pre-processors to add
-    content.vb: Public Sub PreProcessors(ParamArray preProcessors As IGlobalPreProcessor())
-  overload: FastEndpoints.EndpointDefinition.PreProcessors*
-  nameWithType.vb: EndpointDefinition.PreProcessors(IGlobalPreProcessor())
+    - id: order
+      type: FastEndpoints.Order
+      description: set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global post-processors should be executed before endpoint post-processors. <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+    - id: postProcessors
+      type: FastEndpoints.IGlobalPostProcessor[]
+      description: the post-processors to add
+    content.vb: Public Sub PostProcessors(order As Order, ParamArray postProcessors As IGlobalPostProcessor())
+  overload: FastEndpoints.EndpointDefinition.PostProcessors*
+  nameWithType.vb: EndpointDefinition.PostProcessors(Order, IGlobalPostProcessor())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.IGlobalPreProcessor())
-  name.vb: PreProcessors(IGlobalPreProcessor())
+  fullName.vb: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPostProcessor())
+  name.vb: PostProcessors(Order, IGlobalPostProcessor())
+- uid: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
+  commentId: M:FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
+  id: PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: PreProcessors(Order, IGlobalPreProcessor[])
+  nameWithType: EndpointDefinition.PreProcessors(Order, IGlobalPreProcessor[])
+  fullName: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPreProcessor[])
+  type: Method
+  source:
+    id: PreProcessors
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 253
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nadds global pre-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.\n"
+  example: []
+  syntax:
+    content: public void PreProcessors(Order order, params IGlobalPreProcessor[] preProcessors)
+    parameters:
+    - id: order
+      type: FastEndpoints.Order
+      description: set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global pre-processors should be executed before endpoint pre-processors. <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+    - id: preProcessors
+      type: FastEndpoints.IGlobalPreProcessor[]
+      description: the pre-processors to add
+    content.vb: Public Sub PreProcessors(order As Order, ParamArray preProcessors As IGlobalPreProcessor())
+  overload: FastEndpoints.EndpointDefinition.PreProcessors*
+  nameWithType.vb: EndpointDefinition.PreProcessors(Order, IGlobalPreProcessor())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPreProcessor())
+  name.vb: PreProcessors(Order, IGlobalPreProcessor())
 - uid: FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   id: ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
@@ -1420,7 +1460,7 @@ items:
   source:
     id: ResponseCache
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 245
+    startLine: 278
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1467,7 +1507,7 @@ items:
   source:
     id: Roles
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 262
+    startLine: 295
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1502,7 +1542,7 @@ items:
   source:
     id: RoutePrefixOverride
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 275
+    startLine: 308
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1516,32 +1556,6 @@ items:
       description: route prefix value
     content.vb: Public Sub RoutePrefixOverride(routePrefix As String)
   overload: FastEndpoints.EndpointDefinition.RoutePrefixOverride*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: FastEndpoints.EndpointDefinition.ScopedValidator
-  commentId: M:FastEndpoints.EndpointDefinition.ScopedValidator
-  id: ScopedValidator
-  parent: FastEndpoints.EndpointDefinition
-  langs:
-  - csharp
-  - vb
-  name: ScopedValidator()
-  nameWithType: EndpointDefinition.ScopedValidator()
-  fullName: FastEndpoints.EndpointDefinition.ScopedValidator()
-  type: Method
-  source:
-    id: ScopedValidator
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 278
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  syntax:
-    content: public void ScopedValidator()
-    content.vb: Public Sub ScopedValidator
-  overload: FastEndpoints.EndpointDefinition.ScopedValidator*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1560,7 +1574,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 285
+    startLine: 314
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1595,7 +1609,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 291
+    startLine: 320
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1604,7 +1618,6 @@ items:
   syntax:
     content: >-
       public void Summary<TRequest>(Action<EndpointSummary<TRequest>> endpointSummary)
-
           where TRequest : new()
     parameters:
     - id: endpointSummary
@@ -1635,7 +1648,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 302
+    startLine: 331
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1667,7 +1680,7 @@ items:
   source:
     id: Tags
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 310
+    startLine: 339
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1702,7 +1715,7 @@ items:
   source:
     id: Throttle
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 326
+    startLine: 355
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1726,21 +1739,21 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: FastEndpoints.EndpointDefinition.Validator``1(System.Boolean)
-  commentId: M:FastEndpoints.EndpointDefinition.Validator``1(System.Boolean)
-  id: Validator``1(System.Boolean)
+- uid: FastEndpoints.EndpointDefinition.Validator``1
+  commentId: M:FastEndpoints.EndpointDefinition.Validator``1
+  id: Validator``1
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
-  name: Validator<TValidator>(Boolean)
-  nameWithType: EndpointDefinition.Validator<TValidator>(Boolean)
-  fullName: FastEndpoints.EndpointDefinition.Validator<TValidator>(System.Boolean)
+  name: Validator<TValidator>()
+  nameWithType: EndpointDefinition.Validator<TValidator>()
+  fullName: FastEndpoints.EndpointDefinition.Validator<TValidator>()
   type: Method
   source:
     id: Validator
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 333
+    startLine: 361
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1748,25 +1761,20 @@ items:
   example: []
   syntax:
     content: >-
-      public void Validator<TValidator>(bool isScoped = false)
-
+      public void Validator<TValidator>()
           where TValidator : IValidator
-    parameters:
-    - id: isScoped
-      type: System.Boolean
-      description: set to true if you want to register the validator as scoped instead of singleton. which will enable constructor injection at the cost of performance.
     typeParameters:
     - id: TValidator
       description: the type of the validator
-    content.vb: Public Sub Validator(Of TValidator As IValidator)(isScoped As Boolean = False)
+    content.vb: Public Sub Validator(Of TValidator As IValidator)
   overload: FastEndpoints.EndpointDefinition.Validator*
-  nameWithType.vb: EndpointDefinition.Validator(Of TValidator)(Boolean)
+  nameWithType.vb: EndpointDefinition.Validator(Of TValidator)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Validator(Of TValidator)(System.Boolean)
-  name.vb: Validator(Of TValidator)(Boolean)
+  fullName.vb: FastEndpoints.EndpointDefinition.Validator(Of TValidator)()
+  name.vb: Validator(Of TValidator)()
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -2075,47 +2083,11 @@ references:
   name: Type
   nameWithType: Type
   fullName: Type
-- uid: FastEndpoints.EndpointDefinition.ReqDtoType*
-  commentId: Overload:FastEndpoints.EndpointDefinition.ReqDtoType
-  name: ReqDtoType
-  nameWithType: EndpointDefinition.ReqDtoType
-  fullName: FastEndpoints.EndpointDefinition.ReqDtoType
-- uid: FastEndpoints.EndpointDefinition.Routes*
-  commentId: Overload:FastEndpoints.EndpointDefinition.Routes
-  name: Routes
-  nameWithType: EndpointDefinition.Routes
-  fullName: FastEndpoints.EndpointDefinition.Routes
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
-  spec.csharp:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  spec.vb:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-- uid: FastEndpoints.EndpointDefinition.ValidatorType*
-  commentId: Overload:FastEndpoints.EndpointDefinition.ValidatorType
-  name: ValidatorType
-  nameWithType: EndpointDefinition.ValidatorType
-  fullName: FastEndpoints.EndpointDefinition.ValidatorType
+- uid: FastEndpoints.EndpointDefinition.MapperType*
+  commentId: Overload:FastEndpoints.EndpointDefinition.MapperType
+  name: MapperType
+  nameWithType: EndpointDefinition.MapperType
+  fullName: FastEndpoints.EndpointDefinition.MapperType
 - uid: System.Nullable{Type}
   commentId: T:System.Nullable{Type}
   parent: System
@@ -2199,32 +2171,39 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.EndpointDefinition.Verbs*
-  commentId: Overload:FastEndpoints.EndpointDefinition.Verbs
-  name: Verbs
-  nameWithType: EndpointDefinition.Verbs
-  fullName: FastEndpoints.EndpointDefinition.Verbs
-- uid: FastEndpoints.Http[]
+- uid: FastEndpoints.EndpointDefinition.ReqDtoType*
+  commentId: Overload:FastEndpoints.EndpointDefinition.ReqDtoType
+  name: ReqDtoType
+  nameWithType: EndpointDefinition.ReqDtoType
+  fullName: FastEndpoints.EndpointDefinition.ReqDtoType
+- uid: FastEndpoints.EndpointDefinition.Routes*
+  commentId: Overload:FastEndpoints.EndpointDefinition.Routes
+  name: Routes
+  nameWithType: EndpointDefinition.Routes
+  fullName: FastEndpoints.EndpointDefinition.Routes
+- uid: System.String[]
   isExternal: true
-  name: Http[]
-  nameWithType: Http[]
-  fullName: FastEndpoints.Http[]
-  nameWithType.vb: Http()
-  fullName.vb: FastEndpoints.Http()
-  name.vb: Http()
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
   spec.csharp:
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
   spec.vb:
-  - uid: FastEndpoints.Http
-    name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: ()
     nameWithType: ()
     fullName: ()
@@ -2240,6 +2219,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: FastEndpoints.EndpointDefinition.ValidatorType*
+  commentId: Overload:FastEndpoints.EndpointDefinition.ValidatorType
+  name: ValidatorType
+  nameWithType: EndpointDefinition.ValidatorType
+  fullName: FastEndpoints.EndpointDefinition.ValidatorType
+- uid: FastEndpoints.EndpointDefinition.Verbs*
+  commentId: Overload:FastEndpoints.EndpointDefinition.Verbs
+  name: Verbs
+  nameWithType: EndpointDefinition.Verbs
+  fullName: FastEndpoints.EndpointDefinition.Verbs
 - uid: FastEndpoints.EndpointDefinition.Version*
   commentId: Overload:FastEndpoints.EndpointDefinition.Version
   name: Version
@@ -2410,16 +2399,35 @@ references:
   name: ThrowIfValidationFails
   nameWithType: EndpointDefinition.ThrowIfValidationFails
   fullName: FastEndpoints.EndpointDefinition.ThrowIfValidationFails
-- uid: FastEndpoints.EndpointDefinition.ValidatorIsScoped*
-  commentId: Overload:FastEndpoints.EndpointDefinition.ValidatorIsScoped
-  name: ValidatorIsScoped
-  nameWithType: EndpointDefinition.ValidatorIsScoped
-  fullName: FastEndpoints.EndpointDefinition.ValidatorIsScoped
 - uid: FastEndpoints.EndpointDefinition.AllowAnonymous*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowAnonymous
   name: AllowAnonymous
   nameWithType: EndpointDefinition.AllowAnonymous
   fullName: FastEndpoints.EndpointDefinition.AllowAnonymous
+- uid: FastEndpoints.Http[]
+  isExternal: true
+  name: Http[]
+  nameWithType: Http[]
+  fullName: FastEndpoints.Http[]
+  nameWithType.vb: Http()
+  fullName.vb: FastEndpoints.Http()
+  name.vb: Http()
+  spec.csharp:
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: FastEndpoints.Http
+    name: Http
+    nameWithType: Http
+    fullName: FastEndpoints.Http
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: FastEndpoints.EndpointDefinition.AllowFileUploads*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowFileUploads
   name: AllowFileUploads
@@ -2622,11 +2630,23 @@ references:
   name: Policies
   nameWithType: EndpointDefinition.Policies
   fullName: FastEndpoints.EndpointDefinition.Policies
+- uid: FastEndpoints.Order.Before
+  commentId: F:FastEndpoints.Order.Before
+  isExternal: true
+- uid: FastEndpoints.Order.After
+  commentId: F:FastEndpoints.Order.After
+  isExternal: true
 - uid: FastEndpoints.EndpointDefinition.PostProcessors*
   commentId: Overload:FastEndpoints.EndpointDefinition.PostProcessors
   name: PostProcessors
   nameWithType: EndpointDefinition.PostProcessors
   fullName: FastEndpoints.EndpointDefinition.PostProcessors
+- uid: FastEndpoints.Order
+  commentId: T:FastEndpoints.Order
+  parent: FastEndpoints
+  name: Order
+  nameWithType: Order
+  fullName: FastEndpoints.Order
 - uid: FastEndpoints.IGlobalPostProcessor[]
   isExternal: true
   name: IGlobalPostProcessor[]
@@ -2708,11 +2728,6 @@ references:
   name: RoutePrefixOverride
   nameWithType: EndpointDefinition.RoutePrefixOverride
   fullName: FastEndpoints.EndpointDefinition.RoutePrefixOverride
-- uid: FastEndpoints.EndpointDefinition.ScopedValidator*
-  commentId: Overload:FastEndpoints.EndpointDefinition.ScopedValidator
-  name: ScopedValidator
-  nameWithType: EndpointDefinition.ScopedValidator
-  fullName: FastEndpoints.EndpointDefinition.ScopedValidator
 - uid: FastEndpoints.EndpointDefinition.Summary*
   commentId: Overload:FastEndpoints.EndpointDefinition.Summary
   name: Summary

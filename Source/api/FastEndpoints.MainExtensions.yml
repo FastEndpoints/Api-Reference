@@ -5,7 +5,7 @@ items:
   id: MainExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}},Microsoft.Extensions.Configuration.ConfigurationManager)
+  - FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
   - FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
   - FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   - FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
@@ -18,8 +18,8 @@ items:
   type: Class
   source:
     id: MainExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 19
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
+    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -45,54 +45,51 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}},Microsoft.Extensions.Configuration.ConfigurationManager)
-  commentId: M:FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}},Microsoft.Extensions.Configuration.ConfigurationManager)
-  id: AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}},Microsoft.Extensions.Configuration.ConfigurationManager)
+- uid: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
+  commentId: M:FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
+  id: AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
   isExtensionMethod: true
   parent: FastEndpoints.MainExtensions
   langs:
   - csharp
   - vb
-  name: AddFastEndpoints(IServiceCollection, Nullable<Action<EndpointDiscoveryOptions>>, ConfigurationManager)
-  nameWithType: MainExtensions.AddFastEndpoints(IServiceCollection, Nullable<Action<EndpointDiscoveryOptions>>, ConfigurationManager)
-  fullName: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable<Action<FastEndpoints.EndpointDiscoveryOptions>>, Microsoft.Extensions.Configuration.ConfigurationManager)
+  name: AddFastEndpoints(IServiceCollection, Nullable<Action<EndpointDiscoveryOptions>>)
+  nameWithType: MainExtensions.AddFastEndpoints(IServiceCollection, Nullable<Action<EndpointDiscoveryOptions>>)
+  fullName: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable<Action<FastEndpoints.EndpointDiscoveryOptions>>)
   type: Method
   source:
     id: AddFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 32
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
+    startLine: 30
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nadds the FastEndpoints services to the ASP.Net middleware pipeline\n"
   example: []
   syntax:
-    content: public static IServiceCollection AddFastEndpoints(this IServiceCollection services, Action<EndpointDiscoveryOptions>? options = null, ConfigurationManager config = null)
+    content: public static IServiceCollection AddFastEndpoints(this IServiceCollection services, Action<EndpointDiscoveryOptions>? options = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     - id: options
       type: System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}}
       description: optionally specify the endpoint discovery options
-    - id: config
-      type: Microsoft.Extensions.Configuration.ConfigurationManager
-      description: optionally specify the IConfiguration/ConfigurationManager if you need to access it from within endpoint Configure() method
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function AddFastEndpoints(services As IServiceCollection, options As Action(Of EndpointDiscoveryOptions)? = Nothing, config As ConfigurationManager = Nothing) As IServiceCollection
+      Public Shared Function AddFastEndpoints(services As IServiceCollection, options As Action(Of EndpointDiscoveryOptions)? = Nothing) As IServiceCollection
   overload: FastEndpoints.MainExtensions.AddFastEndpoints*
-  nameWithType.vb: MainExtensions.AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)), ConfigurationManager)
+  nameWithType.vb: MainExtensions.AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable(Of Action(Of FastEndpoints.EndpointDiscoveryOptions)), Microsoft.Extensions.Configuration.ConfigurationManager)
-  name.vb: AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)), ConfigurationManager)
+  fullName.vb: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable(Of Action(Of FastEndpoints.EndpointDiscoveryOptions)))
+  name.vb: AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)))
 - uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   id: UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
@@ -107,8 +104,8 @@ items:
   type: Method
   source:
     id: UseFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 55
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
+    startLine: 52
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -152,8 +149,8 @@ items:
   type: Method
   source:
     id: UseFastEndpointsMiddleware
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 64
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
+    startLine: 62
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -189,8 +186,8 @@ items:
   type: Method
   source:
     id: MapFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\MainExtensions.cs
-    startLine: 70
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
+    startLine: 68
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -591,13 +588,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.Extensions.Configuration.ConfigurationManager
-  commentId: T:Microsoft.Extensions.Configuration.ConfigurationManager
-  parent: Microsoft.Extensions.Configuration
-  isExternal: true
-  name: ConfigurationManager
-  nameWithType: ConfigurationManager
-  fullName: Microsoft.Extensions.Configuration.ConfigurationManager
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
@@ -643,12 +633,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.Extensions.Configuration
-  commentId: N:Microsoft.Extensions.Configuration
-  isExternal: true
-  name: Microsoft.Extensions.Configuration
-  nameWithType: Microsoft.Extensions.Configuration
-  fullName: Microsoft.Extensions.Configuration
 - uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
   isExternal: true

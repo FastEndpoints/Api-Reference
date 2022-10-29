@@ -28,12 +28,16 @@ items:
   summary: "\ncommon configuration for a group of endpoints can be specified by implementing this abstract class and calling <xref href=\"FastEndpoints.Group.Configure(System.String%2cAction%7bFastEndpoints.EndpointDefinition%7d)\" data-throw-if-not-resolved=\"false\"></xref> in the constructor.\n"
   example: []
   syntax:
-    content: public abstract class Group
-    content.vb: Public MustInherit Class Group
+    content: 'public abstract class Group : IServiceResolverBase'
+    content.vb: >-
+      Public MustInherit Class Group
+          Implements IServiceResolverBase
   inheritance:
   - System.Object
   derivedClasses:
   - FastEndpoints.SubGroup`1
+  implements:
+  - FastEndpoints.IServiceResolverBase
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -104,7 +108,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 36
+    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -113,7 +117,6 @@ items:
   syntax:
     content: >-
       public TService TryResolve<TService>()
-
           where TService : class
     typeParameters:
     - id: TService
@@ -122,6 +125,8 @@ items:
       type: '{TService}'
     content.vb: Public Function TryResolve(Of TService As Class) As TService
   overload: FastEndpoints.Group.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve``1
   nameWithType.vb: Group.TryResolve(Of TService)()
   modifiers.csharp:
   - public
@@ -143,7 +148,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 42
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -159,6 +164,8 @@ items:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
   overload: FastEndpoints.Group.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve(Type)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -177,7 +184,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 49
+    startLine: 36
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -186,7 +193,6 @@ items:
   syntax:
     content: >-
       public TService Resolve<TService>()
-
           where TService : class
     typeParameters:
     - id: TService
@@ -195,6 +201,8 @@ items:
       type: '{TService}'
     content.vb: Public Function Resolve(Of TService As Class) As TService
   overload: FastEndpoints.Group.Resolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve``1
   nameWithType.vb: Group.Resolve(Of TService)()
   modifiers.csharp:
   - public
@@ -216,7 +224,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 56
+    startLine: 38
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -232,6 +240,8 @@ items:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.Group.Resolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve(Type)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -250,11 +260,11 @@ items:
   source:
     id: CreateScope
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 67
+    startLine: 40
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
+  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
   example: []
   syntax:
     content: public IServiceScope CreateScope()
@@ -262,6 +272,8 @@ items:
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
     content.vb: Public Function CreateScope As IServiceScope
   overload: FastEndpoints.Group.CreateScope*
+  implements:
+  - FastEndpoints.IServiceResolverBase.CreateScope
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -357,6 +369,12 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: FastEndpoints.IServiceResolverBase
+  commentId: T:FastEndpoints.IServiceResolverBase
+  parent: FastEndpoints
+  name: IServiceResolverBase
+  nameWithType: IServiceResolverBase
+  fullName: FastEndpoints.IServiceResolverBase
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -750,6 +768,37 @@ references:
   name: TryResolve
   nameWithType: Group.TryResolve
   fullName: FastEndpoints.Group.TryResolve
+- uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1
+  parent: FastEndpoints.IServiceResolverBase
+  name: TryResolve<TService>()
+  nameWithType: IServiceResolverBase.TryResolve<TService>()
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>()
+  nameWithType.vb: IServiceResolverBase.TryResolve(Of TService)()
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)()
+  name.vb: TryResolve(Of TService)()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+    name: TryResolve<TService>
+    nameWithType: IServiceResolverBase.TryResolve<TService>
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+    name: TryResolve(Of TService)
+    nameWithType: IServiceResolverBase.TryResolve(Of TService)
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: '{TService}'
   commentId: '!:TService'
   definition: TService
@@ -760,6 +809,45 @@ references:
   name: TService
   nameWithType: TService
   fullName: TService
+- uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  name: TryResolve(Type)
+  nameWithType: IServiceResolverBase.TryResolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+    name: TryResolve
+    nameWithType: IServiceResolverBase.TryResolve
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+    name: TryResolve
+    nameWithType: IServiceResolverBase.TryResolve
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Type
   isExternal: true
   name: Type
@@ -770,11 +858,109 @@ references:
   name: Resolve
   nameWithType: Group.Resolve
   fullName: FastEndpoints.Group.Resolve
+- uid: FastEndpoints.IServiceResolverBase.Resolve``1
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1
+  parent: FastEndpoints.IServiceResolverBase
+  name: Resolve<TService>()
+  nameWithType: IServiceResolverBase.Resolve<TService>()
+  fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>()
+  nameWithType.vb: IServiceResolverBase.Resolve(Of TService)()
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(Of TService)()
+  name.vb: Resolve(Of TService)()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1
+    name: Resolve<TService>
+    nameWithType: IServiceResolverBase.Resolve<TService>
+    fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1
+    name: Resolve(Of TService)
+    nameWithType: IServiceResolverBase.Resolve(Of TService)
+    fullName: FastEndpoints.IServiceResolverBase.Resolve(Of TService)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(Type)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  name: Resolve(Type)
+  nameWithType: IServiceResolverBase.Resolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+    name: Resolve
+    nameWithType: IServiceResolverBase.Resolve
+    fullName: FastEndpoints.IServiceResolverBase.Resolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+    name: Resolve
+    nameWithType: IServiceResolverBase.Resolve
+    fullName: FastEndpoints.IServiceResolverBase.Resolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Group.CreateScope*
   commentId: Overload:FastEndpoints.Group.CreateScope
   name: CreateScope
   nameWithType: Group.CreateScope
   fullName: FastEndpoints.Group.CreateScope
+- uid: FastEndpoints.IServiceResolverBase.CreateScope
+  commentId: M:FastEndpoints.IServiceResolverBase.CreateScope
+  parent: FastEndpoints.IServiceResolverBase
+  name: CreateScope()
+  nameWithType: IServiceResolverBase.CreateScope()
+  fullName: FastEndpoints.IServiceResolverBase.CreateScope()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.CreateScope
+    name: CreateScope
+    nameWithType: IServiceResolverBase.CreateScope
+    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.CreateScope
+    name: CreateScope
+    nameWithType: IServiceResolverBase.CreateScope
+    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection.IServiceScope
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceScope
   parent: Microsoft.Extensions.DependencyInjection

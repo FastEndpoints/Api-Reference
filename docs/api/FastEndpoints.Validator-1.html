@@ -99,6 +99,7 @@
     <div><span class="xref">FluentValidation.IValidator</span></div>
     <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">FluentValidation.IValidationRule</span>&gt;</div>
     <div><span class="xref">System.Collections.IEnumerable</span></div>
+    <div><a class="xref" href="FastEndpoints.IServiceResolverBase.html">IServiceResolverBase</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -227,7 +228,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Validator_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Validator&lt;TRequest&gt; : AbstractValidator&lt;TRequest&gt;, IValidator&lt;TRequest&gt;, IValidator, IEnumerable&lt;IValidationRule&gt;, IEnumerable where TRequest : class</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Validator&lt;TRequest&gt; : AbstractValidator&lt;TRequest&gt;, IValidator&lt;TRequest&gt;, IValidator, IEnumerable&lt;IValidationRule&gt;, IEnumerable, IServiceResolverBase where TRequest : class</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -251,7 +252,7 @@
   
   <a id="FastEndpoints_Validator_1_CreateScope_" data-uid="FastEndpoints.Validator`1.CreateScope*"></a>
   <h4 id="FastEndpoints_Validator_1_CreateScope" data-uid="FastEndpoints.Validator`1.CreateScope">CreateScope()</h4>
-  <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.</p>
+  <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.</p>
 <p>
 <pre><code>using var scope = CreateScope();
 var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
@@ -331,7 +332,6 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TService Resolve&lt;TService&gt;()
-
     where TService : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -419,7 +419,6 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TService TryResolve&lt;TService&gt;()
-
     where TService : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -465,6 +464,9 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   </div>
   <div>
       <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IServiceResolverBase.html">IServiceResolverBase</a>
   </div>
 </article>
           </div>

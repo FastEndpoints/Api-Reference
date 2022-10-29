@@ -101,6 +101,8 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="FastEndpoints.IEndpoint.html">IEndpoint</a></div>
+    <div><a class="xref" href="FastEndpoints.IEventBus.html">IEventBus</a></div>
+    <div><a class="xref" href="FastEndpoints.IServiceResolverBase.html">IServiceResolverBase</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -148,7 +150,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Endpoint_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse&gt; : BaseEndpoint, IEndpoint where TRequest : new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse&gt; : BaseEndpoint, IEndpoint, IEventBus, IServiceResolverBase where TRequest : new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -554,6 +556,35 @@ i.e. if the endpoint is listening to POST, PUT &amp; PATCH and you specify Allow
   </table>
   
   
+  <a id="FastEndpoints_Endpoint_2_AllowAnonymous_" data-uid="FastEndpoints.Endpoint`2.AllowAnonymous*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_AllowAnonymous_System_String___" data-uid="FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])">AllowAnonymous(String[])</h4>
+  <div class="markdown level1 summary"><p>allow unauthenticated requests to this endpoint for a specified set of http verbs.
+i.e. if the endpoint is listening to POST, PUT &amp; PATCH and you specify AllowAnonymous(Http.POST), then only PUT &amp; PATCH will require authentication.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AllowAnonymous(string[] verbs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">verbs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FastEndpoints_Endpoint_2_AllowFileUploads_" data-uid="FastEndpoints.Endpoint`2.AllowFileUploads*"></a>
   <h4 id="FastEndpoints_Endpoint_2_AllowFileUploads_System_Boolean_" data-uid="FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)">AllowFileUploads(Boolean)</h4>
   <div class="markdown level1 summary"><p>enable file uploads with multipart/form-data content type</p>
@@ -684,7 +715,7 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   
   <a id="FastEndpoints_Endpoint_2_CreateScope_" data-uid="FastEndpoints.Endpoint`2.CreateScope*"></a>
   <h4 id="FastEndpoints_Endpoint_2_CreateScope" data-uid="FastEndpoints.Endpoint`2.CreateScope">CreateScope()</h4>
-  <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.</p>
+  <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.</p>
 <p>
 <pre><code>using var scope = CreateScope();
 var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
@@ -707,6 +738,43 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
       <tr>
         <td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceScope</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Delete_" data-uid="FastEndpoints.Endpoint`2.Delete*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Delete_System_String_System_Linq_Expressions_Expression_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})">Delete(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify a DELETE route pattern using a replacement expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Delete(string routePattern, Expression&lt;Func&lt;TRequest, object&gt;&gt; members)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">routePattern</span></td>
+        <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
+the replacement words do not have to match the request dto property names.</p>
+<p><code>/invoice/{@id}/soft-delete</code></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">members</span></td>
+        <td><p><code>r =&gt; new { r.InvoiceID }</code></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -865,6 +933,43 @@ all exceptions will be thrown and it would be the responsibility of your execept
   
   
   <a id="FastEndpoints_Endpoint_2_Get_" data-uid="FastEndpoints.Endpoint`2.Get*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Get_System_String_System_Linq_Expressions_Expression_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})">Get(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify a GET route pattern using a replacement expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Get(string routePattern, Expression&lt;Func&lt;TRequest, object&gt;&gt; members)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">routePattern</span></td>
+        <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
+the replacement words do not have to match the request dto property names.</p>
+<p><code>/invoice/{@id}/print/{@pageNum}</code></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">members</span></td>
+        <td><p><code>r =&gt; new { r.InvoiceID, r.PageNumber }</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Get_" data-uid="FastEndpoints.Endpoint`2.Get*"></a>
   <h4 id="FastEndpoints_Endpoint_2_Get_System_String___" data-uid="FastEndpoints.Endpoint`2.Get(System.String[])">Get(String[])</h4>
   <div class="markdown level1 summary"><p>specify to listen for GET requests on one or more routes.</p>
 </div>
@@ -903,7 +1008,6 @@ WARNING: this method can only be called after the endpoint route has been specif
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected sealed override void Group&lt;TEndpointGroup&gt;()
-
     where TEndpointGroup : Group, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -971,6 +1075,43 @@ WARNING: this method can only be called after the endpoint route has been specif
       <tr>
         <td><span class="xref">Task</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Head_" data-uid="FastEndpoints.Endpoint`2.Head*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Head_System_String_System_Linq_Expressions_Expression_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})">Head(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify a HEAD route pattern using a replacement expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Head(string routePattern, Expression&lt;Func&lt;TRequest, object&gt;&gt; members)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">routePattern</span></td>
+        <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
+the replacement words do not have to match the request dto property names.</p>
+<p><code>/invoice/{@id}/print/{@pageNum}</code></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">members</span></td>
+        <td><p><code>r =&gt; new { r.InvoiceID, r.PageNumber }</code></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1417,6 +1558,43 @@ WARNING: this method can only be called after the endpoint route has been specif
   
   
   <a id="FastEndpoints_Endpoint_2_Patch_" data-uid="FastEndpoints.Endpoint`2.Patch*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Patch_System_String_System_Linq_Expressions_Expression_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})">Patch(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify a PATCH route pattern using a replacement expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Patch(string routePattern, Expression&lt;Func&lt;TRequest, object&gt;&gt; members)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">routePattern</span></td>
+        <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
+the replacement words do not have to match the request dto property names.</p>
+<p><code>/invoice/{@id}</code></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">members</span></td>
+        <td><p><code>r =&gt; new { r.InvoiceID }</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Patch_" data-uid="FastEndpoints.Endpoint`2.Patch*"></a>
   <h4 id="FastEndpoints_Endpoint_2_Patch_System_String___" data-uid="FastEndpoints.Endpoint`2.Patch(System.String[])">Patch(String[])</h4>
   <div class="markdown level1 summary"><p>specify to listen for PATCH requests on one or more routes.</p>
 </div>
@@ -1532,6 +1710,43 @@ WARNING: this method can only be called after the endpoint route has been specif
   
   
   <a id="FastEndpoints_Endpoint_2_Post_" data-uid="FastEndpoints.Endpoint`2.Post*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Post_System_String_System_Linq_Expressions_Expression_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})">Post(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify a POST route pattern using a replacement expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Post(string routePattern, Expression&lt;Func&lt;TRequest, object&gt;&gt; members)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">routePattern</span></td>
+        <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
+the replacement words do not have to match the request dto property names.</p>
+<p><code>/invoice/{@id}/page/{@pageNum}</code></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">members</span></td>
+        <td><p><code>r =&gt; new { r.InvoiceID, r.PageNumber }</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Post_" data-uid="FastEndpoints.Endpoint`2.Post*"></a>
   <h4 id="FastEndpoints_Endpoint_2_Post_System_String___" data-uid="FastEndpoints.Endpoint`2.Post(System.String[])">Post(String[])</h4>
   <div class="markdown level1 summary"><p>specify to listen for POST requests on one or more routes.</p>
 </div>
@@ -1619,14 +1834,12 @@ WARNING: this method can only be called after the endpoint route has been specif
   
   <a id="FastEndpoints_Endpoint_2_PublishAsync_" data-uid="FastEndpoints.Endpoint`2.PublishAsync*"></a>
   <h4 id="FastEndpoints_Endpoint_2_PublishAsync__1___0_FastEndpoints_Mode_CancellationToken_" data-uid="FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)">PublishAsync&lt;TEvent&gt;(TEvent, Mode, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>publish the given model/dto to all the subscribers of the event notification</p>
+  <div class="markdown level1 summary"><p>publishes a given event model to all subscribers registered to handle the that type of event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task PublishAsync&lt;TEvent&gt;(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
-
-    where TEvent : class</code></pre>
+    <pre><code class="lang-csharp hljs">public Task PublishAsync&lt;TEvent&gt;(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1670,9 +1883,9 @@ WARNING: this method can only be called after the endpoint route has been specif
       <tr>
         <td><span class="xref">Task</span></td>
         <td><p>a Task that matches the wait mode specified.
-Mode.WaitForNone returns an already completed Task (fire and forget).
-Mode.WaitForAny returns a Task that will complete when any of the subscribers complete their work.
-Mode.WaitForAll return a Task that will complete only when all of the subscribers complete their work.</p>
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForNone">WaitForNone</a> returns an already completed Task (fire and forget).
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAny">WaitForAny</a> returns a Task that will complete when any of the subscribers complete their work.
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAll">WaitForAll</a> return a Task that will complete only when all of the subscribers complete their work.</p>
 </td>
       </tr>
     </tbody>
@@ -1688,7 +1901,45 @@ Mode.WaitForAll return a Task that will complete only when all of the subscriber
     <tbody>
       <tr>
         <td><span class="parametername">TEvent</span></td>
-        <td></td>
+        <td><p>the type of the event model</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Put_" data-uid="FastEndpoints.Endpoint`2.Put*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Put_System_String_System_Linq_Expressions_Expression_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Put(System.String,System.Linq.Expressions.Expression{Func{`0,System.Object}})">Put(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify a PUT route pattern using a replacement expression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Put(string routePattern, Expression&lt;Func&lt;TRequest, object&gt;&gt; members)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">routePattern</span></td>
+        <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
+the replacement words do not have to match the request dto property names.</p>
+<p><code>/invoice/{@id}/page/{@pageNum}</code></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">members</span></td>
+        <td><p><code>r =&gt; new { r.InvoiceID, r.PageNumber }</code></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1872,7 +2123,6 @@ by calling this method, you're completely bypassing the built-in model binding a
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TService Resolve&lt;TService&gt;()
-
     where TService : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -2117,17 +2367,6 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   </table>
   
   
-  <a id="FastEndpoints_Endpoint_2_ScopedValidator_" data-uid="FastEndpoints.Endpoint`2.ScopedValidator*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_ScopedValidator" data-uid="FastEndpoints.Endpoint`2.ScopedValidator">ScopedValidator()</h4>
-  <div class="markdown level1 summary"><p>register the validator for this endpoint as scoped instead of singleton. which will enable constructor injection at the cost of performance.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void ScopedValidator()</code></pre>
-  </div>
-  
-  
   <a id="FastEndpoints_Endpoint_2_SendAsync_" data-uid="FastEndpoints.Endpoint`2.SendAsync*"></a>
   <h4 id="FastEndpoints_Endpoint_2_SendAsync__1_System_Int32_CancellationToken_" data-uid="FastEndpoints.Endpoint`2.SendAsync(`1,System.Int32,CancellationToken)">SendAsync(TResponse, Int32, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>send the supplied response dto serialized as json to the client.</p>
@@ -2336,7 +2575,6 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected Task SendCreatedAtAsync&lt;TEndpoint&gt;(object routeValues, TResponse responseBody, Http? verb = null, int? routeNumber = null, bool generateAbsoluteUrl = false, CancellationToken cancellation = null)
-
     where TEndpoint : IEndpoint</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3185,7 +3423,6 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected void SerializerContext&lt;TContext&gt;(TContext serializerContext)
-
     where TContext : JsonSerializerContext</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3510,7 +3747,6 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TService TryResolve&lt;TService&gt;()
-
     where TService : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -3547,35 +3783,16 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
   
   
   <a id="FastEndpoints_Endpoint_2_Validator_" data-uid="FastEndpoints.Endpoint`2.Validator*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_Validator__1_System_Boolean_" data-uid="FastEndpoints.Endpoint`2.Validator``1(System.Boolean)">Validator&lt;TValidator&gt;(Boolean)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_Validator__1" data-uid="FastEndpoints.Endpoint`2.Validator``1">Validator&lt;TValidator&gt;()</h4>
   <div class="markdown level1 summary"><p>specify the validator that should be used for this endpoint.</p>
 <p>TIP: you only need to call this method if you have more than one validator for the same request dto in the solution or if you just want to be explicit about what validator is used by the endpoint.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Validator&lt;TValidator&gt;(bool isScoped = false)
-
+    <pre><code class="lang-csharp hljs">protected void Validator&lt;TValidator&gt;()
     where TValidator : IValidator</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">isScoped</span></td>
-        <td><p>set to true if you want to register the validator as scoped instead of singleton. which will enable constructor injection at the cost of performance.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -3601,7 +3818,7 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed override void Verbs(params Http[] methods)</code></pre>
+    <pre><code class="lang-csharp hljs">protected void Verbs(params Http[] methods)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3620,8 +3837,36 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="FastEndpoints_Endpoint_2_Verbs_" data-uid="FastEndpoints.Endpoint`2.Verbs*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Verbs_System_String___" data-uid="FastEndpoints.Endpoint`2.Verbs(System.String[])">Verbs(String[])</h4>
+  <div class="markdown level1 summary"><p>specify one or more http method verbs this endpoint should be accepting requests for</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed override void Verbs(params string[] methods)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">methods</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Verbs_FastEndpoints_Http___">BaseEndpoint.Verbs(Http[])</a></div>
+  <div><a class="xref" href="FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Verbs_System_String___">BaseEndpoint.Verbs(String[])</a></div>
   
   
   <a id="FastEndpoints_Endpoint_2_Version_" data-uid="FastEndpoints.Endpoint`2.Version*"></a>
@@ -3660,6 +3905,12 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="FastEndpoints.IEndpoint.html">IEndpoint</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IEventBus.html">IEventBus</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IServiceResolverBase.html">IServiceResolverBase</a>
   </div>
 </article>
           </div>

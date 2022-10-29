@@ -19,24 +19,22 @@ items:
   type: Class
   source:
     id: Validator
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\Validator.cs
-    startLine: 11
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Validation\Validator.cs
+    startLine: 10
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\ninherit from this base class to define your dto validators\n<p>HINT: validators are registered as singletons. i.e. the same validator instance is used to validate each request for best performance. hance, do not maintain state in your validators.</p>\n"
   example: []
   syntax:
-    content: 'public abstract class Validator<TRequest> : AbstractValidator<TRequest>, IValidator<TRequest>, IValidator, IEnumerable<IValidationRule>, IEnumerable where TRequest : class'
+    content: 'public abstract class Validator<TRequest> : AbstractValidator<TRequest>, IValidator<TRequest>, IValidator, IEnumerable<IValidationRule>, IEnumerable, IServiceResolverBase where TRequest : class'
     typeParameters:
     - id: TRequest
       description: the type of the request dto
     content.vb: >-
       Public MustInherit Class Validator(Of TRequest As Class)
-
           Inherits AbstractValidator(Of TRequest)
-
-          Implements IValidator(Of TRequest), IValidator, IEnumerable(Of IValidationRule), IEnumerable
+          Implements IValidator(Of TRequest), IValidator, IEnumerable(Of IValidationRule), IEnumerable, IServiceResolverBase
   inheritance:
   - System.Object
   - FluentValidation.AbstractValidator{{TRequest}}
@@ -45,6 +43,7 @@ items:
   - FluentValidation.IValidator
   - System.Collections.Generic.IEnumerable{FluentValidation.IValidationRule}
   - System.Collections.IEnumerable
+  - FastEndpoints.IServiceResolverBase
   inheritedMembers:
   - FluentValidation.AbstractValidator{{TRequest}}.FluentValidation#IValidator#Validate(FluentValidation.IValidationContext)
   - FluentValidation.AbstractValidator{{TRequest}}.FluentValidation#IValidator#ValidateAsync(FluentValidation.IValidationContext,System.Threading.CancellationToken)
@@ -110,8 +109,8 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\Validator.cs
-    startLine: 20
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Validation\Validator.cs
+    startLine: 13
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -120,7 +119,6 @@ items:
   syntax:
     content: >-
       public TService TryResolve<TService>()
-
           where TService : class
     typeParameters:
     - id: TService
@@ -129,6 +127,8 @@ items:
       type: '{TService}'
     content.vb: Public Function TryResolve(Of TService As Class) As TService
   overload: FastEndpoints.Validator`1.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve``1
   nameWithType.vb: Validator(Of TRequest).TryResolve(Of TService)()
   modifiers.csharp:
   - public
@@ -149,8 +149,8 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\Validator.cs
-    startLine: 26
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Validation\Validator.cs
+    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -166,6 +166,8 @@ items:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
   overload: FastEndpoints.Validator`1.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve(Type)
   nameWithType.vb: Validator(Of TRequest).TryResolve(Type)
   modifiers.csharp:
   - public
@@ -185,8 +187,8 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\Validator.cs
-    startLine: 33
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Validation\Validator.cs
+    startLine: 17
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -195,7 +197,6 @@ items:
   syntax:
     content: >-
       public TService Resolve<TService>()
-
           where TService : class
     typeParameters:
     - id: TService
@@ -204,6 +205,8 @@ items:
       type: '{TService}'
     content.vb: Public Function Resolve(Of TService As Class) As TService
   overload: FastEndpoints.Validator`1.Resolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve``1
   nameWithType.vb: Validator(Of TRequest).Resolve(Of TService)()
   modifiers.csharp:
   - public
@@ -224,8 +227,8 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\Validator.cs
-    startLine: 40
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Validation\Validator.cs
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -241,6 +244,8 @@ items:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.Validator`1.Resolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve(Type)
   nameWithType.vb: Validator(Of TRequest).Resolve(Type)
   modifiers.csharp:
   - public
@@ -260,12 +265,12 @@ items:
   type: Method
   source:
     id: CreateScope
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\Validator.cs
-    startLine: 51
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Validation\Validator.cs
+    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
+  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
   example: []
   syntax:
     content: public IServiceScope CreateScope()
@@ -273,6 +278,8 @@ items:
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
     content.vb: Public Function CreateScope As IServiceScope
   overload: FastEndpoints.Validator`1.CreateScope*
+  implements:
+  - FastEndpoints.IServiceResolverBase.CreateScope
   nameWithType.vb: Validator(Of TRequest).CreateScope()
   modifiers.csharp:
   - public
@@ -430,6 +437,12 @@ references:
   name: IEnumerable
   nameWithType: IEnumerable
   fullName: System.Collections.IEnumerable
+- uid: FastEndpoints.IServiceResolverBase
+  commentId: T:FastEndpoints.IServiceResolverBase
+  parent: FastEndpoints
+  name: IServiceResolverBase
+  nameWithType: IServiceResolverBase
+  fullName: FastEndpoints.IServiceResolverBase
 - uid: FluentValidation.AbstractValidator{{TRequest}}.FluentValidation#IValidator#Validate(FluentValidation.IValidationContext)
   commentId: M:FluentValidation.AbstractValidator{`0}.FluentValidation#IValidator#Validate(FluentValidation.IValidationContext)
   parent: FluentValidation.AbstractValidator{{TRequest}}
@@ -6410,6 +6423,37 @@ references:
   fullName: FastEndpoints.Validator<TRequest>.TryResolve
   nameWithType.vb: Validator(Of TRequest).TryResolve
   fullName.vb: FastEndpoints.Validator(Of TRequest).TryResolve
+- uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1
+  parent: FastEndpoints.IServiceResolverBase
+  name: TryResolve<TService>()
+  nameWithType: IServiceResolverBase.TryResolve<TService>()
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>()
+  nameWithType.vb: IServiceResolverBase.TryResolve(Of TService)()
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)()
+  name.vb: TryResolve(Of TService)()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+    name: TryResolve<TService>
+    nameWithType: IServiceResolverBase.TryResolve<TService>
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
+    name: TryResolve(Of TService)
+    nameWithType: IServiceResolverBase.TryResolve(Of TService)
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: '{TService}'
   commentId: '!:TService'
   definition: TService
@@ -6420,6 +6464,45 @@ references:
   name: TService
   nameWithType: TService
   fullName: TService
+- uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  name: TryResolve(Type)
+  nameWithType: IServiceResolverBase.TryResolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+    name: TryResolve
+    nameWithType: IServiceResolverBase.TryResolve
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+    name: TryResolve
+    nameWithType: IServiceResolverBase.TryResolve
+    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Type
   isExternal: true
   name: Type
@@ -6432,6 +6515,76 @@ references:
   fullName: FastEndpoints.Validator<TRequest>.Resolve
   nameWithType.vb: Validator(Of TRequest).Resolve
   fullName.vb: FastEndpoints.Validator(Of TRequest).Resolve
+- uid: FastEndpoints.IServiceResolverBase.Resolve``1
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1
+  parent: FastEndpoints.IServiceResolverBase
+  name: Resolve<TService>()
+  nameWithType: IServiceResolverBase.Resolve<TService>()
+  fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>()
+  nameWithType.vb: IServiceResolverBase.Resolve(Of TService)()
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(Of TService)()
+  name.vb: Resolve(Of TService)()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1
+    name: Resolve<TService>
+    nameWithType: IServiceResolverBase.Resolve<TService>
+    fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1
+    name: Resolve(Of TService)
+    nameWithType: IServiceResolverBase.Resolve(Of TService)
+    fullName: FastEndpoints.IServiceResolverBase.Resolve(Of TService)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(Type)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  name: Resolve(Type)
+  nameWithType: IServiceResolverBase.Resolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+    name: Resolve
+    nameWithType: IServiceResolverBase.Resolve
+    fullName: FastEndpoints.IServiceResolverBase.Resolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
+    name: Resolve
+    nameWithType: IServiceResolverBase.Resolve
+    fullName: FastEndpoints.IServiceResolverBase.Resolve
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Type
+    name: Type
+    nameWithType: Type
+    fullName: Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Validator`1.CreateScope*
   commentId: Overload:FastEndpoints.Validator`1.CreateScope
   name: CreateScope
@@ -6439,6 +6592,34 @@ references:
   fullName: FastEndpoints.Validator<TRequest>.CreateScope
   nameWithType.vb: Validator(Of TRequest).CreateScope
   fullName.vb: FastEndpoints.Validator(Of TRequest).CreateScope
+- uid: FastEndpoints.IServiceResolverBase.CreateScope
+  commentId: M:FastEndpoints.IServiceResolverBase.CreateScope
+  parent: FastEndpoints.IServiceResolverBase
+  name: CreateScope()
+  nameWithType: IServiceResolverBase.CreateScope()
+  fullName: FastEndpoints.IServiceResolverBase.CreateScope()
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.CreateScope
+    name: CreateScope
+    nameWithType: IServiceResolverBase.CreateScope
+    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.CreateScope
+    name: CreateScope
+    nameWithType: IServiceResolverBase.CreateScope
+    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection.IServiceScope
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceScope
   parent: Microsoft.Extensions.DependencyInjection

@@ -15,18 +15,17 @@ items:
   type: Class
   source:
     id: EndpointFactory
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointFactory.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Factory\EndpointFactory.cs
     startLine: 9
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe default endpoint factory. it resolves the <xref href=\"FastEndpoints.EndpointDefinition.EndpointType\" data-throw-if-not-resolved=\"false\"></xref> from the\n<xref href=\"Microsoft.AspNetCore.Http.HttpContext.RequestServices\" data-throw-if-not-resolved=\"false\"></xref>. both constructor dependencies and property dependencies are injected.\n"
+  summary: "\nthe default endpoint factory.\nit creates an instance of the endpoint and injects both constructor and property dependencies.\n"
   example: []
   syntax:
     content: 'public class EndpointFactory : IEndpointFactory'
     content.vb: >-
       Public Class EndpointFactory
-
           Implements IEndpointFactory
   inheritance:
   - System.Object
@@ -59,18 +58,22 @@ items:
   type: Method
   source:
     id: Create
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointFactory.cs
-    startLine: 11
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Factory\EndpointFactory.cs
+    startLine: 16
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nthis method is called per each request.\n"
+  example: []
   syntax:
     content: public BaseEndpoint Create(EndpointDefinition definition, HttpContext ctx)
     parameters:
     - id: definition
       type: FastEndpoints.EndpointDefinition
+      description: the endpoint definition
     - id: ctx
       type: Microsoft.AspNetCore.Http.HttpContext
+      description: the http context for the current request
     return:
       type: FastEndpoints.BaseEndpoint
     content.vb: Public Function Create(definition As EndpointDefinition, ctx As HttpContext) As BaseEndpoint
@@ -82,12 +85,6 @@ items:
   modifiers.vb:
   - Public
 references:
-- uid: FastEndpoints.EndpointDefinition.EndpointType
-  commentId: P:FastEndpoints.EndpointDefinition.EndpointType
-  isExternal: true
-- uid: Microsoft.AspNetCore.Http.HttpContext.RequestServices
-  commentId: P:Microsoft.AspNetCore.Http.HttpContext.RequestServices
-  isExternal: true
 - uid: FastEndpoints
   commentId: N:FastEndpoints
   name: FastEndpoints

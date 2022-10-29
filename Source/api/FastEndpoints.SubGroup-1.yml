@@ -16,24 +16,26 @@ items:
   source:
     id: SubGroup
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 75
+    startLine: 47
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\ncommon configuration for a sub group of endpoints can be specified by implementing this abstract class and calling <xref href=\"FastEndpoints.SubGroup%601.Configure(System.String%2cAction%7bFastEndpoints.EndpointDefinition%7d)\" data-throw-if-not-resolved=\"false\"></xref> in the constructor.\n"
   example: []
   syntax:
-    content: 'public abstract class SubGroup<TParent> : Group where TParent : Group, new()'
+    content: 'public abstract class SubGroup<TParent> : Group, IServiceResolverBase where TParent : Group, new()'
     typeParameters:
     - id: TParent
       description: ''
     content.vb: >-
       Public MustInherit Class SubGroup(Of TParent As {Group, New})
-
           Inherits Group
+          Implements IServiceResolverBase
   inheritance:
   - System.Object
   - FastEndpoints.Group
+  implements:
+  - FastEndpoints.IServiceResolverBase
   inheritedMembers:
   - FastEndpoints.Group.TryResolve``1
   - FastEndpoints.Group.TryResolve(Type)
@@ -72,18 +74,21 @@ items:
   source:
     id: Configure
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\Group.cs
-    startLine: 78
+    startLine: 50
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\ncall this method in the constructor in order to configure the endpoint group.\n"
   example: []
   syntax:
     content: protected sealed override void Configure(string routePrefix, Action<EndpointDefinition> ep)
     parameters:
     - id: routePrefix
       type: System.String
+      description: the route prefix for the group
     - id: ep
       type: Action{FastEndpoints.EndpointDefinition}
+      description: the configuration action to be performed on the <xref href="FastEndpoints.EndpointDefinition" data-throw-if-not-resolved="false"></xref>
     content.vb: Protected NotOverridable Overrides Sub Configure(routePrefix As String, ep As Action(Of EndpointDefinition))
   overridden: FastEndpoints.Group.Configure(System.String,Action{FastEndpoints.EndpointDefinition})
   overload: FastEndpoints.SubGroup`1.Configure*
@@ -120,6 +125,12 @@ references:
   name: Group
   nameWithType: Group
   fullName: FastEndpoints.Group
+- uid: FastEndpoints.IServiceResolverBase
+  commentId: T:FastEndpoints.IServiceResolverBase
+  parent: FastEndpoints
+  name: IServiceResolverBase
+  nameWithType: IServiceResolverBase
+  fullName: FastEndpoints.IServiceResolverBase
 - uid: FastEndpoints.Group.TryResolve``1
   commentId: M:FastEndpoints.Group.TryResolve``1
   parent: FastEndpoints.Group

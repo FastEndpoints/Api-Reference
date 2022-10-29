@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.IEventBus
+  commentId: T:FastEndpoints.IEventBus
+  id: IEventBus
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IEventBus
+  nameWithType: IEventBus
+  fullName: FastEndpoints.IEventBus
+  type: Interface
+  source:
+    id: IEventBus
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\IEventBus.cs
+    startLine: 5
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ninterface to be implemented by an event bus\n"
+  example: []
+  syntax:
+    content: public interface IEventBus
+    content.vb: Public Interface IEventBus
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  commentId: M:FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  id: PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  parent: FastEndpoints.IEventBus
+  langs:
+  - csharp
+  - vb
+  name: PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
+  nameWithType: IEventBus.PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
+  fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>(TEvent, FastEndpoints.Mode, CancellationToken)
+  type: Method
+  source:
+    id: PublishAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\IEventBus.cs
+    startLine: 18
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\npublishes a given event model to all subscribers registered to handle the that type of event.\n"
+  example: []
+  syntax:
+    content: Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
+    parameters:
+    - id: eventModel
+      type: '{TEvent}'
+      description: the notification event model/dto to publish
+    - id: waitMode
+      type: FastEndpoints.Mode
+      description: specify whether to wait for none, any or all of the subscribers to complete their work
+    - id: cancellation
+      type: CancellationToken
+      description: an optional cancellation token
+    typeParameters:
+    - id: TEvent
+      description: the type of the event model
+    return:
+      type: Task
+      description: >-
+        a Task that matches the wait mode specified.
+
+        <xref href="FastEndpoints.Mode.WaitForNone" data-throw-if-not-resolved="false"></xref> returns an already completed Task (fire and forget).
+
+        <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
+
+        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all of the subscribers complete their work.
+    content.vb: Function PublishAsync(Of TEvent)(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.IEventBus.PublishAsync*
+  nameWithType.vb: IEventBus.PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+  fullName.vb: FastEndpoints.IEventBus.PublishAsync(Of TEvent)(TEvent, FastEndpoints.Mode, CancellationToken)
+  name.vb: PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: FastEndpoints.Mode.WaitForNone
+  commentId: F:FastEndpoints.Mode.WaitForNone
+  isExternal: true
+- uid: FastEndpoints.Mode.WaitForAny
+  commentId: F:FastEndpoints.Mode.WaitForAny
+  isExternal: true
+- uid: FastEndpoints.Mode.WaitForAll
+  commentId: F:FastEndpoints.Mode.WaitForAll
+  isExternal: true
+- uid: FastEndpoints.IEventBus.PublishAsync*
+  commentId: Overload:FastEndpoints.IEventBus.PublishAsync
+  name: PublishAsync
+  nameWithType: IEventBus.PublishAsync
+  fullName: FastEndpoints.IEventBus.PublishAsync
+- uid: '{TEvent}'
+  commentId: '!:TEvent'
+  definition: TEvent
+  name: TEvent
+  nameWithType: TEvent
+  fullName: TEvent
+- uid: FastEndpoints.Mode
+  commentId: T:FastEndpoints.Mode
+  parent: FastEndpoints
+  name: Mode
+  nameWithType: Mode
+  fullName: FastEndpoints.Mode
+- uid: CancellationToken
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: CancellationToken
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: TEvent
+  name: TEvent
+  nameWithType: TEvent
+  fullName: TEvent
