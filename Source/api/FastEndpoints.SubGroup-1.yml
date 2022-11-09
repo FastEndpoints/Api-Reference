@@ -29,7 +29,9 @@ items:
       description: ''
     content.vb: >-
       Public MustInherit Class SubGroup(Of TParent As {Group, New})
+
           Inherits Group
+
           Implements IServiceResolverBase
   inheritance:
   - System.Object
@@ -78,17 +80,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ncall this method in the constructor in order to configure the endpoint group.\n"
   example: []
   syntax:
     content: protected sealed override void Configure(string routePrefix, Action<EndpointDefinition> ep)
     parameters:
     - id: routePrefix
       type: System.String
-      description: the route prefix for the group
     - id: ep
       type: Action{FastEndpoints.EndpointDefinition}
-      description: the configuration action to be performed on the <xref href="FastEndpoints.EndpointDefinition" data-throw-if-not-resolved="false"></xref>
     content.vb: Protected NotOverridable Overrides Sub Configure(routePrefix As String, ep As Action(Of EndpointDefinition))
   overridden: FastEndpoints.Group.Configure(System.String,Action{FastEndpoints.EndpointDefinition})
   overload: FastEndpoints.SubGroup`1.Configure*

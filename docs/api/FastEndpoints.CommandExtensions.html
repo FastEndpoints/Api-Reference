@@ -125,13 +125,15 @@
   
   
   <a id="FastEndpoints_CommandExtensions_ExecuteAsync_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync*"></a>
-  <h4 id="FastEndpoints_CommandExtensions_ExecuteAsync_FastEndpoints_ICommand_CancellationToken_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,CancellationToken)">ExecuteAsync(ICommand, CancellationToken)</h4>
+  <h4 id="FastEndpoints_CommandExtensions_ExecuteAsync__1___0_CancellationToken_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)">ExecuteAsync&lt;TCommand&gt;(TCommand, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>executes the command that does not return a result</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task ExecuteAsync(this ICommand command, CancellationToken ct = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task ExecuteAsync&lt;TCommand&gt;(this TCommand command, CancellationToken ct = null)
+
+    where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -144,7 +146,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.ICommand.html">ICommand</a></td>
+        <td><span class="xref">TCommand</span></td>
         <td><span class="parametername">command</span></td>
         <td><p>the command to execute</p>
 </td>
@@ -169,6 +171,22 @@
       <tr>
         <td><span class="xref">Task</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the type of the command</p>
+</td>
       </tr>
     </tbody>
   </table>

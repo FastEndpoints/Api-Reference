@@ -128,7 +128,9 @@ items:
       description: the type of the response dto
     content.vb: >-
       Public MustInherit Class Endpoint(Of TRequest As New, TResponse)
+
           Inherits BaseEndpoint
+
           Implements IEndpoint, IEventBus, IServiceResolverBase
   inheritance:
   - System.Object
@@ -269,15 +271,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
     content: >-
       public TService TryResolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
-      description: the type of the service to resolve
     return:
       type: '{TService}'
     content.vb: Public Function TryResolve(Of TService As Class) As TService
@@ -309,14 +310,12 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
     content: public object TryResolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: Type
-      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
@@ -347,15 +346,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
     content: >-
       public TService Resolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
-      description: the type of the service to resolve
     return:
       type: '{TService}'
     content.vb: Public Function Resolve(Of TService As Class) As TService
@@ -387,14 +385,12 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
     content: public object Resolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: Type
-      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
@@ -425,7 +421,6 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
   example: []
   syntax:
     content: public IServiceScope CreateScope()
@@ -459,33 +454,20 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\npublishes a given event model to all subscribers registered to handle the that type of event.\n"
   example: []
   syntax:
     content: public Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
     parameters:
     - id: eventModel
       type: '{TEvent}'
-      description: the notification event model/dto to publish
     - id: waitMode
       type: FastEndpoints.Mode
-      description: specify whether to wait for none, any or all of the subscribers to complete their work
     - id: cancellation
       type: CancellationToken
-      description: an optional cancellation token
     typeParameters:
     - id: TEvent
-      description: the type of the event model
     return:
       type: Task
-      description: >-
-        a Task that matches the wait mode specified.
-
-        <xref href="FastEndpoints.Mode.WaitForNone" data-throw-if-not-resolved="false"></xref> returns an already completed Task (fire and forget).
-
-        <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
-
-        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all of the subscribers complete their work.
     content.vb: Public Function PublishAsync(Of TEvent)(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
   overload: FastEndpoints.Endpoint`2.PublishAsync*
   implements:
@@ -1384,6 +1366,7 @@ items:
   syntax:
     content: >-
       protected Task SendCreatedAtAsync<TEndpoint>(object routeValues, TResponse responseBody, Http? verb = null, int? routeNumber = null, bool generateAbsoluteUrl = false, CancellationToken cancellation = null)
+
           where TEndpoint : IEndpoint
     parameters:
     - id: routeValues
@@ -2623,6 +2606,7 @@ items:
   syntax:
     content: >-
       protected sealed override void Group<TEndpointGroup>()
+
           where TEndpointGroup : Group, new()
     typeParameters:
     - id: TEndpointGroup
@@ -3347,6 +3331,7 @@ items:
   syntax:
     content: >-
       protected void SerializerContext<TContext>(TContext serializerContext)
+
           where TContext : JsonSerializerContext
     parameters:
     - id: serializerContext
@@ -3565,6 +3550,7 @@ items:
   syntax:
     content: >-
       protected void Validator<TValidator>()
+
           where TValidator : IValidator
     typeParameters:
     - id: TValidator

@@ -33,9 +33,10 @@ items:
   summary: "\nbinder context supplied to custom request binders.\n"
   example: []
   syntax:
-    content: 'public struct BinderContext : IServiceResolverBase'
+    content: 'public readonly struct BinderContext : IServiceResolverBase'
     content.vb: >-
       Public Structure BinderContext
+
           Implements IServiceResolverBase
   implements:
   - FastEndpoints.IServiceResolverBase
@@ -48,6 +49,7 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   modifiers.csharp:
   - public
+  - readonly
   - struct
   modifiers.vb:
   - Public
@@ -280,15 +282,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
     content: >-
-      public TService TryResolve<TService>()
+      public readonly TService TryResolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
-      description: the type of the service to resolve
     return:
       type: '{TService}'
     content.vb: Public Function TryResolve(Of TService As Class) As TService
@@ -298,6 +299,7 @@ items:
   nameWithType.vb: BinderContext.TryResolve(Of TService)()
   modifiers.csharp:
   - public
+  - readonly
   modifiers.vb:
   - Public
   fullName.vb: FastEndpoints.BinderContext.TryResolve(Of TService)()
@@ -320,14 +322,12 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
-    content: public object TryResolve(Type typeOfService)
+    content: public readonly object TryResolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: Type
-      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
@@ -336,6 +336,7 @@ items:
   - FastEndpoints.IServiceResolverBase.TryResolve(Type)
   modifiers.csharp:
   - public
+  - readonly
   modifiers.vb:
   - Public
 - uid: FastEndpoints.BinderContext.Resolve``1
@@ -356,15 +357,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
     content: >-
-      public TService Resolve<TService>()
+      public readonly TService Resolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
-      description: the type of the service to resolve
     return:
       type: '{TService}'
     content.vb: Public Function Resolve(Of TService As Class) As TService
@@ -374,6 +374,7 @@ items:
   nameWithType.vb: BinderContext.Resolve(Of TService)()
   modifiers.csharp:
   - public
+  - readonly
   modifiers.vb:
   - Public
   fullName.vb: FastEndpoints.BinderContext.Resolve(Of TService)()
@@ -396,14 +397,12 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
-    content: public object Resolve(Type typeOfService)
+    content: public readonly object Resolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: Type
-      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
@@ -412,6 +411,7 @@ items:
   - FastEndpoints.IServiceResolverBase.Resolve(Type)
   modifiers.csharp:
   - public
+  - readonly
   modifiers.vb:
   - Public
 - uid: FastEndpoints.BinderContext.CreateScope
@@ -432,10 +432,9 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
   example: []
   syntax:
-    content: public IServiceScope CreateScope()
+    content: public readonly IServiceScope CreateScope()
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
     content.vb: Public Function CreateScope As IServiceScope
@@ -444,6 +443,7 @@ items:
   - FastEndpoints.IServiceResolverBase.CreateScope
   modifiers.csharp:
   - public
+  - readonly
   modifiers.vb:
   - Public
 references:

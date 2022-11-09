@@ -121,10 +121,11 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class BindingOptions</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h3 id="properties">Properties
   </h3>
   
   
+  <a id="FastEndpoints_BindingOptions_Modifier_" data-uid="FastEndpoints.BindingOptions.Modifier*"></a>
   <h4 id="FastEndpoints_BindingOptions_Modifier" data-uid="FastEndpoints.BindingOptions.Modifier">Modifier</h4>
   <div class="markdown level1 summary"><p>an optional action to be run after the endpoint level request binding has occured.
 it is intended as a way to perform common model binding logic that applies to all endpoints/requests.
@@ -138,9 +139,9 @@ the action is passed in the following arguments:</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Action&lt;object, Type, BinderContext, CancellationToken&gt;? Modifier</code></pre>
+    <pre><code class="lang-csharp hljs">public Action&lt;object, Type, BinderContext, CancellationToken&gt;? Modifier { set; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -160,7 +161,7 @@ the action is passed in the following arguments:</p>
   
   
   <a id="FastEndpoints_BindingOptions_ValueParserFor_" data-uid="FastEndpoints.BindingOptions.ValueParserFor*"></a>
-  <h4 id="FastEndpoints_BindingOptions_ValueParserFor_Type_System_Nullable_Func_System_Object_FastEndpoints_ParseResult___" data-uid="FastEndpoints.BindingOptions.ValueParserFor(Type,System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})">ValueParserFor(Type, Nullable&lt;Func&lt;Object, ParseResult&gt;&gt;)</h4>
+  <h4 id="FastEndpoints_BindingOptions_ValueParserFor_Type_Func_System_Object_FastEndpoints_ParseResult__" data-uid="FastEndpoints.BindingOptions.ValueParserFor(Type,Func{System.Object,FastEndpoints.ParseResult})">ValueParserFor(Type, Func&lt;Object, ParseResult&gt;)</h4>
   <div class="markdown level1 summary"><p>add a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto properties from query/route/forms/headers/claims.
 this is an alternative approach to adding a <code>TryParse()</code> function to your types that need model binding support from the abovementioned binding sources.
 once you register a parser function here for a type, any <code>TryParse()</code> method on the type will not be used for parsing.
@@ -169,7 +170,7 @@ also, these parser functions do not apply to JSON deserialization done by STJ an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ValueParserFor(Type type, Func&lt;object, ParseResult&gt;? parser)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool ValueParserFor(Type type, Func&lt;object, ParseResult&gt; parser)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -188,7 +189,7 @@ also, these parser functions do not apply to JSON deserialization done by STJ an
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">System.Object</span>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;&gt;</td>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Object</span>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;</td>
         <td><span class="parametername">parser</span></td>
         <td><p>a function that takes in a nullable object and returns a <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a> as the output.</p>
 <pre><code>app.UseFastEndpoints(c =>
@@ -227,7 +228,7 @@ public static class MyParsers
   
   
   <a id="FastEndpoints_BindingOptions_ValueParserFor_" data-uid="FastEndpoints.BindingOptions.ValueParserFor*"></a>
-  <h4 id="FastEndpoints_BindingOptions_ValueParserFor__1_System_Nullable_Func_System_Object_FastEndpoints_ParseResult___" data-uid="FastEndpoints.BindingOptions.ValueParserFor``1(System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})">ValueParserFor&lt;T&gt;(Nullable&lt;Func&lt;Object, ParseResult&gt;&gt;)</h4>
+  <h4 id="FastEndpoints_BindingOptions_ValueParserFor__1_Func_System_Object_FastEndpoints_ParseResult__" data-uid="FastEndpoints.BindingOptions.ValueParserFor``1(Func{System.Object,FastEndpoints.ParseResult})">ValueParserFor&lt;T&gt;(Func&lt;Object, ParseResult&gt;)</h4>
   <div class="markdown level1 summary"><p>add a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto properties from query/route/forms/headers/claims.
 this is an alternative approach to adding a <code>TryParse()</code> function to your types that need model binding support from the abovementioned binding sources.
 once you register a parser function here for a type, any <code>TryParse()</code> method on the type will not be used for parsing.
@@ -236,7 +237,7 @@ also, these parser functions do not apply to JSON deserialization done by STJ an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ValueParserFor&lt;T&gt;(Func&lt;object, ParseResult&gt;? parser)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool ValueParserFor&lt;T&gt;(Func&lt;object, ParseResult&gt; parser)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -249,7 +250,7 @@ also, these parser functions do not apply to JSON deserialization done by STJ an
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">System.Object</span>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;&gt;</td>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Object</span>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;</td>
         <td><span class="parametername">parser</span></td>
         <td><p>a function that takes in a nullable object and returns a <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a> as the output.</p>
 <pre><code>app.UseFastEndpoints(c =>

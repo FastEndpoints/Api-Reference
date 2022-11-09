@@ -115,7 +115,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_BinderContext_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct BinderContext : IServiceResolverBase</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly struct BinderContext : IServiceResolverBase</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -305,16 +305,11 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   
   <a id="FastEndpoints_BinderContext_CreateScope_" data-uid="FastEndpoints.BinderContext.CreateScope*"></a>
   <h4 id="FastEndpoints_BinderContext_CreateScope" data-uid="FastEndpoints.BinderContext.CreateScope">CreateScope()</h4>
-  <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.</p>
-<p>
-<pre><code>using var scope = CreateScope();
-var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
-</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IServiceScope CreateScope()</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly IServiceScope CreateScope()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -335,12 +330,11 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   
   <a id="FastEndpoints_BinderContext_Resolve_" data-uid="FastEndpoints.BinderContext.Resolve*"></a>
   <h4 id="FastEndpoints_BinderContext_Resolve_Type_" data-uid="FastEndpoints.BinderContext.Resolve(Type)">Resolve(Type)</h4>
-  <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Resolve(Type typeOfService)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly object Resolve(Type typeOfService)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -355,8 +349,7 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
       <tr>
         <td><span class="xref">Type</span></td>
         <td><span class="parametername">typeOfService</span></td>
-        <td><p>the type of the service to resolve</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -379,12 +372,12 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   
   <a id="FastEndpoints_BinderContext_Resolve_" data-uid="FastEndpoints.BinderContext.Resolve*"></a>
   <h4 id="FastEndpoints_BinderContext_Resolve__1" data-uid="FastEndpoints.BinderContext.Resolve``1">Resolve&lt;TService&gt;()</h4>
-  <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TService Resolve&lt;TService&gt;()
+    <pre><code class="lang-csharp hljs">public readonly TService Resolve&lt;TService&gt;()
+
     where TService : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -413,8 +406,7 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
     <tbody>
       <tr>
         <td><span class="parametername">TService</span></td>
-        <td><p>the type of the service to resolve</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -422,12 +414,11 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   
   <a id="FastEndpoints_BinderContext_TryResolve_" data-uid="FastEndpoints.BinderContext.TryResolve*"></a>
   <h4 id="FastEndpoints_BinderContext_TryResolve_Type_" data-uid="FastEndpoints.BinderContext.TryResolve(Type)">TryResolve(Type)</h4>
-  <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object TryResolve(Type typeOfService)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly object TryResolve(Type typeOfService)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -442,8 +433,7 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
       <tr>
         <td><span class="xref">Type</span></td>
         <td><span class="parametername">typeOfService</span></td>
-        <td><p>the type of the service to resolve</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -466,12 +456,12 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
   
   <a id="FastEndpoints_BinderContext_TryResolve_" data-uid="FastEndpoints.BinderContext.TryResolve*"></a>
   <h4 id="FastEndpoints_BinderContext_TryResolve__1" data-uid="FastEndpoints.BinderContext.TryResolve``1">TryResolve&lt;TService&gt;()</h4>
-  <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TService TryResolve&lt;TService&gt;()
+    <pre><code class="lang-csharp hljs">public readonly TService TryResolve&lt;TService&gt;()
+
     where TService : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -500,8 +490,7 @@ var scopedService = scope.ServiceProvider.GetService(...);</code></pre>
     <tbody>
       <tr>
         <td><span class="parametername">TService</span></td>
-        <td><p>the type of the service to resolve</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>

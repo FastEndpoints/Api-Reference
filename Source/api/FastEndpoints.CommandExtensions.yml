@@ -5,7 +5,7 @@ items:
   id: CommandExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,CancellationToken)
+  - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)
   - FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
   langs:
   - csharp
@@ -17,7 +17,7 @@ items:
   source:
     id: CommandExtensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 5
+    startLine: 2
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -41,6 +41,58 @@ items:
   modifiers.vb:
   - Public
   - Module
+- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)
+  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)
+  id: ExecuteAsync``1(``0,CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.CommandExtensions
+  langs:
+  - csharp
+  - vb
+  name: ExecuteAsync<TCommand>(TCommand, CancellationToken)
+  nameWithType: CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
+  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
+  type: Method
+  source:
+    id: ExecuteAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 14
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nexecutes the command that does not return a result\n"
+  example: []
+  syntax:
+    content: >-
+      public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = null)
+
+          where TCommand : ICommand
+    parameters:
+    - id: command
+      type: '{TCommand}'
+      description: the command to execute
+    - id: ct
+      type: CancellationToken
+      description: optional cancellation token
+    typeParameters:
+    - id: TCommand
+      description: the type of the command
+    return:
+      type: Task
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ExecuteAsync(Of TCommand As ICommand)(command As TCommand, ct As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.CommandExtensions.ExecuteAsync*
+  nameWithType.vb: CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
+  name.vb: ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
 - uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
   commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
   id: ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
@@ -56,7 +108,7 @@ items:
   source:
     id: ExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 16
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -90,49 +142,6 @@ items:
   - Shared
   fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), CancellationToken)
   name.vb: ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
-- uid: FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,CancellationToken)
-  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,CancellationToken)
-  id: ExecuteAsync(FastEndpoints.ICommand,CancellationToken)
-  isExtensionMethod: true
-  parent: FastEndpoints.CommandExtensions
-  langs:
-  - csharp
-  - vb
-  name: ExecuteAsync(ICommand, CancellationToken)
-  nameWithType: CommandExtensions.ExecuteAsync(ICommand, CancellationToken)
-  fullName: FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand, CancellationToken)
-  type: Method
-  source:
-    id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 35
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\nexecutes the command that does not return a result\n"
-  example: []
-  syntax:
-    content: public static Task ExecuteAsync(this ICommand command, CancellationToken ct = null)
-    parameters:
-    - id: command
-      type: FastEndpoints.ICommand
-      description: the command to execute
-    - id: ct
-      type: CancellationToken
-      description: optional cancellation token
-    return:
-      type: Task
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function ExecuteAsync(command As ICommand, ct As CancellationToken = Nothing) As Task
-  overload: FastEndpoints.CommandExtensions.ExecuteAsync*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -436,6 +445,26 @@ references:
   name: ExecuteAsync
   nameWithType: CommandExtensions.ExecuteAsync
   fullName: FastEndpoints.CommandExtensions.ExecuteAsync
+- uid: '{TCommand}'
+  commentId: '!:TCommand'
+  definition: TCommand
+  name: TCommand
+  nameWithType: TCommand
+  fullName: TCommand
+- uid: CancellationToken
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: CancellationToken
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: TCommand
+  name: TCommand
+  nameWithType: TCommand
+  fullName: TCommand
 - uid: FastEndpoints.ICommand{{TResult}}
   commentId: T:FastEndpoints.ICommand{``0}
   parent: FastEndpoints
@@ -474,11 +503,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: CancellationToken
-  isExternal: true
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: CancellationToken
 - uid: Task{{TResult}}
   commentId: '!:Task{``0}'
   definition: Task`1
@@ -592,14 +616,3 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.ICommand
-  commentId: T:FastEndpoints.ICommand
-  parent: FastEndpoints
-  name: ICommand
-  nameWithType: ICommand
-  fullName: FastEndpoints.ICommand
-- uid: Task
-  isExternal: true
-  name: Task
-  nameWithType: Task
-  fullName: Task

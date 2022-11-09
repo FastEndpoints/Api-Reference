@@ -33,7 +33,9 @@ items:
       description: the type of the request dto
     content.vb: >-
       Public MustInherit Class Validator(Of TRequest As Class)
+
           Inherits AbstractValidator(Of TRequest)
+
           Implements IValidator(Of TRequest), IValidator, IEnumerable(Of IValidationRule), IEnumerable, IServiceResolverBase
   inheritance:
   - System.Object
@@ -114,15 +116,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
     content: >-
       public TService TryResolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
-      description: the type of the service to resolve
     return:
       type: '{TService}'
     content.vb: Public Function TryResolve(Of TService As Class) As TService
@@ -154,14 +155,12 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ntry to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.\n"
   example: []
   syntax:
     content: public object TryResolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: Type
-      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
@@ -192,15 +191,14 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
     content: >-
       public TService Resolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
-      description: the type of the service to resolve
     return:
       type: '{TService}'
     content.vb: Public Function Resolve(Of TService As Class) As TService
@@ -232,14 +230,12 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nresolve an instance for the given type from the dependency injection container. will throw if unresolvable.\n"
   example: []
   syntax:
     content: public object Resolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: Type
-      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
@@ -270,7 +266,6 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
   example: []
   syntax:
     content: public IServiceScope CreateScope()

@@ -6,8 +6,8 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.BindingOptions.Modifier
-  - FastEndpoints.BindingOptions.ValueParserFor(Type,System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
-  - FastEndpoints.BindingOptions.ValueParserFor``1(System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
+  - FastEndpoints.BindingOptions.ValueParserFor(Type,Func{System.Object,FastEndpoints.ParseResult})
+  - FastEndpoints.BindingOptions.ValueParserFor``1(Func{System.Object,FastEndpoints.ParseResult})
   langs:
   - csharp
   - vb
@@ -44,7 +44,7 @@ items:
   - Public
   - Class
 - uid: FastEndpoints.BindingOptions.Modifier
-  commentId: F:FastEndpoints.BindingOptions.Modifier
+  commentId: P:FastEndpoints.BindingOptions.Modifier
   id: Modifier
   parent: FastEndpoints.BindingOptions
   langs:
@@ -53,7 +53,7 @@ items:
   name: Modifier
   nameWithType: BindingOptions.Modifier
   fullName: FastEndpoints.BindingOptions.Modifier
-  type: Field
+  type: Property
   source:
     id: Modifier
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
@@ -64,24 +64,28 @@ items:
   summary: "\nan optional action to be run after the endpoint level request binding has occured.\nit is intended as a way to perform common model binding logic that applies to all endpoints/requests.\nthe action is passed in the following arguments:\n<p><xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>: the request dto instance</p>\n<p><see cref=\"!:Type\"></see>: the type of the request dto</p>\n<p><xref href=\"FastEndpoints.BinderContext\" data-throw-if-not-resolved=\"false\"></xref>: the request binding context</p>\n<p><see cref=\"!:CancellationToken\"></see>: a cancellation token</p>\n<p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>\n"
   example: []
   syntax:
-    content: public Action<object, Type, BinderContext, CancellationToken>? Modifier
+    content: public Action<object, Type, BinderContext, CancellationToken>? Modifier { set; }
+    parameters: []
     return:
       type: System.Nullable{Action{System.Object,Type,FastEndpoints.BinderContext,CancellationToken}}
-    content.vb: Public Modifier As Action(Of Object, Type, BinderContext, CancellationToken)?
+    content.vb: Public WriteOnly Property Modifier As Action(Of Object, Type, BinderContext, CancellationToken)?
+  overload: FastEndpoints.BindingOptions.Modifier*
   modifiers.csharp:
   - public
+  - set
   modifiers.vb:
   - Public
-- uid: FastEndpoints.BindingOptions.ValueParserFor``1(System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
-  commentId: M:FastEndpoints.BindingOptions.ValueParserFor``1(System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
-  id: ValueParserFor``1(System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
+  - WriteOnly
+- uid: FastEndpoints.BindingOptions.ValueParserFor``1(Func{System.Object,FastEndpoints.ParseResult})
+  commentId: M:FastEndpoints.BindingOptions.ValueParserFor``1(Func{System.Object,FastEndpoints.ParseResult})
+  id: ValueParserFor``1(Func{System.Object,FastEndpoints.ParseResult})
   parent: FastEndpoints.BindingOptions
   langs:
   - csharp
   - vb
-  name: ValueParserFor<T>(Nullable<Func<Object, ParseResult>>)
-  nameWithType: BindingOptions.ValueParserFor<T>(Nullable<Func<Object, ParseResult>>)
-  fullName: FastEndpoints.BindingOptions.ValueParserFor<T>(System.Nullable<Func<System.Object, FastEndpoints.ParseResult>>)
+  name: ValueParserFor<T>(Func<Object, ParseResult>)
+  nameWithType: BindingOptions.ValueParserFor<T>(Func<Object, ParseResult>)
+  fullName: FastEndpoints.BindingOptions.ValueParserFor<T>(Func<System.Object, FastEndpoints.ParseResult>)
   type: Method
   source:
     id: ValueParserFor
@@ -93,10 +97,10 @@ items:
   summary: "\nadd a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto properties from query/route/forms/headers/claims.\nthis is an alternative approach to adding a `TryParse()` function to your types that need model binding support from the abovementioned binding sources.\nonce you register a parser function here for a type, any `TryParse()` method on the type will not be used for parsing.\nalso, these parser functions do not apply to JSON deserialization done by STJ and can be considered the equivalent to registering a custom converter in STJ when it comes to query/route/forms/headers/claims binding sources.\n"
   example: []
   syntax:
-    content: public bool ValueParserFor<T>(Func<object, ParseResult>? parser)
+    content: public bool ValueParserFor<T>(Func<object, ParseResult> parser)
     parameters:
     - id: parser
-      type: System.Nullable{Func{System.Object,FastEndpoints.ParseResult}}
+      type: Func{System.Object,FastEndpoints.ParseResult}
       description: >
         a function that takes in a nullable object and returns a <xref href="FastEndpoints.ParseResult" data-throw-if-not-resolved="false"></xref> as the output.
 
@@ -122,25 +126,25 @@ items:
       description: the type of the class which this parser function will target
     return:
       type: System.Boolean
-    content.vb: Public Function ValueParserFor(Of T)(parser As Func(Of Object, ParseResult)?) As Boolean
+    content.vb: Public Function ValueParserFor(Of T)(parser As Func(Of Object, ParseResult)) As Boolean
   overload: FastEndpoints.BindingOptions.ValueParserFor*
-  nameWithType.vb: BindingOptions.ValueParserFor(Of T)(Nullable(Of Func(Of Object, ParseResult)))
+  nameWithType.vb: BindingOptions.ValueParserFor(Of T)(Func(Of Object, ParseResult))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(Of T)(System.Nullable(Of Func(Of System.Object, FastEndpoints.ParseResult)))
-  name.vb: ValueParserFor(Of T)(Nullable(Of Func(Of Object, ParseResult)))
-- uid: FastEndpoints.BindingOptions.ValueParserFor(Type,System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
-  commentId: M:FastEndpoints.BindingOptions.ValueParserFor(Type,System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
-  id: ValueParserFor(Type,System.Nullable{Func{System.Object,FastEndpoints.ParseResult}})
+  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(Of T)(Func(Of System.Object, FastEndpoints.ParseResult))
+  name.vb: ValueParserFor(Of T)(Func(Of Object, ParseResult))
+- uid: FastEndpoints.BindingOptions.ValueParserFor(Type,Func{System.Object,FastEndpoints.ParseResult})
+  commentId: M:FastEndpoints.BindingOptions.ValueParserFor(Type,Func{System.Object,FastEndpoints.ParseResult})
+  id: ValueParserFor(Type,Func{System.Object,FastEndpoints.ParseResult})
   parent: FastEndpoints.BindingOptions
   langs:
   - csharp
   - vb
-  name: ValueParserFor(Type, Nullable<Func<Object, ParseResult>>)
-  nameWithType: BindingOptions.ValueParserFor(Type, Nullable<Func<Object, ParseResult>>)
-  fullName: FastEndpoints.BindingOptions.ValueParserFor(Type, System.Nullable<Func<System.Object, FastEndpoints.ParseResult>>)
+  name: ValueParserFor(Type, Func<Object, ParseResult>)
+  nameWithType: BindingOptions.ValueParserFor(Type, Func<Object, ParseResult>)
+  fullName: FastEndpoints.BindingOptions.ValueParserFor(Type, Func<System.Object, FastEndpoints.ParseResult>)
   type: Method
   source:
     id: ValueParserFor
@@ -152,13 +156,13 @@ items:
   summary: "\nadd a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto properties from query/route/forms/headers/claims.\nthis is an alternative approach to adding a `TryParse()` function to your types that need model binding support from the abovementioned binding sources.\nonce you register a parser function here for a type, any `TryParse()` method on the type will not be used for parsing.\nalso, these parser functions do not apply to JSON deserialization done by STJ and can be considered the equivalent to registering a custom converter in STJ when it comes to query/route/forms/headers/claims binding sources.\n"
   example: []
   syntax:
-    content: public bool ValueParserFor(Type type, Func<object, ParseResult>? parser)
+    content: public bool ValueParserFor(Type type, Func<object, ParseResult> parser)
     parameters:
     - id: type
       type: Type
       description: the type of the class which this parser function will target
     - id: parser
-      type: System.Nullable{Func{System.Object,FastEndpoints.ParseResult}}
+      type: Func{System.Object,FastEndpoints.ParseResult}
       description: >
         a function that takes in a nullable object and returns a <xref href="FastEndpoints.ParseResult" data-throw-if-not-resolved="false"></xref> as the output.
 
@@ -181,15 +185,15 @@ items:
         }</code></pre>
     return:
       type: System.Boolean
-    content.vb: Public Function ValueParserFor(type As Type, parser As Func(Of Object, ParseResult)?) As Boolean
+    content.vb: Public Function ValueParserFor(type As Type, parser As Func(Of Object, ParseResult)) As Boolean
   overload: FastEndpoints.BindingOptions.ValueParserFor*
-  nameWithType.vb: BindingOptions.ValueParserFor(Type, Nullable(Of Func(Of Object, ParseResult)))
+  nameWithType.vb: BindingOptions.ValueParserFor(Type, Func(Of Object, ParseResult))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(Type, System.Nullable(Of Func(Of System.Object, FastEndpoints.ParseResult)))
-  name.vb: ValueParserFor(Type, Nullable(Of Func(Of Object, ParseResult)))
+  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(Type, Func(Of System.Object, FastEndpoints.ParseResult))
+  name.vb: ValueParserFor(Type, Func(Of Object, ParseResult))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -494,6 +498,11 @@ references:
   name: BinderContext
   nameWithType: BinderContext
   fullName: FastEndpoints.BinderContext
+- uid: FastEndpoints.BindingOptions.Modifier*
+  commentId: Overload:FastEndpoints.BindingOptions.Modifier
+  name: Modifier
+  nameWithType: BindingOptions.Modifier
+  fullName: FastEndpoints.BindingOptions.Modifier
 - uid: System.Nullable{Action{System.Object,Type,FastEndpoints.BinderContext,CancellationToken}}
   commentId: T:System.Nullable{Action{System.Object,Type,FastEndpoints.BinderContext,CancellationToken}}
   parent: System
@@ -655,25 +664,16 @@ references:
   name: ValueParserFor
   nameWithType: BindingOptions.ValueParserFor
   fullName: FastEndpoints.BindingOptions.ValueParserFor
-- uid: System.Nullable{Func{System.Object,FastEndpoints.ParseResult}}
-  commentId: T:System.Nullable{Func{System.Object,FastEndpoints.ParseResult}}
-  parent: System
-  definition: System.Nullable`1
-  name: Nullable<Func<Object, ParseResult>>
-  nameWithType: Nullable<Func<Object, ParseResult>>
-  fullName: System.Nullable<Func<System.Object, FastEndpoints.ParseResult>>
-  nameWithType.vb: Nullable(Of Func(Of Object, ParseResult))
-  fullName.vb: System.Nullable(Of Func(Of System.Object, FastEndpoints.ParseResult))
-  name.vb: Nullable(Of Func(Of Object, ParseResult))
+- uid: Func{System.Object,FastEndpoints.ParseResult}
+  commentId: '!:Func{System.Object,FastEndpoints.ParseResult}'
+  definition: Func`2
+  name: Func<Object, ParseResult>
+  nameWithType: Func<Object, ParseResult>
+  fullName: Func<System.Object, FastEndpoints.ParseResult>
+  nameWithType.vb: Func(Of Object, ParseResult)
+  fullName.vb: Func(Of System.Object, FastEndpoints.ParseResult)
+  name.vb: Func(Of Object, ParseResult)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: Func`2
     name: Func
     nameWithType: Func
@@ -694,21 +694,10 @@ references:
     name: ParseResult
     nameWithType: ParseResult
     fullName: FastEndpoints.ParseResult
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: Func`2
     name: Func
     nameWithType: Func
@@ -729,9 +718,6 @@ references:
     name: ParseResult
     nameWithType: ParseResult
     fullName: FastEndpoints.ParseResult
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -742,6 +728,56 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Func`2
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Type
   isExternal: true
   name: Type

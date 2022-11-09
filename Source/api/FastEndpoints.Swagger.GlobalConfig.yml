@@ -1,36 +1,33 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor
-  commentId: T:FastEndpoints.Swagger.ValidationSchemaProcessor
-  id: ValidationSchemaProcessor
+- uid: FastEndpoints.Swagger.GlobalConfig
+  commentId: T:FastEndpoints.Swagger.GlobalConfig
+  id: GlobalConfig
   parent: FastEndpoints.Swagger
   children:
-  - FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  - FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
+  - FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix
+  - FastEndpoints.Swagger.GlobalConfig.VersioningPrefix
   langs:
   - csharp
   - vb
-  name: ValidationSchemaProcessor
-  nameWithType: ValidationSchemaProcessor
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor
+  name: GlobalConfig
+  nameWithType: GlobalConfig
+  fullName: FastEndpoints.Swagger.GlobalConfig
   type: Class
   source:
-    id: ValidationSchemaProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\ValidationSchemaProcessor.cs
-    startLine: 35
+    id: GlobalConfig
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\GlobalConfig.cs
+    startLine: 5
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
+  summary: "\ngives access to the fastendpoints global configuration settings\n"
+  example: []
   syntax:
-    content: 'public class ValidationSchemaProcessor : ISchemaProcessor'
-    content.vb: >-
-      Public Class ValidationSchemaProcessor
-
-          Implements ISchemaProcessor
+    content: public static class GlobalConfig
+    content.vb: Public Module GlobalConfig
   inheritance:
   - System.Object
-  implements:
-  - NJsonSchema.Generation.ISchemaProcessor
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -41,67 +38,81 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - static
   - class
   modifiers.vb:
   - Public
-  - Class
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  commentId: M:FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  id: '#ctor'
-  parent: FastEndpoints.Swagger.ValidationSchemaProcessor
+  - Module
+- uid: FastEndpoints.Swagger.GlobalConfig.VersioningPrefix
+  commentId: P:FastEndpoints.Swagger.GlobalConfig.VersioningPrefix
+  id: VersioningPrefix
+  parent: FastEndpoints.Swagger.GlobalConfig
   langs:
   - csharp
   - vb
-  name: ValidationSchemaProcessor()
-  nameWithType: ValidationSchemaProcessor.ValidationSchemaProcessor()
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.ValidationSchemaProcessor()
-  type: Constructor
+  name: VersioningPrefix
+  nameWithType: GlobalConfig.VersioningPrefix
+  fullName: FastEndpoints.Swagger.GlobalConfig.VersioningPrefix
+  type: Property
   source:
-    id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\ValidationSchemaProcessor.cs
-    startLine: 42
+    id: VersioningPrefix
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\GlobalConfig.cs
+    startLine: 10
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
+  summary: "\nthe prefix used in front of the version (for example &apos;v&apos; produces &apos;v{version}&apos;).\n"
+  example: []
   syntax:
-    content: public ValidationSchemaProcessor()
-    content.vb: Public Sub New
-  overload: FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor*
+    content: public static string VersioningPrefix { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property VersioningPrefix As String
+  overload: FastEndpoints.Swagger.GlobalConfig.VersioningPrefix*
   modifiers.csharp:
   - public
+  - static
+  - get
   modifiers.vb:
   - Public
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  commentId: M:FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  id: Process(NJsonSchema.Generation.SchemaProcessorContext)
-  parent: FastEndpoints.Swagger.ValidationSchemaProcessor
+  - Shared
+  - ReadOnly
+- uid: FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix
+  commentId: P:FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix
+  id: EndpointRoutePrefix
+  parent: FastEndpoints.Swagger.GlobalConfig
   langs:
   - csharp
   - vb
-  name: Process(SchemaProcessorContext)
-  nameWithType: ValidationSchemaProcessor.Process(SchemaProcessorContext)
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  type: Method
+  name: EndpointRoutePrefix
+  nameWithType: GlobalConfig.EndpointRoutePrefix
+  fullName: FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix
+  type: Property
   source:
-    id: Process
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\ValidationSchemaProcessor.cs
-    startLine: 68
+    id: EndpointRoutePrefix
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\GlobalConfig.cs
+    startLine: 15
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
+  summary: "\nprefix for all routes (example &apos;api&apos;).\n"
+  example: []
   syntax:
-    content: public void Process(SchemaProcessorContext context)
-    parameters:
-    - id: context
-      type: NJsonSchema.Generation.SchemaProcessorContext
-    content.vb: Public Sub Process(context As SchemaProcessorContext)
-  overload: FastEndpoints.Swagger.ValidationSchemaProcessor.Process*
-  implements:
-  - NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
+    content: public static string EndpointRoutePrefix { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property EndpointRoutePrefix As String
+  overload: FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix*
   modifiers.csharp:
   - public
+  - static
+  - get
   modifiers.vb:
   - Public
+  - Shared
+  - ReadOnly
 references:
 - uid: FastEndpoints.Swagger
   commentId: N:FastEndpoints.Swagger
@@ -115,13 +126,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: NJsonSchema.Generation.ISchemaProcessor
-  commentId: T:NJsonSchema.Generation.ISchemaProcessor
-  parent: NJsonSchema.Generation
-  isExternal: true
-  name: ISchemaProcessor
-  nameWithType: ISchemaProcessor
-  fullName: NJsonSchema.Generation.ISchemaProcessor
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -407,67 +411,20 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: NJsonSchema.Generation
-  commentId: N:NJsonSchema.Generation
+- uid: FastEndpoints.Swagger.GlobalConfig.VersioningPrefix*
+  commentId: Overload:FastEndpoints.Swagger.GlobalConfig.VersioningPrefix
+  name: VersioningPrefix
+  nameWithType: GlobalConfig.VersioningPrefix
+  fullName: FastEndpoints.Swagger.GlobalConfig.VersioningPrefix
+- uid: System.String
+  commentId: T:System.String
+  parent: System
   isExternal: true
-  name: NJsonSchema.Generation
-  nameWithType: NJsonSchema.Generation
-  fullName: NJsonSchema.Generation
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor*
-  commentId: Overload:FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  name: ValidationSchemaProcessor
-  nameWithType: ValidationSchemaProcessor.ValidationSchemaProcessor
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.ValidationSchemaProcessor
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.Process*
-  commentId: Overload:FastEndpoints.Swagger.ValidationSchemaProcessor.Process
-  name: Process
-  nameWithType: ValidationSchemaProcessor.Process
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.Process
-- uid: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  commentId: M:NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  parent: NJsonSchema.Generation.ISchemaProcessor
-  isExternal: true
-  name: Process(SchemaProcessorContext)
-  nameWithType: ISchemaProcessor.Process(SchemaProcessorContext)
-  fullName: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  spec.csharp:
-  - uid: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-    name: Process
-    nameWithType: ISchemaProcessor.Process
-    fullName: NJsonSchema.Generation.ISchemaProcessor.Process
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NJsonSchema.Generation.SchemaProcessorContext
-    name: SchemaProcessorContext
-    nameWithType: SchemaProcessorContext
-    fullName: NJsonSchema.Generation.SchemaProcessorContext
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-    name: Process
-    nameWithType: ISchemaProcessor.Process
-    fullName: NJsonSchema.Generation.ISchemaProcessor.Process
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NJsonSchema.Generation.SchemaProcessorContext
-    name: SchemaProcessorContext
-    nameWithType: SchemaProcessorContext
-    fullName: NJsonSchema.Generation.SchemaProcessorContext
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NJsonSchema.Generation.SchemaProcessorContext
-  commentId: T:NJsonSchema.Generation.SchemaProcessorContext
-  parent: NJsonSchema.Generation
-  isExternal: true
-  name: SchemaProcessorContext
-  nameWithType: SchemaProcessorContext
-  fullName: NJsonSchema.Generation.SchemaProcessorContext
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix*
+  commentId: Overload:FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix
+  name: EndpointRoutePrefix
+  nameWithType: GlobalConfig.EndpointRoutePrefix
+  fullName: FastEndpoints.Swagger.GlobalConfig.EndpointRoutePrefix

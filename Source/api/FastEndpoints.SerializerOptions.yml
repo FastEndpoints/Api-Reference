@@ -94,7 +94,7 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function for deserializing the incoming http request body. this function will be executed for each request received if it has a json request body.\nthe parameters of the func are as follows:\n<p>HttpRequest: the incoming request</p>\n<p>Type: the type of the request dto which the request body will be deserialized into</p>\n<p>JsonSerializerContext?: json serializer context if code generation is used</p>\n<p>CancellationToken: a cancellation token</p>\n"
+  summary: "\na function for deserializing the incoming http request body. this function will be executed for each request received if it has a json request body.\nthe input parameters of the func are as follows:\n<p><xref href=\"Microsoft.AspNetCore.Http.HttpRequest\" data-throw-if-not-resolved=\"false\"></xref> : the incoming request</p>\n<p><see cref=\"!:Type\"></see> : the type of the request dto which the request body will be deserialized into</p>\n<p><xref href=\"System.Text.Json.Serialization.JsonSerializerContext\" data-throw-if-not-resolved=\"false\"></xref>? : json serializer context if code generation is used</p>\n<p><see cref=\"!:CancellationToken\"></see> : a cancellation token</p>\n"
   example: []
   syntax:
     content: public Func<HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask<object>> RequestDeserializer { set; }
@@ -127,7 +127,7 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function for writing serialized response dtos to the response body.\nthis function will be executed whenever a json response is being sent to the client.\nyou should set the content-type and write directly to the http response body stream in this function.\nthe parameters of the func are as follows:\n<p>HttpResponse: the http response object</p>\n<p>object: the response dto to be serialized</p>\n<p>string: the response content-type</p>\n<p>JsonSerializerContext?: json serializer context if code generation is used</p>\n<p>CancellationToken: a cancellation token</p>\n<pre><code>config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =>\n{\n    rsp.ContentType = cType;\n    return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);\n};</code></pre>\n"
+  summary: "\na function for writing serialized response dtos to the response body.\nthis function will be executed whenever a json response is being sent to the client.\nyou should set the content-type and write directly to the http response body stream in this function.\nthe parameters of the func are as follows:\n<p><xref href=\"Microsoft.AspNetCore.Http.HttpResponse\" data-throw-if-not-resolved=\"false\"></xref> : the http response object</p>\n<p><xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> : the response dto to be serialized</p>\n<p><xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> : the response content-type</p>\n<p><xref href=\"System.Text.Json.Serialization.JsonSerializerContext\" data-throw-if-not-resolved=\"false\"></xref>? : json serializer context if code generation is used</p>\n<p><see cref=\"!:CancellationToken\"></see> : a cancellation token</p>\n<p>example:</p>\n<pre><code>config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =>\n{\n    rsp.ContentType = cType;\n    return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);\n};</code></pre>\n"
   example: []
   syntax:
     content: public Func<HttpResponse, object, string, JsonSerializerContext, CancellationToken, Task> ResponseSerializer { set; }
@@ -458,6 +458,16 @@ references:
   name: System.Text.Json
   nameWithType: System.Text.Json
   fullName: System.Text.Json
+- uid: Microsoft.AspNetCore.Http.HttpRequest
+  commentId: T:Microsoft.AspNetCore.Http.HttpRequest
+  isExternal: true
+- uid: System.Text.Json.Serialization.JsonSerializerContext
+  commentId: T:System.Text.Json.Serialization.JsonSerializerContext
+  parent: System.Text.Json.Serialization
+  isExternal: true
+  name: JsonSerializerContext
+  nameWithType: JsonSerializerContext
+  fullName: System.Text.Json.Serialization.JsonSerializerContext
 - uid: FastEndpoints.SerializerOptions.RequestDeserializer*
   commentId: Overload:FastEndpoints.SerializerOptions.RequestDeserializer
   name: RequestDeserializer
@@ -592,6 +602,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Text.Json.Serialization
+  commentId: N:System.Text.Json.Serialization
+  isExternal: true
+  name: System.Text.Json.Serialization
+  nameWithType: System.Text.Json.Serialization
+  fullName: System.Text.Json.Serialization
 - uid: Func`5
   commentId: '!:Func`5'
   isExternal: true
@@ -679,6 +695,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.AspNetCore.Http.HttpResponse
+  commentId: T:Microsoft.AspNetCore.Http.HttpResponse
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpResponse
+  nameWithType: HttpResponse
+  fullName: Microsoft.AspNetCore.Http.HttpResponse
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: FastEndpoints.SerializerOptions.ResponseSerializer*
   commentId: Overload:FastEndpoints.SerializerOptions.ResponseSerializer
   name: ResponseSerializer
@@ -807,6 +837,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
 - uid: Func`6
   commentId: '!:Func`6'
   isExternal: true

@@ -53,7 +53,7 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.ServiceProvider.GetService(...);</code></pre>\n</p>\n"
+  summary: "\nif you&apos;d like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when the work is complete.\n<p>\n<pre><code>using var scope = CreateScope();\nvar scopedService = scope.Resolve&lt;MyService>();</code></pre>\n</p>\n"
   example: []
   syntax:
     content: IServiceScope CreateScope()
@@ -84,6 +84,7 @@ items:
   syntax:
     content: >-
       TService TryResolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
@@ -148,6 +149,7 @@ items:
   syntax:
     content: >-
       TService Resolve<TService>()
+
           where TService : class
     typeParameters:
     - id: TService
