@@ -5,9 +5,9 @@ items:
   id: ServiceScopeExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
+  - FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
   - FastEndpoints.ServiceScopeExtensions.Resolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope)
-  - FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
+  - FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
   - FastEndpoints.ServiceScopeExtensions.TryResolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope)
   langs:
   - csharp
@@ -91,9 +91,9 @@ items:
   - Shared
   fullName.vb: FastEndpoints.ServiceScopeExtensions.TryResolve(Of TService)(Microsoft.Extensions.DependencyInjection.IServiceScope)
   name.vb: TryResolve(Of TService)(IServiceScope)
-- uid: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
-  commentId: M:FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
-  id: TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
+- uid: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
+  commentId: M:FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
+  id: TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
   isExtensionMethod: true
   parent: FastEndpoints.ServiceScopeExtensions
   langs:
@@ -101,7 +101,7 @@ items:
   - vb
   name: TryResolve(IServiceScope, Type)
   nameWithType: ServiceScopeExtensions.TryResolve(IServiceScope, Type)
-  fullName: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope, Type)
+  fullName: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope, System.Type)
   type: Method
   source:
     id: TryResolve
@@ -118,7 +118,7 @@ items:
     - id: scope
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
     - id: typeOfService
-      type: Type
+      type: System.Type
       description: the type of the service to resolve
     return:
       type: System.Object
@@ -172,6 +172,10 @@ items:
 
       Public Shared Function Resolve(Of TService As Class)(scope As IServiceScope) As TService
   overload: FastEndpoints.ServiceScopeExtensions.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   nameWithType.vb: ServiceScopeExtensions.Resolve(Of TService)(IServiceScope)
   modifiers.csharp:
   - public
@@ -181,9 +185,9 @@ items:
   - Shared
   fullName.vb: FastEndpoints.ServiceScopeExtensions.Resolve(Of TService)(Microsoft.Extensions.DependencyInjection.IServiceScope)
   name.vb: Resolve(Of TService)(IServiceScope)
-- uid: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
-  commentId: M:FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
-  id: Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,Type)
+- uid: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
+  commentId: M:FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
+  id: Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
   isExtensionMethod: true
   parent: FastEndpoints.ServiceScopeExtensions
   langs:
@@ -191,7 +195,7 @@ items:
   - vb
   name: Resolve(IServiceScope, Type)
   nameWithType: ServiceScopeExtensions.Resolve(IServiceScope, Type)
-  fullName: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope, Type)
+  fullName: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope, System.Type)
   type: Method
   source:
     id: Resolve
@@ -208,7 +212,7 @@ items:
     - id: scope
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
     - id: typeOfService
-      type: Type
+      type: System.Type
       description: the type of the service to resolve
     return:
       type: System.Object
@@ -217,6 +221,10 @@ items:
 
       Public Shared Function Resolve(scope As IServiceScope, typeOfService As Type) As Object
   overload: FastEndpoints.ServiceScopeExtensions.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   modifiers.csharp:
   - public
   - static
@@ -549,11 +557,16 @@ references:
   name: TService
   nameWithType: TService
   fullName: TService
-- uid: Type
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
   isExternal: true
   name: Type
   nameWithType: Type
-  fullName: Type
+  fullName: System.Type
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
 - uid: FastEndpoints.ServiceScopeExtensions.Resolve*
   commentId: Overload:FastEndpoints.ServiceScopeExtensions.Resolve
   name: Resolve

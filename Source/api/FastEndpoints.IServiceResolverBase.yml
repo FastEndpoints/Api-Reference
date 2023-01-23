@@ -6,9 +6,9 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.IServiceResolverBase.CreateScope
-  - FastEndpoints.IServiceResolverBase.Resolve(Type)
+  - FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   - FastEndpoints.IServiceResolverBase.Resolve``1
-  - FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  - FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   - FastEndpoints.IServiceResolverBase.TryResolve``1
   langs:
   - csharp
@@ -96,16 +96,16 @@ items:
   nameWithType.vb: IServiceResolverBase.TryResolve(Of TService)()
   fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)()
   name.vb: TryResolve(Of TService)()
-- uid: FastEndpoints.IServiceResolverBase.TryResolve(Type)
-  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(Type)
-  id: TryResolve(Type)
+- uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
+  id: TryResolve(System.Type)
   parent: FastEndpoints.IServiceResolverBase
   langs:
   - csharp
   - vb
   name: TryResolve(Type)
   nameWithType: IServiceResolverBase.TryResolve(Type)
-  fullName: FastEndpoints.IServiceResolverBase.TryResolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   type: Method
   source:
     id: TryResolve
@@ -120,7 +120,7 @@ items:
     content: object TryResolve(Type typeOfService)
     parameters:
     - id: typeOfService
-      type: Type
+      type: System.Type
       description: the type of the service to resolve
     return:
       type: System.Object
@@ -158,19 +158,23 @@ items:
       type: '{TService}'
     content.vb: Function Resolve(Of TService As Class) As TService
   overload: FastEndpoints.IServiceResolverBase.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   nameWithType.vb: IServiceResolverBase.Resolve(Of TService)()
   fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(Of TService)()
   name.vb: Resolve(Of TService)()
-- uid: FastEndpoints.IServiceResolverBase.Resolve(Type)
-  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(Type)
-  id: Resolve(Type)
+- uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(System.Type)
+  id: Resolve(System.Type)
   parent: FastEndpoints.IServiceResolverBase
   langs:
   - csharp
   - vb
   name: Resolve(Type)
   nameWithType: IServiceResolverBase.Resolve(Type)
-  fullName: FastEndpoints.IServiceResolverBase.Resolve(Type)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   type: Method
   source:
     id: Resolve
@@ -185,12 +189,16 @@ items:
     content: object Resolve(Type typeOfService)
     parameters:
     - id: typeOfService
-      type: Type
+      type: System.Type
       description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.IServiceResolverBase.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -230,11 +238,13 @@ references:
   name: TService
   nameWithType: TService
   fullName: TService
-- uid: Type
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
   isExternal: true
   name: Type
   nameWithType: Type
-  fullName: Type
+  fullName: System.Type
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -248,6 +258,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
 - uid: FastEndpoints.IServiceResolverBase.Resolve*
   commentId: Overload:FastEndpoints.IServiceResolverBase.Resolve
   name: Resolve

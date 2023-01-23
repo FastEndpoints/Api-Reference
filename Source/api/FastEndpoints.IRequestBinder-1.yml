@@ -5,7 +5,7 @@ items:
   id: IRequestBinder`1
   parent: FastEndpoints
   children:
-  - FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -40,16 +40,16 @@ items:
   - Interface
   fullName.vb: FastEndpoints.IRequestBinder(Of TRequest)
   name.vb: IRequestBinder(Of TRequest)
-- uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
-  commentId: M:FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
-  id: BindAsync(FastEndpoints.BinderContext,CancellationToken)
+- uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
+  id: BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   parent: FastEndpoints.IRequestBinder`1
   langs:
   - csharp
   - vb
   name: BindAsync(BinderContext, CancellationToken)
   nameWithType: IRequestBinder<TRequest>.BindAsync(BinderContext, CancellationToken)
-  fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
   type: Method
   source:
     id: BindAsync
@@ -67,14 +67,14 @@ items:
       type: FastEndpoints.BinderContext
       description: request binder context encapsulating the incoming http request context, a list of validation failures for the endpoint, and an optional json serializer context.
     - id: ct
-      type: CancellationToken
+      type: System.Threading.CancellationToken
       description: cancellation token
     return:
-      type: ValueTask{{TRequest}}
+      type: System.Threading.Tasks.ValueTask{{TRequest}}
     content.vb: Function BindAsync(ctx As BinderContext, ct As CancellationToken) As ValueTask(Of TRequest)
   overload: FastEndpoints.IRequestBinder`1.BindAsync*
   nameWithType.vb: IRequestBinder(Of TRequest).BindAsync(BinderContext, CancellationToken)
-  fullName.vb: FastEndpoints.IRequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName.vb: FastEndpoints.IRequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -94,25 +94,28 @@ references:
   name: BinderContext
   nameWithType: BinderContext
   fullName: FastEndpoints.BinderContext
-- uid: CancellationToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
   name: CancellationToken
   nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: ValueTask{{TRequest}}
-  commentId: '!:ValueTask{`0}'
-  definition: ValueTask`1
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.ValueTask{{TRequest}}
+  commentId: T:System.Threading.Tasks.ValueTask{`0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
   name: ValueTask<TRequest>
   nameWithType: ValueTask<TRequest>
-  fullName: ValueTask<TRequest>
+  fullName: System.Threading.Tasks.ValueTask<TRequest>
   nameWithType.vb: ValueTask(Of TRequest)
-  fullName.vb: ValueTask(Of TRequest)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TRequest)
   name.vb: ValueTask(Of TRequest)
   spec.csharp:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: <
     nameWithType: <
@@ -124,10 +127,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -138,41 +141,54 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: ValueTask`1
+- uid: System.Threading
+  commentId: N:System.Threading
   isExternal: true
-  name: ValueTask<>
-  nameWithType: ValueTask<>
-  fullName: ValueTask<>
-  nameWithType.vb: ValueTask(Of )
-  fullName.vb: ValueTask(Of )
-  name.vb: ValueTask(Of )
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
   spec.csharp:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

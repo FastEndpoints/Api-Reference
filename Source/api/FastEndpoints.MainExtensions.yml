@@ -5,9 +5,9 @@ items:
   id: MainExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
-  - FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  - FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  - FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
+  - FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
+  - FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
   - FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   langs:
   - csharp
@@ -45,17 +45,17 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
-  commentId: M:FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
-  id: AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}})
+- uid: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
+  commentId: M:FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
+  id: AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
   isExtensionMethod: true
   parent: FastEndpoints.MainExtensions
   langs:
   - csharp
   - vb
-  name: AddFastEndpoints(IServiceCollection, Nullable<Action<EndpointDiscoveryOptions>>)
-  nameWithType: MainExtensions.AddFastEndpoints(IServiceCollection, Nullable<Action<EndpointDiscoveryOptions>>)
-  fullName: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable<Action<FastEndpoints.EndpointDiscoveryOptions>>)
+  name: AddFastEndpoints(IServiceCollection, Action<EndpointDiscoveryOptions>)
+  nameWithType: MainExtensions.AddFastEndpoints(IServiceCollection, Action<EndpointDiscoveryOptions>)
+  fullName: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<FastEndpoints.EndpointDiscoveryOptions>)
   type: Method
   source:
     id: AddFastEndpoints
@@ -67,40 +67,40 @@ items:
   summary: "\nadds the FastEndpoints services to the ASP.Net middleware pipeline\n"
   example: []
   syntax:
-    content: public static IServiceCollection AddFastEndpoints(this IServiceCollection services, Action<EndpointDiscoveryOptions>? options = null)
+    content: public static IServiceCollection AddFastEndpoints(this IServiceCollection services, Action<EndpointDiscoveryOptions> options = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     - id: options
-      type: System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}}
+      type: System.Action{FastEndpoints.EndpointDiscoveryOptions}
       description: optionally specify the endpoint discovery options
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function AddFastEndpoints(services As IServiceCollection, options As Action(Of EndpointDiscoveryOptions)? = Nothing) As IServiceCollection
+      Public Shared Function AddFastEndpoints(services As IServiceCollection, options As Action(Of EndpointDiscoveryOptions) = Nothing) As IServiceCollection
   overload: FastEndpoints.MainExtensions.AddFastEndpoints*
-  nameWithType.vb: MainExtensions.AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)))
+  nameWithType.vb: MainExtensions.AddFastEndpoints(IServiceCollection, Action(Of EndpointDiscoveryOptions))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Nullable(Of Action(Of FastEndpoints.EndpointDiscoveryOptions)))
-  name.vb: AddFastEndpoints(IServiceCollection, Nullable(Of Action(Of EndpointDiscoveryOptions)))
-- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  id: UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+  fullName.vb: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of FastEndpoints.EndpointDiscoveryOptions))
+  name.vb: AddFastEndpoints(IServiceCollection, Action(Of EndpointDiscoveryOptions))
+- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
+  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
+  id: UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
   isExtensionMethod: true
   parent: FastEndpoints.MainExtensions
   langs:
   - csharp
   - vb
-  name: UseFastEndpoints(IApplicationBuilder, Nullable<Action<Config>>)
-  nameWithType: MainExtensions.UseFastEndpoints(IApplicationBuilder, Nullable<Action<Config>>)
-  fullName: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Nullable<Action<FastEndpoints.Config>>)
+  name: UseFastEndpoints(IApplicationBuilder, Action<Config>)
+  nameWithType: MainExtensions.UseFastEndpoints(IApplicationBuilder, Action<Config>)
+  fullName: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<FastEndpoints.Config>)
   type: Method
   source:
     id: UseFastEndpoints
@@ -109,32 +109,36 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: this is the combination of <xref href=\"FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder%2cSystem.Nullable%7bAction%7bFastEndpoints.Config%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Nullable%7bAction%7bFastEndpoints.Config%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref>.\nyou can use those two methods separately if you have some special requirement such as using &quot;Startup.cs&quot;, etc.\n</p>\n"
+  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: this is the combination of <xref href=\"FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)\" data-throw-if-not-resolved=\"false\"></xref>.\nyou can use those two methods separately if you have some special requirement such as using &quot;Startup.cs&quot;, etc.\n</p>\n"
   example: []
   syntax:
-    content: public static IApplicationBuilder UseFastEndpoints(this IApplicationBuilder app, Action<Config>? configAction = null)
+    content: public static IApplicationBuilder UseFastEndpoints(this IApplicationBuilder app, Action<Config> configAction = null)
     parameters:
     - id: app
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
     - id: configAction
-      type: System.Nullable{Action{FastEndpoints.Config}}
+      type: System.Action{FastEndpoints.Config}
       description: an optional action to configure FastEndpoints
     return:
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function UseFastEndpoints(app As IApplicationBuilder, configAction As Action(Of Config)? = Nothing) As IApplicationBuilder
+      Public Shared Function UseFastEndpoints(app As IApplicationBuilder, configAction As Action(Of Config) = Nothing) As IApplicationBuilder
   overload: FastEndpoints.MainExtensions.UseFastEndpoints*
-  nameWithType.vb: MainExtensions.UseFastEndpoints(IApplicationBuilder, Nullable(Of Action(Of Config)))
+  exceptions:
+  - type: System.InvalidCastException
+    commentId: T:System.InvalidCastException
+    description: thrown when the <code>app</code> cannot be cast to <xref href="Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" data-throw-if-not-resolved="false"></xref>
+  nameWithType.vb: MainExtensions.UseFastEndpoints(IApplicationBuilder, Action(Of Config))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Nullable(Of Action(Of FastEndpoints.Config)))
-  name.vb: UseFastEndpoints(IApplicationBuilder, Nullable(Of Action(Of Config)))
+  fullName.vb: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of FastEndpoints.Config))
+  name.vb: UseFastEndpoints(IApplicationBuilder, Action(Of Config))
 - uid: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   commentId: M:FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   id: UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
@@ -172,17 +176,17 @@ items:
   modifiers.vb:
   - Public
   - Shared
-- uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  id: MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
+- uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
+  commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
+  id: MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   isExtensionMethod: true
   parent: FastEndpoints.MainExtensions
   langs:
   - csharp
   - vb
-  name: MapFastEndpoints(IEndpointRouteBuilder, Nullable<Action<Config>>)
-  nameWithType: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Nullable<Action<Config>>)
-  fullName: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Nullable<Action<FastEndpoints.Config>>)
+  name: MapFastEndpoints(IEndpointRouteBuilder, Action<Config>)
+  nameWithType: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action<Config>)
+  fullName: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.Config>)
   type: Method
   source:
     id: MapFastEndpoints
@@ -192,28 +196,28 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public static IEndpointRouteBuilder MapFastEndpoints(this IEndpointRouteBuilder app, Action<Config>? configAction = null)
+    content: public static IEndpointRouteBuilder MapFastEndpoints(this IEndpointRouteBuilder app, Action<Config> configAction = null)
     parameters:
     - id: app
       type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
     - id: configAction
-      type: System.Nullable{Action{FastEndpoints.Config}}
+      type: System.Action{FastEndpoints.Config}
     return:
       type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function MapFastEndpoints(app As IEndpointRouteBuilder, configAction As Action(Of Config)? = Nothing) As IEndpointRouteBuilder
+      Public Shared Function MapFastEndpoints(app As IEndpointRouteBuilder, configAction As Action(Of Config) = Nothing) As IEndpointRouteBuilder
   overload: FastEndpoints.MainExtensions.MapFastEndpoints*
-  nameWithType.vb: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Nullable(Of Action(Of Config)))
+  nameWithType.vb: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action(Of Config))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Nullable(Of Action(Of FastEndpoints.Config)))
-  name.vb: MapFastEndpoints(IEndpointRouteBuilder, Nullable(Of Action(Of Config)))
+  fullName.vb: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of FastEndpoints.Config))
+  name.vb: MapFastEndpoints(IEndpointRouteBuilder, Action(Of Config))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -524,29 +528,21 @@ references:
   name: IServiceCollection
   nameWithType: IServiceCollection
   fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
-- uid: System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}}
-  commentId: T:System.Nullable{Action{FastEndpoints.EndpointDiscoveryOptions}}
+- uid: System.Action{FastEndpoints.EndpointDiscoveryOptions}
+  commentId: T:System.Action{FastEndpoints.EndpointDiscoveryOptions}
   parent: System
-  definition: System.Nullable`1
-  name: Nullable<Action<EndpointDiscoveryOptions>>
-  nameWithType: Nullable<Action<EndpointDiscoveryOptions>>
-  fullName: System.Nullable<Action<FastEndpoints.EndpointDiscoveryOptions>>
-  nameWithType.vb: Nullable(Of Action(Of EndpointDiscoveryOptions))
-  fullName.vb: System.Nullable(Of Action(Of FastEndpoints.EndpointDiscoveryOptions))
-  name.vb: Nullable(Of Action(Of EndpointDiscoveryOptions))
+  definition: System.Action`1
+  name: Action<EndpointDiscoveryOptions>
+  nameWithType: Action<EndpointDiscoveryOptions>
+  fullName: System.Action<FastEndpoints.EndpointDiscoveryOptions>
+  nameWithType.vb: Action(Of EndpointDiscoveryOptions)
+  fullName.vb: System.Action(Of FastEndpoints.EndpointDiscoveryOptions)
+  name.vb: Action(Of EndpointDiscoveryOptions)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -555,25 +551,14 @@ references:
     name: EndpointDiscoveryOptions
     nameWithType: EndpointDiscoveryOptions
     fullName: FastEndpoints.EndpointDiscoveryOptions
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -582,9 +567,6 @@ references:
     name: EndpointDiscoveryOptions
     nameWithType: EndpointDiscoveryOptions
     fullName: FastEndpoints.EndpointDiscoveryOptions
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -594,20 +576,20 @@ references:
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
+- uid: System.Action`1
+  commentId: T:System.Action`1
   isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -619,10 +601,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -633,11 +615,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Nullable{Action{FastEndpoints.Config}})
+- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
+  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
   isExternal: true
-- uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
-  commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Nullable{Action{FastEndpoints.Config}})
+- uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
+  commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   isExternal: true
 - uid: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
   commentId: T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
@@ -646,6 +628,9 @@ references:
   name: IEndpointRouteBuilder
   nameWithType: IEndpointRouteBuilder
   fullName: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+- uid: System.InvalidCastException
+  commentId: T:System.InvalidCastException
+  isExternal: true
 - uid: FastEndpoints.MainExtensions.UseFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.UseFastEndpoints
   name: UseFastEndpoints
@@ -658,29 +643,21 @@ references:
   name: IApplicationBuilder
   nameWithType: IApplicationBuilder
   fullName: Microsoft.AspNetCore.Builder.IApplicationBuilder
-- uid: System.Nullable{Action{FastEndpoints.Config}}
-  commentId: T:System.Nullable{Action{FastEndpoints.Config}}
+- uid: System.Action{FastEndpoints.Config}
+  commentId: T:System.Action{FastEndpoints.Config}
   parent: System
-  definition: System.Nullable`1
-  name: Nullable<Action<Config>>
-  nameWithType: Nullable<Action<Config>>
-  fullName: System.Nullable<Action<FastEndpoints.Config>>
-  nameWithType.vb: Nullable(Of Action(Of Config))
-  fullName.vb: System.Nullable(Of Action(Of FastEndpoints.Config))
-  name.vb: Nullable(Of Action(Of Config))
+  definition: System.Action`1
+  name: Action<Config>
+  nameWithType: Action<Config>
+  fullName: System.Action<FastEndpoints.Config>
+  nameWithType.vb: Action(Of Config)
+  fullName.vb: System.Action(Of FastEndpoints.Config)
+  name.vb: Action(Of Config)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -689,25 +666,14 @@ references:
     name: Config
     nameWithType: Config
     fullName: FastEndpoints.Config
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -716,9 +682,6 @@ references:
     name: Config
     nameWithType: Config
     fullName: FastEndpoints.Config
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )

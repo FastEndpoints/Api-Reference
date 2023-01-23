@@ -5,6 +5,7 @@ items:
   id: IEndpoint
   parent: FastEndpoints
   children:
+  - FastEndpoints.IEndpoint.Definition
   - FastEndpoints.IEndpoint.HttpContext
   - FastEndpoints.IEndpoint.TestURLFor``1
   - FastEndpoints.IEndpoint.ValidationFailures
@@ -88,9 +89,40 @@ items:
     content: List<ValidationFailure> ValidationFailures { get; }
     parameters: []
     return:
-      type: List{FluentValidation.Results.ValidationFailure}
+      type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
     content.vb: ReadOnly Property ValidationFailures As List(Of ValidationFailure)
   overload: FastEndpoints.IEndpoint.ValidationFailures*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: FastEndpoints.IEndpoint.Definition
+  commentId: P:FastEndpoints.IEndpoint.Definition
+  id: Definition
+  parent: FastEndpoints.IEndpoint
+  langs:
+  - csharp
+  - vb
+  name: Definition
+  nameWithType: IEndpoint.Definition
+  fullName: FastEndpoints.IEndpoint.Definition
+  type: Property
+  source:
+    id: Definition
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\IEndpoint.cs
+    startLine: 24
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ngets the endpoint definition which contains all the configuration info for the endpoint\n"
+  example: []
+  syntax:
+    content: EndpointDefinition Definition { get; }
+    parameters: []
+    return:
+      type: FastEndpoints.EndpointDefinition
+    content.vb: ReadOnly Property Definition As EndpointDefinition
+  overload: FastEndpoints.IEndpoint.Definition*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -109,7 +141,7 @@ items:
   source:
     id: TestURLFor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\IEndpoint.cs
-    startLine: 26
+    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -153,20 +185,21 @@ references:
   name: ValidationFailures
   nameWithType: IEndpoint.ValidationFailures
   fullName: FastEndpoints.IEndpoint.ValidationFailures
-- uid: List{FluentValidation.Results.ValidationFailure}
-  commentId: '!:List{FluentValidation.Results.ValidationFailure}'
-  definition: List`1
+- uid: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+  commentId: T:System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
   name: List<ValidationFailure>
   nameWithType: List<ValidationFailure>
-  fullName: List<FluentValidation.Results.ValidationFailure>
+  fullName: System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>
   nameWithType.vb: List(Of ValidationFailure)
-  fullName.vb: List(Of FluentValidation.Results.ValidationFailure)
+  fullName.vb: System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure)
   name.vb: List(Of ValidationFailure)
   spec.csharp:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
     nameWithType: <
@@ -180,10 +213,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -196,44 +229,62 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: List`1
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
   isExternal: true
-  name: List<>
-  nameWithType: List<>
-  fullName: List<>
-  nameWithType.vb: List(Of )
-  fullName.vb: List(Of )
-  name.vb: List(Of )
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
   spec.csharp:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: FastEndpoints.IEndpoint.Definition*
+  commentId: Overload:FastEndpoints.IEndpoint.Definition
+  name: Definition
+  nameWithType: IEndpoint.Definition
+  fullName: FastEndpoints.IEndpoint.Definition
+- uid: FastEndpoints.EndpointDefinition
+  commentId: T:FastEndpoints.EndpointDefinition
+  parent: FastEndpoints
+  name: EndpointDefinition
+  nameWithType: EndpointDefinition
+  fullName: FastEndpoints.EndpointDefinition
 - uid: FastEndpoints.IEndpoint.TestURLFor*
   commentId: Overload:FastEndpoints.IEndpoint.TestURLFor
   name: TestURLFor

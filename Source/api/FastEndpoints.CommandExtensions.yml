@@ -5,8 +5,8 @@ items:
   id: CommandExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)
-  - FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
+  - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
+  - FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -41,9 +41,9 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)
-  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,CancellationToken)
-  id: ExecuteAsync``1(``0,CancellationToken)
+- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
+  id: ExecuteAsync``1(``0,System.Threading.CancellationToken)
   isExtensionMethod: true
   parent: FastEndpoints.CommandExtensions
   langs:
@@ -51,7 +51,7 @@ items:
   - vb
   name: ExecuteAsync<TCommand>(TCommand, CancellationToken)
   nameWithType: CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
-  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
+  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TCommand>(TCommand, System.Threading.CancellationToken)
   type: Method
   source:
     id: ExecuteAsync
@@ -64,7 +64,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = null)
+      public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = default(CancellationToken))
 
           where TCommand : ICommand
     parameters:
@@ -72,18 +72,22 @@ items:
       type: '{TCommand}'
       description: the command to execute
     - id: ct
-      type: CancellationToken
+      type: System.Threading.CancellationToken
       description: optional cancellation token
     typeParameters:
     - id: TCommand
       description: the type of the command
     return:
-      type: Task
+      type: System.Threading.Tasks.Task
     content.vb: >-
       <ExtensionAttribute>
 
       Public Shared Function ExecuteAsync(Of TCommand As ICommand)(command As TCommand, ct As CancellationToken = Nothing) As Task
   overload: FastEndpoints.CommandExtensions.ExecuteAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown when a handler for the command cannot be instantiated
   nameWithType.vb: CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
   modifiers.csharp:
   - public
@@ -91,11 +95,11 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
+  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, System.Threading.CancellationToken)
   name.vb: ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
-- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
-  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
-  id: ExecuteAsync``1(FastEndpoints.ICommand{``0},CancellationToken)
+- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  id: ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   isExtensionMethod: true
   parent: FastEndpoints.CommandExtensions
   langs:
@@ -103,7 +107,7 @@ items:
   - vb
   name: ExecuteAsync<TResult>(ICommand<TResult>, CancellationToken)
   nameWithType: CommandExtensions.ExecuteAsync<TResult>(ICommand<TResult>, CancellationToken)
-  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TResult>(FastEndpoints.ICommand<TResult>, CancellationToken)
+  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TResult>(FastEndpoints.ICommand<TResult>, System.Threading.CancellationToken)
   type: Method
   source:
     id: ExecuteAsync
@@ -115,24 +119,28 @@ items:
   summary: "\nexecutes the command and returns a result\n"
   example: []
   syntax:
-    content: public static Task<TResult> ExecuteAsync<TResult>(this ICommand<TResult> command, CancellationToken ct = null)
+    content: public static Task<TResult> ExecuteAsync<TResult>(this ICommand<TResult> command, CancellationToken ct = default(CancellationToken))
     parameters:
     - id: command
       type: FastEndpoints.ICommand{{TResult}}
       description: the command to execute
     - id: ct
-      type: CancellationToken
+      type: System.Threading.CancellationToken
       description: optional cancellation token
     typeParameters:
     - id: TResult
       description: the type of the returned result
     return:
-      type: Task{{TResult}}
+      type: System.Threading.Tasks.Task{{TResult}}
     content.vb: >-
       <ExtensionAttribute>
 
       Public Shared Function ExecuteAsync(Of TResult)(command As ICommand(Of TResult), ct As CancellationToken = Nothing) As Task(Of TResult)
   overload: FastEndpoints.CommandExtensions.ExecuteAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown when a handler for the command cannot be instantiated
   nameWithType.vb: CommandExtensions.ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
   modifiers.csharp:
   - public
@@ -140,7 +148,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), CancellationToken)
+  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), System.Threading.CancellationToken)
   name.vb: ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
 references:
 - uid: FastEndpoints
@@ -440,6 +448,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
 - uid: FastEndpoints.CommandExtensions.ExecuteAsync*
   commentId: Overload:FastEndpoints.CommandExtensions.ExecuteAsync
   name: ExecuteAsync
@@ -451,20 +462,36 @@ references:
   name: TCommand
   nameWithType: TCommand
   fullName: TCommand
-- uid: CancellationToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
   name: CancellationToken
   nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: Task
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
   isExternal: true
   name: Task
   nameWithType: Task
-  fullName: Task
+  fullName: System.Threading.Tasks.Task
 - uid: TCommand
   name: TCommand
   nameWithType: TCommand
   fullName: TCommand
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
 - uid: FastEndpoints.ICommand{{TResult}}
   commentId: T:FastEndpoints.ICommand{``0}
   parent: FastEndpoints
@@ -503,20 +530,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Task{{TResult}}
-  commentId: '!:Task{``0}'
-  definition: Task`1
+- uid: System.Threading.Tasks.Task{{TResult}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
   name: Task<TResult>
   nameWithType: Task<TResult>
-  fullName: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
   nameWithType.vb: Task(Of TResult)
-  fullName.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
   name.vb: Task(Of TResult)
   spec.csharp:
-  - uid: Task`1
+  - uid: System.Threading.Tasks.Task`1
     name: Task
     nameWithType: Task
-    fullName: Task
+    fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
     nameWithType: <
@@ -528,10 +556,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Task`1
+  - uid: System.Threading.Tasks.Task`1
     name: Task
     nameWithType: Task
-    fullName: Task
+    fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -578,41 +606,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Task`1
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
-  name: Task<>
-  nameWithType: Task<>
-  fullName: Task<>
-  nameWithType.vb: Task(Of )
-  fullName.vb: Task(Of )
-  name.vb: Task(Of )
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
   spec.csharp:
-  - uid: Task`1
+  - uid: System.Threading.Tasks.Task`1
     name: Task
     nameWithType: Task
-    fullName: Task
+    fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Task`1
+  - uid: System.Threading.Tasks.Task`1
     name: Task
     nameWithType: Task
-    fullName: Task
+    fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: )
     nameWithType: )
     fullName: )

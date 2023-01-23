@@ -67,11 +67,11 @@ items:
   summary: "\nan optional collection of assemblies to discover endpoints from.\nif DisableAutoDiscovery is set to true, this must be provided.\n<p>NOTE: not applicable when using FastEndpoints.Generator package</p>\n"
   example: []
   syntax:
-    content: public IEnumerable<Assembly>? Assemblies { set; }
+    content: public IEnumerable<Assembly> Assemblies { set; }
     parameters: []
     return:
-      type: System.Nullable{IEnumerable{System.Reflection.Assembly}}
-    content.vb: Public WriteOnly Property Assemblies As IEnumerable(Of Assembly)?
+      type: System.Collections.Generic.IEnumerable{System.Reflection.Assembly}
+    content.vb: Public WriteOnly Property Assemblies As IEnumerable(Of Assembly)
   overload: FastEndpoints.EndpointDiscoveryOptions.Assemblies*
   modifiers.csharp:
   - public
@@ -133,11 +133,11 @@ items:
   summary: "\nan optional predicate to filter out the final collection of assemblies before scanning for endpoints.\n<p>NOTE: not applicable when using FastEndpoints.Generator package</p>\n"
   example: []
   syntax:
-    content: public Func<Assembly, bool>? AssemblyFilter { set; }
+    content: public Func<Assembly, bool> AssemblyFilter { set; }
     parameters: []
     return:
-      type: System.Nullable{Func{System.Reflection.Assembly,System.Boolean}}
-    content.vb: Public WriteOnly Property AssemblyFilter As Func(Of Assembly, Boolean)?
+      type: System.Func{System.Reflection.Assembly,System.Boolean}
+    content.vb: Public WriteOnly Property AssemblyFilter As Func(Of Assembly, Boolean)
   overload: FastEndpoints.EndpointDiscoveryOptions.AssemblyFilter*
   modifiers.csharp:
   - public
@@ -169,7 +169,7 @@ items:
     content: public Type[] SourceGeneratorDiscoveredTypes { set; }
     parameters: []
     return:
-      type: Type[]
+      type: System.Type[]
     content.vb: Public WriteOnly Property SourceGeneratorDiscoveredTypes As Type()
   overload: FastEndpoints.EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes*
   modifiers.csharp:
@@ -232,11 +232,11 @@ items:
   summary: "\na function to filter out types from auto discovery.\nthe function you set here will be executed for each discovered type during startup.\nreturn &apos;false&apos; from the function if you want to exclude a type from discovery.\nreturn &apos;true&apos; to include.\n"
   example: []
   syntax:
-    content: public Func<Type, bool>? Filter { set; }
+    content: public Func<Type, bool> Filter { set; }
     parameters: []
     return:
-      type: System.Nullable{Func{Type,System.Boolean}}
-    content.vb: Public WriteOnly Property Filter As Func(Of Type, Boolean)?
+      type: System.Func{System.Type,System.Boolean}
+    content.vb: Public WriteOnly Property Filter As Func(Of Type, Boolean)
   overload: FastEndpoints.EndpointDiscoveryOptions.Filter*
   modifiers.csharp:
   - public
@@ -547,29 +547,21 @@ references:
   name: Assemblies
   nameWithType: EndpointDiscoveryOptions.Assemblies
   fullName: FastEndpoints.EndpointDiscoveryOptions.Assemblies
-- uid: System.Nullable{IEnumerable{System.Reflection.Assembly}}
-  commentId: T:System.Nullable{IEnumerable{System.Reflection.Assembly}}
-  parent: System
-  definition: System.Nullable`1
-  name: Nullable<IEnumerable<Assembly>>
-  nameWithType: Nullable<IEnumerable<Assembly>>
-  fullName: System.Nullable<IEnumerable<System.Reflection.Assembly>>
-  nameWithType.vb: Nullable(Of IEnumerable(Of Assembly))
-  fullName.vb: System.Nullable(Of IEnumerable(Of System.Reflection.Assembly))
-  name.vb: Nullable(Of IEnumerable(Of Assembly))
+- uid: System.Collections.Generic.IEnumerable{System.Reflection.Assembly}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Reflection.Assembly}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Assembly>
+  nameWithType: IEnumerable<Assembly>
+  fullName: System.Collections.Generic.IEnumerable<System.Reflection.Assembly>
+  nameWithType.vb: IEnumerable(Of Assembly)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.Assembly)
+  name.vb: IEnumerable(Of Assembly)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -579,25 +571,14 @@ references:
     nameWithType: Assembly
     fullName: System.Reflection.Assembly
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -610,23 +591,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -638,10 +616,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -652,6 +630,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: FastEndpoints.EndpointDiscoveryOptions.DisableAutoDiscovery*
   commentId: Overload:FastEndpoints.EndpointDiscoveryOptions.DisableAutoDiscovery
   name: DisableAutoDiscovery
@@ -669,29 +653,21 @@ references:
   name: AssemblyFilter
   nameWithType: EndpointDiscoveryOptions.AssemblyFilter
   fullName: FastEndpoints.EndpointDiscoveryOptions.AssemblyFilter
-- uid: System.Nullable{Func{System.Reflection.Assembly,System.Boolean}}
-  commentId: T:System.Nullable{Func{System.Reflection.Assembly,System.Boolean}}
+- uid: System.Func{System.Reflection.Assembly,System.Boolean}
+  commentId: T:System.Func{System.Reflection.Assembly,System.Boolean}
   parent: System
-  definition: System.Nullable`1
-  name: Nullable<Func<Assembly, Boolean>>
-  nameWithType: Nullable<Func<Assembly, Boolean>>
-  fullName: System.Nullable<Func<System.Reflection.Assembly, System.Boolean>>
-  nameWithType.vb: Nullable(Of Func(Of Assembly, Boolean))
-  fullName.vb: System.Nullable(Of Func(Of System.Reflection.Assembly, System.Boolean))
-  name.vb: Nullable(Of Func(Of Assembly, Boolean))
+  definition: System.Func`2
+  name: Func<Assembly, Boolean>
+  nameWithType: Func<Assembly, Boolean>
+  fullName: System.Func<System.Reflection.Assembly, System.Boolean>
+  nameWithType.vb: Func(Of Assembly, Boolean)
+  fullName.vb: System.Func(Of System.Reflection.Assembly, System.Boolean)
+  name.vb: Func(Of Assembly, Boolean)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Func`2
+  - uid: System.Func`2
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: <
     nameWithType: <
@@ -712,22 +688,11 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Func`2
+  - uid: System.Func`2
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -748,6 +713,54 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: )
     nameWithType: )
     fullName: )
@@ -756,28 +769,28 @@ references:
   name: SourceGeneratorDiscoveredTypes
   nameWithType: EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes
   fullName: FastEndpoints.EndpointDiscoveryOptions.SourceGeneratorDiscoveredTypes
-- uid: Type[]
+- uid: System.Type[]
   isExternal: true
   name: Type[]
   nameWithType: Type[]
-  fullName: Type[]
+  fullName: System.Type[]
   nameWithType.vb: Type()
-  fullName.vb: Type()
+  fullName.vb: System.Type()
   name.vb: Type()
   spec.csharp:
-  - uid: Type
+  - uid: System.Type
     name: Type
     nameWithType: Type
-    fullName: Type
+    fullName: System.Type
     isExternal: true
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
   spec.vb:
-  - uid: Type
+  - uid: System.Type
     name: Type
     nameWithType: Type
-    fullName: Type
+    fullName: System.Type
     isExternal: true
   - name: ()
     nameWithType: ()
@@ -867,37 +880,29 @@ references:
   name: Filter
   nameWithType: EndpointDiscoveryOptions.Filter
   fullName: FastEndpoints.EndpointDiscoveryOptions.Filter
-- uid: System.Nullable{Func{Type,System.Boolean}}
-  commentId: T:System.Nullable{Func{Type,System.Boolean}}
+- uid: System.Func{System.Type,System.Boolean}
+  commentId: T:System.Func{System.Type,System.Boolean}
   parent: System
-  definition: System.Nullable`1
-  name: Nullable<Func<Type, Boolean>>
-  nameWithType: Nullable<Func<Type, Boolean>>
-  fullName: System.Nullable<Func<Type, System.Boolean>>
-  nameWithType.vb: Nullable(Of Func(Of Type, Boolean))
-  fullName.vb: System.Nullable(Of Func(Of Type, System.Boolean))
-  name.vb: Nullable(Of Func(Of Type, Boolean))
+  definition: System.Func`2
+  name: Func<Type, Boolean>
+  nameWithType: Func<Type, Boolean>
+  fullName: System.Func<System.Type, System.Boolean>
+  nameWithType.vb: Func(Of Type, Boolean)
+  fullName.vb: System.Func(Of System.Type, System.Boolean)
+  name.vb: Func(Of Type, Boolean)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Func`2
+  - uid: System.Func`2
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Type
+  - uid: System.Type
     name: Type
     nameWithType: Type
-    fullName: Type
+    fullName: System.Type
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -907,33 +912,22 @@ references:
     nameWithType: Boolean
     fullName: System.Boolean
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Func`2
+  - uid: System.Func`2
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Type
+  - uid: System.Type
     name: Type
     nameWithType: Type
-    fullName: Type
+    fullName: System.Type
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -943,9 +937,6 @@ references:
     nameWithType: Boolean
     fullName: System.Boolean
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )

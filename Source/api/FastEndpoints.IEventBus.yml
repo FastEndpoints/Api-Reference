@@ -5,7 +5,7 @@ items:
   id: IEventBus
   parent: FastEndpoints
   children:
-  - FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+  - FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -31,16 +31,16 @@ items:
   modifiers.vb:
   - Public
   - Interface
-- uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
-  commentId: M:FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
-  id: PublishAsync``1(``0,FastEndpoints.Mode,CancellationToken)
+- uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
+  id: PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   parent: FastEndpoints.IEventBus
   langs:
   - csharp
   - vb
   name: PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
   nameWithType: IEventBus.PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
-  fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>(TEvent, FastEndpoints.Mode, CancellationToken)
+  fullName: FastEndpoints.IEventBus.PublishAsync<TEvent>(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
   type: Method
   source:
     id: PublishAsync
@@ -52,7 +52,7 @@ items:
   summary: "\npublishes a given event model to all subscribers registered to handle the that type of event.\n"
   example: []
   syntax:
-    content: Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
+    content: Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default(CancellationToken))
     parameters:
     - id: eventModel
       type: '{TEvent}'
@@ -61,13 +61,13 @@ items:
       type: FastEndpoints.Mode
       description: specify whether to wait for none, any or all of the subscribers to complete their work
     - id: cancellation
-      type: CancellationToken
+      type: System.Threading.CancellationToken
       description: an optional cancellation token
     typeParameters:
     - id: TEvent
       description: the type of the event model
     return:
-      type: Task
+      type: System.Threading.Tasks.Task
       description: >-
         a Task that matches the wait mode specified.
 
@@ -79,7 +79,7 @@ items:
     content.vb: Function PublishAsync(Of TEvent)(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
   overload: FastEndpoints.IEventBus.PublishAsync*
   nameWithType.vb: IEventBus.PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
-  fullName.vb: FastEndpoints.IEventBus.PublishAsync(Of TEvent)(TEvent, FastEndpoints.Mode, CancellationToken)
+  fullName.vb: FastEndpoints.IEventBus.PublishAsync(Of TEvent)(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
   name.vb: PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
 references:
 - uid: FastEndpoints
@@ -113,17 +113,33 @@ references:
   name: Mode
   nameWithType: Mode
   fullName: FastEndpoints.Mode
-- uid: CancellationToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
   name: CancellationToken
   nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: Task
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
   isExternal: true
   name: Task
   nameWithType: Task
-  fullName: Task
+  fullName: System.Threading.Tasks.Task
 - uid: TEvent
   name: TEvent
   nameWithType: TEvent
   fullName: TEvent
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

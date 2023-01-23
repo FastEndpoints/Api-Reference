@@ -5,7 +5,9 @@ items:
   id: RequestBinder`1
   parent: FastEndpoints
   children:
-  - FastEndpoints.RequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - FastEndpoints.RequestBinder`1.#ctor
+  - FastEndpoints.RequestBinder`1.#ctor(FastEndpoints.BindingSource)
+  - FastEndpoints.RequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -52,21 +54,85 @@ items:
   - Class
   fullName.vb: FastEndpoints.RequestBinder(Of TRequest)
   name.vb: RequestBinder(Of TRequest)
-- uid: FastEndpoints.RequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
-  commentId: M:FastEndpoints.RequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
-  id: BindAsync(FastEndpoints.BinderContext,CancellationToken)
+- uid: FastEndpoints.RequestBinder`1.#ctor
+  commentId: M:FastEndpoints.RequestBinder`1.#ctor
+  id: '#ctor'
+  parent: FastEndpoints.RequestBinder`1
+  langs:
+  - csharp
+  - vb
+  name: RequestBinder()
+  nameWithType: RequestBinder<TRequest>.RequestBinder()
+  fullName: FastEndpoints.RequestBinder<TRequest>.RequestBinder()
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\RequestBinder.cs
+    startLine: 97
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ndefault constructor which enables all binding sources\n"
+  example: []
+  syntax:
+    content: public RequestBinder()
+    content.vb: Public Sub New
+  overload: FastEndpoints.RequestBinder`1.#ctor*
+  nameWithType.vb: RequestBinder(Of TRequest).RequestBinder()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.RequestBinder(Of TRequest).RequestBinder()
+- uid: FastEndpoints.RequestBinder`1.#ctor(FastEndpoints.BindingSource)
+  commentId: M:FastEndpoints.RequestBinder`1.#ctor(FastEndpoints.BindingSource)
+  id: '#ctor(FastEndpoints.BindingSource)'
+  parent: FastEndpoints.RequestBinder`1
+  langs:
+  - csharp
+  - vb
+  name: RequestBinder(BindingSource)
+  nameWithType: RequestBinder<TRequest>.RequestBinder(BindingSource)
+  fullName: FastEndpoints.RequestBinder<TRequest>.RequestBinder(FastEndpoints.BindingSource)
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\RequestBinder.cs
+    startLine: 112
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nconstructor accepting a bitwise combination of enums which enables only the specified binding sources\n"
+  example: []
+  syntax:
+    content: public RequestBinder(BindingSource enabledSources)
+    parameters:
+    - id: enabledSources
+      type: FastEndpoints.BindingSource
+      description: a bitwise combination of enum values
+    content.vb: Public Sub New(enabledSources As BindingSource)
+  overload: FastEndpoints.RequestBinder`1.#ctor*
+  nameWithType.vb: RequestBinder(Of TRequest).RequestBinder(BindingSource)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.RequestBinder(Of TRequest).RequestBinder(FastEndpoints.BindingSource)
+- uid: FastEndpoints.RequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.RequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
+  id: BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   parent: FastEndpoints.RequestBinder`1
   langs:
   - csharp
   - vb
   name: BindAsync(BinderContext, CancellationToken)
   nameWithType: RequestBinder<TRequest>.BindAsync(BinderContext, CancellationToken)
-  fullName: FastEndpoints.RequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName: FastEndpoints.RequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
   type: Method
   source:
     id: BindAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\RequestBinder.cs
-    startLine: 92
+    startLine: 129
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -79,10 +145,10 @@ items:
       type: FastEndpoints.BinderContext
       description: the request binder context which holds all the data required for binding the incoming request
     - id: cancellation
-      type: CancellationToken
+      type: System.Threading.CancellationToken
       description: cancellation token
     return:
-      type: ValueTask{{TRequest}}
+      type: System.Threading.Tasks.ValueTask{{TRequest}}
     content.vb: Public Overridable Function BindAsync(ctx As BinderContext, cancellation As CancellationToken) As ValueTask(Of TRequest)
   overload: FastEndpoints.RequestBinder`1.BindAsync*
   exceptions:
@@ -90,7 +156,7 @@ items:
     commentId: T:FastEndpoints.ValidationFailureException
     description: thrown if any failures occur during the binding process
   implements:
-  - FastEndpoints.IRequestBinder{{TRequest}}.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - FastEndpoints.IRequestBinder{{TRequest}}.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   nameWithType.vb: RequestBinder(Of TRequest).BindAsync(BinderContext, CancellationToken)
   modifiers.csharp:
   - public
@@ -99,7 +165,7 @@ items:
   modifiers.vb:
   - Public
   - Overridable
-  fullName.vb: FastEndpoints.RequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName.vb: FastEndpoints.RequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -472,6 +538,19 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.RequestBinder`1.#ctor*
+  commentId: Overload:FastEndpoints.RequestBinder`1.#ctor
+  name: RequestBinder
+  nameWithType: RequestBinder<TRequest>.RequestBinder
+  fullName: FastEndpoints.RequestBinder<TRequest>.RequestBinder
+  nameWithType.vb: RequestBinder(Of TRequest).RequestBinder
+  fullName.vb: FastEndpoints.RequestBinder(Of TRequest).RequestBinder
+- uid: FastEndpoints.BindingSource
+  commentId: T:FastEndpoints.BindingSource
+  parent: FastEndpoints
+  name: BindingSource
+  nameWithType: BindingSource
+  fullName: FastEndpoints.BindingSource
 - uid: FastEndpoints.ValidationFailureException
   commentId: T:FastEndpoints.ValidationFailureException
   name: ValidationFailureException
@@ -484,17 +563,17 @@ references:
   fullName: FastEndpoints.RequestBinder<TRequest>.BindAsync
   nameWithType.vb: RequestBinder(Of TRequest).BindAsync
   fullName.vb: FastEndpoints.RequestBinder(Of TRequest).BindAsync
-- uid: FastEndpoints.IRequestBinder{{TRequest}}.BindAsync(FastEndpoints.BinderContext,CancellationToken)
-  commentId: M:FastEndpoints.IRequestBinder{`0}.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+- uid: FastEndpoints.IRequestBinder{{TRequest}}.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IRequestBinder{`0}.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   parent: FastEndpoints.IRequestBinder{{TRequest}}
-  definition: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  definition: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   name: BindAsync(BinderContext, CancellationToken)
   nameWithType: IRequestBinder<TRequest>.BindAsync(BinderContext, CancellationToken)
-  fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
   nameWithType.vb: IRequestBinder(Of TRequest).BindAsync(BinderContext, CancellationToken)
-  fullName.vb: FastEndpoints.IRequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName.vb: FastEndpoints.IRequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
   spec.csharp:
-  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
     name: BindAsync
     nameWithType: IRequestBinder<TRequest>.BindAsync
     fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync
@@ -508,16 +587,16 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: CancellationToken
+  - uid: System.Threading.CancellationToken
     name: CancellationToken
     nameWithType: CancellationToken
-    fullName: CancellationToken
+    fullName: System.Threading.CancellationToken
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
     name: BindAsync
     nameWithType: IRequestBinder(Of TRequest).BindAsync
     fullName: FastEndpoints.IRequestBinder(Of TRequest).BindAsync
@@ -531,10 +610,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: CancellationToken
+  - uid: System.Threading.CancellationToken
     name: CancellationToken
     nameWithType: CancellationToken
-    fullName: CancellationToken
+    fullName: System.Threading.CancellationToken
     isExternal: true
   - name: )
     nameWithType: )
@@ -545,25 +624,28 @@ references:
   name: BinderContext
   nameWithType: BinderContext
   fullName: FastEndpoints.BinderContext
-- uid: CancellationToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
   name: CancellationToken
   nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: ValueTask{{TRequest}}
-  commentId: '!:ValueTask{`0}'
-  definition: ValueTask`1
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.ValueTask{{TRequest}}
+  commentId: T:System.Threading.Tasks.ValueTask{`0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
   name: ValueTask<TRequest>
   nameWithType: ValueTask<TRequest>
-  fullName: ValueTask<TRequest>
+  fullName: System.Threading.Tasks.ValueTask<TRequest>
   nameWithType.vb: ValueTask(Of TRequest)
-  fullName.vb: ValueTask(Of TRequest)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TRequest)
   name.vb: ValueTask(Of TRequest)
   spec.csharp:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: <
     nameWithType: <
@@ -575,10 +657,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -589,16 +671,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
-  commentId: M:FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+- uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
   isExternal: true
   name: BindAsync(BinderContext, CancellationToken)
   nameWithType: IRequestBinder<TRequest>.BindAsync(BinderContext, CancellationToken)
-  fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
   nameWithType.vb: IRequestBinder(Of TRequest).BindAsync(BinderContext, CancellationToken)
-  fullName.vb: FastEndpoints.IRequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, CancellationToken)
+  fullName.vb: FastEndpoints.IRequestBinder(Of TRequest).BindAsync(FastEndpoints.BinderContext, System.Threading.CancellationToken)
   spec.csharp:
-  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
     name: BindAsync
     nameWithType: IRequestBinder<TRequest>.BindAsync
     fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync
@@ -612,16 +694,16 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: CancellationToken
+  - uid: System.Threading.CancellationToken
     name: CancellationToken
     nameWithType: CancellationToken
-    fullName: CancellationToken
+    fullName: System.Threading.CancellationToken
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,CancellationToken)
+  - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
     name: BindAsync
     nameWithType: IRequestBinder(Of TRequest).BindAsync
     fullName: FastEndpoints.IRequestBinder(Of TRequest).BindAsync
@@ -635,49 +717,62 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: CancellationToken
+  - uid: System.Threading.CancellationToken
     name: CancellationToken
     nameWithType: CancellationToken
-    fullName: CancellationToken
+    fullName: System.Threading.CancellationToken
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: ValueTask`1
+- uid: System.Threading
+  commentId: N:System.Threading
   isExternal: true
-  name: ValueTask<>
-  nameWithType: ValueTask<>
-  fullName: ValueTask<>
-  nameWithType.vb: ValueTask(Of )
-  fullName.vb: ValueTask(Of )
-  name.vb: ValueTask(Of )
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
   spec.csharp:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: ValueTask`1
+  - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
     nameWithType: ValueTask
-    fullName: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

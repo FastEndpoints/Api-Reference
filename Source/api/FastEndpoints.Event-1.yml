@@ -5,8 +5,8 @@ items:
   id: Event`1
   parent: FastEndpoints
   children:
-  - FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.IEventHandler{`0}}})
-  - FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
+  - FastEndpoints.Event`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})
+  - FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -52,16 +52,16 @@ items:
   - Class
   fullName.vb: FastEndpoints.Event(Of TEvent)
   name.vb: Event(Of TEvent)
-- uid: FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.IEventHandler{`0}}})
-  commentId: M:FastEndpoints.Event`1.#ctor(System.Nullable{IEnumerable{FastEndpoints.IEventHandler{`0}}})
-  id: '#ctor(System.Nullable{IEnumerable{FastEndpoints.IEventHandler{`0}}})'
+- uid: FastEndpoints.Event`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})
+  commentId: M:FastEndpoints.Event`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})
+  id: '#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})'
   parent: FastEndpoints.Event`1
   langs:
   - csharp
   - vb
-  name: Event(Nullable<IEnumerable<IEventHandler<TEvent>>>)
-  nameWithType: Event<TEvent>.Event(Nullable<IEnumerable<IEventHandler<TEvent>>>)
-  fullName: FastEndpoints.Event<TEvent>.Event(System.Nullable<IEnumerable<FastEndpoints.IEventHandler<TEvent>>>)
+  name: Event(IEnumerable<IEventHandler<TEvent>>)
+  nameWithType: Event<TEvent>.Event(IEnumerable<IEventHandler<TEvent>>)
+  fullName: FastEndpoints.Event<TEvent>.Event(System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>)
   type: Constructor
   source:
     id: .ctor
@@ -73,30 +73,30 @@ items:
   summary: "\ninstantiates an event bus for the given event dto type.\n"
   example: []
   syntax:
-    content: public Event(IEnumerable<IEventHandler<TEvent>>? eventHandlers = null)
+    content: public Event(IEnumerable<IEventHandler<TEvent>> eventHandlers = null)
     parameters:
     - id: eventHandlers
-      type: System.Nullable{IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}}
+      type: System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}
       description: a collection of concrete event handler implementations that should receive notifications from this event bus
-    content.vb: Public Sub New(eventHandlers As IEnumerable(Of IEventHandler(Of TEvent))? = Nothing)
+    content.vb: Public Sub New(eventHandlers As IEnumerable(Of IEventHandler(Of TEvent)) = Nothing)
   overload: FastEndpoints.Event`1.#ctor*
-  nameWithType.vb: Event(Of TEvent).Event(Nullable(Of IEnumerable(Of IEventHandler(Of TEvent))))
+  nameWithType.vb: Event(Of TEvent).Event(IEnumerable(Of IEventHandler(Of TEvent)))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Event(Of TEvent).Event(System.Nullable(Of IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent))))
-  name.vb: Event(Nullable(Of IEnumerable(Of IEventHandler(Of TEvent))))
-- uid: FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
-  commentId: M:FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
-  id: PublishAsync(`0,FastEndpoints.Mode,CancellationToken)
+  fullName.vb: FastEndpoints.Event(Of TEvent).Event(System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent)))
+  name.vb: Event(IEnumerable(Of IEventHandler(Of TEvent)))
+- uid: FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Event`1.PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
+  id: PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
   parent: FastEndpoints.Event`1
   langs:
   - csharp
   - vb
   name: PublishAsync(TEvent, Mode, CancellationToken)
   nameWithType: Event<TEvent>.PublishAsync(TEvent, Mode, CancellationToken)
-  fullName: FastEndpoints.Event<TEvent>.PublishAsync(TEvent, FastEndpoints.Mode, CancellationToken)
+  fullName: FastEndpoints.Event<TEvent>.PublishAsync(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
   type: Method
   source:
     id: PublishAsync
@@ -108,7 +108,7 @@ items:
   summary: "\npublish the given model/dto to all the subscribers of the event notification\n"
   example: []
   syntax:
-    content: public Task PublishAsync(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = null)
+    content: public Task PublishAsync(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default(CancellationToken))
     parameters:
     - id: eventModel
       type: '{TEvent}'
@@ -117,10 +117,10 @@ items:
       type: FastEndpoints.Mode
       description: specify whether to wait for none, any or all of the subscribers to complete their work
     - id: cancellation
-      type: CancellationToken
+      type: System.Threading.CancellationToken
       description: an optional cancellation token
     return:
-      type: Task
+      type: System.Threading.Tasks.Task
       description: >-
         a Task that matches the wait mode specified.
 
@@ -136,7 +136,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Event(Of TEvent).PublishAsync(TEvent, FastEndpoints.Mode, CancellationToken)
+  fullName.vb: FastEndpoints.Event(Of TEvent).PublishAsync(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -448,29 +448,21 @@ references:
   fullName: FastEndpoints.Event<TEvent>.Event
   nameWithType.vb: Event(Of TEvent).Event
   fullName.vb: FastEndpoints.Event(Of TEvent).Event
-- uid: System.Nullable{IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}}
-  commentId: T:System.Nullable{IEnumerable{FastEndpoints.IEventHandler{`0}}}
-  parent: System
-  definition: System.Nullable`1
-  name: Nullable<IEnumerable<IEventHandler<TEvent>>>
-  nameWithType: Nullable<IEnumerable<IEventHandler<TEvent>>>
-  fullName: System.Nullable<IEnumerable<FastEndpoints.IEventHandler<TEvent>>>
-  nameWithType.vb: Nullable(Of IEnumerable(Of IEventHandler(Of TEvent)))
-  fullName.vb: System.Nullable(Of IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent)))
-  name.vb: Nullable(Of IEnumerable(Of IEventHandler(Of TEvent)))
+- uid: System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}
+  commentId: T:System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IEventHandler<TEvent>>
+  nameWithType: IEnumerable<IEventHandler<TEvent>>
+  fullName: System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>
+  nameWithType.vb: IEnumerable(Of IEventHandler(Of TEvent))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent))
+  name.vb: IEnumerable(Of IEventHandler(Of TEvent))
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -485,9 +477,6 @@ references:
   - name: TEvent
     nameWithType: TEvent
     fullName: TEvent
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -495,18 +484,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: IEnumerable`1
+  - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     nameWithType: IEnumerable
-    fullName: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -527,23 +508,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
     nameWithType: <
@@ -555,10 +533,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -569,6 +547,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: FastEndpoints.Mode.WaitForNone
   commentId: F:FastEndpoints.Mode.WaitForNone
   isExternal: true
@@ -597,17 +581,33 @@ references:
   name: Mode
   nameWithType: Mode
   fullName: FastEndpoints.Mode
-- uid: CancellationToken
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
   name: CancellationToken
   nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: Task
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
   isExternal: true
   name: Task
   nameWithType: Task
-  fullName: Task
+  fullName: System.Threading.Tasks.Task
 - uid: TEvent
   name: TEvent
   nameWithType: TEvent
   fullName: TEvent
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

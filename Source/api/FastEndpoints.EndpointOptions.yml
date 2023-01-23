@@ -131,11 +131,11 @@ items:
   summary: "\na function to filter out endpoints from auto registration.\nthe function you set here will be executed for each endpoint during startup.\nyou can inspect the EndpointSettings to check what the current endpoint is, if needed.\nreturn &apos;false&apos; from the function if you want to exclude an endpoint from registration.\nreturn &apos;true&apos; to include.\nthis function will executed for each endpoint that has been discovered during startup.\n"
   example: []
   syntax:
-    content: public Func<EndpointDefinition, bool>? Filter { set; }
+    content: public Func<EndpointDefinition, bool> Filter { set; }
     parameters: []
     return:
-      type: System.Nullable{Func{FastEndpoints.EndpointDefinition,System.Boolean}}
-    content.vb: Public WriteOnly Property Filter As Func(Of EndpointDefinition, Boolean)?
+      type: System.Func{FastEndpoints.EndpointDefinition,System.Boolean}
+    content.vb: Public WriteOnly Property Filter As Func(Of EndpointDefinition, Boolean)
   overload: FastEndpoints.EndpointOptions.Filter*
   modifiers.csharp:
   - public
@@ -164,11 +164,11 @@ items:
   summary: "\na configuration action to be performed on each endpoint definition during startup.\nsome of the same methods you use inside `Configure()` method are available to be called on the `EndpointDefinition` parameter.\nthis can be used to apply a set of common configuration settings globally to all endpoints.\ni.e. apply globally applicable settings here and specify only the settings applicable to individual endpoints from within each endpoints&apos; `Configure()` method.\n<pre><code>app.UseFastEndpoints(c => c.GlobalEndpointConfig = ep =>\n{\n    ep.AllowAnonymous();\n    ep.Description(b => b.Produces&lt;ErrorResponse>(400));\n});</code></pre>\n"
   example: []
   syntax:
-    content: public Action<EndpointDefinition>? Configurator { set; }
+    content: public Action<EndpointDefinition> Configurator { set; }
     parameters: []
     return:
-      type: System.Nullable{Action{FastEndpoints.EndpointDefinition}}
-    content.vb: Public WriteOnly Property Configurator As Action(Of EndpointDefinition)?
+      type: System.Action{FastEndpoints.EndpointDefinition}
+    content.vb: Public WriteOnly Property Configurator As Action(Of EndpointDefinition)
   overload: FastEndpoints.EndpointOptions.Configurator*
   modifiers.csharp:
   - public
@@ -503,29 +503,21 @@ references:
   name: Filter
   nameWithType: EndpointOptions.Filter
   fullName: FastEndpoints.EndpointOptions.Filter
-- uid: System.Nullable{Func{FastEndpoints.EndpointDefinition,System.Boolean}}
-  commentId: T:System.Nullable{Func{FastEndpoints.EndpointDefinition,System.Boolean}}
+- uid: System.Func{FastEndpoints.EndpointDefinition,System.Boolean}
+  commentId: T:System.Func{FastEndpoints.EndpointDefinition,System.Boolean}
   parent: System
-  definition: System.Nullable`1
-  name: Nullable<Func<EndpointDefinition, Boolean>>
-  nameWithType: Nullable<Func<EndpointDefinition, Boolean>>
-  fullName: System.Nullable<Func<FastEndpoints.EndpointDefinition, System.Boolean>>
-  nameWithType.vb: Nullable(Of Func(Of EndpointDefinition, Boolean))
-  fullName.vb: System.Nullable(Of Func(Of FastEndpoints.EndpointDefinition, System.Boolean))
-  name.vb: Nullable(Of Func(Of EndpointDefinition, Boolean))
+  definition: System.Func`2
+  name: Func<EndpointDefinition, Boolean>
+  nameWithType: Func<EndpointDefinition, Boolean>
+  fullName: System.Func<FastEndpoints.EndpointDefinition, System.Boolean>
+  nameWithType.vb: Func(Of EndpointDefinition, Boolean)
+  fullName.vb: System.Func(Of FastEndpoints.EndpointDefinition, System.Boolean)
+  name.vb: Func(Of EndpointDefinition, Boolean)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Func`2
+  - uid: System.Func`2
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: <
     nameWithType: <
@@ -542,25 +534,14 @@ references:
     nameWithType: Boolean
     fullName: System.Boolean
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Func`2
+  - uid: System.Func`2
     name: Func
     nameWithType: Func
-    fullName: Func
+    fullName: System.Func
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -580,23 +561,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
+- uid: System.Func`2
+  commentId: T:System.Func`2
   isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
     isExternal: true
   - name: <
     nameWithType: <
@@ -604,14 +582,20 @@ references:
   - name: T
     nameWithType: T
     fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -619,6 +603,12 @@ references:
   - name: T
     nameWithType: T
     fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
   - name: )
     nameWithType: )
     fullName: )
@@ -627,29 +617,21 @@ references:
   name: Configurator
   nameWithType: EndpointOptions.Configurator
   fullName: FastEndpoints.EndpointOptions.Configurator
-- uid: System.Nullable{Action{FastEndpoints.EndpointDefinition}}
-  commentId: T:System.Nullable{Action{FastEndpoints.EndpointDefinition}}
+- uid: System.Action{FastEndpoints.EndpointDefinition}
+  commentId: T:System.Action{FastEndpoints.EndpointDefinition}
   parent: System
-  definition: System.Nullable`1
-  name: Nullable<Action<EndpointDefinition>>
-  nameWithType: Nullable<Action<EndpointDefinition>>
-  fullName: System.Nullable<Action<FastEndpoints.EndpointDefinition>>
-  nameWithType.vb: Nullable(Of Action(Of EndpointDefinition))
-  fullName.vb: System.Nullable(Of Action(Of FastEndpoints.EndpointDefinition))
-  name.vb: Nullable(Of Action(Of EndpointDefinition))
+  definition: System.Action`1
+  name: Action<EndpointDefinition>
+  nameWithType: Action<EndpointDefinition>
+  fullName: System.Action<FastEndpoints.EndpointDefinition>
+  nameWithType.vb: Action(Of EndpointDefinition)
+  fullName.vb: System.Action(Of FastEndpoints.EndpointDefinition)
+  name.vb: Action(Of EndpointDefinition)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -661,22 +643,11 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -688,6 +659,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

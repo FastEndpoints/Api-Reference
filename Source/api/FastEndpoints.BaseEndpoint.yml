@@ -5,10 +5,8 @@ items:
   id: BaseEndpoint
   parent: FastEndpoints
   children:
-  - FastEndpoints.BaseEndpoint.Config
   - FastEndpoints.BaseEndpoint.Configure
   - FastEndpoints.BaseEndpoint.Definition
-  - FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
   - FastEndpoints.BaseEndpoint.Group``1
   - FastEndpoints.BaseEndpoint.HttpContext
   - FastEndpoints.BaseEndpoint.ValidationFailures
@@ -23,7 +21,7 @@ items:
   source:
     id: BaseEndpoint
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 13
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -71,11 +69,10 @@ items:
   source:
     id: Definition
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 23
+    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ngets the endpoint definition which contains all the configuration info for the endpoint\n"
   example: []
   syntax:
     content: public EndpointDefinition Definition { get; }
@@ -84,39 +81,8 @@ items:
       type: FastEndpoints.EndpointDefinition
     content.vb: Public ReadOnly Property Definition As EndpointDefinition
   overload: FastEndpoints.BaseEndpoint.Definition*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: FastEndpoints.BaseEndpoint.Config
-  commentId: P:FastEndpoints.BaseEndpoint.Config
-  id: Config
-  parent: FastEndpoints.BaseEndpoint
-  langs:
-  - csharp
-  - vb
-  name: Config
-  nameWithType: BaseEndpoint.Config
-  fullName: FastEndpoints.BaseEndpoint.Config
-  type: Property
-  source:
-    id: Config
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 29
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\ngives access to the configuration. if you need to access this property from within the endpoint Configure() method, make sure to pass in the config to <code>.AddFastEndpoints(config: builder.Configuration)</code>\n"
-  example: []
-  syntax:
-    content: public IConfiguration Config { get; }
-    parameters: []
-    return:
-      type: Microsoft.Extensions.Configuration.IConfiguration
-    content.vb: Public ReadOnly Property Config As IConfiguration
-  overload: FastEndpoints.BaseEndpoint.Config*
+  implements:
+  - FastEndpoints.IEndpoint.Definition
   modifiers.csharp:
   - public
   - get
@@ -137,11 +103,10 @@ items:
   source:
     id: HttpContext
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 38
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe http context of the current request\n"
   example: []
   syntax:
     content: public HttpContext HttpContext { get; }
@@ -172,17 +137,16 @@ items:
   source:
     id: ValidationFailures
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 44
+    startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe list of validation failures for the current request dto\n"
   example: []
   syntax:
     content: public List<ValidationFailure> ValidationFailures { get; }
     parameters: []
     return:
-      type: List{FluentValidation.Results.ValidationFailure}
+      type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
     content.vb: Public ReadOnly Property ValidationFailures As List(Of ValidationFailure)
   overload: FastEndpoints.BaseEndpoint.ValidationFailures*
   implements:
@@ -207,7 +171,7 @@ items:
   source:
     id: Configure
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 50
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -237,7 +201,7 @@ items:
   source:
     id: Verbs
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 53
+    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -271,7 +235,7 @@ items:
   source:
     id: Group
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 55
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -293,41 +257,6 @@ items:
   - Overridable
   fullName.vb: FastEndpoints.BaseEndpoint.Group(Of TEndpointGroup)()
   name.vb: Group(Of TEndpointGroup)()
-- uid: FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
-  commentId: M:FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
-  id: FormFileSectionsAsync(CancellationToken)
-  parent: FastEndpoints.BaseEndpoint
-  langs:
-  - csharp
-  - vb
-  name: FormFileSectionsAsync(CancellationToken)
-  nameWithType: BaseEndpoint.FormFileSectionsAsync(CancellationToken)
-  fullName: FastEndpoints.BaseEndpoint.FormFileSectionsAsync(CancellationToken)
-  type: Method
-  source:
-    id: FormFileSectionsAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Base.cs
-    startLine: 61
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: "\ngets a stream of nullable FileMultipartSections from the incoming multipart/form-data without buffering the whole file to memory/disk as done with IFormFile\n"
-  example: []
-  syntax:
-    content: public async IAsyncEnumerable<FileMultipartSection> FormFileSectionsAsync(CancellationToken cancellation = null)
-    parameters:
-    - id: cancellation
-      type: CancellationToken
-      description: optional cancellation token
-    return:
-      type: IAsyncEnumerable{Microsoft.AspNetCore.WebUtilities.FileMultipartSection}
-    content.vb: Public Function FormFileSectionsAsync(cancellation As CancellationToken = Nothing) As IAsyncEnumerable(Of FileMultipartSection)
-  overload: FastEndpoints.BaseEndpoint.FormFileSectionsAsync*
-  modifiers.csharp:
-  - public
-  - async
-  modifiers.vb:
-  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -637,30 +566,18 @@ references:
   name: Definition
   nameWithType: BaseEndpoint.Definition
   fullName: FastEndpoints.BaseEndpoint.Definition
+- uid: FastEndpoints.IEndpoint.Definition
+  commentId: P:FastEndpoints.IEndpoint.Definition
+  parent: FastEndpoints.IEndpoint
+  name: Definition
+  nameWithType: IEndpoint.Definition
+  fullName: FastEndpoints.IEndpoint.Definition
 - uid: FastEndpoints.EndpointDefinition
   commentId: T:FastEndpoints.EndpointDefinition
   parent: FastEndpoints
   name: EndpointDefinition
   nameWithType: EndpointDefinition
   fullName: FastEndpoints.EndpointDefinition
-- uid: FastEndpoints.BaseEndpoint.Config*
-  commentId: Overload:FastEndpoints.BaseEndpoint.Config
-  name: Config
-  nameWithType: BaseEndpoint.Config
-  fullName: FastEndpoints.BaseEndpoint.Config
-- uid: Microsoft.Extensions.Configuration.IConfiguration
-  commentId: T:Microsoft.Extensions.Configuration.IConfiguration
-  parent: Microsoft.Extensions.Configuration
-  isExternal: true
-  name: IConfiguration
-  nameWithType: IConfiguration
-  fullName: Microsoft.Extensions.Configuration.IConfiguration
-- uid: Microsoft.Extensions.Configuration
-  commentId: N:Microsoft.Extensions.Configuration
-  isExternal: true
-  name: Microsoft.Extensions.Configuration
-  nameWithType: Microsoft.Extensions.Configuration
-  fullName: Microsoft.Extensions.Configuration
 - uid: FastEndpoints.BaseEndpoint.HttpContext*
   commentId: Overload:FastEndpoints.BaseEndpoint.HttpContext
   name: HttpContext
@@ -696,20 +613,21 @@ references:
   name: ValidationFailures
   nameWithType: IEndpoint.ValidationFailures
   fullName: FastEndpoints.IEndpoint.ValidationFailures
-- uid: List{FluentValidation.Results.ValidationFailure}
-  commentId: '!:List{FluentValidation.Results.ValidationFailure}'
-  definition: List`1
+- uid: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+  commentId: T:System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
   name: List<ValidationFailure>
   nameWithType: List<ValidationFailure>
-  fullName: List<FluentValidation.Results.ValidationFailure>
+  fullName: System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>
   nameWithType.vb: List(Of ValidationFailure)
-  fullName.vb: List(Of FluentValidation.Results.ValidationFailure)
+  fullName.vb: System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure)
   name.vb: List(Of ValidationFailure)
   spec.csharp:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
     nameWithType: <
@@ -723,10 +641,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -739,44 +657,51 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: List`1
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
   isExternal: true
-  name: List<>
-  nameWithType: List<>
-  fullName: List<>
-  nameWithType.vb: List(Of )
-  fullName.vb: List(Of )
-  name.vb: List(Of )
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
   spec.csharp:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: FastEndpoints.BaseEndpoint.Configure*
   commentId: Overload:FastEndpoints.BaseEndpoint.Configure
   name: Configure
@@ -818,94 +743,3 @@ references:
   name: Group
   nameWithType: BaseEndpoint.Group
   fullName: FastEndpoints.BaseEndpoint.Group
-- uid: FastEndpoints.BaseEndpoint.FormFileSectionsAsync*
-  commentId: Overload:FastEndpoints.BaseEndpoint.FormFileSectionsAsync
-  name: FormFileSectionsAsync
-  nameWithType: BaseEndpoint.FormFileSectionsAsync
-  fullName: FastEndpoints.BaseEndpoint.FormFileSectionsAsync
-- uid: CancellationToken
-  isExternal: true
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: CancellationToken
-- uid: IAsyncEnumerable{Microsoft.AspNetCore.WebUtilities.FileMultipartSection}
-  commentId: '!:IAsyncEnumerable{Microsoft.AspNetCore.WebUtilities.FileMultipartSection}'
-  definition: IAsyncEnumerable`1
-  name: IAsyncEnumerable<FileMultipartSection>
-  nameWithType: IAsyncEnumerable<FileMultipartSection>
-  fullName: IAsyncEnumerable<Microsoft.AspNetCore.WebUtilities.FileMultipartSection>
-  nameWithType.vb: IAsyncEnumerable(Of FileMultipartSection)
-  fullName.vb: IAsyncEnumerable(Of Microsoft.AspNetCore.WebUtilities.FileMultipartSection)
-  name.vb: IAsyncEnumerable(Of FileMultipartSection)
-  spec.csharp:
-  - uid: IAsyncEnumerable`1
-    name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: IAsyncEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
-    name: FileMultipartSection
-    nameWithType: FileMultipartSection
-    fullName: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: IAsyncEnumerable`1
-    name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: IAsyncEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
-    name: FileMultipartSection
-    nameWithType: FileMultipartSection
-    fullName: Microsoft.AspNetCore.WebUtilities.FileMultipartSection
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: IAsyncEnumerable`1
-  isExternal: true
-  name: IAsyncEnumerable<>
-  nameWithType: IAsyncEnumerable<>
-  fullName: IAsyncEnumerable<>
-  nameWithType.vb: IAsyncEnumerable(Of )
-  fullName.vb: IAsyncEnumerable(Of )
-  name.vb: IAsyncEnumerable(Of )
-  spec.csharp:
-  - uid: IAsyncEnumerable`1
-    name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: IAsyncEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: IAsyncEnumerable`1
-    name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: IAsyncEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )

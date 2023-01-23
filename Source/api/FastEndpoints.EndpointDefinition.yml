@@ -19,7 +19,7 @@ items:
   - FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])
   - FastEndpoints.EndpointDefinition.Claims(System.String[])
   - FastEndpoints.EndpointDefinition.ClaimsAll(System.String[])
-  - FastEndpoints.EndpointDefinition.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  - FastEndpoints.EndpointDefinition.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   - FastEndpoints.EndpointDefinition.DoNotCatchExceptions
   - FastEndpoints.EndpointDefinition.DontAutoTag
   - FastEndpoints.EndpointDefinition.DontAutoTagEndpoints
@@ -32,7 +32,7 @@ items:
   - FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32,System.Nullable{System.Int32})
   - FastEndpoints.EndpointDefinition.FormDataAllowed
   - FastEndpoints.EndpointDefinition.MapperType
-  - FastEndpoints.EndpointDefinition.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  - FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   - FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   - FastEndpoints.EndpointDefinition.Permissions(System.String[])
   - FastEndpoints.EndpointDefinition.PermissionsAll(System.String[])
@@ -42,13 +42,14 @@ items:
   - FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   - FastEndpoints.EndpointDefinition.ReqDtoType
   - FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
+  - FastEndpoints.EndpointDefinition.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
   - FastEndpoints.EndpointDefinition.Roles(System.String[])
   - FastEndpoints.EndpointDefinition.RoutePrefixOverride(System.String)
   - FastEndpoints.EndpointDefinition.Routes
   - FastEndpoints.EndpointDefinition.SecurityPolicyName
-  - FastEndpoints.EndpointDefinition.Summary(Action{FastEndpoints.EndpointSummary})
   - FastEndpoints.EndpointDefinition.Summary(FastEndpoints.EndpointSummary)
-  - FastEndpoints.EndpointDefinition.Summary``1(Action{FastEndpoints.EndpointSummary{``0}})
+  - FastEndpoints.EndpointDefinition.Summary(System.Action{FastEndpoints.EndpointSummary})
+  - FastEndpoints.EndpointDefinition.Summary``1(System.Action{FastEndpoints.EndpointSummary{``0}})
   - FastEndpoints.EndpointDefinition.Tags(System.String[])
   - FastEndpoints.EndpointDefinition.Throttle(System.Int32,System.Double,System.String)
   - FastEndpoints.EndpointDefinition.ThrowIfValidationFails
@@ -115,7 +116,7 @@ items:
     content: public Type EndpointType { get; }
     parameters: []
     return:
-      type: Type
+      type: System.Type
     content.vb: Public ReadOnly Property EndpointType As Type
   overload: FastEndpoints.EndpointDefinition.EndpointType*
   modifiers.csharp:
@@ -143,11 +144,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type? MapperType { get; }
+    content: public Type MapperType { get; }
     parameters: []
     return:
-      type: System.Nullable{Type}
-    content.vb: Public ReadOnly Property MapperType As Type?
+      type: System.Type
+    content.vb: Public ReadOnly Property MapperType As Type
   overload: FastEndpoints.EndpointDefinition.MapperType*
   modifiers.csharp:
   - public
@@ -177,7 +178,7 @@ items:
     content: public Type ReqDtoType { get; }
     parameters: []
     return:
-      type: Type
+      type: System.Type
     content.vb: Public ReadOnly Property ReqDtoType As Type
   overload: FastEndpoints.EndpointDefinition.ReqDtoType*
   modifiers.csharp:
@@ -267,11 +268,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type? ValidatorType { get; }
+    content: public Type ValidatorType { get; }
     parameters: []
     return:
-      type: System.Nullable{Type}
-    content.vb: Public ReadOnly Property ValidatorType As Type?
+      type: System.Type
+    content.vb: Public ReadOnly Property ValidatorType As Type
   overload: FastEndpoints.EndpointDefinition.ValidatorType*
   modifiers.csharp:
   - public
@@ -391,11 +392,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string>? AllowedPermissions { get; }
+    content: public List<string> AllowedPermissions { get; }
     parameters: []
     return:
-      type: System.Nullable{List{System.String}}
-    content.vb: Public ReadOnly Property AllowedPermissions As List(Of String)?
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property AllowedPermissions As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AllowedPermissions*
   modifiers.csharp:
   - public
@@ -453,11 +454,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string>? AllowedClaimTypes { get; }
+    content: public List<string> AllowedClaimTypes { get; }
     parameters: []
     return:
-      type: System.Nullable{List{System.String}}
-    content.vb: Public ReadOnly Property AllowedClaimTypes As List(Of String)?
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property AllowedClaimTypes As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AllowedClaimTypes*
   modifiers.csharp:
   - public
@@ -484,11 +485,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string>? AllowedRoles { get; }
+    content: public List<string> AllowedRoles { get; }
     parameters: []
     return:
-      type: System.Nullable{List{System.String}}
-    content.vb: Public ReadOnly Property AllowedRoles As List(Of String)?
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property AllowedRoles As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AllowedRoles*
   modifiers.csharp:
   - public
@@ -546,11 +547,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string>? AuthSchemeNames { get; }
+    content: public List<string> AuthSchemeNames { get; }
     parameters: []
     return:
-      type: System.Nullable{List{System.String}}
-    content.vb: Public ReadOnly Property AuthSchemeNames As List(Of String)?
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property AuthSchemeNames As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AuthSchemeNames*
   modifiers.csharp:
   - public
@@ -701,11 +702,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string>? EndpointTags { get; }
+    content: public List<string> EndpointTags { get; }
     parameters: []
     return:
-      type: System.Nullable{List{System.String}}
-    content.vb: Public ReadOnly Property EndpointTags As List(Of String)?
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property EndpointTags As List(Of String)
   overload: FastEndpoints.EndpointDefinition.EndpointTags*
   modifiers.csharp:
   - public
@@ -794,11 +795,11 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string>? PreBuiltUserPolicies { get; }
+    content: public List<string> PreBuiltUserPolicies { get; }
     parameters: []
     return:
-      type: System.Nullable{List{System.String}}
-    content.vb: Public ReadOnly Property PreBuiltUserPolicies As List(Of String)?
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public ReadOnly Property PreBuiltUserPolicies As List(Of String)
   overload: FastEndpoints.EndpointDefinition.PreBuiltUserPolicies*
   modifiers.csharp:
   - public
@@ -851,7 +852,7 @@ items:
   source:
     id: AllowAnonymous
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 88
+    startLine: 90
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -885,7 +886,7 @@ items:
   source:
     id: AllowAnonymous
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 99
+    startLine: 101
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -919,7 +920,7 @@ items:
   source:
     id: AllowFileUploads
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 111
+    startLine: 113
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -951,7 +952,7 @@ items:
   source:
     id: AllowFormData
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 120
+    startLine: 122
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -979,7 +980,7 @@ items:
   source:
     id: AuthSchemes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 127
+    startLine: 129
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1014,7 +1015,7 @@ items:
   source:
     id: Claims
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 138
+    startLine: 140
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1049,7 +1050,7 @@ items:
   source:
     id: ClaimsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 150
+    startLine: 152
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1070,21 +1071,21 @@ items:
   - Public
   fullName.vb: FastEndpoints.EndpointDefinition.ClaimsAll(System.String())
   name.vb: ClaimsAll(String())
-- uid: FastEndpoints.EndpointDefinition.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-  commentId: M:FastEndpoints.EndpointDefinition.Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
-  id: Description(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+- uid: FastEndpoints.EndpointDefinition.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  commentId: M:FastEndpoints.EndpointDefinition.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  id: Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
   name: Description(Action<RouteHandlerBuilder>, Boolean)
   nameWithType: EndpointDefinition.Description(Action<RouteHandlerBuilder>, Boolean)
-  fullName: FastEndpoints.EndpointDefinition.Description(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
+  fullName: FastEndpoints.EndpointDefinition.Description(System.Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
   type: Method
   source:
     id: Description
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 165
+    startLine: 167
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1094,7 +1095,7 @@ items:
     content: public void Description(Action<RouteHandlerBuilder> builder, bool clearDefaults = false)
     parameters:
     - id: builder
-      type: Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
+      type: System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
       description: the route handler builder for this endpoint
     - id: clearDefaults
       type: System.Boolean
@@ -1106,7 +1107,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Description(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
+  fullName.vb: FastEndpoints.EndpointDefinition.Description(System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
   name.vb: Description(Action(Of RouteHandlerBuilder), Boolean)
 - uid: FastEndpoints.EndpointDefinition.DontAutoTag
   commentId: M:FastEndpoints.EndpointDefinition.DontAutoTag
@@ -1122,7 +1123,7 @@ items:
   source:
     id: DontAutoTag
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 175
+    startLine: 177
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1150,7 +1151,7 @@ items:
   source:
     id: DontCatchExceptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 182
+    startLine: 184
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1178,7 +1179,7 @@ items:
   source:
     id: DontThrowIfValidationFails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 188
+    startLine: 190
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1206,7 +1207,7 @@ items:
   source:
     id: EndpointVersion
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 195
+    startLine: 197
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1230,21 +1231,21 @@ items:
   - Public
   fullName.vb: FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32, System.Nullable(Of System.Int32))
   name.vb: EndpointVersion(Int32, Nullable(Of Int32))
-- uid: FastEndpoints.EndpointDefinition.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-  commentId: M:FastEndpoints.EndpointDefinition.Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
-  id: Options(Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+- uid: FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  commentId: M:FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  id: Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
   name: Options(Action<RouteHandlerBuilder>)
   nameWithType: EndpointDefinition.Options(Action<RouteHandlerBuilder>)
-  fullName: FastEndpoints.EndpointDefinition.Options(Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>)
+  fullName: FastEndpoints.EndpointDefinition.Options(System.Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>)
   type: Method
   source:
     id: Options
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 205
+    startLine: 207
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1254,7 +1255,7 @@ items:
     content: public void Options(Action<RouteHandlerBuilder> builder)
     parameters:
     - id: builder
-      type: Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
+      type: System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
       description: the builder for this endpoint
     content.vb: Public Sub Options(builder As Action(Of RouteHandlerBuilder))
   overload: FastEndpoints.EndpointDefinition.Options*
@@ -1263,7 +1264,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Options(Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
+  fullName.vb: FastEndpoints.EndpointDefinition.Options(System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
   name.vb: Options(Action(Of RouteHandlerBuilder))
 - uid: FastEndpoints.EndpointDefinition.Permissions(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.Permissions(System.String[])
@@ -1279,7 +1280,7 @@ items:
   source:
     id: Permissions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 212
+    startLine: 214
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1314,7 +1315,7 @@ items:
   source:
     id: PermissionsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 224
+    startLine: 226
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1349,7 +1350,7 @@ items:
   source:
     id: Policies
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 236
+    startLine: 238
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1384,7 +1385,7 @@ items:
   source:
     id: PostProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 247
+    startLine: 249
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1422,7 +1423,7 @@ items:
   source:
     id: PreProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 269
+    startLine: 271
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1460,7 +1461,7 @@ items:
   source:
     id: ResponseCache
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 294
+    startLine: 296
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1493,6 +1494,38 @@ items:
   - Public
   fullName.vb: FastEndpoints.EndpointDefinition.ResponseCache(System.Int32, Microsoft.AspNetCore.Mvc.ResponseCacheLocation, System.Boolean, System.String, System.String())
   name.vb: ResponseCache(Int32, ResponseCacheLocation, Boolean, String, String())
+- uid: FastEndpoints.EndpointDefinition.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
+  commentId: M:FastEndpoints.EndpointDefinition.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
+  id: ResponseInterceptor(FastEndpoints.IResponseInterceptor)
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: ResponseInterceptor(IResponseInterceptor)
+  nameWithType: EndpointDefinition.ResponseInterceptor(IResponseInterceptor)
+  fullName: FastEndpoints.EndpointDefinition.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
+  type: Method
+  source:
+    id: ResponseInterceptor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 313
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nconfigure a response interceptor to be called before any SendAsync() methods are called.\nif the interceptor sends a response to the client, the SendAsync() will be ignored.\n"
+  example: []
+  syntax:
+    content: public void ResponseInterceptor(IResponseInterceptor responseInterceptor)
+    parameters:
+    - id: responseInterceptor
+      type: FastEndpoints.IResponseInterceptor
+      description: the response interceptor to be configured for the endpoint
+    content.vb: Public Sub ResponseInterceptor(responseInterceptor As IResponseInterceptor)
+  overload: FastEndpoints.EndpointDefinition.ResponseInterceptor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: FastEndpoints.EndpointDefinition.Roles(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.Roles(System.String[])
   id: Roles(System.String[])
@@ -1507,7 +1540,7 @@ items:
   source:
     id: Roles
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 311
+    startLine: 320
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1542,7 +1575,7 @@ items:
   source:
     id: RoutePrefixOverride
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 324
+    startLine: 333
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1560,21 +1593,21 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: FastEndpoints.EndpointDefinition.Summary(Action{FastEndpoints.EndpointSummary})
-  commentId: M:FastEndpoints.EndpointDefinition.Summary(Action{FastEndpoints.EndpointSummary})
-  id: Summary(Action{FastEndpoints.EndpointSummary})
+- uid: FastEndpoints.EndpointDefinition.Summary(System.Action{FastEndpoints.EndpointSummary})
+  commentId: M:FastEndpoints.EndpointDefinition.Summary(System.Action{FastEndpoints.EndpointSummary})
+  id: Summary(System.Action{FastEndpoints.EndpointSummary})
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
   name: Summary(Action<EndpointSummary>)
   nameWithType: EndpointDefinition.Summary(Action<EndpointSummary>)
-  fullName: FastEndpoints.EndpointDefinition.Summary(Action<FastEndpoints.EndpointSummary>)
+  fullName: FastEndpoints.EndpointDefinition.Summary(System.Action<FastEndpoints.EndpointSummary>)
   type: Method
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 330
+    startLine: 339
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1584,7 +1617,7 @@ items:
     content: public void Summary(Action<EndpointSummary> endpointSummary)
     parameters:
     - id: endpointSummary
-      type: Action{FastEndpoints.EndpointSummary}
+      type: System.Action{FastEndpoints.EndpointSummary}
       description: an action that sets values of an endpoint summary object
     content.vb: Public Sub Summary(endpointSummary As Action(Of EndpointSummary))
   overload: FastEndpoints.EndpointDefinition.Summary*
@@ -1593,23 +1626,23 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Summary(Action(Of FastEndpoints.EndpointSummary))
+  fullName.vb: FastEndpoints.EndpointDefinition.Summary(System.Action(Of FastEndpoints.EndpointSummary))
   name.vb: Summary(Action(Of EndpointSummary))
-- uid: FastEndpoints.EndpointDefinition.Summary``1(Action{FastEndpoints.EndpointSummary{``0}})
-  commentId: M:FastEndpoints.EndpointDefinition.Summary``1(Action{FastEndpoints.EndpointSummary{``0}})
-  id: Summary``1(Action{FastEndpoints.EndpointSummary{``0}})
+- uid: FastEndpoints.EndpointDefinition.Summary``1(System.Action{FastEndpoints.EndpointSummary{``0}})
+  commentId: M:FastEndpoints.EndpointDefinition.Summary``1(System.Action{FastEndpoints.EndpointSummary{``0}})
+  id: Summary``1(System.Action{FastEndpoints.EndpointSummary{``0}})
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
   name: Summary<TRequest>(Action<EndpointSummary<TRequest>>)
   nameWithType: EndpointDefinition.Summary<TRequest>(Action<EndpointSummary<TRequest>>)
-  fullName: FastEndpoints.EndpointDefinition.Summary<TRequest>(Action<FastEndpoints.EndpointSummary<TRequest>>)
+  fullName: FastEndpoints.EndpointDefinition.Summary<TRequest>(System.Action<FastEndpoints.EndpointSummary<TRequest>>)
   type: Method
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 336
+    startLine: 345
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1622,7 +1655,7 @@ items:
           where TRequest : new()
     parameters:
     - id: endpointSummary
-      type: Action{FastEndpoints.EndpointSummary{{TRequest}}}
+      type: System.Action{FastEndpoints.EndpointSummary{{TRequest}}}
       description: an action that sets values of an endpoint summary object
     typeParameters:
     - id: TRequest
@@ -1633,7 +1666,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Summary(Of TRequest)(Action(Of FastEndpoints.EndpointSummary(Of TRequest)))
+  fullName.vb: FastEndpoints.EndpointDefinition.Summary(Of TRequest)(System.Action(Of FastEndpoints.EndpointSummary(Of TRequest)))
   name.vb: Summary(Of TRequest)(Action(Of EndpointSummary(Of TRequest)))
 - uid: FastEndpoints.EndpointDefinition.Summary(FastEndpoints.EndpointSummary)
   commentId: M:FastEndpoints.EndpointDefinition.Summary(FastEndpoints.EndpointSummary)
@@ -1649,7 +1682,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 347
+    startLine: 356
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1681,7 +1714,7 @@ items:
   source:
     id: Tags
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 355
+    startLine: 364
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1716,7 +1749,7 @@ items:
   source:
     id: Throttle
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 371
+    startLine: 380
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1754,7 +1787,7 @@ items:
   source:
     id: Validator
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 377
+    startLine: 386
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2080,99 +2113,18 @@ references:
   name: EndpointType
   nameWithType: EndpointDefinition.EndpointType
   fullName: FastEndpoints.EndpointDefinition.EndpointType
-- uid: Type
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
   isExternal: true
   name: Type
   nameWithType: Type
-  fullName: Type
+  fullName: System.Type
 - uid: FastEndpoints.EndpointDefinition.MapperType*
   commentId: Overload:FastEndpoints.EndpointDefinition.MapperType
   name: MapperType
   nameWithType: EndpointDefinition.MapperType
   fullName: FastEndpoints.EndpointDefinition.MapperType
-- uid: System.Nullable{Type}
-  commentId: T:System.Nullable{Type}
-  parent: System
-  definition: System.Nullable`1
-  name: Nullable<Type>
-  nameWithType: Nullable<Type>
-  fullName: System.Nullable<Type>
-  nameWithType.vb: Nullable(Of Type)
-  fullName.vb: System.Nullable(Of Type)
-  name.vb: Nullable(Of Type)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Type
-    name: Type
-    nameWithType: Type
-    fullName: Type
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Type
-    name: Type
-    nameWithType: Type
-    fullName: Type
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
-  isExternal: true
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointDefinition.ReqDtoType*
   commentId: Overload:FastEndpoints.EndpointDefinition.ReqDtoType
   name: ReqDtoType
@@ -2259,29 +2211,21 @@ references:
   name: AllowedPermissions
   nameWithType: EndpointDefinition.AllowedPermissions
   fullName: FastEndpoints.EndpointDefinition.AllowedPermissions
-- uid: System.Nullable{List{System.String}}
-  commentId: T:System.Nullable{List{System.String}}
-  parent: System
-  definition: System.Nullable`1
-  name: Nullable<List<String>>
-  nameWithType: Nullable<List<String>>
-  fullName: System.Nullable<List<System.String>>
-  nameWithType.vb: Nullable(Of List(Of String))
-  fullName.vb: System.Nullable(Of List(Of System.String))
-  name.vb: Nullable(Of List(Of String))
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: <
     nameWithType: <
@@ -2291,25 +2235,14 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: List`1
+  - uid: System.Collections.Generic.List`1
     name: List
     nameWithType: List
-    fullName: List
+    fullName: System.Collections.Generic.List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -2322,9 +2255,51 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: FastEndpoints.EndpointDefinition.AllowAnyClaim*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowAnyClaim
   name: AllowAnyClaim
@@ -2460,20 +2435,21 @@ references:
   name: Description
   nameWithType: EndpointDefinition.Description
   fullName: FastEndpoints.EndpointDefinition.Description
-- uid: Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
-  commentId: '!:Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}'
-  definition: Action`1
+- uid: System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
+  commentId: T:System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
+  parent: System
+  definition: System.Action`1
   name: Action<RouteHandlerBuilder>
   nameWithType: Action<RouteHandlerBuilder>
-  fullName: Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>
+  fullName: System.Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>
   nameWithType.vb: Action(Of RouteHandlerBuilder)
-  fullName.vb: Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
+  fullName.vb: System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
   name.vb: Action(Of RouteHandlerBuilder)
   spec.csharp:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -2487,10 +2463,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -2503,41 +2479,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Action`1
+- uid: System.Action`1
+  commentId: T:System.Action`1
   isExternal: true
-  name: Action<>
-  nameWithType: Action<>
-  fullName: Action<>
-  nameWithType.vb: Action(Of )
-  fullName.vb: Action(Of )
-  name.vb: Action(Of )
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
   spec.csharp:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -2609,6 +2586,45 @@ references:
     nameWithType: Int32
     fullName: System.Int32
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
@@ -2720,6 +2736,17 @@ references:
   name: Microsoft.AspNetCore.Mvc
   nameWithType: Microsoft.AspNetCore.Mvc
   fullName: Microsoft.AspNetCore.Mvc
+- uid: FastEndpoints.EndpointDefinition.ResponseInterceptor*
+  commentId: Overload:FastEndpoints.EndpointDefinition.ResponseInterceptor
+  name: ResponseInterceptor
+  nameWithType: EndpointDefinition.ResponseInterceptor
+  fullName: FastEndpoints.EndpointDefinition.ResponseInterceptor
+- uid: FastEndpoints.IResponseInterceptor
+  commentId: T:FastEndpoints.IResponseInterceptor
+  parent: FastEndpoints
+  name: IResponseInterceptor
+  nameWithType: IResponseInterceptor
+  fullName: FastEndpoints.IResponseInterceptor
 - uid: FastEndpoints.EndpointDefinition.Roles*
   commentId: Overload:FastEndpoints.EndpointDefinition.Roles
   name: Roles
@@ -2735,20 +2762,21 @@ references:
   name: Summary
   nameWithType: EndpointDefinition.Summary
   fullName: FastEndpoints.EndpointDefinition.Summary
-- uid: Action{FastEndpoints.EndpointSummary}
-  commentId: '!:Action{FastEndpoints.EndpointSummary}'
-  definition: Action`1
+- uid: System.Action{FastEndpoints.EndpointSummary}
+  commentId: T:System.Action{FastEndpoints.EndpointSummary}
+  parent: System
+  definition: System.Action`1
   name: Action<EndpointSummary>
   nameWithType: Action<EndpointSummary>
-  fullName: Action<FastEndpoints.EndpointSummary>
+  fullName: System.Action<FastEndpoints.EndpointSummary>
   nameWithType.vb: Action(Of EndpointSummary)
-  fullName.vb: Action(Of FastEndpoints.EndpointSummary)
+  fullName.vb: System.Action(Of FastEndpoints.EndpointSummary)
   name.vb: Action(Of EndpointSummary)
   spec.csharp:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -2761,10 +2789,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -2776,20 +2804,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Action{FastEndpoints.EndpointSummary{{TRequest}}}
-  commentId: '!:Action{FastEndpoints.EndpointSummary{``0}}'
-  definition: Action`1
+- uid: System.Action{FastEndpoints.EndpointSummary{{TRequest}}}
+  commentId: T:System.Action{FastEndpoints.EndpointSummary{``0}}
+  parent: System
+  definition: System.Action`1
   name: Action<EndpointSummary<TRequest>>
   nameWithType: Action<EndpointSummary<TRequest>>
-  fullName: Action<FastEndpoints.EndpointSummary<TRequest>>
+  fullName: System.Action<FastEndpoints.EndpointSummary<TRequest>>
   nameWithType.vb: Action(Of EndpointSummary(Of TRequest))
-  fullName.vb: Action(Of FastEndpoints.EndpointSummary(Of TRequest))
+  fullName.vb: System.Action(Of FastEndpoints.EndpointSummary(Of TRequest))
   name.vb: Action(Of EndpointSummary(Of TRequest))
   spec.csharp:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -2811,10 +2840,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: Action`1
+  - uid: System.Action`1
     name: Action
     nameWithType: Action
-    fullName: Action
+    fullName: System.Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '

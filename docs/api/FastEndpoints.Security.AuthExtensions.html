@@ -1,31 +1,31 @@
 ﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class AuthExtensions
-   | FastEndpoints </title>
+ | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AuthExtensions
-   | FastEndpoints ">
-    <meta name="generator" content="docfx 2.59.3.0">
-    <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
+ | FastEndpoints ">
+    <meta name="generator" content="docfx ">
+  <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../">
-    <meta property="docfx:newtab" content="true">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../index.html">
                 <img id="logo" class="svg" src="../images/logo.png" alt="">
               </a>
@@ -49,7 +49,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -59,7 +59,7 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
           <div class="search-list">Search Results for <span></span></div>
           <div class="sr-items">
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -79,10 +79,10 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="FastEndpoints.Security.AuthExtensions">
-  
-  
+
+
   <h1 id="FastEndpoints_Security_AuthExtensions" data-uid="FastEndpoints.Security.AuthExtensions" class="text-break">Class AuthExtensions
-  </h1>
+</h1>
   <div class="markdown level0 summary"><p>a set of auth related extensions</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -122,17 +122,17 @@
     <pre><code class="lang-csharp hljs">public static class AuthExtensions</code></pre>
   </div>
   <h3 id="methods">Methods
-  </h3>
-  
-  
-  <a id="FastEndpoints_Security_AuthExtensions_AddAuthenticationJWTBearer_" data-uid="FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer*"></a>
-  <h4 id="FastEndpoints_Security_AuthExtensions_AddAuthenticationJWTBearer_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_Action_Microsoft_IdentityModel_Tokens_TokenValidationParameters__" data-uid="FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters})">AddAuthenticationJWTBearer(IServiceCollection, String, Action&lt;TokenValidationParameters&gt;)</h4>
+</h3>
+
+
+  <a id="FastEndpoints_Security_AuthExtensions_AddJWTBearerAuth_" data-uid="FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth*"></a>
+  <h4 id="FastEndpoints_Security_AuthExtensions_AddJWTBearerAuth_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_FastEndpoints_Security_JWTBearer_TokenSigningStyle_System_Action_Microsoft_IdentityModel_Tokens_TokenValidationParameters__System_Action_Microsoft_AspNetCore_Authentication_JwtBearer_JwtBearerEvents__" data-uid="FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})">AddJWTBearerAuth(IServiceCollection, String, JWTBearer.TokenSigningStyle, Action&lt;TokenValidationParameters&gt;, Action&lt;JwtBearerEvents&gt;)</h4>
   <div class="markdown level1 summary"><p>configure and enable jwt bearer authentication</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddAuthenticationJWTBearer(this IServiceCollection services, string tokenSigningKey, Action&lt;TokenValidationParameters&gt; tokenValidationConfiguration)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, JWTBearer.TokenSigningStyle tokenSigningStyle = JWTBearer.TokenSigningStyle.Symmetric, Action&lt;TokenValidationParameters&gt; tokenValidation = null, Action&lt;JwtBearerEvents&gt; bearerEvents = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -153,73 +153,6 @@
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">tokenSigningKey</span></td>
         <td><p>the secret key to use for verifying the jwt tokens</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Action</span>&lt;<span class="xref">Microsoft.IdentityModel.Tokens.TokenValidationParameters</span>&gt;</td>
-        <td><span class="parametername">tokenValidationConfiguration</span></td>
-        <td><p>configuration action to specify additional token validation parameters</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="FastEndpoints_Security_AuthExtensions_AddAuthenticationJWTBearer_" data-uid="FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer*"></a>
-  <h4 id="FastEndpoints_Security_AuthExtensions_AddAuthenticationJWTBearer_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_String_System_String_FastEndpoints_Security_JWTBearer_TokenSigningStyle_System_Nullable_Action_Microsoft_IdentityModel_Tokens_TokenValidationParameters___" data-uid="FastEndpoints.Security.AuthExtensions.AddAuthenticationJWTBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Nullable{Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}})">AddAuthenticationJWTBearer(IServiceCollection, String, String, String, JWTBearer.TokenSigningStyle, Nullable&lt;Action&lt;TokenValidationParameters&gt;&gt;)</h4>
-  <div class="markdown level1 summary"><p>configure and enable jwt bearer authentication</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddAuthenticationJWTBearer(this IServiceCollection services, string tokenSigningKey, string issuer = null, string audience = null, JWTBearer.TokenSigningStyle tokenSigningStyle = JWTBearer.TokenSigningStyle.Symmetric, Action&lt;TokenValidationParameters&gt;? tokenValidationConfiguration = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-        <td><span class="parametername">services</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">tokenSigningKey</span></td>
-        <td><p>the secret key to use for verifying the jwt tokens</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">issuer</span></td>
-        <td><p>validates issuer if set</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">audience</span></td>
-        <td><p>validates audience if set</p>
 </td>
       </tr>
       <tr>
@@ -229,9 +162,15 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Action</span>&lt;<span class="xref">Microsoft.IdentityModel.Tokens.TokenValidationParameters</span>&gt;&gt;</td>
-        <td><span class="parametername">tokenValidationConfiguration</span></td>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.IdentityModel.Tokens.TokenValidationParameters</span>&gt;</td>
+        <td><span class="parametername">tokenValidation</span></td>
         <td><p>configuration action to specify additional token validation parameters</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents</span>&gt;</td>
+        <td><span class="parametername">bearerEvents</span></td>
+        <td><p>configuration action to specify custom jwt bearer events</p>
 </td>
       </tr>
     </tbody>
@@ -251,14 +190,14 @@
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <a id="FastEndpoints_Security_AuthExtensions_ClaimValue_" data-uid="FastEndpoints.Security.AuthExtensions.ClaimValue*"></a>
   <h4 id="FastEndpoints_Security_AuthExtensions_ClaimValue_System_Security_Claims_ClaimsPrincipal_System_String_" data-uid="FastEndpoints.Security.AuthExtensions.ClaimValue(System.Security.Claims.ClaimsPrincipal,System.String)">ClaimValue(ClaimsPrincipal, String)</h4>
   <div class="markdown level1 summary"><p>get the claim value for a given claim type of the current user principal. if the user doesn't have the requested claim type, a null will be returned.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string ClaimValue(this ClaimsPrincipal principal, string claimType)</code></pre>
   </div>
@@ -300,14 +239,14 @@
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <a id="FastEndpoints_Security_AuthExtensions_HasClaimType_" data-uid="FastEndpoints.Security.AuthExtensions.HasClaimType*"></a>
   <h4 id="FastEndpoints_Security_AuthExtensions_HasClaimType_System_Security_Claims_ClaimsPrincipal_System_String_" data-uid="FastEndpoints.Security.AuthExtensions.HasClaimType(System.Security.Claims.ClaimsPrincipal,System.String)">HasClaimType(ClaimsPrincipal, String)</h4>
   <div class="markdown level1 summary"><p>determines if the current user principal has the given claim type</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static bool HasClaimType(this ClaimsPrincipal principal, string claimType)</code></pre>
   </div>
@@ -349,14 +288,14 @@
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <a id="FastEndpoints_Security_AuthExtensions_HasPermission_" data-uid="FastEndpoints.Security.AuthExtensions.HasPermission*"></a>
   <h4 id="FastEndpoints_Security_AuthExtensions_HasPermission_System_Security_Claims_ClaimsPrincipal_System_String_" data-uid="FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)">HasPermission(ClaimsPrincipal, String)</h4>
   <div class="markdown level1 summary"><p>returns true of the current user principal has a given permission code.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static bool HasPermission(this ClaimsPrincipal principal, string permissionCode)</code></pre>
   </div>
@@ -400,7 +339,7 @@
   </table>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -415,7 +354,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -423,13 +362,13 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            Developed by <a href='https://github.com/dj-nitehawk'>Đĵ ΝιΓΞΗΛψΚ</a> and <a href='https://github.com/dj-nitehawk/FastEndpoints/graphs/contributors'>contributors</a> / Licensed under <a href='https://github.com/dj-nitehawk/FastEndpoints/blob/master/LICENSE'>MIT</a> / Website generated by <a href='https://dotnet.github.io/docfx/'>DocFX</a>
-            
+      Developed by <a href='https://github.com/dj-nitehawk'>Đĵ ΝιΓΞΗΛψΚ</a> and <a href='https://github.com/dj-nitehawk/FastEndpoints/graphs/contributors'>contributors</a> / Licensed under <a href='https://github.com/dj-nitehawk/FastEndpoints/blob/master/LICENSE'>MIT</a> / Website generated by <a href='https://dotnet.github.io/docfx/'>DocFX</a>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
