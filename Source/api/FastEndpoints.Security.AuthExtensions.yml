@@ -5,6 +5,7 @@ items:
   id: AuthExtensions
   parent: FastEndpoints.Security
   children:
+  - FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
   - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
   - FastEndpoints.Security.AuthExtensions.ClaimValue(System.Security.Claims.ClaimsPrincipal,System.String)
   - FastEndpoints.Security.AuthExtensions.HasClaimType(System.Security.Claims.ClaimsPrincipal,System.String)
@@ -19,7 +20,7 @@ items:
   source:
     id: AuthExtensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 13
+    startLine: 15
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -60,7 +61,7 @@ items:
   source:
     id: AddJWTBearerAuth
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -99,6 +100,54 @@ items:
   - Shared
   fullName.vb: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.String, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters), System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents))
   name.vb: AddJWTBearerAuth(IServiceCollection, String, JWTBearer.TokenSigningStyle, Action(Of TokenValidationParameters), Action(Of JwtBearerEvents))
+- uid: FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  id: AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddCookieAuth(IServiceCollection, TimeSpan, Action<CookieAuthenticationOptions>)
+  nameWithType: AuthExtensions.AddCookieAuth(IServiceCollection, TimeSpan, Action<CookieAuthenticationOptions>)
+  fullName: FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.TimeSpan, System.Action<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>)
+  type: Method
+  source:
+    id: AddCookieAuth
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
+    startLine: 73
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: "\nconfigure and enable cookie based authentication\n"
+  example: []
+  syntax:
+    content: public static IServiceCollection AddCookieAuth(this IServiceCollection services, TimeSpan validFor, Action<CookieAuthenticationOptions> options = null)
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    - id: validFor
+      type: System.TimeSpan
+      description: specify how long the created cookie is valid for with a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>
+    - id: options
+      type: System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
+      description: optional action for configuring cookie authentication options
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddCookieAuth(services As IServiceCollection, validFor As TimeSpan, options As Action(Of CookieAuthenticationOptions) = Nothing) As IServiceCollection
+  overload: FastEndpoints.Security.AuthExtensions.AddCookieAuth*
+  nameWithType.vb: AuthExtensions.AddCookieAuth(IServiceCollection, TimeSpan, Action(Of CookieAuthenticationOptions))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.TimeSpan, System.Action(Of Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions))
+  name.vb: AddCookieAuth(IServiceCollection, TimeSpan, Action(Of CookieAuthenticationOptions))
 - uid: FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
   commentId: M:FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
   id: HasPermission(System.Security.Claims.ClaimsPrincipal,System.String)
@@ -114,7 +163,7 @@ items:
   source:
     id: HasPermission
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 70
+    startLine: 94
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -156,7 +205,7 @@ items:
   source:
     id: HasClaimType
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 77
+    startLine: 101
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -198,7 +247,7 @@ items:
   source:
     id: ClaimValue
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
-    startLine: 84
+    startLine: 108
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -678,6 +727,62 @@ references:
   - name: T
     nameWithType: T
     fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: FastEndpoints.Security.AuthExtensions.AddCookieAuth*
+  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddCookieAuth
+  name: AddCookieAuth
+  nameWithType: AuthExtensions.AddCookieAuth
+  fullName: FastEndpoints.Security.AuthExtensions.AddCookieAuth
+- uid: System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
+  commentId: T:System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
+  parent: System
+  definition: System.Action`1
+  name: Action<CookieAuthenticationOptions>
+  nameWithType: Action<CookieAuthenticationOptions>
+  fullName: System.Action<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>
+  nameWithType.vb: Action(Of CookieAuthenticationOptions)
+  fullName.vb: System.Action(Of Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions)
+  name.vb: Action(Of CookieAuthenticationOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions
+    name: CookieAuthenticationOptions
+    nameWithType: CookieAuthenticationOptions
+    fullName: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions
+    name: CookieAuthenticationOptions
+    nameWithType: CookieAuthenticationOptions
+    fullName: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )

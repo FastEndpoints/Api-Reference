@@ -8,7 +8,6 @@ items:
   - FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
   - FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   - FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
-  - FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
   langs:
   - csharp
   - vb
@@ -105,11 +104,11 @@ items:
   source:
     id: UseFastEndpoints
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 52
+    startLine: 50
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: this is the combination of <xref href=\"FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)\" data-throw-if-not-resolved=\"false\"></xref>.\nyou can use those two methods separately if you have some special requirement such as using &quot;Startup.cs&quot;, etc.\n</p>\n"
+  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: you can use <xref href=\"FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)\" data-throw-if-not-resolved=\"false\"></xref> instead of this method if you have some special requirement such as using &quot;Startup.cs&quot;, etc.</p>\n"
   example: []
   syntax:
     content: public static IApplicationBuilder UseFastEndpoints(this IApplicationBuilder app, Action<Config> configAction = null)
@@ -139,43 +138,6 @@ items:
   - Shared
   fullName.vb: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of FastEndpoints.Config))
   name.vb: UseFastEndpoints(IApplicationBuilder, Action(Of Config))
-- uid: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  commentId: M:FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  id: UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  isExtensionMethod: true
-  parent: FastEndpoints.MainExtensions
-  langs:
-  - csharp
-  - vb
-  name: UseFastEndpointsMiddleware(IApplicationBuilder)
-  nameWithType: MainExtensions.UseFastEndpointsMiddleware(IApplicationBuilder)
-  fullName: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  type: Method
-  source:
-    id: UseFastEndpointsMiddleware
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 61
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  syntax:
-    content: public static IApplicationBuilder UseFastEndpointsMiddleware(this IApplicationBuilder app)
-    parameters:
-    - id: app
-      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
-    return:
-      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function UseFastEndpointsMiddleware(app As IApplicationBuilder) As IApplicationBuilder
-  overload: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   id: MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
@@ -191,7 +153,7 @@ items:
   source:
     id: MapFastEndpoints
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 67
+    startLine: 58
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -615,9 +577,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
-  commentId: M:FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
-  isExternal: true
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   isExternal: true
@@ -697,11 +656,6 @@ references:
   name: Microsoft.AspNetCore.Builder
   nameWithType: Microsoft.AspNetCore.Builder
   fullName: Microsoft.AspNetCore.Builder
-- uid: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware*
-  commentId: Overload:FastEndpoints.MainExtensions.UseFastEndpointsMiddleware
-  name: UseFastEndpointsMiddleware
-  nameWithType: MainExtensions.UseFastEndpointsMiddleware
-  fullName: FastEndpoints.MainExtensions.UseFastEndpointsMiddleware
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.MapFastEndpoints
   name: MapFastEndpoints

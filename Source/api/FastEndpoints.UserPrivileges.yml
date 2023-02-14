@@ -6,6 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.UserPrivileges.Claims
+  - FastEndpoints.UserPrivileges.Item(System.String)
   - FastEndpoints.UserPrivileges.Permissions
   - FastEndpoints.UserPrivileges.Roles
   langs:
@@ -17,12 +18,12 @@ items:
   type: Class
   source:
     id: UserPrivileges
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\RefreshTokens\UserPriviledges.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Auth\UserPrivileges.cs
     startLine: 7
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe priviledges of the user which will be embedded in the jwt\n"
+  summary: "\nthe priviledges of the user which will be embedded in the jwt or cookie\n"
   example: []
   syntax:
     content: public sealed class UserPrivileges
@@ -58,7 +59,7 @@ items:
   type: Property
   source:
     id: Claims
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\RefreshTokens\UserPriviledges.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Auth\UserPrivileges.cs
     startLine: 12
   assemblies:
   - FastEndpoints
@@ -91,7 +92,7 @@ items:
   type: Property
   source:
     id: Roles
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\RefreshTokens\UserPriviledges.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Auth\UserPrivileges.cs
     startLine: 17
   assemblies:
   - FastEndpoints
@@ -124,7 +125,7 @@ items:
   type: Property
   source:
     id: Permissions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\RefreshTokens\UserPriviledges.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Auth\UserPrivileges.cs
     startLine: 22
   assemblies:
   - FastEndpoints
@@ -144,6 +145,45 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: FastEndpoints.UserPrivileges.Item(System.String)
+  commentId: P:FastEndpoints.UserPrivileges.Item(System.String)
+  id: Item(System.String)
+  parent: FastEndpoints.UserPrivileges
+  langs:
+  - csharp
+  - vb
+  name: Item[String]
+  nameWithType: UserPrivileges.Item[String]
+  fullName: FastEndpoints.UserPrivileges.Item[System.String]
+  type: Property
+  source:
+    id: this[]
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Auth\UserPrivileges.cs
+    startLine: 28
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nshortcut for adding a new <xref href=\"System.Security.Claims.Claim\" data-throw-if-not-resolved=\"false\"></xref> to the claim list for the given claim type and value\n"
+  example: []
+  syntax:
+    content: public string this[string claimType] { set; }
+    parameters:
+    - id: claimType
+      type: System.String
+      description: the claim type to add
+    return:
+      type: System.String
+    content.vb: Public WriteOnly Property Item(claimType As String) As String
+  overload: FastEndpoints.UserPrivileges.Item*
+  nameWithType.vb: UserPrivileges.Item(String)
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+  fullName.vb: FastEndpoints.UserPrivileges.Item(System.String)
+  name.vb: Item(String)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -590,3 +630,18 @@ references:
   name: Permissions
   nameWithType: UserPrivileges.Permissions
   fullName: FastEndpoints.UserPrivileges.Permissions
+- uid: System.Security.Claims.Claim
+  commentId: T:System.Security.Claims.Claim
+  isExternal: true
+- uid: FastEndpoints.UserPrivileges.Item*
+  commentId: Overload:FastEndpoints.UserPrivileges.Item
+  name: Item
+  nameWithType: UserPrivileges.Item
+  fullName: FastEndpoints.UserPrivileges.Item
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

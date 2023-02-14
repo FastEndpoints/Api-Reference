@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class EndpointOptions
+    <title>Class CookieAuth
  | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class EndpointOptions
+    <meta name="title" content="Class CookieAuth
  | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
@@ -78,18 +78,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FastEndpoints.EndpointOptions">
+            <article class="content wrap" id="_content" data-uid="FastEndpoints.Security.CookieAuth">
 
 
-  <h1 id="FastEndpoints_EndpointOptions" data-uid="FastEndpoints.EndpointOptions" class="text-break">Class EndpointOptions
+  <h1 id="FastEndpoints_Security_CookieAuth" data-uid="FastEndpoints.Security.CookieAuth" class="text-break">Class CookieAuth
 </h1>
-  <div class="markdown level0 summary"><p>endpoint registration options</p>
+  <div class="markdown level0 summary"><p>static class for easy cookie based auth</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">EndpointOptions</span></div>
+    <div class="level1"><span class="xref">CookieAuth</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -115,34 +115,50 @@
       <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
-  <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
-  <h5 id="FastEndpoints_EndpointOptions_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.Security.html">FastEndpoints.Security</a></h6>
+  <h6><strong>Assembly</strong>: FastEndpoints.Security.dll</h6>
+  <h5 id="FastEndpoints_Security_CookieAuth_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EndpointOptions</code></pre>
+    <pre><code class="lang-csharp hljs">public static class CookieAuth</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="methods">Methods
 </h3>
 
 
-  <a id="FastEndpoints_EndpointOptions_Configurator_" data-uid="FastEndpoints.EndpointOptions.Configurator*"></a>
-  <h4 id="FastEndpoints_EndpointOptions_Configurator" data-uid="FastEndpoints.EndpointOptions.Configurator">Configurator</h4>
-  <div class="markdown level1 summary"><p>a configuration action to be performed on each endpoint definition during startup.
-some of the same methods you use inside <code>Configure()</code> method are available to be called on the <code>EndpointDefinition</code> parameter.
-this can be used to apply a set of common configuration settings globally to all endpoints.
-i.e. apply globally applicable settings here and specify only the settings applicable to individual endpoints from within each endpoints' <code>Configure()</code> method.</p>
-<pre><code>app.UseFastEndpoints(c => c.Configurator = ep =>
-{
-    ep.AllowAnonymous();
-    ep.Description(b => b.Produces&lt;ErrorResponse>(400));
-});</code></pre>
+  <a id="FastEndpoints_Security_CookieAuth_SignInAsync_" data-uid="FastEndpoints.Security.CookieAuth.SignInAsync*"></a>
+  <h4 id="FastEndpoints_Security_CookieAuth_SignInAsync_System_Action_FastEndpoints_UserPrivileges__System_Action_Microsoft_AspNetCore_Authentication_AuthenticationProperties__" data-uid="FastEndpoints.Security.CookieAuth.SignInAsync(System.Action{FastEndpoints.UserPrivileges},System.Action{Microsoft.AspNetCore.Authentication.AuthenticationProperties})">SignInAsync(Action&lt;UserPrivileges&gt;, Action&lt;AuthenticationProperties&gt;)</h4>
+  <div class="markdown level1 summary"><p>creates the auth cookie and adds it to the current http response</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Action&lt;EndpointDefinition&gt; Configurator { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task SignInAsync(Action&lt;UserPrivileges&gt; privileges, Action&lt;AuthenticationProperties&gt; properties = null)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FastEndpoints.UserPrivileges.html">UserPrivileges</a>&gt;</td>
+        <td><span class="parametername">privileges</span></td>
+        <td><p>the privileges to be assigned to the user such as claims, permissions, and roles</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Authentication.AuthenticationProperties</span>&gt;</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>an optional action to configure authentication properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -152,28 +168,57 @@ i.e. apply globally applicable settings here and specify only the settings appli
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FastEndpoints.EndpointDefinition.html">EndpointDefinition</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>thrown if the auth middleware hasn't been configure or method is used outside the scope of an http request</p>
+</td>
       </tr>
     </tbody>
   </table>
 
 
-  <a id="FastEndpoints_EndpointOptions_Filter_" data-uid="FastEndpoints.EndpointOptions.Filter*"></a>
-  <h4 id="FastEndpoints_EndpointOptions_Filter" data-uid="FastEndpoints.EndpointOptions.Filter">Filter</h4>
-  <div class="markdown level1 summary"><p>a function to filter out endpoints from auto registration.
-the function you set here will be executed for each endpoint during startup.
-you can inspect the EndpointSettings to check what the current endpoint is, if needed.
-return 'false' from the function if you want to exclude an endpoint from registration.
-return 'true' to include.
-this function will executed for each endpoint that has been discovered during startup.</p>
+  <a id="FastEndpoints_Security_CookieAuth_SignOutAsync_" data-uid="FastEndpoints.Security.CookieAuth.SignOutAsync*"></a>
+  <h4 id="FastEndpoints_Security_CookieAuth_SignOutAsync_System_Action_Microsoft_AspNetCore_Authentication_AuthenticationProperties__" data-uid="FastEndpoints.Security.CookieAuth.SignOutAsync(System.Action{Microsoft.AspNetCore.Authentication.AuthenticationProperties})">SignOutAsync(Action&lt;AuthenticationProperties&gt;)</h4>
+  <div class="markdown level1 summary"><p>signs the user out from the cookie authentication scheme</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;EndpointDefinition, bool&gt; Filter { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task SignOutAsync(Action&lt;AuthenticationProperties&gt; properties = null)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Authentication.AuthenticationProperties</span>&gt;</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>an optional action to configure authentication properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -183,60 +228,24 @@ this function will executed for each endpoint that has been discovered during st
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="FastEndpoints.EndpointDefinition.html">EndpointDefinition</a>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
-  <a id="FastEndpoints_EndpointOptions_RoutePrefix_" data-uid="FastEndpoints.EndpointOptions.RoutePrefix*"></a>
-  <h4 id="FastEndpoints_EndpointOptions_RoutePrefix" data-uid="FastEndpoints.EndpointOptions.RoutePrefix">RoutePrefix</h4>
-  <div class="markdown level1 summary"><p>prefix for all routes (example 'api').</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string RoutePrefix { set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_EndpointOptions_ShortNames_" data-uid="FastEndpoints.EndpointOptions.ShortNames*"></a>
-  <h4 id="FastEndpoints_EndpointOptions_ShortNames" data-uid="FastEndpoints.EndpointOptions.ShortNames">ShortNames</h4>
-  <div class="markdown level1 summary"><p>set to true if you'd like the endpoint names/ swagger operation ids to be just the endpoint class names instead of the full names including namespace.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ShortNames { set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>thrown if the auth middleware hasn't been configure or method is used outside the scope of an http request</p>
+</td>
       </tr>
     </tbody>
   </table>

@@ -161,7 +161,7 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na configuration action to be performed on each endpoint definition during startup.\nsome of the same methods you use inside `Configure()` method are available to be called on the `EndpointDefinition` parameter.\nthis can be used to apply a set of common configuration settings globally to all endpoints.\ni.e. apply globally applicable settings here and specify only the settings applicable to individual endpoints from within each endpoints&apos; `Configure()` method.\n<pre><code>app.UseFastEndpoints(c => c.GlobalEndpointConfig = ep =>\n{\n    ep.AllowAnonymous();\n    ep.Description(b => b.Produces&lt;ErrorResponse>(400));\n});</code></pre>\n"
+  summary: "\na configuration action to be performed on each endpoint definition during startup.\nsome of the same methods you use inside `Configure()` method are available to be called on the `EndpointDefinition` parameter.\nthis can be used to apply a set of common configuration settings globally to all endpoints.\ni.e. apply globally applicable settings here and specify only the settings applicable to individual endpoints from within each endpoints&apos; `Configure()` method.\n<pre><code>app.UseFastEndpoints(c => c.Configurator = ep =>\n{\n    ep.AllowAnonymous();\n    ep.Description(b => b.Produces&lt;ErrorResponse>(400));\n});</code></pre>\n"
   example: []
   syntax:
     content: public Action<EndpointDefinition> Configurator { set; }
