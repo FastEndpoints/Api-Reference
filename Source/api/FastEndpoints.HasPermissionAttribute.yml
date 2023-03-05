@@ -5,9 +5,10 @@ items:
   id: HasPermissionAttribute
   parent: FastEndpoints
   children:
-  - FastEndpoints.HasPermissionAttribute.#ctor(System.String,System.Boolean)
+  - FastEndpoints.HasPermissionAttribute.#ctor(System.String,System.Boolean,System.Boolean)
   - FastEndpoints.HasPermissionAttribute.IsRequired
   - FastEndpoints.HasPermissionAttribute.Permission
+  - FastEndpoints.HasPermissionAttribute.RemoveFromSchema
   langs:
   - csharp
   - vb
@@ -163,28 +164,61 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: FastEndpoints.HasPermissionAttribute.#ctor(System.String,System.Boolean)
-  commentId: M:FastEndpoints.HasPermissionAttribute.#ctor(System.String,System.Boolean)
-  id: '#ctor(System.String,System.Boolean)'
+- uid: FastEndpoints.HasPermissionAttribute.RemoveFromSchema
+  commentId: P:FastEndpoints.HasPermissionAttribute.RemoveFromSchema
+  id: RemoveFromSchema
   parent: FastEndpoints.HasPermissionAttribute
   langs:
   - csharp
   - vb
-  name: HasPermissionAttribute(String, Boolean)
-  nameWithType: HasPermissionAttribute.HasPermissionAttribute(String, Boolean)
-  fullName: FastEndpoints.HasPermissionAttribute.HasPermissionAttribute(System.String, System.Boolean)
+  name: RemoveFromSchema
+  nameWithType: HasPermissionAttribute.RemoveFromSchema
+  fullName: FastEndpoints.HasPermissionAttribute.RemoveFromSchema
+  type: Property
+  source:
+    id: RemoveFromSchema
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Attributes\Attributes\HasPermissionAttribute.cs
+    startLine: 21
+  assemblies:
+  - FastEndpoints.Attributes
+  namespace: FastEndpoints
+  summary: "\nset to true if your header is not required but shouldn&apos;t be added to model\n"
+  example: []
+  syntax:
+    content: public bool RemoveFromSchema { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property RemoveFromSchema As Boolean
+  overload: FastEndpoints.HasPermissionAttribute.RemoveFromSchema*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.HasPermissionAttribute.#ctor(System.String,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.HasPermissionAttribute.#ctor(System.String,System.Boolean,System.Boolean)
+  id: '#ctor(System.String,System.Boolean,System.Boolean)'
+  parent: FastEndpoints.HasPermissionAttribute
+  langs:
+  - csharp
+  - vb
+  name: HasPermissionAttribute(String, Boolean, Boolean)
+  nameWithType: HasPermissionAttribute.HasPermissionAttribute(String, Boolean, Boolean)
+  fullName: FastEndpoints.HasPermissionAttribute.HasPermissionAttribute(System.String, System.Boolean, System.Boolean)
   type: Constructor
   source:
     id: .ctor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Attributes\Attributes\HasPermissionAttribute.cs
-    startLine: 23
+    startLine: 29
   assemblies:
   - FastEndpoints.Attributes
   namespace: FastEndpoints
   summary: "\nboolean properties decorated with this attribute will have their values set to true if the current principal has the specified permission.\n"
   example: []
   syntax:
-    content: public HasPermissionAttribute(string permission, bool isRequired = true)
+    content: public HasPermissionAttribute(string permission, bool isRequired = true, bool removeFromSchema = false)
     parameters:
     - id: permission
       type: System.String
@@ -192,7 +226,10 @@ items:
     - id: isRequired
       type: System.Boolean
       description: set to false if a validation error shouldn&apos;t be thrown when the current principal doesn&apos;t have the specified permission.
-    content.vb: Public Sub New(permission As String, isRequired As Boolean = True)
+    - id: removeFromSchema
+      type: System.Boolean
+      description: set to true if your header is not required but shouldn&apos;t be added to body model.
+    content.vb: Public Sub New(permission As String, isRequired As Boolean = True, removeFromSchema As Boolean = False)
   overload: FastEndpoints.HasPermissionAttribute.#ctor*
   modifiers.csharp:
   - public
@@ -2558,6 +2595,11 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: FastEndpoints.HasPermissionAttribute.RemoveFromSchema*
+  commentId: Overload:FastEndpoints.HasPermissionAttribute.RemoveFromSchema
+  name: RemoveFromSchema
+  nameWithType: HasPermissionAttribute.RemoveFromSchema
+  fullName: FastEndpoints.HasPermissionAttribute.RemoveFromSchema
 - uid: FastEndpoints.HasPermissionAttribute.#ctor*
   commentId: Overload:FastEndpoints.HasPermissionAttribute.#ctor
   name: HasPermissionAttribute

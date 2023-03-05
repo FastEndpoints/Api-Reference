@@ -51,21 +51,27 @@ items:
   source:
     id: PreProcessAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Processor\IPreProcessor.cs
-    startLine: 11
+    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nthis method is called with the given arguments when the pre-processor executes.\n"
+  example: []
   syntax:
     content: Task PreProcessAsync(TRequest req, HttpContext ctx, List<ValidationFailure> failures, CancellationToken ct)
     parameters:
     - id: req
       type: '{TRequest}'
+      description: the request dto object
     - id: ctx
       type: Microsoft.AspNetCore.Http.HttpContext
+      description: the current http context
     - id: failures
       type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+      description: the collection of validation errors of the endpoint
     - id: ct
       type: System.Threading.CancellationToken
+      description: cancellation token
     return:
       type: System.Threading.Tasks.Task
     content.vb: Function PreProcessAsync(req As TRequest, ctx As HttpContext, failures As List(Of ValidationFailure), ct As CancellationToken) As Task

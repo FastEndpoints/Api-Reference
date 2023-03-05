@@ -53,23 +53,30 @@ items:
   source:
     id: PostProcessAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Processor\IPostProcessor.cs
-    startLine: 12
+    startLine: 20
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nthis method is called with the given arguments when the post-processor executes.\n"
+  example: []
   syntax:
     content: Task PostProcessAsync(TRequest req, TResponse res, HttpContext ctx, IReadOnlyCollection<ValidationFailure> failures, CancellationToken ct)
     parameters:
     - id: req
       type: '{TRequest}'
+      description: the request dto object
     - id: res
       type: '{TResponse}'
+      description: the response dto object
     - id: ctx
       type: Microsoft.AspNetCore.Http.HttpContext
+      description: the current http context
     - id: failures
       type: System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure}
+      description: the collection of validation errors of the endpoint
     - id: ct
       type: System.Threading.CancellationToken
+      description: cancellation token
     return:
       type: System.Threading.Tasks.Task
     content.vb: Function PostProcessAsync(req As TRequest, res As TResponse, ctx As HttpContext, failures As IReadOnlyCollection(Of ValidationFailure), ct As CancellationToken) As Task

@@ -233,13 +233,13 @@ public class FromHeaderAttribute : Attribute</code></pre>
 
 
   <a id="FastEndpoints_FromHeaderAttribute__ctor_" data-uid="FastEndpoints.FromHeaderAttribute.#ctor*"></a>
-  <h4 id="FastEndpoints_FromHeaderAttribute__ctor_System_Boolean_" data-uid="FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean)">FromHeaderAttribute(Boolean)</h4>
+  <h4 id="FastEndpoints_FromHeaderAttribute__ctor_System_Boolean_System_Boolean_" data-uid="FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean,System.Boolean)">FromHeaderAttribute(Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>properties decorated with this attribute will have their values auto bound from the relevant http header of the current request.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FromHeaderAttribute(bool isRequired)</code></pre>
+    <pre><code class="lang-csharp hljs">public FromHeaderAttribute(bool isRequired, bool removeFromSchema = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -257,18 +257,24 @@ public class FromHeaderAttribute : Attribute</code></pre>
         <td><p>set to false if a validation error shouldn't be thrown when the current user request doesn't have a header matching the property name being bound to.</p>
 </td>
       </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">removeFromSchema</span></td>
+        <td><p>set to true if your header is not required but shouldn't be added to schema model.</p>
+</td>
+      </tr>
     </tbody>
   </table>
 
 
   <a id="FastEndpoints_FromHeaderAttribute__ctor_" data-uid="FastEndpoints.FromHeaderAttribute.#ctor*"></a>
-  <h4 id="FastEndpoints_FromHeaderAttribute__ctor_System_String_System_Boolean_" data-uid="FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean)">FromHeaderAttribute(String, Boolean)</h4>
+  <h4 id="FastEndpoints_FromHeaderAttribute__ctor_System_String_System_Boolean_System_Boolean_" data-uid="FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean,System.Boolean)">FromHeaderAttribute(String, Boolean, Boolean)</h4>
   <div class="markdown level1 summary"><p>properties decorated with this attribute will have their values auto bound from the relevant http header of the current request.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FromHeaderAttribute(string headerName = null, bool isRequired = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public FromHeaderAttribute(string headerName = null, bool isRequired = true, bool removeFromSchema = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -290,6 +296,12 @@ public class FromHeaderAttribute : Attribute</code></pre>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">isRequired</span></td>
         <td><p>set to false if a validation error shouldn't be thrown when the current request doesn't have the specified header.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">removeFromSchema</span></td>
+        <td><p>set to true if your header is not required but shouldn't be added to schema model.</p>
 </td>
       </tr>
     </tbody>
@@ -332,6 +344,32 @@ public class FromHeaderAttribute : Attribute</code></pre>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsRequired { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_FromHeaderAttribute_RemoveFromSchema_" data-uid="FastEndpoints.FromHeaderAttribute.RemoveFromSchema*"></a>
+  <h4 id="FastEndpoints_FromHeaderAttribute_RemoveFromSchema" data-uid="FastEndpoints.FromHeaderAttribute.RemoveFromSchema">RemoveFromSchema</h4>
+  <div class="markdown level1 summary"><p>set to true if your header is not required but shouldn't be added to schema model</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveFromSchema { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

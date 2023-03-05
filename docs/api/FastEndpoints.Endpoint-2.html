@@ -145,7 +145,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Endpoint_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse&gt; : BaseEndpoint, IEndpoint, IEventBus, IServiceResolverBase where TRequest : new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse&gt; : BaseEndpoint, IEndpoint, IEventBus, IServiceResolverBase</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -434,7 +434,7 @@
 
   <a id="FastEndpoints_Endpoint_2_ValidationFailed_" data-uid="FastEndpoints.Endpoint`2.ValidationFailed*"></a>
   <h4 id="FastEndpoints_Endpoint_2_ValidationFailed" data-uid="FastEndpoints.Endpoint`2.ValidationFailed">ValidationFailed</h4>
-  <div class="markdown level1 summary"><p>indicates if there are any validation failures for the current request</p>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -462,12 +462,12 @@
 
   <a id="FastEndpoints_Endpoint_2_AddError_" data-uid="FastEndpoints.Endpoint`2.AddError*"></a>
   <h4 id="FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)">AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</h4>
-  <div class="markdown level1 summary"><p>adds an error message for the specified property of the request dto</p>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void AddError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage, string errorCode = null, Severity severity = Severity.Error)</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage, string errorCode = null, Severity severity = Severity.Error)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -482,26 +482,22 @@
       <tr>
         <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
         <td><span class="parametername">property</span></td>
-        <td><p>the property to add the error message for</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">errorMessage</span></td>
-        <td><p>the error message</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">errorCode</span></td>
-        <td><p>the error code associated with the error</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">FluentValidation.Severity</span></td>
         <td><span class="parametername">severity</span></td>
-        <td><p>the severity of the error</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -509,12 +505,12 @@
 
   <a id="FastEndpoints_Endpoint_2_AddError_" data-uid="FastEndpoints.Endpoint`2.AddError*"></a>
   <h4 id="FastEndpoints_Endpoint_2_AddError_System_String_System_String_FluentValidation_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)">AddError(String, String, Severity)</h4>
-  <div class="markdown level1 summary"><p>adds a &quot;GeneralError&quot; to the current list of validation failures</p>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void AddError(string message, string errorCode = null, Severity severity = Severity.Error)</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddError(string message, string errorCode = null, Severity severity = Severity.Error)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -529,20 +525,17 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">message</span></td>
-        <td><p>the error message</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">errorCode</span></td>
-        <td><p>the error code associated with the error</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">FluentValidation.Severity</span></td>
         <td><span class="parametername">severity</span></td>
-        <td><p>the severity of the error</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -1022,7 +1015,7 @@ all exceptions will be thrown and it would be the responsibility of your execept
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async IAsyncEnumerable&lt;FileMultipartSection&gt; FormFileSectionsAsync(CancellationToken cancellation = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">protected async IAsyncEnumerable&lt;FileMultipartSection&gt; FormFileSectionsAsync(CancellationToken cancellation = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1852,6 +1845,35 @@ the replacement words do not have to match the request dto property names.</p>
   </table>
 
 
+  <a id="FastEndpoints_Endpoint_2_Policy_" data-uid="FastEndpoints.Endpoint`2.Policy*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_Policy_System_Action_Microsoft_AspNetCore_Authorization_AuthorizationPolicyBuilder__" data-uid="FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})">Policy(Action&lt;AuthorizationPolicyBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify an action for building an authorization requirement which applies only to this endpoint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Policy(Action&lt;AuthorizationPolicyBuilder&gt; policy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder</span>&gt;</td>
+        <td><span class="parametername">policy</span></td>
+        <td><p>the policy builder action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_Endpoint_2_Post_" data-uid="FastEndpoints.Endpoint`2.Post*"></a>
   <h4 id="FastEndpoints_Endpoint_2_Post_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Post(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">Post(String, Expression&lt;Func&lt;TRequest, Object&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>specify a POST route pattern using a replacement expression.</p>
@@ -1969,6 +1991,65 @@ the replacement words do not have to match the request dto property names.</p>
         <td><a class="xref" href="FastEndpoints.IPreProcessor-1.html">IPreProcessor</a>&lt;TRequest&gt;[]</td>
         <td><span class="parametername">preProcessors</span></td>
         <td><p>the pre processors to be executed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Endpoint_2_ProcessorState_" data-uid="FastEndpoints.Endpoint`2.ProcessorState*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_ProcessorState__1" data-uid="FastEndpoints.Endpoint`2.ProcessorState``1">ProcessorState&lt;TState&gt;()</h4>
+  <div class="markdown level1 summary"><p>retrieve the common processor state for this endpoint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TState ProcessorState&lt;TState&gt;()
+    where TState : class, new()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TState</span></td>
+        <td><p>the type of the processor state</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>thrown if the requested type of the processor state does not match with what's already stored in the context</p>
 </td>
       </tr>
     </tbody>
@@ -3859,12 +3940,12 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
 
   <a id="FastEndpoints_Endpoint_2_ThrowError_" data-uid="FastEndpoints.Endpoint`2.ThrowError*"></a>
   <h4 id="FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_" data-uid="FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">ThrowError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String)</h4>
-  <div class="markdown level1 summary"><p>adds an error message for the specified property of the request dto and sends back a 400 bad request with error details immediately interrupting handler execution flow. no execution will continue past this call.</p>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void ThrowError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3879,14 +3960,12 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
       <tr>
         <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TRequest, <span class="xref">System.Object</span>&gt;&gt;</td>
         <td><span class="parametername">property</span></td>
-        <td><p>the property to add the error message for</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">errorMessage</span></td>
-        <td><p>the error message</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -3894,12 +3973,12 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
 
   <a id="FastEndpoints_Endpoint_2_ThrowError_" data-uid="FastEndpoints.Endpoint`2.ThrowError*"></a>
   <h4 id="FastEndpoints_Endpoint_2_ThrowError_System_String_" data-uid="FastEndpoints.Endpoint`2.ThrowError(System.String)">ThrowError(String)</h4>
-  <div class="markdown level1 summary"><p>add a &quot;GeneralError&quot; to the validation failure list and send back a 400 bad request with error details immediately interrupting handler execution flow. if there are any vallidation failures, no execution will continue past this call.</p>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void ThrowError(string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowError(string message)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3914,8 +3993,7 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">message</span></td>
-        <td><p>the error message</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -3923,12 +4001,12 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
 
   <a id="FastEndpoints_Endpoint_2_ThrowIfAnyErrors_" data-uid="FastEndpoints.Endpoint`2.ThrowIfAnyErrors*"></a>
   <h4 id="FastEndpoints_Endpoint_2_ThrowIfAnyErrors" data-uid="FastEndpoints.Endpoint`2.ThrowIfAnyErrors">ThrowIfAnyErrors()</h4>
-  <div class="markdown level1 summary"><p>interrupt the flow of handler execution and send a 400 bad request with error details if there are any validation failures in the current request. if there are no validation failures, execution will continue past this call.</p>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void ThrowIfAnyErrors()</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowIfAnyErrors()</code></pre>
   </div>
 
 

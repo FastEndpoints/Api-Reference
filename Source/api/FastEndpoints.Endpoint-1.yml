@@ -22,12 +22,12 @@ items:
   summary: "\nuse this base class for defining endpoints that only use a request dto and don&apos;t use a response dto.\n"
   example: []
   syntax:
-    content: 'public abstract class Endpoint<TRequest> : Endpoint<TRequest, object>, IEndpoint, IEventBus, IServiceResolverBase where TRequest : new()'
+    content: 'public abstract class Endpoint<TRequest> : Endpoint<TRequest, object>, IEndpoint, IEventBus, IServiceResolverBase'
     typeParameters:
     - id: TRequest
       description: the type of the request dto
     content.vb: >-
-      Public MustInherit Class Endpoint(Of TRequest As New)
+      Public MustInherit Class Endpoint(Of TRequest)
 
           Inherits Endpoint(Of TRequest, Object)
 
@@ -53,6 +53,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.FormFileSectionsAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.PublishAsync``1({TEvent},FastEndpoints.Mode,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.ProcessorState``1
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnBeforeValidate({TRequest})
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnBeforeValidateAsync({TRequest},System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnAfterValidate({TRequest})
@@ -63,7 +64,6 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnAfterHandleAsync({TRequest},System.Object,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnValidationFailed
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnValidationFailedAsync(System.Threading.CancellationToken)
-  - FastEndpoints.Endpoint{{TRequest},System.Object}.ValidationFailed
   - FastEndpoints.Endpoint{{TRequest},System.Object}.User
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Response
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Config
@@ -116,6 +116,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Patch(System.String,System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}})
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Permissions(System.String[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.PermissionsAll(System.String[])
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Policies(System.String[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Post(System.String[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Post(System.String,System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}})
@@ -139,11 +140,12 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Verbs(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Verbs(System.String[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Version(System.Int32,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.ValidationFailed
   - FastEndpoints.Endpoint{{TRequest},System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.AddError(System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}},System.String,System.String,FluentValidation.Severity)
-  - FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowIfAnyErrors
   - FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowError(System.String)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}},System.String)
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowIfAnyErrors
   - FastEndpoints.BaseEndpoint.Definition
   - FastEndpoints.BaseEndpoint.HttpContext
   - FastEndpoints.BaseEndpoint.ValidationFailures
@@ -845,6 +847,38 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ProcessorState``1
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.ProcessorState``1
+  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
+  definition: FastEndpoints.Endpoint`2.ProcessorState``1
+  name: ProcessorState<TState>()
+  nameWithType: Endpoint<TRequest, Object>.ProcessorState<TState>()
+  fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ProcessorState<TState>()
+  nameWithType.vb: Endpoint(Of TRequest, Object).ProcessorState(Of TState)()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, System.Object).ProcessorState(Of TState)()
+  name.vb: ProcessorState(Of TState)()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ProcessorState``1
+    name: ProcessorState<TState>
+    nameWithType: Endpoint<TRequest, Object>.ProcessorState<TState>
+    fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ProcessorState<TState>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ProcessorState``1
+    name: ProcessorState(Of TState)
+    nameWithType: Endpoint(Of TRequest, Object).ProcessorState(Of TState)
+    fullName: FastEndpoints.Endpoint(Of TRequest, System.Object).ProcessorState(Of TState)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.OnBeforeValidate({TRequest})
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.OnBeforeValidate(`0)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
@@ -1309,15 +1343,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ValidationFailed
-  commentId: P:FastEndpoints.Endpoint{`0,System.Object}.ValidationFailed
-  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
-  definition: FastEndpoints.Endpoint`2.ValidationFailed
-  name: ValidationFailed
-  nameWithType: Endpoint<TRequest, Object>.ValidationFailed
-  fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ValidationFailed
-  nameWithType.vb: Endpoint(Of TRequest, Object).ValidationFailed
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, System.Object).ValidationFailed
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.User
   commentId: P:FastEndpoints.Endpoint{`0,System.Object}.User
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
@@ -4316,6 +4341,70 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
+  definition: FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+  name: Policy(Action<AuthorizationPolicyBuilder>)
+  nameWithType: Endpoint<TRequest, Object>.Policy(Action<AuthorizationPolicyBuilder>)
+  fullName: FastEndpoints.Endpoint<TRequest, System.Object>.Policy(System.Action<Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder>)
+  nameWithType.vb: Endpoint(Of TRequest, Object).Policy(Action(Of AuthorizationPolicyBuilder))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, System.Object).Policy(System.Action(Of Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder))
+  name.vb: Policy(Action(Of AuthorizationPolicyBuilder))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+    name: Policy
+    nameWithType: Endpoint<TRequest, Object>.Policy
+    fullName: FastEndpoints.Endpoint<TRequest, System.Object>.Policy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    name: AuthorizationPolicyBuilder
+    nameWithType: AuthorizationPolicyBuilder
+    fullName: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+    name: Policy
+    nameWithType: Endpoint(Of TRequest, Object).Policy
+    fullName: FastEndpoints.Endpoint(Of TRequest, System.Object).Policy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    name: AuthorizationPolicyBuilder
+    nameWithType: AuthorizationPolicyBuilder
+    fullName: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.Policies(System.String[])
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.Policies(System.String[])
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
@@ -5724,6 +5813,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ValidationFailed
+  commentId: P:FastEndpoints.Endpoint{`0,System.Object}.ValidationFailed
+  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
+  definition: FastEndpoints.Endpoint`2.ValidationFailed
+  name: ValidationFailed
+  nameWithType: Endpoint<TRequest, Object>.ValidationFailed
+  fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ValidationFailed
+  nameWithType.vb: Endpoint(Of TRequest, Object).ValidationFailed
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, System.Object).ValidationFailed
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
@@ -5943,37 +6041,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowIfAnyErrors
-  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.ThrowIfAnyErrors
-  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
-  definition: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-  name: ThrowIfAnyErrors()
-  nameWithType: Endpoint<TRequest, Object>.ThrowIfAnyErrors()
-  fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ThrowIfAnyErrors()
-  nameWithType.vb: Endpoint(Of TRequest, Object).ThrowIfAnyErrors()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, System.Object).ThrowIfAnyErrors()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-    name: ThrowIfAnyErrors
-    nameWithType: Endpoint<TRequest, Object>.ThrowIfAnyErrors
-    fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ThrowIfAnyErrors
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-    name: ThrowIfAnyErrors
-    nameWithType: Endpoint(Of TRequest, Object).ThrowIfAnyErrors
-    fullName: FastEndpoints.Endpoint(Of TRequest, System.Object).ThrowIfAnyErrors
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowError(System.String)
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.ThrowError(System.String)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
@@ -6126,6 +6193,37 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ThrowIfAnyErrors
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.ThrowIfAnyErrors
+  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
+  definition: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+  name: ThrowIfAnyErrors()
+  nameWithType: Endpoint<TRequest, Object>.ThrowIfAnyErrors()
+  fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ThrowIfAnyErrors()
+  nameWithType.vb: Endpoint(Of TRequest, Object).ThrowIfAnyErrors()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, System.Object).ThrowIfAnyErrors()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+    name: ThrowIfAnyErrors
+    nameWithType: Endpoint<TRequest, Object>.ThrowIfAnyErrors
+    fullName: FastEndpoints.Endpoint<TRequest, System.Object>.ThrowIfAnyErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+    name: ThrowIfAnyErrors
+    nameWithType: Endpoint(Of TRequest, Object).ThrowIfAnyErrors
+    fullName: FastEndpoints.Endpoint(Of TRequest, System.Object).ThrowIfAnyErrors
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -7158,6 +7256,36 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.ProcessorState``1
+  commentId: M:FastEndpoints.Endpoint`2.ProcessorState``1
+  name: ProcessorState<TState>()
+  nameWithType: Endpoint<TRequest, TResponse>.ProcessorState<TState>()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ProcessorState<TState>()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ProcessorState(Of TState)()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ProcessorState(Of TState)()
+  name.vb: ProcessorState(Of TState)()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ProcessorState``1
+    name: ProcessorState<TState>
+    nameWithType: Endpoint<TRequest, TResponse>.ProcessorState<TState>
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ProcessorState<TState>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ProcessorState``1
+    name: ProcessorState(Of TState)
+    nameWithType: Endpoint(Of TRequest, TResponse).ProcessorState(Of TState)
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ProcessorState(Of TState)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.OnBeforeValidate(`0)
   commentId: M:FastEndpoints.Endpoint`2.OnBeforeValidate(`0)
   name: OnBeforeValidate(TRequest)
@@ -7599,13 +7727,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.ValidationFailed
-  commentId: P:FastEndpoints.Endpoint`2.ValidationFailed
-  name: ValidationFailed
-  nameWithType: Endpoint<TRequest, TResponse>.ValidationFailed
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ValidationFailed
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ValidationFailed
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ValidationFailed
 - uid: FastEndpoints.Endpoint`2.User
   commentId: P:FastEndpoints.Endpoint`2.User
   name: User
@@ -10520,6 +10641,69 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+  commentId: M:FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+  isExternal: true
+  name: Policy(Action<AuthorizationPolicyBuilder>)
+  nameWithType: Endpoint<TRequest, TResponse>.Policy(Action<AuthorizationPolicyBuilder>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Policy(System.Action<Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Policy(Action(Of AuthorizationPolicyBuilder))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Policy(System.Action(Of Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder))
+  name.vb: Policy(Action(Of AuthorizationPolicyBuilder))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+    name: Policy
+    nameWithType: Endpoint<TRequest, TResponse>.Policy
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Policy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    name: AuthorizationPolicyBuilder
+    nameWithType: AuthorizationPolicyBuilder
+    fullName: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
+    name: Policy
+    nameWithType: Endpoint(Of TRequest, TResponse).Policy
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).Policy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    name: AuthorizationPolicyBuilder
+    nameWithType: AuthorizationPolicyBuilder
+    fullName: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.Policies(System.String[])
   commentId: M:FastEndpoints.Endpoint`2.Policies(System.String[])
   isExternal: true
@@ -11893,6 +12077,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Endpoint`2.ValidationFailed
+  commentId: P:FastEndpoints.Endpoint`2.ValidationFailed
+  name: ValidationFailed
+  nameWithType: Endpoint<TRequest, TResponse>.ValidationFailed
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ValidationFailed
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ValidationFailed
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ValidationFailed
 - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   isExternal: true
@@ -12110,35 +12301,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-  commentId: M:FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-  name: ThrowIfAnyErrors()
-  nameWithType: Endpoint<TRequest, TResponse>.ThrowIfAnyErrors()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowIfAnyErrors()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors()
-  spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-    name: ThrowIfAnyErrors
-    nameWithType: Endpoint<TRequest, TResponse>.ThrowIfAnyErrors
-    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowIfAnyErrors
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-    name: ThrowIfAnyErrors
-    nameWithType: Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors
-    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Endpoint`2.ThrowError(System.String)
   commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.String)
   isExternal: true
@@ -12289,6 +12451,35 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+  commentId: M:FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+  name: ThrowIfAnyErrors()
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowIfAnyErrors()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowIfAnyErrors()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+    name: ThrowIfAnyErrors
+    nameWithType: Endpoint<TRequest, TResponse>.ThrowIfAnyErrors
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowIfAnyErrors
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+    name: ThrowIfAnyErrors
+    nameWithType: Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )

@@ -1,33 +1,42 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.EpVersion
-  commentId: T:FastEndpoints.EpVersion
-  id: EpVersion
+- uid: FastEndpoints.TestResult`1
+  commentId: T:FastEndpoints.TestResult`1
+  id: TestResult`1
   parent: FastEndpoints
   children:
-  - FastEndpoints.EpVersion.Current
-  - FastEndpoints.EpVersion.DeprecatedAt
+  - FastEndpoints.TestResult`1.#ctor(System.Net.Http.HttpResponseMessage,`0)
+  - FastEndpoints.TestResult`1.Response
+  - FastEndpoints.TestResult`1.Result
   langs:
   - csharp
   - vb
-  name: EpVersion
-  nameWithType: EpVersion
-  fullName: FastEndpoints.EpVersion
+  name: TestResult<TResponse>
+  nameWithType: TestResult<TResponse>
+  fullName: FastEndpoints.TestResult<TResponse>
   type: Class
   source:
-    id: EpVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 400
+    id: TestResult
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\TestResult.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nrepresents an enpoint version\n"
+  summary: "\na record encapsulating the http response as well as the resulting dto of a test execution\n"
   example: []
   syntax:
-    content: public sealed class EpVersion
-    content.vb: Public NotInheritable Class EpVersion
+    content: 'public class TestResult<TResponse> : IEquatable<TestResult<TResponse>>'
+    typeParameters:
+    - id: TResponse
+      description: the type of the response dto
+    content.vb: >-
+      Public Class TestResult(Of TResponse)
+
+          Implements IEquatable(Of TestResult(Of TResponse))
   inheritance:
   - System.Object
+  implements:
+  - System.IEquatable{FastEndpoints.TestResult`1}
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -36,76 +45,122 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  nameWithType.vb: TestResult(Of TResponse)
   modifiers.csharp:
   - public
-  - sealed
   - class
   modifiers.vb:
   - Public
-  - NotInheritable
   - Class
-- uid: FastEndpoints.EpVersion.Current
-  commentId: P:FastEndpoints.EpVersion.Current
-  id: Current
-  parent: FastEndpoints.EpVersion
+  fullName.vb: FastEndpoints.TestResult(Of TResponse)
+  name.vb: TestResult(Of TResponse)
+- uid: FastEndpoints.TestResult`1.#ctor(System.Net.Http.HttpResponseMessage,`0)
+  commentId: M:FastEndpoints.TestResult`1.#ctor(System.Net.Http.HttpResponseMessage,`0)
+  id: '#ctor(System.Net.Http.HttpResponseMessage,`0)'
+  parent: FastEndpoints.TestResult`1
   langs:
   - csharp
   - vb
-  name: Current
-  nameWithType: EpVersion.Current
-  fullName: FastEndpoints.EpVersion.Current
-  type: Property
+  name: TestResult(HttpResponseMessage, TResponse)
+  nameWithType: TestResult<TResponse>.TestResult(HttpResponseMessage, TResponse)
+  fullName: FastEndpoints.TestResult<TResponse>.TestResult(System.Net.Http.HttpResponseMessage, TResponse)
+  type: Constructor
   source:
-    id: Current
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 402
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\TestResult.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\na record encapsulating the http response as well as the resulting dto of a test execution\n"
+  example: []
   syntax:
-    content: public int Current { get; }
-    parameters: []
-    return:
-      type: System.Int32
-    content.vb: Public ReadOnly Property Current As Integer
-  overload: FastEndpoints.EpVersion.Current*
+    content: public TestResult(HttpResponseMessage Response, TResponse Result)
+    parameters:
+    - id: Response
+      type: System.Net.Http.HttpResponseMessage
+      description: http response message object
+    - id: Result
+      type: '{TResponse}'
+      description: the resulting dto object
+    content.vb: Public Sub New(Response As HttpResponseMessage, Result As TResponse)
+  overload: FastEndpoints.TestResult`1.#ctor*
+  nameWithType.vb: TestResult(Of TResponse).TestResult(HttpResponseMessage, TResponse)
   modifiers.csharp:
   - public
-  - get
   modifiers.vb:
   - Public
-  - ReadOnly
-- uid: FastEndpoints.EpVersion.DeprecatedAt
-  commentId: P:FastEndpoints.EpVersion.DeprecatedAt
-  id: DeprecatedAt
-  parent: FastEndpoints.EpVersion
+  fullName.vb: FastEndpoints.TestResult(Of TResponse).TestResult(System.Net.Http.HttpResponseMessage, TResponse)
+- uid: FastEndpoints.TestResult`1.Response
+  commentId: P:FastEndpoints.TestResult`1.Response
+  id: Response
+  parent: FastEndpoints.TestResult`1
   langs:
   - csharp
   - vb
-  name: DeprecatedAt
-  nameWithType: EpVersion.DeprecatedAt
-  fullName: FastEndpoints.EpVersion.DeprecatedAt
+  name: Response
+  nameWithType: TestResult<TResponse>.Response
+  fullName: FastEndpoints.TestResult<TResponse>.Response
   type: Property
   source:
-    id: DeprecatedAt
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 403
+    id: Response
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\TestResult.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: http response message object
+  example: []
   syntax:
-    content: public int DeprecatedAt { get; }
+    content: public HttpResponseMessage Response { get; set; }
     parameters: []
     return:
-      type: System.Int32
-    content.vb: Public ReadOnly Property DeprecatedAt As Integer
-  overload: FastEndpoints.EpVersion.DeprecatedAt*
+      type: System.Net.Http.HttpResponseMessage
+    content.vb: Public Property Response As HttpResponseMessage
+  overload: FastEndpoints.TestResult`1.Response*
+  nameWithType.vb: TestResult(Of TResponse).Response
   modifiers.csharp:
   - public
   - get
+  - set
   modifiers.vb:
   - Public
-  - ReadOnly
+  fullName.vb: FastEndpoints.TestResult(Of TResponse).Response
+- uid: FastEndpoints.TestResult`1.Result
+  commentId: P:FastEndpoints.TestResult`1.Result
+  id: Result
+  parent: FastEndpoints.TestResult`1
+  langs:
+  - csharp
+  - vb
+  name: Result
+  nameWithType: TestResult<TResponse>.Result
+  fullName: FastEndpoints.TestResult<TResponse>.Result
+  type: Property
+  source:
+    id: Result
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\TestResult.cs
+    startLine: 8
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the resulting dto object
+  example: []
+  syntax:
+    content: public TResponse Result { get; set; }
+    parameters: []
+    return:
+      type: '{TResponse}'
+    content.vb: Public Property Result As TResponse
+  overload: FastEndpoints.TestResult`1.Result*
+  nameWithType.vb: TestResult(Of TResponse).Result
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.TestResult(Of TResponse).Result
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -119,6 +174,66 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: System.IEquatable{FastEndpoints.TestResult`1}
+  commentId: T:System.IEquatable{FastEndpoints.TestResult`1}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<TestResult<TResponse>>
+  nameWithType: IEquatable<TestResult<TResponse>>
+  fullName: System.IEquatable<FastEndpoints.TestResult<TResponse>>
+  nameWithType.vb: IEquatable(Of TestResult(Of TResponse))
+  fullName.vb: System.IEquatable(Of FastEndpoints.TestResult(Of TResponse))
+  name.vb: IEquatable(Of TestResult(Of TResponse))
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.TestResult`1
+    name: TestResult
+    nameWithType: TestResult
+    fullName: FastEndpoints.TestResult
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.TestResult`1
+    name: TestResult
+    nameWithType: TestResult
+    fullName: FastEndpoints.TestResult
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -404,20 +519,86 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.EpVersion.Current*
-  commentId: Overload:FastEndpoints.EpVersion.Current
-  name: Current
-  nameWithType: EpVersion.Current
-  fullName: FastEndpoints.EpVersion.Current
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: FastEndpoints.EpVersion.DeprecatedAt*
-  commentId: Overload:FastEndpoints.EpVersion.DeprecatedAt
-  name: DeprecatedAt
-  nameWithType: EpVersion.DeprecatedAt
-  fullName: FastEndpoints.EpVersion.DeprecatedAt
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.TestResult`1.#ctor*
+  commentId: Overload:FastEndpoints.TestResult`1.#ctor
+  name: TestResult
+  nameWithType: TestResult<TResponse>.TestResult
+  fullName: FastEndpoints.TestResult<TResponse>.TestResult
+  nameWithType.vb: TestResult(Of TResponse).TestResult
+  fullName.vb: FastEndpoints.TestResult(Of TResponse).TestResult
+- uid: System.Net.Http.HttpResponseMessage
+  commentId: T:System.Net.Http.HttpResponseMessage
+  parent: System.Net.Http
+  isExternal: true
+  name: HttpResponseMessage
+  nameWithType: HttpResponseMessage
+  fullName: System.Net.Http.HttpResponseMessage
+- uid: '{TResponse}'
+  commentId: '!:TResponse'
+  definition: TResponse
+  name: TResponse
+  nameWithType: TResponse
+  fullName: TResponse
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+- uid: TResponse
+  name: TResponse
+  nameWithType: TResponse
+  fullName: TResponse
+- uid: FastEndpoints.TestResult`1.Response*
+  commentId: Overload:FastEndpoints.TestResult`1.Response
+  name: Response
+  nameWithType: TestResult<TResponse>.Response
+  fullName: FastEndpoints.TestResult<TResponse>.Response
+  nameWithType.vb: TestResult(Of TResponse).Response
+  fullName.vb: FastEndpoints.TestResult(Of TResponse).Response
+- uid: FastEndpoints.TestResult`1.Result*
+  commentId: Overload:FastEndpoints.TestResult`1.Result
+  name: Result
+  nameWithType: TestResult<TResponse>.Result
+  fullName: FastEndpoints.TestResult<TResponse>.Result
+  nameWithType.vb: TestResult(Of TResponse).Result
+  fullName.vb: FastEndpoints.TestResult(Of TResponse).Result

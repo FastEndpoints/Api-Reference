@@ -32,7 +32,7 @@ items:
   summary: "\nuse this base class to define domain entity mappers for your endpoints.\n<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>\n"
   example: []
   syntax:
-    content: 'public abstract class Mapper<TRequest, TResponse, TEntity> : IMapper, IServiceResolverBase where TRequest : new()'
+    content: 'public abstract class Mapper<TRequest, TResponse, TEntity> : IMapper, IServiceResolverBase'
     typeParameters:
     - id: TRequest
       description: the type of request dto
@@ -41,7 +41,7 @@ items:
     - id: TEntity
       description: the type of domain entity to map to/from
     content.vb: >-
-      Public MustInherit Class Mapper(Of TRequest As New, TResponse, TEntity)
+      Public MustInherit Class Mapper(Of TRequest, TResponse, TEntity)
 
           Implements IMapper, IServiceResolverBase
   inheritance:

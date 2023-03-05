@@ -79,7 +79,7 @@ items:
   summary: "\nmake a POST request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<(HttpResponseMessage response, TResponse result)> POSTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static async Task<TestResult<TResponse>> POSTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -95,11 +95,11 @@ items:
     - id: TResponse
       description: type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function POSTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
   exceptions:
   - type: System.InvalidOperationException
@@ -138,7 +138,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> POSTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+      public static Task<TestResult<TResponse>> POSTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -155,11 +155,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
   nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -247,7 +247,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> POSTAsync<TEndpoint, TResponse>(this HttpClient client)
+      public static Task<TestResult<TResponse>> POSTAsync<TEndpoint, TResponse>(this HttpClient client)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -259,11 +259,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
   nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -296,7 +296,7 @@ items:
   summary: "\nmake a PUT request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<(HttpResponseMessage response, TResponse result)> PUTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static async Task<TestResult<TResponse>> PUTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -312,11 +312,11 @@ items:
     - id: TResponse
       description: type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function PUTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
   exceptions:
   - type: System.InvalidOperationException
@@ -355,7 +355,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> PUTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+      public static Task<TestResult<TResponse>> PUTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -372,11 +372,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
   nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -464,7 +464,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> PUTAsync<TEndpoint, TResponse>(this HttpClient client)
+      public static Task<TestResult<TResponse>> PUTAsync<TEndpoint, TResponse>(this HttpClient client)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -476,11 +476,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
   nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -513,7 +513,7 @@ items:
   summary: "\nmake a GET request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<(HttpResponseMessage response, TResponse result)> GETAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static async Task<TestResult<TResponse>> GETAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -529,11 +529,11 @@ items:
     - id: TResponse
       description: type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GETAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function GETAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
   exceptions:
   - type: System.InvalidOperationException
@@ -572,7 +572,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> GETAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+      public static Task<TestResult<TResponse>> GETAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -589,11 +589,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
   nameWithType.vb: HttpClientExtensions.GETAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -681,7 +681,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> GETAsync<TEndpoint, TResponse>(this HttpClient client)
+      public static Task<TestResult<TResponse>> GETAsync<TEndpoint, TResponse>(this HttpClient client)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -693,11 +693,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function GETAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
   nameWithType.vb: HttpClientExtensions.GETAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -730,7 +730,7 @@ items:
   summary: "\nmake a DELETE request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<(HttpResponseMessage response, TResponse result)> DELETEAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static async Task<TestResult<TResponse>> DELETEAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -746,11 +746,11 @@ items:
     - id: TResponse
       description: type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function DELETEAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function DELETEAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
   exceptions:
   - type: System.InvalidOperationException
@@ -789,7 +789,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> DELETEAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+      public static Task<TestResult<TResponse>> DELETEAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -806,11 +806,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
   nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
   modifiers.csharp:
@@ -898,7 +898,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<(HttpResponseMessage response, TResponse result)> DELETEAsync<TEndpoint, TResponse>(this HttpClient client)
+      public static Task<TestResult<TResponse>> DELETEAsync<TEndpoint, TResponse>(this HttpClient client)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -910,11 +910,11 @@ items:
     - id: TResponse
       description: the type of the response dto
     return:
-      type: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of(response As HttpResponseMessage, result As TResponse)(Of HttpResponseMessage , TResponse))
+      Public Shared Function DELETEAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
   nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TEndpoint, TResponse)(HttpClient)
   modifiers.csharp:
@@ -1251,16 +1251,16 @@ references:
   name: TRequest
   nameWithType: TRequest
   fullName: TRequest
-- uid: System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,{TResponse}}}
-  commentId: T:System.Threading.Tasks.Task{System.ValueTuple{System.Net.Http.HttpResponseMessage,``1}}
+- uid: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
+  commentId: T:System.Threading.Tasks.Task{FastEndpoints.TestResult{``1}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Task<(T1 Item1, T2 Item2)<HttpResponseMessage, TResponse>>
-  nameWithType: Task<(T1 Item1, T2 Item2)<HttpResponseMessage, TResponse>>
-  fullName: System.Threading.Tasks.Task<System.ValueTuple<System.Net.Http.HttpResponseMessage, TResponse>>
-  nameWithType.vb: Task(Of (Item1 As T1, Item2 As T2)(Of HttpResponseMessage, TResponse))
-  fullName.vb: System.Threading.Tasks.Task(Of System.ValueTuple(Of System.Net.Http.HttpResponseMessage, TResponse))
-  name.vb: Task(Of (Item1 As T1, Item2 As T2)(Of HttpResponseMessage, TResponse))
+  name: Task<TestResult<TResponse>>
+  nameWithType: Task<TestResult<TResponse>>
+  fullName: System.Threading.Tasks.Task<FastEndpoints.TestResult<TResponse>>
+  nameWithType.vb: Task(Of TestResult(Of TResponse))
+  fullName.vb: System.Threading.Tasks.Task(Of FastEndpoints.TestResult(Of TResponse))
+  name.vb: Task(Of TestResult(Of TResponse))
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
@@ -1270,22 +1270,13 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: System.ValueTuple`2
-    name: (T1 Item1, T2 Item2)
-    nameWithType: (T1 Item1, T2 Item2)
-    fullName: System.ValueTuple
-    isExternal: true
+  - uid: FastEndpoints.TestResult`1
+    name: TestResult
+    nameWithType: TestResult
+    fullName: FastEndpoints.TestResult
   - name: <
     nameWithType: <
     fullName: <
-  - uid: System.Net.Http.HttpResponseMessage
-    name: HttpResponseMessage
-    nameWithType: HttpResponseMessage
-    fullName: System.Net.Http.HttpResponseMessage
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
   - name: TResponse
     nameWithType: TResponse
     fullName: TResponse
@@ -1304,22 +1295,13 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: System.ValueTuple`2
-    name: (Item1 As T1, Item2 As T2)
-    nameWithType: (Item1 As T1, Item2 As T2)
-    fullName: System.ValueTuple
-    isExternal: true
+  - uid: FastEndpoints.TestResult`1
+    name: TestResult
+    nameWithType: TestResult
+    fullName: FastEndpoints.TestResult
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: System.Net.Http.HttpResponseMessage
-    name: HttpResponseMessage
-    nameWithType: HttpResponseMessage
-    fullName: System.Net.Http.HttpResponseMessage
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
   - name: TResponse
     nameWithType: TResponse
     fullName: TResponse

@@ -541,6 +541,32 @@
   </table>
 
 
+  <a id="FastEndpoints_EndpointDefinition_PolicyBuilder_" data-uid="FastEndpoints.EndpointDefinition.PolicyBuilder*"></a>
+  <h4 id="FastEndpoints_EndpointDefinition_PolicyBuilder" data-uid="FastEndpoints.EndpointDefinition.PolicyBuilder">PolicyBuilder</h4>
+  <div class="markdown level1 summary"><p>represents the configuration settings of an endpoint</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;AuthorizationPolicyBuilder&gt; PolicyBuilder { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_EndpointDefinition_PreBuiltUserPolicies_" data-uid="FastEndpoints.EndpointDefinition.PreBuiltUserPolicies*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_PreBuiltUserPolicies" data-uid="FastEndpoints.EndpointDefinition.PreBuiltUserPolicies">PreBuiltUserPolicies</h4>
   <div class="markdown level1 summary"><p>represents the configuration settings of an endpoint</p>
@@ -1167,6 +1193,36 @@ all exceptions will be thrown and it would be your exeception catching middlewar
   </table>
 
 
+  <a id="FastEndpoints_EndpointDefinition_Policy_" data-uid="FastEndpoints.EndpointDefinition.Policy*"></a>
+  <h4 id="FastEndpoints_EndpointDefinition_Policy_System_Action_Microsoft_AspNetCore_Authorization_AuthorizationPolicyBuilder__" data-uid="FastEndpoints.EndpointDefinition.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})">Policy(Action&lt;AuthorizationPolicyBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify an action for building an authorization requirement which should be added to all endpoints globally.</p>
+<p>HINT: these global level requirements will be combined with the requirements specified at the endpoint level if there&apos;s any.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Policy(Action&lt;AuthorizationPolicyBuilder&gt; policy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder</span>&gt;</td>
+        <td><span class="parametername">policy</span></td>
+        <td><p>th policy builder action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_EndpointDefinition_PostProcessors_" data-uid="FastEndpoints.EndpointDefinition.PostProcessors*"></a>
   <h4 id="FastEndpoints_EndpointDefinition_PostProcessors_FastEndpoints_Order_FastEndpoints_IGlobalPostProcessor___" data-uid="FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])">PostProcessors(Order, IGlobalPostProcessor[])</h4>
   <div class="markdown level1 summary"><p>adds global post-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.</p>
@@ -1447,8 +1503,7 @@ global prefix can be ignored by setting <code>string.Empty</code></p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Summary&lt;TRequest&gt;(Action&lt;EndpointSummary&lt;TRequest&gt;&gt; endpointSummary)
-    where TRequest : new()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Summary&lt;TRequest&gt;(Action&lt;EndpointSummary&lt;TRequest&gt;&gt; endpointSummary)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

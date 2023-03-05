@@ -10,6 +10,9 @@ items:
   - FastEndpoints.BindingOptions
   - FastEndpoints.BindingSource
   - FastEndpoints.CommandExtensions
+  - FastEndpoints.CommandHandler`1
+  - FastEndpoints.CommandHandler`2
+  - FastEndpoints.CommandHandlerBase`1
   - FastEndpoints.Config
   - FastEndpoints.DontInjectAttribute
   - FastEndpoints.EmptyRequest
@@ -86,6 +89,8 @@ items:
   - FastEndpoints.Order
   - FastEndpoints.ParseResult
   - FastEndpoints.PlainTextRequest
+  - FastEndpoints.PostProcessor`3
+  - FastEndpoints.PreProcessor`2
   - FastEndpoints.QueryParamAttribute
   - FastEndpoints.RequestBinder`1
   - FastEndpoints.RequestMapper`2
@@ -97,6 +102,7 @@ items:
   - FastEndpoints.SubGroup`1
   - FastEndpoints.Summary`1
   - FastEndpoints.Summary`2
+  - FastEndpoints.TestResult`1
   - FastEndpoints.ThrottleAttribute
   - FastEndpoints.ThrottleOptions
   - FastEndpoints.UserPrivileges
@@ -1026,16 +1032,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.IGlobalPostProcessor
-  commentId: T:FastEndpoints.IGlobalPostProcessor
-  name: IGlobalPostProcessor
-  nameWithType: IGlobalPostProcessor
-  fullName: FastEndpoints.IGlobalPostProcessor
-- uid: FastEndpoints.IGlobalPreProcessor
-  commentId: T:FastEndpoints.IGlobalPreProcessor
-  name: IGlobalPreProcessor
-  nameWithType: IGlobalPreProcessor
-  fullName: FastEndpoints.IGlobalPreProcessor
 - uid: FastEndpoints.IPostProcessor`2
   commentId: T:FastEndpoints.IPostProcessor`2
   name: IPostProcessor<TRequest, TResponse>
@@ -1084,6 +1080,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.IGlobalPostProcessor
+  commentId: T:FastEndpoints.IGlobalPostProcessor
+  name: IGlobalPostProcessor
+  nameWithType: IGlobalPostProcessor
+  fullName: FastEndpoints.IGlobalPostProcessor
 - uid: FastEndpoints.IPreProcessor`1
   commentId: T:FastEndpoints.IPreProcessor`1
   name: IPreProcessor<TRequest>
@@ -1120,6 +1121,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.IGlobalPreProcessor
+  commentId: T:FastEndpoints.IGlobalPreProcessor
+  name: IGlobalPreProcessor
+  nameWithType: IGlobalPreProcessor
+  fullName: FastEndpoints.IGlobalPreProcessor
 - uid: FastEndpoints.IResponseInterceptor
   commentId: T:FastEndpoints.IResponseInterceptor
   parent: FastEndpoints
@@ -1132,6 +1138,114 @@ references:
   name: Order
   nameWithType: Order
   fullName: FastEndpoints.Order
+- uid: FastEndpoints.PostProcessor`3
+  commentId: T:FastEndpoints.PostProcessor`3
+  name: PostProcessor<TRequest, TState, TResponse>
+  nameWithType: PostProcessor<TRequest, TState, TResponse>
+  fullName: FastEndpoints.PostProcessor<TRequest, TState, TResponse>
+  nameWithType.vb: PostProcessor(Of TRequest, TState, TResponse)
+  fullName.vb: FastEndpoints.PostProcessor(Of TRequest, TState, TResponse)
+  name.vb: PostProcessor(Of TRequest, TState, TResponse)
+  spec.csharp:
+  - uid: FastEndpoints.PostProcessor`3
+    name: PostProcessor
+    nameWithType: PostProcessor
+    fullName: FastEndpoints.PostProcessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TState
+    nameWithType: TState
+    fullName: TState
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.PostProcessor`3
+    name: PostProcessor
+    nameWithType: PostProcessor
+    fullName: FastEndpoints.PostProcessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TState
+    nameWithType: TState
+    fullName: TState
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.PreProcessor`2
+  commentId: T:FastEndpoints.PreProcessor`2
+  name: PreProcessor<TRequest, TState>
+  nameWithType: PreProcessor<TRequest, TState>
+  fullName: FastEndpoints.PreProcessor<TRequest, TState>
+  nameWithType.vb: PreProcessor(Of TRequest, TState)
+  fullName.vb: FastEndpoints.PreProcessor(Of TRequest, TState)
+  name.vb: PreProcessor(Of TRequest, TState)
+  spec.csharp:
+  - uid: FastEndpoints.PreProcessor`2
+    name: PreProcessor
+    nameWithType: PreProcessor
+    fullName: FastEndpoints.PreProcessor
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TState
+    nameWithType: TState
+    fullName: TState
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.PreProcessor`2
+    name: PreProcessor
+    nameWithType: PreProcessor
+    fullName: FastEndpoints.PreProcessor
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TState
+    nameWithType: TState
+    fullName: TState
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.EndpointSummary
   commentId: T:FastEndpoints.EndpointSummary
   parent: FastEndpoints
@@ -1258,47 +1372,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.ValidationFailureException
-  commentId: T:FastEndpoints.ValidationFailureException
-  name: ValidationFailureException
-  nameWithType: ValidationFailureException
-  fullName: FastEndpoints.ValidationFailureException
-- uid: FastEndpoints.Validator`1
-  commentId: T:FastEndpoints.Validator`1
-  name: Validator<TRequest>
-  nameWithType: Validator<TRequest>
-  fullName: FastEndpoints.Validator<TRequest>
-  nameWithType.vb: Validator(Of TRequest)
-  fullName.vb: FastEndpoints.Validator(Of TRequest)
-  name.vb: Validator(Of TRequest)
-  spec.csharp:
-  - uid: FastEndpoints.Validator`1
-    name: Validator
-    nameWithType: Validator
-    fullName: FastEndpoints.Validator
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.Validator`1
-    name: Validator
-    nameWithType: Validator
-    fullName: FastEndpoints.Validator
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ExceptionHandlerExtensions
   commentId: T:FastEndpoints.ExceptionHandlerExtensions
   name: ExceptionHandlerExtensions
@@ -1340,6 +1413,126 @@ references:
   name: CommandExtensions
   nameWithType: CommandExtensions
   fullName: FastEndpoints.CommandExtensions
+- uid: FastEndpoints.CommandHandlerBase`1
+  commentId: T:FastEndpoints.CommandHandlerBase`1
+  name: CommandHandlerBase<TCommand>
+  nameWithType: CommandHandlerBase<TCommand>
+  fullName: FastEndpoints.CommandHandlerBase<TCommand>
+  nameWithType.vb: CommandHandlerBase(Of TCommand)
+  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand)
+  name.vb: CommandHandlerBase(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.CommandHandlerBase`1
+    name: CommandHandlerBase
+    nameWithType: CommandHandlerBase
+    fullName: FastEndpoints.CommandHandlerBase
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.CommandHandlerBase`1
+    name: CommandHandlerBase
+    nameWithType: CommandHandlerBase
+    fullName: FastEndpoints.CommandHandlerBase
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.CommandHandler`1
+  commentId: T:FastEndpoints.CommandHandler`1
+  name: CommandHandler<TCommand>
+  nameWithType: CommandHandler<TCommand>
+  fullName: FastEndpoints.CommandHandler<TCommand>
+  nameWithType.vb: CommandHandler(Of TCommand)
+  fullName.vb: FastEndpoints.CommandHandler(Of TCommand)
+  name.vb: CommandHandler(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.CommandHandler`1
+    name: CommandHandler
+    nameWithType: CommandHandler
+    fullName: FastEndpoints.CommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.CommandHandler`1
+    name: CommandHandler
+    nameWithType: CommandHandler
+    fullName: FastEndpoints.CommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.CommandHandler`2
+  commentId: T:FastEndpoints.CommandHandler`2
+  name: CommandHandler<TCommand, TResult>
+  nameWithType: CommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.CommandHandler<TCommand, TResult>
+  nameWithType.vb: CommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.CommandHandler(Of TCommand, TResult)
+  name.vb: CommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.CommandHandler`2
+    name: CommandHandler
+    nameWithType: CommandHandler
+    fullName: FastEndpoints.CommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.CommandHandler`2
+    name: CommandHandler
+    nameWithType: CommandHandler
+    fullName: FastEndpoints.CommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.ICommand
   commentId: T:FastEndpoints.ICommand
   name: ICommand
@@ -1383,6 +1576,7 @@ references:
     fullName: )
 - uid: FastEndpoints.ICommandHandler
   commentId: T:FastEndpoints.ICommandHandler
+  parent: FastEndpoints
   name: ICommandHandler
   nameWithType: ICommandHandler
   fullName: FastEndpoints.ICommandHandler
@@ -1586,6 +1780,83 @@ references:
   name: HttpClientExtensions
   nameWithType: HttpClientExtensions
   fullName: FastEndpoints.HttpClientExtensions
+- uid: FastEndpoints.TestResult`1
+  commentId: T:FastEndpoints.TestResult`1
+  name: TestResult<TResponse>
+  nameWithType: TestResult<TResponse>
+  fullName: FastEndpoints.TestResult<TResponse>
+  nameWithType.vb: TestResult(Of TResponse)
+  fullName.vb: FastEndpoints.TestResult(Of TResponse)
+  name.vb: TestResult(Of TResponse)
+  spec.csharp:
+  - uid: FastEndpoints.TestResult`1
+    name: TestResult
+    nameWithType: TestResult
+    fullName: FastEndpoints.TestResult
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.TestResult`1
+    name: TestResult
+    nameWithType: TestResult
+    fullName: FastEndpoints.TestResult
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ValidationFailureException
+  commentId: T:FastEndpoints.ValidationFailureException
+  name: ValidationFailureException
+  nameWithType: ValidationFailureException
+  fullName: FastEndpoints.ValidationFailureException
+- uid: FastEndpoints.Validator`1
+  commentId: T:FastEndpoints.Validator`1
+  name: Validator<TRequest>
+  nameWithType: Validator<TRequest>
+  fullName: FastEndpoints.Validator<TRequest>
+  nameWithType.vb: Validator(Of TRequest)
+  fullName.vb: FastEndpoints.Validator(Of TRequest)
+  name.vb: Validator(Of TRequest)
+  spec.csharp:
+  - uid: FastEndpoints.Validator`1
+    name: Validator
+    nameWithType: Validator
+    fullName: FastEndpoints.Validator
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.Validator`1
+    name: Validator
+    nameWithType: Validator
+    fullName: FastEndpoints.Validator
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TRequest
+    nameWithType: TRequest
+    fullName: TRequest
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints
   commentId: N:FastEndpoints
   name: FastEndpoints

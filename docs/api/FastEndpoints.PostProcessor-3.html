@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IRequestBinder&lt;TRequest&gt;
+    <title>Class PostProcessor&lt;TRequest, TState, TResponse&gt;
  | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IRequestBinder&lt;TRequest&gt;
+    <meta name="title" content="Class PostProcessor&lt;TRequest, TState, TResponse&gt;
  | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
@@ -78,19 +78,52 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FastEndpoints.IRequestBinder`1">
+            <article class="content wrap" id="_content" data-uid="FastEndpoints.PostProcessor`3">
 
 
-  <h1 id="FastEndpoints_IRequestBinder_1" data-uid="FastEndpoints.IRequestBinder`1" class="text-break">Interface IRequestBinder&lt;TRequest&gt;
+  <h1 id="FastEndpoints_PostProcessor_3" data-uid="FastEndpoints.PostProcessor`3" class="text-break">Class PostProcessor&lt;TRequest, TState, TResponse&gt;
 </h1>
-  <div class="markdown level0 summary"><p>create custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the endpoint.</p>
+  <div class="markdown level0 summary"><p>inherit this class to create a post-processor with access to the common processor state of the endpoint</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">PostProcessor&lt;TRequest, TState, TResponse&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="FastEndpoints.IPostProcessor-2.html">IPostProcessor</a>&lt;TRequest, TResponse&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
-  <h5 id="FastEndpoints_IRequestBinder_1_syntax">Syntax</h5>
+  <h5 id="FastEndpoints_PostProcessor_3_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IRequestBinder&lt;TRequest&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class PostProcessor&lt;TRequest, TState, TResponse&gt; : IPostProcessor&lt;TRequest, TResponse&gt; where TState : class, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -103,7 +136,17 @@
     <tbody>
       <tr>
         <td><span class="parametername">TRequest</span></td>
-        <td><p>the type of the request dto</p>
+        <td><p>type of the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TState</span></td>
+        <td><p>type of the common processor state</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResponse</span></td>
+        <td><p>type of the response</p>
 </td>
       </tr>
     </tbody>
@@ -112,15 +155,14 @@
 </h3>
 
 
-  <a id="FastEndpoints_IRequestBinder_1_BindAsync_" data-uid="FastEndpoints.IRequestBinder`1.BindAsync*"></a>
-  <h4 id="FastEndpoints_IRequestBinder_1_BindAsync_FastEndpoints_BinderContext_System_Threading_CancellationToken_" data-uid="FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)">BindAsync(BinderContext, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>this method will be called by the library for binding the incoming request data and return a populated request dto object.
-access the incoming request data via the <code>RequestBinderContext</code> and populate a new request dto instance and return it from this method.</p>
+  <a id="FastEndpoints_PostProcessor_3_PostProcessAsync_" data-uid="FastEndpoints.PostProcessor`3.PostProcessAsync*"></a>
+  <h4 id="FastEndpoints_PostProcessor_3_PostProcessAsync__0__1__2_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_IReadOnlyCollection_FluentValidation_Results_ValidationFailure__System_Threading_CancellationToken_" data-uid="FastEndpoints.PostProcessor`3.PostProcessAsync(`0,`1,`2,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)">PostProcessAsync(TRequest, TState, TResponse, HttpContext, IReadOnlyCollection&lt;ValidationFailure&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is called with the given arguments when the post-processor executes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ValueTask&lt;TRequest&gt; BindAsync(BinderContext ctx, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract Task PostProcessAsync(TRequest req, TState state, TResponse res, HttpContext ctx, IReadOnlyCollection&lt;ValidationFailure&gt; failures, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -133,9 +175,33 @@ access the incoming request data via the <code>RequestBinderContext</code> and p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a></td>
+        <td><span class="xref">TRequest</span></td>
+        <td><span class="parametername">req</span></td>
+        <td><p>the request dto object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TState</span></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>the common processor state object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TResponse</span></td>
+        <td><span class="parametername">res</span></td>
+        <td><p>the response dto object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
         <td><span class="parametername">ctx</span></td>
-        <td><p>request binder context encapsulating the incoming http request context, a list of validation failures for the endpoint, and an optional json serializer context.</p>
+        <td><p>the http context</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IReadOnlyCollection</span>&lt;<span class="xref">FluentValidation.Results.ValidationFailure</span>&gt;</td>
+        <td><span class="parametername">failures</span></td>
+        <td><p>the collection of validation errors of the endpoint</p>
 </td>
       </tr>
       <tr>
@@ -156,11 +222,15 @@ access the incoming request data via the <code>RequestBinderContext</code> and p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span>&lt;TRequest&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FastEndpoints.IPostProcessor-2.html">IPostProcessor&lt;TRequest, TResponse&gt;</a>
+  </div>
 </article>
           </div>
 

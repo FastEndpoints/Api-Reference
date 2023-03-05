@@ -5,10 +5,11 @@ items:
   id: FromHeaderAttribute
   parent: FastEndpoints
   children:
-  - FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean)
-  - FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean)
+  - FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean,System.Boolean)
+  - FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean,System.Boolean)
   - FastEndpoints.FromHeaderAttribute.HeaderName
   - FastEndpoints.FromHeaderAttribute.IsRequired
+  - FastEndpoints.FromHeaderAttribute.RemoveFromSchema
   langs:
   - csharp
   - vb
@@ -164,60 +165,96 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean)
-  commentId: M:FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean)
-  id: '#ctor(System.Boolean)'
+- uid: FastEndpoints.FromHeaderAttribute.RemoveFromSchema
+  commentId: P:FastEndpoints.FromHeaderAttribute.RemoveFromSchema
+  id: RemoveFromSchema
   parent: FastEndpoints.FromHeaderAttribute
   langs:
   - csharp
   - vb
-  name: FromHeaderAttribute(Boolean)
-  nameWithType: FromHeaderAttribute.FromHeaderAttribute(Boolean)
-  fullName: FastEndpoints.FromHeaderAttribute.FromHeaderAttribute(System.Boolean)
+  name: RemoveFromSchema
+  nameWithType: FromHeaderAttribute.RemoveFromSchema
+  fullName: FastEndpoints.FromHeaderAttribute.RemoveFromSchema
+  type: Property
+  source:
+    id: RemoveFromSchema
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Attributes\Attributes\FromHeaderAttribute.cs
+    startLine: 21
+  assemblies:
+  - FastEndpoints.Attributes
+  namespace: FastEndpoints
+  summary: "\nset to true if your header is not required but shouldn&apos;t be added to schema model\n"
+  example: []
+  syntax:
+    content: public bool RemoveFromSchema { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property RemoveFromSchema As Boolean
+  overload: FastEndpoints.FromHeaderAttribute.RemoveFromSchema*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.FromHeaderAttribute.#ctor(System.Boolean,System.Boolean)
+  id: '#ctor(System.Boolean,System.Boolean)'
+  parent: FastEndpoints.FromHeaderAttribute
+  langs:
+  - csharp
+  - vb
+  name: FromHeaderAttribute(Boolean, Boolean)
+  nameWithType: FromHeaderAttribute.FromHeaderAttribute(Boolean, Boolean)
+  fullName: FastEndpoints.FromHeaderAttribute.FromHeaderAttribute(System.Boolean, System.Boolean)
   type: Constructor
   source:
     id: .ctor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Attributes\Attributes\FromHeaderAttribute.cs
-    startLine: 22
+    startLine: 29
   assemblies:
   - FastEndpoints.Attributes
   namespace: FastEndpoints
   summary: "\nproperties decorated with this attribute will have their values auto bound from the relevant http header of the current request.\n"
   example: []
   syntax:
-    content: public FromHeaderAttribute(bool isRequired)
+    content: public FromHeaderAttribute(bool isRequired, bool removeFromSchema = false)
     parameters:
     - id: isRequired
       type: System.Boolean
       description: set to false if a validation error shouldn&apos;t be thrown when the current user request doesn&apos;t have a header matching the property name being bound to.
-    content.vb: Public Sub New(isRequired As Boolean)
+    - id: removeFromSchema
+      type: System.Boolean
+      description: set to true if your header is not required but shouldn&apos;t be added to schema model.
+    content.vb: Public Sub New(isRequired As Boolean, removeFromSchema As Boolean = False)
   overload: FastEndpoints.FromHeaderAttribute.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean)
-  commentId: M:FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean)
-  id: '#ctor(System.String,System.Boolean)'
+- uid: FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.FromHeaderAttribute.#ctor(System.String,System.Boolean,System.Boolean)
+  id: '#ctor(System.String,System.Boolean,System.Boolean)'
   parent: FastEndpoints.FromHeaderAttribute
   langs:
   - csharp
   - vb
-  name: FromHeaderAttribute(String, Boolean)
-  nameWithType: FromHeaderAttribute.FromHeaderAttribute(String, Boolean)
-  fullName: FastEndpoints.FromHeaderAttribute.FromHeaderAttribute(System.String, System.Boolean)
+  name: FromHeaderAttribute(String, Boolean, Boolean)
+  nameWithType: FromHeaderAttribute.FromHeaderAttribute(String, Boolean, Boolean)
+  fullName: FastEndpoints.FromHeaderAttribute.FromHeaderAttribute(System.String, System.Boolean, System.Boolean)
   type: Constructor
   source:
     id: .ctor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Attributes\Attributes\FromHeaderAttribute.cs
-    startLine: 33
+    startLine: 43
   assemblies:
   - FastEndpoints.Attributes
   namespace: FastEndpoints
   summary: "\nproperties decorated with this attribute will have their values auto bound from the relevant http header of the current request.\n"
   example: []
   syntax:
-    content: public FromHeaderAttribute(string headerName = null, bool isRequired = true)
+    content: public FromHeaderAttribute(string headerName = null, bool isRequired = true, bool removeFromSchema = false)
     parameters:
     - id: headerName
       type: System.String
@@ -225,7 +262,10 @@ items:
     - id: isRequired
       type: System.Boolean
       description: set to false if a validation error shouldn&apos;t be thrown when the current request doesn&apos;t have the specified header.
-    content.vb: Public Sub New(headerName As String = Nothing, isRequired As Boolean = True)
+    - id: removeFromSchema
+      type: System.Boolean
+      description: set to true if your header is not required but shouldn&apos;t be added to schema model.
+    content.vb: Public Sub New(headerName As String = Nothing, isRequired As Boolean = True, removeFromSchema As Boolean = False)
   overload: FastEndpoints.FromHeaderAttribute.#ctor*
   modifiers.csharp:
   - public
@@ -2591,6 +2631,11 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: FastEndpoints.FromHeaderAttribute.RemoveFromSchema*
+  commentId: Overload:FastEndpoints.FromHeaderAttribute.RemoveFromSchema
+  name: RemoveFromSchema
+  nameWithType: FromHeaderAttribute.RemoveFromSchema
+  fullName: FastEndpoints.FromHeaderAttribute.RemoveFromSchema
 - uid: FastEndpoints.FromHeaderAttribute.#ctor*
   commentId: Overload:FastEndpoints.FromHeaderAttribute.#ctor
   name: FromHeaderAttribute

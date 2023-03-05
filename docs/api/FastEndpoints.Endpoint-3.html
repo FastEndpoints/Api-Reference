@@ -140,6 +140,9 @@
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__">Endpoint&lt;TRequest, TResponse&gt;.CreateTokenWith&lt;TService&gt;(String, Action&lt;UserPrivileges&gt;)</a>
     </div>
     <div>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ProcessorState__1">Endpoint&lt;TRequest, TResponse&gt;.ProcessorState&lt;TState&gt;()</a>
+    </div>
+    <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_OnBeforeValidate__0_">Endpoint&lt;TRequest, TResponse&gt;.OnBeforeValidate(TRequest)</a>
     </div>
     <div>
@@ -168,9 +171,6 @@
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_OnValidationFailedAsync_System_Threading_CancellationToken_">Endpoint&lt;TRequest, TResponse&gt;.OnValidationFailedAsync(CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ValidationFailed">Endpoint&lt;TRequest, TResponse&gt;.ValidationFailed</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_User">Endpoint&lt;TRequest, TResponse&gt;.User</a>
@@ -329,6 +329,9 @@
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_PermissionsAll_System_String___">Endpoint&lt;TRequest, TResponse&gt;.PermissionsAll(String[])</a>
     </div>
     <div>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Policy_System_Action_Microsoft_AspNetCore_Authorization_AuthorizationPolicyBuilder__">Endpoint&lt;TRequest, TResponse&gt;.Policy(Action&lt;AuthorizationPolicyBuilder&gt;)</a>
+    </div>
+    <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Policies_System_String___">Endpoint&lt;TRequest, TResponse&gt;.Policies(String[])</a>
     </div>
     <div>
@@ -398,19 +401,22 @@
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__">Endpoint&lt;TRequest, TResponse&gt;.Version(Int32, Nullable&lt;Int32&gt;)</a>
     </div>
     <div>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ValidationFailed">Endpoint&lt;TRequest, TResponse&gt;.ValidationFailed</a>
+    </div>
+    <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_AddError_System_String_System_String_FluentValidation_Severity_">Endpoint&lt;TRequest, TResponse&gt;.AddError(String, String, Severity)</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_">Endpoint&lt;TRequest, TResponse&gt;.AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</a>
     </div>
     <div>
-      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowIfAnyErrors">Endpoint&lt;TRequest, TResponse&gt;.ThrowIfAnyErrors()</a>
-    </div>
-    <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_">Endpoint&lt;TRequest, TResponse&gt;.ThrowError(String)</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_">Endpoint&lt;TRequest, TResponse&gt;.ThrowError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowIfAnyErrors">Endpoint&lt;TRequest, TResponse&gt;.ThrowIfAnyErrors()</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Definition">BaseEndpoint.Definition</a>
@@ -456,8 +462,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Endpoint_3_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse, TMapper&gt; : Endpoint&lt;TRequest, TResponse&gt;, IEndpoint, IEventBus, IServiceResolverBase, IHasMapper&lt;TMapper&gt;, IHasMapper where TRequest : new()
-    where TMapper : IMapper</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Endpoint&lt;TRequest, TResponse, TMapper&gt; : Endpoint&lt;TRequest, TResponse&gt;, IEndpoint, IEventBus, IServiceResolverBase, IHasMapper&lt;TMapper&gt;, IHasMapper where TMapper : IMapper</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -520,12 +525,12 @@
 
   <a id="FastEndpoints_Endpoint_3_SendMapped_" data-uid="FastEndpoints.Endpoint`3.SendMapped*"></a>
   <h4 id="FastEndpoints_Endpoint_3_SendMapped__1___0_System_Int32_System_Threading_CancellationToken_" data-uid="FastEndpoints.Endpoint`3.SendMapped``1(``0,System.Int32,System.Threading.CancellationToken)">SendMapped&lt;TEntity&gt;(TEntity, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos as well as require mapping to and from a domain entity using a seperate entity mapper.</p>
+  <div class="markdown level1 summary"><p>send a response by mapping the supplied entity using this endpoint's mapper's SYNC mapping method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task SendMapped&lt;TEntity&gt;(TEntity entity, int statusCode = 200, CancellationToken ct = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">protected Task SendMapped&lt;TEntity&gt;(TEntity entity, int statusCode = 200, CancellationToken ct = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -540,17 +545,20 @@
       <tr>
         <td><span class="xref">TEntity</span></td>
         <td><span class="parametername">entity</span></td>
-        <td></td>
+        <td><p>the entity instance to map to the response</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">statusCode</span></td>
-        <td></td>
+        <td><p>the status code to send</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Threading.CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
-        <td></td>
+        <td><p>optional cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -580,7 +588,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">TEntity</span></td>
-        <td></td>
+        <td><p>the type of the entity supplied</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -588,12 +597,12 @@
 
   <a id="FastEndpoints_Endpoint_3_SendMappedAsync_" data-uid="FastEndpoints.Endpoint`3.SendMappedAsync*"></a>
   <h4 id="FastEndpoints_Endpoint_3_SendMappedAsync__1___0_System_Int32_System_Threading_CancellationToken_" data-uid="FastEndpoints.Endpoint`3.SendMappedAsync``1(``0,System.Int32,System.Threading.CancellationToken)">SendMappedAsync&lt;TEntity&gt;(TEntity, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos as well as require mapping to and from a domain entity using a seperate entity mapper.</p>
+  <div class="markdown level1 summary"><p>send a response by mapping the supplied entity using this endpoint's mapper's ASYNC mapping method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task SendMappedAsync&lt;TEntity&gt;(TEntity entity, int statusCode = 200, CancellationToken ct = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">protected async Task SendMappedAsync&lt;TEntity&gt;(TEntity entity, int statusCode = 200, CancellationToken ct = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -608,17 +617,20 @@
       <tr>
         <td><span class="xref">TEntity</span></td>
         <td><span class="parametername">entity</span></td>
-        <td></td>
+        <td><p>the entity instance to map to the response</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">statusCode</span></td>
-        <td></td>
+        <td><p>the status code to send</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Threading.CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
-        <td></td>
+        <td><p>optional cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -648,7 +660,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">TEntity</span></td>
-        <td></td>
+        <td><p>the type of the entity supplied</p>
+</td>
       </tr>
     </tbody>
   </table>

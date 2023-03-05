@@ -6,6 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.HttpContextExtensions.MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
+  - FastEndpoints.HttpContextExtensions.ProcessorState``1(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,System.Type)
   - FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
@@ -310,6 +311,58 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: FastEndpoints.HttpContextExtensions.ProcessorState``1(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.HttpContextExtensions.ProcessorState``1(Microsoft.AspNetCore.Http.HttpContext)
+  id: ProcessorState``1(Microsoft.AspNetCore.Http.HttpContext)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: ProcessorState<TState>(HttpContext)
+  nameWithType: HttpContextExtensions.ProcessorState<TState>(HttpContext)
+  fullName: FastEndpoints.HttpContextExtensions.ProcessorState<TState>(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
+  source:
+    id: ProcessorState
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Extensions\HttpContextExtensions.cs
+    startLine: 54
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nretrieve the common processor state for the current http context.\n"
+  example: []
+  syntax:
+    content: >-
+      public static TState ProcessorState<TState>(this HttpContext ctx)
+
+          where TState : class, new()
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    typeParameters:
+    - id: TState
+      description: the type of the processor state
+    return:
+      type: '{TState}'
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ProcessorState(Of TState As {Class, New})(ctx As HttpContext) As TState
+  overload: FastEndpoints.HttpContextExtensions.ProcessorState*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the requested type of the processor state does not match with what&apos;s already stored in the context
+  nameWithType.vb: HttpContextExtensions.ProcessorState(Of TState)(HttpContext)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpContextExtensions.ProcessorState(Of TState)(Microsoft.AspNetCore.Http.HttpContext)
+  name.vb: ProcessorState(Of TState)(HttpContext)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -671,3 +724,18 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: FastEndpoints.HttpContextExtensions.ProcessorState*
+  commentId: Overload:FastEndpoints.HttpContextExtensions.ProcessorState
+  name: ProcessorState
+  nameWithType: HttpContextExtensions.ProcessorState
+  fullName: FastEndpoints.HttpContextExtensions.ProcessorState
+- uid: '{TState}'
+  commentId: '!:TState'
+  definition: TState
+  name: TState
+  nameWithType: TState
+  fullName: TState
+- uid: TState
+  name: TState
+  nameWithType: TState
+  fullName: TState
