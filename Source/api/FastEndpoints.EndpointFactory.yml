@@ -23,9 +23,9 @@ items:
   summary: "\nthe default endpoint factory.\nit creates an instance of the endpoint and injects both constructor and property dependencies.\n"
   example: []
   syntax:
-    content: 'public class EndpointFactory : IEndpointFactory'
+    content: 'public sealed class EndpointFactory : IEndpointFactory'
     content.vb: >-
-      Public Class EndpointFactory
+      Public NotInheritable Class EndpointFactory
 
           Implements IEndpointFactory
   inheritance:
@@ -42,9 +42,11 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: FastEndpoints.EndpointFactory.Create(FastEndpoints.EndpointDefinition,Microsoft.AspNetCore.Http.HttpContext)
   commentId: M:FastEndpoints.EndpointFactory.Create(FastEndpoints.EndpointDefinition,Microsoft.AspNetCore.Http.HttpContext)

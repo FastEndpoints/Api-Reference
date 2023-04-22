@@ -13,14 +13,15 @@ items:
   - FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient,System.String,``0)
   - FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient)
   - FastEndpoints.HttpClientExtensions.GETAsync``3(System.Net.Http.HttpClient,``1)
-  - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1)
-  - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0)
+  - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient)
-  - FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1)
-  - FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1)
-  - FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0)
+  - FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  - FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  - FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   - FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient)
-  - FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1)
+  - FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  - FastEndpoints.HttpClientExtensions.Send``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Nullable{System.Boolean})
   langs:
   - csharp
   - vb
@@ -31,7 +32,7 @@ items:
   source:
     id: HttpClientExtensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 10
+    startLine: 12
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -57,29 +58,29 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0)
-  commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0)
-  id: POSTAsync``2(System.Net.Http.HttpClient,System.String,``0)
+- uid: FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  id: POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   isExtensionMethod: true
   parent: FastEndpoints.HttpClientExtensions
   langs:
   - csharp
   - vb
-  name: POSTAsync<TRequest, TResponse>(HttpClient, String, TRequest)
-  nameWithType: HttpClientExtensions.POSTAsync<TRequest, TResponse>(HttpClient, String, TRequest)
-  fullName: FastEndpoints.HttpClientExtensions.POSTAsync<TRequest, TResponse>(System.Net.Http.HttpClient, System.String, TRequest)
+  name: POSTAsync<TRequest, TResponse>(HttpClient, String, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.POSTAsync<TRequest, TResponse>(HttpClient, String, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.POSTAsync<TRequest, TResponse>(System.Net.Http.HttpClient, System.String, TRequest, System.Nullable<System.Boolean>)
   type: Method
   source:
     id: POSTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 20
+    startLine: 22
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nmake a POST request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<TestResult<TResponse>> POSTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static Task<TestResult<TResponse>> POSTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -89,6 +90,9 @@ items:
     - id: request
       type: '{TRequest}'
       description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
     typeParameters:
     - id: TRequest
       description: type of the requet dto
@@ -99,38 +103,33 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
+      Public Shared Function POSTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: thrown when the response body cannot be deserialized in to specified response dto type
-  nameWithType.vb: HttpClientExtensions.POSTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
+  nameWithType.vb: HttpClientExtensions.POSTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest, Nullable(Of Boolean))
   modifiers.csharp:
   - public
   - static
-  - async
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TRequest, TResponse)(System.Net.Http.HttpClient, System.String, TRequest)
-  name.vb: POSTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
-- uid: FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1)
-  commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1)
-  id: POSTAsync``3(System.Net.Http.HttpClient,``1)
+  fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TRequest, TResponse)(System.Net.Http.HttpClient, System.String, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: POSTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  id: POSTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
   isExtensionMethod: true
   parent: FastEndpoints.HttpClientExtensions
   langs:
   - csharp
   - vb
-  name: POSTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
-  nameWithType: HttpClientExtensions.POSTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
-  fullName: FastEndpoints.HttpClientExtensions.POSTAsync<TEndpoint, TRequest, TResponse>(System.Net.Http.HttpClient, TRequest)
+  name: POSTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.POSTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.POSTAsync<TEndpoint, TRequest, TResponse>(System.Net.Http.HttpClient, TRequest, System.Nullable<System.Boolean>)
   type: Method
   source:
     id: POSTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 51
+    startLine: 36
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -138,7 +137,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<TestResult<TResponse>> POSTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+      public static Task<TestResult<TResponse>> POSTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request, bool? sendAsFormData = null)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -147,6 +146,9 @@ items:
     - id: request
       type: '{TRequest}'
       description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
     typeParameters:
     - id: TEndpoint
       description: the type of the endpoint
@@ -159,33 +161,33 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of TestResult(Of TResponse))
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
-  nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
+  nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest, Nullable(Of Boolean))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest, TResponse)(System.Net.Http.HttpClient, TRequest)
-  name.vb: POSTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
-- uid: FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1)
-  commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1)
-  id: POSTAsync``2(System.Net.Http.HttpClient,``1)
+  fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest, TResponse)(System.Net.Http.HttpClient, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: POSTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  id: POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
   isExtensionMethod: true
   parent: FastEndpoints.HttpClientExtensions
   langs:
   - csharp
   - vb
-  name: POSTAsync<TEndpoint, TRequest>(HttpClient, TRequest)
-  nameWithType: HttpClientExtensions.POSTAsync<TEndpoint, TRequest>(HttpClient, TRequest)
-  fullName: FastEndpoints.HttpClientExtensions.POSTAsync<TEndpoint, TRequest>(System.Net.Http.HttpClient, TRequest)
+  name: POSTAsync<TEndpoint, TRequest>(HttpClient, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.POSTAsync<TEndpoint, TRequest>(HttpClient, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.POSTAsync<TEndpoint, TRequest>(System.Net.Http.HttpClient, TRequest, System.Nullable<System.Boolean>)
   type: Method
   source:
     id: POSTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 61
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -193,7 +195,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static async Task<HttpResponseMessage> POSTAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request)
+      public static async Task<HttpResponseMessage> POSTAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request, bool? sendAsFormData = null)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -202,6 +204,9 @@ items:
     - id: request
       type: '{TRequest}'
       description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
     typeParameters:
     - id: TEndpoint
       description: the type of the endpoint
@@ -212,9 +217,9 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage)
+      Public Shared Function POSTAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of HttpResponseMessage)
   overload: FastEndpoints.HttpClientExtensions.POSTAsync*
-  nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+  nameWithType.vb: HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest, Nullable(Of Boolean))
   modifiers.csharp:
   - public
   - static
@@ -222,8 +227,8 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest)(System.Net.Http.HttpClient, TRequest)
-  name.vb: POSTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+  fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TEndpoint, TRequest)(System.Net.Http.HttpClient, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: POSTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest, Nullable(Of Boolean))
 - uid: FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient)
   commentId: M:FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient)
   id: POSTAsync``2(System.Net.Http.HttpClient)
@@ -239,7 +244,7 @@ items:
   source:
     id: POSTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 72
+    startLine: 61
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -274,29 +279,29 @@ items:
   - Shared
   fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TEndpoint, TResponse)(System.Net.Http.HttpClient)
   name.vb: POSTAsync(Of TEndpoint, TResponse)(HttpClient)
-- uid: FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0)
-  commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0)
-  id: PUTAsync``2(System.Net.Http.HttpClient,System.String,``0)
+- uid: FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  id: PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   isExtensionMethod: true
   parent: FastEndpoints.HttpClientExtensions
   langs:
   - csharp
   - vb
-  name: PUTAsync<TRequest, TResponse>(HttpClient, String, TRequest)
-  nameWithType: HttpClientExtensions.PUTAsync<TRequest, TResponse>(HttpClient, String, TRequest)
-  fullName: FastEndpoints.HttpClientExtensions.PUTAsync<TRequest, TResponse>(System.Net.Http.HttpClient, System.String, TRequest)
+  name: PUTAsync<TRequest, TResponse>(HttpClient, String, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.PUTAsync<TRequest, TResponse>(HttpClient, String, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.PUTAsync<TRequest, TResponse>(System.Net.Http.HttpClient, System.String, TRequest, System.Nullable<System.Boolean>)
   type: Method
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 83
+    startLine: 72
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nmake a PUT request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<TestResult<TResponse>> PUTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static Task<TestResult<TResponse>> PUTAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -306,6 +311,9 @@ items:
     - id: request
       type: '{TRequest}'
       description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
     typeParameters:
     - id: TRequest
       description: type of the requet dto
@@ -316,38 +324,33 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
+      Public Shared Function PUTAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: thrown when the response body cannot be deserialized in to specified response dto type
-  nameWithType.vb: HttpClientExtensions.PUTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
+  nameWithType.vb: HttpClientExtensions.PUTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest, Nullable(Of Boolean))
   modifiers.csharp:
   - public
   - static
-  - async
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HttpClientExtensions.PUTAsync(Of TRequest, TResponse)(System.Net.Http.HttpClient, System.String, TRequest)
-  name.vb: PUTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
-- uid: FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1)
-  commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1)
-  id: PUTAsync``3(System.Net.Http.HttpClient,``1)
+  fullName.vb: FastEndpoints.HttpClientExtensions.PUTAsync(Of TRequest, TResponse)(System.Net.Http.HttpClient, System.String, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: PUTAsync(Of TRequest, TResponse)(HttpClient, String, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  id: PUTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
   isExtensionMethod: true
   parent: FastEndpoints.HttpClientExtensions
   langs:
   - csharp
   - vb
-  name: PUTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
-  nameWithType: HttpClientExtensions.PUTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest)
-  fullName: FastEndpoints.HttpClientExtensions.PUTAsync<TEndpoint, TRequest, TResponse>(System.Net.Http.HttpClient, TRequest)
+  name: PUTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.PUTAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.PUTAsync<TEndpoint, TRequest, TResponse>(System.Net.Http.HttpClient, TRequest, System.Nullable<System.Boolean>)
   type: Method
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 113
+    startLine: 86
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -355,7 +358,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static Task<TestResult<TResponse>> PUTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request)
+      public static Task<TestResult<TResponse>> PUTAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request, bool? sendAsFormData = null)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -364,6 +367,9 @@ items:
     - id: request
       type: '{TRequest}'
       description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
     typeParameters:
     - id: TEndpoint
       description: the type of the endpoint
@@ -376,33 +382,33 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest) As Task(Of TestResult(Of TResponse))
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
-  nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
+  nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest, Nullable(Of Boolean))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest, TResponse)(System.Net.Http.HttpClient, TRequest)
-  name.vb: PUTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest)
-- uid: FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1)
-  commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1)
-  id: PUTAsync``2(System.Net.Http.HttpClient,``1)
+  fullName.vb: FastEndpoints.HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest, TResponse)(System.Net.Http.HttpClient, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: PUTAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  id: PUTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
   isExtensionMethod: true
   parent: FastEndpoints.HttpClientExtensions
   langs:
   - csharp
   - vb
-  name: PUTAsync<TEndpoint, TRequest>(HttpClient, TRequest)
-  nameWithType: HttpClientExtensions.PUTAsync<TEndpoint, TRequest>(HttpClient, TRequest)
-  fullName: FastEndpoints.HttpClientExtensions.PUTAsync<TEndpoint, TRequest>(System.Net.Http.HttpClient, TRequest)
+  name: PUTAsync<TEndpoint, TRequest>(HttpClient, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.PUTAsync<TEndpoint, TRequest>(HttpClient, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.PUTAsync<TEndpoint, TRequest>(System.Net.Http.HttpClient, TRequest, System.Nullable<System.Boolean>)
   type: Method
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 122
+    startLine: 98
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -410,7 +416,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static async Task<HttpResponseMessage> PUTAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request)
+      public static async Task<HttpResponseMessage> PUTAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request, bool? sendAsFormData = null)
 
           where TEndpoint : IEndpoint
     parameters:
@@ -419,6 +425,9 @@ items:
     - id: request
       type: '{TRequest}'
       description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
     typeParameters:
     - id: TEndpoint
       description: the type of the endpoint
@@ -429,9 +438,9 @@ items:
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest) As Task(Of HttpResponseMessage)
+      Public Shared Function PUTAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of HttpResponseMessage)
   overload: FastEndpoints.HttpClientExtensions.PUTAsync*
-  nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+  nameWithType.vb: HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest, Nullable(Of Boolean))
   modifiers.csharp:
   - public
   - static
@@ -439,8 +448,8 @@ items:
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest)(System.Net.Http.HttpClient, TRequest)
-  name.vb: PUTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest)
+  fullName.vb: FastEndpoints.HttpClientExtensions.PUTAsync(Of TEndpoint, TRequest)(System.Net.Http.HttpClient, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: PUTAsync(Of TEndpoint, TRequest)(HttpClient, TRequest, Nullable(Of Boolean))
 - uid: FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient)
   commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient)
   id: PUTAsync``2(System.Net.Http.HttpClient)
@@ -456,7 +465,7 @@ items:
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 133
+    startLine: 111
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -506,14 +515,14 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 144
+    startLine: 121
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nmake a GET request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<TestResult<TResponse>> GETAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static Task<TestResult<TResponse>> GETAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -535,15 +544,10 @@ items:
 
       Public Shared Function GETAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.GETAsync*
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: thrown when the response body cannot be deserialized in to specified response dto type
   nameWithType.vb: HttpClientExtensions.GETAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
   modifiers.csharp:
   - public
   - static
-  - async
   modifiers.vb:
   - Public
   - Shared
@@ -564,7 +568,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 182
+    startLine: 133
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -619,7 +623,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 191
+    startLine: 143
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -673,7 +677,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 202
+    startLine: 155
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -723,14 +727,14 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 213
+    startLine: 165
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nmake a DELETE request using a request dto and get back a response dto.\n"
   example: []
   syntax:
-    content: public static async Task<TestResult<TResponse>> DELETEAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
+    content: public static Task<TestResult<TResponse>> DELETEAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request)
     parameters:
     - id: client
       type: System.Net.Http.HttpClient
@@ -752,15 +756,10 @@ items:
 
       Public Shared Function DELETEAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest) As Task(Of TestResult(Of TResponse))
   overload: FastEndpoints.HttpClientExtensions.DELETEAsync*
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: thrown when the response body cannot be deserialized in to specified response dto type
   nameWithType.vb: HttpClientExtensions.DELETEAsync(Of TRequest, TResponse)(HttpClient, String, TRequest)
   modifiers.csharp:
   - public
   - static
-  - async
   modifiers.vb:
   - Public
   - Shared
@@ -781,7 +780,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 251
+    startLine: 177
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -836,7 +835,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 260
+    startLine: 187
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -890,7 +889,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 271
+    startLine: 199
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -925,6 +924,58 @@ items:
   - Shared
   fullName.vb: FastEndpoints.HttpClientExtensions.DELETEAsync(Of TEndpoint, TResponse)(System.Net.Http.HttpClient)
   name.vb: DELETEAsync(Of TEndpoint, TResponse)(HttpClient)
+- uid: FastEndpoints.HttpClientExtensions.Send``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.Send``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Nullable{System.Boolean})
+  id: Send``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Nullable{System.Boolean})
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: Send<TRequest, TResponse>(HttpClient, HttpMethod, String, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.Send<TRequest, TResponse>(HttpClient, HttpMethod, String, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.Send<TRequest, TResponse>(System.Net.Http.HttpClient, System.Net.Http.HttpMethod, System.String, TRequest, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    id: Send
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
+    startLine: 202
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public static async Task<TestResult<TResponse>> Send<TRequest, TResponse>(this HttpClient client, HttpMethod method, string requestUri, TRequest request, bool? isFormContent = null)
+    parameters:
+    - id: client
+      type: System.Net.Http.HttpClient
+    - id: method
+      type: System.Net.Http.HttpMethod
+    - id: requestUri
+      type: System.String
+    - id: request
+      type: '{TRequest}'
+    - id: isFormContent
+      type: System.Nullable{System.Boolean}
+    typeParameters:
+    - id: TRequest
+    - id: TResponse
+    return:
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Send(Of TRequest, TResponse)(client As HttpClient, method As HttpMethod, requestUri As String, request As TRequest, isFormContent As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
+  overload: FastEndpoints.HttpClientExtensions.Send*
+  nameWithType.vb: HttpClientExtensions.Send(Of TRequest, TResponse)(HttpClient, HttpMethod, String, TRequest, Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  - async
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.Send(Of TRequest, TResponse)(System.Net.Http.HttpClient, System.Net.Http.HttpMethod, System.String, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: Send(Of TRequest, TResponse)(HttpClient, HttpMethod, String, TRequest, Nullable(Of Boolean))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -1223,8 +1274,8 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: System.InvalidOperationException
-  commentId: T:System.InvalidOperationException
+- uid: System.Net.Http.MultipartFormDataContent
+  commentId: T:System.Net.Http.MultipartFormDataContent
   isExternal: true
 - uid: FastEndpoints.HttpClientExtensions.POSTAsync*
   commentId: Overload:FastEndpoints.HttpClientExtensions.POSTAsync
@@ -1251,6 +1302,50 @@ references:
   name: TRequest
   nameWithType: TRequest
   fullName: TRequest
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
   commentId: T:System.Threading.Tasks.Task{FastEndpoints.TestResult{``1}}
   parent: System.Threading.Tasks
@@ -1321,6 +1416,45 @@ references:
   name: TRequest
   nameWithType: TRequest
   fullName: TRequest
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
@@ -1425,3 +1559,15 @@ references:
   name: DELETEAsync
   nameWithType: HttpClientExtensions.DELETEAsync
   fullName: FastEndpoints.HttpClientExtensions.DELETEAsync
+- uid: FastEndpoints.HttpClientExtensions.Send*
+  commentId: Overload:FastEndpoints.HttpClientExtensions.Send
+  name: Send
+  nameWithType: HttpClientExtensions.Send
+  fullName: FastEndpoints.HttpClientExtensions.Send
+- uid: System.Net.Http.HttpMethod
+  commentId: T:System.Net.Http.HttpMethod
+  parent: System.Net.Http
+  isExternal: true
+  name: HttpMethod
+  nameWithType: HttpMethod
+  fullName: System.Net.Http.HttpMethod

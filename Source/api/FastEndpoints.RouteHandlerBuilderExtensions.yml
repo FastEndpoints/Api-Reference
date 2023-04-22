@@ -5,6 +5,9 @@ items:
   id: RouteHandlerBuilderExtensions
   parent: FastEndpoints
   children:
+  - FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
+  - FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32[])
+  - FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
   - FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
   - FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE``1(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
   langs:
@@ -17,7 +20,7 @@ items:
   source:
     id: RouteHandlerBuilderExtensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
-    startLine: 5
+    startLine: 6
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -41,47 +44,6 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
-  commentId: M:FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
-  id: ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
-  isExtensionMethod: true
-  parent: FastEndpoints.RouteHandlerBuilderExtensions
-  langs:
-  - csharp
-  - vb
-  name: ProducesProblemFE(RouteHandlerBuilder, Int32, String)
-  nameWithType: RouteHandlerBuilderExtensions.ProducesProblemFE(RouteHandlerBuilder, Int32, String)
-  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder, System.Int32, System.String)
-  type: Method
-  source:
-    id: ProducesProblemFE
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
-    startLine: 7
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  syntax:
-    content: public static RouteHandlerBuilder ProducesProblemFE(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = "application/problem+json")
-    parameters:
-    - id: hb
-      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    - id: statusCode
-      type: System.Int32
-    - id: contentType
-      type: System.String
-    return:
-      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function ProducesProblemFE(hb As RouteHandlerBuilder, statusCode As Integer = 400, contentType As String = "application/problem+json") As RouteHandlerBuilder
-  overload: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 - uid: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE``1(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
   commentId: M:FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE``1(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
   id: ProducesProblemFE``1(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
@@ -97,10 +59,12 @@ items:
   source:
     id: ProducesProblemFE
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
-    startLine: 10
+    startLine: 14
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: "\nadds produces metadata for a given type of error response dto\n"
+  example: []
   syntax:
     content: public static RouteHandlerBuilder ProducesProblemFE<TResponse>(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = "application/problem+json")
     parameters:
@@ -108,10 +72,13 @@ items:
       type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
     - id: statusCode
       type: System.Int32
+      description: the status code of the error response
     - id: contentType
       type: System.String
+      description: content type header value
     typeParameters:
     - id: TResponse
+      description: the type of the error response
     return:
       type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
     content.vb: >-
@@ -128,6 +95,180 @@ items:
   - Shared
   fullName.vb: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Of TResponse)(Microsoft.AspNetCore.Builder.RouteHandlerBuilder, System.Int32, System.String)
   name.vb: ProducesProblemFE(Of TResponse)(RouteHandlerBuilder, Int32, String)
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
+  commentId: M:FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
+  id: ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.RouteHandlerBuilderExtensions
+  langs:
+  - csharp
+  - vb
+  name: ProducesProblemFE(RouteHandlerBuilder, Int32, String)
+  nameWithType: RouteHandlerBuilderExtensions.ProducesProblemFE(RouteHandlerBuilder, Int32, String)
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder, System.Int32, System.String)
+  type: Method
+  source:
+    id: ProducesProblemFE
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
+    startLine: 22
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nadds produces metadata of type <xref href=\"FastEndpoints.ErrorResponse\" data-throw-if-not-resolved=\"false\"></xref> to the endpoint description\n"
+  example: []
+  syntax:
+    content: public static RouteHandlerBuilder ProducesProblemFE(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = "application/problem+json")
+    parameters:
+    - id: hb
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    - id: statusCode
+      type: System.Int32
+      description: the status code of the error response
+    - id: contentType
+      type: System.String
+      description: content type header value
+    return:
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ProducesProblemFE(hb As RouteHandlerBuilder, statusCode As Integer = 400, contentType As String = "application/problem+json") As RouteHandlerBuilder
+  overload: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
+  commentId: M:FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
+  id: ProducesProblemDetails(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.RouteHandlerBuilderExtensions
+  langs:
+  - csharp
+  - vb
+  name: ProducesProblemDetails(RouteHandlerBuilder, Int32, String)
+  nameWithType: RouteHandlerBuilderExtensions.ProducesProblemDetails(RouteHandlerBuilder, Int32, String)
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails(Microsoft.AspNetCore.Builder.RouteHandlerBuilder, System.Int32, System.String)
+  type: Method
+  source:
+    id: ProducesProblemDetails
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
+    startLine: 30
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nadds produces metadata of type <xref href=\"FastEndpoints.ProblemDetails\" data-throw-if-not-resolved=\"false\"></xref> (RFC7807 compatible) to the endpoint description\n"
+  example: []
+  syntax:
+    content: public static RouteHandlerBuilder ProducesProblemDetails(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = "application/problem+json")
+    parameters:
+    - id: hb
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    - id: statusCode
+      type: System.Int32
+      description: the status code of the error response
+    - id: contentType
+      type: System.String
+      description: content type header value
+    return:
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ProducesProblemDetails(hb As RouteHandlerBuilder, statusCode As Integer = 400, contentType As String = "application/problem+json") As RouteHandlerBuilder
+  overload: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
+  commentId: M:FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
+  id: ClearDefaultAccepts(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
+  isExtensionMethod: true
+  parent: FastEndpoints.RouteHandlerBuilderExtensions
+  langs:
+  - csharp
+  - vb
+  name: ClearDefaultAccepts(RouteHandlerBuilder)
+  nameWithType: RouteHandlerBuilderExtensions.ClearDefaultAccepts(RouteHandlerBuilder)
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)
+  type: Method
+  source:
+    id: ClearDefaultAccepts
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
+    startLine: 36
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nclears just the default &quot;accepts metadata&quot; from the endpoint.\n"
+  example: []
+  syntax:
+    content: public static RouteHandlerBuilder ClearDefaultAccepts(this RouteHandlerBuilder hb)
+    parameters:
+    - id: hb
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    return:
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ClearDefaultAccepts(hb As RouteHandlerBuilder) As RouteHandlerBuilder
+  overload: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32[])
+  commentId: M:FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32[])
+  id: ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32[])
+  isExtensionMethod: true
+  parent: FastEndpoints.RouteHandlerBuilderExtensions
+  langs:
+  - csharp
+  - vb
+  name: ClearDefaultProduces(RouteHandlerBuilder, Int32[])
+  nameWithType: RouteHandlerBuilderExtensions.ClearDefaultProduces(RouteHandlerBuilder, Int32[])
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder, System.Int32[])
+  type: Method
+  source:
+    id: ClearDefaultProduces
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\RouteHandlerBuilderExtensions.cs
+    startLine: 55
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nclears any number of given &quot;produces metadata&quot; from the endpoint by supplying the status codes of the responses to remove.\nnot specifying any status codes will result in all produces metadata being removed.\n"
+  example: []
+  syntax:
+    content: public static RouteHandlerBuilder ClearDefaultProduces(this RouteHandlerBuilder hb, params int[] statusCodes)
+    parameters:
+    - id: hb
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    - id: statusCodes
+      type: System.Int32[]
+      description: one or more status codes of the defaults to remove
+    return:
+      type: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ClearDefaultProduces(hb As RouteHandlerBuilder, ParamArray statusCodes As Integer()) As RouteHandlerBuilder
+  overload: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces*
+  nameWithType.vb: RouteHandlerBuilderExtensions.ClearDefaultProduces(RouteHandlerBuilder, Int32())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder, System.Int32())
+  name.vb: ClearDefaultProduces(RouteHandlerBuilder, Int32())
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -458,3 +599,54 @@ references:
   name: Microsoft.AspNetCore.Builder
   nameWithType: Microsoft.AspNetCore.Builder
   fullName: Microsoft.AspNetCore.Builder
+- uid: FastEndpoints.ErrorResponse
+  commentId: T:FastEndpoints.ErrorResponse
+  name: ErrorResponse
+  nameWithType: ErrorResponse
+  fullName: FastEndpoints.ErrorResponse
+- uid: FastEndpoints.ProblemDetails
+  commentId: T:FastEndpoints.ProblemDetails
+  name: ProblemDetails
+  nameWithType: ProblemDetails
+  fullName: FastEndpoints.ProblemDetails
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails*
+  commentId: Overload:FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails
+  name: ProducesProblemDetails
+  nameWithType: RouteHandlerBuilderExtensions.ProducesProblemDetails
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts*
+  commentId: Overload:FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts
+  name: ClearDefaultAccepts
+  nameWithType: RouteHandlerBuilderExtensions.ClearDefaultAccepts
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts
+- uid: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces*
+  commentId: Overload:FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces
+  name: ClearDefaultProduces
+  nameWithType: RouteHandlerBuilderExtensions.ClearDefaultProduces
+  fullName: FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces
+- uid: System.Int32[]
+  isExternal: true
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

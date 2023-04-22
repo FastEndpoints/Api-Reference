@@ -119,7 +119,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_BindingOptions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BindingOptions</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class BindingOptions</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
@@ -127,8 +127,9 @@
 
   <a id="FastEndpoints_BindingOptions_FailureMessage_" data-uid="FastEndpoints.BindingOptions.FailureMessage*"></a>
   <h4 id="FastEndpoints_BindingOptions_FailureMessage" data-uid="FastEndpoints.BindingOptions.FailureMessage">FailureMessage</h4>
-  <div class="markdown level1 summary"><p>a function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.
-the following arguments are supplied to the function.</p>
+  <div class="markdown level1 summary"><p>a function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.</p>
+<p>NOTE: this only applies to non-STJ operations. for customizing error messages of STJ binding failures, specify a <a class="xref" href="FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer">JsonExceptionTransformer</a> func.</p>
+the following arguments are supplied to the function.
 <p><span class="xref">System.Type</span>: the type of the property which failed to bind</p>
 <p><span class="xref">System.String</span>: the name of the property which failed to bind</p>
 <p><span class="xref">Microsoft.Extensions.Primitives.StringValues</span>: the value that was attempted which resulted in the failure</p>
@@ -150,6 +151,35 @@ use these input parameters and construct your own error message string and retur
     <tbody>
       <tr>
         <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Type</span>, <span class="xref">System.String</span>, <span class="xref">Microsoft.Extensions.Primitives.StringValues</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BindingOptions_JsonExceptionTransformer_" data-uid="FastEndpoints.BindingOptions.JsonExceptionTransformer*"></a>
+  <h4 id="FastEndpoints_BindingOptions_JsonExceptionTransformer" data-uid="FastEndpoints.BindingOptions.JsonExceptionTransformer">JsonExceptionTransformer</h4>
+  <div class="markdown level1 summary"><p>by default, all STJ <span class="xref">System.Text.Json.JsonException</span>s thrown during deserialization are automatically caught and transformed using this function.
+if you'd like to disable this behavior, simply set this property to <code>null</code> or specify a function to construct a
+<span class="xref">FluentValidation.Results.ValidationFailure</span> when STJ throws an exception due to invalid json input.</p>
+<p>NOTE: this only applies to STJ based operations. for customizing error messages of non-STJ binding failures, specify a <a class="xref" href="FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_FailureMessage">FailureMessage</a> func.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;JsonException, ValidationFailure&gt; JsonExceptionTransformer { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Text.Json.JsonException</span>, <span class="xref">FluentValidation.Results.ValidationFailure</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>

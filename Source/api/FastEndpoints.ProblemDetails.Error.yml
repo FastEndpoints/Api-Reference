@@ -1,36 +1,35 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor
-  commentId: T:FastEndpoints.Swagger.ValidationSchemaProcessor
-  id: ValidationSchemaProcessor
-  parent: FastEndpoints.Swagger
+- uid: FastEndpoints.ProblemDetails.Error
+  commentId: T:FastEndpoints.ProblemDetails.Error
+  id: ProblemDetails.Error
+  parent: FastEndpoints
   children:
-  - FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  - FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
+  - FastEndpoints.ProblemDetails.Error.#ctor(FluentValidation.Results.ValidationFailure)
+  - FastEndpoints.ProblemDetails.Error.Code
+  - FastEndpoints.ProblemDetails.Error.Name
+  - FastEndpoints.ProblemDetails.Error.Reason
   langs:
   - csharp
   - vb
-  name: ValidationSchemaProcessor
-  nameWithType: ValidationSchemaProcessor
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor
+  name: ProblemDetails.Error
+  nameWithType: ProblemDetails.Error
+  fullName: FastEndpoints.ProblemDetails.Error
   type: Class
   source:
-    id: ValidationSchemaProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\ValidationSchemaProcessor.cs
-    startLine: 35
+    id: Error
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 67
   assemblies:
-  - FastEndpoints.Swagger
-  namespace: FastEndpoints.Swagger
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe error details object\n"
+  example: []
   syntax:
-    content: 'public class ValidationSchemaProcessor : ISchemaProcessor'
-    content.vb: >-
-      Public Class ValidationSchemaProcessor
-
-          Implements ISchemaProcessor
+    content: public sealed class Error
+    content.vb: Public NotInheritable Class Error
   inheritance:
   - System.Object
-  implements:
-  - NJsonSchema.Generation.ISchemaProcessor
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -41,73 +40,160 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  commentId: M:FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  id: '#ctor'
-  parent: FastEndpoints.Swagger.ValidationSchemaProcessor
+- uid: FastEndpoints.ProblemDetails.Error.Name
+  commentId: P:FastEndpoints.ProblemDetails.Error.Name
+  id: Name
+  parent: FastEndpoints.ProblemDetails.Error
   langs:
   - csharp
   - vb
-  name: ValidationSchemaProcessor()
-  nameWithType: ValidationSchemaProcessor.ValidationSchemaProcessor()
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.ValidationSchemaProcessor()
+  name: Name
+  nameWithType: ProblemDetails.Error.Name
+  fullName: FastEndpoints.ProblemDetails.Error.Name
+  type: Property
+  source:
+    id: Name
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 74
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe name of the error or property of the dto that caused the error\n"
+  example: []
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: FastEndpoints.ProblemDetails.Error.Name*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.ProblemDetails.Error.Reason
+  commentId: P:FastEndpoints.ProblemDetails.Error.Reason
+  id: Reason
+  parent: FastEndpoints.ProblemDetails.Error
+  langs:
+  - csharp
+  - vb
+  name: Reason
+  nameWithType: ProblemDetails.Error.Reason
+  fullName: FastEndpoints.ProblemDetails.Error.Reason
+  type: Property
+  source:
+    id: Reason
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 79
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe reason for the error\n"
+  example: []
+  syntax:
+    content: public string Reason { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Reason As String
+  overload: FastEndpoints.ProblemDetails.Error.Reason*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.ProblemDetails.Error.Code
+  commentId: P:FastEndpoints.ProblemDetails.Error.Code
+  id: Code
+  parent: FastEndpoints.ProblemDetails.Error
+  langs:
+  - csharp
+  - vb
+  name: Code
+  nameWithType: ProblemDetails.Error.Code
+  fullName: FastEndpoints.ProblemDetails.Error.Code
+  type: Property
+  source:
+    id: Code
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 84
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe code of the error\n"
+  example: []
+  syntax:
+    content: >-
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public string Code { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Code As String
+  overload: FastEndpoints.ProblemDetails.Error.Code*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.ProblemDetails.Error.#ctor(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.ProblemDetails.Error.#ctor(FluentValidation.Results.ValidationFailure)
+  id: '#ctor(FluentValidation.Results.ValidationFailure)'
+  parent: FastEndpoints.ProblemDetails.Error
+  langs:
+  - csharp
+  - vb
+  name: Error(ValidationFailure)
+  nameWithType: ProblemDetails.Error.Error(ValidationFailure)
+  fullName: FastEndpoints.ProblemDetails.Error.Error(FluentValidation.Results.ValidationFailure)
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\ValidationSchemaProcessor.cs
-    startLine: 42
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 87
   assemblies:
-  - FastEndpoints.Swagger
-  namespace: FastEndpoints.Swagger
+  - FastEndpoints
+  namespace: FastEndpoints
   syntax:
-    content: public ValidationSchemaProcessor()
-    content.vb: Public Sub New
-  overload: FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  commentId: M:FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  id: Process(NJsonSchema.Generation.SchemaProcessorContext)
-  parent: FastEndpoints.Swagger.ValidationSchemaProcessor
-  langs:
-  - csharp
-  - vb
-  name: Process(SchemaProcessorContext)
-  nameWithType: ValidationSchemaProcessor.Process(SchemaProcessorContext)
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  type: Method
-  source:
-    id: Process
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\ValidationSchemaProcessor.cs
-    startLine: 62
-  assemblies:
-  - FastEndpoints.Swagger
-  namespace: FastEndpoints.Swagger
-  syntax:
-    content: public void Process(SchemaProcessorContext context)
+    content: public Error(ValidationFailure failure)
     parameters:
-    - id: context
-      type: NJsonSchema.Generation.SchemaProcessorContext
-    content.vb: Public Sub Process(context As SchemaProcessorContext)
-  overload: FastEndpoints.Swagger.ValidationSchemaProcessor.Process*
-  implements:
-  - NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
+    - id: failure
+      type: FluentValidation.Results.ValidationFailure
+    content.vb: Public Sub New(failure As ValidationFailure)
+  overload: FastEndpoints.ProblemDetails.Error.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: FastEndpoints.Swagger
-  commentId: N:FastEndpoints.Swagger
-  name: FastEndpoints.Swagger
-  nameWithType: FastEndpoints.Swagger
-  fullName: FastEndpoints.Swagger
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -115,13 +201,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: NJsonSchema.Generation.ISchemaProcessor
-  commentId: T:NJsonSchema.Generation.ISchemaProcessor
-  parent: NJsonSchema.Generation
-  isExternal: true
-  name: ISchemaProcessor
-  nameWithType: ISchemaProcessor
-  fullName: NJsonSchema.Generation.ISchemaProcessor
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -407,67 +486,43 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: NJsonSchema.Generation
-  commentId: N:NJsonSchema.Generation
+- uid: FastEndpoints.ProblemDetails.Error.Name*
+  commentId: Overload:FastEndpoints.ProblemDetails.Error.Name
+  name: Name
+  nameWithType: ProblemDetails.Error.Name
+  fullName: FastEndpoints.ProblemDetails.Error.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
   isExternal: true
-  name: NJsonSchema.Generation
-  nameWithType: NJsonSchema.Generation
-  fullName: NJsonSchema.Generation
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor*
-  commentId: Overload:FastEndpoints.Swagger.ValidationSchemaProcessor.#ctor
-  name: ValidationSchemaProcessor
-  nameWithType: ValidationSchemaProcessor.ValidationSchemaProcessor
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.ValidationSchemaProcessor
-- uid: FastEndpoints.Swagger.ValidationSchemaProcessor.Process*
-  commentId: Overload:FastEndpoints.Swagger.ValidationSchemaProcessor.Process
-  name: Process
-  nameWithType: ValidationSchemaProcessor.Process
-  fullName: FastEndpoints.Swagger.ValidationSchemaProcessor.Process
-- uid: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  commentId: M:NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  parent: NJsonSchema.Generation.ISchemaProcessor
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FastEndpoints.ProblemDetails.Error.Reason*
+  commentId: Overload:FastEndpoints.ProblemDetails.Error.Reason
+  name: Reason
+  nameWithType: ProblemDetails.Error.Reason
+  fullName: FastEndpoints.ProblemDetails.Error.Reason
+- uid: FastEndpoints.ProblemDetails.Error.Code*
+  commentId: Overload:FastEndpoints.ProblemDetails.Error.Code
+  name: Code
+  nameWithType: ProblemDetails.Error.Code
+  fullName: FastEndpoints.ProblemDetails.Error.Code
+- uid: FastEndpoints.ProblemDetails.Error.#ctor*
+  commentId: Overload:FastEndpoints.ProblemDetails.Error.#ctor
+  name: Error
+  nameWithType: ProblemDetails.Error.Error
+  fullName: FastEndpoints.ProblemDetails.Error.Error
+- uid: FluentValidation.Results.ValidationFailure
+  commentId: T:FluentValidation.Results.ValidationFailure
+  parent: FluentValidation.Results
   isExternal: true
-  name: Process(SchemaProcessorContext)
-  nameWithType: ISchemaProcessor.Process(SchemaProcessorContext)
-  fullName: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-  spec.csharp:
-  - uid: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-    name: Process
-    nameWithType: ISchemaProcessor.Process
-    fullName: NJsonSchema.Generation.ISchemaProcessor.Process
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NJsonSchema.Generation.SchemaProcessorContext
-    name: SchemaProcessorContext
-    nameWithType: SchemaProcessorContext
-    fullName: NJsonSchema.Generation.SchemaProcessorContext
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: NJsonSchema.Generation.ISchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext)
-    name: Process
-    nameWithType: ISchemaProcessor.Process
-    fullName: NJsonSchema.Generation.ISchemaProcessor.Process
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: NJsonSchema.Generation.SchemaProcessorContext
-    name: SchemaProcessorContext
-    nameWithType: SchemaProcessorContext
-    fullName: NJsonSchema.Generation.SchemaProcessorContext
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: NJsonSchema.Generation.SchemaProcessorContext
-  commentId: T:NJsonSchema.Generation.SchemaProcessorContext
-  parent: NJsonSchema.Generation
+  name: ValidationFailure
+  nameWithType: ValidationFailure
+  fullName: FluentValidation.Results.ValidationFailure
+- uid: FluentValidation.Results
+  commentId: N:FluentValidation.Results
   isExternal: true
-  name: SchemaProcessorContext
-  nameWithType: SchemaProcessorContext
-  fullName: NJsonSchema.Generation.SchemaProcessorContext
+  name: FluentValidation.Results
+  nameWithType: FluentValidation.Results
+  fullName: FluentValidation.Results

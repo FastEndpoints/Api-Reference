@@ -6,6 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.BindingOptions.FailureMessage
+  - FastEndpoints.BindingOptions.JsonExceptionTransformer
   - FastEndpoints.BindingOptions.Modifier
   - FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{System.Object,FastEndpoints.ParseResult})
   - FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})
@@ -19,15 +20,15 @@ items:
   source:
     id: BindingOptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 8
+    startLine: 10
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nrequest binding options\n"
   example: []
   syntax:
-    content: public class BindingOptions
-    content.vb: Public Class BindingOptions
+    content: public sealed class BindingOptions
+    content.vb: Public NotInheritable Class BindingOptions
   inheritance:
   - System.Object
   inheritedMembers:
@@ -40,9 +41,11 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: FastEndpoints.BindingOptions.FailureMessage
   commentId: P:FastEndpoints.BindingOptions.FailureMessage
@@ -58,11 +61,11 @@ items:
   source:
     id: FailureMessage
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 18
+    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.\nthe following arguments are supplied to the function.\n<p><xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>: the type of the property which failed to bind</p>\n<p><xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>: the name of the property which failed to bind</p>\n<p><xref href=\"Microsoft.Extensions.Primitives.StringValues\" data-throw-if-not-resolved=\"false\"></xref>: the value that was attempted which resulted in the failure</p>\nuse these input parameters and construct your own error message string and return it from the function.\n"
+  summary: "\na function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.\n<p>NOTE: this only applies to non-STJ operations. for customizing error messages of STJ binding failures, specify a <xref href=\"FastEndpoints.BindingOptions.JsonExceptionTransformer\" data-throw-if-not-resolved=\"false\"></xref> func.</p>\nthe following arguments are supplied to the function.\n<p><xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>: the type of the property which failed to bind</p>\n<p><xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>: the name of the property which failed to bind</p>\n<p><xref href=\"Microsoft.Extensions.Primitives.StringValues\" data-throw-if-not-resolved=\"false\"></xref>: the value that was attempted which resulted in the failure</p>\nuse these input parameters and construct your own error message string and return it from the function.\n"
   example: []
   syntax:
     content: public Func<Type, string, StringValues, string> FailureMessage { set; }
@@ -71,6 +74,39 @@ items:
       type: System.Func{System.Type,System.String,Microsoft.Extensions.Primitives.StringValues,System.String}
     content.vb: Public WriteOnly Property FailureMessage As Func(Of Type, String, StringValues, String)
   overload: FastEndpoints.BindingOptions.FailureMessage*
+  modifiers.csharp:
+  - public
+  - set
+  modifiers.vb:
+  - Public
+  - WriteOnly
+- uid: FastEndpoints.BindingOptions.JsonExceptionTransformer
+  commentId: P:FastEndpoints.BindingOptions.JsonExceptionTransformer
+  id: JsonExceptionTransformer
+  parent: FastEndpoints.BindingOptions
+  langs:
+  - csharp
+  - vb
+  name: JsonExceptionTransformer
+  nameWithType: BindingOptions.JsonExceptionTransformer
+  fullName: FastEndpoints.BindingOptions.JsonExceptionTransformer
+  type: Property
+  source:
+    id: JsonExceptionTransformer
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
+    startLine: 30
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nby default, all STJ <xref href=\"System.Text.Json.JsonException\" data-throw-if-not-resolved=\"false\"></xref>s thrown during deserialization are automatically caught and transformed using this function. \nif you&apos;d like to disable this behavior, simply set this property to <code>null</code> or specify a function to construct a\n<xref href=\"FluentValidation.Results.ValidationFailure\" data-throw-if-not-resolved=\"false\"></xref> when STJ throws an exception due to invalid json input.\n<p>NOTE: this only applies to STJ based operations. for customizing error messages of non-STJ binding failures, specify a <xref href=\"FastEndpoints.BindingOptions.FailureMessage\" data-throw-if-not-resolved=\"false\"></xref> func.</p>\n"
+  example: []
+  syntax:
+    content: public Func<JsonException, ValidationFailure> JsonExceptionTransformer { set; }
+    parameters: []
+    return:
+      type: System.Func{System.Text.Json.JsonException,FluentValidation.Results.ValidationFailure}
+    content.vb: Public WriteOnly Property JsonExceptionTransformer As Func(Of JsonException, ValidationFailure)
+  overload: FastEndpoints.BindingOptions.JsonExceptionTransformer*
   modifiers.csharp:
   - public
   - set
@@ -91,7 +127,7 @@ items:
   source:
     id: Modifier
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 31
+    startLine: 45
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -124,7 +160,7 @@ items:
   source:
     id: ValueParserFor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 58
+    startLine: 72
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -183,7 +219,7 @@ items:
   source:
     id: ValueParserFor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 86
+    startLine: 100
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -526,6 +562,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.BindingOptions.JsonExceptionTransformer
+  commentId: P:FastEndpoints.BindingOptions.JsonExceptionTransformer
+  isExternal: true
 - uid: System.Type
   commentId: T:System.Type
   parent: System
@@ -706,6 +745,141 @@ references:
   - name: T3
     nameWithType: T3
     fullName: T3
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Text.Json.JsonException
+  commentId: T:System.Text.Json.JsonException
+  isExternal: true
+- uid: FluentValidation.Results.ValidationFailure
+  commentId: T:FluentValidation.Results.ValidationFailure
+  parent: FluentValidation.Results
+  isExternal: true
+  name: ValidationFailure
+  nameWithType: ValidationFailure
+  fullName: FluentValidation.Results.ValidationFailure
+- uid: FastEndpoints.BindingOptions.FailureMessage
+  commentId: P:FastEndpoints.BindingOptions.FailureMessage
+  isExternal: true
+- uid: FastEndpoints.BindingOptions.JsonExceptionTransformer*
+  commentId: Overload:FastEndpoints.BindingOptions.JsonExceptionTransformer
+  name: JsonExceptionTransformer
+  nameWithType: BindingOptions.JsonExceptionTransformer
+  fullName: FastEndpoints.BindingOptions.JsonExceptionTransformer
+- uid: System.Func{System.Text.Json.JsonException,FluentValidation.Results.ValidationFailure}
+  commentId: T:System.Func{System.Text.Json.JsonException,FluentValidation.Results.ValidationFailure}
+  parent: System
+  definition: System.Func`2
+  name: Func<JsonException, ValidationFailure>
+  nameWithType: Func<JsonException, ValidationFailure>
+  fullName: System.Func<System.Text.Json.JsonException, FluentValidation.Results.ValidationFailure>
+  nameWithType.vb: Func(Of JsonException, ValidationFailure)
+  fullName.vb: System.Func(Of System.Text.Json.JsonException, FluentValidation.Results.ValidationFailure)
+  name.vb: Func(Of JsonException, ValidationFailure)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Text.Json.JsonException
+    name: JsonException
+    nameWithType: JsonException
+    fullName: System.Text.Json.JsonException
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Text.Json.JsonException
+    name: JsonException
+    nameWithType: JsonException
+    fullName: System.Text.Json.JsonException
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FluentValidation.Results
+  commentId: N:FluentValidation.Results
+  isExternal: true
+  name: FluentValidation.Results
+  nameWithType: FluentValidation.Results
+  fullName: FluentValidation.Results
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -979,54 +1153,3 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: System.Func`2
-  commentId: T:System.Func`2
-  isExternal: true
-  name: Func<T, TResult>
-  nameWithType: Func<T, TResult>
-  fullName: System.Func<T, TResult>
-  nameWithType.vb: Func(Of T, TResult)
-  fullName.vb: System.Func(Of T, TResult)
-  name.vb: Func(Of T, TResult)
-  spec.csharp:
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Func`2
-    name: Func
-    nameWithType: Func
-    fullName: System.Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: )
-    nameWithType: )
-    fullName: )

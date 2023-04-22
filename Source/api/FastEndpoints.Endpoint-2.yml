@@ -5,12 +5,13 @@ items:
   id: Endpoint`2
   parent: FastEndpoints
   children:
+  - FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint`2.AllowAnonymous(FastEndpoints.Http[])
   - FastEndpoints.Endpoint`2.AllowAnonymous(System.String[])
   - FastEndpoints.Endpoint`2.AllowFileUploads(System.Boolean)
-  - FastEndpoints.Endpoint`2.AllowFormData
+  - FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
   - FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
   - FastEndpoints.Endpoint`2.BaseURL
   - FastEndpoints.Endpoint`2.Claims(System.String[])
@@ -99,6 +100,7 @@ items:
   - FastEndpoints.Endpoint`2.Summary(System.Action{FastEndpoints.EndpointSummary})
   - FastEndpoints.Endpoint`2.Tags(System.String[])
   - FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
+  - FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
   - FastEndpoints.Endpoint`2.ThrowError(System.String)
   - FastEndpoints.Endpoint`2.ThrowIfAnyErrors
@@ -120,7 +122,7 @@ items:
   source:
     id: Endpoint
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 8
+    startLine: 7
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -191,7 +193,7 @@ items:
   source:
     id: HandleAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 128
+    startLine: 122
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -232,7 +234,7 @@ items:
   source:
     id: ExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 136
+    startLine: 130
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -273,7 +275,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 140
+    startLine: 134
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -312,7 +314,7 @@ items:
   source:
     id: TryResolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 142
+    startLine: 136
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -348,7 +350,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 144
+    startLine: 138
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -387,7 +389,7 @@ items:
   source:
     id: Resolve
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 146
+    startLine: 140
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -423,7 +425,7 @@ items:
   source:
     id: CreateScope
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 148
+    startLine: 142
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -456,7 +458,7 @@ items:
   source:
     id: Route
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 158
+    startLine: 152
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -500,7 +502,7 @@ items:
   source:
     id: Query
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 188
+    startLine: 182
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -544,7 +546,7 @@ items:
   source:
     id: FormFileSectionsAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 214
+    startLine: 208
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -581,7 +583,7 @@ items:
   source:
     id: PublishAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 228
+    startLine: 222
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -624,7 +626,7 @@ items:
   source:
     id: CreateTokenWith
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 237
+    startLine: 231
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -670,7 +672,7 @@ items:
   source:
     id: ProcessorState
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 249
+    startLine: 243
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2355,36 +2357,40 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFileUploads(System.Boolean)
-- uid: FastEndpoints.Endpoint`2.AllowFormData
-  commentId: M:FastEndpoints.Endpoint`2.AllowFormData
-  id: AllowFormData
+- uid: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
+  id: AllowFormData(System.Boolean)
   parent: FastEndpoints.Endpoint`2
   langs:
   - csharp
   - vb
-  name: AllowFormData()
-  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData()
+  name: AllowFormData(Boolean)
+  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData(Boolean)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData(System.Boolean)
   type: Method
   source:
     id: AllowFormData
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nenable multipart/form-data submissions\n"
+  summary: "\nenable form-data submissions\n"
   example: []
   syntax:
-    content: protected void AllowFormData()
-    content.vb: Protected Sub AllowFormData
+    content: protected void AllowFormData(bool urlEncoded = false)
+    parameters:
+    - id: urlEncoded
+      type: System.Boolean
+      description: set to true to accept `application/x-www-form-urlencoded` content instead of `multipart/form-data` content.
+    content.vb: Protected Sub AllowFormData(urlEncoded As Boolean = False)
   overload: FastEndpoints.Endpoint`2.AllowFormData*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData(Boolean)
   modifiers.csharp:
   - protected
   modifiers.vb:
   - Protected
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData(System.Boolean)
 - uid: FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
   commentId: M:FastEndpoints.Endpoint`2.AuthSchemes(System.String[])
   id: AuthSchemes(System.String[])
@@ -2399,7 +2405,7 @@ items:
   source:
     id: AuthSchemes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2434,7 +2440,7 @@ items:
   source:
     id: Claims
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 53
+    startLine: 54
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2469,7 +2475,7 @@ items:
   source:
     id: ClaimsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 59
+    startLine: 60
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2504,7 +2510,7 @@ items:
   source:
     id: Delete
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 64
+    startLine: 65
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2538,7 +2544,7 @@ items:
   source:
     id: Delete
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 78
+    startLine: 79
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2576,7 +2582,7 @@ items:
   source:
     id: Description
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 92
+    startLine: 93
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2614,7 +2620,7 @@ items:
   source:
     id: DontAutoTag
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 97
+    startLine: 98
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2644,7 +2650,7 @@ items:
   source:
     id: DontCatchExceptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 104
+    startLine: 105
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2674,7 +2680,7 @@ items:
   source:
     id: DontThrowIfValidationFails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 110
+    startLine: 111
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2704,7 +2710,7 @@ items:
   source:
     id: Get
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 115
+    startLine: 116
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2738,7 +2744,7 @@ items:
   source:
     id: Get
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 129
+    startLine: 130
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2776,7 +2782,7 @@ items:
   source:
     id: Group
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 143
+    startLine: 144
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2822,7 +2828,7 @@ items:
   source:
     id: Head
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 155
+    startLine: 156
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2856,7 +2862,7 @@ items:
   source:
     id: Head
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 169
+    startLine: 170
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2894,7 +2900,7 @@ items:
   source:
     id: Options
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 179
+    startLine: 180
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2929,7 +2935,7 @@ items:
   source:
     id: Patch
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 184
+    startLine: 185
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2963,7 +2969,7 @@ items:
   source:
     id: Patch
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 198
+    startLine: 199
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3001,7 +3007,7 @@ items:
   source:
     id: Permissions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 208
+    startLine: 209
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3036,7 +3042,7 @@ items:
   source:
     id: PermissionsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 214
+    startLine: 215
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3071,7 +3077,7 @@ items:
   source:
     id: Policy
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 220
+    startLine: 221
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3106,7 +3112,7 @@ items:
   source:
     id: Policies
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 226
+    startLine: 227
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3141,7 +3147,7 @@ items:
   source:
     id: Post
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 231
+    startLine: 232
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3175,7 +3181,7 @@ items:
   source:
     id: Post
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 245
+    startLine: 246
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3213,7 +3219,7 @@ items:
   source:
     id: PostProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 255
+    startLine: 256
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3248,7 +3254,7 @@ items:
   source:
     id: PreProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 261
+    startLine: 262
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3283,7 +3289,7 @@ items:
   source:
     id: Put
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 266
+    startLine: 267
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3317,7 +3323,7 @@ items:
   source:
     id: Put
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 280
+    startLine: 281
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3355,7 +3361,7 @@ items:
   source:
     id: RequestBinder
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 291
+    startLine: 292
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3390,7 +3396,7 @@ items:
   source:
     id: ResponseCache
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 301
+    startLine: 302
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3437,7 +3443,7 @@ items:
   source:
     id: ResponseInterceptor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 309
+    startLine: 310
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3471,7 +3477,7 @@ items:
   source:
     id: Roles
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 315
+    startLine: 316
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3506,7 +3512,7 @@ items:
   source:
     id: RoutePrefixOverride
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 323
+    startLine: 324
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3540,7 +3546,7 @@ items:
   source:
     id: Routes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 328
+    startLine: 329
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3574,7 +3580,7 @@ items:
   source:
     id: SerializerContext
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 334
+    startLine: 335
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3614,7 +3620,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 340
+    startLine: 341
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3649,7 +3655,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 346
+    startLine: 347
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3684,7 +3690,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 352
+    startLine: 353
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3718,7 +3724,7 @@ items:
   source:
     id: Tags
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 359
+    startLine: 360
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3753,7 +3759,7 @@ items:
   source:
     id: Throttle
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 371
+    startLine: 372
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3793,7 +3799,7 @@ items:
   source:
     id: Validator
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 378
+    startLine: 379
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3830,7 +3836,7 @@ items:
   source:
     id: Verbs
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 383
+    startLine: 384
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3864,7 +3870,7 @@ items:
   source:
     id: Verbs
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 391
+    startLine: 392
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3903,7 +3909,7 @@ items:
   source:
     id: Version
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Setup.cs
-    startLine: 435
+    startLine: 446
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3941,7 +3947,7 @@ items:
   source:
     id: ValidationFailed
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 33
+    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -3961,6 +3967,38 @@ items:
   - Public
   - ReadOnly
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ValidationFailed
+- uid: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+  id: AddError(FluentValidation.Results.ValidationFailure)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: AddError(ValidationFailure)
+  nameWithType: Endpoint<TRequest, TResponse>.AddError(ValidationFailure)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(FluentValidation.Results.ValidationFailure)
+  type: Method
+  source:
+    id: AddError
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
+    startLine: 27
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  example: []
+  syntax:
+    content: public void AddError(ValidationFailure failure)
+    parameters:
+    - id: failure
+      type: FluentValidation.Results.ValidationFailure
+    content.vb: Public Sub AddError(failure As ValidationFailure)
+  overload: FastEndpoints.Endpoint`2.AddError*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AddError(ValidationFailure)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(FluentValidation.Results.ValidationFailure)
 - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   id: AddError(System.String,System.String,FluentValidation.Severity)
@@ -3975,7 +4013,7 @@ items:
   source:
     id: AddError
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 36
+    startLine: 31
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -4011,7 +4049,7 @@ items:
   source:
     id: AddError
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
-    startLine: 40
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -4036,6 +4074,38 @@ items:
   - Public
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, System.Object)), System.String, System.String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of TRequest, Object)), String, String, Severity)
+- uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+  id: ThrowError(FluentValidation.Results.ValidationFailure)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: ThrowError(ValidationFailure)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(ValidationFailure)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(FluentValidation.Results.ValidationFailure)
+  type: Method
+  source:
+    id: ThrowError
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.Validation.cs
+    startLine: 39
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  example: []
+  syntax:
+    content: public void ThrowError(ValidationFailure failure)
+    parameters:
+    - id: failure
+      type: FluentValidation.Results.ValidationFailure
+    content.vb: Public Sub ThrowError(failure As ValidationFailure)
+  overload: FastEndpoints.Endpoint`2.ThrowError*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(ValidationFailure)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(FluentValidation.Results.ValidationFailure)
 - uid: FastEndpoints.Endpoint`2.ThrowError(System.String)
   commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.String)
   id: ThrowError(System.String)
@@ -6879,6 +6949,19 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError
   nameWithType.vb: Endpoint(Of TRequest, TResponse).AddError
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError
+- uid: FluentValidation.Results.ValidationFailure
+  commentId: T:FluentValidation.Results.ValidationFailure
+  parent: FluentValidation.Results
+  isExternal: true
+  name: ValidationFailure
+  nameWithType: ValidationFailure
+  fullName: FluentValidation.Results.ValidationFailure
+- uid: FluentValidation.Results
+  commentId: N:FluentValidation.Results
+  isExternal: true
+  name: FluentValidation.Results
+  nameWithType: FluentValidation.Results
+  fullName: FluentValidation.Results
 - uid: FluentValidation.Severity
   commentId: T:FluentValidation.Severity
   parent: FluentValidation

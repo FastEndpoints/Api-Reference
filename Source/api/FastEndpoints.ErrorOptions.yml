@@ -9,6 +9,7 @@ items:
   - FastEndpoints.ErrorOptions.ProducesMetadataType
   - FastEndpoints.ErrorOptions.ResponseBuilder
   - FastEndpoints.ErrorOptions.StatusCode
+  - FastEndpoints.ErrorOptions.UseProblemDetails
   langs:
   - csharp
   - vb
@@ -26,8 +27,8 @@ items:
   summary: "\nerror response customization settings\n"
   example: []
   syntax:
-    content: public class ErrorOptions
-    content.vb: Public Class ErrorOptions
+    content: public sealed class ErrorOptions
+    content.vb: Public NotInheritable Class ErrorOptions
   inheritance:
   - System.Object
   inheritedMembers:
@@ -40,9 +41,11 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: FastEndpoints.ErrorOptions.StatusCode
   commentId: P:FastEndpoints.ErrorOptions.StatusCode
@@ -91,11 +94,11 @@ items:
   source:
     id: ProducesMetadataType
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
-    startLine: 20
+    startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif this property is set, a <xref href=\"Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata\" data-throw-if-not-resolved=\"false\"></xref> will automatically be added to any endpoints that has a <xref href=\"FastEndpoints.Validator%601\" data-throw-if-not-resolved=\"false\"></xref> associated with it.\nif you&apos;re not specifying your own <xref href=\"FastEndpoints.ErrorOptions.ResponseBuilder\" data-throw-if-not-resolved=\"false\"></xref>, you&apos;d typically be setting this to <code>typeOf(<xref href=\"FastEndpoints.ErrorResponse\" data-throw-if-not-resolved=\"false\"></xref>)</code>\n"
+  summary: "\nif this property is not null, a <xref href=\"Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata\" data-throw-if-not-resolved=\"false\"></xref> will automatically be added to endpoints that has a <xref href=\"FastEndpoints.Validator%601\" data-throw-if-not-resolved=\"false\"></xref> associated with it.\nif you&apos;re specifying your own <xref href=\"FastEndpoints.ErrorOptions.ResponseBuilder\" data-throw-if-not-resolved=\"false\"></xref>, don&apos;t forget to set this property to the correct type of the error response dto that your error response builder will be returning.\n<p>\nTIP: set this to null if you&apos;d like to disable the auto adding of produces 400 metadata to endpoints even if they have validators associated with them.\n</p>\n"
   example: []
   syntax:
     content: public Type ProducesMetadataType { set; }
@@ -124,7 +127,7 @@ items:
   source:
     id: GeneralErrorsField
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
-    startLine: 25
+    startLine: 28
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -157,11 +160,11 @@ items:
   source:
     id: ResponseBuilder
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
-    startLine: 33
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function for transforming validation errors to an error response dto.\nset it to any func that returns an object that can be serialized to json.\nthis function will be run everytime an error response needs to be sent to the client.\nthe arguments for the func will be a list of validation failures, the http context and an http status code.\n"
+  summary: "\na function for transforming validation errors to an error response dto.\nset it to any func that returns an object that can be serialized to json.\nthis function will be run everytime an error response needs to be sent to the client.\nthe arguments for the func will be a list of validation failures, the http context and an http status code.\n<p>\nHINT: if changing the default, make sure to also set <xref href=\"FastEndpoints.ErrorOptions.ProducesMetadataType\" data-throw-if-not-resolved=\"false\"></xref> to the correct type of the error response dto.\n</p>\n"
   example: []
   syntax:
     content: public Func<List<ValidationFailure>, HttpContext, int, object> ResponseBuilder { set; }
@@ -176,6 +179,34 @@ items:
   modifiers.vb:
   - Public
   - WriteOnly
+- uid: FastEndpoints.ErrorOptions.UseProblemDetails
+  commentId: M:FastEndpoints.ErrorOptions.UseProblemDetails
+  id: UseProblemDetails
+  parent: FastEndpoints.ErrorOptions
+  langs:
+  - csharp
+  - vb
+  name: UseProblemDetails()
+  nameWithType: ErrorOptions.UseProblemDetails()
+  fullName: FastEndpoints.ErrorOptions.UseProblemDetails()
+  type: Method
+  source:
+    id: UseProblemDetails
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\ErrorOptions.cs
+    startLine: 45
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nchange the default error response builder to <xref href=\"FastEndpoints.ProblemDetails\" data-throw-if-not-resolved=\"false\"></xref> instead of <xref href=\"FastEndpoints.ErrorResponse\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public void UseProblemDetails()
+    content.vb: Public Sub UseProblemDetails
+  overload: FastEndpoints.ErrorOptions.UseProblemDetails*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -532,11 +563,6 @@ references:
 - uid: FastEndpoints.ErrorOptions.ResponseBuilder
   commentId: P:FastEndpoints.ErrorOptions.ResponseBuilder
   isExternal: true
-- uid: FastEndpoints.ErrorResponse
-  commentId: T:FastEndpoints.ErrorResponse
-  name: ErrorResponse
-  nameWithType: ErrorResponse
-  fullName: FastEndpoints.ErrorResponse
 - uid: FastEndpoints.ErrorOptions.ProducesMetadataType*
   commentId: Overload:FastEndpoints.ErrorOptions.ProducesMetadataType
   name: ProducesMetadataType
@@ -567,6 +593,9 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: FastEndpoints.ErrorOptions.ProducesMetadataType
+  commentId: P:FastEndpoints.ErrorOptions.ProducesMetadataType
+  isExternal: true
 - uid: FastEndpoints.ErrorOptions.ResponseBuilder*
   commentId: Overload:FastEndpoints.ErrorOptions.ResponseBuilder
   name: ResponseBuilder
@@ -761,3 +790,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.ProblemDetails
+  commentId: T:FastEndpoints.ProblemDetails
+  name: ProblemDetails
+  nameWithType: ProblemDetails
+  fullName: FastEndpoints.ProblemDetails
+- uid: FastEndpoints.ErrorResponse
+  commentId: T:FastEndpoints.ErrorResponse
+  name: ErrorResponse
+  nameWithType: ErrorResponse
+  fullName: FastEndpoints.ErrorResponse
+- uid: FastEndpoints.ErrorOptions.UseProblemDetails*
+  commentId: Overload:FastEndpoints.ErrorOptions.UseProblemDetails
+  name: UseProblemDetails
+  nameWithType: ErrorOptions.UseProblemDetails
+  fullName: FastEndpoints.ErrorOptions.UseProblemDetails

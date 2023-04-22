@@ -24,12 +24,12 @@ items:
   summary: "\nevent notification bus which uses an in-process pub/sub messaging system\n"
   example: []
   syntax:
-    content: 'public class Event<TEvent> : EventBase'
+    content: 'public sealed class Event<TEvent> : EventBase'
     typeParameters:
     - id: TEvent
       description: the type of notification event dto
     content.vb: >-
-      Public Class Event(Of TEvent)
+      Public NotInheritable Class Event(Of TEvent)
 
           Inherits EventBase
   inheritance:
@@ -46,9 +46,11 @@ items:
   nameWithType.vb: Event(Of TEvent)
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
   fullName.vb: FastEndpoints.Event(Of TEvent)
   name.vb: Event(Of TEvent)

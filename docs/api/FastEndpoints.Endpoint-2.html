@@ -461,6 +461,34 @@
 
 
   <a id="FastEndpoints_Endpoint_2_AddError_" data-uid="FastEndpoints.Endpoint`2.AddError*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_AddError_FluentValidation_Results_ValidationFailure_" data-uid="FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)">AddError(ValidationFailure)</h4>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddError(ValidationFailure failure)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FluentValidation.Results.ValidationFailure</span></td>
+        <td><span class="parametername">failure</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Endpoint_2_AddError_" data-uid="FastEndpoints.Endpoint`2.AddError*"></a>
   <h4 id="FastEndpoints_Endpoint_2_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_" data-uid="FastEndpoints.Endpoint`2.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)">AddError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, String, Severity)</h4>
   <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
@@ -630,14 +658,32 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
 
 
   <a id="FastEndpoints_Endpoint_2_AllowFormData_" data-uid="FastEndpoints.Endpoint`2.AllowFormData*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_AllowFormData" data-uid="FastEndpoints.Endpoint`2.AllowFormData">AllowFormData()</h4>
-  <div class="markdown level1 summary"><p>enable multipart/form-data submissions</p>
+  <h4 id="FastEndpoints_Endpoint_2_AllowFormData_System_Boolean_" data-uid="FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)">AllowFormData(Boolean)</h4>
+  <div class="markdown level1 summary"><p>enable form-data submissions</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void AllowFormData()</code></pre>
+    <pre><code class="lang-csharp hljs">protected void AllowFormData(bool urlEncoded = false)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">urlEncoded</span></td>
+        <td><p>set to true to accept <code>application/x-www-form-urlencoded</code> content instead of <code>multipart/form-data</code> content.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_Endpoint_2_AuthSchemes_" data-uid="FastEndpoints.Endpoint`2.AuthSchemes*"></a>
@@ -3933,6 +3979,34 @@ then that will be executed before the normal response is sent.</p>
 header name can also be configured globally using <code>app.UseFastEndpoints(c=&gt; c.ThrottleOptions...)</code>
 not specifying a header name will first look for 'X-Forwarded-For' header and if not present, will use <code>HttpContext.Connection.RemoteIpAddress</code>.</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Endpoint_2_ThrowError_" data-uid="FastEndpoints.Endpoint`2.ThrowError*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_ThrowError_FluentValidation_Results_ValidationFailure_" data-uid="FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)">ThrowError(ValidationFailure)</h4>
+  <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ThrowError(ValidationFailure failure)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FluentValidation.Results.ValidationFailure</span></td>
+        <td><span class="parametername">failure</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

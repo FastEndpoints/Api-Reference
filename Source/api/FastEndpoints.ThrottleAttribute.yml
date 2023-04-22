@@ -29,11 +29,11 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 
-      public class ThrottleAttribute : Attribute
+      public sealed class ThrottleAttribute : Attribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Class, Inherited:=False, AllowMultiple:=False)>
 
-      Public Class ThrottleAttribute
+      Public NotInheritable Class ThrottleAttribute
 
           Inherits Attribute
   inheritance:
@@ -97,9 +97,11 @@ items:
       value: false
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: FastEndpoints.ThrottleAttribute.HitLimit
   commentId: P:FastEndpoints.ThrottleAttribute.HitLimit

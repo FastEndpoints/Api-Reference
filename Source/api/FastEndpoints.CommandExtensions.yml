@@ -5,8 +5,10 @@ items:
   id: CommandExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
+  - FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
   - FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  - FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  - FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   langs:
   - csharp
   - vb
@@ -41,17 +43,17 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
-  id: ExecuteAsync``1(``0,System.Threading.CancellationToken)
+- uid: FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
+  id: ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
   isExtensionMethod: true
   parent: FastEndpoints.CommandExtensions
   langs:
   - csharp
   - vb
-  name: ExecuteAsync<TCommand>(TCommand, CancellationToken)
-  nameWithType: CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
-  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TCommand>(TCommand, System.Threading.CancellationToken)
+  name: ExecuteAsync(ICommand, CancellationToken)
+  nameWithType: CommandExtensions.ExecuteAsync(ICommand, CancellationToken)
+  fullName: FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand, System.Threading.CancellationToken)
   type: Method
   source:
     id: ExecuteAsync
@@ -63,40 +65,31 @@ items:
   summary: "\nexecutes the command that does not return a result\n"
   example: []
   syntax:
-    content: >-
-      public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = default(CancellationToken))
-
-          where TCommand : ICommand
+    content: public static Task ExecuteAsync(this ICommand command, CancellationToken ct = default(CancellationToken))
     parameters:
     - id: command
-      type: '{TCommand}'
+      type: FastEndpoints.ICommand
       description: the command to execute
     - id: ct
       type: System.Threading.CancellationToken
       description: optional cancellation token
-    typeParameters:
-    - id: TCommand
-      description: the type of the command
     return:
       type: System.Threading.Tasks.Task
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function ExecuteAsync(Of TCommand As ICommand)(command As TCommand, ct As CancellationToken = Nothing) As Task
+      Public Shared Function ExecuteAsync(command As ICommand, ct As CancellationToken = Nothing) As Task
   overload: FastEndpoints.CommandExtensions.ExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown when a handler for the command cannot be instantiated
-  nameWithType.vb: CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, System.Threading.CancellationToken)
-  name.vb: ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
 - uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   id: ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
@@ -112,7 +105,7 @@ items:
   source:
     id: ExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 34
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -150,6 +143,102 @@ items:
   - Shared
   fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), System.Threading.CancellationToken)
   name.vb: ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  id: RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  isExtensionMethod: true
+  parent: FastEndpoints.CommandExtensions
+  langs:
+  - csharp
+  - vb
+  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand>)
+  type: Method
+  source:
+    id: RegisterForTesting
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 62
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nregisters a fake command handler for unit testing purposes\n"
+  example: []
+  syntax:
+    content: >-
+      public static void RegisterForTesting<TCommand>(this ICommandHandler<TCommand> handler)
+
+          where TCommand : ICommand
+    parameters:
+    - id: handler
+      type: FastEndpoints.ICommandHandler{{TCommand}}
+      description: a fake handler instance
+    typeParameters:
+    - id: TCommand
+      description: type of the command
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub RegisterForTesting(Of TCommand As ICommand)(handler As ICommandHandler(Of TCommand))
+  overload: FastEndpoints.CommandExtensions.RegisterForTesting*
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand))
+  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  id: RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  isExtensionMethod: true
+  parent: FastEndpoints.CommandExtensions
+  langs:
+  - csharp
+  - vb
+  name: RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>(FastEndpoints.ICommandHandler<TCommand, TResult>)
+  type: Method
+  source:
+    id: RegisterForTesting
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 78
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nregisters a fake command handler for unit testing purposes\n"
+  example: []
+  syntax:
+    content: >-
+      public static void RegisterForTesting<TCommand, TResult>(this ICommandHandler<TCommand, TResult> handler)
+
+          where TCommand : ICommand<TResult>
+    parameters:
+    - id: handler
+      type: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
+      description: a fake handler instance
+    typeParameters:
+    - id: TCommand
+      description: type of the command
+    - id: TResult
+      description: type of the result being returned by the handler
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub RegisterForTesting(Of TCommand As ICommand(Of TResult), TResult)(handler As ICommandHandler(Of TCommand, TResult))
+  overload: FastEndpoints.CommandExtensions.RegisterForTesting*
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)(FastEndpoints.ICommandHandler(Of TCommand, TResult))
+  name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -456,12 +545,12 @@ references:
   name: ExecuteAsync
   nameWithType: CommandExtensions.ExecuteAsync
   fullName: FastEndpoints.CommandExtensions.ExecuteAsync
-- uid: '{TCommand}'
-  commentId: '!:TCommand'
-  definition: TCommand
-  name: TCommand
-  nameWithType: TCommand
-  fullName: TCommand
+- uid: FastEndpoints.ICommand
+  commentId: T:FastEndpoints.ICommand
+  parent: FastEndpoints
+  name: ICommand
+  nameWithType: ICommand
+  fullName: FastEndpoints.ICommand
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -476,10 +565,6 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
-- uid: TCommand
-  name: TCommand
-  nameWithType: TCommand
-  fullName: TCommand
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
@@ -639,6 +724,183 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting*
+  commentId: Overload:FastEndpoints.CommandExtensions.RegisterForTesting
+  name: RegisterForTesting
+  nameWithType: CommandExtensions.RegisterForTesting
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting
+- uid: FastEndpoints.ICommandHandler{{TCommand}}
+  commentId: T:FastEndpoints.ICommandHandler{``0}
+  parent: FastEndpoints
+  definition: FastEndpoints.ICommandHandler`1
+  name: ICommandHandler<TCommand>
+  nameWithType: ICommandHandler<TCommand>
+  fullName: FastEndpoints.ICommandHandler<TCommand>
+  nameWithType.vb: ICommandHandler(Of TCommand)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
+  name.vb: ICommandHandler(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ICommandHandler`1
+  commentId: T:FastEndpoints.ICommandHandler`1
+  name: ICommandHandler<TCommand>
+  nameWithType: ICommandHandler<TCommand>
+  fullName: FastEndpoints.ICommandHandler<TCommand>
+  nameWithType.vb: ICommandHandler(Of TCommand)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
+  name.vb: ICommandHandler(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
+  commentId: T:FastEndpoints.ICommandHandler{``0,``1}
+  parent: FastEndpoints
+  definition: FastEndpoints.ICommandHandler`2
+  name: ICommandHandler<TCommand, TResult>
+  nameWithType: ICommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
+  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
+  name.vb: ICommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ICommandHandler`2
+  commentId: T:FastEndpoints.ICommandHandler`2
+  name: ICommandHandler<TCommand, TResult>
+  nameWithType: ICommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
+  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
+  name.vb: ICommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - name: TResult
     nameWithType: TResult
     fullName: TResult

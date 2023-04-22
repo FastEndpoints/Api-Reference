@@ -19,7 +19,7 @@ items:
   source:
     id: EndpointWithMapping
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 404
+    startLine: 398
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -104,7 +104,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowAnonymous(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowAnonymous(System.String[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowFileUploads(System.Boolean)
-  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowFormData
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowFormData(System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AuthSchemes(System.String[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Claims(System.String[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ClaimsAll(System.String[])
@@ -149,8 +149,10 @@ items:
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Verbs(System.String[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ValidationFailed
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}},System.String,System.String,FluentValidation.Severity)
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ThrowError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ThrowError(System.String)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}},System.String)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ThrowIfAnyErrors
@@ -192,28 +194,28 @@ items:
   source:
     id: MapToEntity
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 410
+    startLine: 404
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\noverride this method and place the logic for mapping the request dto to the desired domain entity\n"
   example: []
   syntax:
-    content: protected virtual TEntity MapToEntity(TRequest r)
+    content: public virtual TEntity MapToEntity(TRequest r)
     parameters:
     - id: r
       type: '{TRequest}'
       description: the request dto
     return:
       type: '{TEntity}'
-    content.vb: Protected Overridable Function MapToEntity(r As TRequest) As TEntity
+    content.vb: Public Overridable Function MapToEntity(r As TRequest) As TEntity
   overload: FastEndpoints.EndpointWithMapping`3.MapToEntity*
   nameWithType.vb: EndpointWithMapping(Of TRequest, TResponse, TEntity).MapToEntity(TRequest)
   modifiers.csharp:
-  - protected
+  - public
   - virtual
   modifiers.vb:
-  - Protected
+  - Public
   - Overridable
   fullName.vb: FastEndpoints.EndpointWithMapping(Of TRequest, TResponse, TEntity).MapToEntity(TRequest)
 - uid: FastEndpoints.EndpointWithMapping`3.MapToEntityAsync(`0,System.Threading.CancellationToken)
@@ -230,14 +232,14 @@ items:
   source:
     id: MapToEntityAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 416
+    startLine: 410
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\noverride this method and place the logic for mapping the request dto to the desired domain entity\n"
   example: []
   syntax:
-    content: protected virtual Task<TEntity> MapToEntityAsync(TRequest r, CancellationToken ct = default(CancellationToken))
+    content: public virtual Task<TEntity> MapToEntityAsync(TRequest r, CancellationToken ct = default(CancellationToken))
     parameters:
     - id: r
       type: '{TRequest}'
@@ -247,14 +249,14 @@ items:
       description: a cancellation token
     return:
       type: System.Threading.Tasks.Task{{TEntity}}
-    content.vb: Protected Overridable Function MapToEntityAsync(r As TRequest, ct As CancellationToken = Nothing) As Task(Of TEntity)
+    content.vb: Public Overridable Function MapToEntityAsync(r As TRequest, ct As CancellationToken = Nothing) As Task(Of TEntity)
   overload: FastEndpoints.EndpointWithMapping`3.MapToEntityAsync*
   nameWithType.vb: EndpointWithMapping(Of TRequest, TResponse, TEntity).MapToEntityAsync(TRequest, CancellationToken)
   modifiers.csharp:
-  - protected
+  - public
   - virtual
   modifiers.vb:
-  - Protected
+  - Public
   - Overridable
   fullName.vb: FastEndpoints.EndpointWithMapping(Of TRequest, TResponse, TEntity).MapToEntityAsync(TRequest, System.Threading.CancellationToken)
 - uid: FastEndpoints.EndpointWithMapping`3.MapFromEntity(`2)
@@ -271,28 +273,28 @@ items:
   source:
     id: MapFromEntity
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 422
+    startLine: 416
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\noverride this method and place the logic for mapping a domain entity to a response dto\n"
   example: []
   syntax:
-    content: protected virtual TResponse MapFromEntity(TEntity e)
+    content: public virtual TResponse MapFromEntity(TEntity e)
     parameters:
     - id: e
       type: '{TEntity}'
       description: the domain entity to map from
     return:
       type: '{TResponse}'
-    content.vb: Protected Overridable Function MapFromEntity(e As TEntity) As TResponse
+    content.vb: Public Overridable Function MapFromEntity(e As TEntity) As TResponse
   overload: FastEndpoints.EndpointWithMapping`3.MapFromEntity*
   nameWithType.vb: EndpointWithMapping(Of TRequest, TResponse, TEntity).MapFromEntity(TEntity)
   modifiers.csharp:
-  - protected
+  - public
   - virtual
   modifiers.vb:
-  - Protected
+  - Public
   - Overridable
   fullName.vb: FastEndpoints.EndpointWithMapping(Of TRequest, TResponse, TEntity).MapFromEntity(TEntity)
 - uid: FastEndpoints.EndpointWithMapping`3.MapFromEntityAsync(`2,System.Threading.CancellationToken)
@@ -309,14 +311,14 @@ items:
   source:
     id: MapFromEntityAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Endpoint.cs
-    startLine: 428
+    startLine: 422
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\noverride this method and place the logic for mapping a domain entity to a response dto\n"
   example: []
   syntax:
-    content: protected virtual Task<TResponse> MapFromEntityAsync(TEntity e, CancellationToken ct = default(CancellationToken))
+    content: public virtual Task<TResponse> MapFromEntityAsync(TEntity e, CancellationToken ct = default(CancellationToken))
     parameters:
     - id: e
       type: '{TEntity}'
@@ -326,14 +328,14 @@ items:
       description: a cancellation token
     return:
       type: System.Threading.Tasks.Task{{TResponse}}
-    content.vb: Protected Overridable Function MapFromEntityAsync(e As TEntity, ct As CancellationToken = Nothing) As Task(Of TResponse)
+    content.vb: Public Overridable Function MapFromEntityAsync(e As TEntity, ct As CancellationToken = Nothing) As Task(Of TResponse)
   overload: FastEndpoints.EndpointWithMapping`3.MapFromEntityAsync*
   nameWithType.vb: EndpointWithMapping(Of TRequest, TResponse, TEntity).MapFromEntityAsync(TEntity, CancellationToken)
   modifiers.csharp:
-  - protected
+  - public
   - virtual
   modifiers.vb:
-  - Protected
+  - Public
   - Overridable
   fullName.vb: FastEndpoints.EndpointWithMapping(Of TRequest, TResponse, TEntity).MapFromEntityAsync(TEntity, System.Threading.CancellationToken)
 references:
@@ -3291,34 +3293,44 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowFormData
-  commentId: M:FastEndpoints.Endpoint{`0,`1}.AllowFormData
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.AllowFormData(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.AllowFormData(System.Boolean)
   parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
-  definition: FastEndpoints.Endpoint`2.AllowFormData
-  name: AllowFormData()
-  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData()
+  definition: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
+  name: AllowFormData(Boolean)
+  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData(Boolean)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData(System.Boolean)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData(System.Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AllowFormData
+  - uid: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
     name: AllowFormData
     nameWithType: Endpoint<TRequest, TResponse>.AllowFormData
     fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData
   - name: (
     nameWithType: (
     fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AllowFormData
+  - uid: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
     name: AllowFormData
     nameWithType: Endpoint(Of TRequest, TResponse).AllowFormData
     fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData
   - name: (
     nameWithType: (
     fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -5956,6 +5968,47 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ValidationFailed
   nameWithType.vb: Endpoint(Of TRequest, TResponse).ValidationFailed
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ValidationFailed
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.AddError(FluentValidation.Results.ValidationFailure)
+  parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
+  definition: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+  name: AddError(ValidationFailure)
+  nameWithType: Endpoint<TRequest, TResponse>.AddError(ValidationFailure)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(FluentValidation.Results.ValidationFailure)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AddError(ValidationFailure)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(FluentValidation.Results.ValidationFailure)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+    name: AddError
+    nameWithType: Endpoint<TRequest, TResponse>.AddError
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+    name: AddError
+    nameWithType: Endpoint(Of TRequest, TResponse).AddError
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.Endpoint{`0,`1}.AddError(System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
@@ -6171,6 +6224,47 @@ references:
     name: Severity
     nameWithType: Severity
     fullName: FluentValidation.Severity
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.ThrowError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.ThrowError(FluentValidation.Results.ValidationFailure)
+  parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
+  definition: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+  name: ThrowError(ValidationFailure)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(ValidationFailure)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(FluentValidation.Results.ValidationFailure)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(ValidationFailure)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(FluentValidation.Results.ValidationFailure)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+    name: ThrowError
+    nameWithType: Endpoint<TRequest, TResponse>.ThrowError
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+    name: ThrowError
+    nameWithType: Endpoint(Of TRequest, TResponse).ThrowError
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
     nameWithType: )
@@ -9612,32 +9706,43 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.Endpoint`2.AllowFormData
-  commentId: M:FastEndpoints.Endpoint`2.AllowFormData
-  name: AllowFormData()
-  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData()
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData()
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData()
+- uid: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
+  isExternal: true
+  name: AllowFormData(Boolean)
+  nameWithType: Endpoint<TRequest, TResponse>.AllowFormData(Boolean)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData(System.Boolean)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AllowFormData(Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData(System.Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.AllowFormData
+  - uid: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
     name: AllowFormData
     nameWithType: Endpoint<TRequest, TResponse>.AllowFormData
     fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AllowFormData
   - name: (
     nameWithType: (
     fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.AllowFormData
+  - uid: FastEndpoints.Endpoint`2.AllowFormData(System.Boolean)
     name: AllowFormData
     nameWithType: Endpoint(Of TRequest, TResponse).AllowFormData
     fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AllowFormData
   - name: (
     nameWithType: (
     fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -12218,6 +12323,46 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ValidationFailed
   nameWithType.vb: Endpoint(Of TRequest, TResponse).ValidationFailed
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ValidationFailed
+- uid: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+  isExternal: true
+  name: AddError(ValidationFailure)
+  nameWithType: Endpoint<TRequest, TResponse>.AddError(ValidationFailure)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError(FluentValidation.Results.ValidationFailure)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).AddError(ValidationFailure)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(FluentValidation.Results.ValidationFailure)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+    name: AddError
+    nameWithType: Endpoint<TRequest, TResponse>.AddError
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.AddError(FluentValidation.Results.ValidationFailure)
+    name: AddError
+    nameWithType: Endpoint(Of TRequest, TResponse).AddError
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.Endpoint`2.AddError(System.String,System.String,FluentValidation.Severity)
   isExternal: true
@@ -12431,6 +12576,46 @@ references:
     name: Severity
     nameWithType: Severity
     fullName: FluentValidation.Severity
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+  isExternal: true
+  name: ThrowError(ValidationFailure)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(ValidationFailure)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(FluentValidation.Results.ValidationFailure)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(ValidationFailure)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(FluentValidation.Results.ValidationFailure)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+    name: ThrowError
+    nameWithType: Endpoint<TRequest, TResponse>.ThrowError
+    fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
+    name: ThrowError
+    nameWithType: Endpoint(Of TRequest, TResponse).ThrowError
+    fullName: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
     nameWithType: )

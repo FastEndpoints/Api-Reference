@@ -16,7 +16,7 @@ items:
   source:
     id: CommandHandler
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandHandler.cs
-    startLine: 50
+    startLine: 12
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -35,18 +35,23 @@ items:
           Implements ICommandHandler(Of TCommand), ICommandHandler
   inheritance:
   - System.Object
+  - FastEndpoints.ValidationContext
+  - FastEndpoints.ValidationContext{{TCommand}}
   - FastEndpoints.CommandHandlerBase{{TCommand}}
   implements:
   - FastEndpoints.ICommandHandler{{TCommand}}
   - FastEndpoints.ICommandHandler
   inheritedMembers:
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.ValidationFailures
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.ValidationFailed
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.AddError(System.String,System.String,FluentValidation.Severity)
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.AddError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity)
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.ThrowError(System.String)
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String)
-  - FastEndpoints.CommandHandlerBase{{TCommand}}.ThrowIfAnyErrors
+  - FastEndpoints.ValidationContext{{TCommand}}.Instance
+  - FastEndpoints.ValidationContext{{TCommand}}.AddError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity)
+  - FastEndpoints.ValidationContext{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String)
+  - FastEndpoints.ValidationContext.ValidationFailures
+  - FastEndpoints.ValidationContext.ValidationFailed
+  - FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
+  - FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
+  - FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure)
+  - FastEndpoints.ValidationContext.ThrowError(System.String)
+  - FastEndpoints.ValidationContext.ThrowIfAnyErrors
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -54,6 +59,8 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  extensionMethods:
+  - FastEndpoints.ICommandHandler{`0}.FastEndpoints.CommandExtensions.RegisterForTesting``1
   nameWithType.vb: CommandHandler(Of TCommand)
   modifiers.csharp:
   - public
@@ -79,7 +86,7 @@ items:
   source:
     id: ExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandHandler.cs
-    startLine: 53
+    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -118,6 +125,50 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: FastEndpoints.ValidationContext
+  commentId: T:FastEndpoints.ValidationContext
+  parent: FastEndpoints
+  name: ValidationContext
+  nameWithType: ValidationContext
+  fullName: FastEndpoints.ValidationContext
+- uid: FastEndpoints.ValidationContext{{TCommand}}
+  commentId: T:FastEndpoints.ValidationContext{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.ValidationContext`1
+  name: ValidationContext<TCommand>
+  nameWithType: ValidationContext<TCommand>
+  fullName: FastEndpoints.ValidationContext<TCommand>
+  nameWithType.vb: ValidationContext(Of TCommand)
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand)
+  name.vb: ValidationContext(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext`1
+    name: ValidationContext
+    nameWithType: ValidationContext
+    fullName: FastEndpoints.ValidationContext
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext`1
+    name: ValidationContext
+    nameWithType: ValidationContext
+    fullName: FastEndpoints.ValidationContext
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.CommandHandlerBase{{TCommand}}
   commentId: T:FastEndpoints.CommandHandlerBase{`0}
   parent: FastEndpoints
@@ -157,7 +208,7 @@ references:
     nameWithType: )
     fullName: )
 - uid: FastEndpoints.ICommandHandler{{TCommand}}
-  commentId: T:FastEndpoints.ICommandHandler{`0}
+  commentId: T:FastEndpoints.ICommandHandler{``0}
   parent: FastEndpoints
   definition: FastEndpoints.ICommandHandler`1
   name: ICommandHandler<TCommand>
@@ -200,112 +251,30 @@ references:
   name: ICommandHandler
   nameWithType: ICommandHandler
   fullName: FastEndpoints.ICommandHandler
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.ValidationFailures
-  commentId: P:FastEndpoints.CommandHandlerBase{`0}.ValidationFailures
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.ValidationFailures
-  name: ValidationFailures
-  nameWithType: CommandHandlerBase<TCommand>.ValidationFailures
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ValidationFailures
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ValidationFailures
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ValidationFailures
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.ValidationFailed
-  commentId: P:FastEndpoints.CommandHandlerBase{`0}.ValidationFailed
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.ValidationFailed
-  name: ValidationFailed
-  nameWithType: CommandHandlerBase<TCommand>.ValidationFailed
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ValidationFailed
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ValidationFailed
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ValidationFailed
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.AddError(System.String,System.String,FluentValidation.Severity)
-  commentId: M:FastEndpoints.CommandHandlerBase{`0}.AddError(System.String,System.String,FluentValidation.Severity)
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
-  name: AddError(String, String, Severity)
-  nameWithType: CommandHandlerBase<TCommand>.AddError(String, String, Severity)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError(System.String, System.String, FluentValidation.Severity)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).AddError(String, String, Severity)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).AddError(System.String, System.String, FluentValidation.Severity)
-  spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
-    name: AddError
-    nameWithType: CommandHandlerBase<TCommand>.AddError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: FluentValidation.Severity
-    name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
-    name: AddError
-    nameWithType: CommandHandlerBase(Of TCommand).AddError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).AddError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: FluentValidation.Severity
-    name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.AddError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity)
-  commentId: M:FastEndpoints.CommandHandlerBase{`0}.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+- uid: FastEndpoints.ValidationContext{{TCommand}}.Instance
+  commentId: P:FastEndpoints.ValidationContext{`0}.Instance
+  parent: FastEndpoints.ValidationContext{{TCommand}}
+  definition: FastEndpoints.ValidationContext`1.Instance
+  name: Instance
+  nameWithType: ValidationContext<TCommand>.Instance
+  fullName: FastEndpoints.ValidationContext<TCommand>.Instance
+  nameWithType.vb: ValidationContext(Of TCommand).Instance
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).Instance
+- uid: FastEndpoints.ValidationContext{{TCommand}}.AddError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.ValidationContext{`0}.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  parent: FastEndpoints.ValidationContext{{TCommand}}
+  definition: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   name: AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
-  nameWithType: CommandHandlerBase<TCommand>.AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String, System.String, FluentValidation.Severity)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String, System.String, FluentValidation.Severity)
+  nameWithType: ValidationContext<TCommand>.AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
+  fullName: FastEndpoints.ValidationContext<TCommand>.AddError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String, System.String, FluentValidation.Severity)
+  nameWithType.vb: ValidationContext(Of TCommand).AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String, System.String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
   spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: CommandHandlerBase<TCommand>.AddError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError
+    nameWithType: ValidationContext<TCommand>.AddError
+    fullName: FastEndpoints.ValidationContext<TCommand>.AddError
   - name: (
     nameWithType: (
     fullName: (
@@ -370,10 +339,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: CommandHandlerBase(Of TCommand).AddError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).AddError
+    nameWithType: ValidationContext(Of TCommand).AddError
+    fullName: FastEndpoints.ValidationContext(Of TCommand).AddError
   - name: (
     nameWithType: (
     fullName: (
@@ -437,62 +406,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.ThrowError(System.String)
-  commentId: M:FastEndpoints.CommandHandlerBase{`0}.ThrowError(System.String)
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
-  name: ThrowError(String)
-  nameWithType: CommandHandlerBase<TCommand>.ThrowError(String)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError(System.String)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ThrowError(String)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError(System.String)
-  spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
-    name: ThrowError
-    nameWithType: CommandHandlerBase<TCommand>.ThrowError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
-    name: ThrowError
-    nameWithType: CommandHandlerBase(Of TCommand).ThrowError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String)
-  commentId: M:FastEndpoints.CommandHandlerBase{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+- uid: FastEndpoints.ValidationContext{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String)
+  commentId: M:FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+  parent: FastEndpoints.ValidationContext{{TCommand}}
+  definition: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
   name: ThrowError(Expression<Func<TCommand, Object>>, String)
-  nameWithType: CommandHandlerBase<TCommand>.ThrowError(Expression<Func<TCommand, Object>>, String)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ThrowError(Expression(Of Func(Of TCommand, Object)), String)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String)
+  nameWithType: ValidationContext<TCommand>.ThrowError(Expression<Func<TCommand, Object>>, String)
+  fullName: FastEndpoints.ValidationContext<TCommand>.ThrowError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String)
+  nameWithType.vb: ValidationContext(Of TCommand).ThrowError(Expression(Of Func(Of TCommand, Object)), String)
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String)
   name.vb: ThrowError(Expression(Of Func(Of TCommand, Object)), String)
   spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
     name: ThrowError
-    nameWithType: CommandHandlerBase<TCommand>.ThrowError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError
+    nameWithType: ValidationContext<TCommand>.ThrowError
+    fullName: FastEndpoints.ValidationContext<TCommand>.ThrowError
   - name: (
     nameWithType: (
     fullName: (
@@ -541,10 +469,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
     name: ThrowError
-    nameWithType: CommandHandlerBase(Of TCommand).ThrowError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError
+    nameWithType: ValidationContext(Of TCommand).ThrowError
+    fullName: FastEndpoints.ValidationContext(Of TCommand).ThrowError
   - name: (
     nameWithType: (
     fullName: (
@@ -592,20 +520,217 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.CommandHandlerBase{{TCommand}}.ThrowIfAnyErrors
-  commentId: M:FastEndpoints.CommandHandlerBase{`0}.ThrowIfAnyErrors
-  parent: FastEndpoints.CommandHandlerBase{{TCommand}}
-  definition: FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
-  name: ThrowIfAnyErrors()
-  nameWithType: CommandHandlerBase<TCommand>.ThrowIfAnyErrors()
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowIfAnyErrors()
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ThrowIfAnyErrors()
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowIfAnyErrors()
+- uid: FastEndpoints.ValidationContext.ValidationFailures
+  commentId: P:FastEndpoints.ValidationContext.ValidationFailures
+  parent: FastEndpoints.ValidationContext
+  name: ValidationFailures
+  nameWithType: ValidationContext.ValidationFailures
+  fullName: FastEndpoints.ValidationContext.ValidationFailures
+- uid: FastEndpoints.ValidationContext.ValidationFailed
+  commentId: P:FastEndpoints.ValidationContext.ValidationFailed
+  parent: FastEndpoints.ValidationContext
+  name: ValidationFailed
+  nameWithType: ValidationContext.ValidationFailed
+  fullName: FastEndpoints.ValidationContext.ValidationFailed
+- uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
+  parent: FastEndpoints.ValidationContext
+  isExternal: true
+  name: AddError(ValidationFailure)
+  nameWithType: ValidationContext.AddError(ValidationFailure)
+  fullName: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
   spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
+  - uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
+    name: AddError
+    nameWithType: ValidationContext.AddError
+    fullName: FastEndpoints.ValidationContext.AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
+    name: AddError
+    nameWithType: ValidationContext.AddError
+    fullName: FastEndpoints.ValidationContext.AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
+  parent: FastEndpoints.ValidationContext
+  isExternal: true
+  name: AddError(String, String, Severity)
+  nameWithType: ValidationContext.AddError(String, String, Severity)
+  fullName: FastEndpoints.ValidationContext.AddError(System.String, System.String, FluentValidation.Severity)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
+    name: AddError
+    nameWithType: ValidationContext.AddError
+    fullName: FastEndpoints.ValidationContext.AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FluentValidation.Severity
+    name: Severity
+    nameWithType: Severity
+    fullName: FluentValidation.Severity
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
+    name: AddError
+    nameWithType: ValidationContext.AddError
+    fullName: FastEndpoints.ValidationContext.AddError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FluentValidation.Severity
+    name: Severity
+    nameWithType: Severity
+    fullName: FluentValidation.Severity
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure)
+  commentId: M:FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure)
+  parent: FastEndpoints.ValidationContext
+  isExternal: true
+  name: ThrowError(ValidationFailure)
+  nameWithType: ValidationContext.ThrowError(ValidationFailure)
+  fullName: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure)
+    name: ThrowError
+    nameWithType: ValidationContext.ThrowError
+    fullName: FastEndpoints.ValidationContext.ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure)
+    name: ThrowError
+    nameWithType: ValidationContext.ThrowError
+    fullName: FastEndpoints.ValidationContext.ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    nameWithType: ValidationFailure
+    fullName: FluentValidation.Results.ValidationFailure
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ValidationContext.ThrowError(System.String)
+  commentId: M:FastEndpoints.ValidationContext.ThrowError(System.String)
+  parent: FastEndpoints.ValidationContext
+  isExternal: true
+  name: ThrowError(String)
+  nameWithType: ValidationContext.ThrowError(String)
+  fullName: FastEndpoints.ValidationContext.ThrowError(System.String)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext.ThrowError(System.String)
+    name: ThrowError
+    nameWithType: ValidationContext.ThrowError
+    fullName: FastEndpoints.ValidationContext.ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext.ThrowError(System.String)
+    name: ThrowError
+    nameWithType: ValidationContext.ThrowError
+    fullName: FastEndpoints.ValidationContext.ThrowError
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors
+  commentId: M:FastEndpoints.ValidationContext.ThrowIfAnyErrors
+  parent: FastEndpoints.ValidationContext
+  name: ThrowIfAnyErrors()
+  nameWithType: ValidationContext.ThrowIfAnyErrors()
+  fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors()
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors
     name: ThrowIfAnyErrors
-    nameWithType: CommandHandlerBase<TCommand>.ThrowIfAnyErrors
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowIfAnyErrors
+    nameWithType: ValidationContext.ThrowIfAnyErrors
+    fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors
   - name: (
     nameWithType: (
     fullName: (
@@ -613,10 +738,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
+  - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors
     name: ThrowIfAnyErrors
-    nameWithType: CommandHandlerBase(Of TCommand).ThrowIfAnyErrors
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowIfAnyErrors
+    nameWithType: ValidationContext.ThrowIfAnyErrors
+    fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors
   - name: (
     nameWithType: (
     fullName: (
@@ -902,12 +1027,80 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.ICommandHandler{`0}.FastEndpoints.CommandExtensions.RegisterForTesting``1
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  parent: FastEndpoints.CommandExtensions
+  definition: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  name: RegisterForTesting<TCommand>()
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand>()
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>()
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)()
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)()
+  name.vb: RegisterForTesting(Of TCommand)()
+  spec.csharp:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1
+    name: RegisterForTesting<TCommand>
+    nameWithType: CommandExtensions.RegisterForTesting<TCommand>
+    fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1
+    name: RegisterForTesting(Of TCommand)
+    nameWithType: CommandExtensions.RegisterForTesting(Of TCommand)
+    fullName: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.ValidationContext`1
+  commentId: T:FastEndpoints.ValidationContext`1
+  name: ValidationContext<T>
+  nameWithType: ValidationContext<T>
+  fullName: FastEndpoints.ValidationContext<T>
+  nameWithType.vb: ValidationContext(Of T)
+  fullName.vb: FastEndpoints.ValidationContext(Of T)
+  name.vb: ValidationContext(Of T)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext`1
+    name: ValidationContext
+    nameWithType: ValidationContext
+    fullName: FastEndpoints.ValidationContext
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext`1
+    name: ValidationContext
+    nameWithType: ValidationContext
+    fullName: FastEndpoints.ValidationContext
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.CommandHandlerBase`1
   commentId: T:FastEndpoints.CommandHandlerBase`1
   name: CommandHandlerBase<TCommand>
@@ -980,106 +1173,27 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.CommandHandlerBase`1.ValidationFailures
-  commentId: P:FastEndpoints.CommandHandlerBase`1.ValidationFailures
-  name: ValidationFailures
-  nameWithType: CommandHandlerBase<TCommand>.ValidationFailures
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ValidationFailures
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ValidationFailures
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ValidationFailures
-- uid: FastEndpoints.CommandHandlerBase`1.ValidationFailed
-  commentId: P:FastEndpoints.CommandHandlerBase`1.ValidationFailed
-  name: ValidationFailed
-  nameWithType: CommandHandlerBase<TCommand>.ValidationFailed
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ValidationFailed
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ValidationFailed
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ValidationFailed
-- uid: FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
-  commentId: M:FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
+- uid: FastEndpoints.ValidationContext`1.Instance
+  commentId: P:FastEndpoints.ValidationContext`1.Instance
+  name: Instance
+  nameWithType: ValidationContext<T>.Instance
+  fullName: FastEndpoints.ValidationContext<T>.Instance
+  nameWithType.vb: ValidationContext(Of T).Instance
+  fullName.vb: FastEndpoints.ValidationContext(Of T).Instance
+- uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  commentId: M:FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   isExternal: true
-  name: AddError(String, String, Severity)
-  nameWithType: CommandHandlerBase<TCommand>.AddError(String, String, Severity)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError(System.String, System.String, FluentValidation.Severity)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).AddError(String, String, Severity)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).AddError(System.String, System.String, FluentValidation.Severity)
+  name: AddError(Expression<Func<T, Object>>, String, String, Severity)
+  nameWithType: ValidationContext<T>.AddError(Expression<Func<T, Object>>, String, String, Severity)
+  fullName: FastEndpoints.ValidationContext<T>.AddError(System.Linq.Expressions.Expression<System.Func<T, System.Object>>, System.String, System.String, FluentValidation.Severity)
+  nameWithType.vb: ValidationContext(Of T).AddError(Expression(Of Func(Of T, Object)), String, String, Severity)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).AddError(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object)), System.String, System.String, FluentValidation.Severity)
+  name.vb: AddError(Expression(Of Func(Of T, Object)), String, String, Severity)
   spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
+  - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: CommandHandlerBase<TCommand>.AddError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: FluentValidation.Severity
-    name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.String,System.String,FluentValidation.Severity)
-    name: AddError
-    nameWithType: CommandHandlerBase(Of TCommand).AddError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).AddError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: FluentValidation.Severity
-    name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
-  commentId: M:FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
-  isExternal: true
-  name: AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
-  nameWithType: CommandHandlerBase<TCommand>.AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String, System.String, FluentValidation.Severity)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String, System.String, FluentValidation.Severity)
-  name.vb: AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
-  spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
-    name: AddError
-    nameWithType: CommandHandlerBase<TCommand>.AddError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.AddError
+    nameWithType: ValidationContext<T>.AddError
+    fullName: FastEndpoints.ValidationContext<T>.AddError
   - name: (
     nameWithType: (
     fullName: (
@@ -1099,9 +1213,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1144,10 +1258,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: CommandHandlerBase(Of TCommand).AddError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).AddError
+    nameWithType: ValidationContext(Of T).AddError
+    fullName: FastEndpoints.ValidationContext(Of T).AddError
   - name: (
     nameWithType: (
     fullName: (
@@ -1167,9 +1281,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1211,60 +1325,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
-  commentId: M:FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
+- uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+  commentId: M:FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
   isExternal: true
-  name: ThrowError(String)
-  nameWithType: CommandHandlerBase<TCommand>.ThrowError(String)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError(System.String)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ThrowError(String)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError(System.String)
+  name: ThrowError(Expression<Func<T, Object>>, String)
+  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, Object>>, String)
+  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, System.Object>>, System.String)
+  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object)), System.String)
+  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String)
   spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
+  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
     name: ThrowError
-    nameWithType: CommandHandlerBase<TCommand>.ThrowError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.String)
-    name: ThrowError
-    nameWithType: CommandHandlerBase(Of TCommand).ThrowError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-  commentId: M:FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-  isExternal: true
-  name: ThrowError(Expression<Func<TCommand, Object>>, String)
-  nameWithType: CommandHandlerBase<TCommand>.ThrowError(Expression<Func<TCommand, Object>>, String)
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String)
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ThrowError(Expression(Of Func(Of TCommand, Object)), String)
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String)
-  name.vb: ThrowError(Expression(Of Func(Of TCommand, Object)), String)
-  spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-    name: ThrowError
-    nameWithType: CommandHandlerBase<TCommand>.ThrowError
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowError
+    nameWithType: ValidationContext<T>.ThrowError
+    fullName: FastEndpoints.ValidationContext<T>.ThrowError
   - name: (
     nameWithType: (
     fullName: (
@@ -1284,9 +1358,9 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1313,10 +1387,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
     name: ThrowError
-    nameWithType: CommandHandlerBase(Of TCommand).ThrowError
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowError
+    nameWithType: ValidationContext(Of T).ThrowError
+    fullName: FastEndpoints.ValidationContext(Of T).ThrowError
   - name: (
     nameWithType: (
     fullName: (
@@ -1336,9 +1410,9 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1364,35 +1438,68 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
-  commentId: M:FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
-  name: ThrowIfAnyErrors()
-  nameWithType: CommandHandlerBase<TCommand>.ThrowIfAnyErrors()
-  fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowIfAnyErrors()
-  nameWithType.vb: CommandHandlerBase(Of TCommand).ThrowIfAnyErrors()
-  fullName.vb: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowIfAnyErrors()
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand>)
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand))
+  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
   spec.csharp:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
-    name: ThrowIfAnyErrors
-    nameWithType: CommandHandlerBase<TCommand>.ThrowIfAnyErrors
-    fullName: FastEndpoints.CommandHandlerBase<TCommand>.ThrowIfAnyErrors
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+    name: RegisterForTesting<TCommand>
+    nameWithType: CommandExtensions.RegisterForTesting<TCommand>
+    fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>
   - name: (
     nameWithType: (
     fullName: (
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandHandlerBase`1.ThrowIfAnyErrors
-    name: ThrowIfAnyErrors
-    nameWithType: CommandHandlerBase(Of TCommand).ThrowIfAnyErrors
-    fullName: FastEndpoints.CommandHandlerBase(Of TCommand).ThrowIfAnyErrors
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+    name: RegisterForTesting(Of TCommand)
+    nameWithType: CommandExtensions.RegisterForTesting(Of TCommand)
+    fullName: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)
   - name: (
     nameWithType: (
     fullName: (
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
   - name: )
     nameWithType: )
     fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.CommandExtensions
+  commentId: T:FastEndpoints.CommandExtensions
+  parent: FastEndpoints
+  name: CommandExtensions
+  nameWithType: CommandExtensions
+  fullName: FastEndpoints.CommandExtensions
 - uid: FastEndpoints.CommandHandler`1.ExecuteAsync*
   commentId: Overload:FastEndpoints.CommandHandler`1.ExecuteAsync
   name: ExecuteAsync

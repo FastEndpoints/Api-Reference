@@ -125,14 +125,13 @@
 
 
   <a id="FastEndpoints_CommandExtensions_ExecuteAsync_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync*"></a>
-  <h4 id="FastEndpoints_CommandExtensions_ExecuteAsync__1___0_System_Threading_CancellationToken_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)">ExecuteAsync&lt;TCommand&gt;(TCommand, CancellationToken)</h4>
+  <h4 id="FastEndpoints_CommandExtensions_ExecuteAsync_FastEndpoints_ICommand_System_Threading_CancellationToken_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)">ExecuteAsync(ICommand, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>executes the command that does not return a result</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task ExecuteAsync&lt;TCommand&gt;(this TCommand command, CancellationToken ct = default(CancellationToken))
-    where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task ExecuteAsync(this ICommand command, CancellationToken ct = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -145,7 +144,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TCommand</span></td>
+        <td><a class="xref" href="FastEndpoints.ICommand.html">ICommand</a></td>
         <td><span class="parametername">command</span></td>
         <td><p>the command to execute</p>
 </td>
@@ -170,22 +169,6 @@
       <tr>
         <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCommand</span></td>
-        <td><p>the type of the command</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -283,6 +266,103 @@
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>thrown when a handler for the command cannot be instantiated</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_CommandExtensions_RegisterForTesting_" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting*"></a>
+  <h4 id="FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})">RegisterForTesting&lt;TCommand&gt;(ICommandHandler&lt;TCommand&gt;)</h4>
+  <div class="markdown level1 summary"><p>registers a fake command handler for unit testing purposes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterForTesting&lt;TCommand&gt;(this ICommandHandler&lt;TCommand&gt; handler)
+    where TCommand : ICommand</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ICommandHandler-1.html">ICommandHandler</a>&lt;TCommand&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>a fake handler instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>type of the command</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_CommandExtensions_RegisterForTesting_" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting*"></a>
+  <h4 id="FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})">RegisterForTesting&lt;TCommand, TResult&gt;(ICommandHandler&lt;TCommand, TResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>registers a fake command handler for unit testing purposes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RegisterForTesting&lt;TCommand, TResult&gt;(this ICommandHandler&lt;TCommand, TResult&gt; handler)
+    where TCommand : ICommand&lt;TResult&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ICommandHandler-2.html">ICommandHandler</a>&lt;TCommand, TResult&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>a fake handler instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>type of the command</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>type of the result being returned by the handler</p>
 </td>
       </tr>
     </tbody>

@@ -25,11 +25,11 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
 
-      public class HideFromDocsAttribute : Attribute
+      public sealed class HideFromDocsAttribute : Attribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.All, AllowMultiple:=False)>
 
-      Public Class HideFromDocsAttribute
+      Public NotInheritable Class HideFromDocsAttribute
 
           Inherits Attribute
   inheritance:
@@ -90,9 +90,11 @@ items:
       value: false
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 references:
 - uid: FastEndpoints

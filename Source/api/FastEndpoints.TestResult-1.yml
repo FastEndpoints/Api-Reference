@@ -25,12 +25,12 @@ items:
   summary: "\na record encapsulating the http response as well as the resulting dto of a test execution\n"
   example: []
   syntax:
-    content: 'public class TestResult<TResponse> : IEquatable<TestResult<TResponse>>'
+    content: 'public sealed class TestResult<TResponse> : IEquatable<TestResult<TResponse>>'
     typeParameters:
     - id: TResponse
       description: the type of the response dto
     content.vb: >-
-      Public Class TestResult(Of TResponse)
+      Public NotInheritable Class TestResult(Of TResponse)
 
           Implements IEquatable(Of TestResult(Of TResponse))
   inheritance:
@@ -48,9 +48,11 @@ items:
   nameWithType.vb: TestResult(Of TResponse)
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
   fullName.vb: FastEndpoints.TestResult(Of TResponse)
   name.vb: TestResult(Of TResponse)

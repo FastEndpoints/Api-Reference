@@ -203,7 +203,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;TestResult&lt;TResponse&gt;&gt; DELETEAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; DELETEAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -266,22 +266,6 @@
       <tr>
         <td><span class="parametername">TResponse</span></td>
         <td><p>type of the response dto</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>thrown when the response body cannot be deserialized in to specified response dto type</p>
 </td>
       </tr>
     </tbody>
@@ -507,7 +491,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;TestResult&lt;TResponse&gt;&gt; GETAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; GETAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -570,22 +554,6 @@
       <tr>
         <td><span class="parametername">TResponse</span></td>
         <td><p>type of the response dto</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>thrown when the response body cannot be deserialized in to specified response dto type</p>
 </td>
       </tr>
     </tbody>
@@ -734,13 +702,13 @@
 
 
   <a id="FastEndpoints_HttpClientExtensions_POSTAsync_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1)">POSTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">POSTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, Nullable&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>make a POST request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;HttpResponseMessage&gt; POSTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request)
+    <pre><code class="lang-csharp hljs">public static async Task&lt;HttpResponseMessage&gt; POSTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null)
     where TEndpoint : IEndpoint</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -762,6 +730,12 @@
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">sendAsFormData</span></td>
+        <td><p>when set to true, the request dto will be automatically converted to a <span class="xref">System.Net.Http.MultipartFormDataContent</span></p>
 </td>
       </tr>
     </tbody>
@@ -805,13 +779,13 @@
 
 
   <a id="FastEndpoints_HttpClientExtensions_POSTAsync_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient_System_String___0_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0)">POSTAsync&lt;TRequest, TResponse&gt;(HttpClient, String, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})">POSTAsync&lt;TRequest, TResponse&gt;(HttpClient, String, TRequest, Nullable&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>make a POST request using a request dto and get back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -838,6 +812,12 @@
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">sendAsFormData</span></td>
+        <td><p>when set to true, the request dto will be automatically converted to a <span class="xref">System.Net.Http.MultipartFormDataContent</span></p>
 </td>
       </tr>
     </tbody>
@@ -874,22 +854,6 @@
       <tr>
         <td><span class="parametername">TResponse</span></td>
         <td><p>type of the response dto</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>thrown when the response body cannot be deserialized in to specified response dto type</p>
 </td>
       </tr>
     </tbody>
@@ -962,13 +926,13 @@
 
 
   <a id="FastEndpoints_HttpClientExtensions_POSTAsync_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__3_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1)">POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__3_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, Nullable&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>make a POST request to an endpoint using auto route discovery using a request dto and get back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request)
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null)
     where TEndpoint : IEndpoint</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -990,6 +954,12 @@
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">sendAsFormData</span></td>
+        <td><p>when set to true, the request dto will be automatically converted to a <span class="xref">System.Net.Http.MultipartFormDataContent</span></p>
 </td>
       </tr>
     </tbody>
@@ -1038,13 +1008,13 @@
 
 
   <a id="FastEndpoints_HttpClientExtensions_PUTAsync_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1)">PUTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">PUTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, Nullable&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>make a PUT request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;HttpResponseMessage&gt; PUTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request)
+    <pre><code class="lang-csharp hljs">public static async Task&lt;HttpResponseMessage&gt; PUTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null)
     where TEndpoint : IEndpoint</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1066,6 +1036,12 @@
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">sendAsFormData</span></td>
+        <td><p>when set to true, the request dto will be automatically converted to a <span class="xref">System.Net.Http.MultipartFormDataContent</span></p>
 </td>
       </tr>
     </tbody>
@@ -1109,13 +1085,13 @@
 
 
   <a id="FastEndpoints_HttpClientExtensions_PUTAsync_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient_System_String___0_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0)">PUTAsync&lt;TRequest, TResponse&gt;(HttpClient, String, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})">PUTAsync&lt;TRequest, TResponse&gt;(HttpClient, String, TRequest, Nullable&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>make a PUT request using a request dto and get back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1142,6 +1118,12 @@
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">sendAsFormData</span></td>
+        <td><p>when set to true, the request dto will be automatically converted to a <span class="xref">System.Net.Http.MultipartFormDataContent</span></p>
 </td>
       </tr>
     </tbody>
@@ -1178,22 +1160,6 @@
       <tr>
         <td><span class="parametername">TResponse</span></td>
         <td><p>type of the response dto</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>thrown when the response body cannot be deserialized in to specified response dto type</p>
 </td>
       </tr>
     </tbody>
@@ -1266,13 +1232,13 @@
 
 
   <a id="FastEndpoints_HttpClientExtensions_PUTAsync_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__3_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1)">PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__3_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, Nullable&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>make a PUT request to an endpoint using auto route discovery using a request dto and get back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request)
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null)
     where TEndpoint : IEndpoint</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1294,6 +1260,12 @@
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">sendAsFormData</span></td>
+        <td><p>when set to true, the request dto will be automatically converted to a <span class="xref">System.Net.Http.MultipartFormDataContent</span></p>
 </td>
       </tr>
     </tbody>
@@ -1336,6 +1308,88 @@
         <td><span class="parametername">TResponse</span></td>
         <td><p>the type of the response dto</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_HttpClientExtensions_Send_" data-uid="FastEndpoints.HttpClientExtensions.Send*"></a>
+  <h4 id="FastEndpoints_HttpClientExtensions_Send__2_System_Net_Http_HttpClient_System_Net_Http_HttpMethod_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.Send``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Nullable{System.Boolean})">Send&lt;TRequest, TResponse&gt;(HttpClient, HttpMethod, String, TRequest, Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>a set of extensions to the httpclient in order to facilitate route-less integration testing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async Task&lt;TestResult&lt;TResponse&gt;&gt; Send&lt;TRequest, TResponse&gt;(this HttpClient client, HttpMethod method, string requestUri, TRequest request, bool? isFormContent = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Net.Http.HttpClient</span></td>
+        <td><span class="parametername">client</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Net.Http.HttpMethod</span></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">requestUri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">TRequest</span></td>
+        <td><span class="parametername">request</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">isFormContent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="FastEndpoints.TestResult-1.html">TestResult</a>&lt;TResponse&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TRequest</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResponse</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

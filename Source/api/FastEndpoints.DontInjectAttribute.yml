@@ -25,11 +25,11 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 
-      public class DontInjectAttribute : Attribute
+      public sealed class DontInjectAttribute : Attribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Property, AllowMultiple:=False)>
 
-      Public Class DontInjectAttribute
+      Public NotInheritable Class DontInjectAttribute
 
           Inherits Attribute
   inheritance:
@@ -90,9 +90,11 @@ items:
       value: false
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 references:
 - uid: FastEndpoints

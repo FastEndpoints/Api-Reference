@@ -26,11 +26,11 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 
-      public class HttpGetAttribute : HttpAttribute
+      public sealed class HttpGetAttribute : HttpAttribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Class, Inherited:=False, AllowMultiple:=False)>
 
-      Public Class HttpGetAttribute
+      Public NotInheritable Class HttpGetAttribute
 
           Inherits HttpAttribute
   inheritance:
@@ -95,9 +95,11 @@ items:
       value: false
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: FastEndpoints.HttpGetAttribute.#ctor(System.String[])
   commentId: M:FastEndpoints.HttpGetAttribute.#ctor(System.String[])

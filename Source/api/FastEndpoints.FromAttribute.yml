@@ -26,11 +26,11 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 
-      public class FromAttribute : FromClaimAttribute
+      public sealed class FromAttribute : FromClaimAttribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Property, AllowMultiple:=False)>
 
-      Public Class FromAttribute
+      Public NotInheritable Class FromAttribute
 
           Inherits FromClaimAttribute
   inheritance:
@@ -95,9 +95,11 @@ items:
       value: false
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 - uid: FastEndpoints.FromAttribute.#ctor(System.String,System.Boolean)
   commentId: M:FastEndpoints.FromAttribute.#ctor(System.String,System.Boolean)

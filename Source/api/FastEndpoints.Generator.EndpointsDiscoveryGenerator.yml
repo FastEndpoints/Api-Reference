@@ -5,8 +5,7 @@ items:
   id: EndpointsDiscoveryGenerator
   parent: FastEndpoints.Generator
   children:
-  - FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  - FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  - FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
   langs:
   - csharp
   - vb
@@ -17,25 +16,25 @@ items:
   source:
     id: EndpointsDiscoveryGenerator
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Generator\EndpointsDiscoveryGenerator.cs
-    startLine: 6
+    startLine: 8
   assemblies:
   - FastEndpoints.Generator
   namespace: FastEndpoints.Generator
   syntax:
     content: >-
-      [Generator]
+      [Generator("C#", new string[]{})]
 
-      public class EndpointsDiscoveryGenerator : ISourceGenerator
+      public class EndpointsDiscoveryGenerator : IIncrementalGenerator
     content.vb: >-
-      <Generator>
+      <Generator("C#", New String() {})>
 
       Public Class EndpointsDiscoveryGenerator
 
-          Implements ISourceGenerator
+          Implements IIncrementalGenerator
   inheritance:
   - System.Object
   implements:
-  - Microsoft.CodeAnalysis.ISourceGenerator
+  - Microsoft.CodeAnalysis.IIncrementalGenerator
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -44,74 +43,39 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  attributes:
-  - type: Microsoft.CodeAnalysis.GeneratorAttribute
-    ctor: Microsoft.CodeAnalysis.GeneratorAttribute.#ctor
-    arguments: []
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
-  commentId: M:FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
-  id: Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+- uid: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
+  commentId: M:FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
+  id: Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
   parent: FastEndpoints.Generator.EndpointsDiscoveryGenerator
   langs:
   - csharp
   - vb
-  name: Initialize(GeneratorInitializationContext)
-  nameWithType: EndpointsDiscoveryGenerator.Initialize(GeneratorInitializationContext)
-  fullName: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  name: Initialize(IncrementalGeneratorInitializationContext)
+  nameWithType: EndpointsDiscoveryGenerator.Initialize(IncrementalGeneratorInitializationContext)
+  fullName: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
   type: Method
   source:
     id: Initialize
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Generator\EndpointsDiscoveryGenerator.cs
-    startLine: 9
+    startLine: 30
   assemblies:
   - FastEndpoints.Generator
   namespace: FastEndpoints.Generator
   syntax:
-    content: public void Initialize(GeneratorInitializationContext context)
+    content: public void Initialize(IncrementalGeneratorInitializationContext context)
     parameters:
     - id: context
-      type: Microsoft.CodeAnalysis.GeneratorInitializationContext
-    content.vb: Public Sub Initialize(context As GeneratorInitializationContext)
+      type: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
+    content.vb: Public Sub Initialize(context As IncrementalGeneratorInitializationContext)
   overload: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize*
   implements:
-  - Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  commentId: M:FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  id: Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  parent: FastEndpoints.Generator.EndpointsDiscoveryGenerator
-  langs:
-  - csharp
-  - vb
-  name: Execute(GeneratorExecutionContext)
-  nameWithType: EndpointsDiscoveryGenerator.Execute(GeneratorExecutionContext)
-  fullName: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  type: Method
-  source:
-    id: Execute
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Generator\EndpointsDiscoveryGenerator.cs
-    startLine: 11
-  assemblies:
-  - FastEndpoints.Generator
-  namespace: FastEndpoints.Generator
-  syntax:
-    content: public void Execute(GeneratorExecutionContext ctx)
-    parameters:
-    - id: ctx
-      type: Microsoft.CodeAnalysis.GeneratorExecutionContext
-    content.vb: Public Sub Execute(ctx As GeneratorExecutionContext)
-  overload: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute*
-  implements:
-  - Microsoft.CodeAnalysis.ISourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
+  - Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -129,13 +93,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Microsoft.CodeAnalysis.ISourceGenerator
-  commentId: T:Microsoft.CodeAnalysis.ISourceGenerator
+- uid: Microsoft.CodeAnalysis.IIncrementalGenerator
+  commentId: T:Microsoft.CodeAnalysis.IIncrementalGenerator
   parent: Microsoft.CodeAnalysis
   isExternal: true
-  name: ISourceGenerator
-  nameWithType: ISourceGenerator
-  fullName: Microsoft.CodeAnalysis.ISourceGenerator
+  name: IIncrementalGenerator
+  nameWithType: IIncrementalGenerator
+  fullName: Microsoft.CodeAnalysis.IIncrementalGenerator
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -432,104 +396,51 @@ references:
   name: Initialize
   nameWithType: EndpointsDiscoveryGenerator.Initialize
   fullName: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Initialize
-- uid: Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
-  commentId: M:Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
-  parent: Microsoft.CodeAnalysis.ISourceGenerator
+- uid: Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
+  commentId: M:Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
+  parent: Microsoft.CodeAnalysis.IIncrementalGenerator
   isExternal: true
-  name: Initialize(GeneratorInitializationContext)
-  nameWithType: ISourceGenerator.Initialize(GeneratorInitializationContext)
-  fullName: Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  name: Initialize(IncrementalGeneratorInitializationContext)
+  nameWithType: IIncrementalGenerator.Initialize(IncrementalGeneratorInitializationContext)
+  fullName: Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
   spec.csharp:
-  - uid: Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  - uid: Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
     name: Initialize
-    nameWithType: ISourceGenerator.Initialize
-    fullName: Microsoft.CodeAnalysis.ISourceGenerator.Initialize
+    nameWithType: IIncrementalGenerator.Initialize
+    fullName: Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.CodeAnalysis.GeneratorInitializationContext
-    name: GeneratorInitializationContext
-    nameWithType: GeneratorInitializationContext
-    fullName: Microsoft.CodeAnalysis.GeneratorInitializationContext
+  - uid: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
+    name: IncrementalGeneratorInitializationContext
+    nameWithType: IncrementalGeneratorInitializationContext
+    fullName: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  - uid: Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)
     name: Initialize
-    nameWithType: ISourceGenerator.Initialize
-    fullName: Microsoft.CodeAnalysis.ISourceGenerator.Initialize
+    nameWithType: IIncrementalGenerator.Initialize
+    fullName: Microsoft.CodeAnalysis.IIncrementalGenerator.Initialize
     isExternal: true
   - name: (
     nameWithType: (
     fullName: (
-  - uid: Microsoft.CodeAnalysis.GeneratorInitializationContext
-    name: GeneratorInitializationContext
-    nameWithType: GeneratorInitializationContext
-    fullName: Microsoft.CodeAnalysis.GeneratorInitializationContext
+  - uid: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
+    name: IncrementalGeneratorInitializationContext
+    nameWithType: IncrementalGeneratorInitializationContext
+    fullName: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.CodeAnalysis.GeneratorInitializationContext
-  commentId: T:Microsoft.CodeAnalysis.GeneratorInitializationContext
+- uid: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
+  commentId: T:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext
   parent: Microsoft.CodeAnalysis
   isExternal: true
-  name: GeneratorInitializationContext
-  nameWithType: GeneratorInitializationContext
-  fullName: Microsoft.CodeAnalysis.GeneratorInitializationContext
-- uid: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute*
-  commentId: Overload:FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute
-  name: Execute
-  nameWithType: EndpointsDiscoveryGenerator.Execute
-  fullName: FastEndpoints.Generator.EndpointsDiscoveryGenerator.Execute
-- uid: Microsoft.CodeAnalysis.ISourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  commentId: M:Microsoft.CodeAnalysis.ISourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  parent: Microsoft.CodeAnalysis.ISourceGenerator
-  isExternal: true
-  name: Execute(GeneratorExecutionContext)
-  nameWithType: ISourceGenerator.Execute(GeneratorExecutionContext)
-  fullName: Microsoft.CodeAnalysis.ISourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-  spec.csharp:
-  - uid: Microsoft.CodeAnalysis.ISourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-    name: Execute
-    nameWithType: ISourceGenerator.Execute
-    fullName: Microsoft.CodeAnalysis.ISourceGenerator.Execute
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.CodeAnalysis.GeneratorExecutionContext
-    name: GeneratorExecutionContext
-    nameWithType: GeneratorExecutionContext
-    fullName: Microsoft.CodeAnalysis.GeneratorExecutionContext
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Microsoft.CodeAnalysis.ISourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
-    name: Execute
-    nameWithType: ISourceGenerator.Execute
-    fullName: Microsoft.CodeAnalysis.ISourceGenerator.Execute
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: Microsoft.CodeAnalysis.GeneratorExecutionContext
-    name: GeneratorExecutionContext
-    nameWithType: GeneratorExecutionContext
-    fullName: Microsoft.CodeAnalysis.GeneratorExecutionContext
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.CodeAnalysis.GeneratorExecutionContext
-  commentId: T:Microsoft.CodeAnalysis.GeneratorExecutionContext
-  parent: Microsoft.CodeAnalysis
-  isExternal: true
-  name: GeneratorExecutionContext
-  nameWithType: GeneratorExecutionContext
-  fullName: Microsoft.CodeAnalysis.GeneratorExecutionContext
+  name: IncrementalGeneratorInitializationContext
+  nameWithType: IncrementalGeneratorInitializationContext
+  fullName: Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext

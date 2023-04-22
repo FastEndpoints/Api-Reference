@@ -25,11 +25,11 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 
-      public class FromQueryParamsAttribute : QueryParamAttribute
+      public sealed class FromQueryParamsAttribute : QueryParamAttribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Property, Inherited:=False, AllowMultiple:=False)>
 
-      Public Class FromQueryParamsAttribute
+      Public NotInheritable Class FromQueryParamsAttribute
 
           Inherits QueryParamAttribute
   inheritance:
@@ -94,9 +94,11 @@ items:
       value: false
   modifiers.csharp:
   - public
+  - sealed
   - class
   modifiers.vb:
   - Public
+  - NotInheritable
   - Class
 references:
 - uid: FastEndpoints

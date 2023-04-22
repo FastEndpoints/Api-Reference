@@ -13,7 +13,7 @@ items:
   - FastEndpoints.EndpointDefinition.AllowedPermissions
   - FastEndpoints.EndpointDefinition.AllowedRoles
   - FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
-  - FastEndpoints.EndpointDefinition.AllowFormData
+  - FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
   - FastEndpoints.EndpointDefinition.AnonymousVerbs
   - FastEndpoints.EndpointDefinition.AuthSchemeNames
   - FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])
@@ -30,7 +30,7 @@ items:
   - FastEndpoints.EndpointDefinition.EndpointTags
   - FastEndpoints.EndpointDefinition.EndpointType
   - FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32,System.Nullable{System.Int32})
-  - FastEndpoints.EndpointDefinition.FormDataAllowed
+  - FastEndpoints.EndpointDefinition.FormDataContentType
   - FastEndpoints.EndpointDefinition.MapperType
   - FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   - FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
@@ -716,31 +716,31 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: FastEndpoints.EndpointDefinition.FormDataAllowed
-  commentId: P:FastEndpoints.EndpointDefinition.FormDataAllowed
-  id: FormDataAllowed
+- uid: FastEndpoints.EndpointDefinition.FormDataContentType
+  commentId: P:FastEndpoints.EndpointDefinition.FormDataContentType
+  id: FormDataContentType
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
-  name: FormDataAllowed
-  nameWithType: EndpointDefinition.FormDataAllowed
-  fullName: FastEndpoints.EndpointDefinition.FormDataAllowed
+  name: FormDataContentType
+  nameWithType: EndpointDefinition.FormDataContentType
+  fullName: FastEndpoints.EndpointDefinition.FormDataContentType
   type: Property
   source:
-    id: FormDataAllowed
+    id: FormDataContentType
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public bool FormDataAllowed { get; }
+    content: public string FormDataContentType { get; }
     parameters: []
     return:
-      type: System.Boolean
-    content.vb: Public ReadOnly Property FormDataAllowed As Boolean
-  overload: FastEndpoints.EndpointDefinition.FormDataAllowed*
+      type: System.String
+    content.vb: Public ReadOnly Property FormDataContentType As String
+  overload: FastEndpoints.EndpointDefinition.FormDataContentType*
   modifiers.csharp:
   - public
   - get
@@ -971,29 +971,33 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: FastEndpoints.EndpointDefinition.AllowFormData
-  commentId: M:FastEndpoints.EndpointDefinition.AllowFormData
-  id: AllowFormData
+- uid: FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
+  commentId: M:FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
+  id: AllowFormData(System.Boolean)
   parent: FastEndpoints.EndpointDefinition
   langs:
   - csharp
   - vb
-  name: AllowFormData()
-  nameWithType: EndpointDefinition.AllowFormData()
-  fullName: FastEndpoints.EndpointDefinition.AllowFormData()
+  name: AllowFormData(Boolean)
+  nameWithType: EndpointDefinition.AllowFormData(Boolean)
+  fullName: FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
   type: Method
   source:
     id: AllowFormData
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 144
+    startLine: 145
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nenable multipart/form-data submissions\n"
+  summary: "\nenable form-data submissions\n"
   example: []
   syntax:
-    content: public void AllowFormData()
-    content.vb: Public Sub AllowFormData
+    content: public void AllowFormData(bool urlEncoded = false)
+    parameters:
+    - id: urlEncoded
+      type: System.Boolean
+      description: set to true to accept `application/x-www-form-urlencoded` content instead of `multipart/form-data` content.
+    content.vb: Public Sub AllowFormData(urlEncoded As Boolean = False)
   overload: FastEndpoints.EndpointDefinition.AllowFormData*
   modifiers.csharp:
   - public
@@ -1013,7 +1017,7 @@ items:
   source:
     id: AuthSchemes
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 151
+    startLine: 152
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1048,7 +1052,7 @@ items:
   source:
     id: Claims
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 162
+    startLine: 163
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1083,7 +1087,7 @@ items:
   source:
     id: ClaimsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 174
+    startLine: 175
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1118,7 +1122,7 @@ items:
   source:
     id: Description
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 189
+    startLine: 190
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1156,7 +1160,7 @@ items:
   source:
     id: DontAutoTag
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 199
+    startLine: 200
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1184,7 +1188,7 @@ items:
   source:
     id: DontCatchExceptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 206
+    startLine: 207
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1212,7 +1216,7 @@ items:
   source:
     id: DontThrowIfValidationFails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 212
+    startLine: 213
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1240,7 +1244,7 @@ items:
   source:
     id: EndpointVersion
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 219
+    startLine: 220
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1278,7 +1282,7 @@ items:
   source:
     id: Options
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 229
+    startLine: 230
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1313,7 +1317,7 @@ items:
   source:
     id: Permissions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 236
+    startLine: 237
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1348,7 +1352,7 @@ items:
   source:
     id: PermissionsAll
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 248
+    startLine: 249
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1383,7 +1387,7 @@ items:
   source:
     id: Policy
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 260
+    startLine: 261
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1418,7 +1422,7 @@ items:
   source:
     id: Policies
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 267
+    startLine: 268
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1453,7 +1457,7 @@ items:
   source:
     id: PostProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 278
+    startLine: 279
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1491,7 +1495,7 @@ items:
   source:
     id: PreProcessors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 288
+    startLine: 289
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1529,7 +1533,7 @@ items:
   source:
     id: ResponseCache
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 301
+    startLine: 302
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1576,7 +1580,7 @@ items:
   source:
     id: ResponseInterceptor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 318
+    startLine: 319
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1608,7 +1612,7 @@ items:
   source:
     id: Roles
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 325
+    startLine: 326
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1643,7 +1647,7 @@ items:
   source:
     id: RoutePrefixOverride
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 338
+    startLine: 339
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1675,7 +1679,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 344
+    startLine: 345
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1710,7 +1714,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 350
+    startLine: 351
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1747,7 +1751,7 @@ items:
   source:
     id: Summary
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 361
+    startLine: 362
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1779,7 +1783,7 @@ items:
   source:
     id: Tags
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 369
+    startLine: 370
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1814,7 +1818,7 @@ items:
   source:
     id: Throttle
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 385
+    startLine: 386
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1852,7 +1856,7 @@ items:
   source:
     id: Validator
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 391
+    startLine: 392
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -2421,11 +2425,11 @@ references:
   name: EndpointTags
   nameWithType: EndpointDefinition.EndpointTags
   fullName: FastEndpoints.EndpointDefinition.EndpointTags
-- uid: FastEndpoints.EndpointDefinition.FormDataAllowed*
-  commentId: Overload:FastEndpoints.EndpointDefinition.FormDataAllowed
-  name: FormDataAllowed
-  nameWithType: EndpointDefinition.FormDataAllowed
-  fullName: FastEndpoints.EndpointDefinition.FormDataAllowed
+- uid: FastEndpoints.EndpointDefinition.FormDataContentType*
+  commentId: Overload:FastEndpoints.EndpointDefinition.FormDataContentType
+  name: FormDataContentType
+  nameWithType: EndpointDefinition.FormDataContentType
+  fullName: FastEndpoints.EndpointDefinition.FormDataContentType
 - uid: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix*
   commentId: Overload:FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   name: OverriddenRoutePrefix
