@@ -5,9 +5,13 @@ items:
   id: Factory
   parent: FastEndpoints
   children:
+  - FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   - FastEndpoints.Factory.Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
   - FastEndpoints.Factory.Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
   - FastEndpoints.Factory.Create``1(System.Object[])
+  - FastEndpoints.Factory.CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  - FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   langs:
   - csharp
   - vb
@@ -18,7 +22,7 @@ items:
   source:
     id: Factory
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -58,7 +62,7 @@ items:
   source:
     id: Create
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 17
+    startLine: 20
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -66,22 +70,22 @@ items:
   example: []
   syntax:
     content: >-
-      public static TEndpoint Create<TEndpoint>(DefaultHttpContext httpContext, params object[] dependencies)
+      public static TEndpoint Create<TEndpoint>(DefaultHttpContext httpContext, params object[] ctorDependencies)
 
           where TEndpoint : class, IEndpoint
     parameters:
     - id: httpContext
       type: Microsoft.AspNetCore.Http.DefaultHttpContext
       description: a default http context object
-    - id: dependencies
+    - id: ctorDependencies
       type: System.Object[]
-      description: the dependencies of the endpoint if it has injected dependencies
+      description: the dependencies of the endpoint if it has any constructor injected dependencies
     typeParameters:
     - id: TEndpoint
       description: the type of the endpoint to create an instance of
     return:
       type: '{TEndpoint}'
-    content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(httpContext As DefaultHttpContext, ParamArray dependencies As Object()) As TEndpoint
+    content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(httpContext As DefaultHttpContext, ParamArray ctorDependencies As Object()) As TEndpoint
   overload: FastEndpoints.Factory.Create*
   nameWithType.vb: Factory.Create(Of TEndpoint)(DefaultHttpContext, Object())
   modifiers.csharp:
@@ -106,7 +110,7 @@ items:
   source:
     id: Create
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -114,14 +118,14 @@ items:
   example: []
   syntax:
     content: >-
-      public static TEndpoint Create<TEndpoint>(Action<DefaultHttpContext> httpContext, params object[] dependencies)
+      public static TEndpoint Create<TEndpoint>(Action<DefaultHttpContext> httpContext, params object[] ctorDependencies)
 
           where TEndpoint : class, IEndpoint
     parameters:
     - id: httpContext
       type: System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext}
       description: an action for configuring the default http context object
-    - id: dependencies
+    - id: ctorDependencies
       type: System.Object[]
       description: the dependencies of the endpoint if it has any constructor injected arguments
     typeParameters:
@@ -129,7 +133,7 @@ items:
       description: the type of the endpoint to create an instance of
     return:
       type: '{TEndpoint}'
-    content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(httpContext As Action(Of DefaultHttpContext), ParamArray dependencies As Object()) As TEndpoint
+    content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(httpContext As Action(Of DefaultHttpContext), ParamArray ctorDependencies As Object()) As TEndpoint
   overload: FastEndpoints.Factory.Create*
   nameWithType.vb: Factory.Create(Of TEndpoint)(Action(Of DefaultHttpContext), Object())
   modifiers.csharp:
@@ -154,7 +158,7 @@ items:
   source:
     id: Create
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 56
+    startLine: 58
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -162,19 +166,19 @@ items:
   example: []
   syntax:
     content: >-
-      public static TEndpoint Create<TEndpoint>(params object[] dependencies)
+      public static TEndpoint Create<TEndpoint>(params object[] ctorDependencies)
 
           where TEndpoint : class, IEndpoint
     parameters:
-    - id: dependencies
+    - id: ctorDependencies
       type: System.Object[]
-      description: the dependencies of the endpoint if it has any constructor injected arguments
+      description: the dependencies of the endpoint if it has any constructor injected dependencies
     typeParameters:
     - id: TEndpoint
       description: the type of the endpoint to create an instance of
     return:
       type: '{TEndpoint}'
-    content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(ParamArray dependencies As Object()) As TEndpoint
+    content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(ParamArray ctorDependencies As Object()) As TEndpoint
   overload: FastEndpoints.Factory.Create*
   nameWithType.vb: Factory.Create(Of TEndpoint)(Object())
   modifiers.csharp:
@@ -185,6 +189,182 @@ items:
   - Shared
   fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(System.Object())
   name.vb: Create(Of TEndpoint)(Object())
+- uid: FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  isExtensionMethod: true
+  parent: FastEndpoints.Factory
+  langs:
+  - csharp
+  - vb
+  name: AddServicesForUnitTesting(IServiceCollection)
+  nameWithType: Factory.AddServicesForUnitTesting(IServiceCollection)
+  fullName: FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  type: Method
+  source:
+    id: AddServicesForUnitTesting
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    startLine: 66
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nadds the minimum required set of services for unit testing FE endpoints\n"
+  example: []
+  syntax:
+    content: public static IServiceCollection AddServicesForUnitTesting(this IServiceCollection services)
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddServicesForUnitTesting(services As IServiceCollection) As IServiceCollection
+  overload: FastEndpoints.Factory.AddServicesForUnitTesting*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  commentId: M:FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  id: AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  isExtensionMethod: true
+  parent: FastEndpoints.Factory
+  langs:
+  - csharp
+  - vb
+  name: AddTestServices(HttpContext, Action<IServiceCollection>)
+  nameWithType: Factory.AddTestServices(HttpContext, Action<IServiceCollection>)
+  fullName: FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext, System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>)
+  type: Method
+  source:
+    id: AddTestServices
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    startLine: 79
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nregister fake/mock/test services for the http context. typically only used with unit tests with the <code>Factory.Create()</code>&quot; method/>\n"
+  example: []
+  syntax:
+    content: public static void AddTestServices(this HttpContext ctx, Action<IServiceCollection> s)
+    parameters:
+    - id: ctx
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: s
+      type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+      description: an action for adding services to the <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref>
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub AddTestServices(ctx As HttpContext, s As Action(Of IServiceCollection))
+  overload: FastEndpoints.Factory.AddTestServices*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the <xref href="Microsoft.AspNetCore.Http.HttpContext.RequestServices" data-throw-if-not-resolved="false"></xref> is not empty
+  nameWithType.vb: Factory.AddTestServices(HttpContext, Action(Of IServiceCollection))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext, System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  name.vb: AddTestServices(HttpContext, Action(Of IServiceCollection))
+- uid: FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  commentId: M:FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  id: CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  parent: FastEndpoints.Factory
+  langs:
+  - csharp
+  - vb
+  name: CreateValidator<TValidator>(Action<IServiceCollection>)
+  nameWithType: Factory.CreateValidator<TValidator>(Action<IServiceCollection>)
+  fullName: FastEndpoints.Factory.CreateValidator<TValidator>(System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>)
+  type: Method
+  source:
+    id: CreateValidator
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    startLine: 107
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nget an instance of a validator that uses Resolve&lt;T>() methods to obtain services registered in the DI container.\n"
+  example: []
+  syntax:
+    content: >-
+      public static TValidator CreateValidator<TValidator>(Action<IServiceCollection> s)
+
+          where TValidator : class, IValidator
+    parameters:
+    - id: s
+      type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+      description: an action for adding services to the <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref>
+    typeParameters:
+    - id: TValidator
+      description: the type of the validator
+    return:
+      type: '{TValidator}'
+    content.vb: Public Shared Function CreateValidator(Of TValidator As {Class, IValidator})(s As Action(Of IServiceCollection)) As TValidator
+  overload: FastEndpoints.Factory.CreateValidator*
+  nameWithType.vb: Factory.CreateValidator(Of TValidator)(Action(Of IServiceCollection))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Factory.CreateValidator(Of TValidator)(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  name.vb: CreateValidator(Of TValidator)(Action(Of IServiceCollection))
+- uid: FastEndpoints.Factory.CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  commentId: M:FastEndpoints.Factory.CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  id: CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  parent: FastEndpoints.Factory
+  langs:
+  - csharp
+  - vb
+  name: CreateMapper<TMapper>(Action<IServiceCollection>)
+  nameWithType: Factory.CreateMapper<TMapper>(Action<IServiceCollection>)
+  fullName: FastEndpoints.Factory.CreateMapper<TMapper>(System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>)
+  type: Method
+  source:
+    id: CreateMapper
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    startLine: 118
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nget an instance of a mapper that uses Resolve&lt;T>() methods to obtain services registered in the DI container.\n"
+  example: []
+  syntax:
+    content: >-
+      public static TMapper CreateMapper<TMapper>(Action<IServiceCollection> s)
+
+          where TMapper : class, IMapper
+    parameters:
+    - id: s
+      type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+      description: an action for adding services to the <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref>
+    typeParameters:
+    - id: TMapper
+      description: the type of the mapper
+    return:
+      type: '{TMapper}'
+    content.vb: Public Shared Function CreateMapper(Of TMapper As {Class, IMapper})(s As Action(Of IServiceCollection)) As TMapper
+  overload: FastEndpoints.Factory.CreateMapper*
+  nameWithType.vb: Factory.CreateMapper(Of TMapper)(Action(Of IServiceCollection))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Factory.CreateMapper(Of TMapper)(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  name.vb: CreateMapper(Of TMapper)(Action(Of IServiceCollection))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -620,3 +800,114 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.Factory.AddServicesForUnitTesting*
+  commentId: Overload:FastEndpoints.Factory.AddServicesForUnitTesting
+  name: AddServicesForUnitTesting
+  nameWithType: Factory.AddServicesForUnitTesting
+  fullName: FastEndpoints.Factory.AddServicesForUnitTesting
+- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
+  parent: Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+- uid: Microsoft.AspNetCore.Http.HttpContext.RequestServices
+  commentId: P:Microsoft.AspNetCore.Http.HttpContext.RequestServices
+  isExternal: true
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: FastEndpoints.Factory.AddTestServices*
+  commentId: Overload:FastEndpoints.Factory.AddTestServices
+  name: AddTestServices
+  nameWithType: Factory.AddTestServices
+  fullName: FastEndpoints.Factory.AddTestServices
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+  commentId: T:System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+  parent: System
+  definition: System.Action`1
+  name: Action<IServiceCollection>
+  nameWithType: Action<IServiceCollection>
+  fullName: System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>
+  nameWithType.vb: Action(Of IServiceCollection)
+  fullName.vb: System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: Action(Of IServiceCollection)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    name: IServiceCollection
+    nameWithType: IServiceCollection
+    fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    name: IServiceCollection
+    nameWithType: IServiceCollection
+    fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.Factory.CreateValidator*
+  commentId: Overload:FastEndpoints.Factory.CreateValidator
+  name: CreateValidator
+  nameWithType: Factory.CreateValidator
+  fullName: FastEndpoints.Factory.CreateValidator
+- uid: '{TValidator}'
+  commentId: '!:TValidator'
+  definition: TValidator
+  name: TValidator
+  nameWithType: TValidator
+  fullName: TValidator
+- uid: TValidator
+  commentId: '!:TValidator'
+  name: TValidator
+  nameWithType: TValidator
+  fullName: TValidator
+- uid: FastEndpoints.Factory.CreateMapper*
+  commentId: Overload:FastEndpoints.Factory.CreateMapper
+  name: CreateMapper
+  nameWithType: Factory.CreateMapper
+  fullName: FastEndpoints.Factory.CreateMapper
+- uid: '{TMapper}'
+  commentId: '!:TMapper'
+  definition: TMapper
+  name: TMapper
+  nameWithType: TMapper
+  fullName: TMapper
+- uid: TMapper
+  name: TMapper
+  nameWithType: TMapper
+  fullName: TMapper

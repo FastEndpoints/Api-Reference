@@ -14,18 +14,18 @@ items:
   type: Interface
   source:
     id: ICommand
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\ICommand.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\ICommand.cs
     startLine: 11
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
-  summary: "\ninterface for a command that returns a result\n"
+  summary: "\ninterface for a command that returns a <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TResult</code>\n"
   example: []
   syntax:
     content: public interface ICommand<out TResult>
     typeParameters:
     - id: TResult
-      description: the type of the result that will be returned from the handler [<xref href="FastEndpoints.ICommand%601" data-throw-if-not-resolved="false"></xref>] of this command
+      description: the type of the result that will be returned from the handler of this command (i.e. <xref href="FastEndpoints.ICommandHandler%602" data-throw-if-not-resolved="false"></xref>)
     content.vb: Public Interface ICommand(Of Out TResult)
   extensionMethods:
   - FastEndpoints.ICommand`1.FastEndpoints.CommandExtensions.ExecuteAsync``1(System.Threading.CancellationToken)
@@ -39,22 +39,28 @@ items:
   fullName.vb: FastEndpoints.ICommand(Of TResult)
   name.vb: ICommand(Of TResult)
 references:
-- uid: FastEndpoints.ICommand`1
-  commentId: T:FastEndpoints.ICommand`1
-  name: ICommand<TResult>
-  nameWithType: ICommand<TResult>
-  fullName: FastEndpoints.ICommand<TResult>
-  nameWithType.vb: ICommand(Of TResult)
-  fullName.vb: FastEndpoints.ICommand(Of TResult)
-  name.vb: ICommand(Of TResult)
+- uid: FastEndpoints.ICommandHandler`2
+  commentId: T:FastEndpoints.ICommandHandler`2
+  name: ICommandHandler<TCommand, TResult>
+  nameWithType: ICommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
+  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
+  name.vb: ICommandHandler(Of TCommand, TResult)
   spec.csharp:
-  - uid: FastEndpoints.ICommand`1
-    name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
   - name: <
     nameWithType: <
     fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - name: TResult
     nameWithType: TResult
     fullName: TResult
@@ -62,13 +68,19 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: FastEndpoints.ICommand`1
-    name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - name: TResult
     nameWithType: TResult
     fullName: TResult

@@ -15,10 +15,10 @@ items:
   type: Interface
   source:
     id: ICommandHandler
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\ICommandHandler.cs
-    startLine: 11
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\ICommandHandler.cs
+    startLine: 13
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
   summary: "\ninterface to be implemented by a command handler for a given command type that does not return a result\n"
   example: []
@@ -55,15 +55,15 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\ICommandHandler.cs
-    startLine: 18
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\ICommandHandler.cs
+    startLine: 20
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
   summary: "\naccepts a command and does not return a result.\n"
   example: []
   syntax:
-    content: Task ExecuteAsync(TCommand command, CancellationToken ct = default(CancellationToken))
+    content: Task ExecuteAsync(TCommand command, CancellationToken ct)
     parameters:
     - id: command
       type: '{TCommand}'
@@ -73,7 +73,7 @@ items:
       description: optional cancellation token
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Function ExecuteAsync(command As TCommand, ct As CancellationToken = Nothing) As Task
+    content.vb: Function ExecuteAsync(command As TCommand, ct As CancellationToken) As Task
   overload: FastEndpoints.ICommandHandler`1.ExecuteAsync*
   nameWithType.vb: ICommandHandler(Of TCommand).ExecuteAsync(TCommand, CancellationToken)
   fullName.vb: FastEndpoints.ICommandHandler(Of TCommand).ExecuteAsync(TCommand, System.Threading.CancellationToken)

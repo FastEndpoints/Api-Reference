@@ -15,10 +15,10 @@ items:
   type: Interface
   source:
     id: ICommandHandler
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\ICommandHandler.cs
-    startLine: 26
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\ICommandHandler.cs
+    startLine: 28
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
   summary: "\ninterface to be implemented by a command handler for a given command type that returns a result\n"
   example: []
@@ -57,15 +57,15 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\ICommandHandler.cs
-    startLine: 33
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\ICommandHandler.cs
+    startLine: 35
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
-  summary: "\naccepts a command and returns a result.\n"
+  summary: "\nreceives a command and returns a result.\n"
   example: []
   syntax:
-    content: Task<TResult> ExecuteAsync(TCommand command, CancellationToken ct = default(CancellationToken))
+    content: Task<TResult> ExecuteAsync(TCommand command, CancellationToken ct)
     parameters:
     - id: command
       type: '{TCommand}'
@@ -75,7 +75,7 @@ items:
       description: optional cancellation token
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-    content.vb: Function ExecuteAsync(command As TCommand, ct As CancellationToken = Nothing) As Task(Of TResult)
+    content.vb: Function ExecuteAsync(command As TCommand, ct As CancellationToken) As Task(Of TResult)
   overload: FastEndpoints.ICommandHandler`2.ExecuteAsync*
   nameWithType.vb: ICommandHandler(Of TCommand, TResult).ExecuteAsync(TCommand, CancellationToken)
   fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult).ExecuteAsync(TCommand, System.Threading.CancellationToken)
@@ -212,7 +212,7 @@ references:
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{{TResult}}
-  commentId: T:System.Threading.Tasks.Task{``0}
+  commentId: T:System.Threading.Tasks.Task{`1}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<TResult>

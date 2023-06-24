@@ -3539,7 +3539,7 @@ then that will be executed before the normal response is sent.</p>
 
   <a id="FastEndpoints_Endpoint_2_SendRedirectAsync_" data-uid="FastEndpoints.Endpoint`2.SendRedirectAsync*"></a>
   <h4 id="FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)">SendRedirectAsync(String, Boolean, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>send a 301/302 redirect response</p>
+  <div class="markdown level1 summary"><p>send a 302/301 redirect response</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -3565,7 +3565,7 @@ then that will be executed before the normal response is sent.</p>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">isPermanant</span></td>
-        <td><p>set to true for a 302 redirect. 301 is the default.</p>
+        <td><p>set to true for a 301 redirect. 302 is the default.</p>
 </td>
       </tr>
       <tr>
@@ -3985,13 +3985,13 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
 
 
   <a id="FastEndpoints_Endpoint_2_ThrowError_" data-uid="FastEndpoints.Endpoint`2.ThrowError*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_ThrowError_FluentValidation_Results_ValidationFailure_" data-uid="FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)">ThrowError(ValidationFailure)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__" data-uid="FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})">ThrowError(ValidationFailure, Nullable&lt;Int32&gt;)</h4>
   <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ThrowError(ValidationFailure failure)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowError(ValidationFailure failure, int? statusCode = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4008,18 +4008,23 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
         <td><span class="parametername">failure</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">statusCode</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 
 
   <a id="FastEndpoints_Endpoint_2_ThrowError_" data-uid="FastEndpoints.Endpoint`2.ThrowError*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_" data-uid="FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">ThrowError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__" data-uid="FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})">ThrowError(Expression&lt;Func&lt;TRequest, Object&gt;&gt;, String, Nullable&lt;Int32&gt;)</h4>
   <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ThrowError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowError(Expression&lt;Func&lt;TRequest, object&gt;&gt; property, string errorMessage, int? statusCode = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4041,18 +4046,23 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
         <td><span class="parametername">errorMessage</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">statusCode</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 
 
   <a id="FastEndpoints_Endpoint_2_ThrowError_" data-uid="FastEndpoints.Endpoint`2.ThrowError*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_ThrowError_System_String_" data-uid="FastEndpoints.Endpoint`2.ThrowError(System.String)">ThrowError(String)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_ThrowError_System_String_System_Nullable_System_Int32__" data-uid="FastEndpoints.Endpoint`2.ThrowError(System.String,System.Nullable{System.Int32})">ThrowError(String, Nullable&lt;Int32&gt;)</h4>
   <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ThrowError(string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowError(string message, int? statusCode = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4069,19 +4079,41 @@ not specifying a header name will first look for 'X-Forwarded-For' header and if
         <td><span class="parametername">message</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">statusCode</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 
 
   <a id="FastEndpoints_Endpoint_2_ThrowIfAnyErrors_" data-uid="FastEndpoints.Endpoint`2.ThrowIfAnyErrors*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_ThrowIfAnyErrors" data-uid="FastEndpoints.Endpoint`2.ThrowIfAnyErrors">ThrowIfAnyErrors()</h4>
+  <h4 id="FastEndpoints_Endpoint_2_ThrowIfAnyErrors_System_Nullable_System_Int32__" data-uid="FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})">ThrowIfAnyErrors(Nullable&lt;Int32&gt;)</h4>
   <div class="markdown level1 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ThrowIfAnyErrors()</code></pre>
+    <pre><code class="lang-csharp hljs">public void ThrowIfAnyErrors(int? statusCode = null)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">statusCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_Endpoint_2_TryResolve_" data-uid="FastEndpoints.Endpoint`2.TryResolve*"></a>

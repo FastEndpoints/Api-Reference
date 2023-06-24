@@ -15,6 +15,7 @@ items:
   - FastEndpoints.CommandHandlerBase`1
   - FastEndpoints.Config
   - FastEndpoints.DontInjectAttribute
+  - FastEndpoints.EmptyObject
   - FastEndpoints.EmptyRequest
   - FastEndpoints.EmptyResponse
   - FastEndpoints.Endpoint`1
@@ -45,6 +46,8 @@ items:
   - FastEndpoints.FromHeaderAttribute
   - FastEndpoints.FromQueryParamsAttribute
   - FastEndpoints.Group
+  - FastEndpoints.HandlerOptions
+  - FastEndpoints.HandlerServerExtensions
   - FastEndpoints.HasPermissionAttribute
   - FastEndpoints.HideFromDocsAttribute
   - FastEndpoints.Http
@@ -57,6 +60,7 @@ items:
   - FastEndpoints.HttpPostAttribute
   - FastEndpoints.HttpPutAttribute
   - FastEndpoints.HttpResponseExtensions
+  - FastEndpoints.IClientStreamCommandHandler`2
   - FastEndpoints.ICommand
   - FastEndpoints.ICommand`1
   - FastEndpoints.ICommandHandler
@@ -68,6 +72,9 @@ items:
   - FastEndpoints.IEventBus
   - FastEndpoints.IEventHandler
   - FastEndpoints.IEventHandler`1
+  - FastEndpoints.IEventPublisherStorageProvider
+  - FastEndpoints.IEventStorageRecord
+  - FastEndpoints.IEventSubscriberStorageProvider
   - FastEndpoints.IGlobalPostProcessor
   - FastEndpoints.IGlobalPreProcessor
   - FastEndpoints.IHasMapper
@@ -81,6 +88,8 @@ items:
   - FastEndpoints.IRequestMapper
   - FastEndpoints.IResponseInterceptor
   - FastEndpoints.IResponseMapper
+  - FastEndpoints.IServerStreamCommand`1
+  - FastEndpoints.IServerStreamCommandHandler`2
   - FastEndpoints.IServiceResolver
   - FastEndpoints.IServiceResolverBase
   - FastEndpoints.MainExtensions
@@ -94,6 +103,8 @@ items:
   - FastEndpoints.ProblemDetails
   - FastEndpoints.ProblemDetails.Error
   - FastEndpoints.QueryParamAttribute
+  - FastEndpoints.RemoteConnection
+  - FastEndpoints.RemoteConnectionExtensions
   - FastEndpoints.RequestBinder`1
   - FastEndpoints.RequestMapper`2
   - FastEndpoints.ResponseMapper`2
@@ -121,8 +132,367 @@ items:
   fullName: FastEndpoints
   type: Namespace
   assemblies:
-  - FastEndpoints.Attributes
+  - FastEndpoints.Messaging.Core
 references:
+- uid: FastEndpoints.ICommand
+  commentId: T:FastEndpoints.ICommand
+  parent: FastEndpoints
+  name: ICommand
+  nameWithType: ICommand
+  fullName: FastEndpoints.ICommand
+- uid: FastEndpoints.ICommand`1
+  commentId: T:FastEndpoints.ICommand`1
+  name: ICommand<TResult>
+  nameWithType: ICommand<TResult>
+  fullName: FastEndpoints.ICommand<TResult>
+  nameWithType.vb: ICommand(Of TResult)
+  fullName.vb: FastEndpoints.ICommand(Of TResult)
+  name.vb: ICommand(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommand`1
+    name: ICommand
+    nameWithType: ICommand
+    fullName: FastEndpoints.ICommand
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommand`1
+    name: ICommand
+    nameWithType: ICommand
+    fullName: FastEndpoints.ICommand
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IServerStreamCommand`1
+  commentId: T:FastEndpoints.IServerStreamCommand`1
+  name: IServerStreamCommand<TResult>
+  nameWithType: IServerStreamCommand<TResult>
+  fullName: FastEndpoints.IServerStreamCommand<TResult>
+  nameWithType.vb: IServerStreamCommand(Of TResult)
+  fullName.vb: FastEndpoints.IServerStreamCommand(Of TResult)
+  name.vb: IServerStreamCommand(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.IServerStreamCommand`1
+    name: IServerStreamCommand
+    nameWithType: IServerStreamCommand
+    fullName: FastEndpoints.IServerStreamCommand
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IServerStreamCommand`1
+    name: IServerStreamCommand
+    nameWithType: IServerStreamCommand
+    fullName: FastEndpoints.IServerStreamCommand
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ICommandHandler
+  commentId: T:FastEndpoints.ICommandHandler
+  parent: FastEndpoints
+  name: ICommandHandler
+  nameWithType: ICommandHandler
+  fullName: FastEndpoints.ICommandHandler
+- uid: FastEndpoints.ICommandHandler`1
+  commentId: T:FastEndpoints.ICommandHandler`1
+  name: ICommandHandler<TCommand>
+  nameWithType: ICommandHandler<TCommand>
+  fullName: FastEndpoints.ICommandHandler<TCommand>
+  nameWithType.vb: ICommandHandler(Of TCommand)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
+  name.vb: ICommandHandler(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ICommandHandler`2
+  commentId: T:FastEndpoints.ICommandHandler`2
+  name: ICommandHandler<TCommand, TResult>
+  nameWithType: ICommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
+  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
+  name.vb: ICommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IServerStreamCommandHandler`2
+  commentId: T:FastEndpoints.IServerStreamCommandHandler`2
+  name: IServerStreamCommandHandler<TCommand, TResult>
+  nameWithType: IServerStreamCommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.IServerStreamCommandHandler<TCommand, TResult>
+  nameWithType.vb: IServerStreamCommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.IServerStreamCommandHandler(Of TCommand, TResult)
+  name.vb: IServerStreamCommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.IServerStreamCommandHandler`2
+    name: IServerStreamCommandHandler
+    nameWithType: IServerStreamCommandHandler
+    fullName: FastEndpoints.IServerStreamCommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IServerStreamCommandHandler`2
+    name: IServerStreamCommandHandler
+    nameWithType: IServerStreamCommandHandler
+    fullName: FastEndpoints.IServerStreamCommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IClientStreamCommandHandler`2
+  commentId: T:FastEndpoints.IClientStreamCommandHandler`2
+  name: IClientStreamCommandHandler<T, TResult>
+  nameWithType: IClientStreamCommandHandler<T, TResult>
+  fullName: FastEndpoints.IClientStreamCommandHandler<T, TResult>
+  nameWithType.vb: IClientStreamCommandHandler(Of T, TResult)
+  fullName.vb: FastEndpoints.IClientStreamCommandHandler(Of T, TResult)
+  name.vb: IClientStreamCommandHandler(Of T, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.IClientStreamCommandHandler`2
+    name: IClientStreamCommandHandler
+    nameWithType: IClientStreamCommandHandler
+    fullName: FastEndpoints.IClientStreamCommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IClientStreamCommandHandler`2
+    name: IClientStreamCommandHandler
+    nameWithType: IClientStreamCommandHandler
+    fullName: FastEndpoints.IClientStreamCommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IEvent
+  commentId: T:FastEndpoints.IEvent
+  parent: FastEndpoints
+  name: IEvent
+  nameWithType: IEvent
+  fullName: FastEndpoints.IEvent
+- uid: FastEndpoints.IEventHandler
+  commentId: T:FastEndpoints.IEventHandler
+  name: IEventHandler
+  nameWithType: IEventHandler
+  fullName: FastEndpoints.IEventHandler
+- uid: FastEndpoints.IEventHandler`1
+  commentId: T:FastEndpoints.IEventHandler`1
+  name: IEventHandler<TEvent>
+  nameWithType: IEventHandler<TEvent>
+  fullName: FastEndpoints.IEventHandler<TEvent>
+  nameWithType.vb: IEventHandler(Of TEvent)
+  fullName.vb: FastEndpoints.IEventHandler(Of TEvent)
+  name.vb: IEventHandler(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventHandler`1
+    name: IEventHandler
+    nameWithType: IEventHandler
+    fullName: FastEndpoints.IEventHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventHandler`1
+    name: IEventHandler
+    nameWithType: IEventHandler
+    fullName: FastEndpoints.IEventHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IEventSubscriberStorageProvider
+  commentId: T:FastEndpoints.IEventSubscriberStorageProvider
+  name: IEventSubscriberStorageProvider
+  nameWithType: IEventSubscriberStorageProvider
+  fullName: FastEndpoints.IEventSubscriberStorageProvider
+- uid: FastEndpoints.RemoteConnection
+  commentId: T:FastEndpoints.RemoteConnection
+  name: RemoteConnection
+  nameWithType: RemoteConnection
+  fullName: FastEndpoints.RemoteConnection
+- uid: FastEndpoints.RemoteConnectionExtensions
+  commentId: T:FastEndpoints.RemoteConnectionExtensions
+  parent: FastEndpoints
+  name: RemoteConnectionExtensions
+  nameWithType: RemoteConnectionExtensions
+  fullName: FastEndpoints.RemoteConnectionExtensions
+- uid: FastEndpoints.EmptyObject
+  commentId: T:FastEndpoints.EmptyObject
+  name: EmptyObject
+  nameWithType: EmptyObject
+  fullName: FastEndpoints.EmptyObject
+- uid: FastEndpoints.IEventStorageRecord
+  commentId: T:FastEndpoints.IEventStorageRecord
+  parent: FastEndpoints
+  name: IEventStorageRecord
+  nameWithType: IEventStorageRecord
+  fullName: FastEndpoints.IEventStorageRecord
+- uid: FastEndpoints.EventExtensions
+  commentId: T:FastEndpoints.EventExtensions
+  parent: FastEndpoints
+  name: EventExtensions
+  nameWithType: EventExtensions
+  fullName: FastEndpoints.EventExtensions
+- uid: FastEndpoints.IEventPublisherStorageProvider
+  commentId: T:FastEndpoints.IEventPublisherStorageProvider
+  name: IEventPublisherStorageProvider
+  nameWithType: IEventPublisherStorageProvider
+  fullName: FastEndpoints.IEventPublisherStorageProvider
+- uid: FastEndpoints.HandlerOptions
+  commentId: T:FastEndpoints.HandlerOptions
+  name: HandlerOptions
+  nameWithType: HandlerOptions
+  fullName: FastEndpoints.HandlerOptions
+- uid: FastEndpoints.HandlerServerExtensions
+  commentId: T:FastEndpoints.HandlerServerExtensions
+  name: HandlerServerExtensions
+  nameWithType: HandlerServerExtensions
+  fullName: FastEndpoints.HandlerServerExtensions
 - uid: FastEndpoints.BindFromAttribute
   commentId: T:FastEndpoints.BindFromAttribute
   name: BindFromAttribute
@@ -335,17 +705,6 @@ references:
   name: ErrorOptions
   nameWithType: ErrorOptions
   fullName: FastEndpoints.ErrorOptions
-- uid: FastEndpoints.IServiceResolverBase
-  commentId: T:FastEndpoints.IServiceResolverBase
-  parent: FastEndpoints
-  name: IServiceResolverBase
-  nameWithType: IServiceResolverBase
-  fullName: FastEndpoints.IServiceResolverBase
-- uid: FastEndpoints.IServiceResolver
-  commentId: T:FastEndpoints.IServiceResolver
-  name: IServiceResolver
-  nameWithType: IServiceResolver
-  fullName: FastEndpoints.IServiceResolver
 - uid: FastEndpoints.SecurityOptions
   commentId: T:FastEndpoints.SecurityOptions
   parent: FastEndpoints
@@ -1401,11 +1760,6 @@ references:
   name: HttpResponseExtensions
   nameWithType: HttpResponseExtensions
   fullName: FastEndpoints.HttpResponseExtensions
-- uid: FastEndpoints.ServiceScopeExtensions
-  commentId: T:FastEndpoints.ServiceScopeExtensions
-  name: ServiceScopeExtensions
-  nameWithType: ServiceScopeExtensions
-  fullName: FastEndpoints.ServiceScopeExtensions
 - uid: FastEndpoints.EndpointDiscoveryOptions
   commentId: T:FastEndpoints.EndpointDiscoveryOptions
   name: EndpointDiscoveryOptions
@@ -1547,138 +1901,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.ICommand
-  commentId: T:FastEndpoints.ICommand
-  parent: FastEndpoints
-  name: ICommand
-  nameWithType: ICommand
-  fullName: FastEndpoints.ICommand
-- uid: FastEndpoints.ICommand`1
-  commentId: T:FastEndpoints.ICommand`1
-  name: ICommand<TResult>
-  nameWithType: ICommand<TResult>
-  fullName: FastEndpoints.ICommand<TResult>
-  nameWithType.vb: ICommand(Of TResult)
-  fullName.vb: FastEndpoints.ICommand(Of TResult)
-  name.vb: ICommand(Of TResult)
-  spec.csharp:
-  - uid: FastEndpoints.ICommand`1
-    name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.ICommand`1
-    name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.ICommandHandler
-  commentId: T:FastEndpoints.ICommandHandler
-  parent: FastEndpoints
-  name: ICommandHandler
-  nameWithType: ICommandHandler
-  fullName: FastEndpoints.ICommandHandler
-- uid: FastEndpoints.ICommandHandler`1
-  commentId: T:FastEndpoints.ICommandHandler`1
-  name: ICommandHandler<TCommand>
-  nameWithType: ICommandHandler<TCommand>
-  fullName: FastEndpoints.ICommandHandler<TCommand>
-  nameWithType.vb: ICommandHandler(Of TCommand)
-  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
-  name.vb: ICommandHandler(Of TCommand)
-  spec.csharp:
-  - uid: FastEndpoints.ICommandHandler`1
-    name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.ICommandHandler`1
-    name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: FastEndpoints.ICommandHandler`2
-  commentId: T:FastEndpoints.ICommandHandler`2
-  name: ICommandHandler<TCommand, TResult>
-  nameWithType: ICommandHandler<TCommand, TResult>
-  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
-  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
-  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
-  name.vb: ICommandHandler(Of TCommand, TResult)
-  spec.csharp:
-  - uid: FastEndpoints.ICommandHandler`2
-    name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.ICommandHandler`2
-    name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TResult
-    nameWithType: TResult
-    fullName: TResult
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EventBase
   commentId: T:FastEndpoints.EventBase
   parent: FastEndpoints
@@ -1721,70 +1943,34 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.EventExtensions
-  commentId: T:FastEndpoints.EventExtensions
-  parent: FastEndpoints
-  name: EventExtensions
-  nameWithType: EventExtensions
-  fullName: FastEndpoints.EventExtensions
-- uid: FastEndpoints.IEvent
-  commentId: T:FastEndpoints.IEvent
-  name: IEvent
-  nameWithType: IEvent
-  fullName: FastEndpoints.IEvent
 - uid: FastEndpoints.IEventBus
   commentId: T:FastEndpoints.IEventBus
   parent: FastEndpoints
   name: IEventBus
   nameWithType: IEventBus
   fullName: FastEndpoints.IEventBus
-- uid: FastEndpoints.IEventHandler
-  commentId: T:FastEndpoints.IEventHandler
-  name: IEventHandler
-  nameWithType: IEventHandler
-  fullName: FastEndpoints.IEventHandler
-- uid: FastEndpoints.IEventHandler`1
-  commentId: T:FastEndpoints.IEventHandler`1
-  name: IEventHandler<TEvent>
-  nameWithType: IEventHandler<TEvent>
-  fullName: FastEndpoints.IEventHandler<TEvent>
-  nameWithType.vb: IEventHandler(Of TEvent)
-  fullName.vb: FastEndpoints.IEventHandler(Of TEvent)
-  name.vb: IEventHandler(Of TEvent)
-  spec.csharp:
-  - uid: FastEndpoints.IEventHandler`1
-    name: IEventHandler
-    nameWithType: IEventHandler
-    fullName: FastEndpoints.IEventHandler
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TEvent
-    nameWithType: TEvent
-    fullName: TEvent
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.IEventHandler`1
-    name: IEventHandler
-    nameWithType: IEventHandler
-    fullName: FastEndpoints.IEventHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TEvent
-    nameWithType: TEvent
-    fullName: TEvent
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Mode
   commentId: T:FastEndpoints.Mode
   parent: FastEndpoints
   name: Mode
   nameWithType: Mode
   fullName: FastEndpoints.Mode
+- uid: FastEndpoints.IServiceResolverBase
+  commentId: T:FastEndpoints.IServiceResolverBase
+  parent: FastEndpoints
+  name: IServiceResolverBase
+  nameWithType: IServiceResolverBase
+  fullName: FastEndpoints.IServiceResolverBase
+- uid: FastEndpoints.IServiceResolver
+  commentId: T:FastEndpoints.IServiceResolver
+  name: IServiceResolver
+  nameWithType: IServiceResolver
+  fullName: FastEndpoints.IServiceResolver
+- uid: FastEndpoints.ServiceScopeExtensions
+  commentId: T:FastEndpoints.ServiceScopeExtensions
+  name: ServiceScopeExtensions
+  nameWithType: ServiceScopeExtensions
+  fullName: FastEndpoints.ServiceScopeExtensions
 - uid: FastEndpoints.Factory
   commentId: T:FastEndpoints.Factory
   name: Factory

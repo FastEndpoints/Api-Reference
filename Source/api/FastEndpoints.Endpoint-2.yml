@@ -100,10 +100,10 @@ items:
   - FastEndpoints.Endpoint`2.Summary(System.Action{FastEndpoints.EndpointSummary})
   - FastEndpoints.Endpoint`2.Tags(System.String[])
   - FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
-  - FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
-  - FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-  - FastEndpoints.Endpoint`2.ThrowError(System.String)
-  - FastEndpoints.Endpoint`2.ThrowIfAnyErrors
+  - FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint`2.ThrowError(System.String,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})
   - FastEndpoints.Endpoint`2.TryResolve(System.Type)
   - FastEndpoints.Endpoint`2.TryResolve``1
   - FastEndpoints.Endpoint`2.User
@@ -1951,7 +1951,7 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nsend a 301/302 redirect response\n"
+  summary: "\nsend a 302/301 redirect response\n"
   example: []
   syntax:
     content: protected Task SendRedirectAsync(string location, bool isPermanant = false, CancellationToken cancellation = default(CancellationToken))
@@ -1961,7 +1961,7 @@ items:
       description: the location to redirect to
     - id: isPermanant
       type: System.Boolean
-      description: set to true for a 302 redirect. 301 is the default.
+      description: set to true for a 301 redirect. 302 is the default.
     - id: cancellation
       type: System.Threading.CancellationToken
       description: optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used
@@ -4074,16 +4074,16 @@ items:
   - Public
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, System.Object)), System.String, System.String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of TRequest, Object)), String, String, Severity)
-- uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
-  commentId: M:FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure)
-  id: ThrowError(FluentValidation.Results.ValidationFailure)
+- uid: FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
+  id: ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   parent: FastEndpoints.Endpoint`2
   langs:
   - csharp
   - vb
-  name: ThrowError(ValidationFailure)
-  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(ValidationFailure)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(FluentValidation.Results.ValidationFailure)
+  name: ThrowError(ValidationFailure, Nullable<Int32>)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(ValidationFailure, Nullable<Int32>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(FluentValidation.Results.ValidationFailure, System.Nullable<System.Int32>)
   type: Method
   source:
     id: ThrowError
@@ -4094,28 +4094,31 @@ items:
   namespace: FastEndpoints
   example: []
   syntax:
-    content: public void ThrowError(ValidationFailure failure)
+    content: public void ThrowError(ValidationFailure failure, int? statusCode = null)
     parameters:
     - id: failure
       type: FluentValidation.Results.ValidationFailure
-    content.vb: Public Sub ThrowError(failure As ValidationFailure)
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+    content.vb: Public Sub ThrowError(failure As ValidationFailure, statusCode As Integer? = Nothing)
   overload: FastEndpoints.Endpoint`2.ThrowError*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(ValidationFailure)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(ValidationFailure, Nullable(Of Int32))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(FluentValidation.Results.ValidationFailure)
-- uid: FastEndpoints.Endpoint`2.ThrowError(System.String)
-  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.String)
-  id: ThrowError(System.String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(FluentValidation.Results.ValidationFailure, System.Nullable(Of System.Int32))
+  name.vb: ThrowError(ValidationFailure, Nullable(Of Int32))
+- uid: FastEndpoints.Endpoint`2.ThrowError(System.String,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.String,System.Nullable{System.Int32})
+  id: ThrowError(System.String,System.Nullable{System.Int32})
   parent: FastEndpoints.Endpoint`2
   langs:
   - csharp
   - vb
-  name: ThrowError(String)
-  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(String)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(System.String)
+  name: ThrowError(String, Nullable<Int32>)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(String, Nullable<Int32>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(System.String, System.Nullable<System.Int32>)
   type: Method
   source:
     id: ThrowError
@@ -4126,28 +4129,31 @@ items:
   namespace: FastEndpoints
   example: []
   syntax:
-    content: public void ThrowError(string message)
+    content: public void ThrowError(string message, int? statusCode = null)
     parameters:
     - id: message
       type: System.String
-    content.vb: Public Sub ThrowError(message As String)
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+    content.vb: Public Sub ThrowError(message As String, statusCode As Integer? = Nothing)
   overload: FastEndpoints.Endpoint`2.ThrowError*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(String, Nullable(Of Int32))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.String)
-- uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
-  id: ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.String, System.Nullable(Of System.Int32))
+  name.vb: ThrowError(String, Nullable(Of Int32))
+- uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  id: ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   parent: FastEndpoints.Endpoint`2
   langs:
   - csharp
   - vb
-  name: ThrowError(Expression<Func<TRequest, Object>>, String)
-  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(Expression<Func<TRequest, Object>>, String)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(System.Linq.Expressions.Expression<System.Func<TRequest, System.Object>>, System.String)
+  name: ThrowError(Expression<Func<TRequest, Object>>, String, Nullable<Int32>)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(Expression<Func<TRequest, Object>>, String, Nullable<Int32>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(System.Linq.Expressions.Expression<System.Func<TRequest, System.Object>>, System.String, System.Nullable<System.Int32>)
   type: Method
   source:
     id: ThrowError
@@ -4158,31 +4164,33 @@ items:
   namespace: FastEndpoints
   example: []
   syntax:
-    content: public void ThrowError(Expression<Func<TRequest, object>> property, string errorMessage)
+    content: public void ThrowError(Expression<Func<TRequest, object>> property, string errorMessage, int? statusCode = null)
     parameters:
     - id: property
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
     - id: errorMessage
       type: System.String
-    content.vb: Public Sub ThrowError(property As Expression(Of Func(Of TRequest, Object)), errorMessage As String)
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+    content.vb: Public Sub ThrowError(property As Expression(Of Func(Of TRequest, Object)), errorMessage As String, statusCode As Integer? = Nothing)
   overload: FastEndpoints.Endpoint`2.ThrowError*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(Expression(Of Func(Of TRequest, Object)), String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(Expression(Of Func(Of TRequest, Object)), String, Nullable(Of Int32))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, System.Object)), System.String)
-  name.vb: ThrowError(Expression(Of Func(Of TRequest, Object)), String)
-- uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-  commentId: M:FastEndpoints.Endpoint`2.ThrowIfAnyErrors
-  id: ThrowIfAnyErrors
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, System.Object)), System.String, System.Nullable(Of System.Int32))
+  name.vb: ThrowError(Expression(Of Func(Of TRequest, Object)), String, Nullable(Of Int32))
+- uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})
+  id: ThrowIfAnyErrors(System.Nullable{System.Int32})
   parent: FastEndpoints.Endpoint`2
   langs:
   - csharp
   - vb
-  name: ThrowIfAnyErrors()
-  nameWithType: Endpoint<TRequest, TResponse>.ThrowIfAnyErrors()
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowIfAnyErrors()
+  name: ThrowIfAnyErrors(Nullable<Int32>)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowIfAnyErrors(Nullable<Int32>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowIfAnyErrors(System.Nullable<System.Int32>)
   type: Method
   source:
     id: ThrowIfAnyErrors
@@ -4193,15 +4201,19 @@ items:
   namespace: FastEndpoints
   example: []
   syntax:
-    content: public void ThrowIfAnyErrors()
-    content.vb: Public Sub ThrowIfAnyErrors
+    content: public void ThrowIfAnyErrors(int? statusCode = null)
+    parameters:
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+    content.vb: Public Sub ThrowIfAnyErrors(statusCode As Integer? = Nothing)
   overload: FastEndpoints.Endpoint`2.ThrowIfAnyErrors*
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors(Nullable(Of Int32))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowIfAnyErrors(System.Nullable(Of System.Int32))
+  name.vb: ThrowIfAnyErrors(Nullable(Of Int32))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -5969,7 +5981,7 @@ references:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).SendEventStreamAsync
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendEventStreamAsync
 - uid: System.Collections.Generic.IAsyncEnumerable{{T}}
-  commentId: T:System.Collections.Generic.IAsyncEnumerable{``0}
+  commentId: T:System.Collections.Generic.IAsyncEnumerable{`0}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IAsyncEnumerable`1
   name: IAsyncEnumerable<T>

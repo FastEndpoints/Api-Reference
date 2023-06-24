@@ -13,6 +13,10 @@ items:
   - FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient,System.String,``0)
   - FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient)
   - FastEndpoints.HttpClientExtensions.GETAsync``3(System.Net.Http.HttpClient,``1)
+  - FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  - FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  - FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient)
+  - FastEndpoints.HttpClientExtensions.PATCHAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
   - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
   - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   - FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient)
@@ -279,6 +283,227 @@ items:
   - Shared
   fullName.vb: FastEndpoints.HttpClientExtensions.POSTAsync(Of TEndpoint, TResponse)(System.Net.Http.HttpClient)
   name.vb: POSTAsync(Of TEndpoint, TResponse)(HttpClient)
+- uid: FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  id: PATCHAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: PATCHAsync<TRequest, TResponse>(HttpClient, String, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.PATCHAsync<TRequest, TResponse>(HttpClient, String, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.PATCHAsync<TRequest, TResponse>(System.Net.Http.HttpClient, System.String, TRequest, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    id: PATCHAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
+    startLine: 72
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a PATCH request using a request dto and get back a response dto.\n"
+  example: []
+  syntax:
+    content: public static Task<TestResult<TResponse>> PATCHAsync<TRequest, TResponse>(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)
+    parameters:
+    - id: client
+      type: System.Net.Http.HttpClient
+    - id: requestUri
+      type: System.String
+      description: the route url to PATCH to
+    - id: request
+      type: '{TRequest}'
+      description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
+    typeParameters:
+    - id: TRequest
+      description: type of the requet dto
+    - id: TResponse
+      description: type of the response dto
+    return:
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function PATCHAsync(Of TRequest, TResponse)(client As HttpClient, requestUri As String, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
+  overload: FastEndpoints.HttpClientExtensions.PATCHAsync*
+  nameWithType.vb: HttpClientExtensions.PATCHAsync(Of TRequest, TResponse)(HttpClient, String, TRequest, Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.PATCHAsync(Of TRequest, TResponse)(System.Net.Http.HttpClient, System.String, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: PATCHAsync(Of TRequest, TResponse)(HttpClient, String, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.PATCHAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.PATCHAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  id: PATCHAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: PATCHAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.PATCHAsync<TEndpoint, TRequest, TResponse>(HttpClient, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.PATCHAsync<TEndpoint, TRequest, TResponse>(System.Net.Http.HttpClient, TRequest, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    id: PATCHAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
+    startLine: 86
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a PATCH request to an endpoint using auto route discovery using a request dto and get back a response dto.\n"
+  example: []
+  syntax:
+    content: >-
+      public static Task<TestResult<TResponse>> PATCHAsync<TEndpoint, TRequest, TResponse>(this HttpClient client, TRequest request, bool? sendAsFormData = null)
+
+          where TEndpoint : IEndpoint
+    parameters:
+    - id: client
+      type: System.Net.Http.HttpClient
+    - id: request
+      type: '{TRequest}'
+      description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint
+    - id: TRequest
+      description: the type of the request dto
+    - id: TResponse
+      description: the type of the response dto
+    return:
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function PATCHAsync(Of TEndpoint As IEndpoint, TRequest, TResponse)(client As HttpClient, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of TestResult(Of TResponse))
+  overload: FastEndpoints.HttpClientExtensions.PATCHAsync*
+  nameWithType.vb: HttpClientExtensions.PATCHAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest, Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.PATCHAsync(Of TEndpoint, TRequest, TResponse)(System.Net.Http.HttpClient, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: PATCHAsync(Of TEndpoint, TRequest, TResponse)(HttpClient, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  commentId: M:FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  id: PATCHAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: PATCHAsync<TEndpoint, TRequest>(HttpClient, TRequest, Nullable<Boolean>)
+  nameWithType: HttpClientExtensions.PATCHAsync<TEndpoint, TRequest>(HttpClient, TRequest, Nullable<Boolean>)
+  fullName: FastEndpoints.HttpClientExtensions.PATCHAsync<TEndpoint, TRequest>(System.Net.Http.HttpClient, TRequest, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    id: PATCHAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
+    startLine: 98
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a PATCH request to an endpoint using auto route discovery using a request dto that does not send back a response dto.\n"
+  example: []
+  syntax:
+    content: >-
+      public static async Task<HttpResponseMessage> PATCHAsync<TEndpoint, TRequest>(this HttpClient client, TRequest request, bool? sendAsFormData = null)
+
+          where TEndpoint : IEndpoint
+    parameters:
+    - id: client
+      type: System.Net.Http.HttpClient
+    - id: request
+      type: '{TRequest}'
+      description: the request dto
+    - id: sendAsFormData
+      type: System.Nullable{System.Boolean}
+      description: when set to true, the request dto will be automatically converted to a <xref href="System.Net.Http.MultipartFormDataContent" data-throw-if-not-resolved="false"></xref>
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint
+    - id: TRequest
+      description: the type of the request dto
+    return:
+      type: System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function PATCHAsync(Of TEndpoint As IEndpoint, TRequest)(client As HttpClient, request As TRequest, sendAsFormData As Boolean? = Nothing) As Task(Of HttpResponseMessage)
+  overload: FastEndpoints.HttpClientExtensions.PATCHAsync*
+  nameWithType.vb: HttpClientExtensions.PATCHAsync(Of TEndpoint, TRequest)(HttpClient, TRequest, Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  - async
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.PATCHAsync(Of TEndpoint, TRequest)(System.Net.Http.HttpClient, TRequest, System.Nullable(Of System.Boolean))
+  name.vb: PATCHAsync(Of TEndpoint, TRequest)(HttpClient, TRequest, Nullable(Of Boolean))
+- uid: FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient)
+  commentId: M:FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient)
+  id: PATCHAsync``2(System.Net.Http.HttpClient)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpClientExtensions
+  langs:
+  - csharp
+  - vb
+  name: PATCHAsync<TEndpoint, TResponse>(HttpClient)
+  nameWithType: HttpClientExtensions.PATCHAsync<TEndpoint, TResponse>(HttpClient)
+  fullName: FastEndpoints.HttpClientExtensions.PATCHAsync<TEndpoint, TResponse>(System.Net.Http.HttpClient)
+  type: Method
+  source:
+    id: PATCHAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
+    startLine: 111
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmake a PATCH request to an endpoint using auto route discovery without a request dto and get back a typed response dto.\n"
+  example: []
+  syntax:
+    content: >-
+      public static Task<TestResult<TResponse>> PATCHAsync<TEndpoint, TResponse>(this HttpClient client)
+
+          where TEndpoint : IEndpoint
+    parameters:
+    - id: client
+      type: System.Net.Http.HttpClient
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint
+    - id: TResponse
+      description: the type of the response dto
+    return:
+      type: System.Threading.Tasks.Task{FastEndpoints.TestResult{{TResponse}}}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function PATCHAsync(Of TEndpoint As IEndpoint, TResponse)(client As HttpClient) As Task(Of TestResult(Of TResponse))
+  overload: FastEndpoints.HttpClientExtensions.PATCHAsync*
+  nameWithType.vb: HttpClientExtensions.PATCHAsync(Of TEndpoint, TResponse)(HttpClient)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HttpClientExtensions.PATCHAsync(Of TEndpoint, TResponse)(System.Net.Http.HttpClient)
+  name.vb: PATCHAsync(Of TEndpoint, TResponse)(HttpClient)
 - uid: FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   commentId: M:FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
   id: PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})
@@ -294,7 +519,7 @@ items:
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 72
+    startLine: 122
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -350,7 +575,7 @@ items:
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 86
+    startLine: 136
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -408,7 +633,7 @@ items:
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 98
+    startLine: 148
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -465,7 +690,7 @@ items:
   source:
     id: PUTAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 111
+    startLine: 161
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -515,7 +740,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 121
+    startLine: 171
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -568,7 +793,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 133
+    startLine: 183
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -623,7 +848,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 143
+    startLine: 193
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -677,7 +902,7 @@ items:
   source:
     id: GETAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 155
+    startLine: 205
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -727,7 +952,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 165
+    startLine: 215
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -780,7 +1005,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 177
+    startLine: 227
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -835,7 +1060,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 187
+    startLine: 237
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -889,7 +1114,7 @@ items:
   source:
     id: DELETEAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 199
+    startLine: 249
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -939,7 +1164,7 @@ items:
   source:
     id: Send
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\HttpClientExtensions.cs
-    startLine: 202
+    startLine: 252
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -1544,6 +1769,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.HttpClientExtensions.PATCHAsync*
+  commentId: Overload:FastEndpoints.HttpClientExtensions.PATCHAsync
+  name: PATCHAsync
+  nameWithType: HttpClientExtensions.PATCHAsync
+  fullName: FastEndpoints.HttpClientExtensions.PATCHAsync
 - uid: FastEndpoints.HttpClientExtensions.PUTAsync*
   commentId: Overload:FastEndpoints.HttpClientExtensions.PUTAsync
   name: PUTAsync

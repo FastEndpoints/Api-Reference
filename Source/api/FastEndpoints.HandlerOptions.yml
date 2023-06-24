@@ -1,0 +1,636 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.HandlerOptions
+  commentId: T:FastEndpoints.HandlerOptions
+  id: HandlerOptions
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.HandlerOptions.EventPublisherStorageProvider``2
+  - FastEndpoints.HandlerOptions.Register``2
+  - FastEndpoints.HandlerOptions.Register``3
+  - FastEndpoints.HandlerOptions.RegisterClientStream``3
+  - FastEndpoints.HandlerOptions.RegisterEventHub``1
+  - FastEndpoints.HandlerOptions.RegisterServerStream``3
+  langs:
+  - csharp
+  - vb
+  name: HandlerOptions
+  nameWithType: HandlerOptions
+  fullName: FastEndpoints.HandlerOptions
+  type: Class
+  source:
+    id: HandlerOptions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 10
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nhandler registration options\n"
+  example: []
+  syntax:
+    content: public sealed class HandlerOptions
+    content.vb: Public NotInheritable Class HandlerOptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: FastEndpoints.HandlerOptions.Register``2
+  commentId: M:FastEndpoints.HandlerOptions.Register``2
+  id: Register``2
+  parent: FastEndpoints.HandlerOptions
+  langs:
+  - csharp
+  - vb
+  name: Register<TCommand, THandler>()
+  nameWithType: HandlerOptions.Register<TCommand, THandler>()
+  fullName: FastEndpoints.HandlerOptions.Register<TCommand, THandler>()
+  type: Method
+  source:
+    id: Register
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 24
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregisters a &quot;void&quot; command handler this server is hosting.\n"
+  example: []
+  syntax:
+    content: >-
+      public GrpcServiceEndpointConventionBuilder Register<TCommand, THandler>()
+
+          where TCommand : class, ICommand where THandler : class, ICommandHandler<TCommand>
+    typeParameters:
+    - id: TCommand
+      description: the type of the incoming command
+    - id: THandler
+      description: the type of the handler for the incoming command
+    return:
+      type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+    content.vb: Public Function Register(Of TCommand As {Class, ICommand}, THandler As {Class, ICommandHandler(Of TCommand)}) As GrpcServiceEndpointConventionBuilder
+  overload: FastEndpoints.HandlerOptions.Register*
+  nameWithType.vb: HandlerOptions.Register(Of TCommand, THandler)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.HandlerOptions.Register(Of TCommand, THandler)()
+  name.vb: Register(Of TCommand, THandler)()
+- uid: FastEndpoints.HandlerOptions.Register``3
+  commentId: M:FastEndpoints.HandlerOptions.Register``3
+  id: Register``3
+  parent: FastEndpoints.HandlerOptions
+  langs:
+  - csharp
+  - vb
+  name: Register<TCommand, THandler, TResult>()
+  nameWithType: HandlerOptions.Register<TCommand, THandler, TResult>()
+  fullName: FastEndpoints.HandlerOptions.Register<TCommand, THandler, TResult>()
+  type: Method
+  source:
+    id: Register
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 35
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregisters a &quot;unary&quot; command handler this server is hosting.\n"
+  example: []
+  syntax:
+    content: >-
+      public GrpcServiceEndpointConventionBuilder Register<TCommand, THandler, TResult>()
+
+          where TCommand : class, ICommand<TResult> where THandler : class, ICommandHandler<TCommand, TResult> where TResult : class
+    typeParameters:
+    - id: TCommand
+      description: the type of the incoming command
+    - id: THandler
+      description: the type of the handler for the incoming command
+    - id: TResult
+      description: the type of the result that will be returned from the handler
+    return:
+      type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+    content.vb: Public Function Register(Of TCommand As {Class, ICommand(Of TResult)}, THandler As {Class, ICommandHandler(Of TCommand, TResult)}, TResult As Class) As GrpcServiceEndpointConventionBuilder
+  overload: FastEndpoints.HandlerOptions.Register*
+  nameWithType.vb: HandlerOptions.Register(Of TCommand, THandler, TResult)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.HandlerOptions.Register(Of TCommand, THandler, TResult)()
+  name.vb: Register(Of TCommand, THandler, TResult)()
+- uid: FastEndpoints.HandlerOptions.RegisterServerStream``3
+  commentId: M:FastEndpoints.HandlerOptions.RegisterServerStream``3
+  id: RegisterServerStream``3
+  parent: FastEndpoints.HandlerOptions
+  langs:
+  - csharp
+  - vb
+  name: RegisterServerStream<TCommand, THandler, TResult>()
+  nameWithType: HandlerOptions.RegisterServerStream<TCommand, THandler, TResult>()
+  fullName: FastEndpoints.HandlerOptions.RegisterServerStream<TCommand, THandler, TResult>()
+  type: Method
+  source:
+    id: RegisterServerStream
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 47
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregisters a &quot;server stream&quot; command handler this server is hosting.\n"
+  example: []
+  syntax:
+    content: >-
+      public GrpcServiceEndpointConventionBuilder RegisterServerStream<TCommand, THandler, TResult>()
+
+          where TCommand : class, IServerStreamCommand<TResult> where THandler : class, IServerStreamCommandHandler<TCommand, TResult> where TResult : class
+    typeParameters:
+    - id: TCommand
+      description: the type of the incoming command
+    - id: THandler
+      description: the type of the handler for the incoming command
+    - id: TResult
+      description: the type of the result stream that will be returned from the handler
+    return:
+      type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+    content.vb: Public Function RegisterServerStream(Of TCommand As {Class, IServerStreamCommand(Of TResult)}, THandler As {Class, IServerStreamCommandHandler(Of TCommand, TResult)}, TResult As Class) As GrpcServiceEndpointConventionBuilder
+  overload: FastEndpoints.HandlerOptions.RegisterServerStream*
+  nameWithType.vb: HandlerOptions.RegisterServerStream(Of TCommand, THandler, TResult)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.HandlerOptions.RegisterServerStream(Of TCommand, THandler, TResult)()
+  name.vb: RegisterServerStream(Of TCommand, THandler, TResult)()
+- uid: FastEndpoints.HandlerOptions.RegisterClientStream``3
+  commentId: M:FastEndpoints.HandlerOptions.RegisterClientStream``3
+  id: RegisterClientStream``3
+  parent: FastEndpoints.HandlerOptions
+  langs:
+  - csharp
+  - vb
+  name: RegisterClientStream<T, THandler, TResult>()
+  nameWithType: HandlerOptions.RegisterClientStream<T, THandler, TResult>()
+  fullName: FastEndpoints.HandlerOptions.RegisterClientStream<T, THandler, TResult>()
+  type: Method
+  source:
+    id: RegisterClientStream
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 59
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregisters a &quot;client stream&quot; command handler this server is hosting.\n"
+  example: []
+  syntax:
+    content: >-
+      public GrpcServiceEndpointConventionBuilder RegisterClientStream<T, THandler, TResult>()
+
+          where T : class where THandler : class, IClientStreamCommandHandler<T, TResult> where TResult : class
+    typeParameters:
+    - id: T
+      description: the type of the incoming item stream
+    - id: THandler
+      description: the type of the handler for the incoming stream
+    - id: TResult
+      description: the type of the result that will be returned from the handler when the stream ends
+    return:
+      type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+    content.vb: Public Function RegisterClientStream(Of T As Class, THandler As {Class, IClientStreamCommandHandler(Of T, TResult)}, TResult As Class) As GrpcServiceEndpointConventionBuilder
+  overload: FastEndpoints.HandlerOptions.RegisterClientStream*
+  nameWithType.vb: HandlerOptions.RegisterClientStream(Of T, THandler, TResult)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.HandlerOptions.RegisterClientStream(Of T, THandler, TResult)()
+  name.vb: RegisterClientStream(Of T, THandler, TResult)()
+- uid: FastEndpoints.HandlerOptions.EventPublisherStorageProvider``2
+  commentId: M:FastEndpoints.HandlerOptions.EventPublisherStorageProvider``2
+  id: EventPublisherStorageProvider``2
+  parent: FastEndpoints.HandlerOptions
+  langs:
+  - csharp
+  - vb
+  name: EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
+  nameWithType: HandlerOptions.EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
+  fullName: FastEndpoints.HandlerOptions.EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
+  type: Method
+  source:
+    id: EventPublisherStorageProvider
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 70
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregister a custom storage provider for event publishers\n"
+  example: []
+  syntax:
+    content: >-
+      public void EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
+
+          where TStorageRecord : IEventStorageRecord, new()
+
+          where TStorageProvider : class, IEventPublisherStorageProvider
+    typeParameters:
+    - id: TStorageRecord
+      description: the type of the event storage record
+    - id: TStorageProvider
+      description: the type of the event storage provider
+    content.vb: Public Sub EventPublisherStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventPublisherStorageProvider})
+  overload: FastEndpoints.HandlerOptions.EventPublisherStorageProvider*
+  nameWithType.vb: HandlerOptions.EventPublisherStorageProvider(Of TStorageRecord, TStorageProvider)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.HandlerOptions.EventPublisherStorageProvider(Of TStorageRecord, TStorageProvider)()
+  name.vb: EventPublisherStorageProvider(Of TStorageRecord, TStorageProvider)()
+- uid: FastEndpoints.HandlerOptions.RegisterEventHub``1
+  commentId: M:FastEndpoints.HandlerOptions.RegisterEventHub``1
+  id: RegisterEventHub``1
+  parent: FastEndpoints.HandlerOptions
+  langs:
+  - csharp
+  - vb
+  name: RegisterEventHub<TEvent>()
+  nameWithType: HandlerOptions.RegisterEventHub<TEvent>()
+  fullName: FastEndpoints.HandlerOptions.RegisterEventHub<TEvent>()
+  type: Method
+  source:
+    id: RegisterEventHub
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
+    startLine: 79
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregisters an &quot;event hub&quot; that broadcasts events of the given type to all remote subscribers in an asynchronous manner\n"
+  example: []
+  syntax:
+    content: >-
+      public GrpcServiceEndpointConventionBuilder RegisterEventHub<TEvent>()
+
+          where TEvent : class, IEvent
+    typeParameters:
+    - id: TEvent
+      description: the type of the event hub
+    return:
+      type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+    content.vb: Public Function RegisterEventHub(Of TEvent As {Class, IEvent}) As GrpcServiceEndpointConventionBuilder
+  overload: FastEndpoints.HandlerOptions.RegisterEventHub*
+  nameWithType.vb: HandlerOptions.RegisterEventHub(Of TEvent)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.HandlerOptions.RegisterEventHub(Of TEvent)()
+  name.vb: RegisterEventHub(Of TEvent)()
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.HandlerOptions.Register*
+  commentId: Overload:FastEndpoints.HandlerOptions.Register
+  name: Register
+  nameWithType: HandlerOptions.Register
+  fullName: FastEndpoints.HandlerOptions.Register
+- uid: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+  commentId: T:Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+  parent: Microsoft.AspNetCore.Builder
+  isExternal: true
+  name: GrpcServiceEndpointConventionBuilder
+  nameWithType: GrpcServiceEndpointConventionBuilder
+  fullName: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
+- uid: Microsoft.AspNetCore.Builder
+  commentId: N:Microsoft.AspNetCore.Builder
+  isExternal: true
+  name: Microsoft.AspNetCore.Builder
+  nameWithType: Microsoft.AspNetCore.Builder
+  fullName: Microsoft.AspNetCore.Builder
+- uid: FastEndpoints.HandlerOptions.RegisterServerStream*
+  commentId: Overload:FastEndpoints.HandlerOptions.RegisterServerStream
+  name: RegisterServerStream
+  nameWithType: HandlerOptions.RegisterServerStream
+  fullName: FastEndpoints.HandlerOptions.RegisterServerStream
+- uid: FastEndpoints.HandlerOptions.RegisterClientStream*
+  commentId: Overload:FastEndpoints.HandlerOptions.RegisterClientStream
+  name: RegisterClientStream
+  nameWithType: HandlerOptions.RegisterClientStream
+  fullName: FastEndpoints.HandlerOptions.RegisterClientStream
+- uid: FastEndpoints.HandlerOptions.EventPublisherStorageProvider*
+  commentId: Overload:FastEndpoints.HandlerOptions.EventPublisherStorageProvider
+  name: EventPublisherStorageProvider
+  nameWithType: HandlerOptions.EventPublisherStorageProvider
+  fullName: FastEndpoints.HandlerOptions.EventPublisherStorageProvider
+- uid: FastEndpoints.HandlerOptions.RegisterEventHub*
+  commentId: Overload:FastEndpoints.HandlerOptions.RegisterEventHub
+  name: RegisterEventHub
+  nameWithType: HandlerOptions.RegisterEventHub
+  fullName: FastEndpoints.HandlerOptions.RegisterEventHub

@@ -113,6 +113,8 @@
       <h4><a class="xref" href="FastEndpoints.DontInjectAttribute.html">DontInjectAttribute</a></h4>
       <section><p>endpoint properties marked with this attribute will disable property injection for that property</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.EmptyObject.html">EmptyObject</a></h4>
+      <section></section>
       <h4><a class="xref" href="FastEndpoints.Endpoint-1.html">Endpoint&lt;TRequest&gt;</a></h4>
       <section><p>use this base class for defining endpoints that only use a request dto and don't use a response dto.</p>
 </section>
@@ -202,6 +204,12 @@ only one dto property can be decorated with this attribute.
       <h4><a class="xref" href="FastEndpoints.Group.html">Group</a></h4>
       <section><p>common configuration for a group of endpoints can be specified by implementing this abstract class and calling <a class="xref" href="FastEndpoints.Group.html#FastEndpoints_Group_Configure_System_String_System_Action_FastEndpoints_EndpointDefinition__">Configure(String, Action&lt;EndpointDefinition&gt;)</a> in the constructor.</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.HandlerOptions.html">HandlerOptions</a></h4>
+      <section><p>handler registration options</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.HandlerServerExtensions.html">HandlerServerExtensions</a></h4>
+      <section><p>handler server extensions</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.HasPermissionAttribute.html">HasPermissionAttribute</a></h4>
       <section><p>boolean properties decorated with this attribute will have their values set to true if the current principal has the specified permission.</p>
 </section>
@@ -263,6 +271,13 @@ only one dto property can be decorated with this attribute.
 </section>
       <h4><a class="xref" href="FastEndpoints.QueryParamAttribute.html">QueryParamAttribute</a></h4>
       <section><p>properties decorated with this attribute will have a corresponding request parameter added to the swagger schema</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.RemoteConnection.html">RemoteConnection</a></h4>
+      <section><p>represents a connection to a remote server that hosts command handlers (<a class="xref" href="FastEndpoints.ICommandHandler-2.html">ICommandHandler&lt;TCommand, TResult&gt;</a>)</p>
+<p>call <a class="xref" href="FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__2">Register&lt;TCommand, TResult&gt;()</a> method to map the commands</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.RemoteConnectionExtensions.html">RemoteConnectionExtensions</a></h4>
+      <section><p>client extension methods</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.RequestBinder-1.html">RequestBinder&lt;TRequest&gt;</a></h4>
       <section><p>the default request binder for a given request dto type</p>
@@ -337,11 +352,14 @@ inspect the <code>Failures</code> property for details.</p>
 </section>
     <h3 id="interfaces">Interfaces
 </h3>
+      <h4><a class="xref" href="FastEndpoints.IClientStreamCommandHandler-2.html">IClientStreamCommandHandler&lt;T, TResult&gt;</a></h4>
+      <section><p>interface to be implemented by a command handler for a stream of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> that returns a single <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code>.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.ICommand.html">ICommand</a></h4>
       <section><p>interface for a command that does not return anything</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.ICommand-1.html">ICommand&lt;TResult&gt;</a></h4>
-      <section><p>interface for a command that returns a result</p>
+      <section><p>interface for a command that returns a <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code></p>
 </section>
       <h4><a class="xref" href="FastEndpoints.ICommandHandler.html">ICommandHandler</a></h4>
       <section><p>marker interface for all command handlers</p>
@@ -369,6 +387,15 @@ inspect the <code>Failures</code> property for details.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IEventHandler-1.html">IEventHandler&lt;TEvent&gt;</a></h4>
       <section><p>interface to be implemented by event handlers</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IEventPublisherStorageProvider.html">IEventPublisherStorageProvider</a></h4>
+      <section><p>interface for implementing a storage provider for event publisher app (gRPC server)</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></h4>
+      <section><p>interface for implementing an event storage record that encapsulates/embeds an event (<a class="xref" href="FastEndpoints.IEvent.html">IEvent</a>)</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IEventSubscriberStorageProvider.html">IEventSubscriberStorageProvider</a></h4>
+      <section><p>interface for implementing a storage provider for event subscription client app (gRPC client)</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IGlobalPostProcessor.html">IGlobalPostProcessor</a></h4>
       <section><p>interface for defining global post-processors to be executed after the main endpoint handler is done</p>
@@ -405,6 +432,12 @@ inspect the <code>Failures</code> property for details.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IResponseMapper.html">IResponseMapper</a></h4>
       <section><p>marker interface for response only mappers</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IServerStreamCommand-1.html">IServerStreamCommand&lt;TResult&gt;</a></h4>
+      <section><p>interface for a command that returns a stream of <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code></p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IServerStreamCommandHandler-2.html">IServerStreamCommandHandler&lt;TCommand, TResult&gt;</a></h4>
+      <section><p>interface to be implemented by a command handler for a given command type that returns <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code> stream</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IServiceResolver.html">IServiceResolver</a></h4>
       <section><p>interface used by fastendpoints for resolving services from the DI container.

@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IEventPublisherStorageProvider
+ | FastEndpoints </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IEventPublisherStorageProvider
+ | FastEndpoints ">
+    <meta name="generator" content="docfx ">
+  <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
+    <link rel="shortcut icon" href="../images/favicon-32x32.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FastEndpoints.IEventPublisherStorageProvider">
+
+
+  <h1 id="FastEndpoints_IEventPublisherStorageProvider" data-uid="FastEndpoints.IEventPublisherStorageProvider" class="text-break">Interface IEventPublisherStorageProvider
+</h1>
+  <div class="markdown level0 summary"><p>interface for implementing a storage provider for event publisher app (gRPC server)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
+  <h6><strong>Assembly</strong>: FastEndpoints.Messaging.Remote.dll</h6>
+  <h5 id="FastEndpoints_IEventPublisherStorageProvider_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IEventPublisherStorageProvider</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="FastEndpoints_IEventPublisherStorageProvider_GetNextEventAsync_" data-uid="FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync*"></a>
+  <h4 id="FastEndpoints_IEventPublisherStorageProvider_GetNextEventAsync_System_String_System_Threading_CancellationToken_" data-uid="FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync(System.String,System.Threading.CancellationToken)">GetNextEventAsync(String, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>fetch the next pending event storage record that needs to be processed.</p>
+<pre><code>  Where(e => e.SubscriberID == subscriberID &amp;&amp; !e.IsComplete &amp;&amp; DateTime.UtcNow &lt;= e.ExpireOn)
+  OrderAscending(e => e.Id)
+  Take(1)</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask&lt;IEventStorageRecord&gt; GetNextEventAsync(string subscriberID, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">subscriberID</span></td>
+        <td><p>the id of the subscriber who's next event that should be retrieved</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.ValueTask</span>&lt;<a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IEventPublisherStorageProvider_MarkEventAsCompleteAsync_" data-uid="FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync*"></a>
+  <h4 id="FastEndpoints_IEventPublisherStorageProvider_MarkEventAsCompleteAsync_FastEndpoints_IEventStorageRecord_System_Threading_CancellationToken_" data-uid="FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)">MarkEventAsCompleteAsync(IEventStorageRecord, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>mark the event storage record as complete by either replacing the entity on storage with the supplied instance or
+simply update the <a class="xref" href="FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_IsComplete">IsComplete</a> field to true with a partial update operation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask MarkEventAsCompleteAsync(IEventStorageRecord e, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></td>
+        <td><span class="parametername">e</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IEventPublisherStorageProvider_PurgeStaleRecordsAsync_" data-uid="FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync*"></a>
+  <h4 id="FastEndpoints_IEventPublisherStorageProvider_PurgeStaleRecordsAsync" data-uid="FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync">PurgeStaleRecordsAsync()</h4>
+  <div class="markdown level1 summary"><p>this method will be called hourly. implement this method to remove stale records (completed or (expired and incomplete)) from storage.
+or instead of removing them, you can move them to some other location (dead-letter-queue maybe) or for inspection by a human.
+or if you'd like to retry expired events, update the <a class="xref" href="FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_ExpireOn">ExpireOn</a> field to a future date/time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask PurgeStaleRecordsAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IEventPublisherStorageProvider_RestoreSubsriberIDsForEventType_" data-uid="FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType*"></a>
+  <h4 id="FastEndpoints_IEventPublisherStorageProvider_RestoreSubsriberIDsForEventType_System_String_" data-uid="FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType(System.String)">RestoreSubsriberIDsForEventType(String)</h4>
+  <div class="markdown level1 summary"><p>this method will only be called once (for each event type) on app startup. if there are any pending records on storage from a previous app run,
+simply return a collection of unique subscriber IDs.</p>
+<pre><code>    Where(e => e.EventType == eventType &amp;&amp; !e.IsComplete &amp;&amp; DateTime.UtcNow &lt;= e.ExpireOn)
+    Select(e => e.SubscriberID)
+    Distinct()</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask&lt;IEnumerable&lt;string&gt;&gt; RestoreSubsriberIDsForEventType(string eventType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">eventType</span></td>
+        <td><p>the full type name of the event model</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.ValueTask</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IEventPublisherStorageProvider_StoreEventAsync_" data-uid="FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync*"></a>
+  <h4 id="FastEndpoints_IEventPublisherStorageProvider_StoreEventAsync_FastEndpoints_IEventStorageRecord_System_Threading_CancellationToken_" data-uid="FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)">StoreEventAsync(IEventStorageRecord, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>store the event storage record however you please. ideally on a nosql database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask StoreEventAsync(IEventStorageRecord e, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>the event storage record which contains the actual event object as well as some metadata</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Developed by <a href='https://github.com/dj-nitehawk'>Đĵ ΝιΓΞΗΛψΚ</a> and <a href='https://github.com/dj-nitehawk/FastEndpoints/graphs/contributors'>contributors</a> / Licensed under <a href='https://github.com/dj-nitehawk/FastEndpoints/blob/master/LICENSE'>MIT</a> / Website generated by <a href='https://dotnet.github.io/docfx/'>DocFX</a>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

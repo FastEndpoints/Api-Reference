@@ -15,10 +15,10 @@ items:
   type: Interface
   source:
     id: IEventHandler
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\IEventHandler.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\IEventHandler.cs
     startLine: 11
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
   summary: "\ninterface to be implemented by event handlers\n"
   example: []
@@ -53,15 +53,15 @@ items:
   type: Method
   source:
     id: HandleAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\IEventHandler.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Core\Interfaces\IEventHandler.cs
     startLine: 18
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Core
   namespace: FastEndpoints
   summary: "\nthe handler logic for the event handler\n"
   example: []
   syntax:
-    content: Task HandleAsync(TEvent eventModel, CancellationToken ct = default(CancellationToken))
+    content: Task HandleAsync(TEvent eventModel, CancellationToken ct)
     parameters:
     - id: eventModel
       type: '{TEvent}'
@@ -71,7 +71,7 @@ items:
       description: optional cancellation token
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Function HandleAsync(eventModel As TEvent, ct As CancellationToken = Nothing) As Task
+    content.vb: Function HandleAsync(eventModel As TEvent, ct As CancellationToken) As Task
   overload: FastEndpoints.IEventHandler`1.HandleAsync*
   nameWithType.vb: IEventHandler(Of TEvent).HandleAsync(TEvent, CancellationToken)
   fullName.vb: FastEndpoints.IEventHandler(Of TEvent).HandleAsync(TEvent, System.Threading.CancellationToken)

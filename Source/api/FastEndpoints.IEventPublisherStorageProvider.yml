@@ -1,0 +1,421 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.IEventPublisherStorageProvider
+  commentId: T:FastEndpoints.IEventPublisherStorageProvider
+  id: IEventPublisherStorageProvider
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync(System.String,System.Threading.CancellationToken)
+  - FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  - FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync
+  - FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType(System.String)
+  - FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IEventPublisherStorageProvider
+  nameWithType: IEventPublisherStorageProvider
+  fullName: FastEndpoints.IEventPublisherStorageProvider
+  type: Interface
+  source:
+    id: IEventPublisherStorageProvider
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\Storage\IEventPublisherStorageProvider.cs
+    startLine: 5
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\ninterface for implementing a storage provider for event publisher app (gRPC server)\n"
+  example: []
+  syntax:
+    content: public interface IEventPublisherStorageProvider
+    content.vb: Public Interface IEventPublisherStorageProvider
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType(System.String)
+  commentId: M:FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType(System.String)
+  id: RestoreSubsriberIDsForEventType(System.String)
+  parent: FastEndpoints.IEventPublisherStorageProvider
+  langs:
+  - csharp
+  - vb
+  name: RestoreSubsriberIDsForEventType(String)
+  nameWithType: IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType(String)
+  fullName: FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType(System.String)
+  type: Method
+  source:
+    id: RestoreSubsriberIDsForEventType
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\Storage\IEventPublisherStorageProvider.cs
+    startLine: 17
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nthis method will only be called once (for each event type) on app startup. if there are any pending records on storage from a previous app run,\nsimply return a collection of unique subscriber IDs.\n<pre><code>    Where(e => e.EventType == eventType &amp;&amp; !e.IsComplete &amp;&amp; DateTime.UtcNow &lt;= e.ExpireOn)\n    Select(e => e.SubscriberID)\n    Distinct()</code></pre>\n"
+  example: []
+  syntax:
+    content: ValueTask<IEnumerable<string>> RestoreSubsriberIDsForEventType(string eventType)
+    parameters:
+    - id: eventType
+      type: System.String
+      description: the full type name of the event model
+    return:
+      type: System.Threading.Tasks.ValueTask{System.Collections.Generic.IEnumerable{System.String}}
+    content.vb: Function RestoreSubsriberIDsForEventType(eventType As String) As ValueTask(Of IEnumerable(Of String))
+  overload: FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType*
+- uid: FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  id: StoreEventAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  parent: FastEndpoints.IEventPublisherStorageProvider
+  langs:
+  - csharp
+  - vb
+  name: StoreEventAsync(IEventStorageRecord, CancellationToken)
+  nameWithType: IEventPublisherStorageProvider.StoreEventAsync(IEventStorageRecord, CancellationToken)
+  fullName: FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync(FastEndpoints.IEventStorageRecord, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: StoreEventAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\Storage\IEventPublisherStorageProvider.cs
+    startLine: 24
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nstore the event storage record however you please. ideally on a nosql database.\n"
+  example: []
+  syntax:
+    content: ValueTask StoreEventAsync(IEventStorageRecord e, CancellationToken ct)
+    parameters:
+    - id: e
+      type: FastEndpoints.IEventStorageRecord
+      description: the event storage record which contains the actual event object as well as some metadata
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Function StoreEventAsync(e As IEventStorageRecord, ct As CancellationToken) As ValueTask
+  overload: FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync*
+- uid: FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync(System.String,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync(System.String,System.Threading.CancellationToken)
+  id: GetNextEventAsync(System.String,System.Threading.CancellationToken)
+  parent: FastEndpoints.IEventPublisherStorageProvider
+  langs:
+  - csharp
+  - vb
+  name: GetNextEventAsync(String, CancellationToken)
+  nameWithType: IEventPublisherStorageProvider.GetNextEventAsync(String, CancellationToken)
+  fullName: FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync(System.String, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: GetNextEventAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\Storage\IEventPublisherStorageProvider.cs
+    startLine: 36
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nfetch the next pending event storage record that needs to be processed.\n<pre><code>  Where(e => e.SubscriberID == subscriberID &amp;&amp; !e.IsComplete &amp;&amp; DateTime.UtcNow &lt;= e.ExpireOn)\n  OrderAscending(e => e.Id)\n  Take(1)</code></pre>\n"
+  example: []
+  syntax:
+    content: ValueTask<IEventStorageRecord> GetNextEventAsync(string subscriberID, CancellationToken ct)
+    parameters:
+    - id: subscriberID
+      type: System.String
+      description: the id of the subscriber who&apos;s next event that should be retrieved
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.ValueTask{FastEndpoints.IEventStorageRecord}
+    content.vb: Function GetNextEventAsync(subscriberID As String, ct As CancellationToken) As ValueTask(Of IEventStorageRecord)
+  overload: FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync*
+- uid: FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  id: MarkEventAsCompleteAsync(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  parent: FastEndpoints.IEventPublisherStorageProvider
+  langs:
+  - csharp
+  - vb
+  name: MarkEventAsCompleteAsync(IEventStorageRecord, CancellationToken)
+  nameWithType: IEventPublisherStorageProvider.MarkEventAsCompleteAsync(IEventStorageRecord, CancellationToken)
+  fullName: FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync(FastEndpoints.IEventStorageRecord, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: MarkEventAsCompleteAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\Storage\IEventPublisherStorageProvider.cs
+    startLine: 44
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nmark the event storage record as complete by either replacing the entity on storage with the supplied instance or\nsimply update the <xref href=\"FastEndpoints.IEventStorageRecord.IsComplete\" data-throw-if-not-resolved=\"false\"></xref> field to true with a partial update operation.\n"
+  example: []
+  syntax:
+    content: ValueTask MarkEventAsCompleteAsync(IEventStorageRecord e, CancellationToken ct)
+    parameters:
+    - id: e
+      type: FastEndpoints.IEventStorageRecord
+      description: ''
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Function MarkEventAsCompleteAsync(e As IEventStorageRecord, ct As CancellationToken) As ValueTask
+  overload: FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync*
+- uid: FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync
+  commentId: M:FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync
+  id: PurgeStaleRecordsAsync
+  parent: FastEndpoints.IEventPublisherStorageProvider
+  langs:
+  - csharp
+  - vb
+  name: PurgeStaleRecordsAsync()
+  nameWithType: IEventPublisherStorageProvider.PurgeStaleRecordsAsync()
+  fullName: FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync()
+  type: Method
+  source:
+    id: PurgeStaleRecordsAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\Storage\IEventPublisherStorageProvider.cs
+    startLine: 51
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nthis method will be called hourly. implement this method to remove stale records (completed or (expired and incomplete)) from storage.\nor instead of removing them, you can move them to some other location (dead-letter-queue maybe) or for inspection by a human.\nor if you&apos;d like to retry expired events, update the <xref href=\"FastEndpoints.IEventStorageRecord.ExpireOn\" data-throw-if-not-resolved=\"false\"></xref> field to a future date/time.\n"
+  example: []
+  syntax:
+    content: ValueTask PurgeStaleRecordsAsync()
+    return:
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Function PurgeStaleRecordsAsync As ValueTask
+  overload: FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync*
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType*
+  commentId: Overload:FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType
+  name: RestoreSubsriberIDsForEventType
+  nameWithType: IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType
+  fullName: FastEndpoints.IEventPublisherStorageProvider.RestoreSubsriberIDsForEventType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Threading.Tasks.ValueTask{System.Collections.Generic.IEnumerable{System.String}}
+  commentId: T:System.Threading.Tasks.ValueTask{System.Collections.Generic.IEnumerable{System.String}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  name: ValueTask<IEnumerable<String>>
+  nameWithType: ValueTask<IEnumerable<String>>
+  fullName: System.Threading.Tasks.ValueTask<System.Collections.Generic.IEnumerable<System.String>>
+  nameWithType.vb: ValueTask(Of IEnumerable(Of String))
+  fullName.vb: System.Threading.Tasks.ValueTask(Of System.Collections.Generic.IEnumerable(Of System.String))
+  name.vb: ValueTask(Of IEnumerable(Of String))
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync*
+  commentId: Overload:FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync
+  name: StoreEventAsync
+  nameWithType: IEventPublisherStorageProvider.StoreEventAsync
+  fullName: FastEndpoints.IEventPublisherStorageProvider.StoreEventAsync
+- uid: FastEndpoints.IEventStorageRecord
+  commentId: T:FastEndpoints.IEventStorageRecord
+  parent: FastEndpoints
+  name: IEventStorageRecord
+  nameWithType: IEventStorageRecord
+  fullName: FastEndpoints.IEventStorageRecord
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync*
+  commentId: Overload:FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync
+  name: GetNextEventAsync
+  nameWithType: IEventPublisherStorageProvider.GetNextEventAsync
+  fullName: FastEndpoints.IEventPublisherStorageProvider.GetNextEventAsync
+- uid: System.Threading.Tasks.ValueTask{FastEndpoints.IEventStorageRecord}
+  commentId: T:System.Threading.Tasks.ValueTask{FastEndpoints.IEventStorageRecord}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  name: ValueTask<IEventStorageRecord>
+  nameWithType: ValueTask<IEventStorageRecord>
+  fullName: System.Threading.Tasks.ValueTask<FastEndpoints.IEventStorageRecord>
+  nameWithType.vb: ValueTask(Of IEventStorageRecord)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of FastEndpoints.IEventStorageRecord)
+  name.vb: ValueTask(Of IEventStorageRecord)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.IEventStorageRecord
+    name: IEventStorageRecord
+    nameWithType: IEventStorageRecord
+    fullName: FastEndpoints.IEventStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.IEventStorageRecord
+    name: IEventStorageRecord
+    nameWithType: IEventStorageRecord
+    fullName: FastEndpoints.IEventStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IEventStorageRecord.IsComplete
+  commentId: P:FastEndpoints.IEventStorageRecord.IsComplete
+  isExternal: true
+- uid: FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync*
+  commentId: Overload:FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync
+  name: MarkEventAsCompleteAsync
+  nameWithType: IEventPublisherStorageProvider.MarkEventAsCompleteAsync
+  fullName: FastEndpoints.IEventPublisherStorageProvider.MarkEventAsCompleteAsync
+- uid: FastEndpoints.IEventStorageRecord.ExpireOn
+  commentId: P:FastEndpoints.IEventStorageRecord.ExpireOn
+  isExternal: true
+- uid: FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync*
+  commentId: Overload:FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync
+  name: PurgeStaleRecordsAsync
+  nameWithType: IEventPublisherStorageProvider.PurgeStaleRecordsAsync
+  fullName: FastEndpoints.IEventPublisherStorageProvider.PurgeStaleRecordsAsync

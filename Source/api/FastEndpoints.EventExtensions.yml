@@ -5,7 +5,7 @@ items:
   id: EventExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.EventExtensions.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
+  - FastEndpoints.EventExtensions.Broadcast``1(``0,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -15,10 +15,10 @@ items:
   type: Class
   source:
     id: EventExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\EventExtensions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventExtensions.cs
     startLine: 2
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
   syntax:
     content: public static class EventExtensions
@@ -40,69 +40,54 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.EventExtensions.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.EventExtensions.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
-  id: PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
+- uid: FastEndpoints.EventExtensions.Broadcast``1(``0,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventExtensions.Broadcast``1(``0,System.Threading.CancellationToken)
+  id: Broadcast``1(``0,System.Threading.CancellationToken)
   isExtensionMethod: true
   parent: FastEndpoints.EventExtensions
   langs:
   - csharp
   - vb
-  name: PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
-  nameWithType: EventExtensions.PublishAsync<TEvent>(TEvent, Mode, CancellationToken)
-  fullName: FastEndpoints.EventExtensions.PublishAsync<TEvent>(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
+  name: Broadcast<TEvent>(TEvent, CancellationToken)
+  nameWithType: EventExtensions.Broadcast<TEvent>(TEvent, CancellationToken)
+  fullName: FastEndpoints.EventExtensions.Broadcast<TEvent>(TEvent, System.Threading.CancellationToken)
   type: Method
   source:
-    id: PublishAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\EventExtensions.cs
-    startLine: 15
+    id: Broadcast
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventExtensions.cs
+    startLine: 8
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\npublish the event to all subscribers registered to handle this type of event.\n"
+  summary: "\nbroadcast/publish an event to all remote subscribers\n"
   example: []
   syntax:
     content: >-
-      public static Task PublishAsync<TEvent>(this TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default(CancellationToken))
+      public static void Broadcast<TEvent>(this TEvent evnt, CancellationToken ct = default(CancellationToken))
 
-          where TEvent : IEvent
+          where TEvent : class, IEvent
     parameters:
-    - id: eventModel
+    - id: evnt
       type: '{TEvent}'
-      description: the notification event model/dto to publish
-    - id: waitMode
-      type: FastEndpoints.Mode
-      description: specify whether to wait for none, any or all of the subscribers to complete their work
-    - id: cancellation
+    - id: ct
       type: System.Threading.CancellationToken
-      description: an optional cancellation token
     typeParameters:
     - id: TEvent
-      description: the type of the event model
-    return:
-      type: System.Threading.Tasks.Task
-      description: >-
-        a Task that matches the wait mode specified.
-
-        <xref href="FastEndpoints.Mode.WaitForNone" data-throw-if-not-resolved="false"></xref> returns an already completed Task (fire and forget).
-
-        <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
-
-        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all of the subscribers complete their work.
+      description: the type of the event being broadcasted
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function PublishAsync(Of TEvent As IEvent)(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
-  overload: FastEndpoints.EventExtensions.PublishAsync*
-  nameWithType.vb: EventExtensions.PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+      Public Shared Sub Broadcast(Of TEvent As {Class, IEvent})(evnt As TEvent, ct As CancellationToken = Nothing)
+  overload: FastEndpoints.EventExtensions.Broadcast*
+  nameWithType.vb: EventExtensions.Broadcast(Of TEvent)(TEvent, CancellationToken)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.EventExtensions.PublishAsync(Of TEvent)(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
-  name.vb: PublishAsync(Of TEvent)(TEvent, Mode, CancellationToken)
+  fullName.vb: FastEndpoints.EventExtensions.Broadcast(Of TEvent)(TEvent, System.Threading.CancellationToken)
+  name.vb: Broadcast(Of TEvent)(TEvent, CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -401,32 +386,17 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.Mode.WaitForNone
-  commentId: F:FastEndpoints.Mode.WaitForNone
-  isExternal: true
-- uid: FastEndpoints.Mode.WaitForAny
-  commentId: F:FastEndpoints.Mode.WaitForAny
-  isExternal: true
-- uid: FastEndpoints.Mode.WaitForAll
-  commentId: F:FastEndpoints.Mode.WaitForAll
-  isExternal: true
-- uid: FastEndpoints.EventExtensions.PublishAsync*
-  commentId: Overload:FastEndpoints.EventExtensions.PublishAsync
-  name: PublishAsync
-  nameWithType: EventExtensions.PublishAsync
-  fullName: FastEndpoints.EventExtensions.PublishAsync
+- uid: FastEndpoints.EventExtensions.Broadcast*
+  commentId: Overload:FastEndpoints.EventExtensions.Broadcast
+  name: Broadcast
+  nameWithType: EventExtensions.Broadcast
+  fullName: FastEndpoints.EventExtensions.Broadcast
 - uid: '{TEvent}'
   commentId: '!:TEvent'
   definition: TEvent
   name: TEvent
   nameWithType: TEvent
   fullName: TEvent
-- uid: FastEndpoints.Mode
-  commentId: T:FastEndpoints.Mode
-  parent: FastEndpoints
-  name: Mode
-  nameWithType: Mode
-  fullName: FastEndpoints.Mode
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -434,13 +404,6 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
-- uid: System.Threading.Tasks.Task
-  commentId: T:System.Threading.Tasks.Task
-  parent: System.Threading.Tasks
-  isExternal: true
-  name: Task
-  nameWithType: Task
-  fullName: System.Threading.Tasks.Task
 - uid: TEvent
   name: TEvent
   nameWithType: TEvent
@@ -451,9 +414,3 @@ references:
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
-- uid: System.Threading.Tasks
-  commentId: N:System.Threading.Tasks
-  isExternal: true
-  name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
-  fullName: System.Threading.Tasks

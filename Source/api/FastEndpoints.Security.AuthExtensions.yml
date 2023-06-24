@@ -5,6 +5,9 @@ items:
   id: AuthExtensions
   parent: FastEndpoints.Security
   children:
+  - FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.Security.Claims.Claim[])
+  - FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.ValueTuple{System.String,System.String}[])
+  - FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.String},System.String[])
   - FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
   - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
   - FastEndpoints.Security.AuthExtensions.ClaimValue(System.Security.Claims.ClaimsPrincipal,System.String)
@@ -274,6 +277,135 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.Security.Claims.Claim[])
+  commentId: M:FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.Security.Claims.Claim[])
+  id: Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.Security.Claims.Claim[])
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(List<Claim>, Claim[])
+  nameWithType: AuthExtensions.Add(List<Claim>, Claim[])
+  fullName: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List<System.Security.Claims.Claim>, System.Security.Claims.Claim[])
+  type: Method
+  source:
+    id: Add
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
+    startLine: 111
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: "\nadds multiple <xref href=\"System.Security.Claims.Claim\" data-throw-if-not-resolved=\"false\"></xref>s to the list.\n"
+  example: []
+  syntax:
+    content: public static void Add(this List<Claim> list, params Claim[] claims)
+    parameters:
+    - id: list
+      type: System.Collections.Generic.List{System.Security.Claims.Claim}
+    - id: claims
+      type: System.Security.Claims.Claim[]
+      description: the <xref href="System.Security.Claims.Claim" data-throw-if-not-resolved="false"></xref>s to append to the list.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Add(list As List(Of Claim), ParamArray claims As Claim())
+  overload: FastEndpoints.Security.AuthExtensions.Add*
+  nameWithType.vb: AuthExtensions.Add(List(Of Claim), Claim())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List(Of System.Security.Claims.Claim), System.Security.Claims.Claim())
+  name.vb: Add(List(Of Claim), Claim())
+- uid: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.ValueTuple{System.String,System.String}[])
+  commentId: M:FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.ValueTuple{System.String,System.String}[])
+  id: Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.ValueTuple{System.String,System.String}[])
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(List<Claim>, (String claimType, String claimValue)[])
+  nameWithType: AuthExtensions.Add(List<Claim>, (String claimType, String claimValue)[])
+  fullName: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List<System.Security.Claims.Claim>, System.ValueTuple<System.String, System.String>[])
+  type: Method
+  source:
+    id: Add
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
+    startLine: 120
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: "\nadds multiple <xref href=\"System.Security.Claims.Claim\" data-throw-if-not-resolved=\"false\"></xref>s to the list.\n"
+  example: []
+  syntax:
+    content: public static void Add(this List<Claim> list, params (string claimType, string claimValue)[] claims)
+    parameters:
+    - id: list
+      type: System.Collections.Generic.List{System.Security.Claims.Claim}
+    - id: claims
+      type: System.ValueTuple{System.String,System.String}[]
+      description: the claim <code>Type</code> &amp; <code>Value</code> tuples to add to the list.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Add(list As List(Of Claim), ParamArray claims As(claimType As String, claimValue As String)(Of String , String)())
+  overload: FastEndpoints.Security.AuthExtensions.Add*
+  nameWithType.vb: AuthExtensions.Add(List(Of Claim), (claimType As String, claimValue As String)(Of String, String)())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List(Of System.Security.Claims.Claim), System.ValueTuple(Of System.String, System.String)())
+  name.vb: Add(List(Of Claim), (claimType As String, claimValue As String)(Of String, String)())
+- uid: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.String},System.String[])
+  commentId: M:FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.String},System.String[])
+  id: Add(System.Collections.Generic.List{System.String},System.String[])
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(List<String>, String[])
+  nameWithType: AuthExtensions.Add(List<String>, String[])
+  fullName: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List<System.String>, System.String[])
+  type: Method
+  source:
+    id: Add
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\AuthExtensions.cs
+    startLine: 129
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: "\nadds multiple strings to a list.\n"
+  example: []
+  syntax:
+    content: public static void Add(this List<string> list, params string[] values)
+    parameters:
+    - id: list
+      type: System.Collections.Generic.List{System.String}
+    - id: values
+      type: System.String[]
+      description: the strings to append to the list.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Add(list As List(Of String), ParamArray values As String())
+  overload: FastEndpoints.Security.AuthExtensions.Add*
+  nameWithType.vb: AuthExtensions.Add(List(Of String), String())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List(Of System.String), System.String())
+  name.vb: Add(List(Of String), String())
 references:
 - uid: FastEndpoints.Security
   commentId: N:FastEndpoints.Security
@@ -821,3 +953,260 @@ references:
   name: ClaimValue
   nameWithType: AuthExtensions.ClaimValue
   fullName: FastEndpoints.Security.AuthExtensions.ClaimValue
+- uid: System.Security.Claims.Claim
+  commentId: T:System.Security.Claims.Claim
+  isExternal: true
+- uid: FastEndpoints.Security.AuthExtensions.Add*
+  commentId: Overload:FastEndpoints.Security.AuthExtensions.Add
+  name: Add
+  nameWithType: AuthExtensions.Add
+  fullName: FastEndpoints.Security.AuthExtensions.Add
+- uid: System.Collections.Generic.List{System.Security.Claims.Claim}
+  commentId: T:System.Collections.Generic.List{System.Security.Claims.Claim}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Claim>
+  nameWithType: List<Claim>
+  fullName: System.Collections.Generic.List<System.Security.Claims.Claim>
+  nameWithType.vb: List(Of Claim)
+  fullName.vb: System.Collections.Generic.List(Of System.Security.Claims.Claim)
+  name.vb: List(Of Claim)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Security.Claims.Claim
+    name: Claim
+    nameWithType: Claim
+    fullName: System.Security.Claims.Claim
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Security.Claims.Claim
+    name: Claim
+    nameWithType: Claim
+    fullName: System.Security.Claims.Claim
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Security.Claims.Claim[]
+  isExternal: true
+  name: Claim[]
+  nameWithType: Claim[]
+  fullName: System.Security.Claims.Claim[]
+  nameWithType.vb: Claim()
+  fullName.vb: System.Security.Claims.Claim()
+  name.vb: Claim()
+  spec.csharp:
+  - uid: System.Security.Claims.Claim
+    name: Claim
+    nameWithType: Claim
+    fullName: System.Security.Claims.Claim
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Security.Claims.Claim
+    name: Claim
+    nameWithType: Claim
+    fullName: System.Security.Claims.Claim
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.ValueTuple{System.String,System.String}[]
+  isExternal: true
+  name: (T1 Item1, T2 Item2)<String, String>[]
+  nameWithType: (T1 Item1, T2 Item2)<String, String>[]
+  fullName: System.ValueTuple<System.String, System.String>[]
+  nameWithType.vb: (Item1 As T1, Item2 As T2)(Of String, String)()
+  fullName.vb: System.ValueTuple(Of System.String, System.String)()
+  name.vb: (Item1 As T1, Item2 As T2)(Of String, String)()
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: (T1 Item1, T2 Item2)
+    nameWithType: (T1 Item1, T2 Item2)
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: (Item1 As T1, Item2 As T2)
+    nameWithType: (Item1 As T1, Item2 As T2)
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
