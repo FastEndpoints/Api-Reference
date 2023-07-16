@@ -5,6 +5,7 @@ items:
   id: RefreshTokenService`2
   parent: FastEndpoints.Security
   children:
+  - FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
   - FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync(`1)
   - FastEndpoints.Security.RefreshTokenService`2.RefreshRequestValidationAsync(`0)
   - FastEndpoints.Security.RefreshTokenService`2.SetRenewalPrivilegesAsync(`0,FastEndpoints.UserPrivileges)
@@ -333,6 +334,53 @@ items:
   - Public
   - MustOverride
   fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).SetRenewalPrivilegesAsync(TRequest, FastEndpoints.UserPrivileges)
+- uid: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
+  commentId: M:FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
+  id: CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
+  parent: FastEndpoints.Security.RefreshTokenService`2
+  langs:
+  - csharp
+  - vb
+  name: CreateCustomToken<T>(String, Action<UserPrivileges>, Func<TResponse, T>)
+  nameWithType: RefreshTokenService<TRequest, TResponse>.CreateCustomToken<T>(String, Action<UserPrivileges>, Func<TResponse, T>)
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.CreateCustomToken<T>(System.String, System.Action<FastEndpoints.UserPrivileges>, System.Func<TResponse, T>)
+  type: Method
+  source:
+    id: CreateCustomToken
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Security\RefreshTokens\RefreshTokenService.cs
+    startLine: 81
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: "\ncreate a token response and map it to a different type. useful if you need to create the token manually by yourself.\n"
+  example: []
+  syntax:
+    content: public async Task<T> CreateCustomToken<T>(string userId, Action<UserPrivileges> privileges, Func<TResponse, T> map)
+    parameters:
+    - id: userId
+      type: System.String
+      description: the id of the user to create the token for
+    - id: privileges
+      type: System.Action{FastEndpoints.UserPrivileges}
+      description: the user priviledges to be embeded in the jwt such as roles/claims/permissions
+    - id: map
+      type: System.Func{{TResponse},{T}}
+      description: a func that maps properties from <code data-dev-comment-type="typeparamref" class="typeparamref">TResponse</code> to <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>
+    typeParameters:
+    - id: T
+      description: the type to map to
+    return:
+      type: System.Threading.Tasks.Task{{T}}
+    content.vb: Public Function CreateCustomToken(Of T)(userId As String, privileges As Action(Of UserPrivileges), map As Func(Of TResponse, T)) As Task(Of T)
+  overload: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken*
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).CreateCustomToken(Of T)(String, Action(Of UserPrivileges), Func(Of TResponse, T))
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).CreateCustomToken(Of T)(System.String, System.Action(Of FastEndpoints.UserPrivileges), System.Func(Of TResponse, T))
+  name.vb: CreateCustomToken(Of T)(String, Action(Of UserPrivileges), Func(Of TResponse, T))
 references:
 - uid: FastEndpoints.Security
   commentId: N:FastEndpoints.Security
@@ -13249,3 +13297,241 @@ references:
   name: UserPrivileges
   nameWithType: UserPrivileges
   fullName: FastEndpoints.UserPrivileges
+- uid: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken
+  name: CreateCustomToken
+  nameWithType: RefreshTokenService<TRequest, TResponse>.CreateCustomToken
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.CreateCustomToken
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).CreateCustomToken
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).CreateCustomToken
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Action{FastEndpoints.UserPrivileges}
+  commentId: T:System.Action{FastEndpoints.UserPrivileges}
+  parent: System
+  definition: System.Action`1
+  name: Action<UserPrivileges>
+  nameWithType: Action<UserPrivileges>
+  fullName: System.Action<FastEndpoints.UserPrivileges>
+  nameWithType.vb: Action(Of UserPrivileges)
+  fullName.vb: System.Action(Of FastEndpoints.UserPrivileges)
+  name.vb: Action(Of UserPrivileges)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.UserPrivileges
+    name: UserPrivileges
+    nameWithType: UserPrivileges
+    fullName: FastEndpoints.UserPrivileges
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.UserPrivileges
+    name: UserPrivileges
+    nameWithType: UserPrivileges
+    fullName: FastEndpoints.UserPrivileges
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func{{TResponse},{T}}
+  commentId: T:System.Func{`1,``0}
+  parent: System
+  definition: System.Func`2
+  name: Func<TResponse, T>
+  nameWithType: Func<TResponse, T>
+  fullName: System.Func<TResponse, T>
+  nameWithType.vb: Func(Of TResponse, T)
+  fullName.vb: System.Func(Of TResponse, T)
+  name.vb: Func(Of TResponse, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResponse
+    nameWithType: TResponse
+    fullName: TResponse
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task{{T}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: System.Threading.Tasks.Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: System.Threading.Tasks.Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )

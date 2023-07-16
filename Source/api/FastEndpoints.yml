@@ -35,9 +35,11 @@ items:
   - FastEndpoints.EpVersion
   - FastEndpoints.ErrorOptions
   - FastEndpoints.ErrorResponse
-  - FastEndpoints.Event`1
   - FastEndpoints.EventBase
+  - FastEndpoints.EventBus`1
   - FastEndpoints.EventExtensions
+  - FastEndpoints.EventHubExceptionReceiver
+  - FastEndpoints.EventHubExceptionReceiverExtensions
   - FastEndpoints.ExceptionHandlerExtensions
   - FastEndpoints.Factory
   - FastEndpoints.FromAttribute
@@ -60,6 +62,7 @@ items:
   - FastEndpoints.HttpPostAttribute
   - FastEndpoints.HttpPutAttribute
   - FastEndpoints.HttpResponseExtensions
+  - FastEndpoints.HubMode
   - FastEndpoints.IClientStreamCommandHandler`2
   - FastEndpoints.ICommand
   - FastEndpoints.ICommand`1
@@ -72,7 +75,7 @@ items:
   - FastEndpoints.IEventBus
   - FastEndpoints.IEventHandler
   - FastEndpoints.IEventHandler`1
-  - FastEndpoints.IEventPublisherStorageProvider
+  - FastEndpoints.IEventHubStorageProvider
   - FastEndpoints.IEventStorageRecord
   - FastEndpoints.IEventSubscriberStorageProvider
   - FastEndpoints.IGlobalPostProcessor
@@ -113,6 +116,8 @@ items:
   - FastEndpoints.SerializerOptions
   - FastEndpoints.ServiceScopeExtensions
   - FastEndpoints.SubGroup`1
+  - FastEndpoints.SubscriberExceptionReceiver
+  - FastEndpoints.SubscriberExceptionReceiverExtensions
   - FastEndpoints.Summary`1
   - FastEndpoints.Summary`2
   - FastEndpoints.TestResult`1
@@ -445,54 +450,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.IEventSubscriberStorageProvider
-  commentId: T:FastEndpoints.IEventSubscriberStorageProvider
-  name: IEventSubscriberStorageProvider
-  nameWithType: IEventSubscriberStorageProvider
-  fullName: FastEndpoints.IEventSubscriberStorageProvider
-- uid: FastEndpoints.RemoteConnection
-  commentId: T:FastEndpoints.RemoteConnection
-  name: RemoteConnection
-  nameWithType: RemoteConnection
-  fullName: FastEndpoints.RemoteConnection
-- uid: FastEndpoints.RemoteConnectionExtensions
-  commentId: T:FastEndpoints.RemoteConnectionExtensions
-  parent: FastEndpoints
-  name: RemoteConnectionExtensions
-  nameWithType: RemoteConnectionExtensions
-  fullName: FastEndpoints.RemoteConnectionExtensions
-- uid: FastEndpoints.EmptyObject
-  commentId: T:FastEndpoints.EmptyObject
-  name: EmptyObject
-  nameWithType: EmptyObject
-  fullName: FastEndpoints.EmptyObject
-- uid: FastEndpoints.IEventStorageRecord
-  commentId: T:FastEndpoints.IEventStorageRecord
-  parent: FastEndpoints
-  name: IEventStorageRecord
-  nameWithType: IEventStorageRecord
-  fullName: FastEndpoints.IEventStorageRecord
-- uid: FastEndpoints.EventExtensions
-  commentId: T:FastEndpoints.EventExtensions
-  parent: FastEndpoints
-  name: EventExtensions
-  nameWithType: EventExtensions
-  fullName: FastEndpoints.EventExtensions
-- uid: FastEndpoints.IEventPublisherStorageProvider
-  commentId: T:FastEndpoints.IEventPublisherStorageProvider
-  name: IEventPublisherStorageProvider
-  nameWithType: IEventPublisherStorageProvider
-  fullName: FastEndpoints.IEventPublisherStorageProvider
-- uid: FastEndpoints.HandlerOptions
-  commentId: T:FastEndpoints.HandlerOptions
-  name: HandlerOptions
-  nameWithType: HandlerOptions
-  fullName: FastEndpoints.HandlerOptions
-- uid: FastEndpoints.HandlerServerExtensions
-  commentId: T:FastEndpoints.HandlerServerExtensions
-  name: HandlerServerExtensions
-  nameWithType: HandlerServerExtensions
-  fullName: FastEndpoints.HandlerServerExtensions
 - uid: FastEndpoints.BindFromAttribute
   commentId: T:FastEndpoints.BindFromAttribute
   name: BindFromAttribute
@@ -1907,19 +1864,19 @@ references:
   name: EventBase
   nameWithType: EventBase
   fullName: FastEndpoints.EventBase
-- uid: FastEndpoints.Event`1
-  commentId: T:FastEndpoints.Event`1
-  name: Event<TEvent>
-  nameWithType: Event<TEvent>
-  fullName: FastEndpoints.Event<TEvent>
-  nameWithType.vb: Event(Of TEvent)
-  fullName.vb: FastEndpoints.Event(Of TEvent)
-  name.vb: Event(Of TEvent)
+- uid: FastEndpoints.EventBus`1
+  commentId: T:FastEndpoints.EventBus`1
+  name: EventBus<TEvent>
+  nameWithType: EventBus<TEvent>
+  fullName: FastEndpoints.EventBus<TEvent>
+  nameWithType.vb: EventBus(Of TEvent)
+  fullName.vb: FastEndpoints.EventBus(Of TEvent)
+  name.vb: EventBus(Of TEvent)
   spec.csharp:
-  - uid: FastEndpoints.Event`1
-    name: Event
-    nameWithType: Event
-    fullName: FastEndpoints.Event
+  - uid: FastEndpoints.EventBus`1
+    name: EventBus
+    nameWithType: EventBus
+    fullName: FastEndpoints.EventBus
   - name: <
     nameWithType: <
     fullName: <
@@ -1930,10 +1887,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: FastEndpoints.Event`1
-    name: Event
-    nameWithType: Event
-    fullName: FastEndpoints.Event
+  - uid: FastEndpoints.EventBus`1
+    name: EventBus
+    nameWithType: EventBus
+    fullName: FastEndpoints.EventBus
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1943,6 +1900,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.EventExtensions
+  commentId: T:FastEndpoints.EventExtensions
+  parent: FastEndpoints
+  name: EventExtensions
+  nameWithType: EventExtensions
+  fullName: FastEndpoints.EventExtensions
 - uid: FastEndpoints.IEventBus
   commentId: T:FastEndpoints.IEventBus
   parent: FastEndpoints
@@ -2100,6 +2063,74 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.IEventSubscriberStorageProvider
+  commentId: T:FastEndpoints.IEventSubscriberStorageProvider
+  name: IEventSubscriberStorageProvider
+  nameWithType: IEventSubscriberStorageProvider
+  fullName: FastEndpoints.IEventSubscriberStorageProvider
+- uid: FastEndpoints.SubscriberExceptionReceiver
+  commentId: T:FastEndpoints.SubscriberExceptionReceiver
+  name: SubscriberExceptionReceiver
+  nameWithType: SubscriberExceptionReceiver
+  fullName: FastEndpoints.SubscriberExceptionReceiver
+- uid: FastEndpoints.SubscriberExceptionReceiverExtensions
+  commentId: T:FastEndpoints.SubscriberExceptionReceiverExtensions
+  name: SubscriberExceptionReceiverExtensions
+  nameWithType: SubscriberExceptionReceiverExtensions
+  fullName: FastEndpoints.SubscriberExceptionReceiverExtensions
+- uid: FastEndpoints.RemoteConnection
+  commentId: T:FastEndpoints.RemoteConnection
+  name: RemoteConnection
+  nameWithType: RemoteConnection
+  fullName: FastEndpoints.RemoteConnection
+- uid: FastEndpoints.RemoteConnectionExtensions
+  commentId: T:FastEndpoints.RemoteConnectionExtensions
+  parent: FastEndpoints
+  name: RemoteConnectionExtensions
+  nameWithType: RemoteConnectionExtensions
+  fullName: FastEndpoints.RemoteConnectionExtensions
+- uid: FastEndpoints.EmptyObject
+  commentId: T:FastEndpoints.EmptyObject
+  name: EmptyObject
+  nameWithType: EmptyObject
+  fullName: FastEndpoints.EmptyObject
+- uid: FastEndpoints.IEventStorageRecord
+  commentId: T:FastEndpoints.IEventStorageRecord
+  parent: FastEndpoints
+  name: IEventStorageRecord
+  nameWithType: IEventStorageRecord
+  fullName: FastEndpoints.IEventStorageRecord
+- uid: FastEndpoints.EventHubExceptionReceiver
+  commentId: T:FastEndpoints.EventHubExceptionReceiver
+  name: EventHubExceptionReceiver
+  nameWithType: EventHubExceptionReceiver
+  fullName: FastEndpoints.EventHubExceptionReceiver
+- uid: FastEndpoints.EventHubExceptionReceiverExtensions
+  commentId: T:FastEndpoints.EventHubExceptionReceiverExtensions
+  name: EventHubExceptionReceiverExtensions
+  nameWithType: EventHubExceptionReceiverExtensions
+  fullName: FastEndpoints.EventHubExceptionReceiverExtensions
+- uid: FastEndpoints.HubMode
+  commentId: T:FastEndpoints.HubMode
+  parent: FastEndpoints
+  name: HubMode
+  nameWithType: HubMode
+  fullName: FastEndpoints.HubMode
+- uid: FastEndpoints.IEventHubStorageProvider
+  commentId: T:FastEndpoints.IEventHubStorageProvider
+  name: IEventHubStorageProvider
+  nameWithType: IEventHubStorageProvider
+  fullName: FastEndpoints.IEventHubStorageProvider
+- uid: FastEndpoints.HandlerOptions
+  commentId: T:FastEndpoints.HandlerOptions
+  name: HandlerOptions
+  nameWithType: HandlerOptions
+  fullName: FastEndpoints.HandlerOptions
+- uid: FastEndpoints.HandlerServerExtensions
+  commentId: T:FastEndpoints.HandlerServerExtensions
+  name: HandlerServerExtensions
+  nameWithType: HandlerServerExtensions
+  fullName: FastEndpoints.HandlerServerExtensions
 - uid: FastEndpoints
   commentId: N:FastEndpoints
   name: FastEndpoints

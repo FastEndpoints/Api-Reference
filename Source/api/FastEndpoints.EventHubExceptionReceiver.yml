@@ -1,0 +1,629 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.EventHubExceptionReceiver
+  commentId: T:FastEndpoints.EventHubExceptionReceiver
+  id: EventHubExceptionReceiver
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: EventHubExceptionReceiver
+  nameWithType: EventHubExceptionReceiver
+  fullName: FastEndpoints.EventHubExceptionReceiver
+  type: Class
+  source:
+    id: EventHubExceptionReceiver
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiver.cs
+    startLine: 5
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\ninherit this class and override it&apos;s methods in order to receive event hub exceptions.\n"
+  example: []
+  syntax:
+    content: public abstract class EventHubExceptionReceiver
+    content.vb: Public MustInherit Class EventHubExceptionReceiver
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  id: OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventHubExceptionReceiver
+  langs:
+  - csharp
+  - vb
+  name: OnGetNextEventRecordError<TEvent>(String, Int32, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnGetNextEventRecordError<TEvent>(String, Int32, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError<TEvent>(System.String, System.Int32, System.Exception, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: OnGetNextEventRecordError
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiver.cs
+    startLine: 15
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nthis method is triggered when the storage provider has trouble retrieving the next event record.\n"
+  example: []
+  syntax:
+    content: >-
+      public virtual Task OnGetNextEventRecordError<TEvent>(string subscriberID, int attemptCount, Exception exception, CancellationToken ct)
+
+          where TEvent : class, IEvent
+    parameters:
+    - id: subscriberID
+      type: System.String
+      description: the unique ID of the subscriber
+    - id: attemptCount
+      type: System.Int32
+      description: the number of times the record was attempted to be retrieved
+    - id: exception
+      type: System.Exception
+      description: the actual exception that was thrown by the operation
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnGetNextEventRecordError(Of TEvent As {Class, IEvent})(subscriberID As String, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError*
+  nameWithType.vb: EventHubExceptionReceiver.OnGetNextEventRecordError(Of TEvent)(String, Int32, Exception, CancellationToken)
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError(Of TEvent)(System.String, System.Int32, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnGetNextEventRecordError(Of TEvent)(String, Int32, Exception, CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  id: OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventHubExceptionReceiver
+  langs:
+  - csharp
+  - vb
+  name: OnMarkEventAsCompleteError<TEvent>(IEventStorageRecord, Int32, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnMarkEventAsCompleteError<TEvent>(IEventStorageRecord, Int32, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError<TEvent>(FastEndpoints.IEventStorageRecord, System.Int32, System.Exception, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: OnMarkEventAsCompleteError
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiver.cs
+    startLine: 28
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nthis method is triggered when the storage provider has trouble marking an event record as complete.\n"
+  example: []
+  syntax:
+    content: >-
+      public virtual Task OnMarkEventAsCompleteError<TEvent>(IEventStorageRecord record, int attemptCount, Exception exception, CancellationToken ct)
+
+          where TEvent : class, IEvent
+    parameters:
+    - id: record
+      type: FastEndpoints.IEventStorageRecord
+      description: the event storage record that was supposed to be marked complete
+    - id: attemptCount
+      type: System.Int32
+      description: the number of times the record was attempted to be marked complete
+    - id: exception
+      type: System.Exception
+      description: the actual exception that was thrown by the operation
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnMarkEventAsCompleteError(Of TEvent As {Class, IEvent})(record As IEventStorageRecord, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError*
+  nameWithType.vb: EventHubExceptionReceiver.OnMarkEventAsCompleteError(Of TEvent)(IEventStorageRecord, Int32, Exception, CancellationToken)
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError(Of TEvent)(FastEndpoints.IEventStorageRecord, System.Int32, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnMarkEventAsCompleteError(Of TEvent)(IEventStorageRecord, Int32, Exception, CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  id: OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventHubExceptionReceiver
+  langs:
+  - csharp
+  - vb
+  name: OnStoreEventRecordError<TEvent>(IEventStorageRecord, Int32, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnStoreEventRecordError<TEvent>(IEventStorageRecord, Int32, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError<TEvent>(FastEndpoints.IEventStorageRecord, System.Int32, System.Exception, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: OnStoreEventRecordError
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiver.cs
+    startLine: 41
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nthis method is triggered when the storage provider has trouble persisting an event record.\n"
+  example: []
+  syntax:
+    content: >-
+      public virtual Task OnStoreEventRecordError<TEvent>(IEventStorageRecord record, int attemptCount, Exception exception, CancellationToken ct)
+
+          where TEvent : class, IEvent
+    parameters:
+    - id: record
+      type: FastEndpoints.IEventStorageRecord
+      description: the event storage record that was supposed to be persisted
+    - id: attemptCount
+      type: System.Int32
+      description: the number of times the record was attempted to be persisted
+    - id: exception
+      type: System.Exception
+      description: the actual exception that was thrown by the operation
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnStoreEventRecordError(Of TEvent As {Class, IEvent})(record As IEventStorageRecord, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError*
+  nameWithType.vb: EventHubExceptionReceiver.OnStoreEventRecordError(Of TEvent)(IEventStorageRecord, Int32, Exception, CancellationToken)
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError(Of TEvent)(FastEndpoints.IEventStorageRecord, System.Int32, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnStoreEventRecordError(Of TEvent)(IEventStorageRecord, Int32, Exception, CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  id: OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventHubExceptionReceiver
+  langs:
+  - csharp
+  - vb
+  name: OnInMemoryQueueOverflow<TEvent>(IEventStorageRecord, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnInMemoryQueueOverflow<TEvent>(IEventStorageRecord, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow<TEvent>(FastEndpoints.IEventStorageRecord, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: OnInMemoryQueueOverflow
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiver.cs
+    startLine: 52
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nthis method is triggered when the default in-memory storage provider&apos;s internal queue for the given event type has been stagnant and in an overflow state.\n"
+  example: []
+  syntax:
+    content: >-
+      public virtual Task OnInMemoryQueueOverflow<TEvent>(IEventStorageRecord record, CancellationToken ct)
+
+          where TEvent : class, IEvent
+    parameters:
+    - id: record
+      type: FastEndpoints.IEventStorageRecord
+      description: the event storage record that was supposed to be added to the queue
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnInMemoryQueueOverflow(Of TEvent As {Class, IEvent})(record As IEventStorageRecord, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow*
+  nameWithType.vb: EventHubExceptionReceiver.OnInMemoryQueueOverflow(Of TEvent)(IEventStorageRecord, CancellationToken)
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow(Of TEvent)(FastEndpoints.IEventStorageRecord, System.Threading.CancellationToken)
+  name.vb: OnInMemoryQueueOverflow(Of TEvent)(IEventStorageRecord, CancellationToken)
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError
+  name: OnGetNextEventRecordError
+  nameWithType: EventHubExceptionReceiver.OnGetNextEventRecordError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError
+  name: OnMarkEventAsCompleteError
+  nameWithType: EventHubExceptionReceiver.OnMarkEventAsCompleteError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError
+- uid: FastEndpoints.IEventStorageRecord
+  commentId: T:FastEndpoints.IEventStorageRecord
+  parent: FastEndpoints
+  name: IEventStorageRecord
+  nameWithType: IEventStorageRecord
+  fullName: FastEndpoints.IEventStorageRecord
+- uid: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError
+  name: OnStoreEventRecordError
+  nameWithType: EventHubExceptionReceiver.OnStoreEventRecordError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError
+- uid: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow
+  name: OnInMemoryQueueOverflow
+  nameWithType: EventHubExceptionReceiver.OnInMemoryQueueOverflow
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow

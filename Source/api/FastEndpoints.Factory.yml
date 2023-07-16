@@ -10,6 +10,7 @@ items:
   - FastEndpoints.Factory.Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
   - FastEndpoints.Factory.Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
   - FastEndpoints.Factory.Create``1(System.Object[])
+  - FastEndpoints.Factory.CreateEvent``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{``0}},System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   - FastEndpoints.Factory.CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   - FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   langs:
@@ -365,6 +366,54 @@ items:
   - Shared
   fullName.vb: FastEndpoints.Factory.CreateMapper(Of TMapper)(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
   name.vb: CreateMapper(Of TMapper)(Action(Of IServiceCollection))
+- uid: FastEndpoints.Factory.CreateEvent``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{``0}},System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  commentId: M:FastEndpoints.Factory.CreateEvent``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{``0}},System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  id: CreateEvent``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{``0}},System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  parent: FastEndpoints.Factory
+  langs:
+  - csharp
+  - vb
+  name: CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>>, Action<IServiceCollection>)
+  nameWithType: Factory.CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>>, Action<IServiceCollection>)
+  fullName: FastEndpoints.Factory.CreateEvent<TEvent>(System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>, System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>)
+  type: Method
+  source:
+    id: CreateEvent
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    startLine: 130
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nget an instance of an event suitable for unit testing.\n"
+  example: []
+  syntax:
+    content: >-
+      public static TEvent CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers, Action<IServiceCollection> s = null)
+
+          where TEvent : class, IEvent
+    parameters:
+    - id: handlers
+      type: System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}
+      description: the fake/mock event handlers to register for this event
+    - id: s
+      type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+      description: an optional action for adding services to the <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref>
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: '{TEvent}'
+    content.vb: Public Shared Function CreateEvent(Of TEvent As {Class, IEvent})(handlers As IEnumerable(Of IEventHandler(Of TEvent)), s As Action(Of IServiceCollection) = Nothing) As TEvent
+  overload: FastEndpoints.Factory.CreateEvent*
+  nameWithType.vb: Factory.CreateEvent(Of TEvent)(IEnumerable(Of IEventHandler(Of TEvent)), Action(Of IServiceCollection))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.Factory.CreateEvent(Of TEvent)(System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent)), System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  name.vb: CreateEvent(Of TEvent)(IEnumerable(Of IEventHandler(Of TEvent)), Action(Of IServiceCollection))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -911,3 +960,123 @@ references:
   name: TMapper
   nameWithType: TMapper
   fullName: TMapper
+- uid: FastEndpoints.Factory.CreateEvent*
+  commentId: Overload:FastEndpoints.Factory.CreateEvent
+  name: CreateEvent
+  nameWithType: Factory.CreateEvent
+  fullName: FastEndpoints.Factory.CreateEvent
+- uid: System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}
+  commentId: T:System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IEventHandler<TEvent>>
+  nameWithType: IEnumerable<IEventHandler<TEvent>>
+  fullName: System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>
+  nameWithType.vb: IEnumerable(Of IEventHandler(Of TEvent))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent))
+  name.vb: IEnumerable(Of IEventHandler(Of TEvent))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.IEventHandler`1
+    name: IEventHandler
+    nameWithType: IEventHandler
+    fullName: FastEndpoints.IEventHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.IEventHandler`1
+    name: IEventHandler
+    nameWithType: IEventHandler
+    fullName: FastEndpoints.IEventHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEvent
+    nameWithType: TEvent
+    fullName: TEvent
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{TEvent}'
+  commentId: '!:TEvent'
+  definition: TEvent
+  name: TEvent
+  nameWithType: TEvent
+  fullName: TEvent
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: TEvent
+  name: TEvent
+  nameWithType: TEvent
+  fullName: TEvent

@@ -1,33 +1,30 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.EventBase
-  commentId: T:FastEndpoints.EventBase
-  id: EventBase
+- uid: FastEndpoints.EventHubExceptionReceiverExtensions
+  commentId: T:FastEndpoints.EventHubExceptionReceiverExtensions
+  id: EventHubExceptionReceiverExtensions
   parent: FastEndpoints
-  children: []
+  children:
+  - FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   langs:
   - csharp
   - vb
-  name: EventBase
-  nameWithType: EventBase
-  fullName: FastEndpoints.EventBase
+  name: EventHubExceptionReceiverExtensions
+  nameWithType: EventHubExceptionReceiverExtensions
+  fullName: FastEndpoints.EventHubExceptionReceiverExtensions
   type: Class
   source:
-    id: EventBase
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\EventBus.cs
-    startLine: 5
+    id: EventHubExceptionReceiverExtensions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiverExtensions.cs
+    startLine: 4
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nbase class for the event bus\n"
-  example: []
   syntax:
-    content: public abstract class EventBase
-    content.vb: Public MustInherit Class EventBase
+    content: public static class EventHubExceptionReceiverExtensions
+    content.vb: Public Module EventHubExceptionReceiverExtensions
   inheritance:
   - System.Object
-  derivedClasses:
-  - FastEndpoints.EventBus`1
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -38,12 +35,59 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
-  - abstract
+  - static
   - class
   modifiers.vb:
   - Public
-  - MustInherit
-  - Class
+  - Module
+- uid: FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: AddEventHubExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  isExtensionMethod: true
+  parent: FastEndpoints.EventHubExceptionReceiverExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddEventHubExceptionReceiver<TReceiver>(IServiceCollection)
+  nameWithType: EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver<TReceiver>(IServiceCollection)
+  fullName: FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver<TReceiver>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  type: Method
+  source:
+    id: AddEventHubExceptionReceiver
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\EventHubExceptionReceiverExtensions.cs
+    startLine: 10
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregister a custom exeception receiver for receiving event hub exceptions.\n"
+  example: []
+  syntax:
+    content: >-
+      public static IServiceCollection AddEventHubExceptionReceiver<TReceiver>(this IServiceCollection services)
+
+          where TReceiver : EventHubExceptionReceiver
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    typeParameters:
+    - id: TReceiver
+      description: the implementation type of the receiver
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddEventHubExceptionReceiver(Of TReceiver As EventHubExceptionReceiver)(services As IServiceCollection) As IServiceCollection
+  overload: FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver*
+  nameWithType.vb: EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver(Of TReceiver)(IServiceCollection)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver(Of TReceiver)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: AddEventHubExceptionReceiver(Of TReceiver)(IServiceCollection)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -342,3 +386,21 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver
+  name: AddEventHubExceptionReceiver
+  nameWithType: EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver
+  fullName: FastEndpoints.EventHubExceptionReceiverExtensions.AddEventHubExceptionReceiver
+- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
+  parent: Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class RouteHandlerBuilderExtensions
+    <title>Class EventHubExceptionReceiver
  | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class RouteHandlerBuilderExtensions
+    <meta name="title" content="Class EventHubExceptionReceiver
  | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
@@ -78,17 +78,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FastEndpoints.RouteHandlerBuilderExtensions">
+            <article class="content wrap" id="_content" data-uid="FastEndpoints.EventHubExceptionReceiver">
 
 
-  <h1 id="FastEndpoints_RouteHandlerBuilderExtensions" data-uid="FastEndpoints.RouteHandlerBuilderExtensions" class="text-break">Class RouteHandlerBuilderExtensions
+  <h1 id="FastEndpoints_EventHubExceptionReceiver" data-uid="FastEndpoints.EventHubExceptionReceiver" class="text-break">Class EventHubExceptionReceiver
 </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>inherit this class and override it's methods in order to receive event hub exceptions.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">RouteHandlerBuilderExtensions</span></div>
+    <div class="level1"><span class="xref">EventHubExceptionReceiver</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -115,23 +116,24 @@
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
-  <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
-  <h5 id="FastEndpoints_RouteHandlerBuilderExtensions_syntax">Syntax</h5>
+  <h6><strong>Assembly</strong>: FastEndpoints.Messaging.Remote.dll</h6>
+  <h5 id="FastEndpoints_EventHubExceptionReceiver_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class RouteHandlerBuilderExtensions</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class EventHubExceptionReceiver</code></pre>
   </div>
   <h3 id="methods">Methods
 </h3>
 
 
-  <a id="FastEndpoints_RouteHandlerBuilderExtensions_Accepts_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.Accepts*"></a>
-  <h4 id="FastEndpoints_RouteHandlerBuilderExtensions_Accepts__1_Microsoft_AspNetCore_Builder_RouteHandlerBuilder_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.Accepts``1(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)">Accepts&lt;TRequest&gt;(RouteHandlerBuilder)</h4>
-  <div class="markdown level1 summary"><p>override the default &quot;accepts metadata&quot; in order to accept any content-type from the client.</p>
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnGetNextEventRecordError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnGetNextEventRecordError__1_System_String_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)">OnGetNextEventRecordError&lt;TEvent&gt;(String, Int32, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble retrieving the next event record.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RouteHandlerBuilder Accepts&lt;TRequest&gt;(this RouteHandlerBuilder hb)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task OnGetNextEventRecordError&lt;TEvent&gt;(string subscriberID, int attemptCount, Exception exception, CancellationToken ct)
+    where TEvent : class, IEvent</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -144,9 +146,28 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td><span class="parametername">hb</span></td>
-        <td></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">subscriberID</span></td>
+        <td><p>the unique ID of the subscriber</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">attemptCount</span></td>
+        <td><p>the number of times the record was attempted to be retrieved</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>the actual exception that was thrown by the operation</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -160,7 +181,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -175,22 +196,23 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">TRequest</span></td>
-        <td><p>the type of the request dto</p>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the event</p>
 </td>
       </tr>
     </tbody>
   </table>
 
 
-  <a id="FastEndpoints_RouteHandlerBuilderExtensions_ClearDefaultAccepts_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts*"></a>
-  <h4 id="FastEndpoints_RouteHandlerBuilderExtensions_ClearDefaultAccepts_Microsoft_AspNetCore_Builder_RouteHandlerBuilder_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultAccepts(Microsoft.AspNetCore.Builder.RouteHandlerBuilder)">ClearDefaultAccepts(RouteHandlerBuilder)</h4>
-  <div class="markdown level1 summary"><p>clears just the default &quot;accepts metadata&quot; from the endpoint.</p>
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnInMemoryQueueOverflow_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnInMemoryQueueOverflow__1_FastEndpoints_IEventStorageRecord_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)">OnInMemoryQueueOverflow&lt;TEvent&gt;(IEventStorageRecord, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the default in-memory storage provider's internal queue for the given event type has been stagnant and in an overflow state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RouteHandlerBuilder ClearDefaultAccepts(this RouteHandlerBuilder hb)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task OnInMemoryQueueOverflow&lt;TEvent&gt;(IEventStorageRecord record, CancellationToken ct)
+    where TEvent : class, IEvent</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -203,58 +225,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td><span class="parametername">hb</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RouteHandlerBuilderExtensions_ClearDefaultProduces_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces*"></a>
-  <h4 id="FastEndpoints_RouteHandlerBuilderExtensions_ClearDefaultProduces_Microsoft_AspNetCore_Builder_RouteHandlerBuilder_System_Int32___" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ClearDefaultProduces(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32[])">ClearDefaultProduces(RouteHandlerBuilder, Int32[])</h4>
-  <div class="markdown level1 summary"><p>clears any number of given &quot;produces metadata&quot; from the endpoint by supplying the status codes of the responses to remove.
-not specifying any status codes will result in all produces metadata being removed.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RouteHandlerBuilder ClearDefaultProduces(this RouteHandlerBuilder hb, params int[] statusCodes)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td><span class="parametername">hb</span></td>
-        <td></td>
+        <td><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></td>
+        <td><span class="parametername">record</span></td>
+        <td><p>the event storage record that was supposed to be added to the queue</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span>[]</td>
-        <td><span class="parametername">statusCodes</span></td>
-        <td><p>one or more status codes of the defaults to remove</p>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
 </td>
       </tr>
     </tbody>
@@ -269,172 +248,7 @@ not specifying any status codes will result in all produces metadata being remov
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RouteHandlerBuilderExtensions_ProducesProblemDetails_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails*"></a>
-  <h4 id="FastEndpoints_RouteHandlerBuilderExtensions_ProducesProblemDetails_Microsoft_AspNetCore_Builder_RouteHandlerBuilder_System_Int32_System_String_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemDetails(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)">ProducesProblemDetails(RouteHandlerBuilder, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>adds produces metadata of type <a class="xref" href="FastEndpoints.ProblemDetails.html">ProblemDetails</a> (RFC7807 compatible) to the endpoint description</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RouteHandlerBuilder ProducesProblemDetails(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = &quot;application/problem+json&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td><span class="parametername">hb</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">statusCode</span></td>
-        <td><p>the status code of the error response</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">contentType</span></td>
-        <td><p>content type header value</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RouteHandlerBuilderExtensions_ProducesProblemFE_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE*"></a>
-  <h4 id="FastEndpoints_RouteHandlerBuilderExtensions_ProducesProblemFE_Microsoft_AspNetCore_Builder_RouteHandlerBuilder_System_Int32_System_String_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)">ProducesProblemFE(RouteHandlerBuilder, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>adds produces metadata of type <a class="xref" href="FastEndpoints.ErrorResponse.html">ErrorResponse</a> to the endpoint description</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RouteHandlerBuilder ProducesProblemFE(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = &quot;application/problem+json&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td><span class="parametername">hb</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">statusCode</span></td>
-        <td><p>the status code of the error response</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">contentType</span></td>
-        <td><p>content type header value</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RouteHandlerBuilderExtensions_ProducesProblemFE_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE*"></a>
-  <h4 id="FastEndpoints_RouteHandlerBuilderExtensions_ProducesProblemFE__1_Microsoft_AspNetCore_Builder_RouteHandlerBuilder_System_Int32_System_String_" data-uid="FastEndpoints.RouteHandlerBuilderExtensions.ProducesProblemFE``1(Microsoft.AspNetCore.Builder.RouteHandlerBuilder,System.Int32,System.String)">ProducesProblemFE&lt;TResponse&gt;(RouteHandlerBuilder, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>adds produces metadata for a given type of error response dto</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RouteHandlerBuilder ProducesProblemFE&lt;TResponse&gt;(this RouteHandlerBuilder hb, int statusCode = 400, string contentType = &quot;application/problem+json&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
-        <td><span class="parametername">hb</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">statusCode</span></td>
-        <td><p>the status code of the error response</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">contentType</span></td>
-        <td><p>content type header value</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Builder.RouteHandlerBuilder</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -449,8 +263,166 @@ not specifying any status codes will result in all produces metadata being remov
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">TResponse</span></td>
-        <td><p>the type of the error response</p>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnMarkEventAsCompleteError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnMarkEventAsCompleteError__1_FastEndpoints_IEventStorageRecord_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)">OnMarkEventAsCompleteError&lt;TEvent&gt;(IEventStorageRecord, Int32, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble marking an event record as complete.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task OnMarkEventAsCompleteError&lt;TEvent&gt;(IEventStorageRecord record, int attemptCount, Exception exception, CancellationToken ct)
+    where TEvent : class, IEvent</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></td>
+        <td><span class="parametername">record</span></td>
+        <td><p>the event storage record that was supposed to be marked complete</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">attemptCount</span></td>
+        <td><p>the number of times the record was attempted to be marked complete</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>the actual exception that was thrown by the operation</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordError__1_FastEndpoints_IEventStorageRecord_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)">OnStoreEventRecordError&lt;TEvent&gt;(IEventStorageRecord, Int32, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble persisting an event record.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task OnStoreEventRecordError&lt;TEvent&gt;(IEventStorageRecord record, int attemptCount, Exception exception, CancellationToken ct)
+    where TEvent : class, IEvent</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></td>
+        <td><span class="parametername">record</span></td>
+        <td><p>the event storage record that was supposed to be persisted</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">attemptCount</span></td>
+        <td><p>the number of times the record was attempted to be persisted</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>the actual exception that was thrown by the operation</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the event</p>
 </td>
       </tr>
     </tbody>

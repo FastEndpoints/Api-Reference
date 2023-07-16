@@ -550,15 +550,14 @@ event subscriptions can be specified using <a class="xref" href="FastEndpoints.R
   </table>
 
 
-  <a id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync__1_FastEndpoints_ICommand_System_Net_Http_HttpMessageHandler_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync``1(FastEndpoints.ICommand,System.Net.Http.HttpMessageHandler,Grpc.Core.CallOptions)">TestRemoteExecuteAsync&lt;TCommand&gt;(ICommand, HttpMessageHandler, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>client extension methods</p>
+  <a id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)">RemotePublishAsync(IEvent, CallOptions)</h4>
+  <div class="markdown level1 summary"><p>publish the event to the relevant remote server that's running in <a class="xref" href="FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker">EventBroker</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task TestRemoteExecuteAsync&lt;TCommand&gt;(this ICommand command, HttpMessageHandler httpMessageHandler, CallOptions options = default(CallOptions))
-    where TCommand : class, ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task RemotePublishAsync(this IEvent event, CallOptions options = default(CallOptions))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -571,19 +570,15 @@ event subscriptions can be specified using <a class="xref" href="FastEndpoints.R
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.ICommand.html">ICommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Net.Http.HttpMessageHandler</span></td>
-        <td><span class="parametername">httpMessageHandler</span></td>
+        <td><a class="xref" href="FastEndpoints.IEvent.html">IEvent</a></td>
+        <td><span class="parametername">event</span></td>
         <td></td>
       </tr>
       <tr>
         <td><span class="xref">Grpc.Core.CallOptions</span></td>
         <td><span class="parametername">options</span></td>
-        <td></td>
+        <td><p>call options</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -602,237 +597,19 @@ event subscriptions can be specified using <a class="xref" href="FastEndpoints.R
       </tr>
     </tbody>
   </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCommand</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync__2_FastEndpoints_ICommand___1__System_Net_Http_HttpMessageHandler_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync``2(FastEndpoints.ICommand{``1},System.Net.Http.HttpMessageHandler,Grpc.Core.CallOptions)">TestRemoteExecuteAsync&lt;TCommand, TResult&gt;(ICommand&lt;TResult&gt;, HttpMessageHandler, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>client extension methods</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; TestRemoteExecuteAsync&lt;TCommand, TResult&gt;(this ICommand&lt;TResult&gt; command, HttpMessageHandler httpMessageHandler, CallOptions options = default(CallOptions))
-    where TCommand : class, ICommand&lt;TResult&gt; where TResult : class</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.ICommand-1.html">ICommand</a>&lt;TResult&gt;</td>
-        <td><span class="parametername">command</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Net.Http.HttpMessageHandler</span></td>
-        <td><span class="parametername">httpMessageHandler</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Grpc.Core.CallOptions</span></td>
-        <td><span class="parametername">options</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TResult&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCommand</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync__2_FastEndpoints_IServerStreamCommand___1__System_Net_Http_HttpMessageHandler_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync``2(FastEndpoints.IServerStreamCommand{``1},System.Net.Http.HttpMessageHandler,Grpc.Core.CallOptions)">TestRemoteExecuteAsync&lt;TCommand, TResult&gt;(IServerStreamCommand&lt;TResult&gt;, HttpMessageHandler, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>client extension methods</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;TResult&gt; TestRemoteExecuteAsync&lt;TCommand, TResult&gt;(this IServerStreamCommand&lt;TResult&gt; command, HttpMessageHandler httpMessageHandler, CallOptions options = default(CallOptions))
-    where TCommand : class, IServerStreamCommand&lt;TResult&gt; where TResult : class</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FastEndpoints.IServerStreamCommand-1.html">IServerStreamCommand</a>&lt;TResult&gt;</td>
-        <td><span class="parametername">command</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Net.Http.HttpMessageHandler</span></td>
-        <td><span class="parametername">httpMessageHandler</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Grpc.Core.CallOptions</span></td>
-        <td><span class="parametername">options</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.IAsyncEnumerable</span>&lt;TResult&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCommand</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_TestRemoteExecuteAsync__2_System_Collections_Generic_IAsyncEnumerable___0__System_Net_Http_HttpMessageHandler_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.TestRemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Net.Http.HttpMessageHandler,Grpc.Core.CallOptions)">TestRemoteExecuteAsync&lt;T, TResult&gt;(IAsyncEnumerable&lt;T&gt;, HttpMessageHandler, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>client extension methods</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; TestRemoteExecuteAsync&lt;T, TResult&gt;(this IAsyncEnumerable&lt;T&gt; commands, HttpMessageHandler httpMessageHandler, CallOptions options = default(CallOptions))
-    where T : class where TResult : class</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.IAsyncEnumerable</span>&lt;T&gt;</td>
-        <td><span class="parametername">commands</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Net.Http.HttpMessageHandler</span></td>
-        <td><span class="parametername">httpMessageHandler</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Grpc.Core.CallOptions</span></td>
-        <td><span class="parametername">options</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TResult&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>thrown if the relevant remote handler has not been registered</p>
+</td>
       </tr>
     </tbody>
   </table>

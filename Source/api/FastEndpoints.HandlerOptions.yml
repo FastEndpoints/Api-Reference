@@ -5,11 +5,11 @@ items:
   id: HandlerOptions
   parent: FastEndpoints
   children:
-  - FastEndpoints.HandlerOptions.EventPublisherStorageProvider``2
+  - FastEndpoints.HandlerOptions.EventHubStorageProvider``2
   - FastEndpoints.HandlerOptions.Register``2
   - FastEndpoints.HandlerOptions.Register``3
   - FastEndpoints.HandlerOptions.RegisterClientStream``3
-  - FastEndpoints.HandlerOptions.RegisterEventHub``1
+  - FastEndpoints.HandlerOptions.RegisterEventHub``1(FastEndpoints.HubMode)
   - FastEndpoints.HandlerOptions.RegisterServerStream``3
   langs:
   - csharp
@@ -218,62 +218,62 @@ items:
   - Public
   fullName.vb: FastEndpoints.HandlerOptions.RegisterClientStream(Of T, THandler, TResult)()
   name.vb: RegisterClientStream(Of T, THandler, TResult)()
-- uid: FastEndpoints.HandlerOptions.EventPublisherStorageProvider``2
-  commentId: M:FastEndpoints.HandlerOptions.EventPublisherStorageProvider``2
-  id: EventPublisherStorageProvider``2
+- uid: FastEndpoints.HandlerOptions.EventHubStorageProvider``2
+  commentId: M:FastEndpoints.HandlerOptions.EventHubStorageProvider``2
+  id: EventHubStorageProvider``2
   parent: FastEndpoints.HandlerOptions
   langs:
   - csharp
   - vb
-  name: EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
-  nameWithType: HandlerOptions.EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
-  fullName: FastEndpoints.HandlerOptions.EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
+  name: EventHubStorageProvider<TStorageRecord, TStorageProvider>()
+  nameWithType: HandlerOptions.EventHubStorageProvider<TStorageRecord, TStorageProvider>()
+  fullName: FastEndpoints.HandlerOptions.EventHubStorageProvider<TStorageRecord, TStorageProvider>()
   type: Method
   source:
-    id: EventPublisherStorageProvider
+    id: EventHubStorageProvider
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
     startLine: 70
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nregister a custom storage provider for event publishers\n"
+  summary: "\nregister a custom storage provider for event hub\n"
   example: []
   syntax:
     content: >-
-      public void EventPublisherStorageProvider<TStorageRecord, TStorageProvider>()
+      public void EventHubStorageProvider<TStorageRecord, TStorageProvider>()
 
           where TStorageRecord : IEventStorageRecord, new()
 
-          where TStorageProvider : class, IEventPublisherStorageProvider
+          where TStorageProvider : class, IEventHubStorageProvider
     typeParameters:
     - id: TStorageRecord
       description: the type of the event storage record
     - id: TStorageProvider
       description: the type of the event storage provider
-    content.vb: Public Sub EventPublisherStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventPublisherStorageProvider})
-  overload: FastEndpoints.HandlerOptions.EventPublisherStorageProvider*
-  nameWithType.vb: HandlerOptions.EventPublisherStorageProvider(Of TStorageRecord, TStorageProvider)()
+    content.vb: Public Sub EventHubStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventHubStorageProvider})
+  overload: FastEndpoints.HandlerOptions.EventHubStorageProvider*
+  nameWithType.vb: HandlerOptions.EventHubStorageProvider(Of TStorageRecord, TStorageProvider)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.EventPublisherStorageProvider(Of TStorageRecord, TStorageProvider)()
-  name.vb: EventPublisherStorageProvider(Of TStorageRecord, TStorageProvider)()
-- uid: FastEndpoints.HandlerOptions.RegisterEventHub``1
-  commentId: M:FastEndpoints.HandlerOptions.RegisterEventHub``1
-  id: RegisterEventHub``1
+  fullName.vb: FastEndpoints.HandlerOptions.EventHubStorageProvider(Of TStorageRecord, TStorageProvider)()
+  name.vb: EventHubStorageProvider(Of TStorageRecord, TStorageProvider)()
+- uid: FastEndpoints.HandlerOptions.RegisterEventHub``1(FastEndpoints.HubMode)
+  commentId: M:FastEndpoints.HandlerOptions.RegisterEventHub``1(FastEndpoints.HubMode)
+  id: RegisterEventHub``1(FastEndpoints.HubMode)
   parent: FastEndpoints.HandlerOptions
   langs:
   - csharp
   - vb
-  name: RegisterEventHub<TEvent>()
-  nameWithType: HandlerOptions.RegisterEventHub<TEvent>()
-  fullName: FastEndpoints.HandlerOptions.RegisterEventHub<TEvent>()
+  name: RegisterEventHub<TEvent>(HubMode)
+  nameWithType: HandlerOptions.RegisterEventHub<TEvent>(HubMode)
+  fullName: FastEndpoints.HandlerOptions.RegisterEventHub<TEvent>(FastEndpoints.HubMode)
   type: Method
   source:
     id: RegisterEventHub
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
-    startLine: 79
+    startLine: 80
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -281,23 +281,27 @@ items:
   example: []
   syntax:
     content: >-
-      public GrpcServiceEndpointConventionBuilder RegisterEventHub<TEvent>()
+      public GrpcServiceEndpointConventionBuilder RegisterEventHub<TEvent>(HubMode mode = HubMode.EventPublisher)
 
           where TEvent : class, IEvent
+    parameters:
+    - id: mode
+      type: FastEndpoints.HubMode
+      description: the operation mode of this event hub
     typeParameters:
     - id: TEvent
-      description: the type of the event hub
+      description: the type of event this hub deals with
     return:
       type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
-    content.vb: Public Function RegisterEventHub(Of TEvent As {Class, IEvent}) As GrpcServiceEndpointConventionBuilder
+    content.vb: Public Function RegisterEventHub(Of TEvent As {Class, IEvent})(mode As HubMode = HubMode.EventPublisher) As GrpcServiceEndpointConventionBuilder
   overload: FastEndpoints.HandlerOptions.RegisterEventHub*
-  nameWithType.vb: HandlerOptions.RegisterEventHub(Of TEvent)()
+  nameWithType.vb: HandlerOptions.RegisterEventHub(Of TEvent)(HubMode)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.RegisterEventHub(Of TEvent)()
-  name.vb: RegisterEventHub(Of TEvent)()
+  fullName.vb: FastEndpoints.HandlerOptions.RegisterEventHub(Of TEvent)(FastEndpoints.HubMode)
+  name.vb: RegisterEventHub(Of TEvent)(HubMode)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -624,13 +628,19 @@ references:
   name: RegisterClientStream
   nameWithType: HandlerOptions.RegisterClientStream
   fullName: FastEndpoints.HandlerOptions.RegisterClientStream
-- uid: FastEndpoints.HandlerOptions.EventPublisherStorageProvider*
-  commentId: Overload:FastEndpoints.HandlerOptions.EventPublisherStorageProvider
-  name: EventPublisherStorageProvider
-  nameWithType: HandlerOptions.EventPublisherStorageProvider
-  fullName: FastEndpoints.HandlerOptions.EventPublisherStorageProvider
+- uid: FastEndpoints.HandlerOptions.EventHubStorageProvider*
+  commentId: Overload:FastEndpoints.HandlerOptions.EventHubStorageProvider
+  name: EventHubStorageProvider
+  nameWithType: HandlerOptions.EventHubStorageProvider
+  fullName: FastEndpoints.HandlerOptions.EventHubStorageProvider
 - uid: FastEndpoints.HandlerOptions.RegisterEventHub*
   commentId: Overload:FastEndpoints.HandlerOptions.RegisterEventHub
   name: RegisterEventHub
   nameWithType: HandlerOptions.RegisterEventHub
   fullName: FastEndpoints.HandlerOptions.RegisterEventHub
+- uid: FastEndpoints.HubMode
+  commentId: T:FastEndpoints.HubMode
+  parent: FastEndpoints
+  name: HubMode
+  nameWithType: HubMode
+  fullName: FastEndpoints.HubMode

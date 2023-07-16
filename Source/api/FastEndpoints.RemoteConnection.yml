@@ -9,6 +9,7 @@ items:
   - FastEndpoints.RemoteConnection.Register``1
   - FastEndpoints.RemoteConnection.Register``2
   - FastEndpoints.RemoteConnection.RegisterClientStream``2
+  - FastEndpoints.RemoteConnection.RegisterEvent``1
   - FastEndpoints.RemoteConnection.RegisterServerStream``2
   - FastEndpoints.RemoteConnection.RemoteAddress
   - FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
@@ -158,6 +159,43 @@ items:
   - Public
   fullName.vb: FastEndpoints.RemoteConnection.Subscribe(Of TEvent, TEventHandler)(Grpc.Core.CallOptions)
   name.vb: Subscribe(Of TEvent, TEventHandler)(CallOptions)
+- uid: FastEndpoints.RemoteConnection.RegisterEvent``1
+  commentId: M:FastEndpoints.RemoteConnection.RegisterEvent``1
+  id: RegisterEvent``1
+  parent: FastEndpoints.RemoteConnection
+  langs:
+  - csharp
+  - vb
+  name: RegisterEvent<TEvent>()
+  nameWithType: RemoteConnection.RegisterEvent<TEvent>()
+  fullName: FastEndpoints.RemoteConnection.RegisterEvent<TEvent>()
+  type: Method
+  source:
+    id: RegisterEvent
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnection.cs
+    startLine: 89
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregister an &quot;event&quot; that the remote server will be accepting (in <xref href=\"FastEndpoints.HubMode.EventBroker\" data-throw-if-not-resolved=\"false\"></xref>) for distribution to subscribers.\n"
+  example: []
+  syntax:
+    content: >-
+      public void RegisterEvent<TEvent>()
+
+          where TEvent : class, IEvent
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    content.vb: Public Sub RegisterEvent(Of TEvent As {Class, IEvent})
+  overload: FastEndpoints.RemoteConnection.RegisterEvent*
+  nameWithType.vb: RemoteConnection.RegisterEvent(Of TEvent)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.RemoteConnection.RegisterEvent(Of TEvent)()
+  name.vb: RegisterEvent(Of TEvent)()
 - uid: FastEndpoints.RemoteConnection.Register``1
   commentId: M:FastEndpoints.RemoteConnection.Register``1
   id: Register``1
@@ -172,7 +210,7 @@ items:
   source:
     id: Register
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 89
+    startLine: 109
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -209,7 +247,7 @@ items:
   source:
     id: Register
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 110
+    startLine: 130
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -248,7 +286,7 @@ items:
   source:
     id: RegisterServerStream
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 131
+    startLine: 151
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -287,7 +325,7 @@ items:
   source:
     id: RegisterClientStream
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 152
+    startLine: 172
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -709,6 +747,14 @@ references:
   name: Grpc.Core
   nameWithType: Grpc.Core
   fullName: Grpc.Core
+- uid: FastEndpoints.HubMode.EventBroker
+  commentId: F:FastEndpoints.HubMode.EventBroker
+  isExternal: true
+- uid: FastEndpoints.RemoteConnection.RegisterEvent*
+  commentId: Overload:FastEndpoints.RemoteConnection.RegisterEvent
+  name: RegisterEvent
+  nameWithType: RemoteConnection.RegisterEvent
+  fullName: FastEndpoints.RemoteConnection.RegisterEvent
 - uid: FastEndpoints.ICommand
   commentId: T:FastEndpoints.ICommand
   parent: FastEndpoints

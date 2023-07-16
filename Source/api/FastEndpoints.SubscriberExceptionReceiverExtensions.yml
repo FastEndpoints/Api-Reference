@@ -1,33 +1,30 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.EventBase
-  commentId: T:FastEndpoints.EventBase
-  id: EventBase
+- uid: FastEndpoints.SubscriberExceptionReceiverExtensions
+  commentId: T:FastEndpoints.SubscriberExceptionReceiverExtensions
+  id: SubscriberExceptionReceiverExtensions
   parent: FastEndpoints
-  children: []
+  children:
+  - FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   langs:
   - csharp
   - vb
-  name: EventBase
-  nameWithType: EventBase
-  fullName: FastEndpoints.EventBase
+  name: SubscriberExceptionReceiverExtensions
+  nameWithType: SubscriberExceptionReceiverExtensions
+  fullName: FastEndpoints.SubscriberExceptionReceiverExtensions
   type: Class
   source:
-    id: EventBase
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\EventBus.cs
-    startLine: 5
+    id: SubscriberExceptionReceiverExtensions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\SubscriberExceptionReceiverExtensions.cs
+    startLine: 4
   assemblies:
-  - FastEndpoints
+  - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nbase class for the event bus\n"
-  example: []
   syntax:
-    content: public abstract class EventBase
-    content.vb: Public MustInherit Class EventBase
+    content: public static class SubscriberExceptionReceiverExtensions
+    content.vb: Public Module SubscriberExceptionReceiverExtensions
   inheritance:
   - System.Object
-  derivedClasses:
-  - FastEndpoints.EventBus`1
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -38,12 +35,59 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
-  - abstract
+  - static
   - class
   modifiers.vb:
   - Public
-  - MustInherit
-  - Class
+  - Module
+- uid: FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: AddSubscriberExceptionReceiver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  isExtensionMethod: true
+  parent: FastEndpoints.SubscriberExceptionReceiverExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddSubscriberExceptionReceiver<TReceiver>(IServiceCollection)
+  nameWithType: SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver<TReceiver>(IServiceCollection)
+  fullName: FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver<TReceiver>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  type: Method
+  source:
+    id: AddSubscriberExceptionReceiver
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\SubscriberExceptionReceiverExtensions.cs
+    startLine: 10
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nregister a custom exeception receiver for receiving event subscriber exceptions.\n"
+  example: []
+  syntax:
+    content: >-
+      public static IServiceCollection AddSubscriberExceptionReceiver<TReceiver>(this IServiceCollection services)
+
+          where TReceiver : SubscriberExceptionReceiver
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    typeParameters:
+    - id: TReceiver
+      description: the implementation type of the receiver
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddSubscriberExceptionReceiver(Of TReceiver As SubscriberExceptionReceiver)(services As IServiceCollection) As IServiceCollection
+  overload: FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver*
+  nameWithType.vb: SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver(Of TReceiver)(IServiceCollection)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver(Of TReceiver)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: AddSubscriberExceptionReceiver(Of TReceiver)(IServiceCollection)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -342,3 +386,21 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver*
+  commentId: Overload:FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver
+  name: AddSubscriberExceptionReceiver
+  nameWithType: SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver
+  fullName: FastEndpoints.SubscriberExceptionReceiverExtensions.AddSubscriberExceptionReceiver
+- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
+  parent: Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
