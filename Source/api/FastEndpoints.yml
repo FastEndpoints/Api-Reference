@@ -48,7 +48,7 @@ items:
   - FastEndpoints.FromHeaderAttribute
   - FastEndpoints.FromQueryParamsAttribute
   - FastEndpoints.Group
-  - FastEndpoints.HandlerOptions
+  - FastEndpoints.HandlerOptions`2
   - FastEndpoints.HandlerServerExtensions
   - FastEndpoints.HasPermissionAttribute
   - FastEndpoints.HideFromDocsAttribute
@@ -75,14 +75,19 @@ items:
   - FastEndpoints.IEventBus
   - FastEndpoints.IEventHandler
   - FastEndpoints.IEventHandler`1
-  - FastEndpoints.IEventHubStorageProvider
+  - FastEndpoints.IEventHubStorageProvider`1
   - FastEndpoints.IEventStorageRecord
-  - FastEndpoints.IEventSubscriberStorageProvider
+  - FastEndpoints.IEventSubscriberStorageProvider`1
   - FastEndpoints.IGlobalPostProcessor
   - FastEndpoints.IGlobalPreProcessor
   - FastEndpoints.IHasMapper
   - FastEndpoints.IHasMapper`1
+  - FastEndpoints.IJobStorageProvider`1
+  - FastEndpoints.IJobStorageRecord
   - FastEndpoints.IMapper
+  - FastEndpoints.InMemoryEventHubStorage
+  - FastEndpoints.InMemoryEventQueue
+  - FastEndpoints.InMemoryEventStorageRecord
   - FastEndpoints.InternalErrorResponse
   - FastEndpoints.IPlainTextRequest
   - FastEndpoints.IPostProcessor`2
@@ -95,11 +100,15 @@ items:
   - FastEndpoints.IServerStreamCommandHandler`2
   - FastEndpoints.IServiceResolver
   - FastEndpoints.IServiceResolverBase
+  - FastEndpoints.JobQueueExtensions
+  - FastEndpoints.JobQueueOptions
   - FastEndpoints.MainExtensions
   - FastEndpoints.Mapper`3
   - FastEndpoints.Mode
   - FastEndpoints.Order
   - FastEndpoints.ParseResult
+  - FastEndpoints.PendingJobSearchParams`1
+  - FastEndpoints.PendingRecordSearchParams`1
   - FastEndpoints.PlainTextRequest
   - FastEndpoints.PostProcessor`3
   - FastEndpoints.PreProcessor`2
@@ -115,9 +124,12 @@ items:
   - FastEndpoints.SecurityOptions
   - FastEndpoints.SerializerOptions
   - FastEndpoints.ServiceScopeExtensions
+  - FastEndpoints.StaleJobSearchParams`1
+  - FastEndpoints.StaleRecordSearchParams`1
   - FastEndpoints.SubGroup`1
   - FastEndpoints.SubscriberExceptionReceiver
   - FastEndpoints.SubscriberExceptionReceiverExtensions
+  - FastEndpoints.SubscriberIDRestorationParams`1
   - FastEndpoints.Summary`1
   - FastEndpoints.Summary`2
   - FastEndpoints.TestResult`1
@@ -137,8 +149,102 @@ items:
   fullName: FastEndpoints
   type: Namespace
   assemblies:
-  - FastEndpoints.Messaging.Core
+  - FastEndpoints.Attributes
 references:
+- uid: FastEndpoints.BindFromAttribute
+  commentId: T:FastEndpoints.BindFromAttribute
+  name: BindFromAttribute
+  nameWithType: BindFromAttribute
+  fullName: FastEndpoints.BindFromAttribute
+- uid: FastEndpoints.DontInjectAttribute
+  commentId: T:FastEndpoints.DontInjectAttribute
+  name: DontInjectAttribute
+  nameWithType: DontInjectAttribute
+  fullName: FastEndpoints.DontInjectAttribute
+- uid: FastEndpoints.FromAttribute
+  commentId: T:FastEndpoints.FromAttribute
+  name: FromAttribute
+  nameWithType: FromAttribute
+  fullName: FastEndpoints.FromAttribute
+- uid: FastEndpoints.FromBodyAttribute
+  commentId: T:FastEndpoints.FromBodyAttribute
+  name: FromBodyAttribute
+  nameWithType: FromBodyAttribute
+  fullName: FastEndpoints.FromBodyAttribute
+- uid: FastEndpoints.FromClaimAttribute
+  commentId: T:FastEndpoints.FromClaimAttribute
+  parent: FastEndpoints
+  name: FromClaimAttribute
+  nameWithType: FromClaimAttribute
+  fullName: FastEndpoints.FromClaimAttribute
+- uid: FastEndpoints.FromHeaderAttribute
+  commentId: T:FastEndpoints.FromHeaderAttribute
+  name: FromHeaderAttribute
+  nameWithType: FromHeaderAttribute
+  fullName: FastEndpoints.FromHeaderAttribute
+- uid: FastEndpoints.FromQueryParamsAttribute
+  commentId: T:FastEndpoints.FromQueryParamsAttribute
+  name: FromQueryParamsAttribute
+  nameWithType: FromQueryParamsAttribute
+  fullName: FastEndpoints.FromQueryParamsAttribute
+- uid: FastEndpoints.HasPermissionAttribute
+  commentId: T:FastEndpoints.HasPermissionAttribute
+  name: HasPermissionAttribute
+  nameWithType: HasPermissionAttribute
+  fullName: FastEndpoints.HasPermissionAttribute
+- uid: FastEndpoints.HideFromDocsAttribute
+  commentId: T:FastEndpoints.HideFromDocsAttribute
+  name: HideFromDocsAttribute
+  nameWithType: HideFromDocsAttribute
+  fullName: FastEndpoints.HideFromDocsAttribute
+- uid: FastEndpoints.HttpAttribute
+  commentId: T:FastEndpoints.HttpAttribute
+  parent: FastEndpoints
+  name: HttpAttribute
+  nameWithType: HttpAttribute
+  fullName: FastEndpoints.HttpAttribute
+- uid: FastEndpoints.HttpDeleteAttribute
+  commentId: T:FastEndpoints.HttpDeleteAttribute
+  name: HttpDeleteAttribute
+  nameWithType: HttpDeleteAttribute
+  fullName: FastEndpoints.HttpDeleteAttribute
+- uid: FastEndpoints.HttpGetAttribute
+  commentId: T:FastEndpoints.HttpGetAttribute
+  name: HttpGetAttribute
+  nameWithType: HttpGetAttribute
+  fullName: FastEndpoints.HttpGetAttribute
+- uid: FastEndpoints.HttpPatchAttribute
+  commentId: T:FastEndpoints.HttpPatchAttribute
+  name: HttpPatchAttribute
+  nameWithType: HttpPatchAttribute
+  fullName: FastEndpoints.HttpPatchAttribute
+- uid: FastEndpoints.HttpPostAttribute
+  commentId: T:FastEndpoints.HttpPostAttribute
+  name: HttpPostAttribute
+  nameWithType: HttpPostAttribute
+  fullName: FastEndpoints.HttpPostAttribute
+- uid: FastEndpoints.HttpPutAttribute
+  commentId: T:FastEndpoints.HttpPutAttribute
+  name: HttpPutAttribute
+  nameWithType: HttpPutAttribute
+  fullName: FastEndpoints.HttpPutAttribute
+- uid: FastEndpoints.QueryParamAttribute
+  commentId: T:FastEndpoints.QueryParamAttribute
+  parent: FastEndpoints
+  name: QueryParamAttribute
+  nameWithType: QueryParamAttribute
+  fullName: FastEndpoints.QueryParamAttribute
+- uid: FastEndpoints.ThrottleAttribute
+  commentId: T:FastEndpoints.ThrottleAttribute
+  name: ThrottleAttribute
+  nameWithType: ThrottleAttribute
+  fullName: FastEndpoints.ThrottleAttribute
+- uid: FastEndpoints.Http
+  commentId: T:FastEndpoints.Http
+  parent: FastEndpoints
+  name: Http
+  nameWithType: Http
+  fullName: FastEndpoints.Http
 - uid: FastEndpoints.ICommand
   commentId: T:FastEndpoints.ICommand
   parent: FastEndpoints
@@ -450,100 +556,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.BindFromAttribute
-  commentId: T:FastEndpoints.BindFromAttribute
-  name: BindFromAttribute
-  nameWithType: BindFromAttribute
-  fullName: FastEndpoints.BindFromAttribute
-- uid: FastEndpoints.DontInjectAttribute
-  commentId: T:FastEndpoints.DontInjectAttribute
-  name: DontInjectAttribute
-  nameWithType: DontInjectAttribute
-  fullName: FastEndpoints.DontInjectAttribute
-- uid: FastEndpoints.FromAttribute
-  commentId: T:FastEndpoints.FromAttribute
-  name: FromAttribute
-  nameWithType: FromAttribute
-  fullName: FastEndpoints.FromAttribute
-- uid: FastEndpoints.FromBodyAttribute
-  commentId: T:FastEndpoints.FromBodyAttribute
-  name: FromBodyAttribute
-  nameWithType: FromBodyAttribute
-  fullName: FastEndpoints.FromBodyAttribute
-- uid: FastEndpoints.FromClaimAttribute
-  commentId: T:FastEndpoints.FromClaimAttribute
-  parent: FastEndpoints
-  name: FromClaimAttribute
-  nameWithType: FromClaimAttribute
-  fullName: FastEndpoints.FromClaimAttribute
-- uid: FastEndpoints.FromHeaderAttribute
-  commentId: T:FastEndpoints.FromHeaderAttribute
-  name: FromHeaderAttribute
-  nameWithType: FromHeaderAttribute
-  fullName: FastEndpoints.FromHeaderAttribute
-- uid: FastEndpoints.FromQueryParamsAttribute
-  commentId: T:FastEndpoints.FromQueryParamsAttribute
-  name: FromQueryParamsAttribute
-  nameWithType: FromQueryParamsAttribute
-  fullName: FastEndpoints.FromQueryParamsAttribute
-- uid: FastEndpoints.HasPermissionAttribute
-  commentId: T:FastEndpoints.HasPermissionAttribute
-  name: HasPermissionAttribute
-  nameWithType: HasPermissionAttribute
-  fullName: FastEndpoints.HasPermissionAttribute
-- uid: FastEndpoints.HideFromDocsAttribute
-  commentId: T:FastEndpoints.HideFromDocsAttribute
-  name: HideFromDocsAttribute
-  nameWithType: HideFromDocsAttribute
-  fullName: FastEndpoints.HideFromDocsAttribute
-- uid: FastEndpoints.HttpAttribute
-  commentId: T:FastEndpoints.HttpAttribute
-  parent: FastEndpoints
-  name: HttpAttribute
-  nameWithType: HttpAttribute
-  fullName: FastEndpoints.HttpAttribute
-- uid: FastEndpoints.HttpDeleteAttribute
-  commentId: T:FastEndpoints.HttpDeleteAttribute
-  name: HttpDeleteAttribute
-  nameWithType: HttpDeleteAttribute
-  fullName: FastEndpoints.HttpDeleteAttribute
-- uid: FastEndpoints.HttpGetAttribute
-  commentId: T:FastEndpoints.HttpGetAttribute
-  name: HttpGetAttribute
-  nameWithType: HttpGetAttribute
-  fullName: FastEndpoints.HttpGetAttribute
-- uid: FastEndpoints.HttpPatchAttribute
-  commentId: T:FastEndpoints.HttpPatchAttribute
-  name: HttpPatchAttribute
-  nameWithType: HttpPatchAttribute
-  fullName: FastEndpoints.HttpPatchAttribute
-- uid: FastEndpoints.HttpPostAttribute
-  commentId: T:FastEndpoints.HttpPostAttribute
-  name: HttpPostAttribute
-  nameWithType: HttpPostAttribute
-  fullName: FastEndpoints.HttpPostAttribute
-- uid: FastEndpoints.HttpPutAttribute
-  commentId: T:FastEndpoints.HttpPutAttribute
-  name: HttpPutAttribute
-  nameWithType: HttpPutAttribute
-  fullName: FastEndpoints.HttpPutAttribute
-- uid: FastEndpoints.QueryParamAttribute
-  commentId: T:FastEndpoints.QueryParamAttribute
-  parent: FastEndpoints
-  name: QueryParamAttribute
-  nameWithType: QueryParamAttribute
-  fullName: FastEndpoints.QueryParamAttribute
-- uid: FastEndpoints.ThrottleAttribute
-  commentId: T:FastEndpoints.ThrottleAttribute
-  name: ThrottleAttribute
-  nameWithType: ThrottleAttribute
-  fullName: FastEndpoints.ThrottleAttribute
-- uid: FastEndpoints.Http
-  commentId: T:FastEndpoints.Http
-  parent: FastEndpoints
-  name: Http
-  nameWithType: Http
-  fullName: FastEndpoints.Http
 - uid: FastEndpoints.UserPrivileges
   commentId: T:FastEndpoints.UserPrivileges
   parent: FastEndpoints
@@ -1918,6 +1930,130 @@ references:
   name: Mode
   nameWithType: Mode
   fullName: FastEndpoints.Mode
+- uid: FastEndpoints.IJobStorageProvider`1
+  commentId: T:FastEndpoints.IJobStorageProvider`1
+  name: IJobStorageProvider<TStorageRecord>
+  nameWithType: IJobStorageProvider<TStorageRecord>
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord)
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord)
+  name.vb: IJobStorageProvider(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.IJobStorageProvider`1
+    name: IJobStorageProvider
+    nameWithType: IJobStorageProvider
+    fullName: FastEndpoints.IJobStorageProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IJobStorageProvider`1
+    name: IJobStorageProvider
+    nameWithType: IJobStorageProvider
+    fullName: FastEndpoints.IJobStorageProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IJobStorageRecord
+  commentId: T:FastEndpoints.IJobStorageRecord
+  name: IJobStorageRecord
+  nameWithType: IJobStorageRecord
+  fullName: FastEndpoints.IJobStorageRecord
+- uid: FastEndpoints.JobQueueExtensions
+  commentId: T:FastEndpoints.JobQueueExtensions
+  parent: FastEndpoints
+  name: JobQueueExtensions
+  nameWithType: JobQueueExtensions
+  fullName: FastEndpoints.JobQueueExtensions
+- uid: FastEndpoints.JobQueueOptions
+  commentId: T:FastEndpoints.JobQueueOptions
+  name: JobQueueOptions
+  nameWithType: JobQueueOptions
+  fullName: FastEndpoints.JobQueueOptions
+- uid: FastEndpoints.PendingJobSearchParams`1
+  commentId: T:FastEndpoints.PendingJobSearchParams`1
+  name: PendingJobSearchParams<TStorageRecord>
+  nameWithType: PendingJobSearchParams<TStorageRecord>
+  fullName: FastEndpoints.PendingJobSearchParams<TStorageRecord>
+  nameWithType.vb: PendingJobSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.PendingJobSearchParams(Of TStorageRecord)
+  name.vb: PendingJobSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.PendingJobSearchParams`1
+    name: PendingJobSearchParams
+    nameWithType: PendingJobSearchParams
+    fullName: FastEndpoints.PendingJobSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.PendingJobSearchParams`1
+    name: PendingJobSearchParams
+    nameWithType: PendingJobSearchParams
+    fullName: FastEndpoints.PendingJobSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.StaleJobSearchParams`1
+  commentId: T:FastEndpoints.StaleJobSearchParams`1
+  name: StaleJobSearchParams<TStorageRecord>
+  nameWithType: StaleJobSearchParams<TStorageRecord>
+  fullName: FastEndpoints.StaleJobSearchParams<TStorageRecord>
+  nameWithType.vb: StaleJobSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.StaleJobSearchParams(Of TStorageRecord)
+  name.vb: StaleJobSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.StaleJobSearchParams`1
+    name: StaleJobSearchParams
+    nameWithType: StaleJobSearchParams
+    fullName: FastEndpoints.StaleJobSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.StaleJobSearchParams`1
+    name: StaleJobSearchParams
+    nameWithType: StaleJobSearchParams
+    fullName: FastEndpoints.StaleJobSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.IServiceResolverBase
   commentId: T:FastEndpoints.IServiceResolverBase
   parent: FastEndpoints
@@ -2063,11 +2199,42 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: FastEndpoints.IEventSubscriberStorageProvider
-  commentId: T:FastEndpoints.IEventSubscriberStorageProvider
-  name: IEventSubscriberStorageProvider
-  nameWithType: IEventSubscriberStorageProvider
-  fullName: FastEndpoints.IEventSubscriberStorageProvider
+- uid: FastEndpoints.IEventSubscriberStorageProvider`1
+  commentId: T:FastEndpoints.IEventSubscriberStorageProvider`1
+  name: IEventSubscriberStorageProvider<TStorageRecord>
+  nameWithType: IEventSubscriberStorageProvider<TStorageRecord>
+  fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>
+  nameWithType.vb: IEventSubscriberStorageProvider(Of TStorageRecord)
+  fullName.vb: FastEndpoints.IEventSubscriberStorageProvider(Of TStorageRecord)
+  name.vb: IEventSubscriberStorageProvider(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.IEventSubscriberStorageProvider`1
+    name: IEventSubscriberStorageProvider
+    nameWithType: IEventSubscriberStorageProvider
+    fullName: FastEndpoints.IEventSubscriberStorageProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventSubscriberStorageProvider`1
+    name: IEventSubscriberStorageProvider
+    nameWithType: IEventSubscriberStorageProvider
+    fullName: FastEndpoints.IEventSubscriberStorageProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.SubscriberExceptionReceiver
   commentId: T:FastEndpoints.SubscriberExceptionReceiver
   name: SubscriberExceptionReceiver
@@ -2094,12 +2261,95 @@ references:
   name: EmptyObject
   nameWithType: EmptyObject
   fullName: FastEndpoints.EmptyObject
+- uid: FastEndpoints.PendingRecordSearchParams`1
+  commentId: T:FastEndpoints.PendingRecordSearchParams`1
+  name: PendingRecordSearchParams<TStorageRecord>
+  nameWithType: PendingRecordSearchParams<TStorageRecord>
+  fullName: FastEndpoints.PendingRecordSearchParams<TStorageRecord>
+  nameWithType.vb: PendingRecordSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.PendingRecordSearchParams(Of TStorageRecord)
+  name.vb: PendingRecordSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.PendingRecordSearchParams`1
+    name: PendingRecordSearchParams
+    nameWithType: PendingRecordSearchParams
+    fullName: FastEndpoints.PendingRecordSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.PendingRecordSearchParams`1
+    name: PendingRecordSearchParams
+    nameWithType: PendingRecordSearchParams
+    fullName: FastEndpoints.PendingRecordSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.IEventStorageRecord
   commentId: T:FastEndpoints.IEventStorageRecord
   parent: FastEndpoints
   name: IEventStorageRecord
   nameWithType: IEventStorageRecord
   fullName: FastEndpoints.IEventStorageRecord
+- uid: FastEndpoints.InMemoryEventQueue
+  commentId: T:FastEndpoints.InMemoryEventQueue
+  name: InMemoryEventQueue
+  nameWithType: InMemoryEventQueue
+  fullName: FastEndpoints.InMemoryEventQueue
+- uid: FastEndpoints.InMemoryEventStorageRecord
+  commentId: T:FastEndpoints.InMemoryEventStorageRecord
+  parent: FastEndpoints
+  name: InMemoryEventStorageRecord
+  nameWithType: InMemoryEventStorageRecord
+  fullName: FastEndpoints.InMemoryEventStorageRecord
+- uid: FastEndpoints.StaleRecordSearchParams`1
+  commentId: T:FastEndpoints.StaleRecordSearchParams`1
+  name: StaleRecordSearchParams<TStorageRecord>
+  nameWithType: StaleRecordSearchParams<TStorageRecord>
+  fullName: FastEndpoints.StaleRecordSearchParams<TStorageRecord>
+  nameWithType.vb: StaleRecordSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.StaleRecordSearchParams(Of TStorageRecord)
+  name.vb: StaleRecordSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.StaleRecordSearchParams`1
+    name: StaleRecordSearchParams
+    nameWithType: StaleRecordSearchParams
+    fullName: FastEndpoints.StaleRecordSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.StaleRecordSearchParams`1
+    name: StaleRecordSearchParams
+    nameWithType: StaleRecordSearchParams
+    fullName: FastEndpoints.StaleRecordSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.EventHubExceptionReceiver
   commentId: T:FastEndpoints.EventHubExceptionReceiver
   name: EventHubExceptionReceiver
@@ -2116,16 +2366,131 @@ references:
   name: HubMode
   nameWithType: HubMode
   fullName: FastEndpoints.HubMode
-- uid: FastEndpoints.IEventHubStorageProvider
-  commentId: T:FastEndpoints.IEventHubStorageProvider
-  name: IEventHubStorageProvider
-  nameWithType: IEventHubStorageProvider
-  fullName: FastEndpoints.IEventHubStorageProvider
-- uid: FastEndpoints.HandlerOptions
-  commentId: T:FastEndpoints.HandlerOptions
-  name: HandlerOptions
-  nameWithType: HandlerOptions
-  fullName: FastEndpoints.HandlerOptions
+- uid: FastEndpoints.IEventHubStorageProvider`1
+  commentId: T:FastEndpoints.IEventHubStorageProvider`1
+  name: IEventHubStorageProvider<TStorageRecord>
+  nameWithType: IEventHubStorageProvider<TStorageRecord>
+  fullName: FastEndpoints.IEventHubStorageProvider<TStorageRecord>
+  nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord)
+  fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord)
+  name.vb: IEventHubStorageProvider(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.IEventHubStorageProvider`1
+    name: IEventHubStorageProvider
+    nameWithType: IEventHubStorageProvider
+    fullName: FastEndpoints.IEventHubStorageProvider
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventHubStorageProvider`1
+    name: IEventHubStorageProvider
+    nameWithType: IEventHubStorageProvider
+    fullName: FastEndpoints.IEventHubStorageProvider
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.InMemoryEventHubStorage
+  commentId: T:FastEndpoints.InMemoryEventHubStorage
+  name: InMemoryEventHubStorage
+  nameWithType: InMemoryEventHubStorage
+  fullName: FastEndpoints.InMemoryEventHubStorage
+- uid: FastEndpoints.SubscriberIDRestorationParams`1
+  commentId: T:FastEndpoints.SubscriberIDRestorationParams`1
+  name: SubscriberIDRestorationParams<TStorageRecord>
+  nameWithType: SubscriberIDRestorationParams<TStorageRecord>
+  fullName: FastEndpoints.SubscriberIDRestorationParams<TStorageRecord>
+  nameWithType.vb: SubscriberIDRestorationParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.SubscriberIDRestorationParams(Of TStorageRecord)
+  name.vb: SubscriberIDRestorationParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.SubscriberIDRestorationParams`1
+    name: SubscriberIDRestorationParams
+    nameWithType: SubscriberIDRestorationParams
+    fullName: FastEndpoints.SubscriberIDRestorationParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.SubscriberIDRestorationParams`1
+    name: SubscriberIDRestorationParams
+    nameWithType: SubscriberIDRestorationParams
+    fullName: FastEndpoints.SubscriberIDRestorationParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.HandlerOptions`2
+  commentId: T:FastEndpoints.HandlerOptions`2
+  name: HandlerOptions<TStorageRecord, TStorageProvider>
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider)
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider)
+  name.vb: HandlerOptions(Of TStorageRecord, TStorageProvider)
+  spec.csharp:
+  - uid: FastEndpoints.HandlerOptions`2
+    name: HandlerOptions
+    nameWithType: HandlerOptions
+    fullName: FastEndpoints.HandlerOptions
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TStorageProvider
+    nameWithType: TStorageProvider
+    fullName: TStorageProvider
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.HandlerOptions`2
+    name: HandlerOptions
+    nameWithType: HandlerOptions
+    fullName: FastEndpoints.HandlerOptions
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TStorageProvider
+    nameWithType: TStorageProvider
+    fullName: TStorageProvider
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: FastEndpoints.HandlerServerExtensions
   commentId: T:FastEndpoints.HandlerServerExtensions
   name: HandlerServerExtensions

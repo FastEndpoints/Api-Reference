@@ -5,7 +5,7 @@ items:
   id: RemoteConnectionExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider``2(Microsoft.Extensions.Hosting.IHost)
+  - FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})
   - FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
   - FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
@@ -22,7 +22,7 @@ items:
   source:
     id: RemoteConnectionExtensions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -48,52 +48,56 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider``2(Microsoft.Extensions.Hosting.IHost)
-  commentId: M:FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider``2(Microsoft.Extensions.Hosting.IHost)
-  id: EventSubscriberStorageProvider``2(Microsoft.Extensions.Hosting.IHost)
+- uid: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   isExtensionMethod: true
   parent: FastEndpoints.RemoteConnectionExtensions
   langs:
   - csharp
   - vb
-  name: EventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(IHost)
-  nameWithType: RemoteConnectionExtensions.EventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(IHost)
-  fullName: FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(Microsoft.Extensions.Hosting.IHost)
+  name: AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(IServiceCollection)
+  nameWithType: RemoteConnectionExtensions.AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(IServiceCollection)
+  fullName: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   type: Method
   source:
-    id: EventSubscriberStorageProvider
+    id: AddEventSubscriberStorageProvider
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 12
+    startLine: 18
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
+  summary: "\nregister a custom event subscriber storage provider\n"
+  example: []
   syntax:
     content: >-
-      public static void EventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(this IHost host)
+      public static void AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(this IServiceCollection services)
 
           where TStorageRecord : IEventStorageRecord, new()
 
-          where TStorageProvider : class, IEventSubscriberStorageProvider
+          where TStorageProvider : class, IEventSubscriberStorageProvider<TStorageRecord>
     parameters:
-    - id: host
-      type: Microsoft.Extensions.Hosting.IHost
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     typeParameters:
     - id: TStorageRecord
+      description: the type of the storage record
     - id: TStorageProvider
+      description: ''
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Sub EventSubscriberStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventSubscriberStorageProvider})(host As IHost)
-  overload: FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider*
-  nameWithType.vb: RemoteConnectionExtensions.EventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IHost)
+      Public Shared Sub AddEventSubscriberStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventSubscriberStorageProvider(Of TStorageRecord)})(services As IServiceCollection)
+  overload: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider*
+  nameWithType.vb: RemoteConnectionExtensions.AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IServiceCollection)
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(Microsoft.Extensions.Hosting.IHost)
-  name.vb: EventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IHost)
+  fullName.vb: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IServiceCollection)
 - uid: FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})
   commentId: M:FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})
   id: MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})
@@ -109,7 +113,7 @@ items:
   source:
     id: MapRemote
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 26
+    startLine: 36
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -157,7 +161,7 @@ items:
   source:
     id: RemotePublishAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 41
+    startLine: 49
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -203,7 +207,7 @@ items:
   source:
     id: RemoteExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 56
+    startLine: 64
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -249,7 +253,7 @@ items:
   source:
     id: RemoteExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 72
+    startLine: 80
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -304,7 +308,7 @@ items:
   source:
     id: RemoteExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 88
+    startLine: 96
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -359,7 +363,7 @@ items:
   source:
     id: RemoteExecuteAsync
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 106
+    startLine: 114
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -700,24 +704,24 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider*
-  commentId: Overload:FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider
-  name: EventSubscriberStorageProvider
-  nameWithType: RemoteConnectionExtensions.EventSubscriberStorageProvider
-  fullName: FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider
-- uid: Microsoft.Extensions.Hosting.IHost
-  commentId: T:Microsoft.Extensions.Hosting.IHost
-  parent: Microsoft.Extensions.Hosting
+- uid: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider*
+  commentId: Overload:FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider
+  name: AddEventSubscriberStorageProvider
+  nameWithType: RemoteConnectionExtensions.AddEventSubscriberStorageProvider
+  fullName: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider
+- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
+  parent: Microsoft.Extensions.DependencyInjection
   isExternal: true
-  name: IHost
-  nameWithType: IHost
-  fullName: Microsoft.Extensions.Hosting.IHost
-- uid: Microsoft.Extensions.Hosting
-  commentId: N:Microsoft.Extensions.Hosting
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
-  name: Microsoft.Extensions.Hosting
-  nameWithType: Microsoft.Extensions.Hosting
-  fullName: Microsoft.Extensions.Hosting
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
 - uid: FastEndpoints.RemoteConnection.Register``2
   commentId: M:FastEndpoints.RemoteConnection.Register``2
   isExternal: true
@@ -729,6 +733,13 @@ references:
   name: MapRemote
   nameWithType: RemoteConnectionExtensions.MapRemote
   fullName: FastEndpoints.RemoteConnectionExtensions.MapRemote
+- uid: Microsoft.Extensions.Hosting.IHost
+  commentId: T:Microsoft.Extensions.Hosting.IHost
+  parent: Microsoft.Extensions.Hosting
+  isExternal: true
+  name: IHost
+  nameWithType: IHost
+  fullName: Microsoft.Extensions.Hosting.IHost
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -778,6 +789,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Extensions.Hosting
+  commentId: N:Microsoft.Extensions.Hosting
+  isExternal: true
+  name: Microsoft.Extensions.Hosting
+  nameWithType: Microsoft.Extensions.Hosting
+  fullName: Microsoft.Extensions.Hosting
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true

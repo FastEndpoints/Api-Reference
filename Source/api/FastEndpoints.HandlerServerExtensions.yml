@@ -7,7 +7,8 @@ items:
   children:
   - FastEndpoints.HandlerServerExtensions.AddHandlerServer(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Grpc.AspNetCore.Server.GrpcServiceOptions})
   - FastEndpoints.HandlerServerExtensions.AddHandlerServer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Grpc.AspNetCore.Server.GrpcServiceOptions})
-  - FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})
+  - FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}})
+  - FastEndpoints.HandlerServerExtensions.MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})
   langs:
   - csharp
   - vb
@@ -63,7 +64,7 @@ items:
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nconfigure the handler server which will host a collection of command handlers and event hubs. this should only be called once per application.\n<p>\nIMPORTANT: specify wich handlers/hubs this server will be hosting via <xref href=\"FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.HandlerOptions%7d)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n"
+  summary: "\nconfigure the handler server which will host a collection of command handlers and event hubs. this should only be called once per application.\n<p>\nIMPORTANT: specify which handlers/hubs this server will be hosting via <xref href=\"FastEndpoints.HandlerServerExtensions.MapHandlers%60%602(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.HandlerOptions%7b%60%600%2c%60%601%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n"
   example: []
   syntax:
     content: public static IGrpcServerBuilder AddHandlerServer(this WebApplicationBuilder bld, Action<GrpcServiceOptions> o = null)
@@ -108,7 +109,7 @@ items:
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nconfigure the handler server which will host a collection of command handlers. this should only be called once per application.\n<p>\nIMPORTANT: specify wich handlers this server will be hosting via <xref href=\"FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.HandlerOptions%7d)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n"
+  summary: "\nconfigure the handler server which will host a collection of command handlers. this should only be called once per application.\n<p>\nIMPORTANT: specify which handlers this server will be hosting via <xref href=\"FastEndpoints.HandlerServerExtensions.MapHandlers%60%602(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.HandlerOptions%7b%60%600%2c%60%601%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n"
   example: []
   syntax:
     content: public static IGrpcServerBuilder AddHandlerServer(this IServiceCollection sc, Action<GrpcServiceOptions> o = null)
@@ -134,52 +135,106 @@ items:
   - Shared
   fullName.vb: FastEndpoints.HandlerServerExtensions.AddHandlerServer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of Grpc.AspNetCore.Server.GrpcServiceOptions))
   name.vb: AddHandlerServer(IServiceCollection, Action(Of GrpcServiceOptions))
-- uid: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})
-  commentId: M:FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})
-  id: MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})
+- uid: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}})
+  commentId: M:FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}})
+  id: MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}})
   isExtensionMethod: true
   parent: FastEndpoints.HandlerServerExtensions
   langs:
   - csharp
   - vb
-  name: MapHandlers(IEndpointRouteBuilder, Action<HandlerOptions>)
-  nameWithType: HandlerServerExtensions.MapHandlers(IEndpointRouteBuilder, Action<HandlerOptions>)
-  fullName: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.HandlerOptions>)
+  name: MapHandlers(IEndpointRouteBuilder, Action<HandlerOptions<InMemoryEventStorageRecord, InMemoryEventHubStorage>>)
+  nameWithType: HandlerServerExtensions.MapHandlers(IEndpointRouteBuilder, Action<HandlerOptions<InMemoryEventStorageRecord, InMemoryEventHubStorage>>)
+  fullName: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.HandlerOptions<FastEndpoints.InMemoryEventStorageRecord, FastEndpoints.InMemoryEventHubStorage>>)
   type: Method
   source:
     id: MapHandlers
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerServerExtensions.cs
-    startLine: 43
+    startLine: 47
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nspecify wich handlers/event hubs this server will be hosting\n"
+  summary: "\nspecify which handlers/event hubs this server will be hosting. the in-memory storage provider will be used.\n"
   example: []
   syntax:
-    content: public static IEndpointRouteBuilder MapHandlers(this IEndpointRouteBuilder b, Action<HandlerOptions> h)
+    content: public static IEndpointRouteBuilder MapHandlers(this IEndpointRouteBuilder b, Action<HandlerOptions<InMemoryEventStorageRecord, InMemoryEventHubStorage>> h)
     parameters:
     - id: b
       type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
-      description: ''
     - id: h
-      type: System.Action{FastEndpoints.HandlerOptions}
-      description: ''
+      type: System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}}
+      description: handler options
     return:
       type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function MapHandlers(b As IEndpointRouteBuilder, h As Action(Of HandlerOptions)) As IEndpointRouteBuilder
+      Public Shared Function MapHandlers(b As IEndpointRouteBuilder, h As Action(Of HandlerOptions(Of InMemoryEventStorageRecord, InMemoryEventHubStorage))) As IEndpointRouteBuilder
   overload: FastEndpoints.HandlerServerExtensions.MapHandlers*
-  nameWithType.vb: HandlerServerExtensions.MapHandlers(IEndpointRouteBuilder, Action(Of HandlerOptions))
+  nameWithType.vb: HandlerServerExtensions.MapHandlers(IEndpointRouteBuilder, Action(Of HandlerOptions(Of InMemoryEventStorageRecord, InMemoryEventHubStorage)))
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  fullName.vb: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of FastEndpoints.HandlerOptions))
-  name.vb: MapHandlers(IEndpointRouteBuilder, Action(Of HandlerOptions))
+  fullName.vb: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of FastEndpoints.HandlerOptions(Of FastEndpoints.InMemoryEventStorageRecord, FastEndpoints.InMemoryEventHubStorage)))
+  name.vb: MapHandlers(IEndpointRouteBuilder, Action(Of HandlerOptions(Of InMemoryEventStorageRecord, InMemoryEventHubStorage)))
+- uid: FastEndpoints.HandlerServerExtensions.MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})
+  commentId: M:FastEndpoints.HandlerServerExtensions.MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})
+  id: MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})
+  isExtensionMethod: true
+  parent: FastEndpoints.HandlerServerExtensions
+  langs:
+  - csharp
+  - vb
+  name: MapHandlers<TStorageRecord, TStorageProvider>(IEndpointRouteBuilder, Action<HandlerOptions<TStorageRecord, TStorageProvider>>)
+  nameWithType: HandlerServerExtensions.MapHandlers<TStorageRecord, TStorageProvider>(IEndpointRouteBuilder, Action<HandlerOptions<TStorageRecord, TStorageProvider>>)
+  fullName: FastEndpoints.HandlerServerExtensions.MapHandlers<TStorageRecord, TStorageProvider>(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>>)
+  type: Method
+  source:
+    id: MapHandlers
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerServerExtensions.cs
+    startLine: 59
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: "\nspecify which handlers/event hubs this server will be hosting together with a custom storage provider\n"
+  example: []
+  syntax:
+    content: >-
+      public static IEndpointRouteBuilder MapHandlers<TStorageRecord, TStorageProvider>(this IEndpointRouteBuilder b, Action<HandlerOptions<TStorageRecord, TStorageProvider>> h)
+
+          where TStorageRecord : IEventStorageRecord, new()
+
+          where TStorageProvider : class, IEventHubStorageProvider<TStorageRecord>
+    parameters:
+    - id: b
+      type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+    - id: h
+      type: System.Action{FastEndpoints.HandlerOptions{{TStorageRecord},{TStorageProvider}}}
+      description: handler options
+    typeParameters:
+    - id: TStorageRecord
+      description: the type of the event storage record
+    - id: TStorageProvider
+      description: the type of the event storage provider
+    return:
+      type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function MapHandlers(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventHubStorageProvider(Of TStorageRecord)})(b As IEndpointRouteBuilder, h As Action(Of HandlerOptions(Of TStorageRecord, TStorageProvider))) As IEndpointRouteBuilder
+  overload: FastEndpoints.HandlerServerExtensions.MapHandlers*
+  nameWithType.vb: HandlerServerExtensions.MapHandlers(Of TStorageRecord, TStorageProvider)(IEndpointRouteBuilder, Action(Of HandlerOptions(Of TStorageRecord, TStorageProvider)))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.HandlerServerExtensions.MapHandlers(Of TStorageRecord, TStorageProvider)(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider)))
+  name.vb: MapHandlers(Of TStorageRecord, TStorageProvider)(IEndpointRouteBuilder, Action(Of HandlerOptions(Of TStorageRecord, TStorageProvider)))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -478,8 +533,8 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})
-  commentId: M:FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})
+- uid: FastEndpoints.HandlerServerExtensions.MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})
+  commentId: M:FastEndpoints.HandlerServerExtensions.MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})
   isExternal: true
 - uid: FastEndpoints.HandlerServerExtensions.AddHandlerServer*
   commentId: Overload:FastEndpoints.HandlerServerExtensions.AddHandlerServer
@@ -620,16 +675,16 @@ references:
   name: IEndpointRouteBuilder
   nameWithType: IEndpointRouteBuilder
   fullName: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
-- uid: System.Action{FastEndpoints.HandlerOptions}
-  commentId: T:System.Action{FastEndpoints.HandlerOptions}
+- uid: System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}}
+  commentId: T:System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}}
   parent: System
   definition: System.Action`1
-  name: Action<HandlerOptions>
-  nameWithType: Action<HandlerOptions>
-  fullName: System.Action<FastEndpoints.HandlerOptions>
-  nameWithType.vb: Action(Of HandlerOptions)
-  fullName.vb: System.Action(Of FastEndpoints.HandlerOptions)
-  name.vb: Action(Of HandlerOptions)
+  name: Action<HandlerOptions<InMemoryEventStorageRecord, InMemoryEventHubStorage>>
+  nameWithType: Action<HandlerOptions<InMemoryEventStorageRecord, InMemoryEventHubStorage>>
+  fullName: System.Action<FastEndpoints.HandlerOptions<FastEndpoints.InMemoryEventStorageRecord, FastEndpoints.InMemoryEventHubStorage>>
+  nameWithType.vb: Action(Of HandlerOptions(Of InMemoryEventStorageRecord, InMemoryEventHubStorage))
+  fullName.vb: System.Action(Of FastEndpoints.HandlerOptions(Of FastEndpoints.InMemoryEventStorageRecord, FastEndpoints.InMemoryEventHubStorage))
+  name.vb: Action(Of HandlerOptions(Of InMemoryEventStorageRecord, InMemoryEventHubStorage))
   spec.csharp:
   - uid: System.Action`1
     name: Action
@@ -639,10 +694,27 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: FastEndpoints.HandlerOptions
+  - uid: FastEndpoints.HandlerOptions`2
     name: HandlerOptions
     nameWithType: HandlerOptions
     fullName: FastEndpoints.HandlerOptions
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.InMemoryEventStorageRecord
+    name: InMemoryEventStorageRecord
+    nameWithType: InMemoryEventStorageRecord
+    fullName: FastEndpoints.InMemoryEventStorageRecord
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.InMemoryEventHubStorage
+    name: InMemoryEventHubStorage
+    nameWithType: InMemoryEventHubStorage
+    fullName: FastEndpoints.InMemoryEventHubStorage
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -655,10 +727,27 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: FastEndpoints.HandlerOptions
+  - uid: FastEndpoints.HandlerOptions`2
     name: HandlerOptions
     nameWithType: HandlerOptions
     fullName: FastEndpoints.HandlerOptions
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.InMemoryEventStorageRecord
+    name: InMemoryEventStorageRecord
+    nameWithType: InMemoryEventStorageRecord
+    fullName: FastEndpoints.InMemoryEventStorageRecord
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FastEndpoints.InMemoryEventHubStorage
+    name: InMemoryEventHubStorage
+    nameWithType: InMemoryEventHubStorage
+    fullName: FastEndpoints.InMemoryEventHubStorage
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -668,3 +757,75 @@ references:
   name: Microsoft.AspNetCore.Routing
   nameWithType: Microsoft.AspNetCore.Routing
   fullName: Microsoft.AspNetCore.Routing
+- uid: System.Action{FastEndpoints.HandlerOptions{{TStorageRecord},{TStorageProvider}}}
+  commentId: T:System.Action{FastEndpoints.HandlerOptions{``0,``1}}
+  parent: System
+  definition: System.Action`1
+  name: Action<HandlerOptions<TStorageRecord, TStorageProvider>>
+  nameWithType: Action<HandlerOptions<TStorageRecord, TStorageProvider>>
+  fullName: System.Action<FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>>
+  nameWithType.vb: Action(Of HandlerOptions(Of TStorageRecord, TStorageProvider))
+  fullName.vb: System.Action(Of FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider))
+  name.vb: Action(Of HandlerOptions(Of TStorageRecord, TStorageProvider))
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.HandlerOptions`2
+    name: HandlerOptions
+    nameWithType: HandlerOptions
+    fullName: FastEndpoints.HandlerOptions
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TStorageProvider
+    nameWithType: TStorageProvider
+    fullName: TStorageProvider
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.HandlerOptions`2
+    name: HandlerOptions
+    nameWithType: HandlerOptions
+    fullName: FastEndpoints.HandlerOptions
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TStorageProvider
+    nameWithType: TStorageProvider
+    fullName: TStorageProvider
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )

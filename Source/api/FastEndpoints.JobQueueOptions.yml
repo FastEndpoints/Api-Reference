@@ -1,0 +1,494 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.JobQueueOptions
+  commentId: T:FastEndpoints.JobQueueOptions
+  id: JobQueueOptions
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.JobQueueOptions.ExecutionTimeLimit
+  - FastEndpoints.JobQueueOptions.LimitsFor``1(System.Int32,System.TimeSpan)
+  - FastEndpoints.JobQueueOptions.MaxConcurrency
+  langs:
+  - csharp
+  - vb
+  name: JobQueueOptions
+  nameWithType: JobQueueOptions
+  fullName: FastEndpoints.JobQueueOptions
+  type: Class
+  source:
+    id: JobQueueOptions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueOptions.cs
+    startLine: 5
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\noptions for job queues\n"
+  example: []
+  syntax:
+    content: public class JobQueueOptions
+    content.vb: Public Class JobQueueOptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FastEndpoints.JobQueueOptions.MaxConcurrency
+  commentId: P:FastEndpoints.JobQueueOptions.MaxConcurrency
+  id: MaxConcurrency
+  parent: FastEndpoints.JobQueueOptions
+  langs:
+  - csharp
+  - vb
+  name: MaxConcurrency
+  nameWithType: JobQueueOptions.MaxConcurrency
+  fullName: FastEndpoints.JobQueueOptions.MaxConcurrency
+  type: Property
+  source:
+    id: MaxConcurrency
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueOptions.cs
+    startLine: 15
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe default max concurrency per job type. default value is the number of logical processors of the computer.\nyou can specify per queue type overrides using <xref href=\"FastEndpoints.JobQueueOptions.LimitsFor%60%601(System.Int32%2cSystem.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public int MaxConcurrency { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaxConcurrency As Integer
+  overload: FastEndpoints.JobQueueOptions.MaxConcurrency*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.JobQueueOptions.ExecutionTimeLimit
+  commentId: P:FastEndpoints.JobQueueOptions.ExecutionTimeLimit
+  id: ExecutionTimeLimit
+  parent: FastEndpoints.JobQueueOptions
+  langs:
+  - csharp
+  - vb
+  name: ExecutionTimeLimit
+  nameWithType: JobQueueOptions.ExecutionTimeLimit
+  fullName: FastEndpoints.JobQueueOptions.ExecutionTimeLimit
+  type: Property
+  source:
+    id: ExecutionTimeLimit
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueOptions.cs
+    startLine: 21
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthe per job type max execution time limit for handler executions unless otherwise overridden using <xref href=\"FastEndpoints.JobQueueOptions.LimitsFor%60%601(System.Int32%2cSystem.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref>\ndefaults to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public TimeSpan ExecutionTimeLimit { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Property ExecutionTimeLimit As TimeSpan
+  overload: FastEndpoints.JobQueueOptions.ExecutionTimeLimit*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FastEndpoints.JobQueueOptions.LimitsFor``1(System.Int32,System.TimeSpan)
+  commentId: M:FastEndpoints.JobQueueOptions.LimitsFor``1(System.Int32,System.TimeSpan)
+  id: LimitsFor``1(System.Int32,System.TimeSpan)
+  parent: FastEndpoints.JobQueueOptions
+  langs:
+  - csharp
+  - vb
+  name: LimitsFor<TCommand>(Int32, TimeSpan)
+  nameWithType: JobQueueOptions.LimitsFor<TCommand>(Int32, TimeSpan)
+  fullName: FastEndpoints.JobQueueOptions.LimitsFor<TCommand>(System.Int32, System.TimeSpan)
+  type: Method
+  source:
+    id: LimitsFor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueOptions.cs
+    startLine: 33
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nspecify execution limits such a max concurrency and execution time limit for a given command type.\n"
+  example: []
+  syntax:
+    content: >-
+      public void LimitsFor<TCommand>(int maxConcurrency, TimeSpan timeLimit)
+
+          where TCommand : ICommand
+    parameters:
+    - id: maxConcurrency
+      type: System.Int32
+      description: the maximum number of command executions of the same command type that&apos;s allowed to execute at the same time
+    - id: timeLimit
+      type: System.TimeSpan
+      description: "\nthe maximum amount of time each command is allowed to execute for.\nwhen execution time exceeds this value, a <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> will be thrown.\nwhen that happens you can handle it in the <xref href=\"FastEndpoints.IJobStorageProvider%601.OnHandlerExecutionFailureAsync(%600%2cSystem.Exception%2cSystem.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method.\n"
+    typeParameters:
+    - id: TCommand
+      description: the type of the command the limits apply to
+    content.vb: Public Sub LimitsFor(Of TCommand As ICommand)(maxConcurrency As Integer, timeLimit As TimeSpan)
+  overload: FastEndpoints.JobQueueOptions.LimitsFor*
+  nameWithType.vb: JobQueueOptions.LimitsFor(Of TCommand)(Int32, TimeSpan)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.JobQueueOptions.LimitsFor(Of TCommand)(System.Int32, System.TimeSpan)
+  name.vb: LimitsFor(Of TCommand)(Int32, TimeSpan)
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.JobQueueOptions.LimitsFor``1(System.Int32,System.TimeSpan)
+  commentId: M:FastEndpoints.JobQueueOptions.LimitsFor``1(System.Int32,System.TimeSpan)
+  isExternal: true
+- uid: FastEndpoints.JobQueueOptions.MaxConcurrency*
+  commentId: Overload:FastEndpoints.JobQueueOptions.MaxConcurrency
+  name: MaxConcurrency
+  nameWithType: JobQueueOptions.MaxConcurrency
+  fullName: FastEndpoints.JobQueueOptions.MaxConcurrency
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Threading.Timeout.Infinite
+  commentId: F:System.Threading.Timeout.Infinite
+  isExternal: true
+- uid: FastEndpoints.JobQueueOptions.ExecutionTimeLimit*
+  commentId: Overload:FastEndpoints.JobQueueOptions.ExecutionTimeLimit
+  name: ExecutionTimeLimit
+  nameWithType: JobQueueOptions.ExecutionTimeLimit
+  fullName: FastEndpoints.JobQueueOptions.ExecutionTimeLimit
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
+- uid: FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
+  isExternal: true
+- uid: FastEndpoints.JobQueueOptions.LimitsFor*
+  commentId: Overload:FastEndpoints.JobQueueOptions.LimitsFor
+  name: LimitsFor
+  nameWithType: JobQueueOptions.LimitsFor
+  fullName: FastEndpoints.JobQueueOptions.LimitsFor

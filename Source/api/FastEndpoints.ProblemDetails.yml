@@ -5,9 +5,11 @@ items:
   id: ProblemDetails
   parent: FastEndpoints
   children:
+  - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
   - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
   - FastEndpoints.ProblemDetails.AllowDuplicates
   - FastEndpoints.ProblemDetails.Errors
+  - FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.ProblemDetails.Instance
   - FastEndpoints.ProblemDetails.ResponseBuilder
   - FastEndpoints.ProblemDetails.Status
@@ -26,17 +28,22 @@ items:
   source:
     id: ProblemDetails
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nRFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:\n<p>\n<code>app.UseFastEndpoints(x => x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>\n</p>\n"
   example: []
   syntax:
-    content: public sealed class ProblemDetails
-    content.vb: Public NotInheritable Class ProblemDetails
+    content: 'public sealed class ProblemDetails : IResult'
+    content.vb: >-
+      Public NotInheritable Class ProblemDetails
+
+          Implements IResult
   inheritance:
   - System.Object
+  implements:
+  - Microsoft.AspNetCore.Http.IResult
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -67,7 +74,7 @@ items:
   source:
     id: ResponseBuilder
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 18
+    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -102,7 +109,7 @@ items:
   source:
     id: AllowDuplicates
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 24
+    startLine: 30
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -137,7 +144,7 @@ items:
   source:
     id: TypeValue
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 29
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -172,7 +179,7 @@ items:
   source:
     id: TitleValue
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 34
+    startLine: 40
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -207,7 +214,7 @@ items:
   source:
     id: Type
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 37
+    startLine: 43
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -238,7 +245,7 @@ items:
   source:
     id: Title
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 38
+    startLine: 44
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -269,23 +276,23 @@ items:
   source:
     id: Status
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 40
+    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public int Status { get; set; }
+    content: public int Status { get; }
     parameters: []
     return:
       type: System.Int32
-    content.vb: Public Property Status As Integer
+    content.vb: Public ReadOnly Property Status As Integer
   overload: FastEndpoints.ProblemDetails.Status*
   modifiers.csharp:
   - public
   - get
-  - set
   modifiers.vb:
   - Public
+  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.Instance
   commentId: P:FastEndpoints.ProblemDetails.Instance
   id: Instance
@@ -300,23 +307,23 @@ items:
   source:
     id: Instance
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 41
+    startLine: 47
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string Instance { get; set; }
+    content: public string Instance { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property Instance As String
+    content.vb: Public ReadOnly Property Instance As String
   overload: FastEndpoints.ProblemDetails.Instance*
   modifiers.csharp:
   - public
   - get
-  - set
   modifiers.vb:
   - Public
+  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.TraceId
   commentId: P:FastEndpoints.ProblemDetails.TraceId
   id: TraceId
@@ -331,23 +338,23 @@ items:
   source:
     id: TraceId
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 42
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string TraceId { get; set; }
+    content: public string TraceId { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property TraceId As String
+    content.vb: Public ReadOnly Property TraceId As String
   overload: FastEndpoints.ProblemDetails.TraceId*
   modifiers.csharp:
   - public
   - get
-  - set
   modifiers.vb:
   - Public
+  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.Errors
   commentId: P:FastEndpoints.ProblemDetails.Errors
   id: Errors
@@ -362,23 +369,57 @@ items:
   source:
     id: Errors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 43
+    startLine: 49
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public IEnumerable<ProblemDetails.Error> Errors { get; set; }
+    content: public IEnumerable<ProblemDetails.Error> Errors { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{FastEndpoints.ProblemDetails.Error}
-    content.vb: Public Property Errors As IEnumerable(Of ProblemDetails.Error)
+    content.vb: Public ReadOnly Property Errors As IEnumerable(Of ProblemDetails.Error)
   overload: FastEndpoints.ProblemDetails.Errors*
   modifiers.csharp:
   - public
   - get
-  - set
   modifiers.vb:
   - Public
+  - ReadOnly
+- uid: FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
+  id: '#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})'
+  parent: FastEndpoints.ProblemDetails
+  langs:
+  - csharp
+  - vb
+  name: ProblemDetails(List<ValidationFailure>, Nullable<Int32>)
+  nameWithType: ProblemDetails.ProblemDetails(List<ValidationFailure>, Nullable<Int32>)
+  fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, System.Nullable<System.Int32>)
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 51
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public ProblemDetails(List<ValidationFailure> failures, int? statusCode = null)
+    parameters:
+    - id: failures
+      type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+    content.vb: Public Sub New(failures As List(Of ValidationFailure), statusCode As Integer? = Nothing)
+  overload: FastEndpoints.ProblemDetails.#ctor*
+  nameWithType.vb: ProblemDetails.ProblemDetails(List(Of ValidationFailure), Nullable(Of Int32))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.Nullable(Of System.Int32))
+  name.vb: ProblemDetails(List(Of ValidationFailure), Nullable(Of Int32))
 - uid: FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
   commentId: M:FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
   id: '#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)'
@@ -393,7 +434,7 @@ items:
   source:
     id: .ctor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 45
+    startLine: 56
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -417,6 +458,40 @@ items:
   - Public
   fullName.vb: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.String, System.String, System.Int32)
   name.vb: ProblemDetails(List(Of ValidationFailure), String, String, Int32)
+- uid: FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  id: ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  parent: FastEndpoints.ProblemDetails
+  langs:
+  - csharp
+  - vb
+  name: ExecuteAsync(HttpContext)
+  nameWithType: ProblemDetails.ExecuteAsync(HttpContext)
+  fullName: FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
+  source:
+    id: ExecuteAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 81
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  example: []
+  syntax:
+    content: public Task ExecuteAsync(HttpContext httpContext)
+    parameters:
+    - id: httpContext
+      type: Microsoft.AspNetCore.Http.HttpContext
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function ExecuteAsync(httpContext As HttpContext) As Task
+  overload: FastEndpoints.ProblemDetails.ExecuteAsync*
+  implements:
+  - Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -430,6 +505,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Microsoft.AspNetCore.Http.IResult
+  commentId: T:Microsoft.AspNetCore.Http.IResult
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: IResult
+  nameWithType: IResult
+  fullName: Microsoft.AspNetCore.Http.IResult
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -715,6 +797,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
 - uid: FastEndpoints.ProblemDetails.ResponseBuilder*
   commentId: Overload:FastEndpoints.ProblemDetails.ResponseBuilder
   name: ResponseBuilder
@@ -1111,6 +1199,50 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Int32>
+  nameWithType: Nullable<Int32>
+  fullName: System.Nullable<System.Int32>
+  nameWithType.vb: Nullable(Of Int32)
+  fullName.vb: System.Nullable(Of System.Int32)
+  name.vb: Nullable(Of Int32)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
@@ -1150,3 +1282,108 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.ProblemDetails.ExecuteAsync*
+  commentId: Overload:FastEndpoints.ProblemDetails.ExecuteAsync
+  name: ExecuteAsync
+  nameWithType: ProblemDetails.ExecuteAsync
+  fullName: FastEndpoints.ProblemDetails.ExecuteAsync
+- uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  parent: Microsoft.AspNetCore.Http.IResult
+  isExternal: true
+  name: ExecuteAsync(HttpContext)
+  nameWithType: IResult.ExecuteAsync(HttpContext)
+  fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+    name: ExecuteAsync
+    nameWithType: IResult.ExecuteAsync
+    fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    nameWithType: HttpContext
+    fullName: Microsoft.AspNetCore.Http.HttpContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+    name: ExecuteAsync
+    nameWithType: IResult.ExecuteAsync
+    fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    nameWithType: HttpContext
+    fullName: Microsoft.AspNetCore.Http.HttpContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

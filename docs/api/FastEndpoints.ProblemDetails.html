@@ -94,6 +94,10 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">ProblemDetails</span></div>
   </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">Microsoft.AspNetCore.Http.IResult</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -122,10 +126,46 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_ProblemDetails_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ProblemDetails</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class ProblemDetails : IResult</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
+
+
+  <a id="FastEndpoints_ProblemDetails__ctor_" data-uid="FastEndpoints.ProblemDetails.#ctor*"></a>
+  <h4 id="FastEndpoints_ProblemDetails__ctor_System_Collections_Generic_List_FluentValidation_Results_ValidationFailure__System_Nullable_System_Int32__" data-uid="FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})">ProblemDetails(List&lt;ValidationFailure&gt;, Nullable&lt;Int32&gt;)</h4>
+  <div class="markdown level1 summary"><p>RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:</p>
+<p>
+<code>app.UseFastEndpoints(x => x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProblemDetails(List&lt;ValidationFailure&gt; failures, int? statusCode = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">FluentValidation.Results.ValidationFailure</span>&gt;</td>
+        <td><span class="parametername">failures</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">statusCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_ProblemDetails__ctor_" data-uid="FastEndpoints.ProblemDetails.#ctor*"></a>
@@ -212,7 +252,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ProblemDetails.Error&gt; Errors { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ProblemDetails.Error&gt; Errors { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -241,7 +281,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Instance { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Instance { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -296,7 +336,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Status { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Status { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -380,7 +420,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TraceId { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string TraceId { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -452,6 +492,58 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="FastEndpoints_ProblemDetails_ExecuteAsync_" data-uid="FastEndpoints.ProblemDetails.ExecuteAsync*"></a>
+  <h4 id="FastEndpoints_ProblemDetails_ExecuteAsync_Microsoft_AspNetCore_Http_HttpContext_" data-uid="FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)">ExecuteAsync(HttpContext)</h4>
+  <div class="markdown level1 summary"><p>RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:</p>
+<p>
+<code>app.UseFastEndpoints(x => x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExecuteAsync(HttpContext httpContext)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Http.HttpContext</span></td>
+        <td><span class="parametername">httpContext</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">Microsoft.AspNetCore.Http.IResult</span>
+  </div>
 </article>
           </div>
 

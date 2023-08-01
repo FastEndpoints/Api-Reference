@@ -129,7 +129,7 @@
   <h4 id="FastEndpoints_HandlerServerExtensions_AddHandlerServer_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Action_Grpc_AspNetCore_Server_GrpcServiceOptions__" data-uid="FastEndpoints.HandlerServerExtensions.AddHandlerServer(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Grpc.AspNetCore.Server.GrpcServiceOptions})">AddHandlerServer(WebApplicationBuilder, Action&lt;GrpcServiceOptions&gt;)</h4>
   <div class="markdown level1 summary"><p>configure the handler server which will host a collection of command handlers and event hubs. this should only be called once per application.</p>
 <p>
-IMPORTANT: specify wich handlers/hubs this server will be hosting via <a class="xref" href="FastEndpoints.HandlerServerExtensions.html#FastEndpoints_HandlerServerExtensions_MapHandlers_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions__">MapHandlers(IEndpointRouteBuilder, Action&lt;HandlerOptions&gt;)</a> method.
+IMPORTANT: specify which handlers/hubs this server will be hosting via <a class="xref" href="FastEndpoints.HandlerServerExtensions.html#FastEndpoints_HandlerServerExtensions_MapHandlers__2_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions___0___1___">MapHandlers&lt;TStorageRecord, TStorageProvider&gt;(IEndpointRouteBuilder, Action&lt;HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;&gt;)</a> method.
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -181,7 +181,7 @@ IMPORTANT: specify wich handlers/hubs this server will be hosting via <a class="
   <h4 id="FastEndpoints_HandlerServerExtensions_AddHandlerServer_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Grpc_AspNetCore_Server_GrpcServiceOptions__" data-uid="FastEndpoints.HandlerServerExtensions.AddHandlerServer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Grpc.AspNetCore.Server.GrpcServiceOptions})">AddHandlerServer(IServiceCollection, Action&lt;GrpcServiceOptions&gt;)</h4>
   <div class="markdown level1 summary"><p>configure the handler server which will host a collection of command handlers. this should only be called once per application.</p>
 <p>
-IMPORTANT: specify wich handlers this server will be hosting via <a class="xref" href="FastEndpoints.HandlerServerExtensions.html#FastEndpoints_HandlerServerExtensions_MapHandlers_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions__">MapHandlers(IEndpointRouteBuilder, Action&lt;HandlerOptions&gt;)</a> method.
+IMPORTANT: specify which handlers this server will be hosting via <a class="xref" href="FastEndpoints.HandlerServerExtensions.html#FastEndpoints_HandlerServerExtensions_MapHandlers__2_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions___0___1___">MapHandlers&lt;TStorageRecord, TStorageProvider&gt;(IEndpointRouteBuilder, Action&lt;HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;&gt;)</a> method.
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -230,13 +230,13 @@ IMPORTANT: specify wich handlers this server will be hosting via <a class="xref"
 
 
   <a id="FastEndpoints_HandlerServerExtensions_MapHandlers_" data-uid="FastEndpoints.HandlerServerExtensions.MapHandlers*"></a>
-  <h4 id="FastEndpoints_HandlerServerExtensions_MapHandlers_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions__" data-uid="FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions})">MapHandlers(IEndpointRouteBuilder, Action&lt;HandlerOptions&gt;)</h4>
-  <div class="markdown level1 summary"><p>specify wich handlers/event hubs this server will be hosting</p>
+  <h4 id="FastEndpoints_HandlerServerExtensions_MapHandlers_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions_FastEndpoints_InMemoryEventStorageRecord_FastEndpoints_InMemoryEventHubStorage___" data-uid="FastEndpoints.HandlerServerExtensions.MapHandlers(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{FastEndpoints.InMemoryEventStorageRecord,FastEndpoints.InMemoryEventHubStorage}})">MapHandlers(IEndpointRouteBuilder, Action&lt;HandlerOptions&lt;InMemoryEventStorageRecord, InMemoryEventHubStorage&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify which handlers/event hubs this server will be hosting. the in-memory storage provider will be used.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEndpointRouteBuilder MapHandlers(this IEndpointRouteBuilder b, Action&lt;HandlerOptions&gt; h)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEndpointRouteBuilder MapHandlers(this IEndpointRouteBuilder b, Action&lt;HandlerOptions&lt;InMemoryEventStorageRecord, InMemoryEventHubStorage&gt;&gt; h)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -254,9 +254,10 @@ IMPORTANT: specify wich handlers this server will be hosting via <a class="xref"
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FastEndpoints.HandlerOptions.html">HandlerOptions</a>&gt;</td>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FastEndpoints.HandlerOptions-2.html">HandlerOptions</a>&lt;<a class="xref" href="FastEndpoints.InMemoryEventStorageRecord.html">InMemoryEventStorageRecord</a>, <a class="xref" href="FastEndpoints.InMemoryEventHubStorage.html">InMemoryEventHubStorage</a>&gt;&gt;</td>
         <td><span class="parametername">h</span></td>
-        <td></td>
+        <td><p>handler options</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -272,6 +273,78 @@ IMPORTANT: specify wich handlers this server will be hosting via <a class="xref"
       <tr>
         <td><span class="xref">Microsoft.AspNetCore.Routing.IEndpointRouteBuilder</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_HandlerServerExtensions_MapHandlers_" data-uid="FastEndpoints.HandlerServerExtensions.MapHandlers*"></a>
+  <h4 id="FastEndpoints_HandlerServerExtensions_MapHandlers__2_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_HandlerOptions___0___1___" data-uid="FastEndpoints.HandlerServerExtensions.MapHandlers``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.HandlerOptions{``0,``1}})">MapHandlers&lt;TStorageRecord, TStorageProvider&gt;(IEndpointRouteBuilder, Action&lt;HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>specify which handlers/event hubs this server will be hosting together with a custom storage provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEndpointRouteBuilder MapHandlers&lt;TStorageRecord, TStorageProvider&gt;(this IEndpointRouteBuilder b, Action&lt;HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;&gt; h)
+    where TStorageRecord : IEventStorageRecord, new()
+    where TStorageProvider : class, IEventHubStorageProvider&lt;TStorageRecord&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Routing.IEndpointRouteBuilder</span></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FastEndpoints.HandlerOptions-2.html">HandlerOptions</a>&lt;TStorageRecord, TStorageProvider&gt;&gt;</td>
+        <td><span class="parametername">h</span></td>
+        <td><p>handler options</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Routing.IEndpointRouteBuilder</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TStorageRecord</span></td>
+        <td><p>the type of the event storage record</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TStorageProvider</span></td>
+        <td><p>the type of the event storage provider</p>
+</td>
       </tr>
     </tbody>
   </table>

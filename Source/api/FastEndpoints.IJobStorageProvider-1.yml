@@ -1,0 +1,607 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.IJobStorageProvider`1
+  commentId: T:FastEndpoints.IJobStorageProvider`1
+  id: IJobStorageProvider`1
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams{`0})
+  - FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync(`0,System.Threading.CancellationToken)
+  - FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams{`0})
+  - FastEndpoints.IJobStorageProvider`1.StoreJobAsync(`0,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IJobStorageProvider<TStorageRecord>
+  nameWithType: IJobStorageProvider<TStorageRecord>
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>
+  type: Interface
+  source:
+    id: IJobStorageProvider
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
+    startLine: 6
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\ninterface for defining the contract of a job storage provider\n"
+  example: []
+  syntax:
+    content: >-
+      public interface IJobStorageProvider<TStorageRecord>
+
+          where TStorageRecord : IJobStorageRecord
+    typeParameters:
+    - id: TStorageRecord
+      description: the type of job storage record of this storage provider
+    content.vb: Public Interface IJobStorageProvider(Of TStorageRecord As IJobStorageRecord)
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord)
+  name.vb: IJobStorageProvider(Of TStorageRecord)
+- uid: FastEndpoints.IJobStorageProvider`1.StoreJobAsync(`0,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobStorageProvider`1.StoreJobAsync(`0,System.Threading.CancellationToken)
+  id: StoreJobAsync(`0,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobStorageProvider`1
+  langs:
+  - csharp
+  - vb
+  name: StoreJobAsync(TStorageRecord, CancellationToken)
+  nameWithType: IJobStorageProvider<TStorageRecord>.StoreJobAsync(TStorageRecord, CancellationToken)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.StoreJobAsync(TStorageRecord, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: StoreJobAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
+    startLine: 13
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nstore the job storage record however you please. ideally on a nosql database.\n"
+  example: []
+  syntax:
+    content: Task StoreJobAsync(TStorageRecord r, CancellationToken ct)
+    parameters:
+    - id: r
+      type: '{TStorageRecord}'
+      description: the job storage record which contains the actual command object as well as some metadata
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: ''
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function StoreJobAsync(r As TStorageRecord, ct As CancellationToken) As Task
+  overload: FastEndpoints.IJobStorageProvider`1.StoreJobAsync*
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).StoreJobAsync(TStorageRecord, CancellationToken)
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).StoreJobAsync(TStorageRecord, System.Threading.CancellationToken)
+- uid: FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams{`0})
+  commentId: M:FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams{`0})
+  id: GetNextBatchAsync(FastEndpoints.PendingJobSearchParams{`0})
+  parent: FastEndpoints.IJobStorageProvider`1
+  langs:
+  - csharp
+  - vb
+  name: GetNextBatchAsync(PendingJobSearchParams<TStorageRecord>)
+  nameWithType: IJobStorageProvider<TStorageRecord>.GetNextBatchAsync(PendingJobSearchParams<TStorageRecord>)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams<TStorageRecord>)
+  type: Method
+  source:
+    id: GetNextBatchAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
+    startLine: 19
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nfetch the next pending batch of job storage records that need to be processed, with the supplied search parameters.\n"
+  example: []
+  syntax:
+    content: Task<IEnumerable<TStorageRecord>> GetNextBatchAsync(PendingJobSearchParams<TStorageRecord> parameters)
+    parameters:
+    - id: parameters
+      type: FastEndpoints.PendingJobSearchParams{{TStorageRecord}}
+      description: use these supplied search parameters to find the next batch of job records from your database
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{TStorageRecord}}}
+    content.vb: Function GetNextBatchAsync(parameters As PendingJobSearchParams(Of TStorageRecord)) As Task(Of IEnumerable(Of TStorageRecord))
+  overload: FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync*
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).GetNextBatchAsync(PendingJobSearchParams(Of TStorageRecord))
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).GetNextBatchAsync(FastEndpoints.PendingJobSearchParams(Of TStorageRecord))
+  name.vb: GetNextBatchAsync(PendingJobSearchParams(Of TStorageRecord))
+- uid: FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync(`0,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync(`0,System.Threading.CancellationToken)
+  id: MarkJobAsCompleteAsync(`0,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobStorageProvider`1
+  langs:
+  - csharp
+  - vb
+  name: MarkJobAsCompleteAsync(TStorageRecord, CancellationToken)
+  nameWithType: IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync(TStorageRecord, CancellationToken)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync(TStorageRecord, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: MarkJobAsCompleteAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
+    startLine: 27
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nmark the job storage record as complete by either replacing the entity on storage with the supplied instance or\nsimply update the <xref href=\"FastEndpoints.IJobStorageRecord.IsComplete\" data-throw-if-not-resolved=\"false\"></xref> field to true with a partial update operation.\n"
+  example: []
+  syntax:
+    content: Task MarkJobAsCompleteAsync(TStorageRecord r, CancellationToken ct)
+    parameters:
+    - id: r
+      type: '{TStorageRecord}'
+      description: the job storage record to mark as complete
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function MarkJobAsCompleteAsync(r As TStorageRecord, ct As CancellationToken) As Task
+  overload: FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync*
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync(TStorageRecord, CancellationToken)
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync(TStorageRecord, System.Threading.CancellationToken)
+- uid: FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
+  id: OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobStorageProvider`1
+  langs:
+  - csharp
+  - vb
+  name: OnHandlerExecutionFailureAsync(TStorageRecord, Exception, CancellationToken)
+  nameWithType: IJobStorageProvider<TStorageRecord>.OnHandlerExecutionFailureAsync(TStorageRecord, Exception, CancellationToken)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.OnHandlerExecutionFailureAsync(TStorageRecord, System.Exception, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: OnHandlerExecutionFailureAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
+    startLine: 45
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthis will only be triggered when a command handler (<xref href=\"FastEndpoints.ICommandHandler%601\" data-throw-if-not-resolved=\"false\"></xref>) associated with a command\nthrows an exception. If you&apos;ve set an execution time limit for the command, the thrown exception would be of type <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref>.\n<p>\nwhen a job/command execution fails, it will be retried immediately. the failed job will be fetched again with the next batch of pending jobs.\nif one or more jobs keep failing repeatedly, it may cause the whole queue to get stuck in a retry loop preventing it from progressing.\n</p>\n<p>\nto prevent this from happening and allow other jobs to be given a chance at execution, you can reschedule failed jobs\nto be re-attempted at a future time instead. simply update the <xref href=\"FastEndpoints.IJobStorageRecord.ExecuteAfter\" data-throw-if-not-resolved=\"false\"></xref> property to a future date/time\nand save the entity to the database (or do a partial update of only that property value).\n</p>\n"
+  example: []
+  syntax:
+    content: Task OnHandlerExecutionFailureAsync(TStorageRecord r, Exception exception, CancellationToken ct)
+    parameters:
+    - id: r
+      type: '{TStorageRecord}'
+      description: the job that failed to execute successfully
+    - id: exception
+      type: System.Exception
+      description: the exception that was thrown
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function OnHandlerExecutionFailureAsync(r As TStorageRecord, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync*
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).OnHandlerExecutionFailureAsync(TStorageRecord, Exception, CancellationToken)
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).OnHandlerExecutionFailureAsync(TStorageRecord, System.Exception, System.Threading.CancellationToken)
+- uid: FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams{`0})
+  commentId: M:FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams{`0})
+  id: PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams{`0})
+  parent: FastEndpoints.IJobStorageProvider`1
+  langs:
+  - csharp
+  - vb
+  name: PurgeStaleJobsAsync(StaleJobSearchParams<TStorageRecord>)
+  nameWithType: IJobStorageProvider<TStorageRecord>.PurgeStaleJobsAsync(StaleJobSearchParams<TStorageRecord>)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams<TStorageRecord>)
+  type: Method
+  source:
+    id: PurgeStaleJobsAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
+    startLine: 53
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nthis method will be called hourly. implement this method to delete stale records (completed or expired) from storage.\nyou can safely delete the completed records. the incomplete &amp; expired records can be moved to some other location (dead-letter-queue maybe) or for inspection by a human.\nor if you&apos;d like to retry expired events, update the <xref href=\"FastEndpoints.IJobStorageRecord.ExpireOn\" data-throw-if-not-resolved=\"false\"></xref> field to a future date/time.\n"
+  example: []
+  syntax:
+    content: Task PurgeStaleJobsAsync(StaleJobSearchParams<TStorageRecord> parameters)
+    parameters:
+    - id: parameters
+      type: FastEndpoints.StaleJobSearchParams{{TStorageRecord}}
+      description: use these supplied search parameters to find stale job records from your database
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function PurgeStaleJobsAsync(parameters As StaleJobSearchParams(Of TStorageRecord)) As Task
+  overload: FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync*
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).PurgeStaleJobsAsync(StaleJobSearchParams(Of TStorageRecord))
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams(Of TStorageRecord))
+  name.vb: PurgeStaleJobsAsync(StaleJobSearchParams(Of TStorageRecord))
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: FastEndpoints.IJobStorageProvider`1.StoreJobAsync*
+  commentId: Overload:FastEndpoints.IJobStorageProvider`1.StoreJobAsync
+  name: StoreJobAsync
+  nameWithType: IJobStorageProvider<TStorageRecord>.StoreJobAsync
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.StoreJobAsync
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).StoreJobAsync
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).StoreJobAsync
+- uid: '{TStorageRecord}'
+  commentId: '!:TStorageRecord'
+  definition: TStorageRecord
+  name: TStorageRecord
+  nameWithType: TStorageRecord
+  fullName: TStorageRecord
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: TStorageRecord
+  name: TStorageRecord
+  nameWithType: TStorageRecord
+  fullName: TStorageRecord
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync*
+  commentId: Overload:FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync
+  name: GetNextBatchAsync
+  nameWithType: IJobStorageProvider<TStorageRecord>.GetNextBatchAsync
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.GetNextBatchAsync
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).GetNextBatchAsync
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).GetNextBatchAsync
+- uid: FastEndpoints.PendingJobSearchParams{{TStorageRecord}}
+  commentId: T:FastEndpoints.PendingJobSearchParams{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.PendingJobSearchParams`1
+  name: PendingJobSearchParams<TStorageRecord>
+  nameWithType: PendingJobSearchParams<TStorageRecord>
+  fullName: FastEndpoints.PendingJobSearchParams<TStorageRecord>
+  nameWithType.vb: PendingJobSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.PendingJobSearchParams(Of TStorageRecord)
+  name.vb: PendingJobSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.PendingJobSearchParams`1
+    name: PendingJobSearchParams
+    nameWithType: PendingJobSearchParams
+    fullName: FastEndpoints.PendingJobSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.PendingJobSearchParams`1
+    name: PendingJobSearchParams
+    nameWithType: PendingJobSearchParams
+    fullName: FastEndpoints.PendingJobSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{TStorageRecord}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{`0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<IEnumerable<TStorageRecord>>
+  nameWithType: Task<IEnumerable<TStorageRecord>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<TStorageRecord>>
+  nameWithType.vb: Task(Of IEnumerable(Of TStorageRecord))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of TStorageRecord))
+  name.vb: Task(Of IEnumerable(Of TStorageRecord))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.PendingJobSearchParams`1
+  commentId: T:FastEndpoints.PendingJobSearchParams`1
+  name: PendingJobSearchParams<TStorageRecord>
+  nameWithType: PendingJobSearchParams<TStorageRecord>
+  fullName: FastEndpoints.PendingJobSearchParams<TStorageRecord>
+  nameWithType.vb: PendingJobSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.PendingJobSearchParams(Of TStorageRecord)
+  name.vb: PendingJobSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.PendingJobSearchParams`1
+    name: PendingJobSearchParams
+    nameWithType: PendingJobSearchParams
+    fullName: FastEndpoints.PendingJobSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.PendingJobSearchParams`1
+    name: PendingJobSearchParams
+    nameWithType: PendingJobSearchParams
+    fullName: FastEndpoints.PendingJobSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.IJobStorageRecord.IsComplete
+  commentId: P:FastEndpoints.IJobStorageRecord.IsComplete
+  isExternal: true
+- uid: FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync*
+  commentId: Overload:FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync
+  name: MarkJobAsCompleteAsync
+  nameWithType: IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync
+- uid: FastEndpoints.ICommandHandler`1
+  commentId: T:FastEndpoints.ICommandHandler`1
+  name: ICommandHandler<TCommand>
+  nameWithType: ICommandHandler<TCommand>
+  fullName: FastEndpoints.ICommandHandler<TCommand>
+  nameWithType.vb: ICommandHandler(Of TCommand)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
+  name.vb: ICommandHandler(Of TCommand)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`1
+    name: ICommandHandler
+    nameWithType: ICommandHandler
+    fullName: FastEndpoints.ICommandHandler
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TCommand
+    nameWithType: TCommand
+    fullName: TCommand
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.OperationCanceledException
+  commentId: T:System.OperationCanceledException
+  isExternal: true
+- uid: FastEndpoints.IJobStorageRecord.ExecuteAfter
+  commentId: P:FastEndpoints.IJobStorageRecord.ExecuteAfter
+  isExternal: true
+- uid: FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync*
+  commentId: Overload:FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync
+  name: OnHandlerExecutionFailureAsync
+  nameWithType: IJobStorageProvider<TStorageRecord>.OnHandlerExecutionFailureAsync
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.OnHandlerExecutionFailureAsync
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).OnHandlerExecutionFailureAsync
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).OnHandlerExecutionFailureAsync
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.IJobStorageRecord.ExpireOn
+  commentId: P:FastEndpoints.IJobStorageRecord.ExpireOn
+  isExternal: true
+- uid: FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync*
+  commentId: Overload:FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync
+  name: PurgeStaleJobsAsync
+  nameWithType: IJobStorageProvider<TStorageRecord>.PurgeStaleJobsAsync
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.PurgeStaleJobsAsync
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).PurgeStaleJobsAsync
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).PurgeStaleJobsAsync
+- uid: FastEndpoints.StaleJobSearchParams{{TStorageRecord}}
+  commentId: T:FastEndpoints.StaleJobSearchParams{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.StaleJobSearchParams`1
+  name: StaleJobSearchParams<TStorageRecord>
+  nameWithType: StaleJobSearchParams<TStorageRecord>
+  fullName: FastEndpoints.StaleJobSearchParams<TStorageRecord>
+  nameWithType.vb: StaleJobSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.StaleJobSearchParams(Of TStorageRecord)
+  name.vb: StaleJobSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.StaleJobSearchParams`1
+    name: StaleJobSearchParams
+    nameWithType: StaleJobSearchParams
+    fullName: FastEndpoints.StaleJobSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.StaleJobSearchParams`1
+    name: StaleJobSearchParams
+    nameWithType: StaleJobSearchParams
+    fullName: FastEndpoints.StaleJobSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.StaleJobSearchParams`1
+  commentId: T:FastEndpoints.StaleJobSearchParams`1
+  name: StaleJobSearchParams<TStorageRecord>
+  nameWithType: StaleJobSearchParams<TStorageRecord>
+  fullName: FastEndpoints.StaleJobSearchParams<TStorageRecord>
+  nameWithType.vb: StaleJobSearchParams(Of TStorageRecord)
+  fullName.vb: FastEndpoints.StaleJobSearchParams(Of TStorageRecord)
+  name.vb: StaleJobSearchParams(Of TStorageRecord)
+  spec.csharp:
+  - uid: FastEndpoints.StaleJobSearchParams`1
+    name: StaleJobSearchParams
+    nameWithType: StaleJobSearchParams
+    fullName: FastEndpoints.StaleJobSearchParams
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FastEndpoints.StaleJobSearchParams`1
+    name: StaleJobSearchParams
+    nameWithType: StaleJobSearchParams
+    fullName: FastEndpoints.StaleJobSearchParams
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TStorageRecord
+    nameWithType: TStorageRecord
+    fullName: TStorageRecord
+  - name: )
+    nameWithType: )
+    fullName: )

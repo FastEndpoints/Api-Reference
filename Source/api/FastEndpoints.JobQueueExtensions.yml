@@ -1,0 +1,737 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.JobQueueExtensions
+  commentId: T:FastEndpoints.JobQueueExtensions
+  id: JobQueueExtensions
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.JobQueueExtensions.AddJobQueues``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  - FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.JobQueueOptions})
+  langs:
+  - csharp
+  - vb
+  name: JobQueueExtensions
+  nameWithType: JobQueueExtensions
+  fullName: FastEndpoints.JobQueueExtensions
+  type: Class
+  source:
+    id: JobQueueExtensions
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
+    startLine: 8
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nextension methods for job queues\n"
+  example: []
+  syntax:
+    content: public static class JobQueueExtensions
+    content.vb: Public Module JobQueueExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: FastEndpoints.JobQueueExtensions.AddJobQueues``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.JobQueueExtensions.AddJobQueues``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: AddJobQueues``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  isExtensionMethod: true
+  parent: FastEndpoints.JobQueueExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddJobQueues<TStorageRecord, TStorageProvider>(IServiceCollection)
+  nameWithType: JobQueueExtensions.AddJobQueues<TStorageRecord, TStorageProvider>(IServiceCollection)
+  fullName: FastEndpoints.JobQueueExtensions.AddJobQueues<TStorageRecord, TStorageProvider>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  type: Method
+  source:
+    id: AddJobQueues
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
+    startLine: 18
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nadd job queue functionality\n"
+  example: []
+  syntax:
+    content: >-
+      public static IServiceCollection AddJobQueues<TStorageRecord, TStorageProvider>(this IServiceCollection svc)
+
+          where TStorageRecord : IJobStorageRecord, new()
+
+          where TStorageProvider : class, IJobStorageProvider<TStorageRecord>
+    parameters:
+    - id: svc
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    typeParameters:
+    - id: TStorageRecord
+      description: the implementation type of the job storage record
+    - id: TStorageProvider
+      description: the implementation type of the job storage provider
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddJobQueues(Of TStorageRecord As {IJobStorageRecord, New}, TStorageProvider As {Class, IJobStorageProvider(Of TStorageRecord)})(svc As IServiceCollection) As IServiceCollection
+  overload: FastEndpoints.JobQueueExtensions.AddJobQueues*
+  nameWithType.vb: JobQueueExtensions.AddJobQueues(Of TStorageRecord, TStorageProvider)(IServiceCollection)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.JobQueueExtensions.AddJobQueues(Of TStorageRecord, TStorageProvider)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: AddJobQueues(Of TStorageRecord, TStorageProvider)(IServiceCollection)
+- uid: FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.JobQueueOptions})
+  commentId: M:FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.JobQueueOptions})
+  id: UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.JobQueueOptions})
+  isExtensionMethod: true
+  parent: FastEndpoints.JobQueueExtensions
+  langs:
+  - csharp
+  - vb
+  name: UseJobQueues(IApplicationBuilder, Action<JobQueueOptions>)
+  nameWithType: JobQueueExtensions.UseJobQueues(IApplicationBuilder, Action<JobQueueOptions>)
+  fullName: FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<FastEndpoints.JobQueueOptions>)
+  type: Method
+  source:
+    id: UseJobQueues
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
+    startLine: 34
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nenable job queue functionality with given settings\n"
+  example: []
+  syntax:
+    content: public static IApplicationBuilder UseJobQueues(this IApplicationBuilder app, Action<JobQueueOptions> options = null)
+    parameters:
+    - id: app
+      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
+    - id: options
+      type: System.Action{FastEndpoints.JobQueueOptions}
+      description: specify settings/execution limits for each job queue type
+    return:
+      type: Microsoft.AspNetCore.Builder.IApplicationBuilder
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function UseJobQueues(app As IApplicationBuilder, options As Action(Of JobQueueOptions) = Nothing) As IApplicationBuilder
+  overload: FastEndpoints.JobQueueExtensions.UseJobQueues*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown when no commands/handlers have been detected
+  nameWithType.vb: JobQueueExtensions.UseJobQueues(IApplicationBuilder, Action(Of JobQueueOptions))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of FastEndpoints.JobQueueOptions))
+  name.vb: UseJobQueues(IApplicationBuilder, Action(Of JobQueueOptions))
+- uid: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  id: QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.JobQueueExtensions
+  langs:
+  - csharp
+  - vb
+  name: QueueJobAsync(ICommand, Nullable<DateTime>, Nullable<DateTime>, CancellationToken)
+  nameWithType: JobQueueExtensions.QueueJobAsync(ICommand, Nullable<DateTime>, Nullable<DateTime>, CancellationToken)
+  fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand, System.Nullable<System.DateTime>, System.Nullable<System.DateTime>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    id: QueueJobAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
+    startLine: 59
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: "\nqueues up a given command in the respective job queue for that command type.\n"
+  example: []
+  syntax:
+    content: public static Task QueueJobAsync(this ICommand cmd, DateTime? executeAfter = null, DateTime? expireOn = null, CancellationToken ct = default(CancellationToken))
+    parameters:
+    - id: cmd
+      type: FastEndpoints.ICommand
+      description: the command to be queued
+    - id: executeAfter
+      type: System.Nullable{System.DateTime}
+      description: if set, the job won&apos;t be executed before this date/time. if unspecified, execution is attempted as soon as possible.
+    - id: expireOn
+      type: System.Nullable{System.DateTime}
+      description: if set, job will be considered stale/expired after this date/time. if unspecified, jobs expire after 4 hours of creation.
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function QueueJobAsync(cmd As ICommand, executeAfter As Date? = Nothing, expireOn As Date? = Nothing, ct As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.JobQueueExtensions.QueueJobAsync*
+  nameWithType.vb: JobQueueExtensions.QueueJobAsync(ICommand, Nullable(Of DateTime), Nullable(Of DateTime), CancellationToken)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand, System.Nullable(Of System.DateTime), System.Nullable(Of System.DateTime), System.Threading.CancellationToken)
+  name.vb: QueueJobAsync(ICommand, Nullable(Of DateTime), Nullable(Of DateTime), CancellationToken)
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.JobQueueExtensions.AddJobQueues*
+  commentId: Overload:FastEndpoints.JobQueueExtensions.AddJobQueues
+  name: AddJobQueues
+  nameWithType: JobQueueExtensions.AddJobQueues
+  fullName: FastEndpoints.JobQueueExtensions.AddJobQueues
+- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
+  parent: Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: FastEndpoints.JobQueueExtensions.UseJobQueues*
+  commentId: Overload:FastEndpoints.JobQueueExtensions.UseJobQueues
+  name: UseJobQueues
+  nameWithType: JobQueueExtensions.UseJobQueues
+  fullName: FastEndpoints.JobQueueExtensions.UseJobQueues
+- uid: Microsoft.AspNetCore.Builder.IApplicationBuilder
+  commentId: T:Microsoft.AspNetCore.Builder.IApplicationBuilder
+  parent: Microsoft.AspNetCore.Builder
+  isExternal: true
+  name: IApplicationBuilder
+  nameWithType: IApplicationBuilder
+  fullName: Microsoft.AspNetCore.Builder.IApplicationBuilder
+- uid: System.Action{FastEndpoints.JobQueueOptions}
+  commentId: T:System.Action{FastEndpoints.JobQueueOptions}
+  parent: System
+  definition: System.Action`1
+  name: Action<JobQueueOptions>
+  nameWithType: Action<JobQueueOptions>
+  fullName: System.Action<FastEndpoints.JobQueueOptions>
+  nameWithType.vb: Action(Of JobQueueOptions)
+  fullName.vb: System.Action(Of FastEndpoints.JobQueueOptions)
+  name.vb: Action(Of JobQueueOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: FastEndpoints.JobQueueOptions
+    name: JobQueueOptions
+    nameWithType: JobQueueOptions
+    fullName: FastEndpoints.JobQueueOptions
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: FastEndpoints.JobQueueOptions
+    name: JobQueueOptions
+    nameWithType: JobQueueOptions
+    fullName: FastEndpoints.JobQueueOptions
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.AspNetCore.Builder
+  commentId: N:Microsoft.AspNetCore.Builder
+  isExternal: true
+  name: Microsoft.AspNetCore.Builder
+  nameWithType: Microsoft.AspNetCore.Builder
+  fullName: Microsoft.AspNetCore.Builder
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FastEndpoints.JobQueueExtensions.QueueJobAsync*
+  commentId: Overload:FastEndpoints.JobQueueExtensions.QueueJobAsync
+  name: QueueJobAsync
+  nameWithType: JobQueueExtensions.QueueJobAsync
+  fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync
+- uid: FastEndpoints.ICommand
+  commentId: T:FastEndpoints.ICommand
+  parent: FastEndpoints
+  name: ICommand
+  nameWithType: ICommand
+  fullName: FastEndpoints.ICommand
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<DateTime>
+  nameWithType: Nullable<DateTime>
+  fullName: System.Nullable<System.DateTime>
+  nameWithType.vb: Nullable(Of DateTime)
+  fullName.vb: System.Nullable(Of System.DateTime)
+  name.vb: Nullable(Of DateTime)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTime
+    name: DateTime
+    nameWithType: DateTime
+    fullName: System.DateTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

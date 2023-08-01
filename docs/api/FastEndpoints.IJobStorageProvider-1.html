@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IJobStorageProvider&lt;TStorageRecord&gt;
+ | FastEndpoints </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IJobStorageProvider&lt;TStorageRecord&gt;
+ | FastEndpoints ">
+    <meta name="generator" content="docfx ">
+  <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
+    <link rel="shortcut icon" href="../images/favicon-32x32.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FastEndpoints.IJobStorageProvider`1">
+
+
+  <h1 id="FastEndpoints_IJobStorageProvider_1" data-uid="FastEndpoints.IJobStorageProvider`1" class="text-break">Interface IJobStorageProvider&lt;TStorageRecord&gt;
+</h1>
+  <div class="markdown level0 summary"><p>interface for defining the contract of a job storage provider</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
+  <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
+  <h5 id="FastEndpoints_IJobStorageProvider_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IJobStorageProvider&lt;TStorageRecord&gt;
+    where TStorageRecord : IJobStorageRecord</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TStorageRecord</span></td>
+        <td><p>the type of job storage record of this storage provider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="FastEndpoints_IJobStorageProvider_1_GetNextBatchAsync_" data-uid="FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync*"></a>
+  <h4 id="FastEndpoints_IJobStorageProvider_1_GetNextBatchAsync_FastEndpoints_PendingJobSearchParams__0__" data-uid="FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams{`0})">GetNextBatchAsync(PendingJobSearchParams&lt;TStorageRecord&gt;)</h4>
+  <div class="markdown level1 summary"><p>fetch the next pending batch of job storage records that need to be processed, with the supplied search parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IEnumerable&lt;TStorageRecord&gt;&gt; GetNextBatchAsync(PendingJobSearchParams&lt;TStorageRecord&gt; parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.PendingJobSearchParams-1.html">PendingJobSearchParams</a>&lt;TStorageRecord&gt;</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>use these supplied search parameters to find the next batch of job records from your database</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TStorageRecord&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IJobStorageProvider_1_MarkJobAsCompleteAsync_" data-uid="FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync*"></a>
+  <h4 id="FastEndpoints_IJobStorageProvider_1_MarkJobAsCompleteAsync__0_System_Threading_CancellationToken_" data-uid="FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync(`0,System.Threading.CancellationToken)">MarkJobAsCompleteAsync(TStorageRecord, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>mark the job storage record as complete by either replacing the entity on storage with the supplied instance or
+simply update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#FastEndpoints_IJobStorageRecord_IsComplete">IsComplete</a> field to true with a partial update operation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task MarkJobAsCompleteAsync(TStorageRecord r, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TStorageRecord</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>the job storage record to mark as complete</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IJobStorageProvider_1_OnHandlerExecutionFailureAsync_" data-uid="FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync*"></a>
+  <h4 id="FastEndpoints_IJobStorageProvider_1_OnHandlerExecutionFailureAsync__0_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)">OnHandlerExecutionFailureAsync(TStorageRecord, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this will only be triggered when a command handler (<a class="xref" href="FastEndpoints.ICommandHandler-1.html">ICommandHandler&lt;TCommand&gt;</a>) associated with a command
+throws an exception. If you've set an execution time limit for the command, the thrown exception would be of type <span class="xref">System.OperationCanceledException</span>.</p>
+<p>
+when a job/command execution fails, it will be retried immediately. the failed job will be fetched again with the next batch of pending jobs.
+if one or more jobs keep failing repeatedly, it may cause the whole queue to get stuck in a retry loop preventing it from progressing.
+</p>
+<p>
+to prevent this from happening and allow other jobs to be given a chance at execution, you can reschedule failed jobs
+to be re-attempted at a future time instead. simply update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#FastEndpoints_IJobStorageRecord_ExecuteAfter">ExecuteAfter</a> property to a future date/time
+and save the entity to the database (or do a partial update of only that property value).
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task OnHandlerExecutionFailureAsync(TStorageRecord r, Exception exception, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TStorageRecord</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>the job that failed to execute successfully</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>the exception that was thrown</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IJobStorageProvider_1_PurgeStaleJobsAsync_" data-uid="FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync*"></a>
+  <h4 id="FastEndpoints_IJobStorageProvider_1_PurgeStaleJobsAsync_FastEndpoints_StaleJobSearchParams__0__" data-uid="FastEndpoints.IJobStorageProvider`1.PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams{`0})">PurgeStaleJobsAsync(StaleJobSearchParams&lt;TStorageRecord&gt;)</h4>
+  <div class="markdown level1 summary"><p>this method will be called hourly. implement this method to delete stale records (completed or expired) from storage.
+you can safely delete the completed records. the incomplete &amp; expired records can be moved to some other location (dead-letter-queue maybe) or for inspection by a human.
+or if you'd like to retry expired events, update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#FastEndpoints_IJobStorageRecord_ExpireOn">ExpireOn</a> field to a future date/time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task PurgeStaleJobsAsync(StaleJobSearchParams&lt;TStorageRecord&gt; parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.StaleJobSearchParams-1.html">StaleJobSearchParams</a>&lt;TStorageRecord&gt;</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>use these supplied search parameters to find stale job records from your database</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IJobStorageProvider_1_StoreJobAsync_" data-uid="FastEndpoints.IJobStorageProvider`1.StoreJobAsync*"></a>
+  <h4 id="FastEndpoints_IJobStorageProvider_1_StoreJobAsync__0_System_Threading_CancellationToken_" data-uid="FastEndpoints.IJobStorageProvider`1.StoreJobAsync(`0,System.Threading.CancellationToken)">StoreJobAsync(TStorageRecord, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>store the job storage record however you please. ideally on a nosql database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task StoreJobAsync(TStorageRecord r, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TStorageRecord</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>the job storage record which contains the actual command object as well as some metadata</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Developed by <a href='https://github.com/dj-nitehawk'>Đĵ ΝιΓΞΗΛψΚ</a> and <a href='https://github.com/dj-nitehawk/FastEndpoints/graphs/contributors'>contributors</a> / Licensed under <a href='https://github.com/dj-nitehawk/FastEndpoints/blob/master/LICENSE'>MIT</a> / Website generated by <a href='https://dotnet.github.io/docfx/'>DocFX</a>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

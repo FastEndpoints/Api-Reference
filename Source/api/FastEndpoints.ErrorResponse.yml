@@ -8,6 +8,7 @@ items:
   - FastEndpoints.ErrorResponse.#ctor
   - FastEndpoints.ErrorResponse.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Int32)
   - FastEndpoints.ErrorResponse.Errors
+  - FastEndpoints.ErrorResponse.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.ErrorResponse.Message
   - FastEndpoints.ErrorResponse.StatusCode
   langs:
@@ -20,17 +21,22 @@ items:
   source:
     id: ErrorResponse
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
-    startLine: 7
+    startLine: 11
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: "\nthe dto used to send an error response to the client\n"
   example: []
   syntax:
-    content: public sealed class ErrorResponse
-    content.vb: Public NotInheritable Class ErrorResponse
+    content: 'public sealed class ErrorResponse : IResult'
+    content.vb: >-
+      Public NotInheritable Class ErrorResponse
+
+          Implements IResult
   inheritance:
   - System.Object
+  implements:
+  - Microsoft.AspNetCore.Http.IResult
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -61,7 +67,7 @@ items:
   source:
     id: StatusCode
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
-    startLine: 12
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -94,7 +100,7 @@ items:
   source:
     id: Message
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
-    startLine: 17
+    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -127,7 +133,7 @@ items:
   source:
     id: Errors
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
-    startLine: 22
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -160,7 +166,7 @@ items:
   source:
     id: .ctor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
-    startLine: 27
+    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -188,7 +194,7 @@ items:
   source:
     id: .ctor
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
-    startLine: 33
+    startLine: 40
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -211,6 +217,39 @@ items:
   - Public
   fullName.vb: FastEndpoints.ErrorResponse.ErrorResponse(System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.Int32)
   name.vb: ErrorResponse(List(Of ValidationFailure), Int32)
+- uid: FastEndpoints.ErrorResponse.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:FastEndpoints.ErrorResponse.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  id: ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  parent: FastEndpoints.ErrorResponse
+  langs:
+  - csharp
+  - vb
+  name: ExecuteAsync(HttpContext)
+  nameWithType: ErrorResponse.ExecuteAsync(HttpContext)
+  fullName: FastEndpoints.ErrorResponse.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  type: Method
+  source:
+    id: ExecuteAsync
+    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ErrorResponse.cs
+    startLine: 48
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public Task ExecuteAsync(HttpContext httpContext)
+    parameters:
+    - id: httpContext
+      type: Microsoft.AspNetCore.Http.HttpContext
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function ExecuteAsync(httpContext As HttpContext) As Task
+  overload: FastEndpoints.ErrorResponse.ExecuteAsync*
+  implements:
+  - Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -224,6 +263,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Microsoft.AspNetCore.Http.IResult
+  commentId: T:Microsoft.AspNetCore.Http.IResult
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: IResult
+  nameWithType: IResult
+  fullName: Microsoft.AspNetCore.Http.IResult
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -509,6 +555,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
 - uid: FastEndpoints.ErrorResponse.StatusCode*
   commentId: Overload:FastEndpoints.ErrorResponse.StatusCode
   name: StatusCode
@@ -765,3 +817,69 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: FastEndpoints.ErrorResponse.ExecuteAsync*
+  commentId: Overload:FastEndpoints.ErrorResponse.ExecuteAsync
+  name: ExecuteAsync
+  nameWithType: ErrorResponse.ExecuteAsync
+  fullName: FastEndpoints.ErrorResponse.ExecuteAsync
+- uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  commentId: M:Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  parent: Microsoft.AspNetCore.Http.IResult
+  isExternal: true
+  name: ExecuteAsync(HttpContext)
+  nameWithType: IResult.ExecuteAsync(HttpContext)
+  fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+    name: ExecuteAsync
+    nameWithType: IResult.ExecuteAsync
+    fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    nameWithType: HttpContext
+    fullName: Microsoft.AspNetCore.Http.HttpContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+    name: ExecuteAsync
+    nameWithType: IResult.ExecuteAsync
+    fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    nameWithType: HttpContext
+    fullName: Microsoft.AspNetCore.Http.HttpContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

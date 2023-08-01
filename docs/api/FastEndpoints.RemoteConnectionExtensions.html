@@ -125,16 +125,16 @@
 </h3>
 
 
-  <a id="FastEndpoints_RemoteConnectionExtensions_EventSubscriberStorageProvider_" data-uid="FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_EventSubscriberStorageProvider__2_Microsoft_Extensions_Hosting_IHost_" data-uid="FastEndpoints.RemoteConnectionExtensions.EventSubscriberStorageProvider``2(Microsoft.Extensions.Hosting.IHost)">EventSubscriberStorageProvider&lt;TStorageRecord, TStorageProvider&gt;(IHost)</h4>
-  <div class="markdown level1 summary"><p>client extension methods</p>
+  <a id="FastEndpoints_RemoteConnectionExtensions_AddEventSubscriberStorageProvider_" data-uid="FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionExtensions_AddEventSubscriberStorageProvider__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">AddEventSubscriberStorageProvider&lt;TStorageRecord, TStorageProvider&gt;(IServiceCollection)</h4>
+  <div class="markdown level1 summary"><p>register a custom event subscriber storage provider</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EventSubscriberStorageProvider&lt;TStorageRecord, TStorageProvider&gt;(this IHost host)
+    <pre><code class="lang-csharp hljs">public static void AddEventSubscriberStorageProvider&lt;TStorageRecord, TStorageProvider&gt;(this IServiceCollection services)
     where TStorageRecord : IEventStorageRecord, new()
-    where TStorageProvider : class, IEventSubscriberStorageProvider</code></pre>
+    where TStorageProvider : class, IEventSubscriberStorageProvider&lt;TStorageRecord&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -147,8 +147,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Extensions.Hosting.IHost</span></td>
-        <td><span class="parametername">host</span></td>
+        <td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
+        <td><span class="parametername">services</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -164,7 +164,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">TStorageRecord</span></td>
-        <td></td>
+        <td><p>the type of the storage record</p>
+</td>
       </tr>
       <tr>
         <td><span class="parametername">TStorageProvider</span></td>

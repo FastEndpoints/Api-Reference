@@ -209,7 +209,7 @@ only one dto property can be decorated with this attribute.
       <h4><a class="xref" href="FastEndpoints.Group.html">Group</a></h4>
       <section><p>common configuration for a group of endpoints can be specified by implementing this abstract class and calling <a class="xref" href="FastEndpoints.Group.html#FastEndpoints_Group_Configure_System_String_System_Action_FastEndpoints_EndpointDefinition__">Configure(String, Action&lt;EndpointDefinition&gt;)</a> in the constructor.</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.HandlerOptions.html">HandlerOptions</a></h4>
+      <h4><a class="xref" href="FastEndpoints.HandlerOptions-2.html">HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;</a></h4>
       <section><p>handler registration options</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.HandlerServerExtensions.html">HandlerServerExtensions</a></h4>
@@ -246,8 +246,21 @@ only one dto property can be decorated with this attribute.
 </section>
       <h4><a class="xref" href="FastEndpoints.HttpResponseExtensions.html">HttpResponseExtensions</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.InMemoryEventHubStorage.html">InMemoryEventHubStorage</a></h4>
+      <section></section>
+      <h4><a class="xref" href="FastEndpoints.InMemoryEventQueue.html">InMemoryEventQueue</a></h4>
+      <section><p>provides some global configuration options for the in-memory event queues</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.InMemoryEventStorageRecord.html">InMemoryEventStorageRecord</a></h4>
+      <section></section>
       <h4><a class="xref" href="FastEndpoints.InternalErrorResponse.html">InternalErrorResponse</a></h4>
       <section><p>the dto used to send an error response to the client when an unhandled exception occurs on the server</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.JobQueueExtensions.html">JobQueueExtensions</a></h4>
+      <section><p>extension methods for job queues</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.JobQueueOptions.html">JobQueueOptions</a></h4>
+      <section><p>options for job queues</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.MainExtensions.html">MainExtensions</a></h4>
       <section><p>provides extensions to easily bootstrap fastendpoints in the asp.net middleware pipeline</p>
@@ -278,8 +291,7 @@ only one dto property can be decorated with this attribute.
       <section><p>properties decorated with this attribute will have a corresponding request parameter added to the swagger schema</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.RemoteConnection.html">RemoteConnection</a></h4>
-      <section><p>represents a connection to a remote server that hosts command handlers (<a class="xref" href="FastEndpoints.ICommandHandler-2.html">ICommandHandler&lt;TCommand, TResult&gt;</a>)</p>
-<p>call <a class="xref" href="FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__2">Register&lt;TCommand, TResult&gt;()</a> method to map the commands</p>
+      <section><p>represents a connection to a remote server that hosts command and event handlers</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.RemoteConnectionExtensions.html">RemoteConnectionExtensions</a></h4>
       <section><p>client extension methods</p>
@@ -360,6 +372,21 @@ inspect the <code>Failures</code> property for details.</p>
       <h4><a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a></h4>
       <section><p>dto used to hold the result of a value parsing operation</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.PendingJobSearchParams-1.html">PendingJobSearchParams&lt;TStorageRecord&gt;</a></h4>
+      <section><p>a dto representing search parameters for pending job storage record retrieval</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.PendingRecordSearchParams-1.html">PendingRecordSearchParams&lt;TStorageRecord&gt;</a></h4>
+      <section><p>a dto representing search parameters for pending event storage record retrieval</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.StaleJobSearchParams-1.html">StaleJobSearchParams&lt;TStorageRecord&gt;</a></h4>
+      <section><p>a dto representing search parameters for matching stale job storage records</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.StaleRecordSearchParams-1.html">StaleRecordSearchParams&lt;TStorageRecord&gt;</a></h4>
+      <section><p>a dto representing search parameters for matching stale event storage records</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.SubscriberIDRestorationParams-1.html">SubscriberIDRestorationParams&lt;TStorageRecord&gt;</a></h4>
+      <section><p>parameters to use in finding subscriber IDs to restore</p>
+</section>
     <h3 id="interfaces">Interfaces
 </h3>
       <h4><a class="xref" href="FastEndpoints.IClientStreamCommandHandler-2.html">IClientStreamCommandHandler&lt;T, TResult&gt;</a></h4>
@@ -398,14 +425,14 @@ inspect the <code>Failures</code> property for details.</p>
       <h4><a class="xref" href="FastEndpoints.IEventHandler-1.html">IEventHandler&lt;TEvent&gt;</a></h4>
       <section><p>interface to be implemented by event handlers</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.IEventHubStorageProvider.html">IEventHubStorageProvider</a></h4>
+      <h4><a class="xref" href="FastEndpoints.IEventHubStorageProvider-1.html">IEventHubStorageProvider&lt;TStorageRecord&gt;</a></h4>
       <section><p>interface for implementing a storage provider for event hub app (gRPC server)</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></h4>
       <section><p>interface for implementing an event storage record that encapsulates/embeds an event (<a class="xref" href="FastEndpoints.IEvent.html">IEvent</a>)</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.IEventSubscriberStorageProvider.html">IEventSubscriberStorageProvider</a></h4>
-      <section><p>interface for implementing a storage provider for event subscription client app (gRPC client)</p>
+      <h4><a class="xref" href="FastEndpoints.IEventSubscriberStorageProvider-1.html">IEventSubscriberStorageProvider&lt;TStorageRecord&gt;</a></h4>
+      <section><p>interface for implementing a storage provider for an event subscription client app (gRPC client)</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IGlobalPostProcessor.html">IGlobalPostProcessor</a></h4>
       <section><p>interface for defining global post-processors to be executed after the main endpoint handler is done</p>
@@ -419,6 +446,11 @@ inspect the <code>Failures</code> property for details.</p>
       <h4><a class="xref" href="FastEndpoints.IHasMapper-1.html">IHasMapper&lt;TMapper&gt;</a></h4>
       <section><p>marker/constraint for endpoints that have a mapper generic argument</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.IJobStorageProvider-1.html">IJobStorageProvider&lt;TStorageRecord&gt;</a></h4>
+      <section><p>interface for defining the contract of a job storage provider</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IJobStorageRecord.html">IJobStorageRecord</a></h4>
+      <section></section>
       <h4><a class="xref" href="FastEndpoints.IMapper.html">IMapper</a></h4>
       <section><p>marker interface for entity mappers</p>
 </section>

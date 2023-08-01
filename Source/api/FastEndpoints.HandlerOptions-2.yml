@@ -1,35 +1,42 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.HandlerOptions
-  commentId: T:FastEndpoints.HandlerOptions
-  id: HandlerOptions
+- uid: FastEndpoints.HandlerOptions`2
+  commentId: T:FastEndpoints.HandlerOptions`2
+  id: HandlerOptions`2
   parent: FastEndpoints
   children:
-  - FastEndpoints.HandlerOptions.EventHubStorageProvider``2
-  - FastEndpoints.HandlerOptions.Register``2
-  - FastEndpoints.HandlerOptions.Register``3
-  - FastEndpoints.HandlerOptions.RegisterClientStream``3
-  - FastEndpoints.HandlerOptions.RegisterEventHub``1(FastEndpoints.HubMode)
-  - FastEndpoints.HandlerOptions.RegisterServerStream``3
+  - FastEndpoints.HandlerOptions`2.Register``2
+  - FastEndpoints.HandlerOptions`2.Register``3
+  - FastEndpoints.HandlerOptions`2.RegisterClientStream``3
+  - FastEndpoints.HandlerOptions`2.RegisterEventHub``1(FastEndpoints.HubMode)
+  - FastEndpoints.HandlerOptions`2.RegisterServerStream``3
   langs:
   - csharp
   - vb
-  name: HandlerOptions
-  nameWithType: HandlerOptions
-  fullName: FastEndpoints.HandlerOptions
+  name: HandlerOptions<TStorageRecord, TStorageProvider>
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>
   type: Class
   source:
     id: HandlerOptions
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
-    startLine: 10
+    startLine: 8
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
   summary: "\nhandler registration options\n"
   example: []
   syntax:
-    content: public sealed class HandlerOptions
-    content.vb: Public NotInheritable Class HandlerOptions
+    content: >-
+      public class HandlerOptions<TStorageRecord, TStorageProvider>
+
+          where TStorageRecord : IEventStorageRecord, new()
+
+          where TStorageProvider : class, IEventHubStorageProvider<TStorageRecord>
+    typeParameters:
+    - id: TStorageRecord
+    - id: TStorageProvider
+    content.vb: Public Class HandlerOptions(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventHubStorageProvider(Of TStorageRecord)})
   inheritance:
   - System.Object
   inheritedMembers:
@@ -40,24 +47,25 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider)
   modifiers.csharp:
   - public
-  - sealed
   - class
   modifiers.vb:
   - Public
-  - NotInheritable
   - Class
-- uid: FastEndpoints.HandlerOptions.Register``2
-  commentId: M:FastEndpoints.HandlerOptions.Register``2
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider)
+  name.vb: HandlerOptions(Of TStorageRecord, TStorageProvider)
+- uid: FastEndpoints.HandlerOptions`2.Register``2
+  commentId: M:FastEndpoints.HandlerOptions`2.Register``2
   id: Register``2
-  parent: FastEndpoints.HandlerOptions
+  parent: FastEndpoints.HandlerOptions`2
   langs:
   - csharp
   - vb
   name: Register<TCommand, THandler>()
-  nameWithType: HandlerOptions.Register<TCommand, THandler>()
-  fullName: FastEndpoints.HandlerOptions.Register<TCommand, THandler>()
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.Register<TCommand, THandler>()
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.Register<TCommand, THandler>()
   type: Method
   source:
     id: Register
@@ -81,24 +89,24 @@ items:
     return:
       type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
     content.vb: Public Function Register(Of TCommand As {Class, ICommand}, THandler As {Class, ICommandHandler(Of TCommand)}) As GrpcServiceEndpointConventionBuilder
-  overload: FastEndpoints.HandlerOptions.Register*
-  nameWithType.vb: HandlerOptions.Register(Of TCommand, THandler)()
+  overload: FastEndpoints.HandlerOptions`2.Register*
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).Register(Of TCommand, THandler)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.Register(Of TCommand, THandler)()
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).Register(Of TCommand, THandler)()
   name.vb: Register(Of TCommand, THandler)()
-- uid: FastEndpoints.HandlerOptions.Register``3
-  commentId: M:FastEndpoints.HandlerOptions.Register``3
+- uid: FastEndpoints.HandlerOptions`2.Register``3
+  commentId: M:FastEndpoints.HandlerOptions`2.Register``3
   id: Register``3
-  parent: FastEndpoints.HandlerOptions
+  parent: FastEndpoints.HandlerOptions`2
   langs:
   - csharp
   - vb
   name: Register<TCommand, THandler, TResult>()
-  nameWithType: HandlerOptions.Register<TCommand, THandler, TResult>()
-  fullName: FastEndpoints.HandlerOptions.Register<TCommand, THandler, TResult>()
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.Register<TCommand, THandler, TResult>()
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.Register<TCommand, THandler, TResult>()
   type: Method
   source:
     id: Register
@@ -124,24 +132,24 @@ items:
     return:
       type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
     content.vb: Public Function Register(Of TCommand As {Class, ICommand(Of TResult)}, THandler As {Class, ICommandHandler(Of TCommand, TResult)}, TResult As Class) As GrpcServiceEndpointConventionBuilder
-  overload: FastEndpoints.HandlerOptions.Register*
-  nameWithType.vb: HandlerOptions.Register(Of TCommand, THandler, TResult)()
+  overload: FastEndpoints.HandlerOptions`2.Register*
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).Register(Of TCommand, THandler, TResult)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.Register(Of TCommand, THandler, TResult)()
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).Register(Of TCommand, THandler, TResult)()
   name.vb: Register(Of TCommand, THandler, TResult)()
-- uid: FastEndpoints.HandlerOptions.RegisterServerStream``3
-  commentId: M:FastEndpoints.HandlerOptions.RegisterServerStream``3
+- uid: FastEndpoints.HandlerOptions`2.RegisterServerStream``3
+  commentId: M:FastEndpoints.HandlerOptions`2.RegisterServerStream``3
   id: RegisterServerStream``3
-  parent: FastEndpoints.HandlerOptions
+  parent: FastEndpoints.HandlerOptions`2
   langs:
   - csharp
   - vb
   name: RegisterServerStream<TCommand, THandler, TResult>()
-  nameWithType: HandlerOptions.RegisterServerStream<TCommand, THandler, TResult>()
-  fullName: FastEndpoints.HandlerOptions.RegisterServerStream<TCommand, THandler, TResult>()
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.RegisterServerStream<TCommand, THandler, TResult>()
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.RegisterServerStream<TCommand, THandler, TResult>()
   type: Method
   source:
     id: RegisterServerStream
@@ -167,24 +175,24 @@ items:
     return:
       type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
     content.vb: Public Function RegisterServerStream(Of TCommand As {Class, IServerStreamCommand(Of TResult)}, THandler As {Class, IServerStreamCommandHandler(Of TCommand, TResult)}, TResult As Class) As GrpcServiceEndpointConventionBuilder
-  overload: FastEndpoints.HandlerOptions.RegisterServerStream*
-  nameWithType.vb: HandlerOptions.RegisterServerStream(Of TCommand, THandler, TResult)()
+  overload: FastEndpoints.HandlerOptions`2.RegisterServerStream*
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterServerStream(Of TCommand, THandler, TResult)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.RegisterServerStream(Of TCommand, THandler, TResult)()
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterServerStream(Of TCommand, THandler, TResult)()
   name.vb: RegisterServerStream(Of TCommand, THandler, TResult)()
-- uid: FastEndpoints.HandlerOptions.RegisterClientStream``3
-  commentId: M:FastEndpoints.HandlerOptions.RegisterClientStream``3
+- uid: FastEndpoints.HandlerOptions`2.RegisterClientStream``3
+  commentId: M:FastEndpoints.HandlerOptions`2.RegisterClientStream``3
   id: RegisterClientStream``3
-  parent: FastEndpoints.HandlerOptions
+  parent: FastEndpoints.HandlerOptions`2
   langs:
   - csharp
   - vb
   name: RegisterClientStream<T, THandler, TResult>()
-  nameWithType: HandlerOptions.RegisterClientStream<T, THandler, TResult>()
-  fullName: FastEndpoints.HandlerOptions.RegisterClientStream<T, THandler, TResult>()
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.RegisterClientStream<T, THandler, TResult>()
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.RegisterClientStream<T, THandler, TResult>()
   type: Method
   source:
     id: RegisterClientStream
@@ -210,70 +218,29 @@ items:
     return:
       type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
     content.vb: Public Function RegisterClientStream(Of T As Class, THandler As {Class, IClientStreamCommandHandler(Of T, TResult)}, TResult As Class) As GrpcServiceEndpointConventionBuilder
-  overload: FastEndpoints.HandlerOptions.RegisterClientStream*
-  nameWithType.vb: HandlerOptions.RegisterClientStream(Of T, THandler, TResult)()
+  overload: FastEndpoints.HandlerOptions`2.RegisterClientStream*
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterClientStream(Of T, THandler, TResult)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.RegisterClientStream(Of T, THandler, TResult)()
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterClientStream(Of T, THandler, TResult)()
   name.vb: RegisterClientStream(Of T, THandler, TResult)()
-- uid: FastEndpoints.HandlerOptions.EventHubStorageProvider``2
-  commentId: M:FastEndpoints.HandlerOptions.EventHubStorageProvider``2
-  id: EventHubStorageProvider``2
-  parent: FastEndpoints.HandlerOptions
-  langs:
-  - csharp
-  - vb
-  name: EventHubStorageProvider<TStorageRecord, TStorageProvider>()
-  nameWithType: HandlerOptions.EventHubStorageProvider<TStorageRecord, TStorageProvider>()
-  fullName: FastEndpoints.HandlerOptions.EventHubStorageProvider<TStorageRecord, TStorageProvider>()
-  type: Method
-  source:
-    id: EventHubStorageProvider
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
-    startLine: 70
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: "\nregister a custom storage provider for event hub\n"
-  example: []
-  syntax:
-    content: >-
-      public void EventHubStorageProvider<TStorageRecord, TStorageProvider>()
-
-          where TStorageRecord : IEventStorageRecord, new()
-
-          where TStorageProvider : class, IEventHubStorageProvider
-    typeParameters:
-    - id: TStorageRecord
-      description: the type of the event storage record
-    - id: TStorageProvider
-      description: the type of the event storage provider
-    content.vb: Public Sub EventHubStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventHubStorageProvider})
-  overload: FastEndpoints.HandlerOptions.EventHubStorageProvider*
-  nameWithType.vb: HandlerOptions.EventHubStorageProvider(Of TStorageRecord, TStorageProvider)()
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.HandlerOptions.EventHubStorageProvider(Of TStorageRecord, TStorageProvider)()
-  name.vb: EventHubStorageProvider(Of TStorageRecord, TStorageProvider)()
-- uid: FastEndpoints.HandlerOptions.RegisterEventHub``1(FastEndpoints.HubMode)
-  commentId: M:FastEndpoints.HandlerOptions.RegisterEventHub``1(FastEndpoints.HubMode)
+- uid: FastEndpoints.HandlerOptions`2.RegisterEventHub``1(FastEndpoints.HubMode)
+  commentId: M:FastEndpoints.HandlerOptions`2.RegisterEventHub``1(FastEndpoints.HubMode)
   id: RegisterEventHub``1(FastEndpoints.HubMode)
-  parent: FastEndpoints.HandlerOptions
+  parent: FastEndpoints.HandlerOptions`2
   langs:
   - csharp
   - vb
   name: RegisterEventHub<TEvent>(HubMode)
-  nameWithType: HandlerOptions.RegisterEventHub<TEvent>(HubMode)
-  fullName: FastEndpoints.HandlerOptions.RegisterEventHub<TEvent>(FastEndpoints.HubMode)
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.RegisterEventHub<TEvent>(HubMode)
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.RegisterEventHub<TEvent>(FastEndpoints.HubMode)
   type: Method
   source:
     id: RegisterEventHub
     path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\HandlerOptions.cs
-    startLine: 80
+    startLine: 70
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -294,13 +261,13 @@ items:
     return:
       type: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
     content.vb: Public Function RegisterEventHub(Of TEvent As {Class, IEvent})(mode As HubMode = HubMode.EventPublisher) As GrpcServiceEndpointConventionBuilder
-  overload: FastEndpoints.HandlerOptions.RegisterEventHub*
-  nameWithType.vb: HandlerOptions.RegisterEventHub(Of TEvent)(HubMode)
+  overload: FastEndpoints.HandlerOptions`2.RegisterEventHub*
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterEventHub(Of TEvent)(HubMode)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: FastEndpoints.HandlerOptions.RegisterEventHub(Of TEvent)(FastEndpoints.HubMode)
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterEventHub(Of TEvent)(FastEndpoints.HubMode)
   name.vb: RegisterEventHub(Of TEvent)(HubMode)
 references:
 - uid: FastEndpoints
@@ -600,11 +567,13 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.HandlerOptions.Register*
-  commentId: Overload:FastEndpoints.HandlerOptions.Register
+- uid: FastEndpoints.HandlerOptions`2.Register*
+  commentId: Overload:FastEndpoints.HandlerOptions`2.Register
   name: Register
-  nameWithType: HandlerOptions.Register
-  fullName: FastEndpoints.HandlerOptions.Register
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.Register
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.Register
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).Register
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).Register
 - uid: Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
   commentId: T:Microsoft.AspNetCore.Builder.GrpcServiceEndpointConventionBuilder
   parent: Microsoft.AspNetCore.Builder
@@ -618,26 +587,27 @@ references:
   name: Microsoft.AspNetCore.Builder
   nameWithType: Microsoft.AspNetCore.Builder
   fullName: Microsoft.AspNetCore.Builder
-- uid: FastEndpoints.HandlerOptions.RegisterServerStream*
-  commentId: Overload:FastEndpoints.HandlerOptions.RegisterServerStream
+- uid: FastEndpoints.HandlerOptions`2.RegisterServerStream*
+  commentId: Overload:FastEndpoints.HandlerOptions`2.RegisterServerStream
   name: RegisterServerStream
-  nameWithType: HandlerOptions.RegisterServerStream
-  fullName: FastEndpoints.HandlerOptions.RegisterServerStream
-- uid: FastEndpoints.HandlerOptions.RegisterClientStream*
-  commentId: Overload:FastEndpoints.HandlerOptions.RegisterClientStream
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.RegisterServerStream
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.RegisterServerStream
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterServerStream
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterServerStream
+- uid: FastEndpoints.HandlerOptions`2.RegisterClientStream*
+  commentId: Overload:FastEndpoints.HandlerOptions`2.RegisterClientStream
   name: RegisterClientStream
-  nameWithType: HandlerOptions.RegisterClientStream
-  fullName: FastEndpoints.HandlerOptions.RegisterClientStream
-- uid: FastEndpoints.HandlerOptions.EventHubStorageProvider*
-  commentId: Overload:FastEndpoints.HandlerOptions.EventHubStorageProvider
-  name: EventHubStorageProvider
-  nameWithType: HandlerOptions.EventHubStorageProvider
-  fullName: FastEndpoints.HandlerOptions.EventHubStorageProvider
-- uid: FastEndpoints.HandlerOptions.RegisterEventHub*
-  commentId: Overload:FastEndpoints.HandlerOptions.RegisterEventHub
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.RegisterClientStream
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.RegisterClientStream
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterClientStream
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterClientStream
+- uid: FastEndpoints.HandlerOptions`2.RegisterEventHub*
+  commentId: Overload:FastEndpoints.HandlerOptions`2.RegisterEventHub
   name: RegisterEventHub
-  nameWithType: HandlerOptions.RegisterEventHub
-  fullName: FastEndpoints.HandlerOptions.RegisterEventHub
+  nameWithType: HandlerOptions<TStorageRecord, TStorageProvider>.RegisterEventHub
+  fullName: FastEndpoints.HandlerOptions<TStorageRecord, TStorageProvider>.RegisterEventHub
+  nameWithType.vb: HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterEventHub
+  fullName.vb: FastEndpoints.HandlerOptions(Of TStorageRecord, TStorageProvider).RegisterEventHub
 - uid: FastEndpoints.HubMode
   commentId: T:FastEndpoints.HubMode
   parent: FastEndpoints
