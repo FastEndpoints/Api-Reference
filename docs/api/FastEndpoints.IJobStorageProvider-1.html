@@ -81,6 +81,7 @@
             <article class="content wrap" id="_content" data-uid="FastEndpoints.IJobStorageProvider`1">
 
 
+
   <h1 id="FastEndpoints_IJobStorageProvider_1" data-uid="FastEndpoints.IJobStorageProvider`1" class="text-break">Interface IJobStorageProvider&lt;TStorageRecord&gt;
 </h1>
   <div class="markdown level0 summary"><p>interface for defining the contract of a job storage provider</p>
@@ -94,7 +95,7 @@
     where TStorageRecord : IJobStorageRecord</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -123,7 +124,7 @@
     <pre><code class="lang-csharp hljs">Task&lt;IEnumerable&lt;TStorageRecord&gt;&gt; GetNextBatchAsync(PendingJobSearchParams&lt;TStorageRecord&gt; parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -141,7 +142,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -150,7 +151,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TStorageRecord&gt;&gt;</td>
+        <td><span class="xref">Task</span>&lt;<span class="xref">IEnumerable</span>&lt;TStorageRecord&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -168,7 +169,7 @@ simply update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#Fas
     <pre><code class="lang-csharp hljs">Task MarkJobAsCompleteAsync(TStorageRecord r, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -184,7 +185,7 @@ simply update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#Fas
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
         <td><p>cancellation token</p>
 </td>
@@ -192,7 +193,7 @@ simply update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#Fas
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -201,7 +202,7 @@ simply update the <a class="xref" href="FastEndpoints.IJobStorageRecord.html#Fas
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -228,7 +229,7 @@ and save the entity to the database (or do a partial update of only that propert
     <pre><code class="lang-csharp hljs">Task OnHandlerExecutionFailureAsync(TStorageRecord r, Exception exception, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -244,13 +245,13 @@ and save the entity to the database (or do a partial update of only that propert
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Exception</span></td>
+        <td><span class="xref">Exception</span></td>
         <td><span class="parametername">exception</span></td>
         <td><p>the exception that was thrown</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
         <td><p>cancellation token</p>
 </td>
@@ -258,7 +259,7 @@ and save the entity to the database (or do a partial update of only that propert
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -267,7 +268,7 @@ and save the entity to the database (or do a partial update of only that propert
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -286,7 +287,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
     <pre><code class="lang-csharp hljs">Task PurgeStaleJobsAsync(StaleJobSearchParams&lt;TStorageRecord&gt; parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -304,7 +305,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -313,7 +314,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -330,7 +331,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
     <pre><code class="lang-csharp hljs">Task StoreJobAsync(TStorageRecord r, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -346,14 +347,14 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -362,11 +363,12 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+
 </article>
           </div>
 
@@ -377,7 +379,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
+                <h5>In this article</h5>
                 <div></div>
               </nav>
             </div>
@@ -399,7 +401,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
       </footer>
     </div>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>

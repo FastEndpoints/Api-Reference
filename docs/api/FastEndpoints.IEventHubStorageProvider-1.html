@@ -81,6 +81,7 @@
             <article class="content wrap" id="_content" data-uid="FastEndpoints.IEventHubStorageProvider`1">
 
 
+
   <h1 id="FastEndpoints_IEventHubStorageProvider_1" data-uid="FastEndpoints.IEventHubStorageProvider`1" class="text-break">Interface IEventHubStorageProvider&lt;TStorageRecord&gt;
 </h1>
   <div class="markdown level0 summary"><p>interface for implementing a storage provider for event hub app (gRPC server)</p>
@@ -94,7 +95,7 @@
     where TStorageRecord : IEventStorageRecord</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -123,7 +124,7 @@
     <pre><code class="lang-csharp hljs">ValueTask&lt;IEnumerable&lt;TStorageRecord&gt;&gt; GetNextBatchAsync(PendingRecordSearchParams&lt;TStorageRecord&gt; parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -141,7 +142,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -150,7 +151,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TStorageRecord&gt;&gt;</td>
+        <td><span class="xref">ValueTask</span>&lt;<span class="xref">IEnumerable</span>&lt;TStorageRecord&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -168,7 +169,7 @@ simply update the <a class="xref" href="FastEndpoints.IEventStorageRecord.html#F
     <pre><code class="lang-csharp hljs">ValueTask MarkEventAsCompleteAsync(TStorageRecord r, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -183,7 +184,7 @@ simply update the <a class="xref" href="FastEndpoints.IEventStorageRecord.html#F
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
         <td><p>cancellation token</p>
 </td>
@@ -191,7 +192,7 @@ simply update the <a class="xref" href="FastEndpoints.IEventStorageRecord.html#F
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -200,7 +201,7 @@ simply update the <a class="xref" href="FastEndpoints.IEventStorageRecord.html#F
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td><span class="xref">ValueTask</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -223,7 +224,7 @@ NOTE: the default match criteria is:
     <pre><code class="lang-csharp hljs">ValueTask PurgeStaleRecordsAsync(StaleRecordSearchParams&lt;TStorageRecord&gt; parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -241,7 +242,7 @@ NOTE: the default match criteria is:
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -250,7 +251,7 @@ NOTE: the default match criteria is:
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td><span class="xref">ValueTask</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -268,7 +269,7 @@ simply return a collection of unique subscriber IDs.</p>
     <pre><code class="lang-csharp hljs">ValueTask&lt;IEnumerable&lt;string&gt;&gt; RestoreSubscriberIDsForEventTypeAsync(SubscriberIDRestorationParams&lt;TStorageRecord&gt; parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -286,7 +287,7 @@ simply return a collection of unique subscriber IDs.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -295,7 +296,7 @@ simply return a collection of unique subscriber IDs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="xref">ValueTask</span>&lt;<span class="xref">IEnumerable</span>&lt;<span class="xref">String</span>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -312,7 +313,7 @@ simply return a collection of unique subscriber IDs.</p>
     <pre><code class="lang-csharp hljs">ValueTask StoreEventAsync(TStorageRecord r, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -328,7 +329,7 @@ simply return a collection of unique subscriber IDs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">ct</span></td>
         <td><p>cancellation token</p>
 </td>
@@ -336,7 +337,7 @@ simply return a collection of unique subscriber IDs.</p>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -345,11 +346,12 @@ simply return a collection of unique subscriber IDs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td><span class="xref">ValueTask</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+
 </article>
           </div>
 
@@ -360,7 +362,7 @@ simply return a collection of unique subscriber IDs.</p>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
+                <h5>In this article</h5>
                 <div></div>
               </nav>
             </div>
@@ -382,7 +384,7 @@ simply return a collection of unique subscriber IDs.</p>
       </footer>
     </div>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>
