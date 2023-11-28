@@ -5,7 +5,7 @@ items:
   id: PostProcessor`3
   parent: FastEndpoints
   children:
-  - FastEndpoints.PostProcessor`3.PostProcessAsync(`0,`1,`2,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
+  - FastEndpoints.PostProcessor`3.PostProcessAsync(FastEndpoints.IPostProcessorContext{`0,`2},`1,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -15,30 +15,28 @@ items:
   type: Class
   source:
     id: PostProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Processor\PostProcessor.cs
-    startLine: 11
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\PostProcessor.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ninherit this class to create a post-processor with access to the common processor state of the endpoint\n"
+  summary: inherit this class to create a post-processor with access to the common processor state of the endpoint.
   example: []
   syntax:
-    content: 'public abstract class PostProcessor<TRequest, TState, TResponse> : IPostProcessor<TRequest, TResponse> where TState : class, new()'
+    content: 'public abstract class PostProcessor<TRequest, TState, TResponse> : IPostProcessor<TRequest, TResponse>, IPostProcessor where TState : class, new()'
     typeParameters:
     - id: TRequest
-      description: type of the request dto
+      description: type of the request DTO.
     - id: TState
-      description: type of the common processor state
+      description: type of the common processor state.
     - id: TResponse
-      description: type of the response
-    content.vb: >-
-      Public MustInherit Class PostProcessor(Of TRequest, TState As {Class, New}, TResponse)
-
-          Implements IPostProcessor(Of TRequest, TResponse)
+      description: type of the response.
+    content.vb: Public MustInherit Class PostProcessor(Of TRequest, TState As {Class, New}, TResponse) Implements IPostProcessor(Of TRequest, TResponse), IPostProcessor
   inheritance:
   - System.Object
   implements:
   - FastEndpoints.IPostProcessor{{TRequest},{TResponse}}
+  - FastEndpoints.IPostProcessor
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -48,73 +46,52 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   nameWithType.vb: PostProcessor(Of TRequest, TState, TResponse)
-  modifiers.csharp:
-  - public
-  - abstract
-  - class
-  modifiers.vb:
-  - Public
-  - MustInherit
-  - Class
   fullName.vb: FastEndpoints.PostProcessor(Of TRequest, TState, TResponse)
   name.vb: PostProcessor(Of TRequest, TState, TResponse)
-- uid: FastEndpoints.PostProcessor`3.PostProcessAsync(`0,`1,`2,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.PostProcessor`3.PostProcessAsync(`0,`1,`2,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
-  id: PostProcessAsync(`0,`1,`2,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
+- uid: FastEndpoints.PostProcessor`3.PostProcessAsync(FastEndpoints.IPostProcessorContext{`0,`2},`1,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.PostProcessor`3.PostProcessAsync(FastEndpoints.IPostProcessorContext{`0,`2},`1,System.Threading.CancellationToken)
+  id: PostProcessAsync(FastEndpoints.IPostProcessorContext{`0,`2},`1,System.Threading.CancellationToken)
   parent: FastEndpoints.PostProcessor`3
   langs:
   - csharp
   - vb
-  name: PostProcessAsync(TRequest, TState, TResponse, HttpContext, IReadOnlyCollection<ValidationFailure>, CancellationToken)
-  nameWithType: PostProcessor<TRequest, TState, TResponse>.PostProcessAsync(TRequest, TState, TResponse, HttpContext, IReadOnlyCollection<ValidationFailure>, CancellationToken)
-  fullName: FastEndpoints.PostProcessor<TRequest, TState, TResponse>.PostProcessAsync(TRequest, TState, TResponse, Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.IReadOnlyCollection<FluentValidation.Results.ValidationFailure>, System.Threading.CancellationToken)
+  name: PostProcessAsync(IPostProcessorContext<TRequest, TResponse>, TState, CancellationToken)
+  nameWithType: PostProcessor<TRequest, TState, TResponse>.PostProcessAsync(IPostProcessorContext<TRequest, TResponse>, TState, CancellationToken)
+  fullName: FastEndpoints.PostProcessor<TRequest, TState, TResponse>.PostProcessAsync(FastEndpoints.IPostProcessorContext<TRequest, TResponse>, TState, System.Threading.CancellationToken)
   type: Method
   source:
     id: PostProcessAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Processor\PostProcessor.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\PostProcessor.cs
     startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthis method is called with the given arguments when the post-processor executes.\n"
+  summary: implement this method to define the post-processing logic using the provided context and state.
   example: []
   syntax:
-    content: public abstract Task PostProcessAsync(TRequest req, TState state, TResponse res, HttpContext ctx, IReadOnlyCollection<ValidationFailure> failures, CancellationToken ct)
+    content: public abstract Task PostProcessAsync(IPostProcessorContext<TRequest, TResponse> context, TState state, CancellationToken ct)
     parameters:
-    - id: req
-      type: '{TRequest}'
-      description: the request dto object
+    - id: context
+      type: FastEndpoints.IPostProcessorContext{{TRequest},{TResponse}}
+      description: the context object encapsulating all necessary information for post-processing.
     - id: state
       type: '{TState}'
-      description: the common processor state object
-    - id: res
-      type: '{TResponse}'
-      description: the response dto object
-    - id: ctx
-      type: Microsoft.AspNetCore.Http.HttpContext
-      description: the http context
-    - id: failures
-      type: System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure}
-      description: the collection of validation errors of the endpoint
+      description: the common processor state object, derived from the HttpContext or newly instantiated.
     - id: ct
       type: System.Threading.CancellationToken
-      description: cancellation token
+      description: cancellation token.
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public MustOverride Function PostProcessAsync(req As TRequest, state As TState, res As TResponse, ctx As HttpContext, failures As IReadOnlyCollection(Of ValidationFailure), ct As CancellationToken) As Task
+      description: a Task representing the asynchronous operation.
+    content.vb: Public MustOverride Function PostProcessAsync(context As IPostProcessorContext(Of TRequest, TResponse), state As TState, ct As CancellationToken) As Task
   overload: FastEndpoints.PostProcessor`3.PostProcessAsync*
-  nameWithType.vb: PostProcessor(Of TRequest, TState, TResponse).PostProcessAsync(TRequest, TState, TResponse, HttpContext, IReadOnlyCollection(Of ValidationFailure), CancellationToken)
-  modifiers.csharp:
-  - public
-  - abstract
-  modifiers.vb:
-  - Public
-  - MustOverride
-  fullName.vb: FastEndpoints.PostProcessor(Of TRequest, TState, TResponse).PostProcessAsync(TRequest, TState, TResponse, Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.IReadOnlyCollection(Of FluentValidation.Results.ValidationFailure), System.Threading.CancellationToken)
-  name.vb: PostProcessAsync(TRequest, TState, TResponse, HttpContext, IReadOnlyCollection(Of ValidationFailure), CancellationToken)
+  nameWithType.vb: PostProcessor(Of TRequest, TState, TResponse).PostProcessAsync(IPostProcessorContext(Of TRequest, TResponse), TState, CancellationToken)
+  fullName.vb: FastEndpoints.PostProcessor(Of TRequest, TState, TResponse).PostProcessAsync(FastEndpoints.IPostProcessorContext(Of TRequest, TResponse), TState, System.Threading.CancellationToken)
+  name.vb: PostProcessAsync(IPostProcessorContext(Of TRequest, TResponse), TState, CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -122,13 +99,18 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: FastEndpoints.IPostProcessor{{TRequest},{TResponse}}
   commentId: T:FastEndpoints.IPostProcessor{`0,`2}
   parent: FastEndpoints
   definition: FastEndpoints.IPostProcessor`2
+  href: FastEndpoints.IPostProcessor-2.html
   name: IPostProcessor<TRequest, TResponse>
   nameWithType: IPostProcessor<TRequest, TResponse>
   fullName: FastEndpoints.IPostProcessor<TRequest, TResponse>
@@ -138,330 +120,261 @@ references:
   spec.csharp:
   - uid: FastEndpoints.IPostProcessor`2
     name: IPostProcessor
-    nameWithType: IPostProcessor
-    fullName: FastEndpoints.IPostProcessor
+    href: FastEndpoints.IPostProcessor-2.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.IPostProcessor`2
     name: IPostProcessor
-    nameWithType: IPostProcessor
-    fullName: FastEndpoints.IPostProcessor
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.IPostProcessor-2.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: FastEndpoints.IPostProcessor
+  commentId: T:FastEndpoints.IPostProcessor
+  parent: FastEndpoints
+  href: FastEndpoints.IPostProcessor.html
+  name: IPostProcessor
+  nameWithType: IPostProcessor
+  fullName: FastEndpoints.IPostProcessor
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.IPostProcessor`2
   commentId: T:FastEndpoints.IPostProcessor`2
+  href: FastEndpoints.IPostProcessor-2.html
   name: IPostProcessor<TRequest, TResponse>
   nameWithType: IPostProcessor<TRequest, TResponse>
   fullName: FastEndpoints.IPostProcessor<TRequest, TResponse>
@@ -471,123 +384,77 @@ references:
   spec.csharp:
   - uid: FastEndpoints.IPostProcessor`2
     name: IPostProcessor
-    nameWithType: IPostProcessor
-    fullName: FastEndpoints.IPostProcessor
+    href: FastEndpoints.IPostProcessor-2.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.IPostProcessor`2
     name: IPostProcessor
-    nameWithType: IPostProcessor
-    fullName: FastEndpoints.IPostProcessor
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.IPostProcessor-2.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.PostProcessor`3.PostProcessAsync*
   commentId: Overload:FastEndpoints.PostProcessor`3.PostProcessAsync
+  href: FastEndpoints.PostProcessor-3.html#FastEndpoints_PostProcessor_3_PostProcessAsync_FastEndpoints_IPostProcessorContext__0__2___1_System_Threading_CancellationToken_
   name: PostProcessAsync
   nameWithType: PostProcessor<TRequest, TState, TResponse>.PostProcessAsync
   fullName: FastEndpoints.PostProcessor<TRequest, TState, TResponse>.PostProcessAsync
   nameWithType.vb: PostProcessor(Of TRequest, TState, TResponse).PostProcessAsync
   fullName.vb: FastEndpoints.PostProcessor(Of TRequest, TState, TResponse).PostProcessAsync
-- uid: '{TRequest}'
-  commentId: '!:TRequest'
-  definition: TRequest
-  name: TRequest
-  nameWithType: TRequest
-  fullName: TRequest
+- uid: FastEndpoints.IPostProcessorContext{{TRequest},{TResponse}}
+  commentId: T:FastEndpoints.IPostProcessorContext{`0,`1}
+  parent: FastEndpoints
+  definition: FastEndpoints.IPostProcessorContext`2
+  href: FastEndpoints.IPostProcessorContext-2.html
+  name: IPostProcessorContext<TRequest, TResponse>
+  nameWithType: IPostProcessorContext<TRequest, TResponse>
+  fullName: FastEndpoints.IPostProcessorContext<TRequest, TResponse>
+  nameWithType.vb: IPostProcessorContext(Of TRequest, TResponse)
+  fullName.vb: FastEndpoints.IPostProcessorContext(Of TRequest, TResponse)
+  name.vb: IPostProcessorContext(Of TRequest, TResponse)
+  spec.csharp:
+  - uid: FastEndpoints.IPostProcessorContext`2
+    name: IPostProcessorContext
+    href: FastEndpoints.IPostProcessorContext-2.html
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IPostProcessorContext`2
+    name: IPostProcessorContext
+    href: FastEndpoints.IPostProcessorContext-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: )
 - uid: '{TState}'
   commentId: '!:TState'
   definition: TState
   name: TState
   nameWithType: TState
   fullName: TState
-- uid: '{TResponse}'
-  commentId: '!:TResponse'
-  definition: TResponse
-  name: TResponse
-  nameWithType: TResponse
-  fullName: TResponse
-- uid: Microsoft.AspNetCore.Http.HttpContext
-  commentId: T:Microsoft.AspNetCore.Http.HttpContext
-  parent: Microsoft.AspNetCore.Http
-  isExternal: true
-  name: HttpContext
-  nameWithType: HttpContext
-  fullName: Microsoft.AspNetCore.Http.HttpContext
-- uid: System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure}
-  commentId: T:System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IReadOnlyCollection`1
-  name: IReadOnlyCollection<ValidationFailure>
-  nameWithType: IReadOnlyCollection<ValidationFailure>
-  fullName: System.Collections.Generic.IReadOnlyCollection<FluentValidation.Results.ValidationFailure>
-  nameWithType.vb: IReadOnlyCollection(Of ValidationFailure)
-  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of FluentValidation.Results.ValidationFailure)
-  name.vb: IReadOnlyCollection(Of ValidationFailure)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyCollection`1
-    name: IReadOnlyCollection
-    nameWithType: IReadOnlyCollection
-    fullName: System.Collections.Generic.IReadOnlyCollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FluentValidation.Results.ValidationFailure
-    name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyCollection`1
-    name: IReadOnlyCollection
-    nameWithType: IReadOnlyCollection
-    fullName: System.Collections.Generic.IReadOnlyCollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FluentValidation.Results.ValidationFailure
-    name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -595,81 +462,106 @@ references:
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
-- uid: TRequest
-  name: TRequest
-  nameWithType: TRequest
-  fullName: TRequest
+- uid: FastEndpoints.IPostProcessorContext`2
+  commentId: T:FastEndpoints.IPostProcessorContext`2
+  href: FastEndpoints.IPostProcessorContext-2.html
+  name: IPostProcessorContext<TRequest, TResponse>
+  nameWithType: IPostProcessorContext<TRequest, TResponse>
+  fullName: FastEndpoints.IPostProcessorContext<TRequest, TResponse>
+  nameWithType.vb: IPostProcessorContext(Of TRequest, TResponse)
+  fullName.vb: FastEndpoints.IPostProcessorContext(Of TRequest, TResponse)
+  name.vb: IPostProcessorContext(Of TRequest, TResponse)
+  spec.csharp:
+  - uid: FastEndpoints.IPostProcessorContext`2
+    name: IPostProcessorContext
+    href: FastEndpoints.IPostProcessorContext-2.html
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IPostProcessorContext`2
+    name: IPostProcessorContext
+    href: FastEndpoints.IPostProcessorContext-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: )
 - uid: TState
   name: TState
   nameWithType: TState
   fullName: TState
-- uid: TResponse
-  name: TResponse
-  nameWithType: TResponse
-  fullName: TResponse
-- uid: Microsoft.AspNetCore.Http
-  commentId: N:Microsoft.AspNetCore.Http
-  isExternal: true
-  name: Microsoft.AspNetCore.Http
-  nameWithType: Microsoft.AspNetCore.Http
-  fullName: Microsoft.AspNetCore.Http
-- uid: System.Collections.Generic.IReadOnlyCollection`1
-  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
-  isExternal: true
-  name: IReadOnlyCollection<T>
-  nameWithType: IReadOnlyCollection<T>
-  fullName: System.Collections.Generic.IReadOnlyCollection<T>
-  nameWithType.vb: IReadOnlyCollection(Of T)
-  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
-  name.vb: IReadOnlyCollection(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IReadOnlyCollection`1
-    name: IReadOnlyCollection
-    nameWithType: IReadOnlyCollection
-    fullName: System.Collections.Generic.IReadOnlyCollection
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IReadOnlyCollection`1
-    name: IReadOnlyCollection
-    nameWithType: IReadOnlyCollection
-    fullName: System.Collections.Generic.IReadOnlyCollection
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

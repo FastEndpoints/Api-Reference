@@ -89,40 +89,38 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Object.Equals(Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
-      <span class="xref">Object.Equals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.GetHashCode()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
-      <span class="xref">Object.GetType()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <span class="xref">Object.MemberwiseClone()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
-      <span class="xref">Object.ReferenceEquals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.ToString()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.Messaging.Remote.dll</h6>
   <h5 id="FastEndpoints_HandlerOptions_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class HandlerOptions&lt;TStorageRecord, TStorageProvider&gt;
-    where TStorageRecord : IEventStorageRecord, new()
-    where TStorageProvider : class, IEventHubStorageProvider&lt;TStorageRecord&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class HandlerOptions&lt;TStorageRecord, TStorageProvider&gt; where TStorageRecord : class, IEventStorageRecord, new() where TStorageProvider : class, IEventHubStorageProvider&lt;TStorageRecord&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -147,107 +145,6 @@
 </h3>
 
 
-  <a id="FastEndpoints_HandlerOptions_2_Register_" data-uid="FastEndpoints.HandlerOptions`2.Register*"></a>
-  <h4 id="FastEndpoints_HandlerOptions_2_Register__2" data-uid="FastEndpoints.HandlerOptions`2.Register``2">Register&lt;TCommand, THandler&gt;()</h4>
-  <div class="markdown level1 summary"><p>registers a &quot;void&quot; command handler this server is hosting.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder Register&lt;TCommand, THandler&gt;()
-    where TCommand : class, ICommand where THandler : class, ICommandHandler&lt;TCommand&gt;</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GrpcServiceEndpointConventionBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCommand</span></td>
-        <td><p>the type of the incoming command</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">THandler</span></td>
-        <td><p>the type of the handler for the incoming command</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_HandlerOptions_2_Register_" data-uid="FastEndpoints.HandlerOptions`2.Register*"></a>
-  <h4 id="FastEndpoints_HandlerOptions_2_Register__3" data-uid="FastEndpoints.HandlerOptions`2.Register``3">Register&lt;TCommand, THandler, TResult&gt;()</h4>
-  <div class="markdown level1 summary"><p>registers a &quot;unary&quot; command handler this server is hosting.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder Register&lt;TCommand, THandler, TResult&gt;()
-    where TCommand : class, ICommand&lt;TResult&gt; where THandler : class, ICommandHandler&lt;TCommand, TResult&gt; where TResult : class</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">GrpcServiceEndpointConventionBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCommand</span></td>
-        <td><p>the type of the incoming command</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">THandler</span></td>
-        <td><p>the type of the handler for the incoming command</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td><p>the type of the result that will be returned from the handler</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
   <a id="FastEndpoints_HandlerOptions_2_RegisterClientStream_" data-uid="FastEndpoints.HandlerOptions`2.RegisterClientStream*"></a>
   <h4 id="FastEndpoints_HandlerOptions_2_RegisterClientStream__3" data-uid="FastEndpoints.HandlerOptions`2.RegisterClientStream``3">RegisterClientStream&lt;T, THandler, TResult&gt;()</h4>
   <div class="markdown level1 summary"><p>registers a &quot;client stream&quot; command handler this server is hosting.</p>
@@ -255,8 +152,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder RegisterClientStream&lt;T, THandler, TResult&gt;()
-    where T : class where THandler : class, IClientStreamCommandHandler&lt;T, TResult&gt; where TResult : class</code></pre>
+    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder RegisterClientStream&lt;T, THandler, TResult&gt;() where T : class where THandler : class, IClientStreamCommandHandler&lt;T, TResult&gt; where TResult : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -268,7 +164,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">GrpcServiceEndpointConventionBuilder</span></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.AspNetCore.Server/GrpcServiceEndpointConventionBuilder.cs">GrpcServiceEndpointConventionBuilder</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -308,8 +204,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder RegisterEventHub&lt;TEvent&gt;(HubMode mode = HubMode.EventPublisher)
-    where TEvent : class, IEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder RegisterEventHub&lt;TEvent&gt;(HubMode mode = HubMode.EventPublisher) where TEvent : class, IEvent</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -339,7 +234,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">GrpcServiceEndpointConventionBuilder</span></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.AspNetCore.Server/GrpcServiceEndpointConventionBuilder.cs">GrpcServiceEndpointConventionBuilder</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -369,8 +264,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder RegisterServerStream&lt;TCommand, THandler, TResult&gt;()
-    where TCommand : class, IServerStreamCommand&lt;TResult&gt; where THandler : class, IServerStreamCommandHandler&lt;TCommand, TResult&gt; where TResult : class</code></pre>
+    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder RegisterServerStream&lt;TCommand, THandler, TResult&gt;() where TCommand : class, IServerStreamCommand&lt;TResult&gt; where THandler : class, IServerStreamCommandHandler&lt;TCommand, TResult&gt; where TResult : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -382,7 +276,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">GrpcServiceEndpointConventionBuilder</span></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.AspNetCore.Server/GrpcServiceEndpointConventionBuilder.cs">GrpcServiceEndpointConventionBuilder</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -409,6 +303,105 @@
       <tr>
         <td><span class="parametername">TResult</span></td>
         <td><p>the type of the result stream that will be returned from the handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_HandlerOptions_2_Register_" data-uid="FastEndpoints.HandlerOptions`2.Register*"></a>
+  <h4 id="FastEndpoints_HandlerOptions_2_Register__2" data-uid="FastEndpoints.HandlerOptions`2.Register``2">Register&lt;TCommand, THandler&gt;()</h4>
+  <div class="markdown level1 summary"><p>registers a &quot;void&quot; command handler this server is hosting.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder Register&lt;TCommand, THandler&gt;() where TCommand : class, ICommand where THandler : class, ICommandHandler&lt;TCommand&gt;</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.AspNetCore.Server/GrpcServiceEndpointConventionBuilder.cs">GrpcServiceEndpointConventionBuilder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the type of the incoming command</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">THandler</span></td>
+        <td><p>the type of the handler for the incoming command</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_HandlerOptions_2_Register_" data-uid="FastEndpoints.HandlerOptions`2.Register*"></a>
+  <h4 id="FastEndpoints_HandlerOptions_2_Register__3" data-uid="FastEndpoints.HandlerOptions`2.Register``3">Register&lt;TCommand, THandler, TResult&gt;()</h4>
+  <div class="markdown level1 summary"><p>registers a &quot;unary&quot; command handler this server is hosting.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GrpcServiceEndpointConventionBuilder Register&lt;TCommand, THandler, TResult&gt;() where TCommand : class, ICommand&lt;TResult&gt; where THandler : class, ICommandHandler&lt;TCommand, TResult&gt; where TResult : class</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.AspNetCore.Server/GrpcServiceEndpointConventionBuilder.cs">GrpcServiceEndpointConventionBuilder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the type of the incoming command</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">THandler</span></td>
+        <td><p>the type of the handler for the incoming command</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>the type of the result that will be returned from the handler</p>
 </td>
       </tr>
     </tbody>

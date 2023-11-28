@@ -10,12 +10,13 @@ items:
   - FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
   - FastEndpoints.EndpointDefinition.AllowAnyClaim
   - FastEndpoints.EndpointDefinition.AllowAnyPermission
+  - FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
+  - FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
   - FastEndpoints.EndpointDefinition.AllowedClaimTypes
   - FastEndpoints.EndpointDefinition.AllowedPermissions
   - FastEndpoints.EndpointDefinition.AllowedRoles
-  - FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
-  - FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
   - FastEndpoints.EndpointDefinition.AnonymousVerbs
+  - FastEndpoints.EndpointDefinition.AntiforgeryEnabled
   - FastEndpoints.EndpointDefinition.AuthSchemeNames
   - FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])
   - FastEndpoints.EndpointDefinition.Claims(System.String[])
@@ -27,6 +28,8 @@ items:
   - FastEndpoints.EndpointDefinition.DontBindFormData
   - FastEndpoints.EndpointDefinition.DontCatchExceptions
   - FastEndpoints.EndpointDefinition.DontThrowIfValidationFails
+  - FastEndpoints.EndpointDefinition.EnableAntiforgery
+  - FastEndpoints.EndpointDefinition.EndpointAttributes
   - FastEndpoints.EndpointDefinition.EndpointSummary
   - FastEndpoints.EndpointDefinition.EndpointTags
   - FastEndpoints.EndpointDefinition.EndpointType
@@ -40,8 +43,10 @@ items:
   - FastEndpoints.EndpointDefinition.Policies(System.String[])
   - FastEndpoints.EndpointDefinition.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
   - FastEndpoints.EndpointDefinition.PolicyBuilder
+  - FastEndpoints.EndpointDefinition.PostProcessor``1(FastEndpoints.Order)
   - FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
   - FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
+  - FastEndpoints.EndpointDefinition.PreProcessor``1(FastEndpoints.Order)
   - FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   - FastEndpoints.EndpointDefinition.ReqDtoType
   - FastEndpoints.EndpointDefinition.ResDtoType
@@ -57,8 +62,8 @@ items:
   - FastEndpoints.EndpointDefinition.Tags(System.String[])
   - FastEndpoints.EndpointDefinition.Throttle(System.Int32,System.Double,System.String)
   - FastEndpoints.EndpointDefinition.ThrowIfValidationFails
-  - FastEndpoints.EndpointDefinition.Validator``1
   - FastEndpoints.EndpointDefinition.ValidatorType
+  - FastEndpoints.EndpointDefinition.Validator``1
   - FastEndpoints.EndpointDefinition.Verbs
   - FastEndpoints.EndpointDefinition.Version
   langs:
@@ -70,12 +75,12 @@ items:
   type: Class
   source:
     id: EndpointDefinition
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 15
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 14
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nrepresents the configuration settings of an endpoint\n"
+  summary: represents the configuration settings of an endpoint
   example: []
   syntax:
     content: public sealed class EndpointDefinition
@@ -87,17 +92,8 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
-  - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - sealed
-  - class
-  modifiers.vb:
-  - Public
-  - NotInheritable
-  - Class
 - uid: FastEndpoints.EndpointDefinition.#ctor(System.Type,System.Type,System.Type)
   commentId: M:FastEndpoints.EndpointDefinition.#ctor(System.Type,System.Type,System.Type)
   id: '#ctor(System.Type,System.Type,System.Type)'
@@ -111,8 +107,8 @@ items:
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 17
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 16
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -127,10 +123,9 @@ items:
       type: System.Type
     content.vb: Public Sub New(endpointType As Type, requestDtoType As Type, responseDtoType As Type)
   overload: FastEndpoints.EndpointDefinition.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: EndpointDefinition.New(Type, Type, Type)
+  fullName.vb: FastEndpoints.EndpointDefinition.New(System.Type, System.Type, System.Type)
+  name.vb: New(Type, Type, Type)
 - uid: FastEndpoints.EndpointDefinition.EndpointType
   commentId: P:FastEndpoints.EndpointDefinition.EndpointType
   id: EndpointType
@@ -144,24 +139,18 @@ items:
   type: Property
   source:
     id: EndpointType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 25
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type EndpointType { get; set; }
+    content: public Type EndpointType { get; init; }
     parameters: []
     return:
       type: System.Type
     content.vb: Public Property EndpointType As Type
   overload: FastEndpoints.EndpointDefinition.EndpointType*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.MapperType
   commentId: P:FastEndpoints.EndpointDefinition.MapperType
   id: MapperType
@@ -175,24 +164,18 @@ items:
   type: Property
   source:
     id: MapperType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 26
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 25
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type MapperType { get; }
+    content: public Type? MapperType { get; }
     parameters: []
     return:
       type: System.Type
-    content.vb: Public ReadOnly Property MapperType As Type
+    content.vb: Public Property MapperType As Type
   overload: FastEndpoints.EndpointDefinition.MapperType*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.ReqDtoType
   commentId: P:FastEndpoints.EndpointDefinition.ReqDtoType
   id: ReqDtoType
@@ -206,24 +189,18 @@ items:
   type: Property
   source:
     id: ReqDtoType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 27
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type ReqDtoType { get; set; }
+    content: public Type ReqDtoType { get; init; }
     parameters: []
     return:
       type: System.Type
     content.vb: Public Property ReqDtoType As Type
   overload: FastEndpoints.EndpointDefinition.ReqDtoType*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.ResDtoType
   commentId: P:FastEndpoints.EndpointDefinition.ResDtoType
   id: ResDtoType
@@ -237,24 +214,18 @@ items:
   type: Property
   source:
     id: ResDtoType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 28
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 27
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type ResDtoType { get; set; }
+    content: public Type ResDtoType { get; init; }
     parameters: []
     return:
       type: System.Type
     content.vb: Public Property ResDtoType As Type
   overload: FastEndpoints.EndpointDefinition.ResDtoType*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.Routes
   commentId: P:FastEndpoints.EndpointDefinition.Routes
   id: Routes
@@ -268,24 +239,18 @@ items:
   type: Property
   source:
     id: Routes
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 29
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 28
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string[] Routes { get; }
+    content: public string[]? Routes { get; }
     parameters: []
     return:
       type: System.String[]
-    content.vb: Public ReadOnly Property Routes As String()
+    content.vb: Public Property Routes As String()
   overload: FastEndpoints.EndpointDefinition.Routes*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.SecurityPolicyName
   commentId: P:FastEndpoints.EndpointDefinition.SecurityPolicyName
   id: SecurityPolicyName
@@ -299,8 +264,8 @@ items:
   type: Property
   source:
     id: SecurityPolicyName
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 30
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -311,12 +276,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property SecurityPolicyName As String
   overload: FastEndpoints.EndpointDefinition.SecurityPolicyName*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.ValidatorType
   commentId: P:FastEndpoints.EndpointDefinition.ValidatorType
   id: ValidatorType
@@ -330,24 +289,18 @@ items:
   type: Property
   source:
     id: ValidatorType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 31
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 30
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Type ValidatorType { get; }
+    content: public Type? ValidatorType { get; }
     parameters: []
     return:
       type: System.Type
-    content.vb: Public ReadOnly Property ValidatorType As Type
+    content.vb: Public Property ValidatorType As Type
   overload: FastEndpoints.EndpointDefinition.ValidatorType*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.Verbs
   commentId: P:FastEndpoints.EndpointDefinition.Verbs
   id: Verbs
@@ -361,24 +314,18 @@ items:
   type: Property
   source:
     id: Verbs
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 32
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 31
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string[] Verbs { get; }
+    content: public string[]? Verbs { get; }
     parameters: []
     return:
       type: System.String[]
-    content.vb: Public ReadOnly Property Verbs As String()
+    content.vb: Public Property Verbs As String()
   overload: FastEndpoints.EndpointDefinition.Verbs*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.Version
   commentId: P:FastEndpoints.EndpointDefinition.Version
   id: Version
@@ -392,8 +339,8 @@ items:
   type: Property
   source:
     id: Version
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 33
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -404,12 +351,6 @@ items:
       type: FastEndpoints.EpVersion
     content.vb: Public ReadOnly Property Version As EpVersion
   overload: FastEndpoints.EndpointDefinition.Version*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AllowAnyPermission
   commentId: P:FastEndpoints.EndpointDefinition.AllowAnyPermission
   id: AllowAnyPermission
@@ -423,8 +364,8 @@ items:
   type: Property
   source:
     id: AllowAnyPermission
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 36
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -433,14 +374,8 @@ items:
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property AllowAnyPermission As Boolean
+    content.vb: Public Property AllowAnyPermission As Boolean
   overload: FastEndpoints.EndpointDefinition.AllowAnyPermission*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AllowedPermissions
   commentId: P:FastEndpoints.EndpointDefinition.AllowedPermissions
   id: AllowedPermissions
@@ -454,24 +389,18 @@ items:
   type: Property
   source:
     id: AllowedPermissions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 37
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 36
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string> AllowedPermissions { get; }
+    content: public List<string>? AllowedPermissions { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public ReadOnly Property AllowedPermissions As List(Of String)
+    content.vb: Public Property AllowedPermissions As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AllowedPermissions*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AllowAnyClaim
   commentId: P:FastEndpoints.EndpointDefinition.AllowAnyClaim
   id: AllowAnyClaim
@@ -485,8 +414,8 @@ items:
   type: Property
   source:
     id: AllowAnyClaim
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 38
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 37
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -495,14 +424,8 @@ items:
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property AllowAnyClaim As Boolean
+    content.vb: Public Property AllowAnyClaim As Boolean
   overload: FastEndpoints.EndpointDefinition.AllowAnyClaim*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AllowedClaimTypes
   commentId: P:FastEndpoints.EndpointDefinition.AllowedClaimTypes
   id: AllowedClaimTypes
@@ -516,24 +439,18 @@ items:
   type: Property
   source:
     id: AllowedClaimTypes
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 39
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 38
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string> AllowedClaimTypes { get; }
+    content: public List<string>? AllowedClaimTypes { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public ReadOnly Property AllowedClaimTypes As List(Of String)
+    content.vb: Public Property AllowedClaimTypes As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AllowedClaimTypes*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AllowedRoles
   commentId: P:FastEndpoints.EndpointDefinition.AllowedRoles
   id: AllowedRoles
@@ -547,24 +464,18 @@ items:
   type: Property
   source:
     id: AllowedRoles
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 40
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string> AllowedRoles { get; }
+    content: public List<string>? AllowedRoles { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public ReadOnly Property AllowedRoles As List(Of String)
+    content.vb: Public Property AllowedRoles As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AllowedRoles*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AnonymousVerbs
   commentId: P:FastEndpoints.EndpointDefinition.AnonymousVerbs
   id: AnonymousVerbs
@@ -578,24 +489,43 @@ items:
   type: Property
   source:
     id: AnonymousVerbs
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 40
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public string[]? AnonymousVerbs { get; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: Public Property AnonymousVerbs As String()
+  overload: FastEndpoints.EndpointDefinition.AnonymousVerbs*
+- uid: FastEndpoints.EndpointDefinition.AntiforgeryEnabled
+  commentId: P:FastEndpoints.EndpointDefinition.AntiforgeryEnabled
+  id: AntiforgeryEnabled
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: AntiforgeryEnabled
+  nameWithType: EndpointDefinition.AntiforgeryEnabled
+  fullName: FastEndpoints.EndpointDefinition.AntiforgeryEnabled
+  type: Property
+  source:
+    id: AntiforgeryEnabled
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 41
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string[] AnonymousVerbs { get; }
+    content: public bool AntiforgeryEnabled { get; }
     parameters: []
     return:
-      type: System.String[]
-    content.vb: Public ReadOnly Property AnonymousVerbs As String()
-  overload: FastEndpoints.EndpointDefinition.AnonymousVerbs*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
+      type: System.Boolean
+    content.vb: Public Property AntiforgeryEnabled As Boolean
+  overload: FastEndpoints.EndpointDefinition.AntiforgeryEnabled*
 - uid: FastEndpoints.EndpointDefinition.AuthSchemeNames
   commentId: P:FastEndpoints.EndpointDefinition.AuthSchemeNames
   id: AuthSchemeNames
@@ -609,24 +539,18 @@ items:
   type: Property
   source:
     id: AuthSchemeNames
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 42
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string> AuthSchemeNames { get; }
+    content: public List<string>? AuthSchemeNames { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public ReadOnly Property AuthSchemeNames As List(Of String)
+    content.vb: Public Property AuthSchemeNames As List(Of String)
   overload: FastEndpoints.EndpointDefinition.AuthSchemeNames*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.DontAutoTagEndpoints
   commentId: P:FastEndpoints.EndpointDefinition.DontAutoTagEndpoints
   id: DontAutoTagEndpoints
@@ -640,7 +564,7 @@ items:
   type: Property
   source:
     id: DontAutoTagEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 43
   assemblies:
   - FastEndpoints
@@ -650,14 +574,8 @@ items:
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property DontAutoTagEndpoints As Boolean
+    content.vb: Public Property DontAutoTagEndpoints As Boolean
   overload: FastEndpoints.EndpointDefinition.DontAutoTagEndpoints*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.DontBindFormData
   commentId: P:FastEndpoints.EndpointDefinition.DontBindFormData
   id: DontBindFormData
@@ -671,7 +589,7 @@ items:
   type: Property
   source:
     id: DontBindFormData
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 44
   assemblies:
   - FastEndpoints
@@ -681,14 +599,8 @@ items:
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property DontBindFormData As Boolean
+    content.vb: Public Property DontBindFormData As Boolean
   overload: FastEndpoints.EndpointDefinition.DontBindFormData*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.DoNotCatchExceptions
   commentId: P:FastEndpoints.EndpointDefinition.DoNotCatchExceptions
   id: DoNotCatchExceptions
@@ -702,7 +614,7 @@ items:
   type: Property
   source:
     id: DoNotCatchExceptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
     startLine: 45
   assemblies:
   - FastEndpoints
@@ -712,14 +624,33 @@ items:
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property DoNotCatchExceptions As Boolean
+    content.vb: Public Property DoNotCatchExceptions As Boolean
   overload: FastEndpoints.EndpointDefinition.DoNotCatchExceptions*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
+- uid: FastEndpoints.EndpointDefinition.EndpointAttributes
+  commentId: P:FastEndpoints.EndpointDefinition.EndpointAttributes
+  id: EndpointAttributes
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: EndpointAttributes
+  nameWithType: EndpointDefinition.EndpointAttributes
+  fullName: FastEndpoints.EndpointDefinition.EndpointAttributes
+  type: Property
+  source:
+    id: EndpointAttributes
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 46
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public object[]? EndpointAttributes { get; }
+    parameters: []
+    return:
+      type: System.Object[]
+    content.vb: Public Property EndpointAttributes As Object()
+  overload: FastEndpoints.EndpointDefinition.EndpointAttributes*
 - uid: FastEndpoints.EndpointDefinition.EndpointSummary
   commentId: P:FastEndpoints.EndpointDefinition.EndpointSummary
   id: EndpointSummary
@@ -733,24 +664,18 @@ items:
   type: Property
   source:
     id: EndpointSummary
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 46
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 47
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public EndpointSummary EndpointSummary { get; }
+    content: public EndpointSummary? EndpointSummary { get; }
     parameters: []
     return:
       type: FastEndpoints.EndpointSummary
-    content.vb: Public ReadOnly Property EndpointSummary As EndpointSummary
+    content.vb: Public Property EndpointSummary As EndpointSummary
   overload: FastEndpoints.EndpointDefinition.EndpointSummary*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.EndpointTags
   commentId: P:FastEndpoints.EndpointDefinition.EndpointTags
   id: EndpointTags
@@ -764,24 +689,18 @@ items:
   type: Property
   source:
     id: EndpointTags
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 47
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string> EndpointTags { get; }
+    content: public List<string>? EndpointTags { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public ReadOnly Property EndpointTags As List(Of String)
+    content.vb: Public Property EndpointTags As List(Of String)
   overload: FastEndpoints.EndpointDefinition.EndpointTags*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.FormDataContentType
   commentId: P:FastEndpoints.EndpointDefinition.FormDataContentType
   id: FormDataContentType
@@ -795,24 +714,18 @@ items:
   type: Property
   source:
     id: FormDataContentType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 48
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 49
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string FormDataContentType { get; }
+    content: public string? FormDataContentType { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public ReadOnly Property FormDataContentType As String
+    content.vb: Public Property FormDataContentType As String
   overload: FastEndpoints.EndpointDefinition.FormDataContentType*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   commentId: P:FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   id: OverriddenRoutePrefix
@@ -826,24 +739,18 @@ items:
   type: Property
   source:
     id: OverriddenRoutePrefix
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 49
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 50
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string OverriddenRoutePrefix { get; }
+    content: public string? OverriddenRoutePrefix { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public ReadOnly Property OverriddenRoutePrefix As String
+    content.vb: Public Property OverriddenRoutePrefix As String
   overload: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
   commentId: P:FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
   id: PreBuiltUserPolicies
@@ -857,24 +764,18 @@ items:
   type: Property
   source:
     id: PreBuiltUserPolicies
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 50
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 51
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public List<string> PreBuiltUserPolicies { get; }
+    content: public List<string>? PreBuiltUserPolicies { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
-    content.vb: Public ReadOnly Property PreBuiltUserPolicies As List(Of String)
+    content.vb: Public Property PreBuiltUserPolicies As List(Of String)
   overload: FastEndpoints.EndpointDefinition.PreBuiltUserPolicies*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.PolicyBuilder
   commentId: P:FastEndpoints.EndpointDefinition.PolicyBuilder
   id: PolicyBuilder
@@ -888,24 +789,18 @@ items:
   type: Property
   source:
     id: PolicyBuilder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 51
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 52
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public Action<AuthorizationPolicyBuilder> PolicyBuilder { get; }
+    content: public Action<AuthorizationPolicyBuilder>? PolicyBuilder { get; }
     parameters: []
     return:
       type: System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder}
-    content.vb: Public ReadOnly Property PolicyBuilder As Action(Of AuthorizationPolicyBuilder)
+    content.vb: Public Property PolicyBuilder As Action(Of AuthorizationPolicyBuilder)
   overload: FastEndpoints.EndpointDefinition.PolicyBuilder*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.ThrowIfValidationFails
   commentId: P:FastEndpoints.EndpointDefinition.ThrowIfValidationFails
   id: ThrowIfValidationFails
@@ -919,8 +814,8 @@ items:
   type: Property
   source:
     id: ThrowIfValidationFails
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 52
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 53
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -929,14 +824,8 @@ items:
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property ThrowIfValidationFails As Boolean
+    content.vb: Public Property ThrowIfValidationFails As Boolean
   overload: FastEndpoints.EndpointDefinition.ThrowIfValidationFails*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.EndpointDefinition.AllowAnonymous(FastEndpoints.Http[])
   commentId: M:FastEndpoints.EndpointDefinition.AllowAnonymous(FastEndpoints.Http[])
   id: AllowAnonymous(FastEndpoints.Http[])
@@ -944,18 +833,23 @@ items:
   langs:
   - csharp
   - vb
-  name: AllowAnonymous(Http[])
-  nameWithType: EndpointDefinition.AllowAnonymous(Http[])
-  fullName: FastEndpoints.EndpointDefinition.AllowAnonymous(FastEndpoints.Http[])
+  name: AllowAnonymous(params Http[])
+  nameWithType: EndpointDefinition.AllowAnonymous(params Http[])
+  fullName: FastEndpoints.EndpointDefinition.AllowAnonymous(params FastEndpoints.Http[])
   type: Method
   source:
     id: AllowAnonymous
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 124
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 107
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallow unauthenticated requests to this endpoint. optionally specify a set of verbs to allow unauthenticated access with.\ni.e. if the endpoint is listening to POST, PUT &amp; PATCH and you specify AllowAnonymous(Http.POST), then only PUT &amp; PATCH will require authentication.\n"
+  summary: >-
+    allow unauthenticated requests to this endpoint. optionally specify a set of verbs to allow unauthenticated access with.
+
+    i.e. if the endpoint is listening to POST, PUT &amp; PATCH and you specify AllowAnonymous(Http.POST), then only PUT &amp; PATCH will require
+
+    authentication.
   example: []
   syntax:
     content: public void AllowAnonymous(params Http[] verbs)
@@ -964,13 +858,9 @@ items:
       type: FastEndpoints.Http[]
     content.vb: Public Sub AllowAnonymous(ParamArray verbs As Http())
   overload: FastEndpoints.EndpointDefinition.AllowAnonymous*
-  nameWithType.vb: EndpointDefinition.AllowAnonymous(Http())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.AllowAnonymous(FastEndpoints.Http())
-  name.vb: AllowAnonymous(Http())
+  nameWithType.vb: EndpointDefinition.AllowAnonymous(ParamArray Http())
+  fullName.vb: FastEndpoints.EndpointDefinition.AllowAnonymous(ParamArray FastEndpoints.Http())
+  name.vb: AllowAnonymous(ParamArray Http())
 - uid: FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
   id: AllowAnonymous(System.String[])
@@ -978,18 +868,18 @@ items:
   langs:
   - csharp
   - vb
-  name: AllowAnonymous(String[])
-  nameWithType: EndpointDefinition.AllowAnonymous(String[])
-  fullName: FastEndpoints.EndpointDefinition.AllowAnonymous(System.String[])
+  name: AllowAnonymous(string[])
+  nameWithType: EndpointDefinition.AllowAnonymous(string[])
+  fullName: FastEndpoints.EndpointDefinition.AllowAnonymous(string[])
   type: Method
   source:
     id: AllowAnonymous
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 135
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 118
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallow unauthenticated requests to this endpoint for a specified set of http verbs.\n"
+  summary: allow unauthenticated requests to this endpoint for a specified set of http verbs.
   example: []
   syntax:
     content: public void AllowAnonymous(string[] verbs)
@@ -999,11 +889,7 @@ items:
     content.vb: Public Sub AllowAnonymous(verbs As String())
   overload: FastEndpoints.EndpointDefinition.AllowAnonymous*
   nameWithType.vb: EndpointDefinition.AllowAnonymous(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.AllowAnonymous(System.String())
+  fullName.vb: FastEndpoints.EndpointDefinition.AllowAnonymous(String())
   name.vb: AllowAnonymous(String())
 - uid: FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
   commentId: M:FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
@@ -1012,31 +898,33 @@ items:
   langs:
   - csharp
   - vb
-  name: AllowFileUploads(Boolean)
-  nameWithType: EndpointDefinition.AllowFileUploads(Boolean)
-  fullName: FastEndpoints.EndpointDefinition.AllowFileUploads(System.Boolean)
+  name: AllowFileUploads(bool)
+  nameWithType: EndpointDefinition.AllowFileUploads(bool)
+  fullName: FastEndpoints.EndpointDefinition.AllowFileUploads(bool)
   type: Method
   source:
     id: AllowFileUploads
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 147
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 127
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nenable file uploads with multipart/form-data content type\n"
+  summary: enable file uploads with multipart/form-data content type
   example: []
   syntax:
     content: public void AllowFileUploads(bool dontAutoBindFormData = false)
     parameters:
     - id: dontAutoBindFormData
       type: System.Boolean
-      description: "\nset &apos;true&apos; to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.\nyou can access the multipart sections for reading via the FormFileSectionsAsync() method.\n"
+      description: >-
+        set 'true' to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.
+
+        you can access the multipart sections for reading via the FormFileSectionsAsync() method.
     content.vb: Public Sub AllowFileUploads(dontAutoBindFormData As Boolean = False)
   overload: FastEndpoints.EndpointDefinition.AllowFileUploads*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: EndpointDefinition.AllowFileUploads(Boolean)
+  fullName.vb: FastEndpoints.EndpointDefinition.AllowFileUploads(Boolean)
+  name.vb: AllowFileUploads(Boolean)
 - uid: FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
   commentId: M:FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
   id: AllowFormData(System.Boolean)
@@ -1044,18 +932,18 @@ items:
   langs:
   - csharp
   - vb
-  name: AllowFormData(Boolean)
-  nameWithType: EndpointDefinition.AllowFormData(Boolean)
-  fullName: FastEndpoints.EndpointDefinition.AllowFormData(System.Boolean)
+  name: AllowFormData(bool)
+  nameWithType: EndpointDefinition.AllowFormData(bool)
+  fullName: FastEndpoints.EndpointDefinition.AllowFormData(bool)
   type: Method
   source:
     id: AllowFormData
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 157
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 137
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nenable form-data submissions\n"
+  summary: enable form-data submissions
   example: []
   syntax:
     content: public void AllowFormData(bool urlEncoded = false)
@@ -1065,10 +953,9 @@ items:
       description: set to true to accept `application/x-www-form-urlencoded` content instead of `multipart/form-data` content.
     content.vb: Public Sub AllowFormData(urlEncoded As Boolean = False)
   overload: FastEndpoints.EndpointDefinition.AllowFormData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: EndpointDefinition.AllowFormData(Boolean)
+  fullName.vb: FastEndpoints.EndpointDefinition.AllowFormData(Boolean)
+  name.vb: AllowFormData(Boolean)
 - uid: FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])
   id: AuthSchemes(System.String[])
@@ -1076,18 +963,21 @@ items:
   langs:
   - csharp
   - vb
-  name: AuthSchemes(String[])
-  nameWithType: EndpointDefinition.AuthSchemes(String[])
-  fullName: FastEndpoints.EndpointDefinition.AuthSchemes(System.String[])
+  name: AuthSchemes(params string[])
+  nameWithType: EndpointDefinition.AuthSchemes(params string[])
+  fullName: FastEndpoints.EndpointDefinition.AuthSchemes(params string[])
   type: Method
   source:
     id: AuthSchemes
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 164
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 145
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify which authentication schemes to use for authenticating requests to this endpoint\n<p>HINT: these auth schemes will be applied in addition to endpoint level auth schemes if there&apos;s any</p>\n"
+  summary: >-
+    specify which authentication schemes to use for authenticating requests to this endpoint
+
+    <p>HINT: these auth schemes will be applied in addition to endpoint level auth schemes if there's any</p>
   example: []
   syntax:
     content: public void AuthSchemes(params string[] authSchemeNames)
@@ -1097,13 +987,9 @@ items:
       description: the authentication scheme names
     content.vb: Public Sub AuthSchemes(ParamArray authSchemeNames As String())
   overload: FastEndpoints.EndpointDefinition.AuthSchemes*
-  nameWithType.vb: EndpointDefinition.AuthSchemes(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.AuthSchemes(System.String())
-  name.vb: AuthSchemes(String())
+  nameWithType.vb: EndpointDefinition.AuthSchemes(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.AuthSchemes(ParamArray String())
+  name.vb: AuthSchemes(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.Claims(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.Claims(System.String[])
   id: Claims(System.String[])
@@ -1111,18 +997,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Claims(String[])
-  nameWithType: EndpointDefinition.Claims(String[])
-  fullName: FastEndpoints.EndpointDefinition.Claims(System.String[])
+  name: Claims(params string[])
+  nameWithType: EndpointDefinition.Claims(params string[])
+  fullName: FastEndpoints.EndpointDefinition.Claims(params string[])
   type: Method
   source:
     id: Claims
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 175
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 156
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallows access if the claims principal has ANY of the given claim types\n<p>HINT: these claims will be applied in addition to endpoint level claims if there&apos;s any</p>\n"
+  summary: >-
+    allows access if the claims principal has ANY of the given claim types
+
+    <p>HINT: these claims will be applied in addition to endpoint level claims if there's any</p>
   example: []
   syntax:
     content: public void Claims(params string[] claimTypes)
@@ -1132,13 +1021,9 @@ items:
       description: the claim types
     content.vb: Public Sub Claims(ParamArray claimTypes As String())
   overload: FastEndpoints.EndpointDefinition.Claims*
-  nameWithType.vb: EndpointDefinition.Claims(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Claims(System.String())
-  name.vb: Claims(String())
+  nameWithType.vb: EndpointDefinition.Claims(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.Claims(ParamArray String())
+  name.vb: Claims(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.ClaimsAll(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.ClaimsAll(System.String[])
   id: ClaimsAll(System.String[])
@@ -1146,18 +1031,21 @@ items:
   langs:
   - csharp
   - vb
-  name: ClaimsAll(String[])
-  nameWithType: EndpointDefinition.ClaimsAll(String[])
-  fullName: FastEndpoints.EndpointDefinition.ClaimsAll(System.String[])
+  name: ClaimsAll(params string[])
+  nameWithType: EndpointDefinition.ClaimsAll(params string[])
+  fullName: FastEndpoints.EndpointDefinition.ClaimsAll(params string[])
   type: Method
   source:
     id: ClaimsAll
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 187
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 168
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallows access if the claims principal has ALL of the given claim types\n<p>HINT: these claims will be applied in addition to endpoint level claims if there&apos;s any</p>\n"
+  summary: >-
+    allows access if the claims principal has ALL of the given claim types
+
+    <p>HINT: these claims will be applied in addition to endpoint level claims if there's any</p>
   example: []
   syntax:
     content: public void ClaimsAll(params string[] claimTypes)
@@ -1167,13 +1055,9 @@ items:
       description: the claim types
     content.vb: Public Sub ClaimsAll(ParamArray claimTypes As String())
   overload: FastEndpoints.EndpointDefinition.ClaimsAll*
-  nameWithType.vb: EndpointDefinition.ClaimsAll(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.ClaimsAll(System.String())
-  name.vb: ClaimsAll(String())
+  nameWithType.vb: EndpointDefinition.ClaimsAll(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.ClaimsAll(ParamArray String())
+  name.vb: ClaimsAll(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   commentId: M:FastEndpoints.EndpointDefinition.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
   id: Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
@@ -1181,18 +1065,25 @@ items:
   langs:
   - csharp
   - vb
-  name: Description(Action<RouteHandlerBuilder>, Boolean)
-  nameWithType: EndpointDefinition.Description(Action<RouteHandlerBuilder>, Boolean)
-  fullName: FastEndpoints.EndpointDefinition.Description(System.Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, System.Boolean)
+  name: Description(Action<RouteHandlerBuilder>, bool)
+  nameWithType: EndpointDefinition.Description(Action<RouteHandlerBuilder>, bool)
+  fullName: FastEndpoints.EndpointDefinition.Description(System.Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>, bool)
   type: Method
   source:
     id: Description
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 202
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 183
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ndescribe openapi metadata for this endpoint. optionaly specify whether or not you want to clear the default Accepts/Produces metadata.\n<p>\nEXAMPLE: <code>b => b.Accepts&lt;Request>(&quot;text/plain&quot;)</code>\n</p>\n"
+  summary: >-
+    describe openapi metadata for this endpoint. optionally specify whether or not you want to clear the default Accepts/Produces metadata.
+
+    <p>
+
+    EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code>
+
+    </p>
   example: []
   syntax:
     content: public void Description(Action<RouteHandlerBuilder> builder, bool clearDefaults = false)
@@ -1206,11 +1097,7 @@ items:
     content.vb: Public Sub Description(builder As Action(Of RouteHandlerBuilder), clearDefaults As Boolean = False)
   overload: FastEndpoints.EndpointDefinition.Description*
   nameWithType.vb: EndpointDefinition.Description(Action(Of RouteHandlerBuilder), Boolean)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Description(System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), System.Boolean)
+  fullName.vb: FastEndpoints.EndpointDefinition.Description(System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder), Boolean)
   name.vb: Description(Action(Of RouteHandlerBuilder), Boolean)
 - uid: FastEndpoints.EndpointDefinition.DontAutoTag
   commentId: M:FastEndpoints.EndpointDefinition.DontAutoTag
@@ -1225,21 +1112,17 @@ items:
   type: Method
   source:
     id: DontAutoTag
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 212
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 193
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif swagger auto tagging based on path segment is enabled, calling this method will prevent a tag from being added to this endpoint.\n"
+  summary: if swagger auto tagging based on path segment is enabled, calling this method will prevent a tag from being added to this endpoint.
   example: []
   syntax:
     content: public void DontAutoTag()
-    content.vb: Public Sub DontAutoTag
+    content.vb: Public Sub DontAutoTag()
   overload: FastEndpoints.EndpointDefinition.DontAutoTag*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.DontCatchExceptions
   commentId: M:FastEndpoints.EndpointDefinition.DontCatchExceptions
   id: DontCatchExceptions
@@ -1253,21 +1136,22 @@ items:
   type: Method
   source:
     id: DontCatchExceptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 219
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 201
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nuse this only if you have your own exception catching middleware.\nif this method is called in config, an automatic error response will not be sent to the client by the library.\nall exceptions will be thrown and it would be your exeception catching middleware to handle them.\n"
+  summary: >-
+    use this only if you have your own exception catching middleware.
+
+    if this method is called in config, an automatic error response will not be sent to the client by the library.
+
+    all exceptions will be thrown and it would be your exception catching middleware to handle them.
   example: []
   syntax:
     content: public void DontCatchExceptions()
-    content.vb: Public Sub DontCatchExceptions
+    content.vb: Public Sub DontCatchExceptions()
   overload: FastEndpoints.EndpointDefinition.DontCatchExceptions*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.DontThrowIfValidationFails
   commentId: M:FastEndpoints.EndpointDefinition.DontThrowIfValidationFails
   id: DontThrowIfValidationFails
@@ -1281,21 +1165,44 @@ items:
   type: Method
   source:
     id: DontThrowIfValidationFails
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 225
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 208
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ndisable auto validation failure responses (400 bad request with error details) for this endpoint.\n<p>HINT: this only applies to request dto validation.</p>\n"
+  summary: >-
+    disable auto validation failure responses (400 bad request with error details) for this endpoint.
+
+    <p>HINT: this only applies to request dto validation.</p>
   example: []
   syntax:
     content: public void DontThrowIfValidationFails()
-    content.vb: Public Sub DontThrowIfValidationFails
+    content.vb: Public Sub DontThrowIfValidationFails()
   overload: FastEndpoints.EndpointDefinition.DontThrowIfValidationFails*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+- uid: FastEndpoints.EndpointDefinition.EnableAntiforgery
+  commentId: M:FastEndpoints.EndpointDefinition.EnableAntiforgery
+  id: EnableAntiforgery
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: EnableAntiforgery()
+  nameWithType: EndpointDefinition.EnableAntiforgery()
+  fullName: FastEndpoints.EndpointDefinition.EnableAntiforgery()
+  type: Method
+  source:
+    id: EnableAntiforgery
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 214
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: enable antiforgery token verification for an endpoint
+  example: []
+  syntax:
+    content: public void EnableAntiforgery()
+    content.vb: Public Sub EnableAntiforgery()
+  overload: FastEndpoints.EndpointDefinition.EnableAntiforgery*
 - uid: FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32,System.Nullable{System.Int32})
   id: EndpointVersion(System.Int32,System.Nullable{System.Int32})
@@ -1303,18 +1210,18 @@ items:
   langs:
   - csharp
   - vb
-  name: EndpointVersion(Int32, Nullable<Int32>)
-  nameWithType: EndpointDefinition.EndpointVersion(Int32, Nullable<Int32>)
-  fullName: FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32, System.Nullable<System.Int32>)
+  name: EndpointVersion(int, int?)
+  nameWithType: EndpointDefinition.EndpointVersion(int, int?)
+  fullName: FastEndpoints.EndpointDefinition.EndpointVersion(int, int?)
   type: Method
   source:
     id: EndpointVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 232
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 221
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify the version of the endpoint if versioning is enabled\n"
+  summary: specify the version of the endpoint if versioning is enabled
   example: []
   syntax:
     content: public void EndpointVersion(int version, int? deprecateAt = null)
@@ -1327,13 +1234,9 @@ items:
       description: the version group number starting at which this endpoint should not be included in swagger document
     content.vb: Public Sub EndpointVersion(version As Integer, deprecateAt As Integer? = Nothing)
   overload: FastEndpoints.EndpointDefinition.EndpointVersion*
-  nameWithType.vb: EndpointDefinition.EndpointVersion(Int32, Nullable(Of Int32))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32, System.Nullable(Of System.Int32))
-  name.vb: EndpointVersion(Int32, Nullable(Of Int32))
+  nameWithType.vb: EndpointDefinition.EndpointVersion(Integer, Integer?)
+  fullName.vb: FastEndpoints.EndpointDefinition.EndpointVersion(Integer, Integer?)
+  name.vb: EndpointVersion(Integer, Integer?)
 - uid: FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   commentId: M:FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   id: Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
@@ -1347,12 +1250,12 @@ items:
   type: Method
   source:
     id: Options
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 242
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 231
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nset endpoint configurations options using an endpoint builder action ///\n"
+  summary: set endpoint configurations options using an endpoint builder action ///
   example: []
   syntax:
     content: public void Options(Action<RouteHandlerBuilder> builder)
@@ -1363,10 +1266,6 @@ items:
     content.vb: Public Sub Options(builder As Action(Of RouteHandlerBuilder))
   overload: FastEndpoints.EndpointDefinition.Options*
   nameWithType.vb: EndpointDefinition.Options(Action(Of RouteHandlerBuilder))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.EndpointDefinition.Options(System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
   name.vb: Options(Action(Of RouteHandlerBuilder))
 - uid: FastEndpoints.EndpointDefinition.Permissions(System.String[])
@@ -1376,18 +1275,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Permissions(String[])
-  nameWithType: EndpointDefinition.Permissions(String[])
-  fullName: FastEndpoints.EndpointDefinition.Permissions(System.String[])
+  name: Permissions(params string[])
+  nameWithType: EndpointDefinition.Permissions(params string[])
+  fullName: FastEndpoints.EndpointDefinition.Permissions(params string[])
   type: Method
   source:
     id: Permissions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 249
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 239
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallows access if the claims principal has ANY of the given permissions\n<p>HINT: these permissions will be applied in addition to endpoint level permissions if there&apos;s any</p>\n"
+  summary: >-
+    allows access if the claims principal has ANY of the given permissions
+
+    <p>HINT: these permissions will be applied in addition to endpoint level permissions if there's any</p>
   example: []
   syntax:
     content: public void Permissions(params string[] permissions)
@@ -1397,13 +1299,9 @@ items:
       description: the permissions
     content.vb: Public Sub Permissions(ParamArray permissions As String())
   overload: FastEndpoints.EndpointDefinition.Permissions*
-  nameWithType.vb: EndpointDefinition.Permissions(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Permissions(System.String())
-  name.vb: Permissions(String())
+  nameWithType.vb: EndpointDefinition.Permissions(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.Permissions(ParamArray String())
+  name.vb: Permissions(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.PermissionsAll(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.PermissionsAll(System.String[])
   id: PermissionsAll(System.String[])
@@ -1411,18 +1309,21 @@ items:
   langs:
   - csharp
   - vb
-  name: PermissionsAll(String[])
-  nameWithType: EndpointDefinition.PermissionsAll(String[])
-  fullName: FastEndpoints.EndpointDefinition.PermissionsAll(System.String[])
+  name: PermissionsAll(params string[])
+  nameWithType: EndpointDefinition.PermissionsAll(params string[])
+  fullName: FastEndpoints.EndpointDefinition.PermissionsAll(params string[])
   type: Method
   source:
     id: PermissionsAll
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 261
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 251
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallows access if the claims principal has ALL of the given permissions\n<p>HINT: these permissions will be applied in addition to endpoint level permissions if there&apos;s any</p>\n"
+  summary: >-
+    allows access if the claims principal has ALL of the given permissions
+
+    <p>HINT: these permissions will be applied in addition to endpoint level permissions if there's any</p>
   example: []
   syntax:
     content: public void PermissionsAll(params string[] permissions)
@@ -1432,13 +1333,9 @@ items:
       description: the permissions
     content.vb: Public Sub PermissionsAll(ParamArray permissions As String())
   overload: FastEndpoints.EndpointDefinition.PermissionsAll*
-  nameWithType.vb: EndpointDefinition.PermissionsAll(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.PermissionsAll(System.String())
-  name.vb: PermissionsAll(String())
+  nameWithType.vb: EndpointDefinition.PermissionsAll(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.PermissionsAll(ParamArray String())
+  name.vb: PermissionsAll(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
   commentId: M:FastEndpoints.EndpointDefinition.Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
   id: Policy(System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder})
@@ -1452,12 +1349,15 @@ items:
   type: Method
   source:
     id: Policy
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 273
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 263
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify an action for building an authorization requirement which should be added to all endpoints globally.\n<p>HINT: these global level requirements will be combined with the requirements specified at the endpoint level if there&apos;s any.</p>\n"
+  summary: >-
+    specify an action for building an authorization requirement which should be added to all endpoints globally.
+
+    <p>HINT: these global level requirements will be combined with the requirements specified at the endpoint level if there's any.</p>
   example: []
   syntax:
     content: public void Policy(Action<AuthorizationPolicyBuilder> policy)
@@ -1468,10 +1368,6 @@ items:
     content.vb: Public Sub Policy(policy As Action(Of AuthorizationPolicyBuilder))
   overload: FastEndpoints.EndpointDefinition.Policy*
   nameWithType.vb: EndpointDefinition.Policy(Action(Of AuthorizationPolicyBuilder))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.EndpointDefinition.Policy(System.Action(Of Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder))
   name.vb: Policy(Action(Of AuthorizationPolicyBuilder))
 - uid: FastEndpoints.EndpointDefinition.Policies(System.String[])
@@ -1481,18 +1377,23 @@ items:
   langs:
   - csharp
   - vb
-  name: Policies(String[])
-  nameWithType: EndpointDefinition.Policies(String[])
-  fullName: FastEndpoints.EndpointDefinition.Policies(System.String[])
+  name: Policies(params string[])
+  nameWithType: EndpointDefinition.Policies(params string[])
+  fullName: FastEndpoints.EndpointDefinition.Policies(params string[])
   type: Method
   source:
     id: Policies
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 280
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 272
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify one or more authorization policy names you have added to the middleware pipeline during app startup/ service configuration that should be applied to this endpoint.\n<p>HINT: these policies will be applied in addition to endpoint level policies if there&apos;s any</p>\n"
+  summary: >-
+    specify one or more authorization policy names you have added to the middleware pipeline during app startup/ service configuration that should be
+
+    applied to this endpoint.
+
+    <p>HINT: these policies will be applied in addition to endpoint level policies if there's any</p>
   example: []
   syntax:
     content: public void Policies(params string[] policyNames)
@@ -1502,13 +1403,9 @@ items:
       description: one or more policy names (must have been added to the pipeline on startup)
     content.vb: Public Sub Policies(ParamArray policyNames As String())
   overload: FastEndpoints.EndpointDefinition.Policies*
-  nameWithType.vb: EndpointDefinition.Policies(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Policies(System.String())
-  name.vb: Policies(String())
+  nameWithType.vb: EndpointDefinition.Policies(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.Policies(ParamArray String())
+  name.vb: Policies(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
   commentId: M:FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
   id: PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
@@ -1516,37 +1413,73 @@ items:
   langs:
   - csharp
   - vb
-  name: PostProcessors(Order, IGlobalPostProcessor[])
-  nameWithType: EndpointDefinition.PostProcessors(Order, IGlobalPostProcessor[])
-  fullName: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPostProcessor[])
+  name: PostProcessors(Order, params IGlobalPostProcessor[])
+  nameWithType: EndpointDefinition.PostProcessors(Order, params IGlobalPostProcessor[])
+  fullName: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, params FastEndpoints.IGlobalPostProcessor[])
   type: Method
   source:
     id: PostProcessors
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 291
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 286
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadds global post-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.\n"
+  summary: adds global post-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.
   example: []
   syntax:
     content: public void PostProcessors(Order order, params IGlobalPostProcessor[] postProcessors)
     parameters:
     - id: order
       type: FastEndpoints.Order
-      description: set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global post-processors should be executed before endpoint post-processors. <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+      description: >-
+        set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global post-processors should be executed before endpoint post-processors.
+
+        <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
     - id: postProcessors
       type: FastEndpoints.IGlobalPostProcessor[]
       description: the post-processors to add
     content.vb: Public Sub PostProcessors(order As Order, ParamArray postProcessors As IGlobalPostProcessor())
   overload: FastEndpoints.EndpointDefinition.PostProcessors*
-  nameWithType.vb: EndpointDefinition.PostProcessors(Order, IGlobalPostProcessor())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPostProcessor())
-  name.vb: PostProcessors(Order, IGlobalPostProcessor())
+  nameWithType.vb: EndpointDefinition.PostProcessors(Order, ParamArray IGlobalPostProcessor())
+  fullName.vb: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, ParamArray FastEndpoints.IGlobalPostProcessor())
+  name.vb: PostProcessors(Order, ParamArray IGlobalPostProcessor())
+- uid: FastEndpoints.EndpointDefinition.PostProcessor``1(FastEndpoints.Order)
+  commentId: M:FastEndpoints.EndpointDefinition.PostProcessor``1(FastEndpoints.Order)
+  id: PostProcessor``1(FastEndpoints.Order)
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: PostProcessor<TPostProcessor>(Order)
+  nameWithType: EndpointDefinition.PostProcessor<TPostProcessor>(Order)
+  fullName: FastEndpoints.EndpointDefinition.PostProcessor<TPostProcessor>(FastEndpoints.Order)
+  type: Method
+  source:
+    id: PostProcessor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 297
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: adds global post-processor to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.
+  example: []
+  syntax:
+    content: 'public void PostProcessor<TPostProcessor>(Order order) where TPostProcessor : class, IGlobalPostProcessor'
+    parameters:
+    - id: order
+      type: FastEndpoints.Order
+      description: >-
+        set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global post-processors should be executed before endpoint post-processors.
+
+        <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+    typeParameters:
+    - id: TPostProcessor
+      description: the post-processor to add
+    content.vb: Public Sub PostProcessor(Of TPostProcessor As {Class, IGlobalPostProcessor})(order As Order)
+  overload: FastEndpoints.EndpointDefinition.PostProcessor*
+  nameWithType.vb: EndpointDefinition.PostProcessor(Of TPostProcessor)(Order)
+  fullName.vb: FastEndpoints.EndpointDefinition.PostProcessor(Of TPostProcessor)(FastEndpoints.Order)
+  name.vb: PostProcessor(Of TPostProcessor)(Order)
 - uid: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   commentId: M:FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   id: PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
@@ -1554,37 +1487,73 @@ items:
   langs:
   - csharp
   - vb
-  name: PreProcessors(Order, IGlobalPreProcessor[])
-  nameWithType: EndpointDefinition.PreProcessors(Order, IGlobalPreProcessor[])
-  fullName: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPreProcessor[])
+  name: PreProcessors(Order, params IGlobalPreProcessor[])
+  nameWithType: EndpointDefinition.PreProcessors(Order, params IGlobalPreProcessor[])
+  fullName: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, params FastEndpoints.IGlobalPreProcessor[])
   type: Method
   source:
     id: PreProcessors
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 301
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 308
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadds global pre-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.\n"
+  summary: adds global pre-processors to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.
   example: []
   syntax:
     content: public void PreProcessors(Order order, params IGlobalPreProcessor[] preProcessors)
     parameters:
     - id: order
       type: FastEndpoints.Order
-      description: set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global pre-processors should be executed before endpoint pre-processors. <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+      description: >-
+        set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global pre-processors should be executed before endpoint pre-processors.
+
+        <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
     - id: preProcessors
       type: FastEndpoints.IGlobalPreProcessor[]
       description: the pre-processors to add
     content.vb: Public Sub PreProcessors(order As Order, ParamArray preProcessors As IGlobalPreProcessor())
   overload: FastEndpoints.EndpointDefinition.PreProcessors*
-  nameWithType.vb: EndpointDefinition.PreProcessors(Order, IGlobalPreProcessor())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, FastEndpoints.IGlobalPreProcessor())
-  name.vb: PreProcessors(Order, IGlobalPreProcessor())
+  nameWithType.vb: EndpointDefinition.PreProcessors(Order, ParamArray IGlobalPreProcessor())
+  fullName.vb: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, ParamArray FastEndpoints.IGlobalPreProcessor())
+  name.vb: PreProcessors(Order, ParamArray IGlobalPreProcessor())
+- uid: FastEndpoints.EndpointDefinition.PreProcessor``1(FastEndpoints.Order)
+  commentId: M:FastEndpoints.EndpointDefinition.PreProcessor``1(FastEndpoints.Order)
+  id: PreProcessor``1(FastEndpoints.Order)
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: PreProcessor<TPreProcessor>(Order)
+  nameWithType: EndpointDefinition.PreProcessor<TPreProcessor>(Order)
+  fullName: FastEndpoints.EndpointDefinition.PreProcessor<TPreProcessor>(FastEndpoints.Order)
+  type: Method
+  source:
+    id: PreProcessor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 319
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: adds global pre-processor to an endpoint definition which are to be executed in addition to the ones configured at the endpoint level.
+  example: []
+  syntax:
+    content: 'public void PreProcessor<TPreProcessor>(Order order) where TPreProcessor : class, IGlobalPreProcessor'
+    parameters:
+    - id: order
+      type: FastEndpoints.Order
+      description: >-
+        set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global pre-processors should be executed before endpoint pre-processors.
+
+        <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+    typeParameters:
+    - id: TPreProcessor
+      description: the pre-processor to add
+    content.vb: Public Sub PreProcessor(Of TPreProcessor As {Class, IGlobalPreProcessor})(order As Order)
+  overload: FastEndpoints.EndpointDefinition.PreProcessor*
+  nameWithType.vb: EndpointDefinition.PreProcessor(Of TPreProcessor)(Order)
+  fullName.vb: FastEndpoints.EndpointDefinition.PreProcessor(Of TPreProcessor)(FastEndpoints.Order)
+  name.vb: PreProcessor(Of TPreProcessor)(Order)
 - uid: FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   id: ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
@@ -1592,21 +1561,21 @@ items:
   langs:
   - csharp
   - vb
-  name: ResponseCache(Int32, ResponseCacheLocation, Boolean, String, String[])
-  nameWithType: EndpointDefinition.ResponseCache(Int32, ResponseCacheLocation, Boolean, String, String[])
-  fullName: FastEndpoints.EndpointDefinition.ResponseCache(System.Int32, Microsoft.AspNetCore.Mvc.ResponseCacheLocation, System.Boolean, System.String, System.String[])
+  name: ResponseCache(int, ResponseCacheLocation, bool, string?, string[]?)
+  nameWithType: EndpointDefinition.ResponseCache(int, ResponseCacheLocation, bool, string?, string[]?)
+  fullName: FastEndpoints.EndpointDefinition.ResponseCache(int, Microsoft.AspNetCore.Mvc.ResponseCacheLocation, bool, string?, string[]?)
   type: Method
   source:
     id: ResponseCache
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 314
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 330
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify response caching settings for this endpoint\n"
+  summary: specify response caching settings for this endpoint
   example: []
   syntax:
-    content: public void ResponseCache(int durationSeconds, ResponseCacheLocation location = ResponseCacheLocation.Any, bool noStore = false, string varyByHeader = null, string[] varyByQueryKeys = null)
+    content: public void ResponseCache(int durationSeconds, ResponseCacheLocation location = ResponseCacheLocation.Any, bool noStore = false, string? varyByHeader = null, string[]? varyByQueryKeys = null)
     parameters:
     - id: durationSeconds
       type: System.Int32
@@ -1625,13 +1594,9 @@ items:
       description: the query keys to vary by
     content.vb: Public Sub ResponseCache(durationSeconds As Integer, location As ResponseCacheLocation = ResponseCacheLocation.Any, noStore As Boolean = False, varyByHeader As String = Nothing, varyByQueryKeys As String() = Nothing)
   overload: FastEndpoints.EndpointDefinition.ResponseCache*
-  nameWithType.vb: EndpointDefinition.ResponseCache(Int32, ResponseCacheLocation, Boolean, String, String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.ResponseCache(System.Int32, Microsoft.AspNetCore.Mvc.ResponseCacheLocation, System.Boolean, System.String, System.String())
-  name.vb: ResponseCache(Int32, ResponseCacheLocation, Boolean, String, String())
+  nameWithType.vb: EndpointDefinition.ResponseCache(Integer, ResponseCacheLocation, Boolean, String, String())
+  fullName.vb: FastEndpoints.EndpointDefinition.ResponseCache(Integer, Microsoft.AspNetCore.Mvc.ResponseCacheLocation, Boolean, String, String())
+  name.vb: ResponseCache(Integer, ResponseCacheLocation, Boolean, String, String())
 - uid: FastEndpoints.EndpointDefinition.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
   commentId: M:FastEndpoints.EndpointDefinition.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
   id: ResponseInterceptor(FastEndpoints.IResponseInterceptor)
@@ -1645,12 +1610,15 @@ items:
   type: Method
   source:
     id: ResponseInterceptor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 331
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 351
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nconfigure a response interceptor to be called before any SendAsync() methods are called.\nif the interceptor sends a response to the client, the SendAsync() will be ignored.\n"
+  summary: >-
+    configure a response interceptor to be called before any SendAsync() methods are called.
+
+    if the interceptor sends a response to the client, the SendAsync() will be ignored.
   example: []
   syntax:
     content: public void ResponseInterceptor(IResponseInterceptor responseInterceptor)
@@ -1660,10 +1628,6 @@ items:
       description: the response interceptor to be configured for the endpoint
     content.vb: Public Sub ResponseInterceptor(responseInterceptor As IResponseInterceptor)
   overload: FastEndpoints.EndpointDefinition.ResponseInterceptor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.Roles(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.Roles(System.String[])
   id: Roles(System.String[])
@@ -1671,18 +1635,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Roles(String[])
-  nameWithType: EndpointDefinition.Roles(String[])
-  fullName: FastEndpoints.EndpointDefinition.Roles(System.String[])
+  name: Roles(params string[])
+  nameWithType: EndpointDefinition.Roles(params string[])
+  fullName: FastEndpoints.EndpointDefinition.Roles(params string[])
   type: Method
   source:
     id: Roles
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 338
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 359
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nallows access if the claims principal has ANY of the given roles\n<p>HINT: these roles will be applied in addition to endpoint level roles if there&apos;s any</p>\n"
+  summary: >-
+    allows access if the claims principal has ANY of the given roles
+
+    <p>HINT: these roles will be applied in addition to endpoint level roles if there's any</p>
   example: []
   syntax:
     content: public void Roles(params string[] rolesNames)
@@ -1692,13 +1659,9 @@ items:
       description: one or more roles that has access
     content.vb: Public Sub Roles(ParamArray rolesNames As String())
   overload: FastEndpoints.EndpointDefinition.Roles*
-  nameWithType.vb: EndpointDefinition.Roles(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Roles(System.String())
-  name.vb: Roles(String())
+  nameWithType.vb: EndpointDefinition.Roles(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.Roles(ParamArray String())
+  name.vb: Roles(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.RoutePrefixOverride(System.String)
   commentId: M:FastEndpoints.EndpointDefinition.RoutePrefixOverride(System.String)
   id: RoutePrefixOverride(System.String)
@@ -1706,18 +1669,31 @@ items:
   langs:
   - csharp
   - vb
-  name: RoutePrefixOverride(String)
-  nameWithType: EndpointDefinition.RoutePrefixOverride(String)
-  fullName: FastEndpoints.EndpointDefinition.RoutePrefixOverride(System.String)
+  name: RoutePrefixOverride(string)
+  nameWithType: EndpointDefinition.RoutePrefixOverride(string)
+  fullName: FastEndpoints.EndpointDefinition.RoutePrefixOverride(string)
   type: Method
   source:
     id: RoutePrefixOverride
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 351
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 375
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify an override route prefix for this endpoint if a global route prefix is enabled.\nthis is ignored if a global route prefix is not configured.\nglobal prefix can be ignored by setting <code>string.Empty</code>\n<p>WARNING: setting a route prefix override globally makes the endpoint level override ineffective. i.e. RoutePrefixOverride() method call on endpoint level will be ignored.</p>\n"
+  summary: >-
+    specify an override route prefix for this endpoint if a global route prefix is enabled.
+
+    this is ignored if a global route prefix is not configured.
+
+    global prefix can be ignored by setting <code>string.Empty</code>
+
+    <p>
+
+    WARNING: setting a route prefix override globally makes the endpoint level override ineffective. i.e. RoutePrefixOverride() method call on
+
+    endpoint level will be ignored.
+
+    </p>
   example: []
   syntax:
     content: public void RoutePrefixOverride(string routePrefix)
@@ -1727,10 +1703,9 @@ items:
       description: route prefix value
     content.vb: Public Sub RoutePrefixOverride(routePrefix As String)
   overload: FastEndpoints.EndpointDefinition.RoutePrefixOverride*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: EndpointDefinition.RoutePrefixOverride(String)
+  fullName.vb: FastEndpoints.EndpointDefinition.RoutePrefixOverride(String)
+  name.vb: RoutePrefixOverride(String)
 - uid: FastEndpoints.EndpointDefinition.Summary(System.Action{FastEndpoints.EndpointSummary})
   commentId: M:FastEndpoints.EndpointDefinition.Summary(System.Action{FastEndpoints.EndpointSummary})
   id: Summary(System.Action{FastEndpoints.EndpointSummary})
@@ -1744,12 +1719,12 @@ items:
   type: Method
   source:
     id: Summary
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 357
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 382
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nprovide a summary/description for this endpoint to be used in swagger/ openapi\n"
+  summary: provide a summary/description for this endpoint to be used in swagger/ openapi
   example: []
   syntax:
     content: public void Summary(Action<EndpointSummary> endpointSummary)
@@ -1760,10 +1735,6 @@ items:
     content.vb: Public Sub Summary(endpointSummary As Action(Of EndpointSummary))
   overload: FastEndpoints.EndpointDefinition.Summary*
   nameWithType.vb: EndpointDefinition.Summary(Action(Of EndpointSummary))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.EndpointDefinition.Summary(System.Action(Of FastEndpoints.EndpointSummary))
   name.vb: Summary(Action(Of EndpointSummary))
 - uid: FastEndpoints.EndpointDefinition.Summary``1(System.Action{FastEndpoints.EndpointSummary{``0}})
@@ -1779,15 +1750,15 @@ items:
   type: Method
   source:
     id: Summary
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 363
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 389
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nprovide a summary/description for this endpoint to be used in swagger/ openapi\n"
+  summary: provide a summary/description for this endpoint to be used in swagger/ openapi
   example: []
   syntax:
-    content: public void Summary<TRequest>(Action<EndpointSummary<TRequest>> endpointSummary)
+    content: 'public void Summary<TRequest>(Action<EndpointSummary<TRequest>> endpointSummary) where TRequest : notnull'
     parameters:
     - id: endpointSummary
       type: System.Action{FastEndpoints.EndpointSummary{{TRequest}}}
@@ -1797,10 +1768,6 @@ items:
     content.vb: Public Sub Summary(Of TRequest)(endpointSummary As Action(Of EndpointSummary(Of TRequest)))
   overload: FastEndpoints.EndpointDefinition.Summary*
   nameWithType.vb: EndpointDefinition.Summary(Of TRequest)(Action(Of EndpointSummary(Of TRequest)))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.EndpointDefinition.Summary(Of TRequest)(System.Action(Of FastEndpoints.EndpointSummary(Of TRequest)))
   name.vb: Summary(Of TRequest)(Action(Of EndpointSummary(Of TRequest)))
 - uid: FastEndpoints.EndpointDefinition.Summary(FastEndpoints.EndpointSummary)
@@ -1816,12 +1783,12 @@ items:
   type: Method
   source:
     id: Summary
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 374
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 400
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nprovide a summary/description for this endpoint to be used in swagger/ openapi\n"
+  summary: provide a summary/description for this endpoint to be used in swagger/ openapi
   example: []
   syntax:
     content: public void Summary(EndpointSummary endpointSummary)
@@ -1831,10 +1798,6 @@ items:
       description: an endpoint summary instance
     content.vb: Public Sub Summary(endpointSummary As EndpointSummary)
   overload: FastEndpoints.EndpointDefinition.Summary*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.EndpointDefinition.Tags(System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.Tags(System.String[])
   id: Tags(System.String[])
@@ -1842,18 +1805,23 @@ items:
   langs:
   - csharp
   - vb
-  name: Tags(String[])
-  nameWithType: EndpointDefinition.Tags(String[])
-  fullName: FastEndpoints.EndpointDefinition.Tags(System.String[])
+  name: Tags(params string[])
+  nameWithType: EndpointDefinition.Tags(params string[])
+  fullName: FastEndpoints.EndpointDefinition.Tags(params string[])
   type: Method
   source:
     id: Tags
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 382
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 409
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nspecify one or more string tags for this endpoint so they can be used in the exclusion filter during registration.\n<p>HINT: these tags will be applied in addition to endpoint level tags if there&apos;s any</p>\n<p>TIP: these tags have nothing to do with swagger tags!</p>\n"
+  summary: >-
+    specify one or more string tags for this endpoint so they can be used in the exclusion filter during registration.
+
+    <p>HINT: these tags will be applied in addition to endpoint level tags if there's any</p>
+
+    <p>TIP: these tags have nothing to do with swagger tags!</p>
   example: []
   syntax:
     content: public void Tags(params string[] endpointTags)
@@ -1863,13 +1831,9 @@ items:
       description: the tag values to associate with this endpoint
     content.vb: Public Sub Tags(ParamArray endpointTags As String())
   overload: FastEndpoints.EndpointDefinition.Tags*
-  nameWithType.vb: EndpointDefinition.Tags(String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointDefinition.Tags(System.String())
-  name.vb: Tags(String())
+  nameWithType.vb: EndpointDefinition.Tags(ParamArray String())
+  fullName.vb: FastEndpoints.EndpointDefinition.Tags(ParamArray String())
+  name.vb: Tags(ParamArray String())
 - uid: FastEndpoints.EndpointDefinition.Throttle(System.Int32,System.Double,System.String)
   commentId: M:FastEndpoints.EndpointDefinition.Throttle(System.Int32,System.Double,System.String)
   id: Throttle(System.Int32,System.Double,System.String)
@@ -1877,21 +1841,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Throttle(Int32, Double, String)
-  nameWithType: EndpointDefinition.Throttle(Int32, Double, String)
-  fullName: FastEndpoints.EndpointDefinition.Throttle(System.Int32, System.Double, System.String)
+  name: Throttle(int, double, string?)
+  nameWithType: EndpointDefinition.Throttle(int, double, string?)
+  fullName: FastEndpoints.EndpointDefinition.Throttle(int, double, string?)
   type: Method
   source:
     id: Throttle
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 398
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 425
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nrate limit requests to this endpoint based on a request http header sent by the client.\n"
+  summary: rate limit requests to this endpoint based on a request http header sent by the client.
   example: []
   syntax:
-    content: public void Throttle(int hitLimit, double durationSeconds, string headerName = null)
+    content: public void Throttle(int hitLimit, double durationSeconds, string? headerName = null)
     parameters:
     - id: hitLimit
       type: System.Int32
@@ -1901,13 +1865,17 @@ items:
       description: the frequency in seconds where the accrued hit count should be reset
     - id: headerName
       type: System.String
-      description: "\nthe name of the request header used to uniquely identify clients.\nheader name can also be configured globally using <code>app.UseFastEndpoints(c=> c.Throttle...)</code>\nnot specifying a header name will first look for &apos;X-Forwarded-For&apos; header and if not present, will use `HttpContext.Connection.RemoteIpAddress`.\n"
+      description: >-
+        the name of the request header used to uniquely identify clients.
+
+        header name can also be configured globally using <code>app.UseFastEndpoints(c=&gt; c.Throttle...)</code>
+
+        not specifying a header name will first look for 'X-Forwarded-For' header and if not present, will use `HttpContext.Connection.RemoteIpAddress`.
     content.vb: Public Sub Throttle(hitLimit As Integer, durationSeconds As Double, headerName As String = Nothing)
   overload: FastEndpoints.EndpointDefinition.Throttle*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
+  nameWithType.vb: EndpointDefinition.Throttle(Integer, Double, String)
+  fullName.vb: FastEndpoints.EndpointDefinition.Throttle(Integer, Double, String)
+  name.vb: Throttle(Integer, Double, String)
 - uid: FastEndpoints.EndpointDefinition.Validator``1
   commentId: M:FastEndpoints.EndpointDefinition.Validator``1
   id: Validator``1
@@ -1921,33 +1889,27 @@ items:
   type: Method
   source:
     id: Validator
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 404
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
+    startLine: 432
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nvalidator that should be used for this endpoint\n"
+  summary: validator that should be used for this endpoint
   example: []
   syntax:
-    content: >-
-      public void Validator<TValidator>()
-
-          where TValidator : IValidator
+    content: 'public void Validator<TValidator>() where TValidator : IValidator'
     typeParameters:
     - id: TValidator
       description: the type of the validator
-    content.vb: Public Sub Validator(Of TValidator As IValidator)
+    content.vb: Public Sub Validator(Of TValidator As IValidator)()
   overload: FastEndpoints.EndpointDefinition.Validator*
   nameWithType.vb: EndpointDefinition.Validator(Of TValidator)()
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.EndpointDefinition.Validator(Of TValidator)()
   name.vb: Validator(Of TValidator)()
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -1955,359 +1917,288 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.EndpointDefinition.#ctor*
   commentId: Overload:FastEndpoints.EndpointDefinition.#ctor
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition__ctor_System_Type_System_Type_System_Type_
   name: EndpointDefinition
   nameWithType: EndpointDefinition.EndpointDefinition
   fullName: FastEndpoints.EndpointDefinition.EndpointDefinition
+  nameWithType.vb: EndpointDefinition.New
+  fullName.vb: FastEndpoints.EndpointDefinition.New
+  name.vb: New
 - uid: System.Type
   commentId: T:System.Type
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
   name: Type
   nameWithType: Type
   fullName: System.Type
 - uid: FastEndpoints.EndpointDefinition.EndpointType*
   commentId: Overload:FastEndpoints.EndpointDefinition.EndpointType
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EndpointType
   name: EndpointType
   nameWithType: EndpointDefinition.EndpointType
   fullName: FastEndpoints.EndpointDefinition.EndpointType
 - uid: FastEndpoints.EndpointDefinition.MapperType*
   commentId: Overload:FastEndpoints.EndpointDefinition.MapperType
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_MapperType
   name: MapperType
   nameWithType: EndpointDefinition.MapperType
   fullName: FastEndpoints.EndpointDefinition.MapperType
 - uid: FastEndpoints.EndpointDefinition.ReqDtoType*
   commentId: Overload:FastEndpoints.EndpointDefinition.ReqDtoType
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ReqDtoType
   name: ReqDtoType
   nameWithType: EndpointDefinition.ReqDtoType
   fullName: FastEndpoints.EndpointDefinition.ReqDtoType
 - uid: FastEndpoints.EndpointDefinition.ResDtoType*
   commentId: Overload:FastEndpoints.EndpointDefinition.ResDtoType
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ResDtoType
   name: ResDtoType
   nameWithType: EndpointDefinition.ResDtoType
   fullName: FastEndpoints.EndpointDefinition.ResDtoType
 - uid: FastEndpoints.EndpointDefinition.Routes*
   commentId: Overload:FastEndpoints.EndpointDefinition.Routes
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Routes
   name: Routes
   nameWithType: EndpointDefinition.Routes
   fullName: FastEndpoints.EndpointDefinition.Routes
 - uid: System.String[]
   isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
   nameWithType.vb: String()
-  fullName.vb: System.String()
+  fullName.vb: String()
   name.vb: String()
   spec.csharp:
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
 - uid: FastEndpoints.EndpointDefinition.SecurityPolicyName*
   commentId: Overload:FastEndpoints.EndpointDefinition.SecurityPolicyName
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_SecurityPolicyName
   name: SecurityPolicyName
   nameWithType: EndpointDefinition.SecurityPolicyName
   fullName: FastEndpoints.EndpointDefinition.SecurityPolicyName
@@ -2315,32 +2206,41 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: FastEndpoints.EndpointDefinition.ValidatorType*
   commentId: Overload:FastEndpoints.EndpointDefinition.ValidatorType
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ValidatorType
   name: ValidatorType
   nameWithType: EndpointDefinition.ValidatorType
   fullName: FastEndpoints.EndpointDefinition.ValidatorType
 - uid: FastEndpoints.EndpointDefinition.Verbs*
   commentId: Overload:FastEndpoints.EndpointDefinition.Verbs
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Verbs
   name: Verbs
   nameWithType: EndpointDefinition.Verbs
   fullName: FastEndpoints.EndpointDefinition.Verbs
 - uid: FastEndpoints.EndpointDefinition.Version*
   commentId: Overload:FastEndpoints.EndpointDefinition.Version
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Version
   name: Version
   nameWithType: EndpointDefinition.Version
   fullName: FastEndpoints.EndpointDefinition.Version
 - uid: FastEndpoints.EpVersion
   commentId: T:FastEndpoints.EpVersion
   parent: FastEndpoints
+  href: FastEndpoints.EpVersion.html
   name: EpVersion
   nameWithType: EpVersion
   fullName: FastEndpoints.EpVersion
 - uid: FastEndpoints.EndpointDefinition.AllowAnyPermission*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowAnyPermission
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowAnyPermission
   name: AllowAnyPermission
   nameWithType: EndpointDefinition.AllowAnyPermission
   fullName: FastEndpoints.EndpointDefinition.AllowAnyPermission
@@ -2348,11 +2248,16 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: FastEndpoints.EndpointDefinition.AllowedPermissions*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowedPermissions
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowedPermissions
   name: AllowedPermissions
   nameWithType: EndpointDefinition.AllowedPermissions
   fullName: FastEndpoints.EndpointDefinition.AllowedPermissions
@@ -2360,49 +2265,41 @@ references:
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
-  name: List<String>
-  nameWithType: List<String>
-  fullName: System.Collections.Generic.List<System.String>
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
   nameWithType.vb: List(Of String)
-  fullName.vb: System.Collections.Generic.List(Of System.String)
+  fullName.vb: System.Collections.Generic.List(Of String)
   name.vb: List(Of String)
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   name: List<T>
   nameWithType: List<T>
   fullName: System.Collections.Generic.List<T>
@@ -2412,112 +2309,181 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: FastEndpoints.EndpointDefinition.AllowAnyClaim*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowAnyClaim
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowAnyClaim
   name: AllowAnyClaim
   nameWithType: EndpointDefinition.AllowAnyClaim
   fullName: FastEndpoints.EndpointDefinition.AllowAnyClaim
 - uid: FastEndpoints.EndpointDefinition.AllowedClaimTypes*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowedClaimTypes
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowedClaimTypes
   name: AllowedClaimTypes
   nameWithType: EndpointDefinition.AllowedClaimTypes
   fullName: FastEndpoints.EndpointDefinition.AllowedClaimTypes
 - uid: FastEndpoints.EndpointDefinition.AllowedRoles*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowedRoles
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowedRoles
   name: AllowedRoles
   nameWithType: EndpointDefinition.AllowedRoles
   fullName: FastEndpoints.EndpointDefinition.AllowedRoles
 - uid: FastEndpoints.EndpointDefinition.AnonymousVerbs*
   commentId: Overload:FastEndpoints.EndpointDefinition.AnonymousVerbs
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AnonymousVerbs
   name: AnonymousVerbs
   nameWithType: EndpointDefinition.AnonymousVerbs
   fullName: FastEndpoints.EndpointDefinition.AnonymousVerbs
+- uid: FastEndpoints.EndpointDefinition.AntiforgeryEnabled*
+  commentId: Overload:FastEndpoints.EndpointDefinition.AntiforgeryEnabled
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AntiforgeryEnabled
+  name: AntiforgeryEnabled
+  nameWithType: EndpointDefinition.AntiforgeryEnabled
+  fullName: FastEndpoints.EndpointDefinition.AntiforgeryEnabled
 - uid: FastEndpoints.EndpointDefinition.AuthSchemeNames*
   commentId: Overload:FastEndpoints.EndpointDefinition.AuthSchemeNames
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AuthSchemeNames
   name: AuthSchemeNames
   nameWithType: EndpointDefinition.AuthSchemeNames
   fullName: FastEndpoints.EndpointDefinition.AuthSchemeNames
 - uid: FastEndpoints.EndpointDefinition.DontAutoTagEndpoints*
   commentId: Overload:FastEndpoints.EndpointDefinition.DontAutoTagEndpoints
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_DontAutoTagEndpoints
   name: DontAutoTagEndpoints
   nameWithType: EndpointDefinition.DontAutoTagEndpoints
   fullName: FastEndpoints.EndpointDefinition.DontAutoTagEndpoints
 - uid: FastEndpoints.EndpointDefinition.DontBindFormData*
   commentId: Overload:FastEndpoints.EndpointDefinition.DontBindFormData
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_DontBindFormData
   name: DontBindFormData
   nameWithType: EndpointDefinition.DontBindFormData
   fullName: FastEndpoints.EndpointDefinition.DontBindFormData
 - uid: FastEndpoints.EndpointDefinition.DoNotCatchExceptions*
   commentId: Overload:FastEndpoints.EndpointDefinition.DoNotCatchExceptions
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_DoNotCatchExceptions
   name: DoNotCatchExceptions
   nameWithType: EndpointDefinition.DoNotCatchExceptions
   fullName: FastEndpoints.EndpointDefinition.DoNotCatchExceptions
+- uid: FastEndpoints.EndpointDefinition.EndpointAttributes*
+  commentId: Overload:FastEndpoints.EndpointDefinition.EndpointAttributes
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EndpointAttributes
+  name: EndpointAttributes
+  nameWithType: EndpointDefinition.EndpointAttributes
+  fullName: FastEndpoints.EndpointDefinition.EndpointAttributes
+- uid: System.Object[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object[]
+  nameWithType: object[]
+  fullName: object[]
+  nameWithType.vb: Object()
+  fullName.vb: Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
 - uid: FastEndpoints.EndpointDefinition.EndpointSummary*
   commentId: Overload:FastEndpoints.EndpointDefinition.EndpointSummary
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EndpointSummary
   name: EndpointSummary
   nameWithType: EndpointDefinition.EndpointSummary
   fullName: FastEndpoints.EndpointDefinition.EndpointSummary
 - uid: FastEndpoints.EndpointSummary
   commentId: T:FastEndpoints.EndpointSummary
   parent: FastEndpoints
+  href: FastEndpoints.EndpointSummary.html
   name: EndpointSummary
   nameWithType: EndpointSummary
   fullName: FastEndpoints.EndpointSummary
 - uid: FastEndpoints.EndpointDefinition.EndpointTags*
   commentId: Overload:FastEndpoints.EndpointDefinition.EndpointTags
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EndpointTags
   name: EndpointTags
   nameWithType: EndpointDefinition.EndpointTags
   fullName: FastEndpoints.EndpointDefinition.EndpointTags
 - uid: FastEndpoints.EndpointDefinition.FormDataContentType*
   commentId: Overload:FastEndpoints.EndpointDefinition.FormDataContentType
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_FormDataContentType
   name: FormDataContentType
   nameWithType: EndpointDefinition.FormDataContentType
   fullName: FastEndpoints.EndpointDefinition.FormDataContentType
 - uid: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix*
   commentId: Overload:FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_OverriddenRoutePrefix
   name: OverriddenRoutePrefix
   nameWithType: EndpointDefinition.OverriddenRoutePrefix
   fullName: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
 - uid: FastEndpoints.EndpointDefinition.PreBuiltUserPolicies*
   commentId: Overload:FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PreBuiltUserPolicies
   name: PreBuiltUserPolicies
   nameWithType: EndpointDefinition.PreBuiltUserPolicies
   fullName: FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
 - uid: FastEndpoints.EndpointDefinition.PolicyBuilder*
   commentId: Overload:FastEndpoints.EndpointDefinition.PolicyBuilder
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PolicyBuilder
   name: PolicyBuilder
   nameWithType: EndpointDefinition.PolicyBuilder
   fullName: FastEndpoints.EndpointDefinition.PolicyBuilder
@@ -2525,6 +2491,7 @@ references:
   commentId: T:System.Action{Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<AuthorizationPolicyBuilder>
   nameWithType: Action<AuthorizationPolicyBuilder>
   fullName: System.Action<Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder>
@@ -2534,40 +2501,31 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
     name: AuthorizationPolicyBuilder
-    nameWithType: AuthorizationPolicyBuilder
-    fullName: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
     name: AuthorizationPolicyBuilder
-    nameWithType: AuthorizationPolicyBuilder
-    fullName: Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<T>
   nameWithType: Action<T>
   fullName: System.Action<T>
@@ -2577,40 +2535,30 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointDefinition.ThrowIfValidationFails*
   commentId: Overload:FastEndpoints.EndpointDefinition.ThrowIfValidationFails
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ThrowIfValidationFails
   name: ThrowIfValidationFails
   nameWithType: EndpointDefinition.ThrowIfValidationFails
   fullName: FastEndpoints.EndpointDefinition.ThrowIfValidationFails
 - uid: FastEndpoints.EndpointDefinition.AllowAnonymous*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowAnonymous
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowAnonymous_FastEndpoints_Http___
   name: AllowAnonymous
   nameWithType: EndpointDefinition.AllowAnonymous
   fullName: FastEndpoints.EndpointDefinition.AllowAnonymous
@@ -2625,46 +2573,46 @@ references:
   spec.csharp:
   - uid: FastEndpoints.Http
     name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: FastEndpoints.Http
     name: Http
-    nameWithType: Http
-    fullName: FastEndpoints.Http
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: (
+  - name: )
 - uid: FastEndpoints.EndpointDefinition.AllowFileUploads*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowFileUploads
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowFileUploads_System_Boolean_
   name: AllowFileUploads
   nameWithType: EndpointDefinition.AllowFileUploads
   fullName: FastEndpoints.EndpointDefinition.AllowFileUploads
 - uid: FastEndpoints.EndpointDefinition.AllowFormData*
   commentId: Overload:FastEndpoints.EndpointDefinition.AllowFormData
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AllowFormData_System_Boolean_
   name: AllowFormData
   nameWithType: EndpointDefinition.AllowFormData
   fullName: FastEndpoints.EndpointDefinition.AllowFormData
 - uid: FastEndpoints.EndpointDefinition.AuthSchemes*
   commentId: Overload:FastEndpoints.EndpointDefinition.AuthSchemes
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_AuthSchemes_System_String___
   name: AuthSchemes
   nameWithType: EndpointDefinition.AuthSchemes
   fullName: FastEndpoints.EndpointDefinition.AuthSchemes
 - uid: FastEndpoints.EndpointDefinition.Claims*
   commentId: Overload:FastEndpoints.EndpointDefinition.Claims
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Claims_System_String___
   name: Claims
   nameWithType: EndpointDefinition.Claims
   fullName: FastEndpoints.EndpointDefinition.Claims
 - uid: FastEndpoints.EndpointDefinition.ClaimsAll*
   commentId: Overload:FastEndpoints.EndpointDefinition.ClaimsAll
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ClaimsAll_System_String___
   name: ClaimsAll
   nameWithType: EndpointDefinition.ClaimsAll
   fullName: FastEndpoints.EndpointDefinition.ClaimsAll
 - uid: FastEndpoints.EndpointDefinition.Description*
   commentId: Overload:FastEndpoints.EndpointDefinition.Description
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Description_System_Action_Microsoft_AspNetCore_Builder_RouteHandlerBuilder__System_Boolean_
   name: Description
   nameWithType: EndpointDefinition.Description
   fullName: FastEndpoints.EndpointDefinition.Description
@@ -2672,6 +2620,7 @@ references:
   commentId: T:System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<RouteHandlerBuilder>
   nameWithType: Action<RouteHandlerBuilder>
   fullName: System.Action<Microsoft.AspNetCore.Builder.RouteHandlerBuilder>
@@ -2681,54 +2630,54 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
     name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.routehandlerbuilder
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
     name: RouteHandlerBuilder
-    nameWithType: RouteHandlerBuilder
-    fullName: Microsoft.AspNetCore.Builder.RouteHandlerBuilder
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.routehandlerbuilder
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointDefinition.DontAutoTag*
   commentId: Overload:FastEndpoints.EndpointDefinition.DontAutoTag
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_DontAutoTag
   name: DontAutoTag
   nameWithType: EndpointDefinition.DontAutoTag
   fullName: FastEndpoints.EndpointDefinition.DontAutoTag
 - uid: FastEndpoints.EndpointDefinition.DontCatchExceptions*
   commentId: Overload:FastEndpoints.EndpointDefinition.DontCatchExceptions
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_DontCatchExceptions
   name: DontCatchExceptions
   nameWithType: EndpointDefinition.DontCatchExceptions
   fullName: FastEndpoints.EndpointDefinition.DontCatchExceptions
 - uid: FastEndpoints.EndpointDefinition.DontThrowIfValidationFails*
   commentId: Overload:FastEndpoints.EndpointDefinition.DontThrowIfValidationFails
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_DontThrowIfValidationFails
   name: DontThrowIfValidationFails
   nameWithType: EndpointDefinition.DontThrowIfValidationFails
   fullName: FastEndpoints.EndpointDefinition.DontThrowIfValidationFails
+- uid: FastEndpoints.EndpointDefinition.EnableAntiforgery*
+  commentId: Overload:FastEndpoints.EndpointDefinition.EnableAntiforgery
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EnableAntiforgery
+  name: EnableAntiforgery
+  nameWithType: EndpointDefinition.EnableAntiforgery
+  fullName: FastEndpoints.EndpointDefinition.EnableAntiforgery
 - uid: FastEndpoints.EndpointDefinition.EndpointVersion*
   commentId: Overload:FastEndpoints.EndpointDefinition.EndpointVersion
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_EndpointVersion_System_Int32_System_Nullable_System_Int32__
   name: EndpointVersion
   nameWithType: EndpointDefinition.EndpointVersion
   fullName: FastEndpoints.EndpointDefinition.EndpointVersion
@@ -2736,56 +2685,40 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: System.Nullable{System.Int32}
   commentId: T:System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
-  fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
-  fullName.vb: System.Nullable(Of System.Int32)
-  name.vb: Nullable(Of Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   name: Nullable<T>
   nameWithType: Nullable<T>
   fullName: System.Nullable<T>
@@ -2795,77 +2728,79 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointDefinition.Options*
   commentId: Overload:FastEndpoints.EndpointDefinition.Options
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Options_System_Action_Microsoft_AspNetCore_Builder_RouteHandlerBuilder__
   name: Options
   nameWithType: EndpointDefinition.Options
   fullName: FastEndpoints.EndpointDefinition.Options
 - uid: FastEndpoints.EndpointDefinition.Permissions*
   commentId: Overload:FastEndpoints.EndpointDefinition.Permissions
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Permissions_System_String___
   name: Permissions
   nameWithType: EndpointDefinition.Permissions
   fullName: FastEndpoints.EndpointDefinition.Permissions
 - uid: FastEndpoints.EndpointDefinition.PermissionsAll*
   commentId: Overload:FastEndpoints.EndpointDefinition.PermissionsAll
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PermissionsAll_System_String___
   name: PermissionsAll
   nameWithType: EndpointDefinition.PermissionsAll
   fullName: FastEndpoints.EndpointDefinition.PermissionsAll
 - uid: FastEndpoints.EndpointDefinition.Policy*
   commentId: Overload:FastEndpoints.EndpointDefinition.Policy
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Policy_System_Action_Microsoft_AspNetCore_Authorization_AuthorizationPolicyBuilder__
   name: Policy
   nameWithType: EndpointDefinition.Policy
   fullName: FastEndpoints.EndpointDefinition.Policy
 - uid: FastEndpoints.EndpointDefinition.Policies*
   commentId: Overload:FastEndpoints.EndpointDefinition.Policies
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Policies_System_String___
   name: Policies
   nameWithType: EndpointDefinition.Policies
   fullName: FastEndpoints.EndpointDefinition.Policies
 - uid: FastEndpoints.Order.Before
   commentId: F:FastEndpoints.Order.Before
-  isExternal: true
+  href: FastEndpoints.Order.html#FastEndpoints_Order_Before
+  name: Before
+  nameWithType: Order.Before
+  fullName: FastEndpoints.Order.Before
 - uid: FastEndpoints.Order.After
   commentId: F:FastEndpoints.Order.After
-  isExternal: true
+  href: FastEndpoints.Order.html#FastEndpoints_Order_After
+  name: After
+  nameWithType: Order.After
+  fullName: FastEndpoints.Order.After
 - uid: FastEndpoints.EndpointDefinition.PostProcessors*
   commentId: Overload:FastEndpoints.EndpointDefinition.PostProcessors
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PostProcessors_FastEndpoints_Order_FastEndpoints_IGlobalPostProcessor___
   name: PostProcessors
   nameWithType: EndpointDefinition.PostProcessors
   fullName: FastEndpoints.EndpointDefinition.PostProcessors
 - uid: FastEndpoints.Order
   commentId: T:FastEndpoints.Order
   parent: FastEndpoints
+  href: FastEndpoints.Order.html
   name: Order
   nameWithType: Order
   fullName: FastEndpoints.Order
 - uid: FastEndpoints.IGlobalPostProcessor[]
   isExternal: true
+  href: FastEndpoints.IGlobalPostProcessor.html
   name: IGlobalPostProcessor[]
   nameWithType: IGlobalPostProcessor[]
   fullName: FastEndpoints.IGlobalPostProcessor[]
@@ -2875,26 +2810,30 @@ references:
   spec.csharp:
   - uid: FastEndpoints.IGlobalPostProcessor
     name: IGlobalPostProcessor
-    nameWithType: IGlobalPostProcessor
-    fullName: FastEndpoints.IGlobalPostProcessor
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+    href: FastEndpoints.IGlobalPostProcessor.html
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: FastEndpoints.IGlobalPostProcessor
     name: IGlobalPostProcessor
-    nameWithType: IGlobalPostProcessor
-    fullName: FastEndpoints.IGlobalPostProcessor
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+    href: FastEndpoints.IGlobalPostProcessor.html
+  - name: (
+  - name: )
+- uid: FastEndpoints.EndpointDefinition.PostProcessor*
+  commentId: Overload:FastEndpoints.EndpointDefinition.PostProcessor
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PostProcessor__1_FastEndpoints_Order_
+  name: PostProcessor
+  nameWithType: EndpointDefinition.PostProcessor
+  fullName: FastEndpoints.EndpointDefinition.PostProcessor
 - uid: FastEndpoints.EndpointDefinition.PreProcessors*
   commentId: Overload:FastEndpoints.EndpointDefinition.PreProcessors
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PreProcessors_FastEndpoints_Order_FastEndpoints_IGlobalPreProcessor___
   name: PreProcessors
   nameWithType: EndpointDefinition.PreProcessors
   fullName: FastEndpoints.EndpointDefinition.PreProcessors
 - uid: FastEndpoints.IGlobalPreProcessor[]
   isExternal: true
+  href: FastEndpoints.IGlobalPreProcessor.html
   name: IGlobalPreProcessor[]
   nameWithType: IGlobalPreProcessor[]
   fullName: FastEndpoints.IGlobalPreProcessor[]
@@ -2904,21 +2843,24 @@ references:
   spec.csharp:
   - uid: FastEndpoints.IGlobalPreProcessor
     name: IGlobalPreProcessor
-    nameWithType: IGlobalPreProcessor
-    fullName: FastEndpoints.IGlobalPreProcessor
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+    href: FastEndpoints.IGlobalPreProcessor.html
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: FastEndpoints.IGlobalPreProcessor
     name: IGlobalPreProcessor
-    nameWithType: IGlobalPreProcessor
-    fullName: FastEndpoints.IGlobalPreProcessor
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+    href: FastEndpoints.IGlobalPreProcessor.html
+  - name: (
+  - name: )
+- uid: FastEndpoints.EndpointDefinition.PreProcessor*
+  commentId: Overload:FastEndpoints.EndpointDefinition.PreProcessor
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PreProcessor__1_FastEndpoints_Order_
+  name: PreProcessor
+  nameWithType: EndpointDefinition.PreProcessor
+  fullName: FastEndpoints.EndpointDefinition.PreProcessor
 - uid: FastEndpoints.EndpointDefinition.ResponseCache*
   commentId: Overload:FastEndpoints.EndpointDefinition.ResponseCache
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ResponseCache_System_Int32_Microsoft_AspNetCore_Mvc_ResponseCacheLocation_System_Boolean_System_String_System_String___
   name: ResponseCache
   nameWithType: EndpointDefinition.ResponseCache
   fullName: FastEndpoints.EndpointDefinition.ResponseCache
@@ -2926,38 +2868,75 @@ references:
   commentId: T:Microsoft.AspNetCore.Mvc.ResponseCacheLocation
   parent: Microsoft.AspNetCore.Mvc
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.responsecachelocation
   name: ResponseCacheLocation
   nameWithType: ResponseCacheLocation
   fullName: Microsoft.AspNetCore.Mvc.ResponseCacheLocation
 - uid: Microsoft.AspNetCore.Mvc
   commentId: N:Microsoft.AspNetCore.Mvc
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.AspNetCore.Mvc
   nameWithType: Microsoft.AspNetCore.Mvc
   fullName: Microsoft.AspNetCore.Mvc
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Mvc
+    name: Mvc
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Mvc
+    name: Mvc
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc
 - uid: FastEndpoints.EndpointDefinition.ResponseInterceptor*
   commentId: Overload:FastEndpoints.EndpointDefinition.ResponseInterceptor
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_ResponseInterceptor_FastEndpoints_IResponseInterceptor_
   name: ResponseInterceptor
   nameWithType: EndpointDefinition.ResponseInterceptor
   fullName: FastEndpoints.EndpointDefinition.ResponseInterceptor
 - uid: FastEndpoints.IResponseInterceptor
   commentId: T:FastEndpoints.IResponseInterceptor
   parent: FastEndpoints
+  href: FastEndpoints.IResponseInterceptor.html
   name: IResponseInterceptor
   nameWithType: IResponseInterceptor
   fullName: FastEndpoints.IResponseInterceptor
 - uid: FastEndpoints.EndpointDefinition.Roles*
   commentId: Overload:FastEndpoints.EndpointDefinition.Roles
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Roles_System_String___
   name: Roles
   nameWithType: EndpointDefinition.Roles
   fullName: FastEndpoints.EndpointDefinition.Roles
 - uid: FastEndpoints.EndpointDefinition.RoutePrefixOverride*
   commentId: Overload:FastEndpoints.EndpointDefinition.RoutePrefixOverride
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_RoutePrefixOverride_System_String_
   name: RoutePrefixOverride
   nameWithType: EndpointDefinition.RoutePrefixOverride
   fullName: FastEndpoints.EndpointDefinition.RoutePrefixOverride
 - uid: FastEndpoints.EndpointDefinition.Summary*
   commentId: Overload:FastEndpoints.EndpointDefinition.Summary
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Summary_System_Action_FastEndpoints_EndpointSummary__
   name: Summary
   nameWithType: EndpointDefinition.Summary
   fullName: FastEndpoints.EndpointDefinition.Summary
@@ -2965,6 +2944,7 @@ references:
   commentId: T:System.Action{FastEndpoints.EndpointSummary}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<EndpointSummary>
   nameWithType: Action<EndpointSummary>
   fullName: System.Action<FastEndpoints.EndpointSummary>
@@ -2974,39 +2954,30 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.EndpointSummary
     name: EndpointSummary
-    nameWithType: EndpointSummary
-    fullName: FastEndpoints.EndpointSummary
+    href: FastEndpoints.EndpointSummary.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.EndpointSummary
     name: EndpointSummary
-    nameWithType: EndpointSummary
-    fullName: FastEndpoints.EndpointSummary
+    href: FastEndpoints.EndpointSummary.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Action{FastEndpoints.EndpointSummary{{TRequest}}}
   commentId: T:System.Action{FastEndpoints.EndpointSummary{``0}}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<EndpointSummary<TRequest>>
   nameWithType: Action<EndpointSummary<TRequest>>
   fullName: System.Action<FastEndpoints.EndpointSummary<TRequest>>
@@ -3016,60 +2987,42 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.EndpointSummary`1
     name: EndpointSummary
-    nameWithType: EndpointSummary
-    fullName: FastEndpoints.EndpointSummary
+    href: FastEndpoints.EndpointSummary-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.EndpointSummary`1
     name: EndpointSummary
-    nameWithType: EndpointSummary
-    fullName: FastEndpoints.EndpointSummary
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.EndpointSummary-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointDefinition.Tags*
   commentId: Overload:FastEndpoints.EndpointDefinition.Tags
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Tags_System_String___
   name: Tags
   nameWithType: EndpointDefinition.Tags
   fullName: FastEndpoints.EndpointDefinition.Tags
 - uid: FastEndpoints.EndpointDefinition.Throttle*
   commentId: Overload:FastEndpoints.EndpointDefinition.Throttle
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Throttle_System_Int32_System_Double_System_String_
   name: Throttle
   nameWithType: EndpointDefinition.Throttle
   fullName: FastEndpoints.EndpointDefinition.Throttle
@@ -3077,11 +3030,16 @@ references:
   commentId: T:System.Double
   parent: System
   isExternal: true
-  name: Double
-  nameWithType: Double
-  fullName: System.Double
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
 - uid: FastEndpoints.EndpointDefinition.Validator*
   commentId: Overload:FastEndpoints.EndpointDefinition.Validator
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Validator__1
   name: Validator
   nameWithType: EndpointDefinition.Validator
   fullName: FastEndpoints.EndpointDefinition.Validator

@@ -100,7 +100,11 @@
   <a id="FastEndpoints_IEventStorageRecord_Event_" data-uid="FastEndpoints.IEventStorageRecord.Event*"></a>
   <h4 id="FastEndpoints_IEventStorageRecord_Event" data-uid="FastEndpoints.IEventStorageRecord.Event">Event</h4>
   <div class="markdown level1 summary"><p>the actual event object that will be embedded in the storage record.
-if your database doesn't support embedding objects, you may have to serialize the object and store it in this property.</p>
+if your database/orm (such as ef-core) doesn't support embedding objects, you can take the following steps:</p>
+<pre><code class="lang-csharp">1. add a [NotMapped] attribute to this property.
+2. add a new property, either a string or  array
+3. implement both  and  to serialize/deserialize the event object back and forth and store it in the newly added property.</code></pre>
+<p>you may use any serializer you please. recommendation is to use MessagePack.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -117,7 +121,7 @@ if your database doesn't support embedding objects, you may have to serialize th
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Object</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -143,7 +147,7 @@ if your database doesn't support embedding objects, you may have to serialize th
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -170,7 +174,7 @@ default value is 4 hours from time of creation.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -196,7 +200,7 @@ default value is 4 hours from time of creation.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Boolean</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -224,7 +228,93 @@ you don't have to worry about generating this as it will automatically be set by
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="FastEndpoints_IEventStorageRecord_GetEvent_" data-uid="FastEndpoints.IEventStorageRecord.GetEvent*"></a>
+  <h4 id="FastEndpoints_IEventStorageRecord_GetEvent__1" data-uid="FastEndpoints.IEventStorageRecord.GetEvent``1">GetEvent&lt;TEvent&gt;()</h4>
+  <div class="markdown level1 summary"><p>implement this function to customize event deserialization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TEvent GetEvent&lt;TEvent&gt;() where TEvent : IEvent</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_IEventStorageRecord_SetEvent_" data-uid="FastEndpoints.IEventStorageRecord.SetEvent*"></a>
+  <h4 id="FastEndpoints_IEventStorageRecord_SetEvent__1___0_" data-uid="FastEndpoints.IEventStorageRecord.SetEvent``1(``0)">SetEvent&lt;TEvent&gt;(TEvent)</h4>
+  <div class="markdown level1 summary"><p>implement this method to customize event serialization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetEvent&lt;TEvent&gt;(TEvent @event) where TEvent : IEvent</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEvent</span></td>
+        <td><span class="parametername">event</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
         <td></td>
       </tr>
     </tbody>

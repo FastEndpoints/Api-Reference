@@ -10,6 +10,7 @@ items:
   - FastEndpoints.BindingOptions.Modifier
   - FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{System.Object,FastEndpoints.ParseResult})
   - FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})
+  - FastEndpoints.BindingOptions.ValueParserWhen(System.Func{System.Reflection.PropertyInfo,System.Boolean},System.Func{System.Object,System.Type,FastEndpoints.ParseResult})
   langs:
   - csharp
   - vb
@@ -19,12 +20,12 @@ items:
   type: Class
   source:
     id: BindingOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 10
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 11
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nrequest binding options\n"
+  summary: request binding options
   example: []
   syntax:
     content: public sealed class BindingOptions
@@ -36,17 +37,8 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
-  - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - sealed
-  - class
-  modifiers.vb:
-  - Public
-  - NotInheritable
-  - Class
 - uid: FastEndpoints.BindingOptions.FailureMessage
   commentId: P:FastEndpoints.BindingOptions.FailureMessage
   id: FailureMessage
@@ -60,26 +52,39 @@ items:
   type: Property
   source:
     id: FailureMessage
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 21
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.\n<p>NOTE: this only applies to non-STJ operations. for customizing error messages of STJ binding failures, specify a <xref href=\"FastEndpoints.BindingOptions.JsonExceptionTransformer\" data-throw-if-not-resolved=\"false\"></xref> func.</p>\nthe following arguments are supplied to the function.\n<p><xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>: the type of the property which failed to bind</p>\n<p><xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>: the name of the property which failed to bind</p>\n<p><xref href=\"Microsoft.Extensions.Primitives.StringValues\" data-throw-if-not-resolved=\"false\"></xref>: the value that was attempted which resulted in the failure</p>\nuse these input parameters and construct your own error message string and return it from the function.\n"
+  summary: >-
+    a function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.
+
+    <p>
+
+    NOTE: this only applies to non-STJ operations. for customizing error messages of STJ binding failures, specify a
+
+    <xref href="FastEndpoints.BindingOptions.JsonExceptionTransformer" data-throw-if-not-resolved="false"></xref> func.
+
+    </p>
+
+    the following arguments are supplied to the function.
+
+    <p><xref href="System.Type" data-throw-if-not-resolved="false"></xref>: the type of the property which failed to bind</p>
+
+    <p><xref href="System.String" data-throw-if-not-resolved="false"></xref>: the name of the property which failed to bind</p>
+
+    <p><xref href="Microsoft.Extensions.Primitives.StringValues" data-throw-if-not-resolved="false"></xref>: the value that was attempted which resulted in the failure</p>
+
+    use these input parameters and construct your own error message string and return it from the function.
   example: []
   syntax:
     content: public Func<Type, string, StringValues, string> FailureMessage { set; }
     parameters: []
     return:
       type: System.Func{System.Type,System.String,Microsoft.Extensions.Primitives.StringValues,System.String}
-    content.vb: Public WriteOnly Property FailureMessage As Func(Of Type, String, StringValues, String)
+    content.vb: Public Property FailureMessage As Func(Of Type, String, StringValues, String)
   overload: FastEndpoints.BindingOptions.FailureMessage*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
 - uid: FastEndpoints.BindingOptions.JsonExceptionTransformer
   commentId: P:FastEndpoints.BindingOptions.JsonExceptionTransformer
   id: JsonExceptionTransformer
@@ -93,26 +98,33 @@ items:
   type: Property
   source:
     id: JsonExceptionTransformer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 30
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 38
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nby default, all STJ <xref href=\"System.Text.Json.JsonException\" data-throw-if-not-resolved=\"false\"></xref>s thrown during deserialization are automatically caught and transformed using this function. \nif you&apos;d like to disable this behavior, simply set this property to <code>null</code> or specify a function to construct a\n<xref href=\"FluentValidation.Results.ValidationFailure\" data-throw-if-not-resolved=\"false\"></xref> when STJ throws an exception due to invalid json input.\n<p>NOTE: this only applies to STJ based operations. for customizing error messages of non-STJ binding failures, specify a <xref href=\"FastEndpoints.BindingOptions.FailureMessage\" data-throw-if-not-resolved=\"false\"></xref> func.</p>\n"
+  summary: >-
+    by default, all STJ <xref href="System.Text.Json.JsonException" data-throw-if-not-resolved="false"></xref>s thrown during deserialization are automatically caught and transformed using this function.
+
+    if you'd like to disable this behavior, simply set this property to <code>null</code> or specify a function to construct a
+
+    <xref href="FluentValidation.Results.ValidationFailure" data-throw-if-not-resolved="false"></xref> when STJ throws an exception due to invalid json input.
+
+    <p>
+
+    NOTE: this only applies to STJ based operations. for customizing error messages of non-STJ binding failures, specify a
+
+    <xref href="FastEndpoints.BindingOptions.FailureMessage" data-throw-if-not-resolved="false"></xref> func.
+
+    </p>
   example: []
   syntax:
-    content: public Func<JsonException, ValidationFailure> JsonExceptionTransformer { set; }
+    content: public Func<JsonException, ValidationFailure>? JsonExceptionTransformer { set; }
     parameters: []
     return:
       type: System.Func{System.Text.Json.JsonException,FluentValidation.Results.ValidationFailure}
-    content.vb: Public WriteOnly Property JsonExceptionTransformer As Func(Of JsonException, ValidationFailure)
+    content.vb: Public Property JsonExceptionTransformer As Func(Of JsonException, ValidationFailure)
   overload: FastEndpoints.BindingOptions.JsonExceptionTransformer*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
 - uid: FastEndpoints.BindingOptions.Modifier
   commentId: P:FastEndpoints.BindingOptions.Modifier
   id: Modifier
@@ -126,26 +138,35 @@ items:
   type: Property
   source:
     id: Modifier
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 45
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 52
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nan optional action to be run after the endpoint level request binding has occured.\nit is intended as a way to perform common model binding logic that applies to all endpoints/requests.\nthe action is passed in the following arguments:\n<p><xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>: the request dto instance</p>\n<p><xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>: the type of the request dto</p>\n<p><xref href=\"FastEndpoints.BinderContext\" data-throw-if-not-resolved=\"false\"></xref>: the request binding context</p>\n<p><xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>: a cancellation token</p>\n<p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>\n"
+  summary: >-
+    an optional action to be run after the endpoint level request binding has occured.
+
+    it is intended as a way to perform common model binding logic that applies to all endpoints/requests.
+
+    the action is passed in the following arguments:
+
+    <p><xref href="System.Object" data-throw-if-not-resolved="false"></xref>: the request dto instance</p>
+
+    <p><xref href="System.Type" data-throw-if-not-resolved="false"></xref>: the type of the request dto</p>
+
+    <p><xref href="FastEndpoints.BinderContext" data-throw-if-not-resolved="false"></xref>: the request binding context</p>
+
+    <p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref>: a cancellation token</p>
+
+    <p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
   example: []
   syntax:
-    content: public Action<object, Type, BinderContext, CancellationToken> Modifier { set; }
+    content: public Action<object, Type, BinderContext, CancellationToken>? Modifier { set; }
     parameters: []
     return:
       type: System.Action{System.Object,System.Type,FastEndpoints.BinderContext,System.Threading.CancellationToken}
-    content.vb: Public WriteOnly Property Modifier As Action(Of Object, Type, BinderContext, CancellationToken)
+    content.vb: Public Property Modifier As Action(Of Object, Type, BinderContext, CancellationToken)
   overload: FastEndpoints.BindingOptions.Modifier*
-  modifiers.csharp:
-  - public
-  - set
-  modifiers.vb:
-  - Public
-  - WriteOnly
 - uid: FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})
   commentId: M:FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})
   id: ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})
@@ -153,43 +174,56 @@ items:
   langs:
   - csharp
   - vb
-  name: ValueParserFor<T>(Func<Object, ParseResult>)
-  nameWithType: BindingOptions.ValueParserFor<T>(Func<Object, ParseResult>)
-  fullName: FastEndpoints.BindingOptions.ValueParserFor<T>(System.Func<System.Object, FastEndpoints.ParseResult>)
+  name: ValueParserFor<T>(Func<object?, ParseResult>)
+  nameWithType: BindingOptions.ValueParserFor<T>(Func<object?, ParseResult>)
+  fullName: FastEndpoints.BindingOptions.ValueParserFor<T>(System.Func<object?, FastEndpoints.ParseResult>)
   type: Method
   source:
     id: ValueParserFor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 72
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 83
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadd a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto properties from query/route/forms/headers/claims.\nthis is an alternative approach to adding a `TryParse()` function to your types that need model binding support from the abovementioned binding sources.\nonce you register a parser function here for a type, any `TryParse()` method on the type will not be used for parsing.\nalso, these parser functions do not apply to JSON deserialization done by STJ and can be considered the equivalent to registering a custom converter in STJ when it comes to query/route/forms/headers/claims binding sources.\n"
+  summary: >-
+    add a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto
+
+    properties from query/route/forms/headers/claims.
+
+    this is an alternative approach to adding a `TryParse()` function to your types that need model binding support from the abovementioned binding
+
+    sources.
+
+    once you register a parser function here for a type, any `TryParse()` method on the type will not be used for parsing.
+
+    also, these parser functions do not apply to JSON deserialization done by STJ and can be considered the equivalent to registering a custom converter
+
+    in STJ when it comes to query/route/forms/headers/claims binding sources.
   example: []
   syntax:
-    content: public bool ValueParserFor<T>(Func<object, ParseResult> parser)
+    content: public bool ValueParserFor<T>(Func<object?, ParseResult> parser)
     parameters:
     - id: parser
       type: System.Func{System.Object,FastEndpoints.ParseResult}
-      description: >
+      description: >-
         a function that takes in a nullable object and returns a <xref href="FastEndpoints.ParseResult" data-throw-if-not-resolved="false"></xref> as the output.
 
-        <pre><code>app.UseFastEndpoints(c =>
+        <pre><code class="lang-csharp">app.UseFastEndpoints(c =&gt;
 
         {
-           c.Binding.ValueParserFor&lt;Guid>(MyParsers.GuidParser);
+            c.Binding.ValueParserFor&lt;Guid&gt;(MyParsers.GuidParser);
         });
 
 
         public static class MyParsers
 
         {
-           public static ParseResult GuidParser(object? input)
-           {
-               Guid result;
-               bool success = Guid.TryParse(input?.ToString(), out result);
-               return new(success, result);
-           }
+            public static ParseResult GuidParser(object? input)
+            {
+                Guid result;
+                bool success = Guid.TryParse(input?.ToString(), out result);
+                return new(success, result);
+            }
         }</code></pre>
     typeParameters:
     - id: T
@@ -199,11 +233,7 @@ items:
     content.vb: Public Function ValueParserFor(Of T)(parser As Func(Of Object, ParseResult)) As Boolean
   overload: FastEndpoints.BindingOptions.ValueParserFor*
   nameWithType.vb: BindingOptions.ValueParserFor(Of T)(Func(Of Object, ParseResult))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(Of T)(System.Func(Of System.Object, FastEndpoints.ParseResult))
+  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(Of T)(System.Func(Of Object, FastEndpoints.ParseResult))
   name.vb: ValueParserFor(Of T)(Func(Of Object, ParseResult))
 - uid: FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{System.Object,FastEndpoints.ParseResult})
   commentId: M:FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{System.Object,FastEndpoints.ParseResult})
@@ -212,61 +242,112 @@ items:
   langs:
   - csharp
   - vb
-  name: ValueParserFor(Type, Func<Object, ParseResult>)
-  nameWithType: BindingOptions.ValueParserFor(Type, Func<Object, ParseResult>)
-  fullName: FastEndpoints.BindingOptions.ValueParserFor(System.Type, System.Func<System.Object, FastEndpoints.ParseResult>)
+  name: ValueParserFor(Type, Func<object?, ParseResult>)
+  nameWithType: BindingOptions.ValueParserFor(Type, Func<object?, ParseResult>)
+  fullName: FastEndpoints.BindingOptions.ValueParserFor(System.Type, System.Func<object?, FastEndpoints.ParseResult>)
   type: Method
   source:
     id: ValueParserFor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Config\BindingOptions.cs
-    startLine: 100
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 115
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadd a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto properties from query/route/forms/headers/claims.\nthis is an alternative approach to adding a `TryParse()` function to your types that need model binding support from the abovementioned binding sources.\nonce you register a parser function here for a type, any `TryParse()` method on the type will not be used for parsing.\nalso, these parser functions do not apply to JSON deserialization done by STJ and can be considered the equivalent to registering a custom converter in STJ when it comes to query/route/forms/headers/claims binding sources.\n"
+  summary: >-
+    add a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto
+
+    properties from query/route/forms/headers/claims.
+
+    this is an alternative approach to adding a `TryParse()` function to your types that need model binding support from the abovementioned binding
+
+    sources.
+
+    once you register a parser function here for a type, any `TryParse()` method on the type will not be used for parsing.
+
+    also, these parser functions do not apply to JSON deserialization done by STJ and can be considered the equivalent to registering a custom converter
+
+    in STJ when it comes to query/route/forms/headers/claims binding sources.
   example: []
   syntax:
-    content: public bool ValueParserFor(Type type, Func<object, ParseResult> parser)
+    content: public bool ValueParserFor(Type type, Func<object?, ParseResult> parser)
     parameters:
     - id: type
       type: System.Type
       description: the type of the class which this parser function will target
     - id: parser
       type: System.Func{System.Object,FastEndpoints.ParseResult}
-      description: >
+      description: >-
         a function that takes in a nullable object and returns a <xref href="FastEndpoints.ParseResult" data-throw-if-not-resolved="false"></xref> as the output.
 
-        <pre><code>app.UseFastEndpoints(c =>
+        <pre><code class="lang-csharp">app.UseFastEndpoints(c =&gt;
 
         {
-           c.Binding.ValueParserFor(typeof(Guid), MyParsers.GuidParser);
+            c.Binding.ValueParserFor(typeof(Guid), MyParsers.GuidParser);
         });
 
 
         public static class MyParsers
 
         {
-           public static ParseResult GuidParser(object? input)
-           {
-               Guid result;
-               bool success = Guid.TryParse(input?.ToString(), out result);
-               return new(success, result);
-           }
+            public static ParseResult GuidParser(object? input)
+            {
+                Guid result;
+                bool success = Guid.TryParse(input?.ToString(), out result);
+                return new(success, result);
+            }
         }</code></pre>
     return:
       type: System.Boolean
     content.vb: Public Function ValueParserFor(type As Type, parser As Func(Of Object, ParseResult)) As Boolean
   overload: FastEndpoints.BindingOptions.ValueParserFor*
   nameWithType.vb: BindingOptions.ValueParserFor(Type, Func(Of Object, ParseResult))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(System.Type, System.Func(Of System.Object, FastEndpoints.ParseResult))
+  fullName.vb: FastEndpoints.BindingOptions.ValueParserFor(System.Type, System.Func(Of Object, FastEndpoints.ParseResult))
   name.vb: ValueParserFor(Type, Func(Of Object, ParseResult))
+- uid: FastEndpoints.BindingOptions.ValueParserWhen(System.Func{System.Reflection.PropertyInfo,System.Boolean},System.Func{System.Object,System.Type,FastEndpoints.ParseResult})
+  commentId: M:FastEndpoints.BindingOptions.ValueParserWhen(System.Func{System.Reflection.PropertyInfo,System.Boolean},System.Func{System.Object,System.Type,FastEndpoints.ParseResult})
+  id: ValueParserWhen(System.Func{System.Reflection.PropertyInfo,System.Boolean},System.Func{System.Object,System.Type,FastEndpoints.ParseResult})
+  parent: FastEndpoints.BindingOptions
+  langs:
+  - csharp
+  - vb
+  name: ValueParserWhen(Func<PropertyInfo, bool>, Func<object?, Type, ParseResult>)
+  nameWithType: BindingOptions.ValueParserWhen(Func<PropertyInfo, bool>, Func<object?, Type, ParseResult>)
+  fullName: FastEndpoints.BindingOptions.ValueParserWhen(System.Func<System.Reflection.PropertyInfo, bool>, System.Func<object?, System.Type, FastEndpoints.ParseResult>)
+  type: Method
+  source:
+    id: ValueParserWhen
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
+    startLine: 126
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    override value parsers for request dto properties that match a predicate.
+
+    <p>
+
+    WARNING: might lead to weird/untraceable behavior. use at own risk!
+
+    </p>
+  example: []
+  syntax:
+    content: public void ValueParserWhen(Func<PropertyInfo, bool> propertyMatcher, Func<object?, Type, ParseResult> parser)
+    parameters:
+    - id: propertyMatcher
+      type: System.Func{System.Reflection.PropertyInfo,System.Boolean}
+      description: a predicate for qualifying a property
+    - id: parser
+      type: System.Func{System.Object,System.Type,FastEndpoints.ParseResult}
+      description: the value parser for the matched property type
+    content.vb: Public Sub ValueParserWhen(propertyMatcher As Func(Of PropertyInfo, Boolean), parser As Func(Of Object, Type, ParseResult))
+  overload: FastEndpoints.BindingOptions.ValueParserWhen*
+  nameWithType.vb: BindingOptions.ValueParserWhen(Func(Of PropertyInfo, Boolean), Func(Of Object, Type, ParseResult))
+  fullName.vb: FastEndpoints.BindingOptions.ValueParserWhen(System.Func(Of System.Reflection.PropertyInfo, Boolean), System.Func(Of Object, System.Type, FastEndpoints.ParseResult))
+  name.vb: ValueParserWhen(Func(Of PropertyInfo, Boolean), Func(Of Object, Type, ParseResult))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -274,301 +355,226 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.BindingOptions.JsonExceptionTransformer
   commentId: P:FastEndpoints.BindingOptions.JsonExceptionTransformer
-  isExternal: true
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer
+  name: JsonExceptionTransformer
+  nameWithType: BindingOptions.JsonExceptionTransformer
+  fullName: FastEndpoints.BindingOptions.JsonExceptionTransformer
 - uid: System.Type
   commentId: T:System.Type
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
   name: Type
   nameWithType: Type
   fullName: System.Type
@@ -576,14 +582,23 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Microsoft.Extensions.Primitives.StringValues
   commentId: T:Microsoft.Extensions.Primitives.StringValues
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues
+  name: StringValues
+  nameWithType: StringValues
+  fullName: Microsoft.Extensions.Primitives.StringValues
 - uid: FastEndpoints.BindingOptions.FailureMessage*
   commentId: Overload:FastEndpoints.BindingOptions.FailureMessage
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_FailureMessage
   name: FailureMessage
   nameWithType: BindingOptions.FailureMessage
   fullName: FastEndpoints.BindingOptions.FailureMessage
@@ -591,97 +606,77 @@ references:
   commentId: T:System.Func{System.Type,System.String,Microsoft.Extensions.Primitives.StringValues,System.String}
   parent: System
   definition: System.Func`4
-  name: Func<Type, String, StringValues, String>
-  nameWithType: Func<Type, String, StringValues, String>
-  fullName: System.Func<System.Type, System.String, Microsoft.Extensions.Primitives.StringValues, System.String>
+  href: https://learn.microsoft.com/dotnet/api/system.func-4
+  name: Func<Type, string, StringValues, string>
+  nameWithType: Func<Type, string, StringValues, string>
+  fullName: System.Func<System.Type, string, Microsoft.Extensions.Primitives.StringValues, string>
   nameWithType.vb: Func(Of Type, String, StringValues, String)
-  fullName.vb: System.Func(Of System.Type, System.String, Microsoft.Extensions.Primitives.StringValues, System.String)
+  fullName.vb: System.Func(Of System.Type, String, Microsoft.Extensions.Primitives.StringValues, String)
   name.vb: Func(Of Type, String, StringValues, String)
   spec.csharp:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: Microsoft.Extensions.Primitives.StringValues
     name: StringValues
-    nameWithType: StringValues
-    fullName: Microsoft.Extensions.Primitives.StringValues
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: Microsoft.Extensions.Primitives.StringValues
     name: StringValues
-    nameWithType: StringValues
-    fullName: Microsoft.Extensions.Primitives.StringValues
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Func`4
   commentId: T:System.Func`4
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-4
   name: Func<T1, T2, T3, TResult>
   nameWithType: Func<T1, T2, T3, TResult>
   fullName: System.Func<T1, T2, T3, TResult>
@@ -691,72 +686,46 @@ references:
   spec.csharp:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T2
-    nameWithType: T2
-    fullName: T2
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T3
-    nameWithType: T3
-    fullName: T3
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
+  - name: (
+  - name: Of
+  - name: " "
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T2
-    nameWithType: T2
-    fullName: T2
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T3
-    nameWithType: T3
-    fullName: T3
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Text.Json.JsonException
   commentId: T:System.Text.Json.JsonException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonexception
+  name: JsonException
+  nameWithType: JsonException
+  fullName: System.Text.Json.JsonException
 - uid: FluentValidation.Results.ValidationFailure
   commentId: T:FluentValidation.Results.ValidationFailure
   parent: FluentValidation.Results
@@ -766,9 +735,13 @@ references:
   fullName: FluentValidation.Results.ValidationFailure
 - uid: FastEndpoints.BindingOptions.FailureMessage
   commentId: P:FastEndpoints.BindingOptions.FailureMessage
-  isExternal: true
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_FailureMessage
+  name: FailureMessage
+  nameWithType: BindingOptions.FailureMessage
+  fullName: FastEndpoints.BindingOptions.FailureMessage
 - uid: FastEndpoints.BindingOptions.JsonExceptionTransformer*
   commentId: Overload:FastEndpoints.BindingOptions.JsonExceptionTransformer
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer
   name: JsonExceptionTransformer
   nameWithType: BindingOptions.JsonExceptionTransformer
   fullName: FastEndpoints.BindingOptions.JsonExceptionTransformer
@@ -776,6 +749,7 @@ references:
   commentId: T:System.Func{System.Text.Json.JsonException,FluentValidation.Results.ValidationFailure}
   parent: System
   definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
   name: Func<JsonException, ValidationFailure>
   nameWithType: Func<JsonException, ValidationFailure>
   fullName: System.Func<System.Text.Json.JsonException, FluentValidation.Results.ValidationFailure>
@@ -785,62 +759,63 @@ references:
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Text.Json.JsonException
     name: JsonException
-    nameWithType: JsonException
-    fullName: System.Text.Json.JsonException
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonexception
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Text.Json.JsonException
     name: JsonException
-    nameWithType: JsonException
-    fullName: System.Text.Json.JsonException
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonexception
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FluentValidation.Results
   commentId: N:FluentValidation.Results
   isExternal: true
   name: FluentValidation.Results
   nameWithType: FluentValidation.Results
   fullName: FluentValidation.Results
+  spec.csharp:
+  - uid: FluentValidation
+    name: FluentValidation
+    isExternal: true
+  - name: .
+  - uid: FluentValidation.Results
+    name: Results
+    isExternal: true
+  spec.vb:
+  - uid: FluentValidation
+    name: FluentValidation
+    isExternal: true
+  - name: .
+  - uid: FluentValidation.Results
+    name: Results
+    isExternal: true
 - uid: System.Func`2
   commentId: T:System.Func`2
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
   name: Func<T, TResult>
   nameWithType: Func<T, TResult>
   fullName: System.Func<T, TResult>
@@ -850,48 +825,31 @@ references:
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.BinderContext
   commentId: T:FastEndpoints.BinderContext
   parent: FastEndpoints
+  href: FastEndpoints.BinderContext.html
   name: BinderContext
   nameWithType: BinderContext
   fullName: FastEndpoints.BinderContext
@@ -899,11 +857,13 @@ references:
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: FastEndpoints.BindingOptions.Modifier*
   commentId: Overload:FastEndpoints.BindingOptions.Modifier
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_Modifier
   name: Modifier
   nameWithType: BindingOptions.Modifier
   fullName: FastEndpoints.BindingOptions.Modifier
@@ -911,101 +871,102 @@ references:
   commentId: T:System.Action{System.Object,System.Type,FastEndpoints.BinderContext,System.Threading.CancellationToken}
   parent: System
   definition: System.Action`4
-  name: Action<Object, Type, BinderContext, CancellationToken>
-  nameWithType: Action<Object, Type, BinderContext, CancellationToken>
-  fullName: System.Action<System.Object, System.Type, FastEndpoints.BinderContext, System.Threading.CancellationToken>
+  href: https://learn.microsoft.com/dotnet/api/system.action-4
+  name: Action<object, Type, BinderContext, CancellationToken>
+  nameWithType: Action<object, Type, BinderContext, CancellationToken>
+  fullName: System.Action<object, System.Type, FastEndpoints.BinderContext, System.Threading.CancellationToken>
   nameWithType.vb: Action(Of Object, Type, BinderContext, CancellationToken)
-  fullName.vb: System.Action(Of System.Object, System.Type, FastEndpoints.BinderContext, System.Threading.CancellationToken)
+  fullName.vb: System.Action(Of Object, System.Type, FastEndpoints.BinderContext, System.Threading.CancellationToken)
   name.vb: Action(Of Object, Type, BinderContext, CancellationToken)
   spec.csharp:
   - uid: System.Action`4
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-4
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
   - uid: FastEndpoints.BinderContext
     name: BinderContext
-    nameWithType: BinderContext
-    fullName: FastEndpoints.BinderContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: FastEndpoints.BinderContext.html
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`4
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-4
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
   - uid: FastEndpoints.BinderContext
     name: BinderContext
-    nameWithType: BinderContext
-    fullName: FastEndpoints.BinderContext
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: FastEndpoints.BinderContext.html
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Action`4
   commentId: T:System.Action`4
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-4
   name: Action<T1, T2, T3, T4>
   nameWithType: Action<T1, T2, T3, T4>
   fullName: System.Action<T1, T2, T3, T4>
@@ -1015,76 +976,48 @@ references:
   spec.csharp:
   - uid: System.Action`4
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-4
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T2
-    nameWithType: T2
-    fullName: T2
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T3
-    nameWithType: T3
-    fullName: T3
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T4
-    nameWithType: T4
-    fullName: T4
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`4
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-4
+  - name: (
+  - name: Of
+  - name: " "
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T2
-    nameWithType: T2
-    fullName: T2
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T3
-    nameWithType: T3
-    fullName: T3
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T4
-    nameWithType: T4
-    fullName: T4
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ParseResult
   commentId: T:FastEndpoints.ParseResult
+  href: FastEndpoints.ParseResult.html
   name: ParseResult
   nameWithType: ParseResult
   fullName: FastEndpoints.ParseResult
 - uid: FastEndpoints.BindingOptions.ValueParserFor*
   commentId: Overload:FastEndpoints.BindingOptions.ValueParserFor
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_ValueParserFor__1_System_Func_System_Object_FastEndpoints_ParseResult__
   name: ValueParserFor
   nameWithType: BindingOptions.ValueParserFor
   fullName: FastEndpoints.BindingOptions.ValueParserFor
@@ -1092,64 +1025,205 @@ references:
   commentId: T:System.Func{System.Object,FastEndpoints.ParseResult}
   parent: System
   definition: System.Func`2
-  name: Func<Object, ParseResult>
-  nameWithType: Func<Object, ParseResult>
-  fullName: System.Func<System.Object, FastEndpoints.ParseResult>
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<object, ParseResult>
+  nameWithType: Func<object, ParseResult>
+  fullName: System.Func<object, FastEndpoints.ParseResult>
   nameWithType.vb: Func(Of Object, ParseResult)
-  fullName.vb: System.Func(Of System.Object, FastEndpoints.ParseResult)
+  fullName.vb: System.Func(Of Object, FastEndpoints.ParseResult)
   name.vb: Func(Of Object, ParseResult)
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: FastEndpoints.ParseResult
     name: ParseResult
-    nameWithType: ParseResult
-    fullName: FastEndpoints.ParseResult
+    href: FastEndpoints.ParseResult.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: FastEndpoints.ParseResult
     name: ParseResult
-    nameWithType: ParseResult
-    fullName: FastEndpoints.ParseResult
+    href: FastEndpoints.ParseResult.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FastEndpoints.BindingOptions.ValueParserWhen*
+  commentId: Overload:FastEndpoints.BindingOptions.ValueParserWhen
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_ValueParserWhen_System_Func_System_Reflection_PropertyInfo_System_Boolean__System_Func_System_Object_System_Type_FastEndpoints_ParseResult__
+  name: ValueParserWhen
+  nameWithType: BindingOptions.ValueParserWhen
+  fullName: FastEndpoints.BindingOptions.ValueParserWhen
+- uid: System.Func{System.Reflection.PropertyInfo,System.Boolean}
+  commentId: T:System.Func{System.Reflection.PropertyInfo,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<PropertyInfo, bool>
+  nameWithType: Func<PropertyInfo, bool>
+  fullName: System.Func<System.Reflection.PropertyInfo, bool>
+  nameWithType.vb: Func(Of PropertyInfo, Boolean)
+  fullName.vb: System.Func(Of System.Reflection.PropertyInfo, Boolean)
+  name.vb: Func(Of PropertyInfo, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Reflection.PropertyInfo
+    name: PropertyInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.PropertyInfo
+    name: PropertyInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func{System.Object,System.Type,FastEndpoints.ParseResult}
+  commentId: T:System.Func{System.Object,System.Type,FastEndpoints.ParseResult}
+  parent: System
+  definition: System.Func`3
+  href: https://learn.microsoft.com/dotnet/api/system.func-3
+  name: Func<object, Type, ParseResult>
+  nameWithType: Func<object, Type, ParseResult>
+  fullName: System.Func<object, System.Type, FastEndpoints.ParseResult>
+  nameWithType.vb: Func(Of Object, Type, ParseResult)
+  fullName.vb: System.Func(Of Object, System.Type, FastEndpoints.ParseResult)
+  name.vb: Func(Of Object, Type, ParseResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.ParseResult
+    name: ParseResult
+    href: FastEndpoints.ParseResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.ParseResult
+    name: ParseResult
+    href: FastEndpoints.ParseResult.html
+  - name: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-3
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )

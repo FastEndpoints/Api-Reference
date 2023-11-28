@@ -89,31 +89,28 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">SerializerOptions</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Object.Equals(Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
-      <span class="xref">Object.Equals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.GetHashCode()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
-      <span class="xref">Object.GetType()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <span class="xref">Object.MemberwiseClone()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.ReferenceEquals(Object, Object)</span>
-    </div>
-    <div>
-      <span class="xref">Object.ToString()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
@@ -145,7 +142,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">JsonSerializerOptions</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -156,15 +153,15 @@
   <h4 id="FastEndpoints_SerializerOptions_RequestDeserializer" data-uid="FastEndpoints.SerializerOptions.RequestDeserializer">RequestDeserializer</h4>
   <div class="markdown level1 summary"><p>a function for deserializing the incoming http request body. this function will be executed for each request received if it has a json request body.
 the input parameters of the func are as follows:</p>
-<p><span class="xref">Microsoft.AspNetCore.Http.HttpRequest</span> : the incoming request</p>
-<p><span class="xref">System.Type</span> : the type of the request dto which the request body will be deserialized into</p>
-<p><span class="xref">System.Text.Json.Serialization.JsonSerializerContext</span>? : json serializer context if code generation is used</p>
-<p><span class="xref">System.Threading.CancellationToken</span> : a cancellation token</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httprequest">HttpRequest</a> : the incoming request</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> : the type of the request dto which the request body will be deserialized into</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>? : json serializer context if code generation is used</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> : a cancellation token</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;HttpRequest, Type, JsonSerializerContext, CancellationToken, ValueTask&lt;object&gt;&gt; RequestDeserializer { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Func&lt;HttpRequest, Type, JsonSerializerContext?, CancellationToken, ValueTask&lt;object?&gt;&gt; RequestDeserializer { set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -176,7 +173,7 @@ the input parameters of the func are as follows:</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Func</span>&lt;<span class="xref">HttpRequest</span>, <span class="xref">Type</span>, <span class="xref">JsonSerializerContext</span>, <span class="xref">CancellationToken</span>, <span class="xref">ValueTask</span>&lt;<span class="xref">Object</span>&gt;&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httprequest">HttpRequest</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -189,13 +186,13 @@ the input parameters of the func are as follows:</p>
 this function will be executed whenever a json response is being sent to the client.
 you should set the content-type and write directly to the http response body stream in this function.
 the parameters of the func are as follows:</p>
-<p><span class="xref">Microsoft.AspNetCore.Http.HttpResponse</span> : the http response object</p>
-<p><span class="xref">System.Object</span> : the response dto to be serialized</p>
-<p><span class="xref">System.String</span> : the response content-type</p>
-<p><span class="xref">System.Text.Json.Serialization.JsonSerializerContext</span>? : json serializer context if code generation is used</p>
-<p><span class="xref">System.Threading.CancellationToken</span> : a cancellation token</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpresponse">HttpResponse</a> : the http response object</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a> : the response dto to be serialized</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> : the response content-type</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>? : json serializer context if code generation is used</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> : a cancellation token</p>
 <p>example:</p>
-<pre><code>config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =>
+<pre><code class="lang-csharp">config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =&gt;
 {
     rsp.ContentType = cType;
     return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);
@@ -204,7 +201,7 @@ the parameters of the func are as follows:</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;HttpResponse, object, string, JsonSerializerContext, CancellationToken, Task&gt; ResponseSerializer { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Func&lt;HttpResponse, object?, string, JsonSerializerContext?, CancellationToken, Task&gt; ResponseSerializer { set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -216,7 +213,7 @@ the parameters of the func are as follows:</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Func</span>&lt;<span class="xref">HttpResponse</span>, <span class="xref">Object</span>, <span class="xref">String</span>, <span class="xref">JsonSerializerContext</span>, <span class="xref">CancellationToken</span>, <span class="xref">Task</span>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-6">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpresponse">HttpResponse</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -225,7 +222,8 @@ the parameters of the func are as follows:</p>
 
   <a id="FastEndpoints_SerializerOptions_SerializerErrorsField_" data-uid="FastEndpoints.SerializerOptions.SerializerErrorsField*"></a>
   <h4 id="FastEndpoints_SerializerOptions_SerializerErrorsField" data-uid="FastEndpoints.SerializerOptions.SerializerErrorsField">SerializerErrorsField</h4>
-  <div class="markdown level1 summary"><p>this is the field name used for adding serializer errors when the serializer throws due to bad json input and the error is not concerning a particular property/field of the incoming json.</p>
+  <div class="markdown level1 summary"><p>this is the field name used for adding serializer errors when the serializer throws due to bad json input and the error is not concerning a
+particular property/field of the incoming json.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -242,7 +240,7 @@ the parameters of the func are as follows:</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>

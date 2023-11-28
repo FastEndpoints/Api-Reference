@@ -7,12 +7,13 @@ items:
   children:
   - FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
-  - FastEndpoints.Factory.Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
-  - FastEndpoints.Factory.Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
-  - FastEndpoints.Factory.Create``1(System.Object[])
   - FastEndpoints.Factory.CreateEvent``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{``0}},System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   - FastEndpoints.Factory.CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   - FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  - FastEndpoints.Factory.Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
+  - FastEndpoints.Factory.Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
+  - FastEndpoints.Factory.Create``1(System.Object[])
+  - FastEndpoints.Factory.RegisterTestServices(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   langs:
   - csharp
   - vb
@@ -22,12 +23,12 @@ items:
   type: Class
   source:
     id: Factory
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
     startLine: 10
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na factory for instantiaing endpoints for testing purposes\n"
+  summary: a factory for instantiating endpoints/event/mappers/validators/etc. for testing purposes
   example: []
   syntax:
     content: public static class Factory
@@ -42,13 +43,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
 - uid: FastEndpoints.Factory.Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
   commentId: M:FastEndpoints.Factory.Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
   id: Create``1(Microsoft.AspNetCore.Http.DefaultHttpContext,System.Object[])
@@ -56,24 +50,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Create<TEndpoint>(DefaultHttpContext, Object[])
-  nameWithType: Factory.Create<TEndpoint>(DefaultHttpContext, Object[])
-  fullName: FastEndpoints.Factory.Create<TEndpoint>(Microsoft.AspNetCore.Http.DefaultHttpContext, System.Object[])
+  name: Create<TEndpoint>(DefaultHttpContext, params object?[])
+  nameWithType: Factory.Create<TEndpoint>(DefaultHttpContext, params object?[])
+  fullName: FastEndpoints.Factory.Create<TEndpoint>(Microsoft.AspNetCore.Http.DefaultHttpContext, params object?[])
   type: Method
   source:
     id: Create
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
     startLine: 20
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nget an instance of an endpoint suitable for unit testing\n"
+  summary: get an instance of an endpoint suitable for unit testing
   example: []
   syntax:
-    content: >-
-      public static TEndpoint Create<TEndpoint>(DefaultHttpContext httpContext, params object[] ctorDependencies)
-
-          where TEndpoint : class, IEndpoint
+    content: 'public static TEndpoint Create<TEndpoint>(DefaultHttpContext httpContext, params object?[] ctorDependencies) where TEndpoint : class, IEndpoint'
     parameters:
     - id: httpContext
       type: Microsoft.AspNetCore.Http.DefaultHttpContext
@@ -88,15 +79,9 @@ items:
       type: '{TEndpoint}'
     content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(httpContext As DefaultHttpContext, ParamArray ctorDependencies As Object()) As TEndpoint
   overload: FastEndpoints.Factory.Create*
-  nameWithType.vb: Factory.Create(Of TEndpoint)(DefaultHttpContext, Object())
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(Microsoft.AspNetCore.Http.DefaultHttpContext, System.Object())
-  name.vb: Create(Of TEndpoint)(DefaultHttpContext, Object())
+  nameWithType.vb: Factory.Create(Of TEndpoint)(DefaultHttpContext, ParamArray Object())
+  fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(Microsoft.AspNetCore.Http.DefaultHttpContext, ParamArray Object())
+  name.vb: Create(Of TEndpoint)(DefaultHttpContext, ParamArray Object())
 - uid: FastEndpoints.Factory.Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
   commentId: M:FastEndpoints.Factory.Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
   id: Create``1(System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext},System.Object[])
@@ -104,24 +89,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Create<TEndpoint>(Action<DefaultHttpContext>, Object[])
-  nameWithType: Factory.Create<TEndpoint>(Action<DefaultHttpContext>, Object[])
-  fullName: FastEndpoints.Factory.Create<TEndpoint>(System.Action<Microsoft.AspNetCore.Http.DefaultHttpContext>, System.Object[])
+  name: Create<TEndpoint>(Action<DefaultHttpContext>, params object?[])
+  nameWithType: Factory.Create<TEndpoint>(Action<DefaultHttpContext>, params object?[])
+  fullName: FastEndpoints.Factory.Create<TEndpoint>(System.Action<Microsoft.AspNetCore.Http.DefaultHttpContext>, params object?[])
   type: Method
   source:
     id: Create
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 47
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nget an instance of an endpoint suitable for unit testing\n"
+  summary: get an instance of an endpoint suitable for unit testing
   example: []
   syntax:
-    content: >-
-      public static TEndpoint Create<TEndpoint>(Action<DefaultHttpContext> httpContext, params object[] ctorDependencies)
-
-          where TEndpoint : class, IEndpoint
+    content: 'public static TEndpoint Create<TEndpoint>(Action<DefaultHttpContext> httpContext, params object?[] ctorDependencies) where TEndpoint : class, IEndpoint'
     parameters:
     - id: httpContext
       type: System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext}
@@ -136,15 +118,9 @@ items:
       type: '{TEndpoint}'
     content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(httpContext As Action(Of DefaultHttpContext), ParamArray ctorDependencies As Object()) As TEndpoint
   overload: FastEndpoints.Factory.Create*
-  nameWithType.vb: Factory.Create(Of TEndpoint)(Action(Of DefaultHttpContext), Object())
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(System.Action(Of Microsoft.AspNetCore.Http.DefaultHttpContext), System.Object())
-  name.vb: Create(Of TEndpoint)(Action(Of DefaultHttpContext), Object())
+  nameWithType.vb: Factory.Create(Of TEndpoint)(Action(Of DefaultHttpContext), ParamArray Object())
+  fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(System.Action(Of Microsoft.AspNetCore.Http.DefaultHttpContext), ParamArray Object())
+  name.vb: Create(Of TEndpoint)(Action(Of DefaultHttpContext), ParamArray Object())
 - uid: FastEndpoints.Factory.Create``1(System.Object[])
   commentId: M:FastEndpoints.Factory.Create``1(System.Object[])
   id: Create``1(System.Object[])
@@ -152,24 +128,21 @@ items:
   langs:
   - csharp
   - vb
-  name: Create<TEndpoint>(Object[])
-  nameWithType: Factory.Create<TEndpoint>(Object[])
-  fullName: FastEndpoints.Factory.Create<TEndpoint>(System.Object[])
+  name: Create<TEndpoint>(params object?[])
+  nameWithType: Factory.Create<TEndpoint>(params object?[])
+  fullName: FastEndpoints.Factory.Create<TEndpoint>(params object?[])
   type: Method
   source:
     id: Create
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 59
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 62
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nget an instance of an endpoint suitable for unit testing\n"
+  summary: get an instance of an endpoint suitable for unit testing
   example: []
   syntax:
-    content: >-
-      public static TEndpoint Create<TEndpoint>(params object[] ctorDependencies)
-
-          where TEndpoint : class, IEndpoint
+    content: 'public static TEndpoint Create<TEndpoint>(params object?[] ctorDependencies) where TEndpoint : class, IEndpoint'
     parameters:
     - id: ctorDependencies
       type: System.Object[]
@@ -181,15 +154,9 @@ items:
       type: '{TEndpoint}'
     content.vb: Public Shared Function Create(Of TEndpoint As {Class, IEndpoint})(ParamArray ctorDependencies As Object()) As TEndpoint
   overload: FastEndpoints.Factory.Create*
-  nameWithType.vb: Factory.Create(Of TEndpoint)(Object())
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(System.Object())
-  name.vb: Create(Of TEndpoint)(Object())
+  nameWithType.vb: Factory.Create(Of TEndpoint)(ParamArray Object())
+  fullName.vb: FastEndpoints.Factory.Create(Of TEndpoint)(ParamArray Object())
+  name.vb: Create(Of TEndpoint)(ParamArray Object())
 - uid: FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   commentId: M:FastEndpoints.Factory.AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   id: AddServicesForUnitTesting(Microsoft.Extensions.DependencyInjection.IServiceCollection)
@@ -204,12 +171,12 @@ items:
   type: Method
   source:
     id: AddServicesForUnitTesting
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 67
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 68
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadds the minimum required set of services for unit testing FE endpoints\n"
+  summary: adds the minimum required set of services for unit testing FE endpoints
   example: []
   syntax:
     content: public static IServiceCollection AddServicesForUnitTesting(this IServiceCollection services)
@@ -218,17 +185,8 @@ items:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function AddServicesForUnitTesting(services As IServiceCollection) As IServiceCollection
+    content.vb: Public Shared Function AddServicesForUnitTesting(services As IServiceCollection) As IServiceCollection
   overload: FastEndpoints.Factory.AddServicesForUnitTesting*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 - uid: FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   commentId: M:FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   id: AddTestServices(Microsoft.AspNetCore.Http.HttpContext,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
@@ -243,12 +201,12 @@ items:
   type: Method
   source:
     id: AddTestServices
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
     startLine: 80
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nregister fake/mock/test services for the http context. typically only used with unit tests with the <code>Factory.Create()</code>&quot; method/>\n"
+  summary: register fake/mock/test services for the http context. typically only used with unit tests with the <code>Factory.Create()</code>" method/&gt;
   example: []
   syntax:
     content: public static void AddTestServices(this HttpContext ctx, Action<IServiceCollection> s)
@@ -258,24 +216,46 @@ items:
     - id: s
       type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
       description: an action for adding services to the <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref>
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Sub AddTestServices(ctx As HttpContext, s As Action(Of IServiceCollection))
+    content.vb: Public Shared Sub AddTestServices(ctx As HttpContext, s As Action(Of IServiceCollection))
   overload: FastEndpoints.Factory.AddTestServices*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the <xref href="Microsoft.AspNetCore.Http.HttpContext.RequestServices" data-throw-if-not-resolved="false"></xref> is not empty
   nameWithType.vb: Factory.AddTestServices(HttpContext, Action(Of IServiceCollection))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.Factory.AddTestServices(Microsoft.AspNetCore.Http.HttpContext, System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
   name.vb: AddTestServices(HttpContext, Action(Of IServiceCollection))
+- uid: FastEndpoints.Factory.RegisterTestServices(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  commentId: M:FastEndpoints.Factory.RegisterTestServices(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  id: RegisterTestServices(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  parent: FastEndpoints.Factory
+  langs:
+  - csharp
+  - vb
+  name: RegisterTestServices(Action<IServiceCollection>)
+  nameWithType: Factory.RegisterTestServices(Action<IServiceCollection>)
+  fullName: FastEndpoints.Factory.RegisterTestServices(System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>)
+  type: Method
+  source:
+    id: RegisterTestServices
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 105
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: register fake/mock/test services for the current test execution context.
+  example: []
+  syntax:
+    content: public static void RegisterTestServices(Action<IServiceCollection> s)
+    parameters:
+    - id: s
+      type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
+      description: an action for adding services to the <xref href="Microsoft.Extensions.DependencyInjection.IServiceCollection" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Sub RegisterTestServices(s As Action(Of IServiceCollection))
+  overload: FastEndpoints.Factory.RegisterTestServices*
+  nameWithType.vb: Factory.RegisterTestServices(Action(Of IServiceCollection))
+  fullName.vb: FastEndpoints.Factory.RegisterTestServices(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  name.vb: RegisterTestServices(Action(Of IServiceCollection))
 - uid: FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   commentId: M:FastEndpoints.Factory.CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
   id: CreateValidator``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
@@ -289,18 +269,15 @@ items:
   type: Method
   source:
     id: CreateValidator
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 108
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 115
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nget an instance of a validator that uses Resolve&lt;T>() methods to obtain services registered in the DI container.\n"
+  summary: get an instance of a validator that uses Resolve&lt;T&gt;() methods to obtain services registered in the DI container.
   example: []
   syntax:
-    content: >-
-      public static TValidator CreateValidator<TValidator>(Action<IServiceCollection> s)
-
-          where TValidator : class, IValidator
+    content: 'public static TValidator CreateValidator<TValidator>(Action<IServiceCollection> s) where TValidator : class, IValidator'
     parameters:
     - id: s
       type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
@@ -313,12 +290,6 @@ items:
     content.vb: Public Shared Function CreateValidator(Of TValidator As {Class, IValidator})(s As Action(Of IServiceCollection)) As TValidator
   overload: FastEndpoints.Factory.CreateValidator*
   nameWithType.vb: Factory.CreateValidator(Of TValidator)(Action(Of IServiceCollection))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.Factory.CreateValidator(Of TValidator)(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
   name.vb: CreateValidator(Of TValidator)(Action(Of IServiceCollection))
 - uid: FastEndpoints.Factory.CreateMapper``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
@@ -334,18 +305,15 @@ items:
   type: Method
   source:
     id: CreateMapper
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 119
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 127
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nget an instance of a mapper that uses Resolve&lt;T>() methods to obtain services registered in the DI container.\n"
+  summary: get an instance of a mapper that uses Resolve&lt;T&gt;() methods to obtain services registered in the DI container.
   example: []
   syntax:
-    content: >-
-      public static TMapper CreateMapper<TMapper>(Action<IServiceCollection> s)
-
-          where TMapper : class, IMapper
+    content: 'public static TMapper CreateMapper<TMapper>(Action<IServiceCollection> s) where TMapper : class, IMapper'
     parameters:
     - id: s
       type: System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
@@ -358,12 +326,6 @@ items:
     content.vb: Public Shared Function CreateMapper(Of TMapper As {Class, IMapper})(s As Action(Of IServiceCollection)) As TMapper
   overload: FastEndpoints.Factory.CreateMapper*
   nameWithType.vb: Factory.CreateMapper(Of TMapper)(Action(Of IServiceCollection))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.Factory.CreateMapper(Of TMapper)(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
   name.vb: CreateMapper(Of TMapper)(Action(Of IServiceCollection))
 - uid: FastEndpoints.Factory.CreateEvent``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{``0}},System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})
@@ -373,24 +335,21 @@ items:
   langs:
   - csharp
   - vb
-  name: CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>>, Action<IServiceCollection>)
-  nameWithType: Factory.CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>>, Action<IServiceCollection>)
-  fullName: FastEndpoints.Factory.CreateEvent<TEvent>(System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>, System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>)
+  name: CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>>, Action<IServiceCollection>?)
+  nameWithType: Factory.CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>>, Action<IServiceCollection>?)
+  fullName: FastEndpoints.Factory.CreateEvent<TEvent>(System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>, System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>?)
   type: Method
   source:
     id: CreateEvent
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Testing\Factory.cs
-    startLine: 131
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Testing\Factory.cs
+    startLine: 140
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nget an instance of an event suitable for unit testing.\n"
+  summary: get an instance of an event suitable for unit testing.
   example: []
   syntax:
-    content: >-
-      public static TEvent CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers, Action<IServiceCollection> s = null)
-
-          where TEvent : class, IEvent
+    content: 'public static TEvent CreateEvent<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers, Action<IServiceCollection>? s = null) where TEvent : class, IEvent'
     parameters:
     - id: handlers
       type: System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}
@@ -406,17 +365,12 @@ items:
     content.vb: Public Shared Function CreateEvent(Of TEvent As {Class, IEvent})(handlers As IEnumerable(Of IEventHandler(Of TEvent)), s As Action(Of IServiceCollection) = Nothing) As TEvent
   overload: FastEndpoints.Factory.CreateEvent*
   nameWithType.vb: Factory.CreateEvent(Of TEvent)(IEnumerable(Of IEventHandler(Of TEvent)), Action(Of IServiceCollection))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.Factory.CreateEvent(Of TEvent)(System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent)), System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection))
   name.vb: CreateEvent(Of TEvent)(IEnumerable(Of IEventHandler(Of TEvent)), Action(Of IServiceCollection))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -424,296 +378,242 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.Factory.Create*
   commentId: Overload:FastEndpoints.Factory.Create
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_Create__1_Microsoft_AspNetCore_Http_DefaultHttpContext_System_Object___
   name: Create
   nameWithType: Factory.Create
   fullName: FastEndpoints.Factory.Create
@@ -721,35 +621,33 @@ references:
   commentId: T:Microsoft.AspNetCore.Http.DefaultHttpContext
   parent: Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.defaulthttpcontext
   name: DefaultHttpContext
   nameWithType: DefaultHttpContext
   fullName: Microsoft.AspNetCore.Http.DefaultHttpContext
 - uid: System.Object[]
   isExternal: true
-  name: Object[]
-  nameWithType: Object[]
-  fullName: System.Object[]
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object[]
+  nameWithType: object[]
+  fullName: object[]
   nameWithType.vb: Object()
-  fullName.vb: System.Object()
+  fullName.vb: Object()
   name.vb: Object()
   spec.csharp:
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
   spec.vb:
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
 - uid: '{TEndpoint}'
   commentId: '!:TEndpoint'
   definition: TEndpoint
@@ -759,9 +657,40 @@ references:
 - uid: Microsoft.AspNetCore.Http
   commentId: N:Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.AspNetCore.Http
   nameWithType: Microsoft.AspNetCore.Http
   fullName: Microsoft.AspNetCore.Http
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
 - uid: TEndpoint
   name: TEndpoint
   nameWithType: TEndpoint
@@ -770,6 +699,7 @@ references:
   commentId: T:System.Action{Microsoft.AspNetCore.Http.DefaultHttpContext}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<DefaultHttpContext>
   nameWithType: Action<DefaultHttpContext>
   fullName: System.Action<Microsoft.AspNetCore.Http.DefaultHttpContext>
@@ -779,40 +709,31 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Microsoft.AspNetCore.Http.DefaultHttpContext
     name: DefaultHttpContext
-    nameWithType: DefaultHttpContext
-    fullName: Microsoft.AspNetCore.Http.DefaultHttpContext
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.defaulthttpcontext
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Microsoft.AspNetCore.Http.DefaultHttpContext
     name: DefaultHttpContext
-    nameWithType: DefaultHttpContext
-    fullName: Microsoft.AspNetCore.Http.DefaultHttpContext
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.defaulthttpcontext
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<T>
   nameWithType: Action<T>
   fullName: System.Action<T>
@@ -822,35 +743,24 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Factory.AddServicesForUnitTesting*
   commentId: Overload:FastEndpoints.Factory.AddServicesForUnitTesting
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_AddServicesForUnitTesting_Microsoft_Extensions_DependencyInjection_IServiceCollection_
   name: AddServicesForUnitTesting
   nameWithType: Factory.AddServicesForUnitTesting
   fullName: FastEndpoints.Factory.AddServicesForUnitTesting
@@ -858,23 +768,64 @@ references:
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
   parent: Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection
   name: IServiceCollection
   nameWithType: IServiceCollection
   fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
 - uid: Microsoft.AspNetCore.Http.HttpContext.RequestServices
   commentId: P:Microsoft.AspNetCore.Http.HttpContext.RequestServices
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext.requestservices
+  name: RequestServices
+  nameWithType: HttpContext.RequestServices
+  fullName: Microsoft.AspNetCore.Http.HttpContext.RequestServices
 - uid: System.InvalidOperationException
   commentId: T:System.InvalidOperationException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: FastEndpoints.Factory.AddTestServices*
   commentId: Overload:FastEndpoints.Factory.AddTestServices
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_AddTestServices_Microsoft_AspNetCore_Http_HttpContext_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection__
   name: AddTestServices
   nameWithType: Factory.AddTestServices
   fullName: FastEndpoints.Factory.AddTestServices
@@ -882,6 +833,7 @@ references:
   commentId: T:Microsoft.AspNetCore.Http.HttpContext
   parent: Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
   name: HttpContext
   nameWithType: HttpContext
   fullName: Microsoft.AspNetCore.Http.HttpContext
@@ -889,6 +841,7 @@ references:
   commentId: T:System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<IServiceCollection>
   nameWithType: Action<IServiceCollection>
   fullName: System.Action<Microsoft.Extensions.DependencyInjection.IServiceCollection>
@@ -898,39 +851,36 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
     name: IServiceCollection
-    nameWithType: IServiceCollection
-    fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
     name: IServiceCollection
-    nameWithType: IServiceCollection
-    fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: FastEndpoints.Factory.RegisterTestServices*
+  commentId: Overload:FastEndpoints.Factory.RegisterTestServices
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_RegisterTestServices_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection__
+  name: RegisterTestServices
+  nameWithType: Factory.RegisterTestServices
+  fullName: FastEndpoints.Factory.RegisterTestServices
 - uid: FastEndpoints.Factory.CreateValidator*
   commentId: Overload:FastEndpoints.Factory.CreateValidator
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_CreateValidator__1_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection__
   name: CreateValidator
   nameWithType: Factory.CreateValidator
   fullName: FastEndpoints.Factory.CreateValidator
@@ -947,6 +897,7 @@ references:
   fullName: TValidator
 - uid: FastEndpoints.Factory.CreateMapper*
   commentId: Overload:FastEndpoints.Factory.CreateMapper
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_CreateMapper__1_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection__
   name: CreateMapper
   nameWithType: Factory.CreateMapper
   fullName: FastEndpoints.Factory.CreateMapper
@@ -962,6 +913,7 @@ references:
   fullName: TMapper
 - uid: FastEndpoints.Factory.CreateEvent*
   commentId: Overload:FastEndpoints.Factory.CreateEvent
+  href: FastEndpoints.Factory.html#FastEndpoints_Factory_CreateEvent__1_System_Collections_Generic_IEnumerable_FastEndpoints_IEventHandler___0___System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection__
   name: CreateEvent
   nameWithType: Factory.CreateEvent
   fullName: FastEndpoints.Factory.CreateEvent
@@ -969,6 +921,7 @@ references:
   commentId: T:System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<IEventHandler<TEvent>>
   nameWithType: IEnumerable<IEventHandler<TEvent>>
   fullName: System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>
@@ -978,53 +931,31 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.IEventHandler`1
     name: IEventHandler
-    nameWithType: IEventHandler
-    fullName: FastEndpoints.IEventHandler
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TEvent
-    nameWithType: TEvent
-    fullName: TEvent
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.IEventHandler`1
     name: IEventHandler
-    nameWithType: IEventHandler
-    fullName: FastEndpoints.IEventHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TEvent
-    nameWithType: TEvent
-    fullName: TEvent
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: '{TEvent}'
   commentId: '!:TEvent'
   definition: TEvent
@@ -1034,6 +965,7 @@ references:
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<T>
   nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
@@ -1043,39 +975,58 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: TEvent
   name: TEvent
   nameWithType: TEvent

@@ -14,11 +14,14 @@ items:
   - FastEndpoints.Swagger.DocumentOptions.FlattenSchema
   - FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
   - FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
+  - FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
   - FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
   - FastEndpoints.Swagger.DocumentOptions.SerializerSettings
   - FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
+  - FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
   - FastEndpoints.Swagger.DocumentOptions.TagCase
   - FastEndpoints.Swagger.DocumentOptions.TagDescriptions
+  - FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
   langs:
   - csharp
   - vb
@@ -28,12 +31,12 @@ items:
   type: Class
   source:
     id: DocumentOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 8
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\noptions for the swagger document\n"
+  summary: options for the swagger document
   example: []
   syntax:
     content: public class DocumentOptions
@@ -48,12 +51,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
 - uid: FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex
   commentId: P:FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex
   id: AutoTagPathSegmentIndex
@@ -67,12 +64,12 @@ items:
   type: Property
   source:
     id: AutoTagPathSegmentIndex
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 13
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nthe index of the route path segment to use for tagging/grouping endpoints. set 0 to disable auto tagging.\n"
+  summary: the index of the route path segment to use for tagging/grouping endpoints. set 0 to disable auto tagging.
   example: []
   syntax:
     content: public int AutoTagPathSegmentIndex { get; set; }
@@ -81,12 +78,6 @@ items:
       type: System.Int32
     content.vb: Public Property AutoTagPathSegmentIndex As Integer
   overload: FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.DocumentSettings
   commentId: P:FastEndpoints.Swagger.DocumentOptions.DocumentSettings
   id: DocumentSettings
@@ -100,26 +91,20 @@ items:
   type: Property
   source:
     id: DocumentSettings
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 17
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\na function for configuring the swagger document generator settings\n"
+  summary: a function for configuring the swagger document generator settings
   example: []
   syntax:
-    content: public Action<AspNetCoreOpenApiDocumentGeneratorSettings> DocumentSettings { get; set; }
+    content: public Action<AspNetCoreOpenApiDocumentGeneratorSettings>? DocumentSettings { get; set; }
     parameters: []
     return:
       type: System.Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}
     content.vb: Public Property DocumentSettings As Action(Of AspNetCoreOpenApiDocumentGeneratorSettings)
   overload: FastEndpoints.Swagger.DocumentOptions.DocumentSettings*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody
   commentId: P:FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody
   id: EnableGetRequestsWithBody
@@ -133,12 +118,15 @@ items:
   type: Property
   source:
     id: EnableGetRequestsWithBody
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 22
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nby default GET request DTO properties are automatically converted to query parameters because fetch-client/swagger ui doesn&apos;t support it.\nset this to true if for some reason you&apos;d like to disable this auto convertion and allow GET requests with a body.\n"
+  summary: >-
+    by default GET request DTO properties are automatically converted to query parameters because fetch-client/swagger ui doesn't support it.
+
+    set this to true if for some reason you'd like to disable this auto conversion and allow GET requests with a body.
   example: []
   syntax:
     content: public bool EnableGetRequestsWithBody { get; set; }
@@ -147,12 +135,6 @@ items:
       type: System.Boolean
     content.vb: Public Property EnableGetRequestsWithBody As Boolean
   overload: FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth
   commentId: P:FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth
   id: EnableJWTBearerAuth
@@ -166,12 +148,12 @@ items:
   type: Property
   source:
     id: EnableJWTBearerAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 26
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nset to false to disable auto addition of jwt bearer auth support\n"
+  summary: set to false to disable auto addition of jwt bearer auth support
   example: []
   syntax:
     content: public bool EnableJWTBearerAuth { get; set; }
@@ -180,12 +162,6 @@ items:
       type: System.Boolean
     content.vb: Public Property EnableJWTBearerAuth As Boolean
   overload: FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.EndpointFilter
   commentId: P:FastEndpoints.Swagger.DocumentOptions.EndpointFilter
   id: EndpointFilter
@@ -199,26 +175,25 @@ items:
   type: Property
   source:
     id: EndpointFilter
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 32
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\na function to filter out endpoints from the swagger document.\nthis function will be run against every fast endpoint discovered.\nreturn true to include the endpoint and return false to exclude the endpoint from the swagger doc.\n"
+  summary: >-
+    a function to filter out endpoints from the swagger document.
+
+    this function will be run against every fast endpoint discovered.
+
+    return true to include the endpoint and return false to exclude the endpoint from the swagger doc.
   example: []
   syntax:
-    content: public Func<EndpointDefinition, bool> EndpointFilter { get; set; }
+    content: public Func<EndpointDefinition, bool>? EndpointFilter { get; set; }
     parameters: []
     return:
       type: System.Func{FastEndpoints.EndpointDefinition,System.Boolean}
     content.vb: Public Property EndpointFilter As Func(Of EndpointDefinition, Boolean)
   overload: FastEndpoints.Swagger.DocumentOptions.EndpointFilter*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints
   commentId: P:FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints
   id: ExcludeNonFastEndpoints
@@ -232,12 +207,12 @@ items:
   type: Property
   source:
     id: ExcludeNonFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 36
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nif set to true, only FastEndpoints will show up in the swagger doc\n"
+  summary: if set to true, only FastEndpoints will show up in the swagger doc
   example: []
   syntax:
     content: public bool ExcludeNonFastEndpoints { get; set; }
@@ -246,12 +221,6 @@ items:
       type: System.Boolean
     content.vb: Public Property ExcludeNonFastEndpoints As Boolean
   overload: FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.FlattenSchema
   commentId: P:FastEndpoints.Swagger.DocumentOptions.FlattenSchema
   id: FlattenSchema
@@ -265,12 +234,12 @@ items:
   type: Property
   source:
     id: FlattenSchema
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 40
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nenabling this flattens the inheritance hierachy of all the schmema.\n"
+  summary: enabling this flattens the inheritance hierarchy of all the schema.
   example: []
   syntax:
     content: public bool FlattenSchema { get; set; }
@@ -279,12 +248,6 @@ items:
       type: System.Boolean
     content.vb: Public Property FlattenSchema As Boolean
   overload: FastEndpoints.Swagger.DocumentOptions.FlattenSchema*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
   commentId: P:FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
   id: MaxEndpointVersion
@@ -298,12 +261,12 @@ items:
   type: Property
   source:
     id: MaxEndpointVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 44
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nendpoints greater than this version will not be included in the swagger doc.\n"
+  summary: endpoints greater than this version will not be included in the swagger doc.
   example: []
   syntax:
     content: public int MaxEndpointVersion { get; set; }
@@ -312,12 +275,6 @@ items:
       type: System.Int32
     content.vb: Public Property MaxEndpointVersion As Integer
   overload: FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
   commentId: P:FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
   id: MinEndpointVersion
@@ -331,12 +288,12 @@ items:
   type: Property
   source:
     id: MinEndpointVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
     startLine: 48
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nendpoints lower than this vesion will not be included in the swagger doc.\n"
+  summary: endpoints lower than this version will not be included in the swagger doc.
   example: []
   syntax:
     content: public int MinEndpointVersion { get; set; }
@@ -345,12 +302,36 @@ items:
       type: System.Int32
     content.vb: Public Property MinEndpointVersion As Integer
   overload: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
+- uid: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
+  id: ShowDeprecatedOps
+  parent: FastEndpoints.Swagger.DocumentOptions
+  langs:
+  - csharp
+  - vb
+  name: ShowDeprecatedOps
+  nameWithType: DocumentOptions.ShowDeprecatedOps
+  fullName: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
+  type: Property
+  source:
+    id: ShowDeprecatedOps
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 53
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: >-
+    by default deprecated endpoints/operations will not show up in the swagger doc.
+
+    set this to true if you instead want them to show up but displayed as "obsolete".
+  example: []
+  syntax:
+    content: public bool ShowDeprecatedOps { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ShowDeprecatedOps As Boolean
+  overload: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps*
 - uid: FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
   commentId: P:FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
   id: RemoveEmptyRequestSchema
@@ -364,12 +345,15 @@ items:
   type: Property
   source:
     id: RemoveEmptyRequestSchema
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
-    startLine: 53
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 58
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nset to true for removing empty request dto schema from the swagger document.\n<p>WARNING: enabling this also flattens the inheritance hierachy of the schmema.</p>\n"
+  summary: >-
+    set to true for removing empty request dto schema from the swagger document.
+
+    <p>WARNING: enabling this also flattens the inheritance hierarchy of the schema.</p>
   example: []
   syntax:
     content: public bool RemoveEmptyRequestSchema { get; set; }
@@ -378,12 +362,6 @@ items:
       type: System.Boolean
     content.vb: Public Property RemoveEmptyRequestSchema As Boolean
   overload: FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.SerializerSettings
   commentId: P:FastEndpoints.Swagger.DocumentOptions.SerializerSettings
   id: SerializerSettings
@@ -397,26 +375,47 @@ items:
   type: Property
   source:
     id: SerializerSettings
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
-    startLine: 57
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 62
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\njson serializer options\n"
+  summary: json serializer options
   example: []
   syntax:
-    content: public Action<JsonSerializerOptions> SerializerSettings { get; set; }
+    content: public Action<JsonSerializerOptions>? SerializerSettings { get; set; }
     parameters: []
     return:
       type: System.Action{System.Text.Json.JsonSerializerOptions}
     content.vb: Public Property SerializerSettings As Action(Of JsonSerializerOptions)
   overload: FastEndpoints.Swagger.DocumentOptions.SerializerSettings*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
+- uid: FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
+  id: NewtonsoftSettings
+  parent: FastEndpoints.Swagger.DocumentOptions
+  langs:
+  - csharp
+  - vb
+  name: NewtonsoftSettings
+  nameWithType: DocumentOptions.NewtonsoftSettings
+  fullName: FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
+  type: Property
+  source:
+    id: NewtonsoftSettings
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 66
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: any additional newtonsoft serializer settings. most useful for registering custom converters.
+  example: []
+  syntax:
+    content: public Action<JsonSerializerSettings>? NewtonsoftSettings { get; set; }
+    parameters: []
+    return:
+      type: System.Action{Newtonsoft.Json.JsonSerializerSettings}
+    content.vb: Public Property NewtonsoftSettings As Action(Of JsonSerializerSettings)
+  overload: FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings*
 - uid: FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
   commentId: P:FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
   id: ShortSchemaNames
@@ -430,12 +429,12 @@ items:
   type: Property
   source:
     id: ShortSchemaNames
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
-    startLine: 61
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 70
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nset to true if you&apos;d like schema names to be just the class name instead of the full name.\n"
+  summary: set to true if you'd like schema names to be just the class name instead of the full name.
   example: []
   syntax:
     content: public bool ShortSchemaNames { get; set; }
@@ -444,12 +443,6 @@ items:
       type: System.Boolean
     content.vb: Public Property ShortSchemaNames As Boolean
   overload: FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.TagCase
   commentId: P:FastEndpoints.Swagger.DocumentOptions.TagCase
   id: TagCase
@@ -463,12 +456,12 @@ items:
   type: Property
   source:
     id: TagCase
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
-    startLine: 65
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 74
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nthe casing strategy to use when naming endpoint tags.\n"
+  summary: the casing strategy to use when naming endpoint tags.
   example: []
   syntax:
     content: public TagCase TagCase { get; set; }
@@ -477,12 +470,6 @@ items:
       type: FastEndpoints.Swagger.TagCase
     content.vb: Public Property TagCase As TagCase
   overload: FastEndpoints.Swagger.DocumentOptions.TagCase*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.Swagger.DocumentOptions.TagDescriptions
   commentId: P:FastEndpoints.Swagger.DocumentOptions.TagDescriptions
   id: TagDescriptions
@@ -496,326 +483,313 @@ items:
   type: Property
   source:
     id: TagDescriptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Swagger\DocumentOptions.cs
-    startLine: 70
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 79
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: "\nspecify swagger tag descriptions for the document.\nthe key of the dictionary is the name of the tag to add a description for.\n"
+  summary: >-
+    specify swagger tag descriptions for the document.
+
+    the key of the dictionary is the name of the tag to add a description for.
   example: []
   syntax:
-    content: public Action<Dictionary<string, string>> TagDescriptions { get; set; }
+    content: public Action<Dictionary<string, string>>? TagDescriptions { get; set; }
     parameters: []
     return:
       type: System.Action{System.Collections.Generic.Dictionary{System.String,System.String}}
     content.vb: Public Property TagDescriptions As Action(Of Dictionary(Of String, String))
   overload: FastEndpoints.Swagger.DocumentOptions.TagDescriptions*
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
+- uid: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+  id: UsePropertyNamingPolicyForParams
+  parent: FastEndpoints.Swagger.DocumentOptions
+  langs:
+  - csharp
+  - vb
+  name: UsePropertyNamingPolicyForParams
+  nameWithType: DocumentOptions.UsePropertyNamingPolicyForParams
+  fullName: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+  type: Property
+  source:
+    id: UsePropertyNamingPolicyForParams
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
+    startLine: 84
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: specify if <xref href="System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy" data-throw-if-not-resolved="false"></xref> should be used for naming swagger parameters that are generated by the default operation processor.
+  example: []
+  syntax:
+    content: public bool UsePropertyNamingPolicyForParams { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property UsePropertyNamingPolicyForParams As Boolean
+  overload: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams*
 references:
 - uid: FastEndpoints.Swagger
   commentId: N:FastEndpoints.Swagger
+  href: FastEndpoints.html
   name: FastEndpoints.Swagger
   nameWithType: FastEndpoints.Swagger
   fullName: FastEndpoints.Swagger
+  spec.csharp:
+  - uid: FastEndpoints
+    name: FastEndpoints
+    href: FastEndpoints.html
+  - name: .
+  - uid: FastEndpoints.Swagger
+    name: Swagger
+    href: FastEndpoints.Swagger.html
+  spec.vb:
+  - uid: FastEndpoints
+    name: FastEndpoints
+    href: FastEndpoints.html
+  - name: .
+  - uid: FastEndpoints.Swagger
+    name: Swagger
+    href: FastEndpoints.Swagger.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_AutoTagPathSegmentIndex
   name: AutoTagPathSegmentIndex
   nameWithType: DocumentOptions.AutoTagPathSegmentIndex
   fullName: FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex
@@ -823,11 +797,16 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: FastEndpoints.Swagger.DocumentOptions.DocumentSettings*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.DocumentSettings
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_DocumentSettings
   name: DocumentSettings
   nameWithType: DocumentOptions.DocumentSettings
   fullName: FastEndpoints.Swagger.DocumentOptions.DocumentSettings
@@ -835,6 +814,7 @@ references:
   commentId: T:System.Action{NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<AspNetCoreOpenApiDocumentGeneratorSettings>
   nameWithType: Action<AspNetCoreOpenApiDocumentGeneratorSettings>
   fullName: System.Action<NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings>
@@ -844,40 +824,29 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
     name: AspNetCoreOpenApiDocumentGeneratorSettings
-    nameWithType: AspNetCoreOpenApiDocumentGeneratorSettings
-    fullName: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
     name: AspNetCoreOpenApiDocumentGeneratorSettings
-    nameWithType: AspNetCoreOpenApiDocumentGeneratorSettings
-    fullName: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<T>
   nameWithType: Action<T>
   fullName: System.Action<T>
@@ -887,35 +856,24 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_EnableGetRequestsWithBody
   name: EnableGetRequestsWithBody
   nameWithType: DocumentOptions.EnableGetRequestsWithBody
   fullName: FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody
@@ -923,16 +881,22 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_EnableJWTBearerAuth
   name: EnableJWTBearerAuth
   nameWithType: DocumentOptions.EnableJWTBearerAuth
   fullName: FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth
 - uid: FastEndpoints.Swagger.DocumentOptions.EndpointFilter*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.EndpointFilter
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_EndpointFilter
   name: EndpointFilter
   nameWithType: DocumentOptions.EndpointFilter
   fullName: FastEndpoints.Swagger.DocumentOptions.EndpointFilter
@@ -940,63 +904,51 @@ references:
   commentId: T:System.Func{FastEndpoints.EndpointDefinition,System.Boolean}
   parent: System
   definition: System.Func`2
-  name: Func<EndpointDefinition, Boolean>
-  nameWithType: Func<EndpointDefinition, Boolean>
-  fullName: System.Func<FastEndpoints.EndpointDefinition, System.Boolean>
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<EndpointDefinition, bool>
+  nameWithType: Func<EndpointDefinition, bool>
+  fullName: System.Func<FastEndpoints.EndpointDefinition, bool>
   nameWithType.vb: Func(Of EndpointDefinition, Boolean)
-  fullName.vb: System.Func(Of FastEndpoints.EndpointDefinition, System.Boolean)
+  fullName.vb: System.Func(Of FastEndpoints.EndpointDefinition, Boolean)
   name.vb: Func(Of EndpointDefinition, Boolean)
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.EndpointDefinition
     name: EndpointDefinition
-    nameWithType: EndpointDefinition
-    fullName: FastEndpoints.EndpointDefinition
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: FastEndpoints.EndpointDefinition.html
+  - name: ','
+  - name: " "
   - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
+    name: bool
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.EndpointDefinition
     name: EndpointDefinition
-    nameWithType: EndpointDefinition
-    fullName: FastEndpoints.EndpointDefinition
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: FastEndpoints.EndpointDefinition.html
+  - name: ','
+  - name: " "
   - uid: System.Boolean
     name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Func`2
   commentId: T:System.Func`2
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
   name: Func<T, TResult>
   nameWithType: Func<T, TResult>
   fullName: System.Func<T, TResult>
@@ -1006,72 +958,66 @@ references:
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_ExcludeNonFastEndpoints
   name: ExcludeNonFastEndpoints
   nameWithType: DocumentOptions.ExcludeNonFastEndpoints
   fullName: FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints
 - uid: FastEndpoints.Swagger.DocumentOptions.FlattenSchema*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.FlattenSchema
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_FlattenSchema
   name: FlattenSchema
   nameWithType: DocumentOptions.FlattenSchema
   fullName: FastEndpoints.Swagger.DocumentOptions.FlattenSchema
 - uid: FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_MaxEndpointVersion
   name: MaxEndpointVersion
   nameWithType: DocumentOptions.MaxEndpointVersion
   fullName: FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
 - uid: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_MinEndpointVersion
   name: MinEndpointVersion
   nameWithType: DocumentOptions.MinEndpointVersion
   fullName: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
+- uid: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_ShowDeprecatedOps
+  name: ShowDeprecatedOps
+  nameWithType: DocumentOptions.ShowDeprecatedOps
+  fullName: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
 - uid: FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_RemoveEmptyRequestSchema
   name: RemoveEmptyRequestSchema
   nameWithType: DocumentOptions.RemoveEmptyRequestSchema
   fullName: FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
 - uid: FastEndpoints.Swagger.DocumentOptions.SerializerSettings*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.SerializerSettings
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_SerializerSettings
   name: SerializerSettings
   nameWithType: DocumentOptions.SerializerSettings
   fullName: FastEndpoints.Swagger.DocumentOptions.SerializerSettings
@@ -1079,6 +1025,7 @@ references:
   commentId: T:System.Action{System.Text.Json.JsonSerializerOptions}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<JsonSerializerOptions>
   nameWithType: Action<JsonSerializerOptions>
   fullName: System.Action<System.Text.Json.JsonSerializerOptions>
@@ -1088,55 +1035,88 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Text.Json.JsonSerializerOptions
     name: JsonSerializerOptions
-    nameWithType: JsonSerializerOptions
-    fullName: System.Text.Json.JsonSerializerOptions
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Text.Json.JsonSerializerOptions
     name: JsonSerializerOptions
-    nameWithType: JsonSerializerOptions
-    fullName: System.Text.Json.JsonSerializerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
+  - name: )
+- uid: FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_NewtonsoftSettings
+  name: NewtonsoftSettings
+  nameWithType: DocumentOptions.NewtonsoftSettings
+  fullName: FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
+- uid: System.Action{Newtonsoft.Json.JsonSerializerSettings}
+  commentId: T:System.Action{Newtonsoft.Json.JsonSerializerSettings}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<JsonSerializerSettings>
+  nameWithType: Action<JsonSerializerSettings>
+  fullName: System.Action<Newtonsoft.Json.JsonSerializerSettings>
+  nameWithType.vb: Action(Of JsonSerializerSettings)
+  fullName.vb: System.Action(Of Newtonsoft.Json.JsonSerializerSettings)
+  name.vb: Action(Of JsonSerializerSettings)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Newtonsoft.Json.JsonSerializerSettings
+    name: JsonSerializerSettings
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Newtonsoft.Json.JsonSerializerSettings
+    name: JsonSerializerSettings
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_ShortSchemaNames
   name: ShortSchemaNames
   nameWithType: DocumentOptions.ShortSchemaNames
   fullName: FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
 - uid: FastEndpoints.Swagger.DocumentOptions.TagCase*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.TagCase
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_TagCase
   name: TagCase
   nameWithType: DocumentOptions.TagCase
   fullName: FastEndpoints.Swagger.DocumentOptions.TagCase
 - uid: FastEndpoints.Swagger.TagCase
   commentId: T:FastEndpoints.Swagger.TagCase
   parent: FastEndpoints.Swagger
+  href: FastEndpoints.Swagger.TagCase.html
   name: TagCase
   nameWithType: TagCase
   fullName: FastEndpoints.Swagger.TagCase
 - uid: FastEndpoints.Swagger.DocumentOptions.TagDescriptions*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.TagDescriptions
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_TagDescriptions
   name: TagDescriptions
   nameWithType: DocumentOptions.TagDescriptions
   fullName: FastEndpoints.Swagger.DocumentOptions.TagDescriptions
@@ -1144,81 +1124,73 @@ references:
   commentId: T:System.Action{System.Collections.Generic.Dictionary{System.String,System.String}}
   parent: System
   definition: System.Action`1
-  name: Action<Dictionary<String, String>>
-  nameWithType: Action<Dictionary<String, String>>
-  fullName: System.Action<System.Collections.Generic.Dictionary<System.String, System.String>>
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<Dictionary<string, string>>
+  nameWithType: Action<Dictionary<string, string>>
+  fullName: System.Action<System.Collections.Generic.Dictionary<string, string>>
   nameWithType.vb: Action(Of Dictionary(Of String, String))
-  fullName.vb: System.Action(Of System.Collections.Generic.Dictionary(Of System.String, System.String))
+  fullName.vb: System.Action(Of System.Collections.Generic.Dictionary(Of String, String))
   name.vb: Action(Of Dictionary(Of String, String))
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy
+  commentId: P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions.propertynamingpolicy
+  name: PropertyNamingPolicy
+  nameWithType: JsonSerializerOptions.PropertyNamingPolicy
+  fullName: System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy
+- uid: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_UsePropertyNamingPolicyForParams
+  name: UsePropertyNamingPolicyForParams
+  nameWithType: DocumentOptions.UsePropertyNamingPolicyForParams
+  fullName: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams

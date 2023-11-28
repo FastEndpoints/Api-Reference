@@ -25,19 +25,16 @@ items:
   type: Struct
   source:
     id: BinderContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 13
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nbinder context supplied to custom request binders.\n"
+  summary: binder context supplied to custom request binders.
   example: []
   syntax:
     content: 'public readonly struct BinderContext : IServiceResolverBase'
-    content.vb: >-
-      Public Structure BinderContext
-
-          Implements IServiceResolverBase
+    content.vb: Public Structure BinderContext Implements IServiceResolverBase
   implements:
   - FastEndpoints.IServiceResolverBase
   inheritedMembers:
@@ -47,13 +44,6 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
-  modifiers.csharp:
-  - public
-  - readonly
-  - struct
-  modifiers.vb:
-  - Public
-  - Structure
 - uid: FastEndpoints.BinderContext.HttpContext
   commentId: P:FastEndpoints.BinderContext.HttpContext
   id: HttpContext
@@ -67,26 +57,20 @@ items:
   type: Property
   source:
     id: HttpContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe http context of the current request\n"
+  summary: the http context of the current request
   example: []
   syntax:
-    content: public HttpContext HttpContext { readonly get; set; }
+    content: public HttpContext HttpContext { get; init; }
     parameters: []
     return:
       type: Microsoft.AspNetCore.Http.HttpContext
     content.vb: Public Property HttpContext As HttpContext
   overload: FastEndpoints.BinderContext.HttpContext*
-  modifiers.csharp:
-  - public
-  - readonly get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.BinderContext.ValidationFailures
   commentId: P:FastEndpoints.BinderContext.ValidationFailures
   id: ValidationFailures
@@ -100,26 +84,20 @@ items:
   type: Property
   source:
     id: ValidationFailures
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\na list of validation failures for the endpoint. you can add your own validation failures for properties of the request dto using this property.\n"
+  summary: a list of validation failures for the endpoint. you can add your own validation failures for properties of the request dto using this property.
   example: []
   syntax:
-    content: public List<ValidationFailure> ValidationFailures { readonly get; set; }
+    content: public List<ValidationFailure> ValidationFailures { get; init; }
     parameters: []
     return:
       type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
     content.vb: Public Property ValidationFailures As List(Of ValidationFailure)
   overload: FastEndpoints.BinderContext.ValidationFailures*
-  modifiers.csharp:
-  - public
-  - readonly get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.BinderContext.SerializerOptions
   commentId: P:FastEndpoints.BinderContext.SerializerOptions
   id: SerializerOptions
@@ -133,27 +111,20 @@ items:
   type: Property
   source:
     id: SerializerOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 28
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe configured json serializer options of the app, which was specified at app startup.\n"
+  summary: the configured json serializer options of the app, which was specified at app startup.
   example: []
   syntax:
-    content: public readonly JsonSerializerOptions SerializerOptions { get; }
+    content: public JsonSerializerOptions SerializerOptions { get; }
     parameters: []
     return:
       type: System.Text.Json.JsonSerializerOptions
     content.vb: Public ReadOnly Property SerializerOptions As JsonSerializerOptions
   overload: FastEndpoints.BinderContext.SerializerOptions*
-  modifiers.csharp:
-  - public
-  - readonly
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.BinderContext.JsonSerializerContext
   commentId: P:FastEndpoints.BinderContext.JsonSerializerContext
   id: JsonSerializerContext
@@ -167,26 +138,20 @@ items:
   type: Property
   source:
     id: JsonSerializerContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 33
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nif the current endpoint is configured with a json serializer context, it will be provided to the custom request binder with this property.\n"
+  summary: if the current endpoint is configured with a json serializer context, it will be provided to the custom request binder with this property.
   example: []
   syntax:
-    content: public JsonSerializerContext JsonSerializerContext { readonly get; set; }
+    content: public JsonSerializerContext? JsonSerializerContext { get; init; }
     parameters: []
     return:
       type: System.Text.Json.Serialization.JsonSerializerContext
     content.vb: Public Property JsonSerializerContext As JsonSerializerContext
   overload: FastEndpoints.BinderContext.JsonSerializerContext*
-  modifiers.csharp:
-  - public
-  - readonly get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.BinderContext.DontAutoBindForms
   commentId: P:FastEndpoints.BinderContext.DontAutoBindForms
   id: DontAutoBindForms
@@ -200,26 +165,23 @@ items:
   type: Property
   source:
     id: DontAutoBindForms
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nset &apos;true&apos; to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.\nyou can access the multipart sections for reading via the FormFileSectionsAsync() method.\n"
+  summary: >-
+    set 'true' to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.
+
+    you can access the multipart sections for reading via the FormFileSectionsAsync() method.
   example: []
   syntax:
-    content: public bool DontAutoBindForms { readonly get; set; }
+    content: public bool DontAutoBindForms { get; init; }
     parameters: []
     return:
       type: System.Boolean
     content.vb: Public Property DontAutoBindForms As Boolean
   overload: FastEndpoints.BinderContext.DontAutoBindForms*
-  modifiers.csharp:
-  - public
-  - readonly get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)
   commentId: M:FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)
   id: '#ctor(Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)'
@@ -227,21 +189,21 @@ items:
   langs:
   - csharp
   - vb
-  name: BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext, Boolean)
-  nameWithType: BinderContext.BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext, Boolean)
-  fullName: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, System.Text.Json.Serialization.JsonSerializerContext, System.Boolean)
+  name: BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext?, bool)
+  nameWithType: BinderContext.BinderContext(HttpContext, List<ValidationFailure>, JsonSerializerContext?, bool)
+  fullName: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, System.Text.Json.Serialization.JsonSerializerContext?, bool)
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nconstructor of the binder context\n"
+  summary: constructor of the binder context
   example: []
   syntax:
-    content: public BinderContext(HttpContext httpContext, List<ValidationFailure> validationFailures, JsonSerializerContext jsonSerializerContext, bool dontAutoBindForms)
+    content: public BinderContext(HttpContext httpContext, List<ValidationFailure> validationFailures, JsonSerializerContext? jsonSerializerContext, bool dontAutoBindForms)
     parameters:
     - id: httpContext
       type: Microsoft.AspNetCore.Http.HttpContext
@@ -257,13 +219,9 @@ items:
       description: whether or not to enable auto binding of form data
     content.vb: Public Sub New(httpContext As HttpContext, validationFailures As List(Of ValidationFailure), jsonSerializerContext As JsonSerializerContext, dontAutoBindForms As Boolean)
   overload: FastEndpoints.BinderContext.#ctor*
-  nameWithType.vb: BinderContext.BinderContext(HttpContext, List(Of ValidationFailure), JsonSerializerContext, Boolean)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.BinderContext.BinderContext(Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.Text.Json.Serialization.JsonSerializerContext, System.Boolean)
-  name.vb: BinderContext(HttpContext, List(Of ValidationFailure), JsonSerializerContext, Boolean)
+  nameWithType.vb: BinderContext.New(HttpContext, List(Of ValidationFailure), JsonSerializerContext, Boolean)
+  fullName.vb: FastEndpoints.BinderContext.New(Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.Text.Json.Serialization.JsonSerializerContext, Boolean)
+  name.vb: New(HttpContext, List(Of ValidationFailure), JsonSerializerContext, Boolean)
 - uid: FastEndpoints.BinderContext.TryResolve``1
   commentId: M:FastEndpoints.BinderContext.TryResolve``1
   id: TryResolve``1
@@ -277,31 +235,25 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
     startLine: 60
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
   example: []
   syntax:
-    content: >-
-      public readonly TService TryResolve<TService>()
-
-          where TService : class
+    content: 'public TService? TryResolve<TService>() where TService : class'
     typeParameters:
     - id: TService
+      description: the type of the service to resolve
     return:
       type: '{TService}'
-    content.vb: Public Function TryResolve(Of TService As Class) As TService
+    content.vb: Public Function TryResolve(Of TService As Class)() As TService
   overload: FastEndpoints.BinderContext.TryResolve*
   implements:
   - FastEndpoints.IServiceResolverBase.TryResolve``1
   nameWithType.vb: BinderContext.TryResolve(Of TService)()
-  modifiers.csharp:
-  - public
-  - readonly
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.BinderContext.TryResolve(Of TService)()
   name.vb: TryResolve(Of TService)()
 - uid: FastEndpoints.BinderContext.TryResolve(System.Type)
@@ -317,28 +269,25 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 62
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
+    startLine: 64
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
   example: []
   syntax:
-    content: public readonly object TryResolve(Type typeOfService)
+    content: public object? TryResolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: System.Type
+      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
   overload: FastEndpoints.BinderContext.TryResolve*
   implements:
   - FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
-  modifiers.csharp:
-  - public
-  - readonly
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.BinderContext.Resolve``1
   commentId: M:FastEndpoints.BinderContext.Resolve``1
   id: Resolve``1
@@ -352,31 +301,29 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 64
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
+    startLine: 68
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
   example: []
   syntax:
-    content: >-
-      public readonly TService Resolve<TService>()
-
-          where TService : class
+    content: 'public TService Resolve<TService>() where TService : class'
     typeParameters:
     - id: TService
+      description: the type of the service to resolve
     return:
       type: '{TService}'
-    content.vb: Public Function Resolve(Of TService As Class) As TService
+    content.vb: Public Function Resolve(Of TService As Class)() As TService
   overload: FastEndpoints.BinderContext.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   implements:
   - FastEndpoints.IServiceResolverBase.Resolve``1
   nameWithType.vb: BinderContext.Resolve(Of TService)()
-  modifiers.csharp:
-  - public
-  - readonly
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.BinderContext.Resolve(Of TService)()
   name.vb: Resolve(Of TService)()
 - uid: FastEndpoints.BinderContext.Resolve(System.Type)
@@ -392,28 +339,29 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 66
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
+    startLine: 72
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
   example: []
   syntax:
-    content: public readonly object Resolve(Type typeOfService)
+    content: public object Resolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: System.Type
+      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.BinderContext.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   implements:
   - FastEndpoints.IServiceResolverBase.Resolve(System.Type)
-  modifiers.csharp:
-  - public
-  - readonly
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.BinderContext.CreateScope
   commentId: M:FastEndpoints.BinderContext.CreateScope
   id: CreateScope
@@ -427,34 +375,38 @@ items:
   type: Method
   source:
     id: CreateScope
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\BinderContext.cs
-    startLine: 68
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\BinderContext.cs
+    startLine: 76
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: >-
+    if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when
+
+    the work is complete.
+
+    <p><pre><code class="lang-csharp">using var scope = CreateScope();
+       var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre></p>
   example: []
   syntax:
-    content: public readonly IServiceScope CreateScope()
+    content: public IServiceScope CreateScope()
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
-    content.vb: Public Function CreateScope As IServiceScope
+    content.vb: Public Function CreateScope() As IServiceScope
   overload: FastEndpoints.BinderContext.CreateScope*
   implements:
   - FastEndpoints.IServiceResolverBase.CreateScope
-  modifiers.csharp:
-  - public
-  - readonly
-  modifiers.vb:
-  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
 - uid: FastEndpoints.IServiceResolverBase
   commentId: T:FastEndpoints.IServiceResolverBase
   parent: FastEndpoints
+  href: FastEndpoints.IServiceResolverBase.html
   name: IServiceResolverBase
   nameWithType: IServiceResolverBase
   fullName: FastEndpoints.IServiceResolverBase
@@ -462,254 +414,198 @@ references:
   commentId: M:System.ValueType.Equals(System.Object)
   parent: System.ValueType
   isExternal: true
-  name: Equals(Object)
-  nameWithType: ValueType.Equals(Object)
-  fullName: System.ValueType.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.ValueType.Equals(System.Object)
     name: Equals
-    nameWithType: ValueType.Equals
-    fullName: System.ValueType.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.ValueType.Equals(System.Object)
     name: Equals
-    nameWithType: ValueType.Equals
-    fullName: System.ValueType.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.ValueType.GetHashCode
   commentId: M:System.ValueType.GetHashCode
   parent: System.ValueType
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
   name: GetHashCode()
   nameWithType: ValueType.GetHashCode()
   fullName: System.ValueType.GetHashCode()
   spec.csharp:
   - uid: System.ValueType.GetHashCode
     name: GetHashCode
-    nameWithType: ValueType.GetHashCode
-    fullName: System.ValueType.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.ValueType.GetHashCode
     name: GetHashCode
-    nameWithType: ValueType.GetHashCode
-    fullName: System.ValueType.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
   name: ToString()
   nameWithType: ValueType.ToString()
   fullName: System.ValueType.ToString()
   spec.csharp:
   - uid: System.ValueType.ToString
     name: ToString
-    nameWithType: ValueType.ToString
-    fullName: System.ValueType.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.ValueType.ToString
     name: ToString
-    nameWithType: ValueType.ToString
-    fullName: System.ValueType.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.ValueType
   commentId: T:System.ValueType
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
   name: ValueType
   nameWithType: ValueType
   fullName: System.ValueType
@@ -717,17 +613,23 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.BinderContext.HttpContext*
   commentId: Overload:FastEndpoints.BinderContext.HttpContext
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_HttpContext
   name: HttpContext
   nameWithType: BinderContext.HttpContext
   fullName: FastEndpoints.BinderContext.HttpContext
@@ -735,17 +637,50 @@ references:
   commentId: T:Microsoft.AspNetCore.Http.HttpContext
   parent: Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
   name: HttpContext
   nameWithType: HttpContext
   fullName: Microsoft.AspNetCore.Http.HttpContext
 - uid: Microsoft.AspNetCore.Http
   commentId: N:Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.AspNetCore.Http
   nameWithType: Microsoft.AspNetCore.Http
   fullName: Microsoft.AspNetCore.Http
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
 - uid: FastEndpoints.BinderContext.ValidationFailures*
   commentId: Overload:FastEndpoints.BinderContext.ValidationFailures
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_ValidationFailures
   name: ValidationFailures
   nameWithType: BinderContext.ValidationFailures
   fullName: FastEndpoints.BinderContext.ValidationFailures
@@ -753,6 +688,7 @@ references:
   commentId: T:System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   name: List<ValidationFailure>
   nameWithType: List<ValidationFailure>
   fullName: System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>
@@ -762,40 +698,29 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   name: List<T>
   nameWithType: List<T>
   fullName: System.Collections.Generic.List<T>
@@ -805,41 +730,61 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: FastEndpoints.BinderContext.SerializerOptions*
   commentId: Overload:FastEndpoints.BinderContext.SerializerOptions
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_SerializerOptions
   name: SerializerOptions
   nameWithType: BinderContext.SerializerOptions
   fullName: FastEndpoints.BinderContext.SerializerOptions
@@ -847,17 +792,50 @@ references:
   commentId: T:System.Text.Json.JsonSerializerOptions
   parent: System.Text.Json
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions
   name: JsonSerializerOptions
   nameWithType: JsonSerializerOptions
   fullName: System.Text.Json.JsonSerializerOptions
 - uid: System.Text.Json
   commentId: N:System.Text.Json
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Text.Json
   nameWithType: System.Text.Json
   fullName: System.Text.Json
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
 - uid: FastEndpoints.BinderContext.JsonSerializerContext*
   commentId: Overload:FastEndpoints.BinderContext.JsonSerializerContext
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_JsonSerializerContext
   name: JsonSerializerContext
   nameWithType: BinderContext.JsonSerializerContext
   fullName: FastEndpoints.BinderContext.JsonSerializerContext
@@ -865,17 +843,60 @@ references:
   commentId: T:System.Text.Json.Serialization.JsonSerializerContext
   parent: System.Text.Json.Serialization
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext
   name: JsonSerializerContext
   nameWithType: JsonSerializerContext
   fullName: System.Text.Json.Serialization.JsonSerializerContext
 - uid: System.Text.Json.Serialization
   commentId: N:System.Text.Json.Serialization
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Text.Json.Serialization
   nameWithType: System.Text.Json.Serialization
   fullName: System.Text.Json.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  - name: .
+  - uid: System.Text.Json.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json.serialization
 - uid: FastEndpoints.BinderContext.DontAutoBindForms*
   commentId: Overload:FastEndpoints.BinderContext.DontAutoBindForms
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_DontAutoBindForms
   name: DontAutoBindForms
   nameWithType: BinderContext.DontAutoBindForms
   fullName: FastEndpoints.BinderContext.DontAutoBindForms
@@ -883,22 +904,32 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: FastEndpoints.BinderContext.#ctor*
   commentId: Overload:FastEndpoints.BinderContext.#ctor
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext__ctor_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_List_FluentValidation_Results_ValidationFailure__System_Text_Json_Serialization_JsonSerializerContext_System_Boolean_
   name: BinderContext
   nameWithType: BinderContext.BinderContext
   fullName: FastEndpoints.BinderContext.BinderContext
+  nameWithType.vb: BinderContext.New
+  fullName.vb: FastEndpoints.BinderContext.New
+  name.vb: New
 - uid: FastEndpoints.BinderContext.TryResolve*
   commentId: Overload:FastEndpoints.BinderContext.TryResolve
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_TryResolve__1
   name: TryResolve
   nameWithType: BinderContext.TryResolve
   fullName: FastEndpoints.BinderContext.TryResolve
 - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
   commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1
   parent: FastEndpoints.IServiceResolverBase
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1
   name: TryResolve<TService>()
   nameWithType: IServiceResolverBase.TryResolve<TService>()
   fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>()
@@ -907,26 +938,24 @@ references:
   name.vb: TryResolve(Of TService)()
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
-    name: TryResolve<TService>
-    nameWithType: IServiceResolverBase.TryResolve<TService>
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1
+  - name: <
+  - name: TService
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
-    name: TryResolve(Of TService)
-    nameWithType: IServiceResolverBase.TryResolve(Of TService)
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TService
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: )
 - uid: '{TService}'
   commentId: '!:TService'
   definition: TService
@@ -941,56 +970,55 @@ references:
   commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   parent: FastEndpoints.IServiceResolverBase
   isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_
   name: TryResolve(Type)
   nameWithType: IServiceResolverBase.TryResolve(Type)
   fullName: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
     name: TryResolve
-    nameWithType: IServiceResolverBase.TryResolve
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
     name: TryResolve
-    nameWithType: IServiceResolverBase.TryResolve
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Type
   commentId: T:System.Type
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: FastEndpoints.BinderContext.Resolve*
   commentId: Overload:FastEndpoints.BinderContext.Resolve
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_Resolve__1
   name: Resolve
   nameWithType: BinderContext.Resolve
   fullName: FastEndpoints.BinderContext.Resolve
 - uid: FastEndpoints.IServiceResolverBase.Resolve``1
   commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1
   parent: FastEndpoints.IServiceResolverBase
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1
   name: Resolve<TService>()
   nameWithType: IServiceResolverBase.Resolve<TService>()
   fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>()
@@ -999,108 +1027,119 @@ references:
   name.vb: Resolve(Of TService)()
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.Resolve``1
-    name: Resolve<TService>
-    nameWithType: IServiceResolverBase.Resolve<TService>
-    fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1
+  - name: <
+  - name: TService
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.Resolve``1
-    name: Resolve(Of TService)
-    nameWithType: IServiceResolverBase.Resolve(Of TService)
-    fullName: FastEndpoints.IServiceResolverBase.Resolve(Of TService)
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TService
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: )
 - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   commentId: M:FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   parent: FastEndpoints.IServiceResolverBase
   isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_
   name: Resolve(Type)
   nameWithType: IServiceResolverBase.Resolve(Type)
   fullName: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
     name: Resolve
-    nameWithType: IServiceResolverBase.Resolve
-    fullName: FastEndpoints.IServiceResolverBase.Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
     name: Resolve
-    nameWithType: IServiceResolverBase.Resolve
-    fullName: FastEndpoints.IServiceResolverBase.Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.BinderContext.CreateScope*
   commentId: Overload:FastEndpoints.BinderContext.CreateScope
+  href: FastEndpoints.BinderContext.html#FastEndpoints_BinderContext_CreateScope
   name: CreateScope
   nameWithType: BinderContext.CreateScope
   fullName: FastEndpoints.BinderContext.CreateScope
 - uid: FastEndpoints.IServiceResolverBase.CreateScope
   commentId: M:FastEndpoints.IServiceResolverBase.CreateScope
   parent: FastEndpoints.IServiceResolverBase
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_CreateScope
   name: CreateScope()
   nameWithType: IServiceResolverBase.CreateScope()
   fullName: FastEndpoints.IServiceResolverBase.CreateScope()
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.CreateScope
     name: CreateScope
-    nameWithType: IServiceResolverBase.CreateScope
-    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_CreateScope
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.CreateScope
     name: CreateScope
-    nameWithType: IServiceResolverBase.CreateScope
-    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_CreateScope
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection.IServiceScope
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceScope
   parent: Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicescope
   name: IServiceScope
   nameWithType: IServiceScope
   fullName: Microsoft.Extensions.DependencyInjection.IServiceScope
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection

@@ -15,12 +15,12 @@ items:
   type: Class
   source:
     id: CommandHandler
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandHandler.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandHandler.cs
     startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ninherit this base class if you&apos;d like to manipulate validation state of the calling endpoint from within the command handler.\n"
+  summary: inherit this base class if you'd like to manipulate validation state of the calling endpoint from within the command handler.
   example: []
   syntax:
     content: 'public abstract class CommandHandler<TCommand, TResult> : CommandHandlerBase<TCommand>, ICommandHandler<TCommand, TResult>, ICommandHandler where TCommand : ICommand<TResult>'
@@ -29,12 +29,7 @@ items:
       description: the type of the command that will be handled by this command handler
     - id: TResult
       description: the type of the result that will be returned by this command handler
-    content.vb: >-
-      Public MustInherit Class CommandHandler(Of TCommand As ICommand(Of TResult), TResult)
-
-          Inherits CommandHandlerBase(Of TCommand)
-
-          Implements ICommandHandler(Of TCommand, TResult), ICommandHandler
+    content.vb: Public MustInherit Class CommandHandler(Of TCommand As ICommand(Of TResult), TResult) Inherits CommandHandlerBase(Of TCommand) Implements ICommandHandler(Of TCommand, TResult), ICommandHandler
   inheritance:
   - System.Object
   - FastEndpoints.ValidationContext
@@ -64,14 +59,6 @@ items:
   extensionMethods:
   - FastEndpoints.ICommandHandler{`0,`1}.FastEndpoints.CommandExtensions.RegisterForTesting``2
   nameWithType.vb: CommandHandler(Of TCommand, TResult)
-  modifiers.csharp:
-  - public
-  - abstract
-  - class
-  modifiers.vb:
-  - Public
-  - MustInherit
-  - Class
   fullName.vb: FastEndpoints.CommandHandler(Of TCommand, TResult)
   name.vb: CommandHandler(Of TCommand, TResult)
 - uid: FastEndpoints.CommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
@@ -87,19 +74,22 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandHandler.cs
-    startLine: 26
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandHandler.cs
+    startLine: 27
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: receives a command and returns a result.
   example: []
   syntax:
-    content: public abstract Task<TResult> ExecuteAsync(TCommand command, CancellationToken ct = default(CancellationToken))
+    content: public abstract Task<TResult> ExecuteAsync(TCommand command, CancellationToken ct = default)
     parameters:
     - id: command
       type: '{TCommand}'
+      description: the input command object
     - id: ct
       type: System.Threading.CancellationToken
+      description: optional cancellation token
     return:
       type: System.Threading.Tasks.Task{{TResult}}
     content.vb: Public MustOverride Function ExecuteAsync(command As TCommand, ct As CancellationToken = Nothing) As Task(Of TResult)
@@ -107,16 +97,11 @@ items:
   implements:
   - FastEndpoints.ICommandHandler{{TCommand},{TResult}}.ExecuteAsync({TCommand},System.Threading.CancellationToken)
   nameWithType.vb: CommandHandler(Of TCommand, TResult).ExecuteAsync(TCommand, CancellationToken)
-  modifiers.csharp:
-  - public
-  - abstract
-  modifiers.vb:
-  - Public
-  - MustOverride
   fullName.vb: FastEndpoints.CommandHandler(Of TCommand, TResult).ExecuteAsync(TCommand, System.Threading.CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -124,12 +109,17 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: FastEndpoints.ValidationContext
   commentId: T:FastEndpoints.ValidationContext
   parent: FastEndpoints
+  href: FastEndpoints.ValidationContext.html
   name: ValidationContext
   nameWithType: ValidationContext
   fullName: FastEndpoints.ValidationContext
@@ -137,6 +127,7 @@ references:
   commentId: T:FastEndpoints.ValidationContext{`0}
   parent: FastEndpoints
   definition: FastEndpoints.ValidationContext`1
+  href: FastEndpoints.ValidationContext-1.html
   name: ValidationContext<TCommand>
   nameWithType: ValidationContext<TCommand>
   fullName: FastEndpoints.ValidationContext<TCommand>
@@ -146,35 +137,24 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ValidationContext`1
     name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
+    href: FastEndpoints.ValidationContext-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ValidationContext`1
     name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ValidationContext-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.CommandHandlerBase{{TCommand}}
   commentId: T:FastEndpoints.CommandHandlerBase{`0}
   parent: FastEndpoints
   definition: FastEndpoints.CommandHandlerBase`1
+  href: FastEndpoints.CommandHandlerBase-1.html
   name: CommandHandlerBase<TCommand>
   nameWithType: CommandHandlerBase<TCommand>
   fullName: FastEndpoints.CommandHandlerBase<TCommand>
@@ -184,31 +164,19 @@ references:
   spec.csharp:
   - uid: FastEndpoints.CommandHandlerBase`1
     name: CommandHandlerBase
-    nameWithType: CommandHandlerBase
-    fullName: FastEndpoints.CommandHandlerBase
+    href: FastEndpoints.CommandHandlerBase-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.CommandHandlerBase`1
     name: CommandHandlerBase
-    nameWithType: CommandHandlerBase
-    fullName: FastEndpoints.CommandHandlerBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.CommandHandlerBase-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
   commentId: T:FastEndpoints.ICommandHandler{``0,``1}
   parent: FastEndpoints
@@ -222,46 +190,27 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler
   commentId: T:FastEndpoints.ICommandHandler
   parent: FastEndpoints
+  href: FastEndpoints.ICommandHandler.html
   name: ICommandHandler
   nameWithType: ICommandHandler
   fullName: FastEndpoints.ICommandHandler
@@ -269,6 +218,7 @@ references:
   commentId: P:FastEndpoints.ValidationContext{`0}.Instance
   parent: FastEndpoints.ValidationContext{{TCommand}}
   definition: FastEndpoints.ValidationContext`1.Instance
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_Instance
   name: Instance
   nameWithType: ValidationContext<TCommand>.Instance
   fullName: FastEndpoints.ValidationContext<TCommand>.Instance
@@ -278,309 +228,203 @@ references:
   commentId: M:FastEndpoints.ValidationContext{`0}.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.ValidationContext{{TCommand}}
   definition: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
-  name: AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
-  nameWithType: ValidationContext<TCommand>.AddError(Expression<Func<TCommand, Object>>, String, String, Severity)
-  fullName: FastEndpoints.ValidationContext<TCommand>.AddError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String, System.String, FluentValidation.Severity)
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
+  name: AddError(Expression<Func<TCommand, object>>, string, string, Severity)
+  nameWithType: ValidationContext<TCommand>.AddError(Expression<Func<TCommand, object>>, string, string, Severity)
+  fullName: FastEndpoints.ValidationContext<TCommand>.AddError(System.Linq.Expressions.Expression<System.Func<TCommand, object>>, string, string, FluentValidation.Severity)
   nameWithType.vb: ValidationContext(Of TCommand).AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
-  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String, System.String, FluentValidation.Severity)
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).AddError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, Object)), String, String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of TCommand, Object)), String, String, Severity)
   spec.csharp:
-  - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  - uid: FastEndpoints.ValidationContext{`0}.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext<TCommand>.AddError
-    fullName: FastEndpoints.ValidationContext<TCommand>.AddError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
+  - uid: FastEndpoints.ValidationContext{`0}.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext(Of TCommand).AddError
-    fullName: FastEndpoints.ValidationContext(Of TCommand).AddError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext{{TCommand}}
   definition: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
-  name: ThrowError(Expression<Func<TCommand, Object>>, String, Nullable<Int32>)
-  nameWithType: ValidationContext<TCommand>.ThrowError(Expression<Func<TCommand, Object>>, String, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext<TCommand>.ThrowError(System.Linq.Expressions.Expression<System.Func<TCommand, System.Object>>, System.String, System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext(Of TCommand).ThrowError(Expression(Of Func(Of TCommand, Object)), String, Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, System.Object)), System.String, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(Expression(Of Func(Of TCommand, Object)), String, Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
+  name: ThrowError(Expression<Func<TCommand, object>>, string, int?)
+  nameWithType: ValidationContext<TCommand>.ThrowError(Expression<Func<TCommand, object>>, string, int?)
+  fullName: FastEndpoints.ValidationContext<TCommand>.ThrowError(System.Linq.Expressions.Expression<System.Func<TCommand, object>>, string, int?)
+  nameWithType.vb: ValidationContext(Of TCommand).ThrowError(Expression(Of Func(Of TCommand, Object)), String, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, Object)), String, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of TCommand, Object)), String, Integer?)
   spec.csharp:
-  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  - uid: FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext<TCommand>.ThrowError
-    fullName: FastEndpoints.ValidationContext<TCommand>.ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  - uid: FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext(Of TCommand).ThrowError
-    fullName: FastEndpoints.ValidationContext(Of TCommand).ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ValidationFailures
   commentId: P:FastEndpoints.ValidationContext.ValidationFailures
   parent: FastEndpoints.ValidationContext
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ValidationFailures
   name: ValidationFailures
   nameWithType: ValidationContext.ValidationFailures
   fullName: FastEndpoints.ValidationContext.ValidationFailures
 - uid: FastEndpoints.ValidationContext.ValidationFailed
   commentId: P:FastEndpoints.ValidationContext.ValidationFailed
   parent: FastEndpoints.ValidationContext
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ValidationFailed
   name: ValidationFailed
   nameWithType: ValidationContext.ValidationFailed
   fullName: FastEndpoints.ValidationContext.ValidationFailed
@@ -588,655 +432,487 @@ references:
   commentId: M:FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
   parent: FastEndpoints.ValidationContext
   isExternal: true
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_FluentValidation_Results_ValidationFailure_
   name: AddError(ValidationFailure)
   nameWithType: ValidationContext.AddError(ValidationFailure)
   fullName: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_FluentValidation_Results_ValidationFailure_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_FluentValidation_Results_ValidationFailure_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: AddError(String, String, Severity)
-  nameWithType: ValidationContext.AddError(String, String, Severity)
-  fullName: FastEndpoints.ValidationContext.AddError(System.String, System.String, FluentValidation.Severity)
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_System_String_System_String_FluentValidation_Severity_
+  name: AddError(string, string, Severity)
+  nameWithType: ValidationContext.AddError(string, string, Severity)
+  fullName: FastEndpoints.ValidationContext.AddError(string, string, FluentValidation.Severity)
+  nameWithType.vb: ValidationContext.AddError(String, String, Severity)
+  fullName.vb: FastEndpoints.ValidationContext.AddError(String, String, FluentValidation.Severity)
+  name.vb: AddError(String, String, Severity)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: ThrowError(ValidationFailure, Nullable<Int32>)
-  nameWithType: ValidationContext.ThrowError(ValidationFailure, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext.ThrowError(ValidationFailure, Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(ValidationFailure, Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__
+  name: ThrowError(ValidationFailure, int?)
+  nameWithType: ValidationContext.ThrowError(ValidationFailure, int?)
+  fullName: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, int?)
+  nameWithType.vb: ValidationContext.ThrowError(ValidationFailure, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, Integer?)
+  name.vb: ThrowError(ValidationFailure, Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: ThrowError(String, Nullable<Int32>)
-  nameWithType: ValidationContext.ThrowError(String, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext.ThrowError(System.String, System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext.ThrowError(String, Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext.ThrowError(System.String, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(String, Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__
+  name: ThrowError(string, int?)
+  nameWithType: ValidationContext.ThrowError(string, int?)
+  fullName: FastEndpoints.ValidationContext.ThrowError(string, int?)
+  nameWithType.vb: ValidationContext.ThrowError(String, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowError(String, Integer?)
+  name.vb: ThrowError(String, Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: ThrowIfAnyErrors(Nullable<Int32>)
-  nameWithType: ValidationContext.ThrowIfAnyErrors(Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext.ThrowIfAnyErrors(Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable(Of System.Int32))
-  name.vb: ThrowIfAnyErrors(Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__
+  name: ThrowIfAnyErrors(int?)
+  nameWithType: ValidationContext.ThrowIfAnyErrors(int?)
+  fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors(int?)
+  nameWithType.vb: ValidationContext.ThrowIfAnyErrors(Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowIfAnyErrors(Integer?)
+  name.vb: ThrowIfAnyErrors(Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
     name: ThrowIfAnyErrors
-    nameWithType: ValidationContext.ThrowIfAnyErrors
-    fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
     name: ThrowIfAnyErrors
-    nameWithType: ValidationContext.ThrowIfAnyErrors
-    fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler{`0,`1}.FastEndpoints.CommandExtensions.RegisterForTesting``2
   commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   parent: FastEndpoints.CommandExtensions
   definition: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
-  name: RegisterForTesting<TCommand, TResult>()
-  nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>()
-  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>()
-  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)()
-  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)()
-  name.vb: RegisterForTesting(Of TCommand, TResult)()
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  name: RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>(FastEndpoints.ICommandHandler<TCommand, TResult>)
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)(FastEndpoints.ICommandHandler(Of TCommand, TResult))
+  name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
   spec.csharp:
-  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2
-    name: RegisterForTesting<TCommand, TResult>
-    nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>
-    fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{`0,`1})
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2
-    name: RegisterForTesting(Of TCommand, TResult)
-    nameWithType: CommandExtensions.RegisterForTesting(Of TCommand, TResult)
-    fullName: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{`0,`1})
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.ValidationContext`1
   commentId: T:FastEndpoints.ValidationContext`1
+  parent: FastEndpoints
+  href: FastEndpoints.ValidationContext-1.html
   name: ValidationContext<T>
   nameWithType: ValidationContext<T>
   fullName: FastEndpoints.ValidationContext<T>
@@ -1246,33 +922,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ValidationContext`1
     name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
+    href: FastEndpoints.ValidationContext-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ValidationContext`1
     name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ValidationContext-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.CommandHandlerBase`1
   commentId: T:FastEndpoints.CommandHandlerBase`1
+  href: FastEndpoints.CommandHandlerBase-1.html
   name: CommandHandlerBase<TCommand>
   nameWithType: CommandHandlerBase<TCommand>
   fullName: FastEndpoints.CommandHandlerBase<TCommand>
@@ -1282,33 +947,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.CommandHandlerBase`1
     name: CommandHandlerBase
-    nameWithType: CommandHandlerBase
-    fullName: FastEndpoints.CommandHandlerBase
+    href: FastEndpoints.CommandHandlerBase-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.CommandHandlerBase`1
     name: CommandHandlerBase
-    nameWithType: CommandHandlerBase
-    fullName: FastEndpoints.CommandHandlerBase
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.CommandHandlerBase-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler`2
   commentId: T:FastEndpoints.ICommandHandler`2
+  href: FastEndpoints.ICommandHandler-2.html
   name: ICommandHandler<TCommand, TResult>
   nameWithType: ICommandHandler<TCommand, TResult>
   fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
@@ -1318,45 +972,28 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ICommandHandler-2.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext`1.Instance
   commentId: P:FastEndpoints.ValidationContext`1.Instance
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_Instance
   name: Instance
   nameWithType: ValidationContext<T>.Instance
   fullName: FastEndpoints.ValidationContext<T>.Instance
@@ -1365,301 +1002,194 @@ references:
 - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   isExternal: true
-  name: AddError(Expression<Func<T, Object>>, String, String, Severity)
-  nameWithType: ValidationContext<T>.AddError(Expression<Func<T, Object>>, String, String, Severity)
-  fullName: FastEndpoints.ValidationContext<T>.AddError(System.Linq.Expressions.Expression<System.Func<T, System.Object>>, System.String, System.String, FluentValidation.Severity)
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
+  name: AddError(Expression<Func<T, object>>, string, string, Severity)
+  nameWithType: ValidationContext<T>.AddError(Expression<Func<T, object>>, string, string, Severity)
+  fullName: FastEndpoints.ValidationContext<T>.AddError(System.Linq.Expressions.Expression<System.Func<T, object>>, string, string, FluentValidation.Severity)
   nameWithType.vb: ValidationContext(Of T).AddError(Expression(Of Func(Of T, Object)), String, String, Severity)
-  fullName.vb: FastEndpoints.ValidationContext(Of T).AddError(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object)), System.String, System.String, FluentValidation.Severity)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).AddError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of T, Object)), String, String, Severity)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext<T>.AddError
-    fullName: FastEndpoints.ValidationContext<T>.AddError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext(Of T).AddError
-    fullName: FastEndpoints.ValidationContext(Of T).AddError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   isExternal: true
-  name: ThrowError(Expression<Func<T, Object>>, String, Nullable<Int32>)
-  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, Object>>, String, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, System.Object>>, System.String, System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object)), System.String, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
+  name: ThrowError(Expression<Func<T, object>>, string, int?)
+  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, object>>, string, int?)
+  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, object>>, string, int?)
+  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext<T>.ThrowError
-    fullName: FastEndpoints.ValidationContext<T>.ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext(Of T).ThrowError
-    fullName: FastEndpoints.ValidationContext(Of T).ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
   name: RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
   nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
   fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>(FastEndpoints.ICommandHandler<TCommand, TResult>)
@@ -1668,72 +1198,58 @@ references:
   name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
   spec.csharp:
   - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
-    name: RegisterForTesting<TCommand, TResult>
-    nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>
-    fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
-    name: RegisterForTesting(Of TCommand, TResult)
-    nameWithType: CommandExtensions.RegisterForTesting(Of TCommand, TResult)
-    fullName: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.CommandExtensions
   commentId: T:FastEndpoints.CommandExtensions
   parent: FastEndpoints
+  href: FastEndpoints.CommandExtensions.html
   name: CommandExtensions
   nameWithType: CommandExtensions
   fullName: FastEndpoints.CommandExtensions
 - uid: FastEndpoints.CommandHandler`2.ExecuteAsync*
   commentId: Overload:FastEndpoints.CommandHandler`2.ExecuteAsync
+  href: FastEndpoints.CommandHandler-2.html#FastEndpoints_CommandHandler_2_ExecuteAsync__0_System_Threading_CancellationToken_
   name: ExecuteAsync
   nameWithType: CommandHandler<TCommand, TResult>.ExecuteAsync
   fullName: FastEndpoints.CommandHandler<TCommand, TResult>.ExecuteAsync
@@ -1743,55 +1259,36 @@ references:
   commentId: M:FastEndpoints.ICommandHandler{`0,`1}.ExecuteAsync(`0,System.Threading.CancellationToken)
   parent: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
   definition: FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: ExecuteAsync(TCommand, CancellationToken)
   nameWithType: ICommandHandler<TCommand, TResult>.ExecuteAsync(TCommand, CancellationToken)
   fullName: FastEndpoints.ICommandHandler<TCommand, TResult>.ExecuteAsync(TCommand, System.Threading.CancellationToken)
   nameWithType.vb: ICommandHandler(Of TCommand, TResult).ExecuteAsync(TCommand, CancellationToken)
   fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult).ExecuteAsync(TCommand, System.Threading.CancellationToken)
   spec.csharp:
-  - uid: FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
+  - uid: FastEndpoints.ICommandHandler{`0,`1}.ExecuteAsync(`0,System.Threading.CancellationToken)
     name: ExecuteAsync
-    nameWithType: ICommandHandler<TCommand, TResult>.ExecuteAsync
-    fullName: FastEndpoints.ICommandHandler<TCommand, TResult>.ExecuteAsync
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
-  - uid: FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
+  - uid: FastEndpoints.ICommandHandler{`0,`1}.ExecuteAsync(`0,System.Threading.CancellationToken)
     name: ExecuteAsync
-    nameWithType: ICommandHandler(Of TCommand, TResult).ExecuteAsync
-    fullName: FastEndpoints.ICommandHandler(Of TCommand, TResult).ExecuteAsync
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: '{TCommand}'
   commentId: '!:TCommand'
   definition: TCommand
@@ -1802,13 +1299,15 @@ references:
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{{TResult}}
-  commentId: T:System.Threading.Tasks.Task{`1}
+  commentId: T:System.Threading.Tasks.Task{``0}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -1818,36 +1317,25 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: ExecuteAsync(TCommand, CancellationToken)
   nameWithType: ICommandHandler<TCommand, TResult>.ExecuteAsync(TCommand, CancellationToken)
   fullName: FastEndpoints.ICommandHandler<TCommand, TResult>.ExecuteAsync(TCommand, System.Threading.CancellationToken)
@@ -1856,47 +1344,27 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
     name: ExecuteAsync
-    nameWithType: ICommandHandler<TCommand, TResult>.ExecuteAsync
-    fullName: FastEndpoints.ICommandHandler<TCommand, TResult>.ExecuteAsync
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`2.ExecuteAsync(`0,System.Threading.CancellationToken)
     name: ExecuteAsync
-    nameWithType: ICommandHandler(Of TCommand, TResult).ExecuteAsync
-    fullName: FastEndpoints.ICommandHandler(Of TCommand, TResult).ExecuteAsync
   - name: (
-    nameWithType: (
-    fullName: (
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Threading.CancellationToken
     name: CancellationToken
-    nameWithType: CancellationToken
-    fullName: System.Threading.CancellationToken
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: TCommand
   name: TCommand
   nameWithType: TCommand
@@ -1904,12 +1372,34 @@ references:
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -1919,36 +1409,55 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

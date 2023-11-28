@@ -15,26 +15,25 @@ items:
   type: Interface
   source:
     id: IRequestBinder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\IRequestBinder.cs
-    startLine: 6
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\IRequestBinder.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ncreate custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the endpoint.\n"
+  summary: >-
+    create custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the
+
+    built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the
+
+    endpoint.
   example: []
   syntax:
-    content: public interface IRequestBinder<TRequest>
+    content: 'public interface IRequestBinder<TRequest> where TRequest : notnull'
     typeParameters:
     - id: TRequest
       description: the type of the request dto
     content.vb: Public Interface IRequestBinder(Of TRequest)
   nameWithType.vb: IRequestBinder(Of TRequest)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
   fullName.vb: FastEndpoints.IRequestBinder(Of TRequest)
   name.vb: IRequestBinder(Of TRequest)
 - uid: FastEndpoints.IRequestBinder`1.BindAsync(FastEndpoints.BinderContext,System.Threading.CancellationToken)
@@ -50,19 +49,25 @@ items:
   type: Method
   source:
     id: BindAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Binder\IRequestBinder.cs
-    startLine: 14
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Binder\IRequestBinder.cs
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthis method will be called by the library for binding the incoming request data and return a populated request dto object.\naccess the incoming request data via the <code>RequestBinderContext</code> and populate a new request dto instance and return it from this method.\n"
+  summary: >-
+    this method will be called by the library for binding the incoming request data and return a populated request dto object.
+
+    access the incoming request data via the <code>RequestBinderContext</code> and populate a new request dto instance and return it from this method.
   example: []
   syntax:
     content: ValueTask<TRequest> BindAsync(BinderContext ctx, CancellationToken ct)
     parameters:
     - id: ctx
       type: FastEndpoints.BinderContext
-      description: request binder context encapsulating the incoming http request context, a list of validation failures for the endpoint, and an optional json serializer context.
+      description: >-
+        request binder context encapsulating the incoming http request context, a list of validation failures for the endpoint, and an
+
+        optional json serializer context.
     - id: ct
       type: System.Threading.CancellationToken
       description: cancellation token
@@ -75,11 +80,13 @@ items:
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
 - uid: FastEndpoints.IRequestBinder`1.BindAsync*
   commentId: Overload:FastEndpoints.IRequestBinder`1.BindAsync
+  href: FastEndpoints.IRequestBinder-1.html#FastEndpoints_IRequestBinder_1_BindAsync_FastEndpoints_BinderContext_System_Threading_CancellationToken_
   name: BindAsync
   nameWithType: IRequestBinder<TRequest>.BindAsync
   fullName: FastEndpoints.IRequestBinder<TRequest>.BindAsync
@@ -88,6 +95,7 @@ references:
 - uid: FastEndpoints.BinderContext
   commentId: T:FastEndpoints.BinderContext
   parent: FastEndpoints
+  href: FastEndpoints.BinderContext.html
   name: BinderContext
   nameWithType: BinderContext
   fullName: FastEndpoints.BinderContext
@@ -95,6 +103,7 @@ references:
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -102,6 +111,7 @@ references:
   commentId: T:System.Threading.Tasks.ValueTask{`0}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   name: ValueTask<TRequest>
   nameWithType: ValueTask<TRequest>
   fullName: System.Threading.Tasks.ValueTask<TRequest>
@@ -111,42 +121,52 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks.ValueTask`1
   commentId: T:System.Threading.Tasks.ValueTask`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   name: ValueTask<TResult>
   nameWithType: ValueTask<TResult>
   fullName: System.Threading.Tasks.ValueTask<TResult>
@@ -156,36 +176,55 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

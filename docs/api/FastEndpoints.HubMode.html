@@ -92,7 +92,8 @@
   <h6><strong>Assembly</strong>: FastEndpoints.Messaging.Remote.dll</h6>
   <h5 id="FastEndpoints_HubMode_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum HubMode</code></pre>
+    <pre><code class="lang-csharp hljs">[Flags]
+public enum HubMode</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
@@ -113,6 +114,13 @@ this mode also allows this server itself to publish events as well.</p>
       <tr>
         <td id="FastEndpoints_HubMode_EventPublisher">EventPublisher</td>
         <td><p>this server/application itself is the sole publisher of events. no external publishers will be accepted. this is the default mode.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="FastEndpoints_HubMode_RoundRobin">RoundRobin</td>
+        <td><p>with this mode events will only be delivered to just one of the subscribers connected to the hub in a round robin fashion.
+if for example, there's two subscribers (A and B) connected, event 1 will be delivered to subscriber A.
+event 2 will be delivered to subscriber B. event 3 will be delivered to subscriber A again and so on.</p>
 </td>
       </tr>
     </tbody>

@@ -21,24 +21,24 @@ items:
   type: Class
   source:
     id: RequestMapper
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 62
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 78
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nuse this base class to define a domain entity mapper for your endpoints that only has a request dto and no response dto.\n<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>\n"
+  summary: >-
+    use this base class to define a domain entity mapper for your endpoints that only has a request dto and no response dto.
+
+    <p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>
   example: []
   syntax:
-    content: 'public abstract class RequestMapper<TRequest, TEntity> : IRequestMapper, IMapper, IServiceResolverBase'
+    content: 'public abstract class RequestMapper<TRequest, TEntity> : IRequestMapper, IMapper, IServiceResolverBase where TRequest : notnull'
     typeParameters:
     - id: TRequest
       description: the type of request dto
     - id: TEntity
       description: the type of domain entity to map to/from
-    content.vb: >-
-      Public MustInherit Class RequestMapper(Of TRequest, TEntity)
-
-          Implements IRequestMapper, IMapper, IServiceResolverBase
+    content.vb: Public MustInherit Class RequestMapper(Of TRequest, TEntity) Implements IRequestMapper, IMapper, IServiceResolverBase
   inheritance:
   - System.Object
   implements:
@@ -54,14 +54,6 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   nameWithType.vb: RequestMapper(Of TRequest, TEntity)
-  modifiers.csharp:
-  - public
-  - abstract
-  - class
-  modifiers.vb:
-  - Public
-  - MustInherit
-  - Class
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity)
   name.vb: RequestMapper(Of TRequest, TEntity)
 - uid: FastEndpoints.RequestMapper`2.ToEntity(`0)
@@ -77,12 +69,12 @@ items:
   type: Method
   source:
     id: ToEntity
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 68
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 84
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\noverride this method and place the logic for mapping the request dto to the desired domain entity\n"
+  summary: override this method and place the logic for mapping the request dto to the desired domain entity
   example: []
   syntax:
     content: public virtual TEntity ToEntity(TRequest r)
@@ -95,12 +87,6 @@ items:
     content.vb: Public Overridable Function ToEntity(r As TRequest) As TEntity
   overload: FastEndpoints.RequestMapper`2.ToEntity*
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).ToEntity(TRequest)
-  modifiers.csharp:
-  - public
-  - virtual
-  modifiers.vb:
-  - Public
-  - Overridable
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).ToEntity(TRequest)
 - uid: FastEndpoints.RequestMapper`2.ToEntityAsync(`0,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.RequestMapper`2.ToEntityAsync(`0,System.Threading.CancellationToken)
@@ -115,15 +101,15 @@ items:
   type: Method
   source:
     id: ToEntityAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 74
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 92
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\noverride this method and place the logic for mapping the request dto to the desired domain entity\n"
+  summary: override this method and place the logic for mapping the request dto to the desired domain entity
   example: []
   syntax:
-    content: public virtual Task<TEntity> ToEntityAsync(TRequest r, CancellationToken ct = default(CancellationToken))
+    content: public virtual Task<TEntity> ToEntityAsync(TRequest r, CancellationToken ct = default)
     parameters:
     - id: r
       type: '{TRequest}'
@@ -136,12 +122,6 @@ items:
     content.vb: Public Overridable Function ToEntityAsync(r As TRequest, ct As CancellationToken = Nothing) As Task(Of TEntity)
   overload: FastEndpoints.RequestMapper`2.ToEntityAsync*
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).ToEntityAsync(TRequest, CancellationToken)
-  modifiers.csharp:
-  - public
-  - virtual
-  modifiers.vb:
-  - Public
-  - Overridable
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).ToEntityAsync(TRequest, System.Threading.CancellationToken)
 - uid: FastEndpoints.RequestMapper`2.TryResolve``1
   commentId: M:FastEndpoints.RequestMapper`2.TryResolve``1
@@ -156,30 +136,25 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 77
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 96
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
   example: []
   syntax:
-    content: >-
-      public TService TryResolve<TService>()
-
-          where TService : class
+    content: 'public TService? TryResolve<TService>() where TService : class'
     typeParameters:
     - id: TService
+      description: the type of the service to resolve
     return:
       type: '{TService}'
-    content.vb: Public Function TryResolve(Of TService As Class) As TService
+    content.vb: Public Function TryResolve(Of TService As Class)() As TService
   overload: FastEndpoints.RequestMapper`2.TryResolve*
   implements:
   - FastEndpoints.IServiceResolverBase.TryResolve``1
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).TryResolve(Of TService)()
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).TryResolve(Of TService)()
   name.vb: TryResolve(Of TService)()
 - uid: FastEndpoints.RequestMapper`2.TryResolve(System.Type)
@@ -195,17 +170,19 @@ items:
   type: Method
   source:
     id: TryResolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 79
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 100
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
   example: []
   syntax:
-    content: public object TryResolve(Type typeOfService)
+    content: public object? TryResolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: System.Type
+      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function TryResolve(typeOfService As Type) As Object
@@ -213,10 +190,6 @@ items:
   implements:
   - FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).TryResolve(Type)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).TryResolve(System.Type)
 - uid: FastEndpoints.RequestMapper`2.Resolve``1
   commentId: M:FastEndpoints.RequestMapper`2.Resolve``1
@@ -231,30 +204,29 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 81
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 104
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
   example: []
   syntax:
-    content: >-
-      public TService Resolve<TService>()
-
-          where TService : class
+    content: 'public TService Resolve<TService>() where TService : class'
     typeParameters:
     - id: TService
+      description: the type of the service to resolve
     return:
       type: '{TService}'
-    content.vb: Public Function Resolve(Of TService As Class) As TService
+    content.vb: Public Function Resolve(Of TService As Class)() As TService
   overload: FastEndpoints.RequestMapper`2.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   implements:
   - FastEndpoints.IServiceResolverBase.Resolve``1
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).Resolve(Of TService)()
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).Resolve(Of TService)()
   name.vb: Resolve(Of TService)()
 - uid: FastEndpoints.RequestMapper`2.Resolve(System.Type)
@@ -270,28 +242,30 @@ items:
   type: Method
   source:
     id: Resolve
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 83
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 108
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
   example: []
   syntax:
     content: public object Resolve(Type typeOfService)
     parameters:
     - id: typeOfService
       type: System.Type
+      description: the type of the service to resolve
     return:
       type: System.Object
     content.vb: Public Function Resolve(typeOfService As Type) As Object
   overload: FastEndpoints.RequestMapper`2.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
   implements:
   - FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).Resolve(Type)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).Resolve(System.Type)
 - uid: FastEndpoints.RequestMapper`2.CreateScope
   commentId: M:FastEndpoints.RequestMapper`2.CreateScope
@@ -306,29 +280,33 @@ items:
   type: Method
   source:
     id: CreateScope
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Mapper\Mapper.cs
-    startLine: 85
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Mapper\Mapper.cs
+    startLine: 112
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: >-
+    if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when
+
+    the work is complete.
+
+    <p><pre><code class="lang-csharp">using var scope = CreateScope();
+       var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre></p>
   example: []
   syntax:
     content: public IServiceScope CreateScope()
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceScope
-    content.vb: Public Function CreateScope As IServiceScope
+    content.vb: Public Function CreateScope() As IServiceScope
   overload: FastEndpoints.RequestMapper`2.CreateScope*
   implements:
   - FastEndpoints.IServiceResolverBase.CreateScope
   nameWithType.vb: RequestMapper(Of TRequest, TEntity).CreateScope()
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
   fullName.vb: FastEndpoints.RequestMapper(Of TRequest, TEntity).CreateScope()
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -336,24 +314,31 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: FastEndpoints.IRequestMapper
   commentId: T:FastEndpoints.IRequestMapper
   parent: FastEndpoints
+  href: FastEndpoints.IRequestMapper.html
   name: IRequestMapper
   nameWithType: IRequestMapper
   fullName: FastEndpoints.IRequestMapper
 - uid: FastEndpoints.IMapper
   commentId: T:FastEndpoints.IMapper
   parent: FastEndpoints
+  href: FastEndpoints.IMapper.html
   name: IMapper
   nameWithType: IMapper
   fullName: FastEndpoints.IMapper
 - uid: FastEndpoints.IServiceResolverBase
   commentId: T:FastEndpoints.IServiceResolverBase
   parent: FastEndpoints
+  href: FastEndpoints.IServiceResolverBase.html
   name: IServiceResolverBase
   nameWithType: IServiceResolverBase
   fullName: FastEndpoints.IServiceResolverBase
@@ -361,289 +346,231 @@ references:
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.RequestMapper`2.ToEntity*
   commentId: Overload:FastEndpoints.RequestMapper`2.ToEntity
+  href: FastEndpoints.RequestMapper-2.html#FastEndpoints_RequestMapper_2_ToEntity__0_
   name: ToEntity
   nameWithType: RequestMapper<TRequest, TEntity>.ToEntity
   fullName: FastEndpoints.RequestMapper<TRequest, TEntity>.ToEntity
@@ -671,6 +598,7 @@ references:
   fullName: TEntity
 - uid: FastEndpoints.RequestMapper`2.ToEntityAsync*
   commentId: Overload:FastEndpoints.RequestMapper`2.ToEntityAsync
+  href: FastEndpoints.RequestMapper-2.html#FastEndpoints_RequestMapper_2_ToEntityAsync__0_System_Threading_CancellationToken_
   name: ToEntityAsync
   nameWithType: RequestMapper<TRequest, TEntity>.ToEntityAsync
   fullName: FastEndpoints.RequestMapper<TRequest, TEntity>.ToEntityAsync
@@ -680,6 +608,7 @@ references:
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -687,6 +616,7 @@ references:
   commentId: T:System.Threading.Tasks.Task{`2}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TEntity>
   nameWithType: Task<TEntity>
   fullName: System.Threading.Tasks.Task<TEntity>
@@ -696,42 +626,52 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TEntity
-    nameWithType: TEntity
-    fullName: TEntity
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TEntity
-    nameWithType: TEntity
-    fullName: TEntity
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -741,41 +681,61 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: FastEndpoints.RequestMapper`2.TryResolve*
   commentId: Overload:FastEndpoints.RequestMapper`2.TryResolve
+  href: FastEndpoints.RequestMapper-2.html#FastEndpoints_RequestMapper_2_TryResolve__1
   name: TryResolve
   nameWithType: RequestMapper<TRequest, TEntity>.TryResolve
   fullName: FastEndpoints.RequestMapper<TRequest, TEntity>.TryResolve
@@ -784,6 +744,7 @@ references:
 - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
   commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1
   parent: FastEndpoints.IServiceResolverBase
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1
   name: TryResolve<TService>()
   nameWithType: IServiceResolverBase.TryResolve<TService>()
   fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>()
@@ -792,26 +753,24 @@ references:
   name.vb: TryResolve(Of TService)()
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
-    name: TryResolve<TService>
-    nameWithType: IServiceResolverBase.TryResolve<TService>
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1
+  - name: <
+  - name: TService
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve``1
-    name: TryResolve(Of TService)
-    nameWithType: IServiceResolverBase.TryResolve(Of TService)
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TService
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: )
 - uid: '{TService}'
   commentId: '!:TService'
   definition: TService
@@ -826,50 +785,48 @@ references:
   commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   parent: FastEndpoints.IServiceResolverBase
   isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_
   name: TryResolve(Type)
   nameWithType: IServiceResolverBase.TryResolve(Type)
   fullName: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
     name: TryResolve
-    nameWithType: IServiceResolverBase.TryResolve
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
     name: TryResolve
-    nameWithType: IServiceResolverBase.TryResolve
-    fullName: FastEndpoints.IServiceResolverBase.TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Type
   commentId: T:System.Type
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: FastEndpoints.RequestMapper`2.Resolve*
   commentId: Overload:FastEndpoints.RequestMapper`2.Resolve
+  href: FastEndpoints.RequestMapper-2.html#FastEndpoints_RequestMapper_2_Resolve__1
   name: Resolve
   nameWithType: RequestMapper<TRequest, TEntity>.Resolve
   fullName: FastEndpoints.RequestMapper<TRequest, TEntity>.Resolve
@@ -878,6 +835,7 @@ references:
 - uid: FastEndpoints.IServiceResolverBase.Resolve``1
   commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1
   parent: FastEndpoints.IServiceResolverBase
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1
   name: Resolve<TService>()
   nameWithType: IServiceResolverBase.Resolve<TService>()
   fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>()
@@ -886,67 +844,55 @@ references:
   name.vb: Resolve(Of TService)()
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.Resolve``1
-    name: Resolve<TService>
-    nameWithType: IServiceResolverBase.Resolve<TService>
-    fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1
+  - name: <
+  - name: TService
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.Resolve``1
-    name: Resolve(Of TService)
-    nameWithType: IServiceResolverBase.Resolve(Of TService)
-    fullName: FastEndpoints.IServiceResolverBase.Resolve(Of TService)
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TService
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - name: )
 - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   commentId: M:FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   parent: FastEndpoints.IServiceResolverBase
   isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_
   name: Resolve(Type)
   nameWithType: IServiceResolverBase.Resolve(Type)
   fullName: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
     name: Resolve
-    nameWithType: IServiceResolverBase.Resolve
-    fullName: FastEndpoints.IServiceResolverBase.Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type)
     name: Resolve
-    nameWithType: IServiceResolverBase.Resolve
-    fullName: FastEndpoints.IServiceResolverBase.Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
-    fullName: System.Type
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.RequestMapper`2.CreateScope*
   commentId: Overload:FastEndpoints.RequestMapper`2.CreateScope
+  href: FastEndpoints.RequestMapper-2.html#FastEndpoints_RequestMapper_2_CreateScope
   name: CreateScope
   nameWithType: RequestMapper<TRequest, TEntity>.CreateScope
   fullName: FastEndpoints.RequestMapper<TRequest, TEntity>.CreateScope
@@ -955,41 +901,64 @@ references:
 - uid: FastEndpoints.IServiceResolverBase.CreateScope
   commentId: M:FastEndpoints.IServiceResolverBase.CreateScope
   parent: FastEndpoints.IServiceResolverBase
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_CreateScope
   name: CreateScope()
   nameWithType: IServiceResolverBase.CreateScope()
   fullName: FastEndpoints.IServiceResolverBase.CreateScope()
   spec.csharp:
   - uid: FastEndpoints.IServiceResolverBase.CreateScope
     name: CreateScope
-    nameWithType: IServiceResolverBase.CreateScope
-    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_CreateScope
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.IServiceResolverBase.CreateScope
     name: CreateScope
-    nameWithType: IServiceResolverBase.CreateScope
-    fullName: FastEndpoints.IServiceResolverBase.CreateScope
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_CreateScope
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection.IServiceScope
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceScope
   parent: Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicescope
   name: IServiceScope
   nameWithType: IServiceScope
   fullName: Microsoft.Extensions.DependencyInjection.IServiceScope
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection

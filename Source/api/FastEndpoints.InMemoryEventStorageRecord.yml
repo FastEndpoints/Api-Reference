@@ -19,17 +19,14 @@ items:
   type: Class
   source:
     id: InMemoryEventStorageRecord
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
     startLine: 2
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
   syntax:
     content: 'public sealed class InMemoryEventStorageRecord : IEventStorageRecord'
-    content.vb: >-
-      Public NotInheritable Class InMemoryEventStorageRecord
-
-          Implements IEventStorageRecord
+    content.vb: Public NotInheritable Class InMemoryEventStorageRecord Implements IEventStorageRecord
   inheritance:
   - System.Object
   implements:
@@ -39,17 +36,8 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
-  - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - sealed
-  - class
-  modifiers.vb:
-  - Public
-  - NotInheritable
-  - Class
 - uid: FastEndpoints.InMemoryEventStorageRecord.SubscriberID
   commentId: P:FastEndpoints.InMemoryEventStorageRecord.SubscriberID
   id: SubscriberID
@@ -63,11 +51,18 @@ items:
   type: Property
   source:
     id: SubscriberID
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
     startLine: 4
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
+  summary: >-
+    a subscriber id is a unique identifier of an event stream subscriber on a remote node.
+
+    it is a unique id per each event handler type (TEvent+TEventHandler combo).
+
+    you don't have to worry about generating this as it will automatically be set by the library.
+  example: []
   syntax:
     content: public string SubscriberID { get; set; }
     parameters: []
@@ -77,12 +72,6 @@ items:
   overload: FastEndpoints.InMemoryEventStorageRecord.SubscriberID*
   implements:
   - FastEndpoints.IEventStorageRecord.SubscriberID
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.InMemoryEventStorageRecord.Event
   commentId: P:FastEndpoints.InMemoryEventStorageRecord.Event
   id: Event
@@ -96,26 +85,33 @@ items:
   type: Property
   source:
     id: Event
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
     startLine: 5
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
+  summary: >-
+    the actual event object that will be embedded in the storage record.
+
+    if your database/orm (such as ef-core) doesn't support embedding objects, you can take the following steps:
+
+    <pre><code class="lang-csharp">1. add a [NotMapped] attribute to this property.
+
+    2. add a new property, either a string or  array
+
+    3. implement both  and  to serialize/deserialize the event object back and forth and store it in the newly added property.</code></pre>
+
+    you may use any serializer you please. recommendation is to use MessagePack.
+  example: []
   syntax:
     content: public object Event { get; set; }
     parameters: []
     return:
       type: System.Object
-    content.vb: Public Property Event As Object
+    content.vb: Public Property [Event] As Object
   overload: FastEndpoints.InMemoryEventStorageRecord.Event*
   implements:
   - FastEndpoints.IEventStorageRecord.Event
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.InMemoryEventStorageRecord.EventType
   commentId: P:FastEndpoints.InMemoryEventStorageRecord.EventType
   id: EventType
@@ -129,11 +125,13 @@ items:
   type: Property
   source:
     id: EventType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
     startLine: 6
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
+  summary: the full type name of the event
+  example: []
   syntax:
     content: public string EventType { get; set; }
     parameters: []
@@ -143,12 +141,6 @@ items:
   overload: FastEndpoints.InMemoryEventStorageRecord.EventType*
   implements:
   - FastEndpoints.IEventStorageRecord.EventType
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.InMemoryEventStorageRecord.ExpireOn
   commentId: P:FastEndpoints.InMemoryEventStorageRecord.ExpireOn
   id: ExpireOn
@@ -162,11 +154,16 @@ items:
   type: Property
   source:
     id: ExpireOn
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
     startLine: 7
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
+  summary: >-
+    the expiration date/time of the event. this is used to purge stale records.
+
+    default value is 4 hours from time of creation.
+  example: []
   syntax:
     content: public DateTime ExpireOn { get; set; }
     parameters: []
@@ -176,12 +173,6 @@ items:
   overload: FastEndpoints.InMemoryEventStorageRecord.ExpireOn*
   implements:
   - FastEndpoints.IEventStorageRecord.ExpireOn
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 - uid: FastEndpoints.InMemoryEventStorageRecord.IsComplete
   commentId: P:FastEndpoints.InMemoryEventStorageRecord.IsComplete
   id: IsComplete
@@ -195,11 +186,13 @@ items:
   type: Property
   source:
     id: IsComplete
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Common\Storage\InMemoryEventStorageRecord.cs
     startLine: 8
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
+  summary: pending status of the event. will only return true if the event has been successfully processed and is ready to be discarded.
+  example: []
   syntax:
     content: public bool IsComplete { get; set; }
     parameters: []
@@ -209,15 +202,10 @@ items:
   overload: FastEndpoints.InMemoryEventStorageRecord.IsComplete*
   implements:
   - FastEndpoints.IEventStorageRecord.IsComplete
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -225,12 +213,17 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: FastEndpoints.IEventStorageRecord
   commentId: T:FastEndpoints.IEventStorageRecord
   parent: FastEndpoints
+  href: FastEndpoints.IEventStorageRecord.html
   name: IEventStorageRecord
   nameWithType: IEventStorageRecord
   fullName: FastEndpoints.IEventStorageRecord
@@ -238,295 +231,214 @@ references:
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.InMemoryEventStorageRecord.SubscriberID*
   commentId: Overload:FastEndpoints.InMemoryEventStorageRecord.SubscriberID
+  href: FastEndpoints.InMemoryEventStorageRecord.html#FastEndpoints_InMemoryEventStorageRecord_SubscriberID
   name: SubscriberID
   nameWithType: InMemoryEventStorageRecord.SubscriberID
   fullName: FastEndpoints.InMemoryEventStorageRecord.SubscriberID
 - uid: FastEndpoints.IEventStorageRecord.SubscriberID
   commentId: P:FastEndpoints.IEventStorageRecord.SubscriberID
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SubscriberID
   name: SubscriberID
   nameWithType: IEventStorageRecord.SubscriberID
   fullName: FastEndpoints.IEventStorageRecord.SubscriberID
@@ -534,39 +446,119 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Byte
+  commentId: T:System.Byte
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: FastEndpoints.IEventStorageRecord.GetEvent``1
+  commentId: M:FastEndpoints.IEventStorageRecord.GetEvent``1
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_GetEvent__1
+  name: GetEvent<TEvent>()
+  nameWithType: IEventStorageRecord.GetEvent<TEvent>()
+  fullName: FastEndpoints.IEventStorageRecord.GetEvent<TEvent>()
+  nameWithType.vb: IEventStorageRecord.GetEvent(Of TEvent)()
+  fullName.vb: FastEndpoints.IEventStorageRecord.GetEvent(Of TEvent)()
+  name.vb: GetEvent(Of TEvent)()
+  spec.csharp:
+  - uid: FastEndpoints.IEventStorageRecord.GetEvent``1
+    name: GetEvent
+    href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_GetEvent__1
+  - name: <
+  - name: TEvent
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IEventStorageRecord.GetEvent``1
+    name: GetEvent
+    href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_GetEvent__1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+  - name: (
+  - name: )
+- uid: FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+  commentId: M:FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_
+  name: SetEvent<TEvent>(TEvent)
+  nameWithType: IEventStorageRecord.SetEvent<TEvent>(TEvent)
+  fullName: FastEndpoints.IEventStorageRecord.SetEvent<TEvent>(TEvent)
+  nameWithType.vb: IEventStorageRecord.SetEvent(Of TEvent)(TEvent)
+  fullName.vb: FastEndpoints.IEventStorageRecord.SetEvent(Of TEvent)(TEvent)
+  name.vb: SetEvent(Of TEvent)(TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+    name: SetEvent
+    href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_
+  - name: <
+  - name: TEvent
+  - name: '>'
+  - name: (
+  - name: TEvent
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+    name: SetEvent
+    href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+  - name: (
+  - name: TEvent
+  - name: )
 - uid: FastEndpoints.InMemoryEventStorageRecord.Event*
   commentId: Overload:FastEndpoints.InMemoryEventStorageRecord.Event
+  href: FastEndpoints.InMemoryEventStorageRecord.html#FastEndpoints_InMemoryEventStorageRecord_Event
   name: Event
   nameWithType: InMemoryEventStorageRecord.Event
   fullName: FastEndpoints.InMemoryEventStorageRecord.Event
 - uid: FastEndpoints.IEventStorageRecord.Event
   commentId: P:FastEndpoints.IEventStorageRecord.Event
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_Event
   name: Event
   nameWithType: IEventStorageRecord.Event
   fullName: FastEndpoints.IEventStorageRecord.Event
 - uid: FastEndpoints.InMemoryEventStorageRecord.EventType*
   commentId: Overload:FastEndpoints.InMemoryEventStorageRecord.EventType
+  href: FastEndpoints.InMemoryEventStorageRecord.html#FastEndpoints_InMemoryEventStorageRecord_EventType
   name: EventType
   nameWithType: InMemoryEventStorageRecord.EventType
   fullName: FastEndpoints.InMemoryEventStorageRecord.EventType
 - uid: FastEndpoints.IEventStorageRecord.EventType
   commentId: P:FastEndpoints.IEventStorageRecord.EventType
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_EventType
   name: EventType
   nameWithType: IEventStorageRecord.EventType
   fullName: FastEndpoints.IEventStorageRecord.EventType
 - uid: FastEndpoints.InMemoryEventStorageRecord.ExpireOn*
   commentId: Overload:FastEndpoints.InMemoryEventStorageRecord.ExpireOn
+  href: FastEndpoints.InMemoryEventStorageRecord.html#FastEndpoints_InMemoryEventStorageRecord_ExpireOn
   name: ExpireOn
   nameWithType: InMemoryEventStorageRecord.ExpireOn
   fullName: FastEndpoints.InMemoryEventStorageRecord.ExpireOn
 - uid: FastEndpoints.IEventStorageRecord.ExpireOn
   commentId: P:FastEndpoints.IEventStorageRecord.ExpireOn
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_ExpireOn
   name: ExpireOn
   nameWithType: IEventStorageRecord.ExpireOn
   fullName: FastEndpoints.IEventStorageRecord.ExpireOn
@@ -574,17 +566,23 @@ references:
   commentId: T:System.DateTime
   parent: System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
   name: DateTime
   nameWithType: DateTime
   fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
 - uid: FastEndpoints.InMemoryEventStorageRecord.IsComplete*
   commentId: Overload:FastEndpoints.InMemoryEventStorageRecord.IsComplete
+  href: FastEndpoints.InMemoryEventStorageRecord.html#FastEndpoints_InMemoryEventStorageRecord_IsComplete
   name: IsComplete
   nameWithType: InMemoryEventStorageRecord.IsComplete
   fullName: FastEndpoints.InMemoryEventStorageRecord.IsComplete
 - uid: FastEndpoints.IEventStorageRecord.IsComplete
   commentId: P:FastEndpoints.IEventStorageRecord.IsComplete
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_IsComplete
   name: IsComplete
   nameWithType: IEventStorageRecord.IsComplete
   fullName: FastEndpoints.IEventStorageRecord.IsComplete
@@ -592,6 +590,10 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

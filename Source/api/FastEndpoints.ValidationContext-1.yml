@@ -17,20 +17,16 @@ items:
   type: Class
   source:
     id: ValidationContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\ValidationContext.cs
-    startLine: 49
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Validation\ValidationContext.cs
+    startLine: 41
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  example: []
   syntax:
     content: 'public class ValidationContext<T> : ValidationContext'
     typeParameters:
     - id: T
-    content.vb: >-
-      Public Class ValidationContext(Of T)
-
-          Inherits ValidationContext
+    content.vb: Public Class ValidationContext(Of T) Inherits ValidationContext
   inheritance:
   - System.Object
   - FastEndpoints.ValidationContext
@@ -52,12 +48,6 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   nameWithType.vb: ValidationContext(Of T)
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
   fullName.vb: FastEndpoints.ValidationContext(Of T)
   name.vb: ValidationContext(Of T)
 - uid: FastEndpoints.ValidationContext`1.Instance
@@ -73,8 +63,8 @@ items:
   type: Property
   source:
     id: Instance
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\ValidationContext.cs
-    startLine: 51
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Validation\ValidationContext.cs
+    startLine: 43
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -82,18 +72,10 @@ items:
     content: public static ValidationContext<T> Instance { get; }
     parameters: []
     return:
-      type: FastEndpoints.ValidationContext{{T}}
+      type: FastEndpoints.ValidationContext`1
     content.vb: Public Shared ReadOnly Property Instance As ValidationContext(Of T)
   overload: FastEndpoints.ValidationContext`1.Instance*
   nameWithType.vb: ValidationContext(Of T).Instance
-  modifiers.csharp:
-  - public
-  - static
-  - get
-  modifiers.vb:
-  - Public
-  - Shared
-  - ReadOnly
   fullName.vb: FastEndpoints.ValidationContext(Of T).Instance
 - uid: FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
@@ -102,37 +84,38 @@ items:
   langs:
   - csharp
   - vb
-  name: AddError(Expression<Func<T, Object>>, String, String, Severity)
-  nameWithType: ValidationContext<T>.AddError(Expression<Func<T, Object>>, String, String, Severity)
-  fullName: FastEndpoints.ValidationContext<T>.AddError(System.Linq.Expressions.Expression<System.Func<T, System.Object>>, System.String, System.String, FluentValidation.Severity)
+  name: AddError(Expression<Func<T, object?>>, string, string?, Severity)
+  nameWithType: ValidationContext<T>.AddError(Expression<Func<T, object?>>, string, string?, Severity)
+  fullName: FastEndpoints.ValidationContext<T>.AddError(System.Linq.Expressions.Expression<System.Func<T, object?>>, string, string?, FluentValidation.Severity)
   type: Method
   source:
     id: AddError
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\ValidationContext.cs
-    startLine: 54
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Validation\ValidationContext.cs
+    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: adds an error message for the specified property of the request dto
   example: []
   syntax:
-    content: public void AddError(Expression<Func<T, object>> property, string errorMessage, string errorCode = null, Severity severity = Severity.Error)
+    content: public void AddError(Expression<Func<T, object?>> property, string errorMessage, string? errorCode = null, Severity severity = Severity.Error)
     parameters:
     - id: property
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+      description: the property to add the error message for
     - id: errorMessage
       type: System.String
+      description: the error message
     - id: errorCode
       type: System.String
+      description: the error code associated with the error
     - id: severity
       type: FluentValidation.Severity
-    content.vb: Public Sub AddError(property As Expression(Of Func(Of T, Object)), errorMessage As String, errorCode As String = Nothing, severity As Severity = Severity.Error)
+      description: the severity of the error
+    content.vb: Public Sub AddError([property] As Expression(Of Func(Of T, Object)), errorMessage As String, errorCode As String = Nothing, severity As Severity = Severity.Error)
   overload: FastEndpoints.ValidationContext`1.AddError*
   nameWithType.vb: ValidationContext(Of T).AddError(Expression(Of Func(Of T, Object)), String, String, Severity)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.ValidationContext(Of T).AddError(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object)), System.String, System.String, FluentValidation.Severity)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).AddError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, String, FluentValidation.Severity)
   name.vb: AddError(Expression(Of Func(Of T, Object)), String, String, Severity)
 - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
@@ -141,39 +124,43 @@ items:
   langs:
   - csharp
   - vb
-  name: ThrowError(Expression<Func<T, Object>>, String, Nullable<Int32>)
-  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, Object>>, String, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, System.Object>>, System.String, System.Nullable<System.Int32>)
+  name: ThrowError(Expression<Func<T, object?>>, string, int?)
+  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, object?>>, string, int?)
+  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, object?>>, string, int?)
   type: Method
   source:
     id: ThrowError
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Validation\ValidationContext.cs
-    startLine: 58
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Validation\ValidationContext.cs
+    startLine: 50
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: >-
+    adds an error message for the specified property of the request dto and sends back a 400 bad request with error details immediately interrupting
+
+    handler execution flow. no execution will continue past this call.
   example: []
   syntax:
-    content: public void ThrowError(Expression<Func<T, object>> property, string errorMessage, int? statusCode = null)
+    content: public void ThrowError(Expression<Func<T, object?>> property, string errorMessage, int? statusCode = null)
     parameters:
     - id: property
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+      description: the property to add the error message for
     - id: errorMessage
       type: System.String
+      description: the error message
     - id: statusCode
       type: System.Nullable{System.Int32}
-    content.vb: Public Sub ThrowError(property As Expression(Of Func(Of T, Object)), errorMessage As String, statusCode As Integer? = Nothing)
+      description: an optional status code to be used when building the error response
+    content.vb: Public Sub ThrowError([property] As Expression(Of Func(Of T, Object)), errorMessage As String, statusCode As Integer? = Nothing)
   overload: FastEndpoints.ValidationContext`1.ThrowError*
-  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, Nullable(Of Int32))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object)), System.String, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, Nullable(Of Int32))
+  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, Integer?)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -181,24 +168,31 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: FastEndpoints.ValidationContext
   commentId: T:FastEndpoints.ValidationContext
   parent: FastEndpoints
+  href: FastEndpoints.ValidationContext.html
   name: ValidationContext
   nameWithType: ValidationContext
   fullName: FastEndpoints.ValidationContext
 - uid: FastEndpoints.ValidationContext.ValidationFailures
   commentId: P:FastEndpoints.ValidationContext.ValidationFailures
   parent: FastEndpoints.ValidationContext
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ValidationFailures
   name: ValidationFailures
   nameWithType: ValidationContext.ValidationFailures
   fullName: FastEndpoints.ValidationContext.ValidationFailures
 - uid: FastEndpoints.ValidationContext.ValidationFailed
   commentId: P:FastEndpoints.ValidationContext.ValidationFailed
   parent: FastEndpoints.ValidationContext
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ValidationFailed
   name: ValidationFailed
   nameWithType: ValidationContext.ValidationFailed
   fullName: FastEndpoints.ValidationContext.ValidationFailed
@@ -206,668 +200,440 @@ references:
   commentId: M:FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
   parent: FastEndpoints.ValidationContext
   isExternal: true
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_FluentValidation_Results_ValidationFailure_
   name: AddError(ValidationFailure)
   nameWithType: ValidationContext.AddError(ValidationFailure)
   fullName: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_FluentValidation_Results_ValidationFailure_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_FluentValidation_Results_ValidationFailure_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
   commentId: M:FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: AddError(String, String, Severity)
-  nameWithType: ValidationContext.AddError(String, String, Severity)
-  fullName: FastEndpoints.ValidationContext.AddError(System.String, System.String, FluentValidation.Severity)
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_System_String_System_String_FluentValidation_Severity_
+  name: AddError(string, string, Severity)
+  nameWithType: ValidationContext.AddError(string, string, Severity)
+  fullName: FastEndpoints.ValidationContext.AddError(string, string, FluentValidation.Severity)
+  nameWithType.vb: ValidationContext.AddError(String, String, Severity)
+  fullName.vb: FastEndpoints.ValidationContext.AddError(String, String, FluentValidation.Severity)
+  name.vb: AddError(String, String, Severity)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
     name: AddError
-    nameWithType: ValidationContext.AddError
-    fullName: FastEndpoints.ValidationContext.AddError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_AddError_System_String_System_String_FluentValidation_Severity_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: FluentValidation.Severity
     name: Severity
-    nameWithType: Severity
-    fullName: FluentValidation.Severity
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: ThrowError(ValidationFailure, Nullable<Int32>)
-  nameWithType: ValidationContext.ThrowError(ValidationFailure, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext.ThrowError(ValidationFailure, Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(ValidationFailure, Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__
+  name: ThrowError(ValidationFailure, int?)
+  nameWithType: ValidationContext.ThrowError(ValidationFailure, int?)
+  fullName: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, int?)
+  nameWithType.vb: ValidationContext.ThrowError(ValidationFailure, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure, Integer?)
+  name.vb: ThrowError(ValidationFailure, Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_FluentValidation_Results_ValidationFailure_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: ThrowError(String, Nullable<Int32>)
-  nameWithType: ValidationContext.ThrowError(String, Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext.ThrowError(System.String, System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext.ThrowError(String, Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext.ThrowError(System.String, System.Nullable(Of System.Int32))
-  name.vb: ThrowError(String, Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__
+  name: ThrowError(string, int?)
+  nameWithType: ValidationContext.ThrowError(string, int?)
+  fullName: FastEndpoints.ValidationContext.ThrowError(string, int?)
+  nameWithType.vb: ValidationContext.ThrowError(String, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowError(String, Integer?)
+  name.vb: ThrowError(String, Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
     name: ThrowError
-    nameWithType: ValidationContext.ThrowError
-    fullName: FastEndpoints.ValidationContext.ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
   commentId: M:FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
   parent: FastEndpoints.ValidationContext
   isExternal: true
-  name: ThrowIfAnyErrors(Nullable<Int32>)
-  nameWithType: ValidationContext.ThrowIfAnyErrors(Nullable<Int32>)
-  fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable<System.Int32>)
-  nameWithType.vb: ValidationContext.ThrowIfAnyErrors(Nullable(Of Int32))
-  fullName.vb: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable(Of System.Int32))
-  name.vb: ThrowIfAnyErrors(Nullable(Of Int32))
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__
+  name: ThrowIfAnyErrors(int?)
+  nameWithType: ValidationContext.ThrowIfAnyErrors(int?)
+  fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors(int?)
+  nameWithType.vb: ValidationContext.ThrowIfAnyErrors(Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowIfAnyErrors(Integer?)
+  name.vb: ThrowIfAnyErrors(Integer?)
   spec.csharp:
   - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
     name: ThrowIfAnyErrors
-    nameWithType: ValidationContext.ThrowIfAnyErrors
-    fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
     name: ThrowIfAnyErrors
-    nameWithType: ValidationContext.ThrowIfAnyErrors
-    fullName: FastEndpoints.ValidationContext.ThrowIfAnyErrors
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.ValidationContext`1.Instance*
   commentId: Overload:FastEndpoints.ValidationContext`1.Instance
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_Instance
   name: Instance
   nameWithType: ValidationContext<T>.Instance
   fullName: FastEndpoints.ValidationContext<T>.Instance
   nameWithType.vb: ValidationContext(Of T).Instance
   fullName.vb: FastEndpoints.ValidationContext(Of T).Instance
-- uid: FastEndpoints.ValidationContext{{T}}
-  commentId: T:FastEndpoints.ValidationContext{`0}
-  parent: FastEndpoints
-  definition: FastEndpoints.ValidationContext`1
-  name: ValidationContext<T>
-  nameWithType: ValidationContext<T>
-  fullName: FastEndpoints.ValidationContext<T>
-  nameWithType.vb: ValidationContext(Of T)
-  fullName.vb: FastEndpoints.ValidationContext(Of T)
-  name.vb: ValidationContext(Of T)
-  spec.csharp:
-  - uid: FastEndpoints.ValidationContext`1
-    name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: FastEndpoints.ValidationContext`1
-    name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext`1
   commentId: T:FastEndpoints.ValidationContext`1
+  parent: FastEndpoints
+  href: FastEndpoints.ValidationContext-1.html
   name: ValidationContext<T>
   nameWithType: ValidationContext<T>
   fullName: FastEndpoints.ValidationContext<T>
@@ -877,33 +643,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ValidationContext`1
     name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
+    href: FastEndpoints.ValidationContext-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ValidationContext`1
     name: ValidationContext
-    nameWithType: ValidationContext
-    fullName: FastEndpoints.ValidationContext
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ValidationContext-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ValidationContext`1.AddError*
   commentId: Overload:FastEndpoints.ValidationContext`1.AddError
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_AddError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_
   name: AddError
   nameWithType: ValidationContext<T>.AddError
   fullName: FastEndpoints.ValidationContext<T>.AddError
@@ -913,87 +668,68 @@ references:
   commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Object}}
   parent: System.Linq.Expressions
   definition: System.Linq.Expressions.Expression`1
-  name: Expression<Func<T, Object>>
-  nameWithType: Expression<Func<T, Object>>
-  fullName: System.Linq.Expressions.Expression<System.Func<T, System.Object>>
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<Func<T, object>>
+  nameWithType: Expression<Func<T, object>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, object>>
   nameWithType.vb: Expression(Of Func(Of T, Object))
-  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, System.Object))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Object))
   name.vb: Expression(Of Func(Of T, Object))
   spec.csharp:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.String
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: FluentValidation.Severity
   commentId: T:FluentValidation.Severity
   parent: FluentValidation
@@ -1004,6 +740,7 @@ references:
 - uid: System.Linq.Expressions.Expression`1
   commentId: T:System.Linq.Expressions.Expression`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   name: Expression<TDelegate>
   nameWithType: Expression<TDelegate>
   fullName: System.Linq.Expressions.Expression<TDelegate>
@@ -1013,39 +750,58 @@ references:
   spec.csharp:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TDelegate
-    nameWithType: TDelegate
-    fullName: TDelegate
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TDelegate
-    nameWithType: TDelegate
-    fullName: TDelegate
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Linq.Expressions
   commentId: N:System.Linq.Expressions
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Linq.Expressions
   nameWithType: System.Linq.Expressions
   fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
 - uid: FluentValidation
   commentId: N:FluentValidation
   isExternal: true
@@ -1054,6 +810,7 @@ references:
   fullName: FluentValidation
 - uid: FastEndpoints.ValidationContext`1.ThrowError*
   commentId: Overload:FastEndpoints.ValidationContext`1.ThrowError
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Nullable_System_Int32__
   name: ThrowError
   nameWithType: ValidationContext<T>.ThrowError
   fullName: FastEndpoints.ValidationContext<T>.ThrowError
@@ -1063,49 +820,29 @@ references:
   commentId: T:System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
-  fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
-  fullName.vb: System.Nullable(Of System.Int32)
-  name.vb: Nullable(Of Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   name: Nullable<T>
   nameWithType: Nullable<T>
   fullName: System.Nullable<T>
@@ -1115,30 +852,18 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )

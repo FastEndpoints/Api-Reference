@@ -84,14 +84,16 @@
 
   <h1 id="FastEndpoints_IRequestBinder_1" data-uid="FastEndpoints.IRequestBinder`1" class="text-break">Interface IRequestBinder&lt;TRequest&gt;
 </h1>
-  <div class="markdown level0 summary"><p>create custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the endpoint.</p>
+  <div class="markdown level0 summary"><p>create custom request binders by implementing this interface. by registering a custom modelbinder for an endpoint will completely disable the
+built-in model binding and completely depend on your implementation of the custom binder to return a correctly populated request dto for the
+endpoint.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_IRequestBinder_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IRequestBinder&lt;TRequest&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IRequestBinder&lt;TRequest&gt; where TRequest : notnull</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -136,11 +138,12 @@ access the incoming request data via the <code>RequestBinderContext</code> and p
       <tr>
         <td><a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a></td>
         <td><span class="parametername">ctx</span></td>
-        <td><p>request binder context encapsulating the incoming http request context, a list of validation failures for the endpoint, and an optional json serializer context.</p>
+        <td><p>request binder context encapsulating the incoming http request context, a list of validation failures for the endpoint, and an
+optional json serializer context.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">ct</span></td>
         <td><p>cancellation token</p>
 </td>
@@ -157,7 +160,7 @@ access the incoming request data via the <code>RequestBinderContext</code> and p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ValueTask</span>&lt;TRequest&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;TRequest&gt;</td>
         <td></td>
       </tr>
     </tbody>

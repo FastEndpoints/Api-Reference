@@ -89,42 +89,43 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">PreProcessor&lt;TRequest, TState&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="FastEndpoints.IPreProcessor-1.html">IPreProcessor</a>&lt;TRequest&gt;</div>
+    <div><a class="xref" href="FastEndpoints.IPreProcessor.html">IPreProcessor</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Object.Equals(Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
-      <span class="xref">Object.Equals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.GetHashCode()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
-      <span class="xref">Object.GetType()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <span class="xref">Object.MemberwiseClone()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
-      <span class="xref">Object.ReferenceEquals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.ToString()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_PreProcessor_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class PreProcessor&lt;TRequest, TState&gt; : IPreProcessor&lt;TRequest&gt; where TState : class, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class PreProcessor&lt;TRequest, TState&gt; : IPreProcessor&lt;TRequest&gt;, IPreProcessor where TState : class, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -152,13 +153,13 @@
 
 
   <a id="FastEndpoints_PreProcessor_2_PreProcessAsync_" data-uid="FastEndpoints.PreProcessor`2.PreProcessAsync*"></a>
-  <h4 id="FastEndpoints_PreProcessor_2_PreProcessAsync__0__1_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_List_FluentValidation_Results_ValidationFailure__System_Threading_CancellationToken_" data-uid="FastEndpoints.PreProcessor`2.PreProcessAsync(`0,`1,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)">PreProcessAsync(TRequest, TState, HttpContext, List&lt;ValidationFailure&gt;, CancellationToken)</h4>
+  <h4 id="FastEndpoints_PreProcessor_2_PreProcessAsync_FastEndpoints_IPreProcessorContext__0___1_System_Threading_CancellationToken_" data-uid="FastEndpoints.PreProcessor`2.PreProcessAsync(FastEndpoints.IPreProcessorContext{`0},`1,System.Threading.CancellationToken)">PreProcessAsync(IPreProcessorContext&lt;TRequest&gt;, TState, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>this method is called with the given arguments when the pre-processor executes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract Task PreProcessAsync(TRequest req, TState state, HttpContext ctx, List&lt;ValidationFailure&gt; failures, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract Task PreProcessAsync(IPreProcessorContext&lt;TRequest&gt; context, TState state, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -171,9 +172,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TRequest</span></td>
-        <td><span class="parametername">req</span></td>
-        <td><p>the request dto object</p>
+        <td><a class="xref" href="FastEndpoints.IPreProcessorContext-1.html">IPreProcessorContext</a>&lt;TRequest&gt;</td>
+        <td><span class="parametername">context</span></td>
+        <td><p>the context object encapsulating all necessary information for pre-processing.</p>
 </td>
       </tr>
       <tr>
@@ -183,19 +184,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">HttpContext</span></td>
-        <td><span class="parametername">ctx</span></td>
-        <td><p>the http context</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">List</span>&lt;<span class="xref">ValidationFailure</span>&gt;</td>
-        <td><span class="parametername">failures</span></td>
-        <td><p>the collection of validation errors of the endpoint</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">ct</span></td>
         <td><p>cancellation token</p>
 </td>
@@ -212,7 +201,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -220,6 +209,9 @@
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="FastEndpoints.IPreProcessor-1.html">IPreProcessor&lt;TRequest&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IPreProcessor.html">IPreProcessor</a>
   </div>
 
 </article>

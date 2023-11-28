@@ -5,7 +5,7 @@ items:
   id: IPreProcessor`1
   parent: FastEndpoints
   children:
-  - FastEndpoints.IPreProcessor`1.PreProcessAsync(`0,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
+  - FastEndpoints.IPreProcessor`1.PreProcessAsync(FastEndpoints.IPreProcessorContext{`0},System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -15,144 +15,121 @@ items:
   type: Interface
   source:
     id: IPreProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Processor\IPreProcessor.cs
-    startLine: 9
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPreProcessor.cs
+    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ninterface for defining pre-processors to be executed before the main endpoint handler is called\n"
+  summary: >-
+    defines the generic interface for a pre-processor with specific types for the request,
+
+    enabling type-safe pre-processing.
   example: []
   syntax:
-    content: public interface IPreProcessor<TRequest>
+    content: 'public interface IPreProcessor<in TRequest> : IPreProcessor'
     typeParameters:
     - id: TRequest
-      description: the type of the request dto
-    content.vb: Public Interface IPreProcessor(Of TRequest)
+      description: the type of the request object, which must be non-nullable.
+    content.vb: Public Interface IPreProcessor(Of In TRequest) Inherits IPreProcessor
+  inheritedMembers:
+  - FastEndpoints.IPreProcessor.PreProcessAsync(FastEndpoints.IPreProcessorContext,System.Threading.CancellationToken)
   nameWithType.vb: IPreProcessor(Of TRequest)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
   fullName.vb: FastEndpoints.IPreProcessor(Of TRequest)
   name.vb: IPreProcessor(Of TRequest)
-- uid: FastEndpoints.IPreProcessor`1.PreProcessAsync(`0,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.IPreProcessor`1.PreProcessAsync(`0,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
-  id: PreProcessAsync(`0,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)
+- uid: FastEndpoints.IPreProcessor`1.PreProcessAsync(FastEndpoints.IPreProcessorContext{`0},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IPreProcessor`1.PreProcessAsync(FastEndpoints.IPreProcessorContext{`0},System.Threading.CancellationToken)
+  id: PreProcessAsync(FastEndpoints.IPreProcessorContext{`0},System.Threading.CancellationToken)
   parent: FastEndpoints.IPreProcessor`1
   langs:
   - csharp
   - vb
-  name: PreProcessAsync(TRequest, HttpContext, List<ValidationFailure>, CancellationToken)
-  nameWithType: IPreProcessor<TRequest>.PreProcessAsync(TRequest, HttpContext, List<ValidationFailure>, CancellationToken)
-  fullName: FastEndpoints.IPreProcessor<TRequest>.PreProcessAsync(TRequest, Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, System.Threading.CancellationToken)
+  name: PreProcessAsync(IPreProcessorContext<TRequest>, CancellationToken)
+  nameWithType: IPreProcessor<TRequest>.PreProcessAsync(IPreProcessorContext<TRequest>, CancellationToken)
+  fullName: FastEndpoints.IPreProcessor<TRequest>.PreProcessAsync(FastEndpoints.IPreProcessorContext<TRequest>, System.Threading.CancellationToken)
   type: Method
   source:
     id: PreProcessAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Processor\IPreProcessor.cs
-    startLine: 18
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPreProcessor.cs
+    startLine: 39
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthis method is called with the given arguments when the pre-processor executes.\n"
+  summary: asynchronously performs pre-processing on the provided context with a specific request type.
   example: []
   syntax:
-    content: Task PreProcessAsync(TRequest req, HttpContext ctx, List<ValidationFailure> failures, CancellationToken ct)
+    content: Task PreProcessAsync(IPreProcessorContext<in TRequest> context, CancellationToken ct)
     parameters:
-    - id: req
-      type: '{TRequest}'
-      description: the request dto object
-    - id: ctx
-      type: Microsoft.AspNetCore.Http.HttpContext
-      description: the current http context
-    - id: failures
-      type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
-      description: the collection of validation errors of the endpoint
+    - id: context
+      type: FastEndpoints.IPreProcessorContext{{TRequest}}
+      description: the pre-processor context containing the typed request, and other processing details.
     - id: ct
       type: System.Threading.CancellationToken
-      description: cancellation token
+      description: The <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to observe while waiting for the task to complete.
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Function PreProcessAsync(req As TRequest, ctx As HttpContext, failures As List(Of ValidationFailure), ct As CancellationToken) As Task
+      description: a <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> that represents the asynchronous pre-process operation.
+    content.vb: Function PreProcessAsync(context As IPreProcessorContext(Of In TRequest), ct As CancellationToken) As Task
   overload: FastEndpoints.IPreProcessor`1.PreProcessAsync*
-  nameWithType.vb: IPreProcessor(Of TRequest).PreProcessAsync(TRequest, HttpContext, List(Of ValidationFailure), CancellationToken)
-  fullName.vb: FastEndpoints.IPreProcessor(Of TRequest).PreProcessAsync(TRequest, Microsoft.AspNetCore.Http.HttpContext, System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.Threading.CancellationToken)
-  name.vb: PreProcessAsync(TRequest, HttpContext, List(Of ValidationFailure), CancellationToken)
+  nameWithType.vb: IPreProcessor(Of TRequest).PreProcessAsync(IPreProcessorContext(Of TRequest), CancellationToken)
+  fullName.vb: FastEndpoints.IPreProcessor(Of TRequest).PreProcessAsync(FastEndpoints.IPreProcessorContext(Of TRequest), System.Threading.CancellationToken)
+  name.vb: PreProcessAsync(IPreProcessorContext(Of TRequest), CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
-- uid: FastEndpoints.IPreProcessor`1.PreProcessAsync*
-  commentId: Overload:FastEndpoints.IPreProcessor`1.PreProcessAsync
-  name: PreProcessAsync
-  nameWithType: IPreProcessor<TRequest>.PreProcessAsync
-  fullName: FastEndpoints.IPreProcessor<TRequest>.PreProcessAsync
-  nameWithType.vb: IPreProcessor(Of TRequest).PreProcessAsync
-  fullName.vb: FastEndpoints.IPreProcessor(Of TRequest).PreProcessAsync
-- uid: '{TRequest}'
-  commentId: '!:TRequest'
-  definition: TRequest
-  name: TRequest
-  nameWithType: TRequest
-  fullName: TRequest
-- uid: Microsoft.AspNetCore.Http.HttpContext
-  commentId: T:Microsoft.AspNetCore.Http.HttpContext
-  parent: Microsoft.AspNetCore.Http
+- uid: FastEndpoints.IPreProcessor.PreProcessAsync(FastEndpoints.IPreProcessorContext,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IPreProcessor.PreProcessAsync(FastEndpoints.IPreProcessorContext,System.Threading.CancellationToken)
+  parent: FastEndpoints.IPreProcessor
   isExternal: true
-  name: HttpContext
-  nameWithType: HttpContext
-  fullName: Microsoft.AspNetCore.Http.HttpContext
-- uid: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
-  commentId: T:System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
-  name: List<ValidationFailure>
-  nameWithType: List<ValidationFailure>
-  fullName: System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>
-  nameWithType.vb: List(Of ValidationFailure)
-  fullName.vb: System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure)
-  name.vb: List(Of ValidationFailure)
+  href: FastEndpoints.IPreProcessor.html#FastEndpoints_IPreProcessor_PreProcessAsync_FastEndpoints_IPreProcessorContext_System_Threading_CancellationToken_
+  name: PreProcessAsync(IPreProcessorContext, CancellationToken)
+  nameWithType: IPreProcessor.PreProcessAsync(IPreProcessorContext, CancellationToken)
+  fullName: FastEndpoints.IPreProcessor.PreProcessAsync(FastEndpoints.IPreProcessorContext, System.Threading.CancellationToken)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
+  - uid: FastEndpoints.IPreProcessor.PreProcessAsync(FastEndpoints.IPreProcessorContext,System.Threading.CancellationToken)
+    name: PreProcessAsync
+    href: FastEndpoints.IPreProcessor.html#FastEndpoints_IPreProcessor_PreProcessAsync_FastEndpoints_IPreProcessorContext_System_Threading_CancellationToken_
+  - name: (
+  - uid: FastEndpoints.IPreProcessorContext
+    name: IPreProcessorContext
+    href: FastEndpoints.IPreProcessorContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
     isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: FluentValidation.Results.ValidationFailure
-    name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: FluentValidation.Results.ValidationFailure
-    name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
-    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-    nameWithType: )
-    fullName: )
+  spec.vb:
+  - uid: FastEndpoints.IPreProcessor.PreProcessAsync(FastEndpoints.IPreProcessorContext,System.Threading.CancellationToken)
+    name: PreProcessAsync
+    href: FastEndpoints.IPreProcessor.html#FastEndpoints_IPreProcessor_PreProcessAsync_FastEndpoints_IPreProcessorContext_System_Threading_CancellationToken_
+  - name: (
+  - uid: FastEndpoints.IPreProcessorContext
+    name: IPreProcessorContext
+    href: FastEndpoints.IPreProcessorContext.html
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: FastEndpoints.IPreProcessor
+  commentId: T:FastEndpoints.IPreProcessor
+  parent: FastEndpoints
+  href: FastEndpoints.IPreProcessor.html
+  name: IPreProcessor
+  nameWithType: IPreProcessor
+  fullName: FastEndpoints.IPreProcessor
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -160,73 +137,131 @@ references:
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
-- uid: TRequest
-  name: TRequest
-  nameWithType: TRequest
-  fullName: TRequest
-- uid: Microsoft.AspNetCore.Http
-  commentId: N:Microsoft.AspNetCore.Http
-  isExternal: true
-  name: Microsoft.AspNetCore.Http
-  nameWithType: Microsoft.AspNetCore.Http
-  fullName: Microsoft.AspNetCore.Http
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
+- uid: FastEndpoints.IPreProcessor`1.PreProcessAsync*
+  commentId: Overload:FastEndpoints.IPreProcessor`1.PreProcessAsync
+  href: FastEndpoints.IPreProcessor-1.html#FastEndpoints_IPreProcessor_1_PreProcessAsync_FastEndpoints_IPreProcessorContext__0__System_Threading_CancellationToken_
+  name: PreProcessAsync
+  nameWithType: IPreProcessor<TRequest>.PreProcessAsync
+  fullName: FastEndpoints.IPreProcessor<TRequest>.PreProcessAsync
+  nameWithType.vb: IPreProcessor(Of TRequest).PreProcessAsync
+  fullName.vb: FastEndpoints.IPreProcessor(Of TRequest).PreProcessAsync
+- uid: FastEndpoints.IPreProcessorContext{{TRequest}}
+  commentId: T:FastEndpoints.IPreProcessorContext{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.IPreProcessorContext`1
+  href: FastEndpoints.IPreProcessorContext-1.html
+  name: IPreProcessorContext<TRequest>
+  nameWithType: IPreProcessorContext<TRequest>
+  fullName: FastEndpoints.IPreProcessorContext<TRequest>
+  nameWithType.vb: IPreProcessorContext(Of TRequest)
+  fullName.vb: FastEndpoints.IPreProcessorContext(Of TRequest)
+  name.vb: IPreProcessorContext(Of TRequest)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
+  - uid: FastEndpoints.IPreProcessorContext`1
+    name: IPreProcessorContext
+    href: FastEndpoints.IPreProcessorContext-1.html
   - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: TRequest
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - uid: FastEndpoints.IPreProcessorContext`1
+    name: IPreProcessorContext
+    href: FastEndpoints.IPreProcessorContext-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FastEndpoints.IPreProcessorContext`1
+  commentId: T:FastEndpoints.IPreProcessorContext`1
+  href: FastEndpoints.IPreProcessorContext-1.html
+  name: IPreProcessorContext<TRequest>
+  nameWithType: IPreProcessorContext<TRequest>
+  fullName: FastEndpoints.IPreProcessorContext<TRequest>
+  nameWithType.vb: IPreProcessorContext(Of TRequest)
+  fullName.vb: FastEndpoints.IPreProcessorContext(Of TRequest)
+  name.vb: IPreProcessorContext(Of TRequest)
+  spec.csharp:
+  - uid: FastEndpoints.IPreProcessorContext`1
+    name: IPreProcessorContext
+    href: FastEndpoints.IPreProcessorContext-1.html
+  - name: <
+  - name: TRequest
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IPreProcessorContext`1
+    name: IPreProcessorContext
+    href: FastEndpoints.IPreProcessorContext-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: )

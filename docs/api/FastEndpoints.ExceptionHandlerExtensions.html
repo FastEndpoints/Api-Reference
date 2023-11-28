@@ -89,31 +89,31 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">ExceptionHandlerExtensions</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Object.Equals(Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
-      <span class="xref">Object.Equals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.GetHashCode()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
-      <span class="xref">Object.GetType()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <span class="xref">Object.MemberwiseClone()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
-      <span class="xref">Object.ReferenceEquals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.ToString()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
@@ -127,15 +127,16 @@
 
 
   <a id="FastEndpoints_ExceptionHandlerExtensions_UseDefaultExceptionHandler_" data-uid="FastEndpoints.ExceptionHandlerExtensions.UseDefaultExceptionHandler*"></a>
-  <h4 id="FastEndpoints_ExceptionHandlerExtensions_UseDefaultExceptionHandler_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_Extensions_Logging_ILogger_System_Boolean_" data-uid="FastEndpoints.ExceptionHandlerExtensions.UseDefaultExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Logging.ILogger,System.Boolean)">UseDefaultExceptionHandler(IApplicationBuilder, ILogger, Boolean)</h4>
-  <div class="markdown level1 summary"><p>registers the default global exception handler which will log the exceptions on the server and return a user-friendly json response to the client when unhandled exceptions occur.
+  <h4 id="FastEndpoints_ExceptionHandlerExtensions_UseDefaultExceptionHandler_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_Extensions_Logging_ILogger_System_Boolean_System_Boolean_" data-uid="FastEndpoints.ExceptionHandlerExtensions.UseDefaultExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Logging.ILogger,System.Boolean,System.Boolean)">UseDefaultExceptionHandler(IApplicationBuilder, ILogger?, bool, bool)</h4>
+  <div class="markdown level1 summary"><p>registers the default global exception handler which will log the exceptions on the server and return a user-friendly json response to the client
+when unhandled exceptions occur.
 TIP: when using this exception handler, you may want to turn off the asp.net core exception middleware logging to avoid duplication like so:</p>
-<pre><code>&quot;Logging&quot;: { &quot;LogLevel&quot;: { &quot;Default&quot;: &quot;Warning&quot;, &quot;Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware&quot;: &quot;None&quot; } }</code></pre>
+<pre><code class="lang-csharp">"Logging": { "LogLevel": { "Default": "Warning", "Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware": "None" } }</code></pre>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IApplicationBuilder UseDefaultExceptionHandler(this IApplicationBuilder app, ILogger logger = null, bool logStructuredException = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IApplicationBuilder UseDefaultExceptionHandler(this IApplicationBuilder app, ILogger? logger = null, bool logStructuredException = false, bool useGenericReason = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -148,20 +149,26 @@ TIP: when using this exception handler, you may want to turn off the asp.net cor
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IApplicationBuilder</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></td>
         <td><span class="parametername">app</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">ILogger</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger">ILogger</a></td>
         <td><span class="parametername">logger</span></td>
         <td><p>an optional logger instance</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Boolean</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">logStructuredException</span></td>
         <td><p>set to true if you'd like to log the error in a structured manner</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">useGenericReason</span></td>
+        <td><p>set to true if you don't want to expose the actual exception reason in the json response sent to the client</p>
 </td>
       </tr>
     </tbody>
@@ -176,7 +183,7 @@ TIP: when using this exception handler, you may want to turn off the asp.net cor
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IApplicationBuilder</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></td>
         <td></td>
       </tr>
     </tbody>

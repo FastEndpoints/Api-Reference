@@ -84,14 +84,21 @@
 
   <h1 id="FastEndpoints_IPostProcessor_2" data-uid="FastEndpoints.IPostProcessor`2" class="text-break">Interface IPostProcessor&lt;TRequest, TResponse&gt;
 </h1>
-  <div class="markdown level0 summary"><p>interface for defining post-processors to be executed after the main endpoint handler is done</p>
+  <div class="markdown level0 summary"><p>defines the generic interface for a post-processor with specific types for the request and response,
+enabling type-safe post-processing.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="FastEndpoints.IPostProcessor.html#FastEndpoints_IPostProcessor_PostProcessAsync_FastEndpoints_IPostProcessorContext_System_Threading_CancellationToken_">IPostProcessor.PostProcessAsync(IPostProcessorContext, CancellationToken)</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_IPostProcessor_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IPostProcessor&lt;TRequest, TResponse&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IPostProcessor&lt;in TRequest, in TResponse&gt; : IPostProcessor</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -104,12 +111,12 @@
     <tbody>
       <tr>
         <td><span class="parametername">TRequest</span></td>
-        <td><p>the type of the request dto</p>
+        <td><p>the type of the request object, which must be non-nullable.</p>
 </td>
       </tr>
       <tr>
         <td><span class="parametername">TResponse</span></td>
-        <td><p>the type of the response dto</p>
+        <td><p>the type of the response object.</p>
 </td>
       </tr>
     </tbody>
@@ -119,13 +126,13 @@
 
 
   <a id="FastEndpoints_IPostProcessor_2_PostProcessAsync_" data-uid="FastEndpoints.IPostProcessor`2.PostProcessAsync*"></a>
-  <h4 id="FastEndpoints_IPostProcessor_2_PostProcessAsync__0__1_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_IReadOnlyCollection_FluentValidation_Results_ValidationFailure__System_Threading_CancellationToken_" data-uid="FastEndpoints.IPostProcessor`2.PostProcessAsync(`0,`1,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)">PostProcessAsync(TRequest, TResponse, HttpContext, IReadOnlyCollection&lt;ValidationFailure&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>this method is called with the given arguments when the post-processor executes.</p>
+  <h4 id="FastEndpoints_IPostProcessor_2_PostProcessAsync_FastEndpoints_IPostProcessorContext__0__1__System_Threading_CancellationToken_" data-uid="FastEndpoints.IPostProcessor`2.PostProcessAsync(FastEndpoints.IPostProcessorContext{`0,`1},System.Threading.CancellationToken)">PostProcessAsync(IPostProcessorContext&lt;TRequest, TResponse&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>asynchronously performs post-processing on the provided context with specific request and response types.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task PostProcessAsync(TRequest req, TResponse res, HttpContext ctx, IReadOnlyCollection&lt;ValidationFailure&gt; failures, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">Task PostProcessAsync(IPostProcessorContext&lt;in TRequest, in TResponse&gt; context, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -138,33 +145,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TRequest</span></td>
-        <td><span class="parametername">req</span></td>
-        <td><p>the request dto object</p>
+        <td><a class="xref" href="FastEndpoints.IPostProcessorContext-2.html">IPostProcessorContext</a>&lt;TRequest, TResponse&gt;</td>
+        <td><span class="parametername">context</span></td>
+        <td><p>the post-processor context containing the typed request, response, and other processing details.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">TResponse</span></td>
-        <td><span class="parametername">res</span></td>
-        <td><p>the response dto object</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">HttpContext</span></td>
-        <td><span class="parametername">ctx</span></td>
-        <td><p>the current http context</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">IReadOnlyCollection</span>&lt;<span class="xref">ValidationFailure</span>&gt;</td>
-        <td><span class="parametername">failures</span></td>
-        <td><p>the collection of validation errors of the endpoint</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">ct</span></td>
-        <td><p>cancellation token</p>
+        <td><p>the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> to observe while waiting for the task to complete.</p>
 </td>
       </tr>
     </tbody>
@@ -179,8 +168,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> that represents the asynchronous post-process operation.</p>
+</td>
       </tr>
     </tbody>
   </table>

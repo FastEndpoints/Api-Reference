@@ -21,12 +21,12 @@ items:
   type: Class
   source:
     id: RemoteConnectionExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
     startLine: 11
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nclient extension methods\n"
+  summary: client extension methods
   example: []
   syntax:
     content: public static class RemoteConnectionExtensions
@@ -41,13 +41,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
 - uid: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   commentId: M:FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   id: AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
@@ -62,20 +55,15 @@ items:
   type: Method
   source:
     id: AddEventSubscriberStorageProvider
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
     startLine: 18
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nregister a custom event subscriber storage provider\n"
+  summary: register a custom event subscriber storage provider
   example: []
   syntax:
-    content: >-
-      public static void AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(this IServiceCollection services)
-
-          where TStorageRecord : IEventStorageRecord, new()
-
-          where TStorageProvider : class, IEventSubscriberStorageProvider<TStorageRecord>
+    content: 'public static void AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(this IServiceCollection services) where TStorageRecord : IEventStorageRecord, new() where TStorageProvider : class, IEventSubscriberStorageProvider<TStorageRecord>'
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -84,18 +72,9 @@ items:
       description: the type of the storage record
     - id: TStorageProvider
       description: ''
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Sub AddEventSubscriberStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventSubscriberStorageProvider(Of TStorageRecord)})(services As IServiceCollection)
+    content.vb: Public Shared Sub AddEventSubscriberStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventSubscriberStorageProvider(Of TStorageRecord)})(services As IServiceCollection)
   overload: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider*
   nameWithType.vb: RemoteConnectionExtensions.AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IServiceCollection)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   name.vb: AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IServiceCollection)
 - uid: FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})
@@ -106,24 +85,34 @@ items:
   langs:
   - csharp
   - vb
-  name: MapRemote(IHost, String, Action<RemoteConnection>)
-  nameWithType: RemoteConnectionExtensions.MapRemote(IHost, String, Action<RemoteConnection>)
-  fullName: FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost, System.String, System.Action<FastEndpoints.RemoteConnection>)
+  name: MapRemote(IHost, string, Action<RemoteConnection>)
+  nameWithType: RemoteConnectionExtensions.MapRemote(IHost, string, Action<RemoteConnection>)
+  fullName: FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost, string, System.Action<FastEndpoints.RemoteConnection>)
   type: Method
   source:
     id: MapRemote
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 36
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    startLine: 37
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\ncreates a grpc channel/connection to a remote server that hosts a known collection of command handlers and event hubs.\n<p>\nIMPORTANT: call the <xref href=\"FastEndpoints.RemoteConnection.Register%60%602\" data-throw-if-not-resolved=\"false\"></xref> method (using action <code data-dev-comment-type=\"paramref\" class=\"paramref\">r</code>) to specify which commands are handled by this remote server.\nevent subscriptions can be specified using <xref href=\"FastEndpoints.RemoteConnection.Subscribe%60%602(Grpc.Core.CallOptions)\" data-throw-if-not-resolved=\"false\"></xref> method.\n</p>\n"
+  summary: >-
+    creates a grpc channel/connection to a remote server that hosts a known collection of command handlers and event hubs.
+
+    <p>
+
+    IMPORTANT: call the <xref href="FastEndpoints.RemoteConnection.Register%60%602" data-throw-if-not-resolved="false"></xref> method (using action <code class="paramref">r</code>) to specify which commands are handled by this remote server.
+
+    event subscriptions can be specified using <xref href="FastEndpoints.RemoteConnection.Subscribe%60%602(Grpc.Core.CallOptions)" data-throw-if-not-resolved="false"></xref> method.
+
+    </p>
   example: []
   syntax:
     content: public static IHost MapRemote(this IHost host, string remoteAddress, Action<RemoteConnection> r)
     parameters:
     - id: host
       type: Microsoft.Extensions.Hosting.IHost
+      description: ''
     - id: remoteAddress
       type: System.String
       description: the address of the remote server
@@ -132,19 +121,10 @@ items:
       description: a configuration action for the connection
     return:
       type: Microsoft.Extensions.Hosting.IHost
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function MapRemote(host As IHost, remoteAddress As String, r As Action(Of RemoteConnection)) As IHost
+    content.vb: Public Shared Function MapRemote(host As IHost, remoteAddress As String, r As Action(Of RemoteConnection)) As IHost
   overload: FastEndpoints.RemoteConnectionExtensions.MapRemote*
   nameWithType.vb: RemoteConnectionExtensions.MapRemote(IHost, String, Action(Of RemoteConnection))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-  fullName.vb: FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost, System.String, System.Action(Of FastEndpoints.RemoteConnection))
+  fullName.vb: FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost, String, System.Action(Of FastEndpoints.RemoteConnection))
   name.vb: MapRemote(IHost, String, Action(Of RemoteConnection))
 - uid: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)
@@ -160,38 +140,30 @@ items:
   type: Method
   source:
     id: RemotePublishAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 49
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    startLine: 51
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\npublish the event to the relevant remote server that&apos;s running in <xref href=\"FastEndpoints.HubMode.EventBroker\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  summary: publish the event to the relevant remote server that's running in <xref href="FastEndpoints.HubMode.EventBroker" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
-    content: public static Task RemotePublishAsync(this IEvent event, CallOptions options = default(CallOptions))
+    content: public static Task RemotePublishAsync(this IEvent @event, CallOptions options = default)
     parameters:
     - id: event
       type: FastEndpoints.IEvent
+      description: ''
     - id: options
       type: Grpc.Core.CallOptions
       description: call options
     return:
       type: System.Threading.Tasks.Task
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function RemotePublishAsync(event As IEvent, options As CallOptions = Nothing) As Task
+    content.vb: Public Shared Function RemotePublishAsync([event] As IEvent, options As CallOptions = Nothing) As Task
   overload: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 - uid: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
   id: RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
@@ -206,38 +178,30 @@ items:
   type: Method
   source:
     id: RemoteExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 64
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    startLine: 67
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nexecute the command on the relevant remote server\n"
+  summary: execute the command on the relevant remote server
   example: []
   syntax:
-    content: public static Task RemoteExecuteAsync(this ICommand command, CallOptions options = default(CallOptions))
+    content: public static Task RemoteExecuteAsync(this ICommand command, CallOptions options = default)
     parameters:
     - id: command
       type: FastEndpoints.ICommand
+      description: ''
     - id: options
       type: Grpc.Core.CallOptions
       description: call options
     return:
       type: System.Threading.Tasks.Task
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function RemoteExecuteAsync(command As ICommand, options As CallOptions = Nothing) As Task
+    content.vb: Public Shared Function RemoteExecuteAsync(command As ICommand, options As CallOptions = Nothing) As Task
   overload: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 - uid: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
   id: RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
@@ -252,21 +216,19 @@ items:
   type: Method
   source:
     id: RemoteExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 80
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    startLine: 84
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nexecute the command on the relevant remote server and get back a result\n"
+  summary: execute the command on the relevant remote server and get back a result
   example: []
   syntax:
-    content: >-
-      public static Task<TResult> RemoteExecuteAsync<TResult>(this ICommand<TResult> command, CallOptions options = default(CallOptions))
-
-          where TResult : class
+    content: 'public static Task<TResult> RemoteExecuteAsync<TResult>(this ICommand<TResult> command, CallOptions options = default) where TResult : class'
     parameters:
     - id: command
       type: FastEndpoints.ICommand{{TResult}}
+      description: ''
     - id: options
       type: Grpc.Core.CallOptions
       description: call options
@@ -275,22 +237,13 @@ items:
       description: the type of the result
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function RemoteExecuteAsync(Of TResult As Class)(command As ICommand(Of TResult), options As CallOptions = Nothing) As Task(Of TResult)
+    content.vb: Public Shared Function RemoteExecuteAsync(Of TResult As Class)(command As ICommand(Of TResult), options As CallOptions = Nothing) As Task(Of TResult)
   overload: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
   nameWithType.vb: RemoteConnectionExtensions.RemoteExecuteAsync(Of TResult)(ICommand(Of TResult), CallOptions)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), Grpc.Core.CallOptions)
   name.vb: RemoteExecuteAsync(Of TResult)(ICommand(Of TResult), CallOptions)
 - uid: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},Grpc.Core.CallOptions)
@@ -307,21 +260,19 @@ items:
   type: Method
   source:
     id: RemoteExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 96
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    startLine: 101
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nexecute the command on the relevant remote server and get back a stream of <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TResult</code>\n"
+  summary: execute the command on the relevant remote server and get back a stream of <code class="typeparamref">TResult</code>
   example: []
   syntax:
-    content: >-
-      public static IAsyncEnumerable<TResult> RemoteExecuteAsync<TResult>(this IServerStreamCommand<TResult> command, CallOptions options = default(CallOptions))
-
-          where TResult : class
+    content: 'public static IAsyncEnumerable<TResult> RemoteExecuteAsync<TResult>(this IServerStreamCommand<TResult> command, CallOptions options = default) where TResult : class'
     parameters:
     - id: command
       type: FastEndpoints.IServerStreamCommand{{TResult}}
+      description: ''
     - id: options
       type: Grpc.Core.CallOptions
       description: call options
@@ -330,22 +281,13 @@ items:
       description: the type of the result stream
     return:
       type: System.Collections.Generic.IAsyncEnumerable{{TResult}}
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function RemoteExecuteAsync(Of TResult As Class)(command As IServerStreamCommand(Of TResult), options As CallOptions = Nothing) As IAsyncEnumerable(Of TResult)
+    content.vb: Public Shared Function RemoteExecuteAsync(Of TResult As Class)(command As IServerStreamCommand(Of TResult), options As CallOptions = Nothing) As IAsyncEnumerable(Of TResult)
   overload: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
   nameWithType.vb: RemoteConnectionExtensions.RemoteExecuteAsync(Of TResult)(IServerStreamCommand(Of TResult), CallOptions)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(Of TResult)(FastEndpoints.IServerStreamCommand(Of TResult), Grpc.Core.CallOptions)
   name.vb: RemoteExecuteAsync(Of TResult)(IServerStreamCommand(Of TResult), CallOptions)
 - uid: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)
@@ -362,18 +304,15 @@ items:
   type: Method
   source:
     id: RemoteExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
-    startLine: 114
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnectionExtensions.cs
+    startLine: 119
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nsend the stream of <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">T</code> to the relevant remote server and get back a result of <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TResult</code>\n"
+  summary: send the stream of <code class="typeparamref">T</code> to the relevant remote server and get back a result of <code class="typeparamref">TResult</code>
   example: []
   syntax:
-    content: >-
-      public static Task<TResult> RemoteExecuteAsync<T, TResult>(this IAsyncEnumerable<T> commands, CallOptions options = default(CallOptions))
-
-          where T : class where TResult : class
+    content: 'public static Task<TResult> RemoteExecuteAsync<T, TResult>(this IAsyncEnumerable<T> commands, CallOptions options = default) where T : class where TResult : class'
     parameters:
     - id: commands
       type: System.Collections.Generic.IAsyncEnumerable{{T}}
@@ -388,27 +327,19 @@ items:
       description: the type of the result that will be returned when the stream ends
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function RemoteExecuteAsync(Of T As Class, TResult As Class)(commands As IAsyncEnumerable(Of T), options As CallOptions = Nothing) As Task(Of TResult)
+    content.vb: Public Shared Function RemoteExecuteAsync(Of T As Class, TResult As Class)(commands As IAsyncEnumerable(Of T), options As CallOptions = Nothing) As Task(Of TResult)
   overload: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
   nameWithType.vb: RemoteConnectionExtensions.RemoteExecuteAsync(Of T, TResult)(IAsyncEnumerable(Of T), CallOptions)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(Of T, TResult)(System.Collections.Generic.IAsyncEnumerable(Of T), Grpc.Core.CallOptions)
   name.vb: RemoteExecuteAsync(Of T, TResult)(IAsyncEnumerable(Of T), CallOptions)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -416,296 +347,242 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider*
   commentId: Overload:FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider
+  href: FastEndpoints.RemoteConnectionExtensions.html#FastEndpoints_RemoteConnectionExtensions_AddEventSubscriberStorageProvider__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_
   name: AddEventSubscriberStorageProvider
   nameWithType: RemoteConnectionExtensions.AddEventSubscriberStorageProvider
   fullName: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider
@@ -713,23 +590,129 @@ references:
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
   parent: Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection
   name: IServiceCollection
   nameWithType: IServiceCollection
   fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
 - uid: FastEndpoints.RemoteConnection.Register``2
   commentId: M:FastEndpoints.RemoteConnection.Register``2
-  isExternal: true
+  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__2
+  name: Register<TCommand, TResult>()
+  nameWithType: RemoteConnection.Register<TCommand, TResult>()
+  fullName: FastEndpoints.RemoteConnection.Register<TCommand, TResult>()
+  nameWithType.vb: RemoteConnection.Register(Of TCommand, TResult)()
+  fullName.vb: FastEndpoints.RemoteConnection.Register(Of TCommand, TResult)()
+  name.vb: Register(Of TCommand, TResult)()
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnection.Register``2
+    name: Register
+    href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__2
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnection.Register``2
+    name: Register
+    href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - name: )
 - uid: FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
   isExternal: true
+  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Subscribe__2_Grpc_Core_CallOptions_
+  name: Subscribe<TEvent, TEventHandler>(CallOptions)
+  nameWithType: RemoteConnection.Subscribe<TEvent, TEventHandler>(CallOptions)
+  fullName: FastEndpoints.RemoteConnection.Subscribe<TEvent, TEventHandler>(Grpc.Core.CallOptions)
+  nameWithType.vb: RemoteConnection.Subscribe(Of TEvent, TEventHandler)(CallOptions)
+  fullName.vb: FastEndpoints.RemoteConnection.Subscribe(Of TEvent, TEventHandler)(Grpc.Core.CallOptions)
+  name.vb: Subscribe(Of TEvent, TEventHandler)(CallOptions)
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
+    name: Subscribe
+    href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Subscribe__2_Grpc_Core_CallOptions_
+  - name: <
+  - name: TEvent
+  - name: ','
+  - name: " "
+  - name: TEventHandler
+  - name: '>'
+  - name: (
+  - uid: Grpc.Core.CallOptions
+    name: CallOptions
+    isExternal: true
+    href: https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
+    name: Subscribe
+    href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Subscribe__2_Grpc_Core_CallOptions_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: ','
+  - name: " "
+  - name: TEventHandler
+  - name: )
+  - name: (
+  - uid: Grpc.Core.CallOptions
+    name: CallOptions
+    isExternal: true
+    href: https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs
+  - name: )
 - uid: FastEndpoints.RemoteConnectionExtensions.MapRemote*
   commentId: Overload:FastEndpoints.RemoteConnectionExtensions.MapRemote
+  href: FastEndpoints.RemoteConnectionExtensions.html#FastEndpoints_RemoteConnectionExtensions_MapRemote_Microsoft_Extensions_Hosting_IHost_System_String_System_Action_FastEndpoints_RemoteConnection__
   name: MapRemote
   nameWithType: RemoteConnectionExtensions.MapRemote
   fullName: FastEndpoints.RemoteConnectionExtensions.MapRemote
@@ -737,6 +720,7 @@ references:
   commentId: T:Microsoft.Extensions.Hosting.IHost
   parent: Microsoft.Extensions.Hosting
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihost
   name: IHost
   nameWithType: IHost
   fullName: Microsoft.Extensions.Hosting.IHost
@@ -744,13 +728,18 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System.Action{FastEndpoints.RemoteConnection}
   commentId: T:System.Action{FastEndpoints.RemoteConnection}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<RemoteConnection>
   nameWithType: Action<RemoteConnection>
   fullName: System.Action<FastEndpoints.RemoteConnection>
@@ -760,44 +749,66 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.RemoteConnection
     name: RemoteConnection
-    nameWithType: RemoteConnection
-    fullName: FastEndpoints.RemoteConnection
+    href: FastEndpoints.RemoteConnection.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.RemoteConnection
     name: RemoteConnection
-    nameWithType: RemoteConnection
-    fullName: FastEndpoints.RemoteConnection
+    href: FastEndpoints.RemoteConnection.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.Extensions.Hosting
   commentId: N:Microsoft.Extensions.Hosting
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.Extensions.Hosting
   nameWithType: Microsoft.Extensions.Hosting
   fullName: Microsoft.Extensions.Hosting
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Hosting
+    name: Hosting
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Hosting
+    name: Hosting
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<T>
   nameWithType: Action<T>
   fullName: System.Action<T>
@@ -807,47 +818,44 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.HubMode.EventBroker
   commentId: F:FastEndpoints.HubMode.EventBroker
-  isExternal: true
+  href: FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker
+  name: EventBroker
+  nameWithType: HubMode.EventBroker
+  fullName: FastEndpoints.HubMode.EventBroker
 - uid: System.InvalidOperationException
   commentId: T:System.InvalidOperationException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*
   commentId: Overload:FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync
+  href: FastEndpoints.RemoteConnectionExtensions.html#FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_Grpc_Core_CallOptions_
   name: RemotePublishAsync
   nameWithType: RemoteConnectionExtensions.RemotePublishAsync
   fullName: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync
 - uid: FastEndpoints.IEvent
   commentId: T:FastEndpoints.IEvent
   parent: FastEndpoints
+  href: FastEndpoints.IEvent.html
   name: IEvent
   nameWithType: IEvent
   fullName: FastEndpoints.IEvent
@@ -855,6 +863,7 @@ references:
   commentId: T:Grpc.Core.CallOptions
   parent: Grpc.Core
   isExternal: true
+  href: https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs
   name: CallOptions
   nameWithType: CallOptions
   fullName: Grpc.Core.CallOptions
@@ -862,6 +871,7 @@ references:
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
@@ -871,20 +881,69 @@ references:
   name: Grpc.Core
   nameWithType: Grpc.Core
   fullName: Grpc.Core
+  spec.csharp:
+  - uid: Grpc
+    name: Grpc
+    isExternal: true
+  - name: .
+  - uid: Grpc.Core
+    name: Core
+    isExternal: true
+  spec.vb:
+  - uid: Grpc
+    name: Grpc
+    isExternal: true
+  - name: .
+  - uid: Grpc.Core
+    name: Core
+    isExternal: true
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*
   commentId: Overload:FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync
+  href: FastEndpoints.RemoteConnectionExtensions.html#FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync_FastEndpoints_ICommand_Grpc_Core_CallOptions_
   name: RemoteExecuteAsync
   nameWithType: RemoteConnectionExtensions.RemoteExecuteAsync
   fullName: FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync
 - uid: FastEndpoints.ICommand
   commentId: T:FastEndpoints.ICommand
   parent: FastEndpoints
+  href: FastEndpoints.ICommand.html
   name: ICommand
   nameWithType: ICommand
   fullName: FastEndpoints.ICommand
@@ -901,35 +960,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks.Task{{TResult}}
-  commentId: T:System.Threading.Tasks.Task{`1}
+  commentId: T:System.Threading.Tasks.Task{``0}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -939,35 +985,24 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommand`1
   commentId: T:FastEndpoints.ICommand`1
+  href: FastEndpoints.ICommand-1.html
   name: ICommand<TResult>
   nameWithType: ICommand<TResult>
   fullName: FastEndpoints.ICommand<TResult>
@@ -977,34 +1012,23 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
+    href: FastEndpoints.ICommand-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ICommand-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -1014,33 +1038,21 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.IServerStreamCommand{{TResult}}
   commentId: T:FastEndpoints.IServerStreamCommand{``0}
   parent: FastEndpoints
@@ -1054,35 +1066,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.IServerStreamCommand`1
     name: IServerStreamCommand
-    nameWithType: IServerStreamCommand
-    fullName: FastEndpoints.IServerStreamCommand
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.IServerStreamCommand`1
     name: IServerStreamCommand
-    nameWithType: IServerStreamCommand
-    fullName: FastEndpoints.IServerStreamCommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IAsyncEnumerable{{TResult}}
   commentId: T:System.Collections.Generic.IAsyncEnumerable{`1}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IAsyncEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   name: IAsyncEnumerable<TResult>
   nameWithType: IAsyncEnumerable<TResult>
   fullName: System.Collections.Generic.IAsyncEnumerable<TResult>
@@ -1092,35 +1091,24 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: System.Collections.Generic.IAsyncEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: System.Collections.Generic.IAsyncEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.IServerStreamCommand`1
   commentId: T:FastEndpoints.IServerStreamCommand`1
+  href: FastEndpoints.IServerStreamCommand-1.html
   name: IServerStreamCommand<TResult>
   nameWithType: IServerStreamCommand<TResult>
   fullName: FastEndpoints.IServerStreamCommand<TResult>
@@ -1130,34 +1118,23 @@ references:
   spec.csharp:
   - uid: FastEndpoints.IServerStreamCommand`1
     name: IServerStreamCommand
-    nameWithType: IServerStreamCommand
-    fullName: FastEndpoints.IServerStreamCommand
+    href: FastEndpoints.IServerStreamCommand-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.IServerStreamCommand`1
     name: IServerStreamCommand
-    nameWithType: IServerStreamCommand
-    fullName: FastEndpoints.IServerStreamCommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.IServerStreamCommand-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IAsyncEnumerable`1
   commentId: T:System.Collections.Generic.IAsyncEnumerable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   name: IAsyncEnumerable<T>
   nameWithType: IAsyncEnumerable<T>
   fullName: System.Collections.Generic.IAsyncEnumerable<T>
@@ -1167,43 +1144,63 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: System.Collections.Generic.IAsyncEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: System.Collections.Generic.IAsyncEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: System.Collections.Generic.IAsyncEnumerable{{T}}
-  commentId: T:System.Collections.Generic.IAsyncEnumerable{`0}
+  commentId: T:System.Collections.Generic.IAsyncEnumerable{``0}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IAsyncEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   name: IAsyncEnumerable<T>
   nameWithType: IAsyncEnumerable<T>
   fullName: System.Collections.Generic.IAsyncEnumerable<T>
@@ -1213,30 +1210,18 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: System.Collections.Generic.IAsyncEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
-    nameWithType: IAsyncEnumerable
-    fullName: System.Collections.Generic.IAsyncEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )

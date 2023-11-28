@@ -17,12 +17,12 @@ items:
   type: Class
   source:
     id: MainExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 18
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Main\MainExtensions.cs
+    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nprovides extensions to easily bootstrap fastendpoints in the asp.net middleware pipeline\n"
+  summary: provides extensions to easily bootstrap fastendpoints in the asp.net middleware pipeline
   example: []
   syntax:
     content: public static class MainExtensions
@@ -37,13 +37,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
 - uid: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
   commentId: M:FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
   id: AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.EndpointDiscoveryOptions})
@@ -52,21 +45,21 @@ items:
   langs:
   - csharp
   - vb
-  name: AddFastEndpoints(IServiceCollection, Action<EndpointDiscoveryOptions>)
-  nameWithType: MainExtensions.AddFastEndpoints(IServiceCollection, Action<EndpointDiscoveryOptions>)
-  fullName: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<FastEndpoints.EndpointDiscoveryOptions>)
+  name: AddFastEndpoints(IServiceCollection, Action<EndpointDiscoveryOptions>?)
+  nameWithType: MainExtensions.AddFastEndpoints(IServiceCollection, Action<EndpointDiscoveryOptions>?)
+  fullName: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<FastEndpoints.EndpointDiscoveryOptions>?)
   type: Method
   source:
     id: AddFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 24
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Main\MainExtensions.cs
+    startLine: 25
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadds the FastEndpoints services to the ASP.Net middleware pipeline\n"
+  summary: adds the FastEndpoints services to the ASP.Net middleware pipeline
   example: []
   syntax:
-    content: public static IServiceCollection AddFastEndpoints(this IServiceCollection services, Action<EndpointDiscoveryOptions> options = null)
+    content: public static IServiceCollection AddFastEndpoints(this IServiceCollection services, Action<EndpointDiscoveryOptions>? options = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -75,18 +68,9 @@ items:
       description: optionally specify the endpoint discovery options
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function AddFastEndpoints(services As IServiceCollection, options As Action(Of EndpointDiscoveryOptions) = Nothing) As IServiceCollection
+    content.vb: Public Shared Function AddFastEndpoints(services As IServiceCollection, options As Action(Of EndpointDiscoveryOptions) = Nothing) As IServiceCollection
   overload: FastEndpoints.MainExtensions.AddFastEndpoints*
   nameWithType.vb: MainExtensions.AddFastEndpoints(IServiceCollection, Action(Of EndpointDiscoveryOptions))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.MainExtensions.AddFastEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of FastEndpoints.EndpointDiscoveryOptions))
   name.vb: AddFastEndpoints(IServiceCollection, Action(Of EndpointDiscoveryOptions))
 - uid: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.Config})
@@ -97,21 +81,30 @@ items:
   langs:
   - csharp
   - vb
-  name: UseFastEndpoints(IApplicationBuilder, Action<Config>)
-  nameWithType: MainExtensions.UseFastEndpoints(IApplicationBuilder, Action<Config>)
-  fullName: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<FastEndpoints.Config>)
+  name: UseFastEndpoints(IApplicationBuilder, Action<Config>?)
+  nameWithType: MainExtensions.UseFastEndpoints(IApplicationBuilder, Action<Config>?)
+  fullName: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<FastEndpoints.Config>?)
   type: Method
   source:
     id: UseFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 44
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Main\MainExtensions.cs
+    startLine: 51
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nfinalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests\n<p>HINT: you can use <xref href=\"FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)\" data-throw-if-not-resolved=\"false\"></xref> instead of this method if you have some special requirement such as using &quot;Startup.cs&quot;, etc.</p>\n"
+  summary: >-
+    finalizes auto discovery of endpoints and prepares FastEndpoints to start processing requests
+
+    <p>
+
+    HINT: you can use <xref href="FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder%2cSystem.Action%7bFastEndpoints.Config%7d)" data-throw-if-not-resolved="false"></xref> instead of this method if you have some special
+
+    requirement such as using "Startup.cs", etc.
+
+    </p>
   example: []
   syntax:
-    content: public static IApplicationBuilder UseFastEndpoints(this IApplicationBuilder app, Action<Config> configAction = null)
+    content: public static IApplicationBuilder UseFastEndpoints(this IApplicationBuilder app, Action<Config>? configAction = null)
     parameters:
     - id: app
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
@@ -120,22 +113,13 @@ items:
       description: an optional action to configure FastEndpoints
     return:
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function UseFastEndpoints(app As IApplicationBuilder, configAction As Action(Of Config) = Nothing) As IApplicationBuilder
+    content.vb: Public Shared Function UseFastEndpoints(app As IApplicationBuilder, configAction As Action(Of Config) = Nothing) As IApplicationBuilder
   overload: FastEndpoints.MainExtensions.UseFastEndpoints*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
     description: thrown when the <code>app</code> cannot be cast to <xref href="Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" data-throw-if-not-resolved="false"></xref>
   nameWithType.vb: MainExtensions.UseFastEndpoints(IApplicationBuilder, Action(Of Config))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.MainExtensions.UseFastEndpoints(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of FastEndpoints.Config))
   name.vb: UseFastEndpoints(IApplicationBuilder, Action(Of Config))
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
@@ -146,19 +130,19 @@ items:
   langs:
   - csharp
   - vb
-  name: MapFastEndpoints(IEndpointRouteBuilder, Action<Config>)
-  nameWithType: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action<Config>)
-  fullName: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.Config>)
+  name: MapFastEndpoints(IEndpointRouteBuilder, Action<Config>?)
+  nameWithType: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action<Config>?)
+  fullName: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.Config>?)
   type: Method
   source:
     id: MapFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Main\MainExtensions.cs
-    startLine: 52
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Main\MainExtensions.cs
+    startLine: 61
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public static IEndpointRouteBuilder MapFastEndpoints(this IEndpointRouteBuilder app, Action<Config> configAction = null)
+    content: public static IEndpointRouteBuilder MapFastEndpoints(this IEndpointRouteBuilder app, Action<Config>? configAction = null)
     parameters:
     - id: app
       type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
@@ -166,23 +150,15 @@ items:
       type: System.Action{FastEndpoints.Config}
     return:
       type: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function MapFastEndpoints(app As IEndpointRouteBuilder, configAction As Action(Of Config) = Nothing) As IEndpointRouteBuilder
+    content.vb: Public Shared Function MapFastEndpoints(app As IEndpointRouteBuilder, configAction As Action(Of Config) = Nothing) As IEndpointRouteBuilder
   overload: FastEndpoints.MainExtensions.MapFastEndpoints*
   nameWithType.vb: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action(Of Config))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of FastEndpoints.Config))
   name.vb: MapFastEndpoints(IEndpointRouteBuilder, Action(Of Config))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -190,296 +166,242 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.MainExtensions.AddFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.AddFastEndpoints
+  href: FastEndpoints.MainExtensions.html#FastEndpoints_MainExtensions_AddFastEndpoints_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_FastEndpoints_EndpointDiscoveryOptions__
   name: AddFastEndpoints
   nameWithType: MainExtensions.AddFastEndpoints
   fullName: FastEndpoints.MainExtensions.AddFastEndpoints
@@ -487,6 +409,7 @@ references:
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
   parent: Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection
   name: IServiceCollection
   nameWithType: IServiceCollection
   fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -494,6 +417,7 @@ references:
   commentId: T:System.Action{FastEndpoints.EndpointDiscoveryOptions}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<EndpointDiscoveryOptions>
   nameWithType: Action<EndpointDiscoveryOptions>
   fullName: System.Action<FastEndpoints.EndpointDiscoveryOptions>
@@ -503,44 +427,66 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.EndpointDiscoveryOptions
     name: EndpointDiscoveryOptions
-    nameWithType: EndpointDiscoveryOptions
-    fullName: FastEndpoints.EndpointDiscoveryOptions
+    href: FastEndpoints.EndpointDiscoveryOptions.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.EndpointDiscoveryOptions
     name: EndpointDiscoveryOptions
-    nameWithType: EndpointDiscoveryOptions
-    fullName: FastEndpoints.EndpointDiscoveryOptions
+    href: FastEndpoints.EndpointDiscoveryOptions.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.Extensions.DependencyInjection
   commentId: N:Microsoft.Extensions.DependencyInjection
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<T>
   nameWithType: Action<T>
   fullName: System.Action<T>
@@ -550,48 +496,93 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   commentId: M:FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
   isExternal: true
+  href: FastEndpoints.MainExtensions.html#FastEndpoints_MainExtensions_MapFastEndpoints_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_Config__
+  name: MapFastEndpoints(IEndpointRouteBuilder, Action<Config>)
+  nameWithType: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action<Config>)
+  fullName: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action<FastEndpoints.Config>)
+  nameWithType.vb: MainExtensions.MapFastEndpoints(IEndpointRouteBuilder, Action(Of Config))
+  fullName.vb: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder, System.Action(Of FastEndpoints.Config))
+  name.vb: MapFastEndpoints(IEndpointRouteBuilder, Action(Of Config))
+  spec.csharp:
+  - uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
+    name: MapFastEndpoints
+    href: FastEndpoints.MainExtensions.html#FastEndpoints_MainExtensions_MapFastEndpoints_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_Config__
+  - name: (
+  - uid: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+    name: IEndpointRouteBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.Config
+    name: Config
+    href: FastEndpoints.Config.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.MainExtensions.MapFastEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{FastEndpoints.Config})
+    name: MapFastEndpoints
+    href: FastEndpoints.MainExtensions.html#FastEndpoints_MainExtensions_MapFastEndpoints_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_Config__
+  - name: (
+  - uid: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
+    name: IEndpointRouteBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.Config
+    name: Config
+    href: FastEndpoints.Config.html
+  - name: )
+  - name: )
 - uid: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
   commentId: T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
   parent: Microsoft.AspNetCore.Routing
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder
   name: IEndpointRouteBuilder
   nameWithType: IEndpointRouteBuilder
   fullName: Microsoft.AspNetCore.Routing.IEndpointRouteBuilder
 - uid: System.InvalidCastException
   commentId: T:System.InvalidCastException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidcastexception
+  name: InvalidCastException
+  nameWithType: InvalidCastException
+  fullName: System.InvalidCastException
 - uid: FastEndpoints.MainExtensions.UseFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.UseFastEndpoints
+  href: FastEndpoints.MainExtensions.html#FastEndpoints_MainExtensions_UseFastEndpoints_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Action_FastEndpoints_Config__
   name: UseFastEndpoints
   nameWithType: MainExtensions.UseFastEndpoints
   fullName: FastEndpoints.MainExtensions.UseFastEndpoints
@@ -599,6 +590,7 @@ references:
   commentId: T:Microsoft.AspNetCore.Builder.IApplicationBuilder
   parent: Microsoft.AspNetCore.Builder
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder
   name: IApplicationBuilder
   nameWithType: IApplicationBuilder
   fullName: Microsoft.AspNetCore.Builder.IApplicationBuilder
@@ -606,6 +598,7 @@ references:
   commentId: T:System.Action{FastEndpoints.Config}
   parent: System
   definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
   name: Action<Config>
   nameWithType: Action<Config>
   fullName: System.Action<FastEndpoints.Config>
@@ -615,49 +608,102 @@ references:
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FastEndpoints.Config
     name: Config
-    nameWithType: Config
-    fullName: FastEndpoints.Config
+    href: FastEndpoints.Config.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
-    fullName: System.Action
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FastEndpoints.Config
     name: Config
-    nameWithType: Config
-    fullName: FastEndpoints.Config
+    href: FastEndpoints.Config.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: Microsoft.AspNetCore.Routing
   commentId: N:Microsoft.AspNetCore.Routing
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.AspNetCore.Routing
   nameWithType: Microsoft.AspNetCore.Routing
   fullName: Microsoft.AspNetCore.Routing
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Routing
+    name: Routing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Routing
+    name: Routing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing
 - uid: Microsoft.AspNetCore.Builder
   commentId: N:Microsoft.AspNetCore.Builder
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.AspNetCore.Builder
   nameWithType: Microsoft.AspNetCore.Builder
   fullName: Microsoft.AspNetCore.Builder
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Builder
+    name: Builder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Builder
+    name: Builder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
 - uid: FastEndpoints.MainExtensions.MapFastEndpoints*
   commentId: Overload:FastEndpoints.MainExtensions.MapFastEndpoints
+  href: FastEndpoints.MainExtensions.html#FastEndpoints_MainExtensions_MapFastEndpoints_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_System_Action_FastEndpoints_Config__
   name: MapFastEndpoints
   nameWithType: MainExtensions.MapFastEndpoints
   fullName: FastEndpoints.MainExtensions.MapFastEndpoints

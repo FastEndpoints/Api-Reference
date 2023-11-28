@@ -7,6 +7,7 @@ items:
   children:
   - FastEndpoints.HubMode.EventBroker
   - FastEndpoints.HubMode.EventPublisher
+  - FastEndpoints.HubMode.RoundRobin
   langs:
   - csharp
   - vb
@@ -16,22 +17,26 @@ items:
   type: Enum
   source:
     id: HubMode
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\HubMode.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Server\Events\HubMode.cs
     startLine: 5
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nenum for specifying which mode the event hub should be running in.\n"
+  summary: enum for specifying which mode the event hub should be running in.
   example: []
   syntax:
-    content: public enum HubMode
-    content.vb: Public Enum HubMode
-  modifiers.csharp:
-  - public
-  - enum
-  modifiers.vb:
-  - Public
-  - Enum
+    content: >-
+      [Flags]
+
+      public enum HubMode
+    content.vb: >-
+      <Flags>
+
+      Public Enum HubMode
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
 - uid: FastEndpoints.HubMode.EventPublisher
   commentId: F:FastEndpoints.HubMode.EventPublisher
   id: EventPublisher
@@ -45,23 +50,17 @@ items:
   type: Field
   source:
     id: EventPublisher
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\HubMode.cs
-    startLine: 10
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Server\Events\HubMode.cs
+    startLine: 11
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nthis server/application itself is the sole publisher of events. no external publishers will be accepted. this is the default mode.\n"
+  summary: this server/application itself is the sole publisher of events. no external publishers will be accepted. this is the default mode.
   example: []
   syntax:
-    content: EventPublisher = 1
+    content: EventPublisher = 0
     return:
       type: FastEndpoints.HubMode
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 - uid: FastEndpoints.HubMode.EventBroker
   commentId: F:FastEndpoints.HubMode.EventBroker
   id: EventBroker
@@ -75,32 +74,60 @@ items:
   type: Field
   source:
     id: EventBroker
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Server\Events\HubMode.cs
-    startLine: 16
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Server\Events\HubMode.cs
+    startLine: 17
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nenable remote event publishers to send events to this server which will be relayed to the connected subscribers.\nthis mode also allows this server itself to publish events as well.\n"
+  summary: >-
+    enable remote event publishers to send events to this server which will be relayed to the connected subscribers.
+
+    this mode also allows this server itself to publish events as well.
   example: []
   syntax:
-    content: EventBroker = 2
+    content: EventBroker = 1
     return:
       type: FastEndpoints.HubMode
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
+- uid: FastEndpoints.HubMode.RoundRobin
+  commentId: F:FastEndpoints.HubMode.RoundRobin
+  id: RoundRobin
+  parent: FastEndpoints.HubMode
+  langs:
+  - csharp
+  - vb
+  name: RoundRobin
+  nameWithType: HubMode.RoundRobin
+  fullName: FastEndpoints.HubMode.RoundRobin
+  type: Field
+  source:
+    id: RoundRobin
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Server\Events\HubMode.cs
+    startLine: 24
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: >-
+    with this mode events will only be delivered to just one of the subscribers connected to the hub in a round robin fashion.
+
+    if for example, there's two subscribers (A and B) connected, event 1 will be delivered to subscriber A.
+
+    event 2 will be delivered to subscriber B. event 3 will be delivered to subscriber A again and so on.
+  example: []
+  syntax:
+    content: RoundRobin = 2
+    return:
+      type: FastEndpoints.HubMode
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
 - uid: FastEndpoints.HubMode
   commentId: T:FastEndpoints.HubMode
   parent: FastEndpoints
+  href: FastEndpoints.HubMode.html
   name: HubMode
   nameWithType: HubMode
   fullName: FastEndpoints.HubMode

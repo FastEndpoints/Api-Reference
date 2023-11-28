@@ -5,8 +5,8 @@ items:
   id: CommandExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
   - FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
   - FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
   - FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   langs:
@@ -18,8 +18,8 @@ items:
   type: Class
   source:
     id: CommandExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 2
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -36,60 +36,49 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - static
-  - class
-  modifiers.vb:
-  - Public
-  - Module
-- uid: FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
-  id: ExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
+- uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
+  id: ExecuteAsync``1(``0,System.Threading.CancellationToken)
   isExtensionMethod: true
   parent: FastEndpoints.CommandExtensions
   langs:
   - csharp
   - vb
-  name: ExecuteAsync(ICommand, CancellationToken)
-  nameWithType: CommandExtensions.ExecuteAsync(ICommand, CancellationToken)
-  fullName: FastEndpoints.CommandExtensions.ExecuteAsync(FastEndpoints.ICommand, System.Threading.CancellationToken)
+  name: ExecuteAsync<TCommand>(TCommand, CancellationToken)
+  nameWithType: CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
+  fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TCommand>(TCommand, System.Threading.CancellationToken)
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 13
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nexecutes the command that does not return a result\n"
+  summary: executes the command that does not return a result
   example: []
   syntax:
-    content: public static Task ExecuteAsync(this ICommand command, CancellationToken ct = default(CancellationToken))
+    content: 'public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = default) where TCommand : ICommand'
     parameters:
     - id: command
-      type: FastEndpoints.ICommand
+      type: '{TCommand}'
       description: the command to execute
     - id: ct
       type: System.Threading.CancellationToken
       description: optional cancellation token
+    typeParameters:
+    - id: TCommand
     return:
       type: System.Threading.Tasks.Task
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function ExecuteAsync(command As ICommand, ct As CancellationToken = Nothing) As Task
+    content.vb: Public Shared Function ExecuteAsync(Of TCommand As ICommand)(command As TCommand, ct As CancellationToken = Nothing) As Task
   overload: FastEndpoints.CommandExtensions.ExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown when a handler for the command cannot be instantiated
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
+  nameWithType.vb: CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
+  fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TCommand)(TCommand, System.Threading.CancellationToken)
+  name.vb: ExecuteAsync(Of TCommand)(TCommand, CancellationToken)
 - uid: FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   commentId: M:FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   id: ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
@@ -104,15 +93,15 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 38
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nexecutes the command and returns a result\n"
+  summary: executes the command and returns a result
   example: []
   syntax:
-    content: public static Task<TResult> ExecuteAsync<TResult>(this ICommand<TResult> command, CancellationToken ct = default(CancellationToken))
+    content: public static Task<TResult> ExecuteAsync<TResult>(this ICommand<TResult> command, CancellationToken ct = default)
     parameters:
     - id: command
       type: FastEndpoints.ICommand{{TResult}}
@@ -125,22 +114,13 @@ items:
       description: the type of the returned result
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Function ExecuteAsync(Of TResult)(command As ICommand(Of TResult), ct As CancellationToken = Nothing) As Task(Of TResult)
+    content.vb: Public Shared Function ExecuteAsync(Of TResult)(command As ICommand(Of TResult), ct As CancellationToken = Nothing) As Task(Of TResult)
   overload: FastEndpoints.CommandExtensions.ExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown when a handler for the command cannot be instantiated
   nameWithType.vb: CommandExtensions.ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), System.Threading.CancellationToken)
   name.vb: ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
 - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
@@ -157,18 +137,15 @@ items:
   type: Method
   source:
     id: RegisterForTesting
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 61
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 76
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nregisters a fake command handler for unit testing purposes\n"
+  summary: registers a fake command handler for unit testing purposes
   example: []
   syntax:
-    content: >-
-      public static void RegisterForTesting<TCommand>(this ICommandHandler<TCommand> handler)
-
-          where TCommand : ICommand
+    content: 'public static void RegisterForTesting<TCommand>(this ICommandHandler<TCommand> handler) where TCommand : ICommand'
     parameters:
     - id: handler
       type: FastEndpoints.ICommandHandler{{TCommand}}
@@ -176,18 +153,9 @@ items:
     typeParameters:
     - id: TCommand
       description: type of the command
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Sub RegisterForTesting(Of TCommand As ICommand)(handler As ICommandHandler(Of TCommand))
+    content.vb: Public Shared Sub RegisterForTesting(Of TCommand As ICommand)(handler As ICommandHandler(Of TCommand))
   overload: FastEndpoints.CommandExtensions.RegisterForTesting*
   nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand))
   name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
 - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
@@ -204,18 +172,15 @@ items:
   type: Method
   source:
     id: RegisterForTesting
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 77
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
+    startLine: 93
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nregisters a fake command handler for unit testing purposes\n"
+  summary: registers a fake command handler for unit testing purposes
   example: []
   syntax:
-    content: >-
-      public static void RegisterForTesting<TCommand, TResult>(this ICommandHandler<TCommand, TResult> handler)
-
-          where TCommand : ICommand<TResult>
+    content: 'public static void RegisterForTesting<TCommand, TResult>(this ICommandHandler<TCommand, TResult> handler) where TCommand : ICommand<TResult>'
     parameters:
     - id: handler
       type: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
@@ -225,23 +190,15 @@ items:
       description: type of the command
     - id: TResult
       description: type of the result being returned by the handler
-    content.vb: >-
-      <ExtensionAttribute>
-
-      Public Shared Sub RegisterForTesting(Of TCommand As ICommand(Of TResult), TResult)(handler As ICommandHandler(Of TCommand, TResult))
+    content.vb: Public Shared Sub RegisterForTesting(Of TCommand As ICommand(Of TResult), TResult)(handler As ICommandHandler(Of TCommand, TResult))
   overload: FastEndpoints.CommandExtensions.RegisterForTesting*
   nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
   fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)(FastEndpoints.ICommandHandler(Of TCommand, TResult))
   name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -249,312 +206,263 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: System.InvalidOperationException
   commentId: T:System.InvalidOperationException
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: FastEndpoints.CommandExtensions.ExecuteAsync*
   commentId: Overload:FastEndpoints.CommandExtensions.ExecuteAsync
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_ExecuteAsync__1___0_System_Threading_CancellationToken_
   name: ExecuteAsync
   nameWithType: CommandExtensions.ExecuteAsync
   fullName: FastEndpoints.CommandExtensions.ExecuteAsync
-- uid: FastEndpoints.ICommand
-  commentId: T:FastEndpoints.ICommand
-  parent: FastEndpoints
-  name: ICommand
-  nameWithType: ICommand
-  fullName: FastEndpoints.ICommand
+- uid: '{TCommand}'
+  commentId: '!:TCommand'
+  definition: TCommand
+  name: TCommand
+  nameWithType: TCommand
+  fullName: TCommand
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -562,21 +470,78 @@ references:
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
+- uid: TCommand
+  name: TCommand
+  nameWithType: TCommand
+  fullName: TCommand
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: FastEndpoints.ICommand{{TResult}}
   commentId: T:FastEndpoints.ICommand{``0}
   parent: FastEndpoints
@@ -590,35 +555,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks.Task{{TResult}}
-  commentId: T:System.Threading.Tasks.Task{`1}
+  commentId: T:System.Threading.Tasks.Task{``0}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -628,35 +580,24 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommand`1
   commentId: T:FastEndpoints.ICommand`1
+  href: FastEndpoints.ICommand-1.html
   name: ICommand<TResult>
   nameWithType: ICommand<TResult>
   fullName: FastEndpoints.ICommand<TResult>
@@ -666,34 +607,23 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
+    href: FastEndpoints.ICommand-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
-    nameWithType: ICommand
-    fullName: FastEndpoints.ICommand
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ICommand-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks.Task`1
   commentId: T:System.Threading.Tasks.Task`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   name: Task<TResult>
   nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
@@ -703,35 +633,24 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
-    fullName: System.Threading.Tasks.Task
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.CommandExtensions.RegisterForTesting*
   commentId: Overload:FastEndpoints.CommandExtensions.RegisterForTesting
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
   name: RegisterForTesting
   nameWithType: CommandExtensions.RegisterForTesting
   fullName: FastEndpoints.CommandExtensions.RegisterForTesting
@@ -748,33 +667,20 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`1
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`1
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler`1
   commentId: T:FastEndpoints.ICommandHandler`1
+  href: FastEndpoints.ICommandHandler-1.html
   name: ICommandHandler<TCommand>
   nameWithType: ICommandHandler<TCommand>
   fullName: FastEndpoints.ICommandHandler<TCommand>
@@ -784,31 +690,19 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`1
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
+    href: FastEndpoints.ICommandHandler-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`1
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ICommandHandler-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
   commentId: T:FastEndpoints.ICommandHandler{``0,``1}
   parent: FastEndpoints
@@ -822,45 +716,26 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ICommandHandler`2
   commentId: T:FastEndpoints.ICommandHandler`2
+  href: FastEndpoints.ICommandHandler-2.html
   name: ICommandHandler<TCommand, TResult>
   nameWithType: ICommandHandler<TCommand, TResult>
   fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
@@ -870,40 +745,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
-    nameWithType: ICommandHandler
-    fullName: FastEndpoints.ICommandHandler
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.ICommandHandler-2.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TCommand
-    nameWithType: TCommand
-    fullName: TCommand
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )

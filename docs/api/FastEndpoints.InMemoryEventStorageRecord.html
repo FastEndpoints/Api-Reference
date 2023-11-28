@@ -88,7 +88,7 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">InMemoryEventStorageRecord</span></div>
   </div>
   <div class="implements">
@@ -98,25 +98,22 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Object.Equals(Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
-      <span class="xref">Object.Equals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.GetHashCode()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
-      <span class="xref">Object.GetType()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <span class="xref">Object.MemberwiseClone()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.ReferenceEquals(Object, Object)</span>
-    </div>
-    <div>
-      <span class="xref">Object.ToString()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
@@ -131,7 +128,13 @@
 
   <a id="FastEndpoints_InMemoryEventStorageRecord_Event_" data-uid="FastEndpoints.InMemoryEventStorageRecord.Event*"></a>
   <h4 id="FastEndpoints_InMemoryEventStorageRecord_Event" data-uid="FastEndpoints.InMemoryEventStorageRecord.Event">Event</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>the actual event object that will be embedded in the storage record.
+if your database/orm (such as ef-core) doesn't support embedding objects, you can take the following steps:</p>
+<pre><code class="lang-csharp">1. add a [NotMapped] attribute to this property.
+2. add a new property, either a string or  array
+3. implement both  and  to serialize/deserialize the event object back and forth and store it in the newly added property.</code></pre>
+<p>you may use any serializer you please. recommendation is to use MessagePack.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -147,7 +150,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Object</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -156,7 +159,8 @@
 
   <a id="FastEndpoints_InMemoryEventStorageRecord_EventType_" data-uid="FastEndpoints.InMemoryEventStorageRecord.EventType*"></a>
   <h4 id="FastEndpoints_InMemoryEventStorageRecord_EventType" data-uid="FastEndpoints.InMemoryEventStorageRecord.EventType">EventType</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>the full type name of the event</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -172,7 +176,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -181,7 +185,9 @@
 
   <a id="FastEndpoints_InMemoryEventStorageRecord_ExpireOn_" data-uid="FastEndpoints.InMemoryEventStorageRecord.ExpireOn*"></a>
   <h4 id="FastEndpoints_InMemoryEventStorageRecord_ExpireOn" data-uid="FastEndpoints.InMemoryEventStorageRecord.ExpireOn">ExpireOn</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>the expiration date/time of the event. this is used to purge stale records.
+default value is 4 hours from time of creation.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -197,7 +203,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -206,7 +212,8 @@
 
   <a id="FastEndpoints_InMemoryEventStorageRecord_IsComplete_" data-uid="FastEndpoints.InMemoryEventStorageRecord.IsComplete*"></a>
   <h4 id="FastEndpoints_InMemoryEventStorageRecord_IsComplete" data-uid="FastEndpoints.InMemoryEventStorageRecord.IsComplete">IsComplete</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>pending status of the event. will only return true if the event has been successfully processed and is ready to be discarded.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -222,7 +229,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Boolean</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -231,7 +238,10 @@
 
   <a id="FastEndpoints_InMemoryEventStorageRecord_SubscriberID_" data-uid="FastEndpoints.InMemoryEventStorageRecord.SubscriberID*"></a>
   <h4 id="FastEndpoints_InMemoryEventStorageRecord_SubscriberID" data-uid="FastEndpoints.InMemoryEventStorageRecord.SubscriberID">SubscriberID</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>a subscriber id is a unique identifier of an event stream subscriber on a remote node.
+it is a unique id per each event handler type (TEvent+TEventHandler combo).
+you don't have to worry about generating this as it will automatically be set by the library.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -247,7 +257,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>

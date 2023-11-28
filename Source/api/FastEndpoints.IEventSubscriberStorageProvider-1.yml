@@ -18,29 +18,20 @@ items:
   type: Interface
   source:
     id: IEventSubscriberStorageProvider
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
     startLine: 6
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\ninterface for implementing a storage provider for an event subscription client app (gRPC client)\n"
+  summary: interface for implementing a storage provider for an event subscription client app (gRPC client)
   example: []
   syntax:
-    content: >-
-      public interface IEventSubscriberStorageProvider<TStorageRecord>
-
-          where TStorageRecord : IEventStorageRecord
+    content: 'public interface IEventSubscriberStorageProvider<TStorageRecord> where TStorageRecord : IEventStorageRecord'
     typeParameters:
     - id: TStorageRecord
       description: the type of the storage record
     content.vb: Public Interface IEventSubscriberStorageProvider(Of TStorageRecord As IEventStorageRecord)
   nameWithType.vb: IEventSubscriberStorageProvider(Of TStorageRecord)
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
   fullName.vb: FastEndpoints.IEventSubscriberStorageProvider(Of TStorageRecord)
   name.vb: IEventSubscriberStorageProvider(Of TStorageRecord)
 - uid: FastEndpoints.IEventSubscriberStorageProvider`1.StoreEventAsync(`0,System.Threading.CancellationToken)
@@ -56,12 +47,12 @@ items:
   type: Method
   source:
     id: StoreEventAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
     startLine: 13
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nstore the event storage record however you please. ideally on a nosql database.\n"
+  summary: store the event storage record however you please. ideally on a nosql database.
   example: []
   syntax:
     content: ValueTask StoreEventAsync(TStorageRecord r, CancellationToken ct)
@@ -91,12 +82,12 @@ items:
   type: Method
   source:
     id: GetNextBatchAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
     startLine: 19
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nfetch the next batch of pending event storage records that need to be processed.\n"
+  summary: fetch the next batch of pending event storage records that need to be processed.
   example: []
   syntax:
     content: ValueTask<IEnumerable<TStorageRecord>> GetNextBatchAsync(PendingRecordSearchParams<TStorageRecord> parameters)
@@ -124,12 +115,15 @@ items:
   type: Method
   source:
     id: MarkEventAsCompleteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
     startLine: 27
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nmark the event storage record as complete by either replacing the entity on storage with the supplied instance or\nsimply update the <xref href=\"FastEndpoints.IEventStorageRecord.IsComplete\" data-throw-if-not-resolved=\"false\"></xref> field to true with a partial update operation.\n"
+  summary: >-
+    mark the event storage record as complete by either replacing the entity on storage with the supplied instance or
+
+    simply update the <xref href="FastEndpoints.IEventStorageRecord.IsComplete" data-throw-if-not-resolved="false"></xref> field to true with a partial update operation.
   example: []
   syntax:
     content: ValueTask MarkEventAsCompleteAsync(TStorageRecord r, CancellationToken ct)
@@ -159,12 +153,25 @@ items:
   type: Method
   source:
     id: PurgeStaleRecordsAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
     startLine: 41
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: "\nthis method will be called hourly. implement this method to remove stale records (completed or expired) from storage.\nor instead of removing them, you can move them to some other location (dead-letter-queue maybe) or for inspection by a human.\nor if you&apos;d like to retry expired events, update the <xref href=\"FastEndpoints.IEventStorageRecord.ExpireOn\" data-throw-if-not-resolved=\"false\"></xref> field to a future date/time.\n<p>\nNOTE: the default match criteria is:\n<pre><code>    r => r.IsComplete || DateTime.UtcNow >= r.ExpireOn</code></pre>\n</p>\n"
+  summary: >-
+    this method will be called hourly. implement this method to remove stale records (completed or expired) from storage.
+
+    or instead of removing them, you can move them to some other location (dead-letter-queue maybe) or for inspection by a human.
+
+    or if you'd like to retry expired events, update the <xref href="FastEndpoints.IEventStorageRecord.ExpireOn" data-throw-if-not-resolved="false"></xref> field to a future date/time.
+
+    <p>
+
+    NOTE: the default match criteria is:
+
+    <pre><code class="lang-csharp">r =&gt; r.IsComplete || DateTime.UtcNow &gt;= r.ExpireOn</code></pre>
+
+    </p>
   example: []
   syntax:
     content: ValueTask PurgeStaleRecordsAsync(StaleRecordSearchParams<TStorageRecord> parameters)
@@ -182,11 +189,13 @@ items:
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
 - uid: FastEndpoints.IEventSubscriberStorageProvider`1.StoreEventAsync*
   commentId: Overload:FastEndpoints.IEventSubscriberStorageProvider`1.StoreEventAsync
+  href: FastEndpoints.IEventSubscriberStorageProvider-1.html#FastEndpoints_IEventSubscriberStorageProvider_1_StoreEventAsync__0_System_Threading_CancellationToken_
   name: StoreEventAsync
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.StoreEventAsync
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.StoreEventAsync
@@ -202,6 +211,7 @@ references:
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -209,6 +219,7 @@ references:
   commentId: T:System.Threading.Tasks.ValueTask
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
   name: ValueTask
   nameWithType: ValueTask
   fullName: System.Threading.Tasks.ValueTask
@@ -219,17 +230,70 @@ references:
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: FastEndpoints.IEventSubscriberStorageProvider`1.GetNextBatchAsync*
   commentId: Overload:FastEndpoints.IEventSubscriberStorageProvider`1.GetNextBatchAsync
+  href: FastEndpoints.IEventSubscriberStorageProvider-1.html#FastEndpoints_IEventSubscriberStorageProvider_1_GetNextBatchAsync_FastEndpoints_PendingRecordSearchParams__0__
   name: GetNextBatchAsync
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.GetNextBatchAsync
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.GetNextBatchAsync
@@ -239,6 +303,7 @@ references:
   commentId: T:FastEndpoints.PendingRecordSearchParams{`0}
   parent: FastEndpoints
   definition: FastEndpoints.PendingRecordSearchParams`1
+  href: FastEndpoints.PendingRecordSearchParams-1.html
   name: PendingRecordSearchParams<TStorageRecord>
   nameWithType: PendingRecordSearchParams<TStorageRecord>
   fullName: FastEndpoints.PendingRecordSearchParams<TStorageRecord>
@@ -248,35 +313,24 @@ references:
   spec.csharp:
   - uid: FastEndpoints.PendingRecordSearchParams`1
     name: PendingRecordSearchParams
-    nameWithType: PendingRecordSearchParams
-    fullName: FastEndpoints.PendingRecordSearchParams
+    href: FastEndpoints.PendingRecordSearchParams-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.PendingRecordSearchParams`1
     name: PendingRecordSearchParams
-    nameWithType: PendingRecordSearchParams
-    fullName: FastEndpoints.PendingRecordSearchParams
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.PendingRecordSearchParams-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks.ValueTask{System.Collections.Generic.IEnumerable{{TStorageRecord}}}
   commentId: T:System.Threading.Tasks.ValueTask{System.Collections.Generic.IEnumerable{`0}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   name: ValueTask<IEnumerable<TStorageRecord>>
   nameWithType: ValueTask<IEnumerable<TStorageRecord>>
   fullName: System.Threading.Tasks.ValueTask<System.Collections.Generic.IEnumerable<TStorageRecord>>
@@ -286,57 +340,38 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.PendingRecordSearchParams`1
   commentId: T:FastEndpoints.PendingRecordSearchParams`1
+  href: FastEndpoints.PendingRecordSearchParams-1.html
   name: PendingRecordSearchParams<TStorageRecord>
   nameWithType: PendingRecordSearchParams<TStorageRecord>
   fullName: FastEndpoints.PendingRecordSearchParams<TStorageRecord>
@@ -346,34 +381,23 @@ references:
   spec.csharp:
   - uid: FastEndpoints.PendingRecordSearchParams`1
     name: PendingRecordSearchParams
-    nameWithType: PendingRecordSearchParams
-    fullName: FastEndpoints.PendingRecordSearchParams
+    href: FastEndpoints.PendingRecordSearchParams-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.PendingRecordSearchParams`1
     name: PendingRecordSearchParams
-    nameWithType: PendingRecordSearchParams
-    fullName: FastEndpoints.PendingRecordSearchParams
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.PendingRecordSearchParams-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Threading.Tasks.ValueTask`1
   commentId: T:System.Threading.Tasks.ValueTask`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   name: ValueTask<TResult>
   nameWithType: ValueTask<TResult>
   fullName: System.Threading.Tasks.ValueTask<TResult>
@@ -383,41 +407,31 @@ references:
   spec.csharp:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.ValueTask`1
     name: ValueTask
-    nameWithType: ValueTask
-    fullName: System.Threading.Tasks.ValueTask
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.IEventStorageRecord.IsComplete
   commentId: P:FastEndpoints.IEventStorageRecord.IsComplete
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_IsComplete
   name: IsComplete
   nameWithType: IEventStorageRecord.IsComplete
   fullName: FastEndpoints.IEventStorageRecord.IsComplete
 - uid: FastEndpoints.IEventSubscriberStorageProvider`1.MarkEventAsCompleteAsync*
   commentId: Overload:FastEndpoints.IEventSubscriberStorageProvider`1.MarkEventAsCompleteAsync
+  href: FastEndpoints.IEventSubscriberStorageProvider-1.html#FastEndpoints_IEventSubscriberStorageProvider_1_MarkEventAsCompleteAsync__0_System_Threading_CancellationToken_
   name: MarkEventAsCompleteAsync
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.MarkEventAsCompleteAsync
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.MarkEventAsCompleteAsync
@@ -426,17 +440,20 @@ references:
 - uid: FastEndpoints.IEventStorageRecord
   commentId: T:FastEndpoints.IEventStorageRecord
   parent: FastEndpoints
+  href: FastEndpoints.IEventStorageRecord.html
   name: IEventStorageRecord
   nameWithType: IEventStorageRecord
   fullName: FastEndpoints.IEventStorageRecord
 - uid: FastEndpoints.IEventStorageRecord.ExpireOn
   commentId: P:FastEndpoints.IEventStorageRecord.ExpireOn
   parent: FastEndpoints.IEventStorageRecord
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_ExpireOn
   name: ExpireOn
   nameWithType: IEventStorageRecord.ExpireOn
   fullName: FastEndpoints.IEventStorageRecord.ExpireOn
 - uid: FastEndpoints.IEventSubscriberStorageProvider`1.PurgeStaleRecordsAsync*
   commentId: Overload:FastEndpoints.IEventSubscriberStorageProvider`1.PurgeStaleRecordsAsync
+  href: FastEndpoints.IEventSubscriberStorageProvider-1.html#FastEndpoints_IEventSubscriberStorageProvider_1_PurgeStaleRecordsAsync_FastEndpoints_StaleRecordSearchParams__0__
   name: PurgeStaleRecordsAsync
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.PurgeStaleRecordsAsync
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.PurgeStaleRecordsAsync
@@ -446,6 +463,7 @@ references:
   commentId: T:FastEndpoints.StaleRecordSearchParams{`0}
   parent: FastEndpoints
   definition: FastEndpoints.StaleRecordSearchParams`1
+  href: FastEndpoints.StaleRecordSearchParams-1.html
   name: StaleRecordSearchParams<TStorageRecord>
   nameWithType: StaleRecordSearchParams<TStorageRecord>
   fullName: FastEndpoints.StaleRecordSearchParams<TStorageRecord>
@@ -455,33 +473,22 @@ references:
   spec.csharp:
   - uid: FastEndpoints.StaleRecordSearchParams`1
     name: StaleRecordSearchParams
-    nameWithType: StaleRecordSearchParams
-    fullName: FastEndpoints.StaleRecordSearchParams
+    href: FastEndpoints.StaleRecordSearchParams-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.StaleRecordSearchParams`1
     name: StaleRecordSearchParams
-    nameWithType: StaleRecordSearchParams
-    fullName: FastEndpoints.StaleRecordSearchParams
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.StaleRecordSearchParams-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.StaleRecordSearchParams`1
   commentId: T:FastEndpoints.StaleRecordSearchParams`1
+  href: FastEndpoints.StaleRecordSearchParams-1.html
   name: StaleRecordSearchParams<TStorageRecord>
   nameWithType: StaleRecordSearchParams<TStorageRecord>
   fullName: FastEndpoints.StaleRecordSearchParams<TStorageRecord>
@@ -491,28 +498,16 @@ references:
   spec.csharp:
   - uid: FastEndpoints.StaleRecordSearchParams`1
     name: StaleRecordSearchParams
-    nameWithType: StaleRecordSearchParams
-    fullName: FastEndpoints.StaleRecordSearchParams
+    href: FastEndpoints.StaleRecordSearchParams-1.html
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: FastEndpoints.StaleRecordSearchParams`1
     name: StaleRecordSearchParams
-    nameWithType: StaleRecordSearchParams
-    fullName: FastEndpoints.StaleRecordSearchParams
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: FastEndpoints.StaleRecordSearchParams-1.html
+  - name: (
+  - name: Of
+  - name: " "
   - name: TStorageRecord
-    nameWithType: TStorageRecord
-    fullName: TStorageRecord
   - name: )
-    nameWithType: )
-    fullName: )

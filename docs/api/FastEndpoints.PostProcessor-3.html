@@ -84,47 +84,48 @@
 
   <h1 id="FastEndpoints_PostProcessor_3" data-uid="FastEndpoints.PostProcessor`3" class="text-break">Class PostProcessor&lt;TRequest, TState, TResponse&gt;
 </h1>
-  <div class="markdown level0 summary"><p>inherit this class to create a post-processor with access to the common processor state of the endpoint</p>
+  <div class="markdown level0 summary"><p>inherit this class to create a post-processor with access to the common processor state of the endpoint.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">PostProcessor&lt;TRequest, TState, TResponse&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="FastEndpoints.IPostProcessor-2.html">IPostProcessor</a>&lt;TRequest, TResponse&gt;</div>
+    <div><a class="xref" href="FastEndpoints.IPostProcessor.html">IPostProcessor</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Object.Equals(Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
-      <span class="xref">Object.Equals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.GetHashCode()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
     <div>
-      <span class="xref">Object.GetType()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <span class="xref">Object.MemberwiseClone()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
-      <span class="xref">Object.ReferenceEquals(Object, Object)</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
     <div>
-      <span class="xref">Object.ToString()</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FastEndpoints.html">FastEndpoints</a></h6>
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_PostProcessor_3_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class PostProcessor&lt;TRequest, TState, TResponse&gt; : IPostProcessor&lt;TRequest, TResponse&gt; where TState : class, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class PostProcessor&lt;TRequest, TState, TResponse&gt; : IPostProcessor&lt;TRequest, TResponse&gt;, IPostProcessor where TState : class, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -137,17 +138,17 @@
     <tbody>
       <tr>
         <td><span class="parametername">TRequest</span></td>
-        <td><p>type of the request dto</p>
+        <td><p>type of the request DTO.</p>
 </td>
       </tr>
       <tr>
         <td><span class="parametername">TState</span></td>
-        <td><p>type of the common processor state</p>
+        <td><p>type of the common processor state.</p>
 </td>
       </tr>
       <tr>
         <td><span class="parametername">TResponse</span></td>
-        <td><p>type of the response</p>
+        <td><p>type of the response.</p>
 </td>
       </tr>
     </tbody>
@@ -157,13 +158,13 @@
 
 
   <a id="FastEndpoints_PostProcessor_3_PostProcessAsync_" data-uid="FastEndpoints.PostProcessor`3.PostProcessAsync*"></a>
-  <h4 id="FastEndpoints_PostProcessor_3_PostProcessAsync__0__1__2_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_IReadOnlyCollection_FluentValidation_Results_ValidationFailure__System_Threading_CancellationToken_" data-uid="FastEndpoints.PostProcessor`3.PostProcessAsync(`0,`1,`2,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IReadOnlyCollection{FluentValidation.Results.ValidationFailure},System.Threading.CancellationToken)">PostProcessAsync(TRequest, TState, TResponse, HttpContext, IReadOnlyCollection&lt;ValidationFailure&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>this method is called with the given arguments when the post-processor executes.</p>
+  <h4 id="FastEndpoints_PostProcessor_3_PostProcessAsync_FastEndpoints_IPostProcessorContext__0__2___1_System_Threading_CancellationToken_" data-uid="FastEndpoints.PostProcessor`3.PostProcessAsync(FastEndpoints.IPostProcessorContext{`0,`2},`1,System.Threading.CancellationToken)">PostProcessAsync(IPostProcessorContext&lt;TRequest, TResponse&gt;, TState, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>implement this method to define the post-processing logic using the provided context and state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract Task PostProcessAsync(TRequest req, TState state, TResponse res, HttpContext ctx, IReadOnlyCollection&lt;ValidationFailure&gt; failures, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract Task PostProcessAsync(IPostProcessorContext&lt;TRequest, TResponse&gt; context, TState state, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -176,39 +177,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TRequest</span></td>
-        <td><span class="parametername">req</span></td>
-        <td><p>the request dto object</p>
+        <td><a class="xref" href="FastEndpoints.IPostProcessorContext-2.html">IPostProcessorContext</a>&lt;TRequest, TResponse&gt;</td>
+        <td><span class="parametername">context</span></td>
+        <td><p>the context object encapsulating all necessary information for post-processing.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">TState</span></td>
         <td><span class="parametername">state</span></td>
-        <td><p>the common processor state object</p>
+        <td><p>the common processor state object, derived from the HttpContext or newly instantiated.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">TResponse</span></td>
-        <td><span class="parametername">res</span></td>
-        <td><p>the response dto object</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">HttpContext</span></td>
-        <td><span class="parametername">ctx</span></td>
-        <td><p>the http context</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">IReadOnlyCollection</span>&lt;<span class="xref">ValidationFailure</span>&gt;</td>
-        <td><span class="parametername">failures</span></td>
-        <td><p>the collection of validation errors of the endpoint</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">ct</span></td>
-        <td><p>cancellation token</p>
+        <td><p>cancellation token.</p>
 </td>
       </tr>
     </tbody>
@@ -223,14 +206,18 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>a Task representing the asynchronous operation.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="FastEndpoints.IPostProcessor-2.html">IPostProcessor&lt;TRequest, TResponse&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IPostProcessor.html">IPostProcessor</a>
   </div>
 
 </article>

@@ -5,6 +5,7 @@ items:
   id: EndpointSummary`1
   parent: FastEndpoints
   children:
+  - FastEndpoints.EndpointSummary`1.ExampleRequest
   - FastEndpoints.EndpointSummary`1.RequestParam(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
   langs:
   - csharp
@@ -15,21 +16,19 @@ items:
   type: Class
   source:
     id: EndpointSummary
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Summary\EndpointSummary.cs
-    startLine: 135
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Summary\EndpointSummary.cs
+    startLine: 155
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: a class used for providing a textual description about an endpoint for swagger
   example: []
   syntax:
-    content: 'public class EndpointSummary<TRequest> : EndpointSummary'
+    content: 'public class EndpointSummary<TRequest> : EndpointSummary where TRequest : notnull'
     typeParameters:
     - id: TRequest
       description: the type of the request dto
-    content.vb: >-
-      Public Class EndpointSummary(Of TRequest)
-
-          Inherits EndpointSummary
+    content.vb: Public Class EndpointSummary(Of TRequest) Inherits EndpointSummary
   inheritance:
   - System.Object
   - FastEndpoints.EndpointSummary
@@ -39,10 +38,11 @@ items:
   - FastEndpoints.EndpointSummary.Item(System.Int32)
   - FastEndpoints.EndpointSummary.Summary
   - FastEndpoints.EndpointSummary.Description
-  - FastEndpoints.EndpointSummary.ExampleRequest
+  - FastEndpoints.EndpointSummary.RequestExamples
   - FastEndpoints.EndpointSummary.Params
   - FastEndpoints.EndpointSummary.Responses
   - FastEndpoints.EndpointSummary.ResponseExamples
+  - FastEndpoints.EndpointSummary.ResponseHeaders
   - FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{{TResponse},System.Object}},System.String)
   - FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{{TResponse},System.Object}},System.String)
   - FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,{TResponse})
@@ -55,12 +55,6 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   nameWithType.vb: EndpointSummary(Of TRequest)
-  modifiers.csharp:
-  - public
-  - class
-  modifiers.vb:
-  - Public
-  - Class
   fullName.vb: FastEndpoints.EndpointSummary(Of TRequest)
   name.vb: EndpointSummary(Of TRequest)
 - uid: FastEndpoints.EndpointSummary`1.RequestParam(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)
@@ -70,21 +64,21 @@ items:
   langs:
   - csharp
   - vb
-  name: RequestParam(Expression<Func<TRequest, Object>>, String)
-  nameWithType: EndpointSummary<TRequest>.RequestParam(Expression<Func<TRequest, Object>>, String)
-  fullName: FastEndpoints.EndpointSummary<TRequest>.RequestParam(System.Linq.Expressions.Expression<System.Func<TRequest, System.Object>>, System.String)
+  name: RequestParam(Expression<Func<TRequest, object?>>, string)
+  nameWithType: EndpointSummary<TRequest>.RequestParam(Expression<Func<TRequest, object?>>, string)
+  fullName: FastEndpoints.EndpointSummary<TRequest>.RequestParam(System.Linq.Expressions.Expression<System.Func<TRequest, object?>>, string)
   type: Method
   source:
     id: RequestParam
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Endpoint\Summary\EndpointSummary.cs
-    startLine: 142
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Summary\EndpointSummary.cs
+    startLine: 162
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nadd a description for a request param for a given property of the request dto\n"
+  summary: add a description for a request param for a given property of the request dto
   example: []
   syntax:
-    content: public void RequestParam(Expression<Func<TRequest, object>> property, string description)
+    content: public void RequestParam(Expression<Func<TRequest, object?>> property, string description)
     parameters:
     - id: property
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
@@ -92,18 +86,42 @@ items:
     - id: description
       type: System.String
       description: the description text
-    content.vb: Public Sub RequestParam(property As Expression(Of Func(Of TRequest, Object)), description As String)
+    content.vb: Public Sub RequestParam([property] As Expression(Of Func(Of TRequest, Object)), description As String)
   overload: FastEndpoints.EndpointSummary`1.RequestParam*
   nameWithType.vb: EndpointSummary(Of TRequest).RequestParam(Expression(Of Func(Of TRequest, Object)), String)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.EndpointSummary(Of TRequest).RequestParam(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, System.Object)), System.String)
+  fullName.vb: FastEndpoints.EndpointSummary(Of TRequest).RequestParam(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)), String)
   name.vb: RequestParam(Expression(Of Func(Of TRequest, Object)), String)
+- uid: FastEndpoints.EndpointSummary`1.ExampleRequest
+  commentId: P:FastEndpoints.EndpointSummary`1.ExampleRequest
+  id: ExampleRequest
+  parent: FastEndpoints.EndpointSummary`1
+  langs:
+  - csharp
+  - vb
+  name: ExampleRequest
+  nameWithType: EndpointSummary<TRequest>.ExampleRequest
+  fullName: FastEndpoints.EndpointSummary<TRequest>.ExampleRequest
+  type: Property
+  source:
+    id: ExampleRequest
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Summary\EndpointSummary.cs
+    startLine: 165
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public TRequest? ExampleRequest { get; set; }
+    parameters: []
+    return:
+      type: '{TRequest}'
+    content.vb: Public Property ExampleRequest As TRequest
+  overload: FastEndpoints.EndpointSummary`1.ExampleRequest*
+  nameWithType.vb: EndpointSummary(Of TRequest).ExampleRequest
+  fullName.vb: FastEndpoints.EndpointSummary(Of TRequest).ExampleRequest
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -111,12 +129,17 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: FastEndpoints.EndpointSummary
   commentId: T:FastEndpoints.EndpointSummary
   parent: FastEndpoints
+  href: FastEndpoints.EndpointSummary.html
   name: EndpointSummary
   nameWithType: EndpointSummary
   fullName: FastEndpoints.EndpointSummary
@@ -124,1095 +147,863 @@ references:
   commentId: P:FastEndpoints.EndpointSummary.Item(System.Int32)
   parent: FastEndpoints.EndpointSummary
   isExternal: true
-  name: Item[Int32]
-  nameWithType: EndpointSummary.Item[Int32]
-  fullName: FastEndpoints.EndpointSummary.Item[System.Int32]
-  nameWithType.vb: EndpointSummary.Item(Int32)
-  fullName.vb: FastEndpoints.EndpointSummary.Item(System.Int32)
-  name.vb: Item(Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int]
+  nameWithType: EndpointSummary.this[int]
+  fullName: FastEndpoints.EndpointSummary.this[int]
+  nameWithType.vb: EndpointSummary.this[](Integer)
+  fullName.vb: FastEndpoints.EndpointSummary.this[](Integer)
+  name.vb: this[](Integer)
   spec.csharp:
-  - uid: FastEndpoints.EndpointSummary.Item(System.Int32)
-    name: Item
-    nameWithType: EndpointSummary.Item
-    fullName: FastEndpoints.EndpointSummary.Item
+  - name: this
   - name: '['
-    nameWithType: '['
-    fullName: '['
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: ']'
-    nameWithType: ']'
-    fullName: ']'
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.Item(System.Int32)
-    name: Item
-    nameWithType: EndpointSummary.Item
-    fullName: FastEndpoints.EndpointSummary.Item
+    name: this[]
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Item_System_Int32_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointSummary.Summary
   commentId: P:FastEndpoints.EndpointSummary.Summary
   parent: FastEndpoints.EndpointSummary
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Summary
   name: Summary
   nameWithType: EndpointSummary.Summary
   fullName: FastEndpoints.EndpointSummary.Summary
 - uid: FastEndpoints.EndpointSummary.Description
   commentId: P:FastEndpoints.EndpointSummary.Description
   parent: FastEndpoints.EndpointSummary
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Description
   name: Description
   nameWithType: EndpointSummary.Description
   fullName: FastEndpoints.EndpointSummary.Description
-- uid: FastEndpoints.EndpointSummary.ExampleRequest
-  commentId: P:FastEndpoints.EndpointSummary.ExampleRequest
+- uid: FastEndpoints.EndpointSummary.RequestExamples
+  commentId: P:FastEndpoints.EndpointSummary.RequestExamples
   parent: FastEndpoints.EndpointSummary
-  name: ExampleRequest
-  nameWithType: EndpointSummary.ExampleRequest
-  fullName: FastEndpoints.EndpointSummary.ExampleRequest
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_RequestExamples
+  name: RequestExamples
+  nameWithType: EndpointSummary.RequestExamples
+  fullName: FastEndpoints.EndpointSummary.RequestExamples
 - uid: FastEndpoints.EndpointSummary.Params
   commentId: P:FastEndpoints.EndpointSummary.Params
   parent: FastEndpoints.EndpointSummary
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Params
   name: Params
   nameWithType: EndpointSummary.Params
   fullName: FastEndpoints.EndpointSummary.Params
 - uid: FastEndpoints.EndpointSummary.Responses
   commentId: P:FastEndpoints.EndpointSummary.Responses
   parent: FastEndpoints.EndpointSummary
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Responses
   name: Responses
   nameWithType: EndpointSummary.Responses
   fullName: FastEndpoints.EndpointSummary.Responses
 - uid: FastEndpoints.EndpointSummary.ResponseExamples
   commentId: P:FastEndpoints.EndpointSummary.ResponseExamples
   parent: FastEndpoints.EndpointSummary
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseExamples
   name: ResponseExamples
   nameWithType: EndpointSummary.ResponseExamples
   fullName: FastEndpoints.EndpointSummary.ResponseExamples
+- uid: FastEndpoints.EndpointSummary.ResponseHeaders
+  commentId: P:FastEndpoints.EndpointSummary.ResponseHeaders
+  parent: FastEndpoints.EndpointSummary
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseHeaders
+  name: ResponseHeaders
+  nameWithType: EndpointSummary.ResponseHeaders
+  fullName: FastEndpoints.EndpointSummary.ResponseHeaders
 - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{{TResponse},System.Object}},System.String)
   commentId: M:FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
   parent: FastEndpoints.EndpointSummary
   definition: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-  name: ResponseParam<TResponse>(Int32, Expression<Func<TResponse, Object>>, String)
-  nameWithType: EndpointSummary.ResponseParam<TResponse>(Int32, Expression<Func<TResponse, Object>>, String)
-  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(System.Int32, System.Linq.Expressions.Expression<System.Func<TResponse, System.Object>>, System.String)
-  nameWithType.vb: EndpointSummary.ResponseParam(Of TResponse)(Int32, Expression(Of Func(Of TResponse, Object)), String)
-  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(System.Int32, System.Linq.Expressions.Expression(Of System.Func(Of TResponse, System.Object)), System.String)
-  name.vb: ResponseParam(Of TResponse)(Int32, Expression(Of Func(Of TResponse, Object)), String)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Int32_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  name: ResponseParam<TResponse>(int, Expression<Func<TResponse, object>>, string)
+  nameWithType: EndpointSummary.ResponseParam<TResponse>(int, Expression<Func<TResponse, object>>, string)
+  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(int, System.Linq.Expressions.Expression<System.Func<TResponse, object>>, string)
+  nameWithType.vb: EndpointSummary.ResponseParam(Of TResponse)(Integer, Expression(Of Func(Of TResponse, Object)), String)
+  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(Integer, System.Linq.Expressions.Expression(Of System.Func(Of TResponse, Object)), String)
+  name.vb: ResponseParam(Of TResponse)(Integer, Expression(Of Func(Of TResponse, Object)), String)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam<TResponse>
-    nameWithType: EndpointSummary.ResponseParam<TResponse>
-    fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Int32_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  - name: <
+  - name: TResponse
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam(Of TResponse)
-    nameWithType: EndpointSummary.ResponseParam(Of TResponse)
-    fullName: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Int32_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TResponse
+  - name: )
+  - name: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{{TResponse},System.Object}},System.String)
   commentId: M:FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
   parent: FastEndpoints.EndpointSummary
   definition: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-  name: ResponseParam<TResponse>(Expression<Func<TResponse, Object>>, String)
-  nameWithType: EndpointSummary.ResponseParam<TResponse>(Expression<Func<TResponse, Object>>, String)
-  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(System.Linq.Expressions.Expression<System.Func<TResponse, System.Object>>, System.String)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  name: ResponseParam<TResponse>(Expression<Func<TResponse, object>>, string)
+  nameWithType: EndpointSummary.ResponseParam<TResponse>(Expression<Func<TResponse, object>>, string)
+  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(System.Linq.Expressions.Expression<System.Func<TResponse, object>>, string)
   nameWithType.vb: EndpointSummary.ResponseParam(Of TResponse)(Expression(Of Func(Of TResponse, Object)), String)
-  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(System.Linq.Expressions.Expression(Of System.Func(Of TResponse, System.Object)), System.String)
+  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(System.Linq.Expressions.Expression(Of System.Func(Of TResponse, Object)), String)
   name.vb: ResponseParam(Of TResponse)(Expression(Of Func(Of TResponse, Object)), String)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam<TResponse>
-    nameWithType: EndpointSummary.ResponseParam<TResponse>
-    fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  - name: <
+  - name: TResponse
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam(Of TResponse)
-    nameWithType: EndpointSummary.ResponseParam(Of TResponse)
-    fullName: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TResponse
+  - name: )
+  - name: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,{TResponse})
   commentId: M:FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
   parent: FastEndpoints.EndpointSummary
   definition: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
-  name: Response<TResponse>(Int32, String, String, TResponse)
-  nameWithType: EndpointSummary.Response<TResponse>(Int32, String, String, TResponse)
-  fullName: FastEndpoints.EndpointSummary.Response<TResponse>(System.Int32, System.String, System.String, TResponse)
-  nameWithType.vb: EndpointSummary.Response(Of TResponse)(Int32, String, String, TResponse)
-  fullName.vb: FastEndpoints.EndpointSummary.Response(Of TResponse)(System.Int32, System.String, System.String, TResponse)
-  name.vb: Response(Of TResponse)(Int32, String, String, TResponse)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response__1_System_Int32_System_String_System_String___0_
+  name: Response<TResponse>(int, string, string, TResponse)
+  nameWithType: EndpointSummary.Response<TResponse>(int, string, string, TResponse)
+  fullName: FastEndpoints.EndpointSummary.Response<TResponse>(int, string, string, TResponse)
+  nameWithType.vb: EndpointSummary.Response(Of TResponse)(Integer, String, String, TResponse)
+  fullName.vb: FastEndpoints.EndpointSummary.Response(Of TResponse)(Integer, String, String, TResponse)
+  name.vb: Response(Of TResponse)(Integer, String, String, TResponse)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
-    name: Response<TResponse>
-    nameWithType: EndpointSummary.Response<TResponse>
-    fullName: FastEndpoints.EndpointSummary.Response<TResponse>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    name: Response
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response__1_System_Int32_System_String_System_String___0_
+  - name: <
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
+  - name: '>'
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: TResponse
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
-    name: Response(Of TResponse)
-    nameWithType: EndpointSummary.Response(Of TResponse)
-    fullName: FastEndpoints.EndpointSummary.Response(Of TResponse)
+    name: Response
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response__1_System_Int32_System_String_System_String___0_
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: Of
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: )
 - uid: FastEndpoints.EndpointSummary.Response(System.Int32,System.String,System.String)
   commentId: M:FastEndpoints.EndpointSummary.Response(System.Int32,System.String,System.String)
   parent: FastEndpoints.EndpointSummary
   isExternal: true
-  name: Response(Int32, String, String)
-  nameWithType: EndpointSummary.Response(Int32, String, String)
-  fullName: FastEndpoints.EndpointSummary.Response(System.Int32, System.String, System.String)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response_System_Int32_System_String_System_String_
+  name: Response(int, string, string)
+  nameWithType: EndpointSummary.Response(int, string, string)
+  fullName: FastEndpoints.EndpointSummary.Response(int, string, string)
+  nameWithType.vb: EndpointSummary.Response(Integer, String, String)
+  fullName.vb: FastEndpoints.EndpointSummary.Response(Integer, String, String)
+  name.vb: Response(Integer, String, String)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.Response(System.Int32,System.String,System.String)
     name: Response
-    nameWithType: EndpointSummary.Response
-    fullName: FastEndpoints.EndpointSummary.Response
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response_System_Int32_System_String_System_String_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.Response(System.Int32,System.String,System.String)
     name: Response
-    nameWithType: EndpointSummary.Response
-    fullName: FastEndpoints.EndpointSummary.Response
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response_System_Int32_System_String_System_String_
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.MemberwiseClone
   commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
   commentId: M:FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
   isExternal: true
-  name: ResponseParam<TResponse>(Int32, Expression<Func<TResponse, Object>>, String)
-  nameWithType: EndpointSummary.ResponseParam<TResponse>(Int32, Expression<Func<TResponse, Object>>, String)
-  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(System.Int32, System.Linq.Expressions.Expression<System.Func<TResponse, System.Object>>, System.String)
-  nameWithType.vb: EndpointSummary.ResponseParam(Of TResponse)(Int32, Expression(Of Func(Of TResponse, Object)), String)
-  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(System.Int32, System.Linq.Expressions.Expression(Of System.Func(Of TResponse, System.Object)), System.String)
-  name.vb: ResponseParam(Of TResponse)(Int32, Expression(Of Func(Of TResponse, Object)), String)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Int32_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  name: ResponseParam<TResponse>(int, Expression<Func<TResponse, object>>, string)
+  nameWithType: EndpointSummary.ResponseParam<TResponse>(int, Expression<Func<TResponse, object>>, string)
+  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(int, System.Linq.Expressions.Expression<System.Func<TResponse, object>>, string)
+  nameWithType.vb: EndpointSummary.ResponseParam(Of TResponse)(Integer, Expression(Of Func(Of TResponse, Object)), String)
+  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(Integer, System.Linq.Expressions.Expression(Of System.Func(Of TResponse, Object)), String)
+  name.vb: ResponseParam(Of TResponse)(Integer, Expression(Of Func(Of TResponse, Object)), String)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam<TResponse>
-    nameWithType: EndpointSummary.ResponseParam<TResponse>
-    fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Int32_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  - name: <
+  - name: TResponse
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam(Of TResponse)
-    nameWithType: EndpointSummary.ResponseParam(Of TResponse)
-    fullName: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Int32_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TResponse
+  - name: )
+  - name: (
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
   commentId: M:FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
   isExternal: true
-  name: ResponseParam<TResponse>(Expression<Func<TResponse, Object>>, String)
-  nameWithType: EndpointSummary.ResponseParam<TResponse>(Expression<Func<TResponse, Object>>, String)
-  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(System.Linq.Expressions.Expression<System.Func<TResponse, System.Object>>, System.String)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  name: ResponseParam<TResponse>(Expression<Func<TResponse, object>>, string)
+  nameWithType: EndpointSummary.ResponseParam<TResponse>(Expression<Func<TResponse, object>>, string)
+  fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>(System.Linq.Expressions.Expression<System.Func<TResponse, object>>, string)
   nameWithType.vb: EndpointSummary.ResponseParam(Of TResponse)(Expression(Of Func(Of TResponse, Object)), String)
-  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(System.Linq.Expressions.Expression(Of System.Func(Of TResponse, System.Object)), System.String)
+  fullName.vb: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)(System.Linq.Expressions.Expression(Of System.Func(Of TResponse, Object)), String)
   name.vb: ResponseParam(Of TResponse)(Expression(Of Func(Of TResponse, Object)), String)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam<TResponse>
-    nameWithType: EndpointSummary.ResponseParam<TResponse>
-    fullName: FastEndpoints.EndpointSummary.ResponseParam<TResponse>
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
+  - name: <
+  - name: TResponse
+  - name: '>'
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
+    name: string
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.ResponseParam``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)
-    name: ResponseParam(Of TResponse)
-    nameWithType: EndpointSummary.ResponseParam(Of TResponse)
-    fullName: FastEndpoints.EndpointSummary.ResponseParam(Of TResponse)
+    name: ResponseParam
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_ResponseParam__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_String_
   - name: (
-    nameWithType: (
-    fullName: (
+  - name: Of
+  - name: " "
+  - name: TResponse
+  - name: )
+  - name: (
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.String
     name: String
-    nameWithType: String
-    fullName: System.String
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
   commentId: M:FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
   isExternal: true
-  name: Response<TResponse>(Int32, String, String, TResponse)
-  nameWithType: EndpointSummary.Response<TResponse>(Int32, String, String, TResponse)
-  fullName: FastEndpoints.EndpointSummary.Response<TResponse>(System.Int32, System.String, System.String, TResponse)
-  nameWithType.vb: EndpointSummary.Response(Of TResponse)(Int32, String, String, TResponse)
-  fullName.vb: FastEndpoints.EndpointSummary.Response(Of TResponse)(System.Int32, System.String, System.String, TResponse)
-  name.vb: Response(Of TResponse)(Int32, String, String, TResponse)
+  href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response__1_System_Int32_System_String_System_String___0_
+  name: Response<TResponse>(int, string, string, TResponse)
+  nameWithType: EndpointSummary.Response<TResponse>(int, string, string, TResponse)
+  fullName: FastEndpoints.EndpointSummary.Response<TResponse>(int, string, string, TResponse)
+  nameWithType.vb: EndpointSummary.Response(Of TResponse)(Integer, String, String, TResponse)
+  fullName.vb: FastEndpoints.EndpointSummary.Response(Of TResponse)(Integer, String, String, TResponse)
+  name.vb: Response(Of TResponse)(Integer, String, String, TResponse)
   spec.csharp:
   - uid: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
-    name: Response<TResponse>
-    nameWithType: EndpointSummary.Response<TResponse>
-    fullName: FastEndpoints.EndpointSummary.Response<TResponse>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    name: Response
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response__1_System_Int32_System_String_System_String___0_
+  - name: <
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
+  - name: '>'
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: TResponse
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: FastEndpoints.EndpointSummary.Response``1(System.Int32,System.String,System.String,``0)
-    name: Response(Of TResponse)
-    nameWithType: EndpointSummary.Response(Of TResponse)
-    fullName: FastEndpoints.EndpointSummary.Response(Of TResponse)
+    name: Response
+    href: FastEndpoints.EndpointSummary.html#FastEndpoints_EndpointSummary_Response__1_System_Int32_System_String_System_String___0_
   - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: Of
+  - name: " "
   - name: TResponse
-    nameWithType: TResponse
-    fullName: TResponse
   - name: )
-    nameWithType: )
-    fullName: )
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: )
 - uid: FastEndpoints.EndpointSummary`1.RequestParam*
   commentId: Overload:FastEndpoints.EndpointSummary`1.RequestParam
+  href: FastEndpoints.EndpointSummary-1.html#FastEndpoints_EndpointSummary_1_RequestParam_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_
   name: RequestParam
   nameWithType: EndpointSummary<TRequest>.RequestParam
   fullName: FastEndpoints.EndpointSummary<TRequest>.RequestParam
@@ -1222,90 +1013,72 @@ references:
   commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Object}}
   parent: System.Linq.Expressions
   definition: System.Linq.Expressions.Expression`1
-  name: Expression<Func<TRequest, Object>>
-  nameWithType: Expression<Func<TRequest, Object>>
-  fullName: System.Linq.Expressions.Expression<System.Func<TRequest, System.Object>>
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<Func<TRequest, object>>
+  nameWithType: Expression<Func<TRequest, object>>
+  fullName: System.Linq.Expressions.Expression<System.Func<TRequest, object>>
   nameWithType.vb: Expression(Of Func(Of TRequest, Object))
-  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TRequest, System.Object))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object))
   name.vb: Expression(Of Func(Of TRequest, Object))
   spec.csharp:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
   - name: TRequest
-    nameWithType: TRequest
-    fullName: TRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.String
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System.Linq.Expressions.Expression`1
   commentId: T:System.Linq.Expressions.Expression`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   name: Expression<TDelegate>
   nameWithType: Expression<TDelegate>
   fullName: System.Linq.Expressions.Expression<TDelegate>
@@ -1315,36 +1088,73 @@ references:
   spec.csharp:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: TDelegate
-    nameWithType: TDelegate
-    fullName: TDelegate
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Linq.Expressions.Expression`1
     name: Expression
-    nameWithType: Expression
-    fullName: System.Linq.Expressions.Expression
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: TDelegate
-    nameWithType: TDelegate
-    fullName: TDelegate
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Linq.Expressions
   commentId: N:System.Linq.Expressions
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Linq.Expressions
   nameWithType: System.Linq.Expressions
   fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: FastEndpoints.EndpointSummary`1.ExampleRequest*
+  commentId: Overload:FastEndpoints.EndpointSummary`1.ExampleRequest
+  href: FastEndpoints.EndpointSummary-1.html#FastEndpoints_EndpointSummary_1_ExampleRequest
+  name: ExampleRequest
+  nameWithType: EndpointSummary<TRequest>.ExampleRequest
+  fullName: FastEndpoints.EndpointSummary<TRequest>.ExampleRequest
+  nameWithType.vb: EndpointSummary(Of TRequest).ExampleRequest
+  fullName.vb: FastEndpoints.EndpointSummary(Of TRequest).ExampleRequest
+- uid: '{TRequest}'
+  commentId: '!:TRequest'
+  definition: TRequest
+  name: TRequest
+  nameWithType: TRequest
+  fullName: TRequest
+- uid: TRequest
+  name: TRequest
+  nameWithType: TRequest
+  fullName: TRequest

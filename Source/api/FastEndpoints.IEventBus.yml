@@ -15,22 +15,16 @@ items:
   type: Interface
   source:
     id: IEventBus
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\IEventBus.cs
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Events\IEventBus.cs
     startLine: 5
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ninterface to be implemented by an event bus\n"
+  summary: interface to be implemented by an event bus
   example: []
   syntax:
     content: public interface IEventBus
     content.vb: Public Interface IEventBus
-  modifiers.csharp:
-  - public
-  - interface
-  modifiers.vb:
-  - Public
-  - Interface
 - uid: FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.IEventBus.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   id: PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
@@ -44,15 +38,15 @@ items:
   type: Method
   source:
     id: PublishAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\Messaging\Events\IEventBus.cs
-    startLine: 18
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Events\IEventBus.cs
+    startLine: 20
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\npublishes a given event model to all subscribers registered to handle the that type of event.\n"
+  summary: publishes a given event model to all subscribers registered to handle the that type of event.
   example: []
   syntax:
-    content: Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default(CancellationToken))
+    content: 'Task PublishAsync<TEvent>(TEvent eventModel, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default) where TEvent : notnull'
     parameters:
     - id: eventModel
       type: '{TEvent}'
@@ -84,20 +78,31 @@ items:
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
 - uid: FastEndpoints.Mode.WaitForNone
   commentId: F:FastEndpoints.Mode.WaitForNone
-  isExternal: true
+  href: FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForNone
+  name: WaitForNone
+  nameWithType: Mode.WaitForNone
+  fullName: FastEndpoints.Mode.WaitForNone
 - uid: FastEndpoints.Mode.WaitForAny
   commentId: F:FastEndpoints.Mode.WaitForAny
-  isExternal: true
+  href: FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAny
+  name: WaitForAny
+  nameWithType: Mode.WaitForAny
+  fullName: FastEndpoints.Mode.WaitForAny
 - uid: FastEndpoints.Mode.WaitForAll
   commentId: F:FastEndpoints.Mode.WaitForAll
-  isExternal: true
+  href: FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAll
+  name: WaitForAll
+  nameWithType: Mode.WaitForAll
+  fullName: FastEndpoints.Mode.WaitForAll
 - uid: FastEndpoints.IEventBus.PublishAsync*
   commentId: Overload:FastEndpoints.IEventBus.PublishAsync
+  href: FastEndpoints.IEventBus.html#FastEndpoints_IEventBus_PublishAsync__1___0_FastEndpoints_Mode_System_Threading_CancellationToken_
   name: PublishAsync
   nameWithType: IEventBus.PublishAsync
   fullName: FastEndpoints.IEventBus.PublishAsync
@@ -110,6 +115,7 @@ references:
 - uid: FastEndpoints.Mode
   commentId: T:FastEndpoints.Mode
   parent: FastEndpoints
+  href: FastEndpoints.Mode.html
   name: Mode
   nameWithType: Mode
   fullName: FastEndpoints.Mode
@@ -117,6 +123,7 @@ references:
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
@@ -124,6 +131,7 @@ references:
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
@@ -134,12 +142,64 @@ references:
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading
   nameWithType: System.Threading
   fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

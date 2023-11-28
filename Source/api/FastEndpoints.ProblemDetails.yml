@@ -5,8 +5,9 @@ items:
   id: ProblemDetails
   parent: FastEndpoints
   children:
-  - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
-  - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
+  - FastEndpoints.ProblemDetails.#ctor
+  - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
+  - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
   - FastEndpoints.ProblemDetails.AllowDuplicates
   - FastEndpoints.ProblemDetails.Errors
   - FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
@@ -27,19 +28,21 @@ items:
   type: Class
   source:
     id: ProblemDetails
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 16
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nRFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:\n<p>\n<code>app.UseFastEndpoints(x => x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>\n</p>\n"
+  summary: >-
+    RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:
+
+    <p>
+        <code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>
+    </p>
   example: []
   syntax:
     content: 'public sealed class ProblemDetails : IResult'
-    content.vb: >-
-      Public NotInheritable Class ProblemDetails
-
-          Implements IResult
+    content.vb: Public NotInheritable Class ProblemDetails Implements IResult
   inheritance:
   - System.Object
   implements:
@@ -49,17 +52,8 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
-  - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  modifiers.csharp:
-  - public
-  - sealed
-  - class
-  modifiers.vb:
-  - Public
-  - NotInheritable
-  - Class
 - uid: FastEndpoints.ProblemDetails.ResponseBuilder
   commentId: P:FastEndpoints.ProblemDetails.ResponseBuilder
   id: ResponseBuilder
@@ -73,12 +67,12 @@ items:
   type: Property
   source:
     id: ResponseBuilder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 24
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 29
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nthe built-in function for transforming validation errors to a RFC7807 compatible problem details error response dto.\n"
+  summary: the built-in function for transforming validation errors to a RFC7807 compatible problem details error response dto.
   example: []
   syntax:
     content: public static Func<List<ValidationFailure>, HttpContext, int, object> ResponseBuilder { get; }
@@ -87,14 +81,6 @@ items:
       type: System.Func{System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
     content.vb: Public Shared ReadOnly Property ResponseBuilder As Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
   overload: FastEndpoints.ProblemDetails.ResponseBuilder*
-  modifiers.csharp:
-  - public
-  - static
-  - get
-  modifiers.vb:
-  - Public
-  - Shared
-  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.AllowDuplicates
   commentId: P:FastEndpoints.ProblemDetails.AllowDuplicates
   id: AllowDuplicates
@@ -108,28 +94,20 @@ items:
   type: Property
   source:
     id: AllowDuplicates
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 30
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\ncontrols whether duplicate errors with the same name should be allowed.\n"
+  summary: controls whether duplicate errors with the same name should be allowed.
   example: []
   syntax:
     content: public static bool AllowDuplicates { set; }
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public Shared WriteOnly Property AllowDuplicates As Boolean
+    content.vb: Public Shared Property AllowDuplicates As Boolean
   overload: FastEndpoints.ProblemDetails.AllowDuplicates*
-  modifiers.csharp:
-  - public
-  - static
-  - set
-  modifiers.vb:
-  - Public
-  - Shared
-  - WriteOnly
 - uid: FastEndpoints.ProblemDetails.TypeValue
   commentId: P:FastEndpoints.ProblemDetails.TypeValue
   id: TypeValue
@@ -143,28 +121,20 @@ items:
   type: Property
   source:
     id: TypeValue
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 35
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 40
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nglobally sets the &apos;Type&apos; value of the problem details dto.\n"
+  summary: globally sets the 'Type' value of the problem details dto.
   example: []
   syntax:
     content: public static string TypeValue { set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Shared WriteOnly Property TypeValue As String
+    content.vb: Public Shared Property TypeValue As String
   overload: FastEndpoints.ProblemDetails.TypeValue*
-  modifiers.csharp:
-  - public
-  - static
-  - set
-  modifiers.vb:
-  - Public
-  - Shared
-  - WriteOnly
 - uid: FastEndpoints.ProblemDetails.TitleValue
   commentId: P:FastEndpoints.ProblemDetails.TitleValue
   id: TitleValue
@@ -178,28 +148,20 @@ items:
   type: Property
   source:
     id: TitleValue
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 40
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 45
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: "\nglobally sets the &apos;Title&apos; value of the problem details dto.\n"
+  summary: globally sets the 'Title' value of the problem details dto.
   example: []
   syntax:
     content: public static string TitleValue { set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Shared WriteOnly Property TitleValue As String
+    content.vb: Public Shared Property TitleValue As String
   overload: FastEndpoints.ProblemDetails.TitleValue*
-  modifiers.csharp:
-  - public
-  - static
-  - set
-  modifiers.vb:
-  - Public
-  - Shared
-  - WriteOnly
 - uid: FastEndpoints.ProblemDetails.Type
   commentId: P:FastEndpoints.ProblemDetails.Type
   id: Type
@@ -213,8 +175,8 @@ items:
   type: Property
   source:
     id: Type
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 43
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -225,12 +187,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property Type As String
   overload: FastEndpoints.ProblemDetails.Type*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.Title
   commentId: P:FastEndpoints.ProblemDetails.Title
   id: Title
@@ -244,8 +200,8 @@ items:
   type: Property
   source:
     id: Title
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 44
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 51
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -256,12 +212,6 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property Title As String
   overload: FastEndpoints.ProblemDetails.Title*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.Status
   commentId: P:FastEndpoints.ProblemDetails.Status
   id: Status
@@ -275,24 +225,18 @@ items:
   type: Property
   source:
     id: Status
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 46
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 55
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public int Status { get; }
+    content: public int Status { get; set; }
     parameters: []
     return:
       type: System.Int32
-    content.vb: Public ReadOnly Property Status As Integer
+    content.vb: Public Property Status As Integer
   overload: FastEndpoints.ProblemDetails.Status*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.Instance
   commentId: P:FastEndpoints.ProblemDetails.Instance
   id: Instance
@@ -306,24 +250,18 @@ items:
   type: Property
   source:
     id: Instance
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 47
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 58
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string Instance { get; }
+    content: public string Instance { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public ReadOnly Property Instance As String
+    content.vb: Public Property Instance As String
   overload: FastEndpoints.ProblemDetails.Instance*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.TraceId
   commentId: P:FastEndpoints.ProblemDetails.TraceId
   id: TraceId
@@ -337,24 +275,18 @@ items:
   type: Property
   source:
     id: TraceId
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 48
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 61
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public string TraceId { get; }
+    content: public string TraceId { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public ReadOnly Property TraceId As String
+    content.vb: Public Property TraceId As String
   overload: FastEndpoints.ProblemDetails.TraceId*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: FastEndpoints.ProblemDetails.Errors
   commentId: P:FastEndpoints.ProblemDetails.Errors
   id: Errors
@@ -368,96 +300,107 @@ items:
   type: Property
   source:
     id: Errors
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 49
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 64
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public IEnumerable<ProblemDetails.Error> Errors { get; }
+    content: public IEnumerable<ProblemDetails.Error> Errors { get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{FastEndpoints.ProblemDetails.Error}
-    content.vb: Public ReadOnly Property Errors As IEnumerable(Of ProblemDetails.Error)
+    content.vb: Public Property Errors As IEnumerable(Of ProblemDetails.Error)
   overload: FastEndpoints.ProblemDetails.Errors*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
-  commentId: M:FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
-  id: '#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})'
+- uid: FastEndpoints.ProblemDetails.#ctor
+  commentId: M:FastEndpoints.ProblemDetails.#ctor
+  id: '#ctor'
   parent: FastEndpoints.ProblemDetails
   langs:
   - csharp
   - vb
-  name: ProblemDetails(List<ValidationFailure>, Nullable<Int32>)
-  nameWithType: ProblemDetails.ProblemDetails(List<ValidationFailure>, Nullable<Int32>)
-  fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, System.Nullable<System.Int32>)
+  name: ProblemDetails()
+  nameWithType: ProblemDetails.ProblemDetails()
+  fullName: FastEndpoints.ProblemDetails.ProblemDetails()
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 51
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 66
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public ProblemDetails(List<ValidationFailure> failures, int? statusCode = null)
+    content: public ProblemDetails()
+    content.vb: Public Sub New()
+  overload: FastEndpoints.ProblemDetails.#ctor*
+  nameWithType.vb: ProblemDetails.New()
+  fullName.vb: FastEndpoints.ProblemDetails.New()
+  name.vb: New()
+- uid: FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
+  id: '#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})'
+  parent: FastEndpoints.ProblemDetails
+  langs:
+  - csharp
+  - vb
+  name: ProblemDetails(IReadOnlyList<ValidationFailure>, int?)
+  nameWithType: ProblemDetails.ProblemDetails(IReadOnlyList<ValidationFailure>, int?)
+  fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.IReadOnlyList<FluentValidation.Results.ValidationFailure>, int?)
+  type: Constructor
+  source:
+    id: .ctor
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 68
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public ProblemDetails(IReadOnlyList<ValidationFailure> failures, int? statusCode = null)
     parameters:
     - id: failures
-      type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+      type: System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure}
     - id: statusCode
       type: System.Nullable{System.Int32}
-    content.vb: Public Sub New(failures As List(Of ValidationFailure), statusCode As Integer? = Nothing)
+    content.vb: Public Sub New(failures As IReadOnlyList(Of ValidationFailure), statusCode As Integer? = Nothing)
   overload: FastEndpoints.ProblemDetails.#ctor*
-  nameWithType.vb: ProblemDetails.ProblemDetails(List(Of ValidationFailure), Nullable(Of Int32))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.Nullable(Of System.Int32))
-  name.vb: ProblemDetails(List(Of ValidationFailure), Nullable(Of Int32))
-- uid: FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
-  commentId: M:FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
-  id: '#ctor(System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)'
+  nameWithType.vb: ProblemDetails.New(IReadOnlyList(Of ValidationFailure), Integer?)
+  fullName.vb: FastEndpoints.ProblemDetails.New(System.Collections.Generic.IReadOnlyList(Of FluentValidation.Results.ValidationFailure), Integer?)
+  name.vb: New(IReadOnlyList(Of ValidationFailure), Integer?)
+- uid: FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
+  commentId: M:FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
+  id: '#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)'
   parent: FastEndpoints.ProblemDetails
   langs:
   - csharp
   - vb
-  name: ProblemDetails(List<ValidationFailure>, String, String, Int32)
-  nameWithType: ProblemDetails.ProblemDetails(List<ValidationFailure>, String, String, Int32)
-  fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, System.String, System.String, System.Int32)
+  name: ProblemDetails(IReadOnlyList<ValidationFailure>, string, string, int)
+  nameWithType: ProblemDetails.ProblemDetails(IReadOnlyList<ValidationFailure>, string, string, int)
+  fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.IReadOnlyList<FluentValidation.Results.ValidationFailure>, string, string, int)
   type: Constructor
   source:
     id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 56
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 73
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   syntax:
-    content: public ProblemDetails(List<ValidationFailure> failures, string instance, string traceId, int statusCode)
+    content: public ProblemDetails(IReadOnlyList<ValidationFailure> failures, string instance, string traceId, int statusCode)
     parameters:
     - id: failures
-      type: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+      type: System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure}
     - id: instance
       type: System.String
     - id: traceId
       type: System.String
     - id: statusCode
       type: System.Int32
-    content.vb: Public Sub New(failures As List(Of ValidationFailure), instance As String, traceId As String, statusCode As Integer)
+    content.vb: Public Sub New(failures As IReadOnlyList(Of ValidationFailure), instance As String, traceId As String, statusCode As Integer)
   overload: FastEndpoints.ProblemDetails.#ctor*
-  nameWithType.vb: ProblemDetails.ProblemDetails(List(Of ValidationFailure), String, String, Int32)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), System.String, System.String, System.Int32)
-  name.vb: ProblemDetails(List(Of ValidationFailure), String, String, Int32)
+  nameWithType.vb: ProblemDetails.New(IReadOnlyList(Of ValidationFailure), String, String, Integer)
+  fullName.vb: FastEndpoints.ProblemDetails.New(System.Collections.Generic.IReadOnlyList(Of FluentValidation.Results.ValidationFailure), String, String, Integer)
+  name.vb: New(IReadOnlyList(Of ValidationFailure), String, String, Integer)
 - uid: FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   commentId: M:FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   id: ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
@@ -471,30 +414,30 @@ items:
   type: Method
   source:
     id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Library\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 81
+    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
+    startLine: 96
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
+  summary: Write an HTTP response reflecting the result.
   example: []
   syntax:
     content: public Task ExecuteAsync(HttpContext httpContext)
     parameters:
     - id: httpContext
       type: Microsoft.AspNetCore.Http.HttpContext
+      description: The <xref href="Microsoft.AspNetCore.Http.HttpContext" data-throw-if-not-resolved="false"></xref> for the current request.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the asynchronous execute operation.
     content.vb: Public Function ExecuteAsync(httpContext As HttpContext) As Task
   overload: FastEndpoints.ProblemDetails.ExecuteAsync*
   implements:
   - Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
+  href: FastEndpoints.html
   name: FastEndpoints
   nameWithType: FastEndpoints
   fullName: FastEndpoints
@@ -502,13 +445,18 @@ references:
   commentId: T:System.Object
   parent: System
   isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
 - uid: Microsoft.AspNetCore.Http.IResult
   commentId: T:Microsoft.AspNetCore.Http.IResult
   parent: Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult
   name: IResult
   nameWithType: IResult
   fullName: Microsoft.AspNetCore.Http.IResult
@@ -516,295 +464,244 @@ references:
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.Equals(System.Object,System.Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetHashCode
   commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
-    nameWithType: (
-    fullName: (
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System
   commentId: N:System
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
 - uid: Microsoft.AspNetCore.Http
   commentId: N:Microsoft.AspNetCore.Http
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
   name: Microsoft.AspNetCore.Http
   nameWithType: Microsoft.AspNetCore.Http
   fullName: Microsoft.AspNetCore.Http
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
 - uid: FastEndpoints.ProblemDetails.ResponseBuilder*
   commentId: Overload:FastEndpoints.ProblemDetails.ResponseBuilder
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_ResponseBuilder
   name: ResponseBuilder
   nameWithType: ProblemDetails.ResponseBuilder
   fullName: FastEndpoints.ProblemDetails.ResponseBuilder
@@ -812,119 +709,89 @@ references:
   commentId: T:System.Func{System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
   parent: System
   definition: System.Func`4
-  name: Func<List<ValidationFailure>, HttpContext, Int32, Object>
-  nameWithType: Func<List<ValidationFailure>, HttpContext, Int32, Object>
-  fullName: System.Func<System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, Microsoft.AspNetCore.Http.HttpContext, System.Int32, System.Object>
-  nameWithType.vb: Func(Of List(Of ValidationFailure), HttpContext, Int32, Object)
-  fullName.vb: System.Func(Of System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), Microsoft.AspNetCore.Http.HttpContext, System.Int32, System.Object)
-  name.vb: Func(Of List(Of ValidationFailure), HttpContext, Int32, Object)
+  href: https://learn.microsoft.com/dotnet/api/system.func-4
+  name: Func<List<ValidationFailure>, HttpContext, int, object>
+  nameWithType: Func<List<ValidationFailure>, HttpContext, int, object>
+  fullName: System.Func<System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, Microsoft.AspNetCore.Http.HttpContext, int, object>
+  nameWithType.vb: Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
+  fullName.vb: System.Func(Of System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), Microsoft.AspNetCore.Http.HttpContext, Integer, Object)
+  name.vb: Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
   spec.csharp:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: Microsoft.AspNetCore.Http.HttpContext
     name: HttpContext
-    nameWithType: HttpContext
-    fullName: Microsoft.AspNetCore.Http.HttpContext
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
+    name: object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Collections.Generic.List`1
     name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - uid: Microsoft.AspNetCore.Http.HttpContext
     name: HttpContext
-    nameWithType: HttpContext
-    fullName: Microsoft.AspNetCore.Http.HttpContext
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
   - uid: System.Object
     name: Object
-    nameWithType: Object
-    fullName: System.Object
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Func`4
   commentId: T:System.Func`4
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-4
   name: Func<T1, T2, T3, TResult>
   nameWithType: Func<T1, T2, T3, TResult>
   fullName: System.Func<T1, T2, T3, TResult>
@@ -934,71 +801,42 @@ references:
   spec.csharp:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T2
-    nameWithType: T2
-    fullName: T2
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T3
-    nameWithType: T3
-    fullName: T3
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Func`4
     name: Func
-    nameWithType: Func
-    fullName: System.Func
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.func-4
+  - name: (
+  - name: Of
+  - name: " "
   - name: T1
-    nameWithType: T1
-    fullName: T1
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T2
-    nameWithType: T2
-    fullName: T2
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: T3
-    nameWithType: T3
-    fullName: T3
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
+  - name: ','
+  - name: " "
   - name: TResult
-    nameWithType: TResult
-    fullName: TResult
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: FastEndpoints.ProblemDetails.AllowDuplicates*
   commentId: Overload:FastEndpoints.ProblemDetails.AllowDuplicates
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_AllowDuplicates
   name: AllowDuplicates
   nameWithType: ProblemDetails.AllowDuplicates
   fullName: FastEndpoints.ProblemDetails.AllowDuplicates
@@ -1006,11 +844,16 @@ references:
   commentId: T:System.Boolean
   parent: System
   isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: FastEndpoints.ProblemDetails.TypeValue*
   commentId: Overload:FastEndpoints.ProblemDetails.TypeValue
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_TypeValue
   name: TypeValue
   nameWithType: ProblemDetails.TypeValue
   fullName: FastEndpoints.ProblemDetails.TypeValue
@@ -1018,26 +861,34 @@ references:
   commentId: T:System.String
   parent: System
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: FastEndpoints.ProblemDetails.TitleValue*
   commentId: Overload:FastEndpoints.ProblemDetails.TitleValue
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_TitleValue
   name: TitleValue
   nameWithType: ProblemDetails.TitleValue
   fullName: FastEndpoints.ProblemDetails.TitleValue
 - uid: FastEndpoints.ProblemDetails.Type*
   commentId: Overload:FastEndpoints.ProblemDetails.Type
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Type
   name: Type
   nameWithType: ProblemDetails.Type
   fullName: FastEndpoints.ProblemDetails.Type
 - uid: FastEndpoints.ProblemDetails.Title*
   commentId: Overload:FastEndpoints.ProblemDetails.Title
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Title
   name: Title
   nameWithType: ProblemDetails.Title
   fullName: FastEndpoints.ProblemDetails.Title
 - uid: FastEndpoints.ProblemDetails.Status*
   commentId: Overload:FastEndpoints.ProblemDetails.Status
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Status
   name: Status
   nameWithType: ProblemDetails.Status
   fullName: FastEndpoints.ProblemDetails.Status
@@ -1045,21 +896,28 @@ references:
   commentId: T:System.Int32
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: FastEndpoints.ProblemDetails.Instance*
   commentId: Overload:FastEndpoints.ProblemDetails.Instance
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Instance
   name: Instance
   nameWithType: ProblemDetails.Instance
   fullName: FastEndpoints.ProblemDetails.Instance
 - uid: FastEndpoints.ProblemDetails.TraceId*
   commentId: Overload:FastEndpoints.ProblemDetails.TraceId
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_TraceId
   name: TraceId
   nameWithType: ProblemDetails.TraceId
   fullName: FastEndpoints.ProblemDetails.TraceId
 - uid: FastEndpoints.ProblemDetails.Errors*
   commentId: Overload:FastEndpoints.ProblemDetails.Errors
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Errors
   name: Errors
   nameWithType: ProblemDetails.Errors
   fullName: FastEndpoints.ProblemDetails.Errors
@@ -1067,6 +925,7 @@ references:
   commentId: T:System.Collections.Generic.IEnumerable{FastEndpoints.ProblemDetails.Error}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<ProblemDetails.Error>
   nameWithType: IEnumerable<ProblemDetails.Error>
   fullName: System.Collections.Generic.IEnumerable<FastEndpoints.ProblemDetails.Error>
@@ -1076,38 +935,37 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
+  - uid: FastEndpoints.ProblemDetails
+    name: ProblemDetails
+    href: FastEndpoints.ProblemDetails.html
+  - name: .
   - uid: FastEndpoints.ProblemDetails.Error
-    name: ProblemDetails.Error
-    nameWithType: ProblemDetails.Error
-    fullName: FastEndpoints.ProblemDetails.Error
+    name: Error
+    href: FastEndpoints.ProblemDetails.Error.html
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.ProblemDetails
+    name: ProblemDetails
+    href: FastEndpoints.ProblemDetails.html
+  - name: .
   - uid: FastEndpoints.ProblemDetails.Error
-    name: ProblemDetails.Error
-    nameWithType: ProblemDetails.Error
-    fullName: FastEndpoints.ProblemDetails.Error
+    name: Error
+    href: FastEndpoints.ProblemDetails.Error.html
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   name: IEnumerable<T>
   nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
@@ -1117,174 +975,155 @@ references:
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: FastEndpoints.ProblemDetails.#ctor*
   commentId: Overload:FastEndpoints.ProblemDetails.#ctor
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails__ctor
   name: ProblemDetails
   nameWithType: ProblemDetails.ProblemDetails
   fullName: FastEndpoints.ProblemDetails.ProblemDetails
-- uid: System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
-  commentId: T:System.Collections.Generic.List{FluentValidation.Results.ValidationFailure}
+  nameWithType.vb: ProblemDetails.New
+  fullName.vb: FastEndpoints.ProblemDetails.New
+  name.vb: New
+- uid: System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure}
   parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
-  name: List<ValidationFailure>
-  nameWithType: List<ValidationFailure>
-  fullName: System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>
-  nameWithType.vb: List(Of ValidationFailure)
-  fullName.vb: System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure)
-  name.vb: List(Of ValidationFailure)
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<ValidationFailure>
+  nameWithType: IReadOnlyList<ValidationFailure>
+  fullName: System.Collections.Generic.IReadOnlyList<FluentValidation.Results.ValidationFailure>
+  nameWithType.vb: IReadOnlyList(Of ValidationFailure)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FluentValidation.Results.ValidationFailure)
+  name.vb: IReadOnlyList(Of ValidationFailure)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
   - name: <
-    nameWithType: <
-    fullName: <
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: FluentValidation.Results.ValidationFailure
     name: ValidationFailure
-    nameWithType: ValidationFailure
-    fullName: FluentValidation.Results.ValidationFailure
     isExternal: true
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Nullable{System.Int32}
   commentId: T:System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
-  name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
-  fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
-  fullName.vb: System.Nullable(Of System.Int32)
-  name.vb: Nullable(Of Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
   spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: int
     isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
   spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
   - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
+    name: Integer
     isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
   isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   name: Nullable<T>
   nameWithType: Nullable<T>
   fullName: System.Nullable<T>
@@ -1294,35 +1133,32 @@ references:
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
   - name: <
-    nameWithType: <
-    fullName: <
   - name: T
-    nameWithType: T
-    fullName: T
   - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
-    fullName: System.Nullable
     isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
   - name: T
-    nameWithType: T
-    fullName: T
   - name: )
-    nameWithType: )
-    fullName: )
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
 - uid: FastEndpoints.ProblemDetails.ExecuteAsync*
   commentId: Overload:FastEndpoints.ProblemDetails.ExecuteAsync
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_ExecuteAsync_Microsoft_AspNetCore_Http_HttpContext_
   name: ExecuteAsync
   nameWithType: ProblemDetails.ExecuteAsync
   fullName: FastEndpoints.ProblemDetails.ExecuteAsync
@@ -1330,60 +1166,74 @@ references:
   commentId: M:Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   parent: Microsoft.AspNetCore.Http.IResult
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult.executeasync
   name: ExecuteAsync(HttpContext)
   nameWithType: IResult.ExecuteAsync(HttpContext)
   fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   spec.csharp:
   - uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
     name: ExecuteAsync
-    nameWithType: IResult.ExecuteAsync
-    fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult.executeasync
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: Microsoft.AspNetCore.Http.HttpContext
     name: HttpContext
-    nameWithType: HttpContext
-    fullName: Microsoft.AspNetCore.Http.HttpContext
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
   - name: )
-    nameWithType: )
-    fullName: )
   spec.vb:
   - uid: Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
     name: ExecuteAsync
-    nameWithType: IResult.ExecuteAsync
-    fullName: Microsoft.AspNetCore.Http.IResult.ExecuteAsync
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult.executeasync
   - name: (
-    nameWithType: (
-    fullName: (
   - uid: Microsoft.AspNetCore.Http.HttpContext
     name: HttpContext
-    nameWithType: HttpContext
-    fullName: Microsoft.AspNetCore.Http.HttpContext
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
   - name: )
-    nameWithType: )
-    fullName: )
-- uid: Microsoft.AspNetCore.Http.HttpContext
-  commentId: T:Microsoft.AspNetCore.Http.HttpContext
-  parent: Microsoft.AspNetCore.Http
-  isExternal: true
-  name: HttpContext
-  nameWithType: HttpContext
-  fullName: Microsoft.AspNetCore.Http.HttpContext
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
   name: System.Threading.Tasks
   nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
