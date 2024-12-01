@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class BaseFixture
- | FastEndpoints </title>
+    <title>Class BaseFixture | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class BaseFixture
- | FastEndpoints ">
+    <meta name="title" content="Class BaseFixture | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,15 +80,19 @@
 
 
 
-  <h1 id="FastEndpoints_Testing_BaseFixture" data-uid="FastEndpoints.Testing.BaseFixture" class="text-break">Class BaseFixture
-</h1>
-  <div class="markdown level0 summary"></div>
+  <h1 id="FastEndpoints_Testing_BaseFixture" data-uid="FastEndpoints.Testing.BaseFixture" class="text-break">Class BaseFixture</h1>
+  <div class="markdown level0 summary"><p>base class for <a class="xref" href="FastEndpoints.Testing.AppFixture-1.html">AppFixture&lt;TProgram&gt;</a>.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">BaseFixture</span></div>
-      <div class="level2"><a class="xref" href="FastEndpoints.Testing.TestFixture-1.html">TestFixture&lt;TProgram&gt;</a></div>
+      <div class="level2"><a class="xref" href="FastEndpoints.Testing.AppFixture-1.html">AppFixture</a>&lt;TProgram&gt;</div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -120,18 +122,18 @@
   <h6><strong>Assembly</strong>: FastEndpoints.Testing.dll</h6>
   <h5 id="FastEndpoints_Testing_BaseFixture_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BaseFixture</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class BaseFixture : IFaker</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
 
 
-  <h4 id="FastEndpoints_Testing_BaseFixture_AppCache" data-uid="FastEndpoints.Testing.BaseFixture.AppCache">AppCache</h4>
+  <h4 id="FastEndpoints_Testing_BaseFixture_WafCache" data-uid="FastEndpoints.Testing.BaseFixture.WafCache">WafCache</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly ConcurrentDictionary&lt;Type, object&gt; AppCache</code></pre>
+    <pre><code class="lang-csharp hljs">protected static readonly ConcurrentDictionary&lt;Type, BaseFixture.AsyncLazy&lt;object&gt;&gt; WafCache</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -143,21 +145,25 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="FastEndpoints.Testing.BaseFixture.html">BaseFixture</a>.<a class="xref" href="FastEndpoints.Testing.BaseFixture.AsyncLazy-1.html">AsyncLazy</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="properties">Properties
+</h3>
 
 
-  <h4 id="FastEndpoints_Testing_BaseFixture__faker" data-uid="FastEndpoints.Testing.BaseFixture._faker">_faker</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="FastEndpoints_Testing_BaseFixture_Fake_" data-uid="FastEndpoints.Testing.BaseFixture.Fake*"></a>
+  <h4 id="FastEndpoints_Testing_BaseFixture_Fake" data-uid="FastEndpoints.Testing.BaseFixture.Fake">Fake</h4>
+  <div class="markdown level1 summary"><p>bogus data generator</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly Faker _faker</code></pre>
+    <pre><code class="lang-csharp hljs">public Faker Fake { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -172,6 +178,10 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a>
+  </div>
 
 </article>
           </div>

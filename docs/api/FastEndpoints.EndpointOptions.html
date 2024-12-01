@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class EndpointOptions
- | FastEndpoints </title>
+    <title>Class EndpointOptions | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class EndpointOptions
- | FastEndpoints ">
+    <meta name="title" content="Class EndpointOptions | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,8 +80,7 @@
 
 
 
-  <h1 id="FastEndpoints_EndpointOptions" data-uid="FastEndpoints.EndpointOptions" class="text-break">Class EndpointOptions
-</h1>
+  <h1 id="FastEndpoints_EndpointOptions" data-uid="FastEndpoints.EndpointOptions" class="text-break">Class EndpointOptions</h1>
   <div class="markdown level0 summary"><p>endpoint registration options</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -121,6 +118,32 @@
   </div>
   <h3 id="properties">Properties
 </h3>
+
+
+  <a id="FastEndpoints_EndpointOptions_AllowEmptyRequestDtos_" data-uid="FastEndpoints.EndpointOptions.AllowEmptyRequestDtos*"></a>
+  <h4 id="FastEndpoints_EndpointOptions_AllowEmptyRequestDtos" data-uid="FastEndpoints.EndpointOptions.AllowEmptyRequestDtos">AllowEmptyRequestDtos</h4>
+  <div class="markdown level1 summary"><p>allows the use of empty request dtos</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AllowEmptyRequestDtos { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_EndpointOptions_Configurator_" data-uid="FastEndpoints.EndpointOptions.Configurator*"></a>
@@ -183,6 +206,61 @@ this function will executed for each endpoint that has been discovered during st
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="FastEndpoints.EndpointDefinition.html">EndpointDefinition</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EndpointOptions_NameGenerator_" data-uid="FastEndpoints.EndpointOptions.NameGenerator*"></a>
+  <h4 id="FastEndpoints_EndpointOptions_NameGenerator" data-uid="FastEndpoints.EndpointOptions.NameGenerator">NameGenerator</h4>
+  <div class="markdown level1 summary"><p>specify a function to customize the endpoint name/swagger operation id. generate an endpoint name however you wish and return a string
+from your function. all available info for name generation is supplied via the <a class="xref" href="FastEndpoints.EndpointNameGenerationContext.html">EndpointNameGenerationContext</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;EndpointNameGenerationContext, string&gt; NameGenerator { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="FastEndpoints.EndpointNameGenerationContext.html">EndpointNameGenerationContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EndpointOptions_PrefixNameWithFirstTag_" data-uid="FastEndpoints.EndpointOptions.PrefixNameWithFirstTag*"></a>
+  <h4 id="FastEndpoints_EndpointOptions_PrefixNameWithFirstTag" data-uid="FastEndpoints.EndpointOptions.PrefixNameWithFirstTag">PrefixNameWithFirstTag</h4>
+  <div class="markdown level1 summary"><p>set to true if you'd like to automatically prefix endpoint name (swagger operation id) with the first endpoint tag.
+the generated the operation id would be in the form of: <code>MyTag_CreateOrderEndpoint</code>.  this should come in handy with generating separate api clients
+with nswag using the &quot;MultipleClientsFromOperationId&quot; setting  which requires operation ids to be have a group name prefix with an underscore.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PrefixNameWithFirstTag { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>

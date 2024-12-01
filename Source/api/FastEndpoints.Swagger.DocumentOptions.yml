@@ -15,13 +15,16 @@ items:
   - FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
   - FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
   - FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
+  - FastEndpoints.Swagger.DocumentOptions.ReleaseVersion
   - FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
   - FastEndpoints.Swagger.DocumentOptions.SerializerSettings
   - FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
   - FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
   - FastEndpoints.Swagger.DocumentOptions.TagCase
   - FastEndpoints.Swagger.DocumentOptions.TagDescriptions
-  - FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+  - FastEndpoints.Swagger.DocumentOptions.TagStripSymbols
+  - FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism
+  - FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy
   langs:
   - csharp
   - vb
@@ -29,10 +32,6 @@ items:
   nameWithType: DocumentOptions
   fullName: FastEndpoints.Swagger.DocumentOptions
   type: Class
-  source:
-    id: DocumentOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 8
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -62,10 +61,6 @@ items:
   nameWithType: DocumentOptions.AutoTagPathSegmentIndex
   fullName: FastEndpoints.Swagger.DocumentOptions.AutoTagPathSegmentIndex
   type: Property
-  source:
-    id: AutoTagPathSegmentIndex
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 13
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -89,10 +84,6 @@ items:
   nameWithType: DocumentOptions.DocumentSettings
   fullName: FastEndpoints.Swagger.DocumentOptions.DocumentSettings
   type: Property
-  source:
-    id: DocumentSettings
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 17
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -116,10 +107,6 @@ items:
   nameWithType: DocumentOptions.EnableGetRequestsWithBody
   fullName: FastEndpoints.Swagger.DocumentOptions.EnableGetRequestsWithBody
   type: Property
-  source:
-    id: EnableGetRequestsWithBody
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 22
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -146,14 +133,10 @@ items:
   nameWithType: DocumentOptions.EnableJWTBearerAuth
   fullName: FastEndpoints.Swagger.DocumentOptions.EnableJWTBearerAuth
   type: Property
-  source:
-    id: EnableJWTBearerAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 26
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: set to false to disable auto addition of jwt bearer auth support
+  summary: set to <code>false</code> to disable auto addition of jwt bearer auth support
   example: []
   syntax:
     content: public bool EnableJWTBearerAuth { get; set; }
@@ -173,10 +156,6 @@ items:
   nameWithType: DocumentOptions.EndpointFilter
   fullName: FastEndpoints.Swagger.DocumentOptions.EndpointFilter
   type: Property
-  source:
-    id: EndpointFilter
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 32
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -205,10 +184,6 @@ items:
   nameWithType: DocumentOptions.ExcludeNonFastEndpoints
   fullName: FastEndpoints.Swagger.DocumentOptions.ExcludeNonFastEndpoints
   type: Property
-  source:
-    id: ExcludeNonFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 36
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -232,10 +207,6 @@ items:
   nameWithType: DocumentOptions.FlattenSchema
   fullName: FastEndpoints.Swagger.DocumentOptions.FlattenSchema
   type: Property
-  source:
-    id: FlattenSchema
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 40
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -259,14 +230,10 @@ items:
   nameWithType: DocumentOptions.MaxEndpointVersion
   fullName: FastEndpoints.Swagger.DocumentOptions.MaxEndpointVersion
   type: Property
-  source:
-    id: MaxEndpointVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 44
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: endpoints greater than this version will not be included in the swagger doc.
+  summary: endpoints greater than this version will not be included in this swagger doc.
   example: []
   syntax:
     content: public int MaxEndpointVersion { get; set; }
@@ -286,10 +253,6 @@ items:
   nameWithType: DocumentOptions.MinEndpointVersion
   fullName: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
   type: Property
-  source:
-    id: MinEndpointVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 48
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -302,6 +265,38 @@ items:
       type: System.Int32
     content.vb: Public Property MinEndpointVersion As Integer
   overload: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion*
+- uid: FastEndpoints.Swagger.DocumentOptions.ReleaseVersion
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.ReleaseVersion
+  id: ReleaseVersion
+  parent: FastEndpoints.Swagger.DocumentOptions
+  langs:
+  - csharp
+  - vb
+  name: ReleaseVersion
+  nameWithType: DocumentOptions.ReleaseVersion
+  fullName: FastEndpoints.Swagger.DocumentOptions.ReleaseVersion
+  type: Property
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: >-
+    specify a "release version" for this swagger document. you can exclude endpoints from showing up under this swagger doc by specifying a higher
+
+    number than this on the endpoint like so:
+
+    <pre><code class="lang-csharp">Version(x).StartingRelease(2)</code></pre>
+
+    i.e. if the starting release of the endpoint is higher than the release version of this swagger doc, that endpoint will not show up for this
+
+    swagger doc.
+  example: []
+  syntax:
+    content: public int ReleaseVersion { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ReleaseVersion As Integer
+  overload: FastEndpoints.Swagger.DocumentOptions.ReleaseVersion*
 - uid: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
   commentId: P:FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
   id: ShowDeprecatedOps
@@ -313,10 +308,6 @@ items:
   nameWithType: DocumentOptions.ShowDeprecatedOps
   fullName: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
   type: Property
-  source:
-    id: ShowDeprecatedOps
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 53
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -343,10 +334,6 @@ items:
   nameWithType: DocumentOptions.RemoveEmptyRequestSchema
   fullName: FastEndpoints.Swagger.DocumentOptions.RemoveEmptyRequestSchema
   type: Property
-  source:
-    id: RemoveEmptyRequestSchema
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 58
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -373,10 +360,6 @@ items:
   nameWithType: DocumentOptions.SerializerSettings
   fullName: FastEndpoints.Swagger.DocumentOptions.SerializerSettings
   type: Property
-  source:
-    id: SerializerSettings
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 62
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -400,10 +383,6 @@ items:
   nameWithType: DocumentOptions.NewtonsoftSettings
   fullName: FastEndpoints.Swagger.DocumentOptions.NewtonsoftSettings
   type: Property
-  source:
-    id: NewtonsoftSettings
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 66
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -427,10 +406,6 @@ items:
   nameWithType: DocumentOptions.ShortSchemaNames
   fullName: FastEndpoints.Swagger.DocumentOptions.ShortSchemaNames
   type: Property
-  source:
-    id: ShortSchemaNames
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 70
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -454,10 +429,6 @@ items:
   nameWithType: DocumentOptions.TagCase
   fullName: FastEndpoints.Swagger.DocumentOptions.TagCase
   type: Property
-  source:
-    id: TagCase
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 74
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -470,6 +441,29 @@ items:
       type: FastEndpoints.Swagger.TagCase
     content.vb: Public Property TagCase As TagCase
   overload: FastEndpoints.Swagger.DocumentOptions.TagCase*
+- uid: FastEndpoints.Swagger.DocumentOptions.TagStripSymbols
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.TagStripSymbols
+  id: TagStripSymbols
+  parent: FastEndpoints.Swagger.DocumentOptions
+  langs:
+  - csharp
+  - vb
+  name: TagStripSymbols
+  nameWithType: DocumentOptions.TagStripSymbols
+  fullName: FastEndpoints.Swagger.DocumentOptions.TagStripSymbols
+  type: Property
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: specify whether to strip non-alphanumeric characters from tags.
+  example: []
+  syntax:
+    content: public bool TagStripSymbols { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property TagStripSymbols As Boolean
+  overload: FastEndpoints.Swagger.DocumentOptions.TagStripSymbols*
 - uid: FastEndpoints.Swagger.DocumentOptions.TagDescriptions
   commentId: P:FastEndpoints.Swagger.DocumentOptions.TagDescriptions
   id: TagDescriptions
@@ -481,10 +475,6 @@ items:
   nameWithType: DocumentOptions.TagDescriptions
   fullName: FastEndpoints.Swagger.DocumentOptions.TagDescriptions
   type: Property
-  source:
-    id: TagDescriptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 79
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -500,33 +490,72 @@ items:
       type: System.Action{System.Collections.Generic.Dictionary{System.String,System.String}}
     content.vb: Public Property TagDescriptions As Action(Of Dictionary(Of String, String))
   overload: FastEndpoints.Swagger.DocumentOptions.TagDescriptions*
-- uid: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
-  commentId: P:FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
-  id: UsePropertyNamingPolicyForParams
+- uid: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy
+  id: UsePropertyNamingPolicy
   parent: FastEndpoints.Swagger.DocumentOptions
   langs:
   - csharp
   - vb
-  name: UsePropertyNamingPolicyForParams
-  nameWithType: DocumentOptions.UsePropertyNamingPolicyForParams
-  fullName: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+  name: UsePropertyNamingPolicy
+  nameWithType: DocumentOptions.UsePropertyNamingPolicy
+  fullName: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy
   type: Property
-  source:
-    id: UsePropertyNamingPolicyForParams
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\DocumentOptions.cs
-    startLine: 84
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
-  summary: specify if <xref href="System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy" data-throw-if-not-resolved="false"></xref> should be used for naming swagger parameters that are generated by the default operation processor.
+  summary: >-
+    specify if <xref href="System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy" data-throw-if-not-resolved="false"></xref> should be used by the default swagger operation processor for
+
+    identifying/matching schema properties. default is 'true'.
   example: []
   syntax:
-    content: public bool UsePropertyNamingPolicyForParams { get; set; }
+    content: public bool UsePropertyNamingPolicy { get; set; }
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public Property UsePropertyNamingPolicyForParams As Boolean
-  overload: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams*
+    content.vb: Public Property UsePropertyNamingPolicy As Boolean
+  overload: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy*
+- uid: FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism
+  commentId: P:FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism
+  id: UseOneOfForPolymorphism
+  parent: FastEndpoints.Swagger.DocumentOptions
+  langs:
+  - csharp
+  - vb
+  name: UseOneOfForPolymorphism
+  nameWithType: DocumentOptions.UseOneOfForPolymorphism
+  fullName: FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism
+  type: Property
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: >-
+    by setting this to <code>true</code>, you can have base class types as request/response dtos and get swagger to generate possible derived types within a `oneOf`
+
+    field.
+
+    for this to take effect, you must correctly annotate the base type as follows:
+
+    <pre><code class="lang-csharp">[JsonPolymorphic(TypeDiscriminatorPropertyName = "_t")]
+
+    [JsonDerivedType(typeof(Apple), "a")]
+
+    [JsonDerivedType(typeof(Orange), "o")]
+
+    public class FruitBase
+
+    {
+        ...
+    }</code></pre>
+  example: []
+  syntax:
+    content: public bool UseOneOfForPolymorphism { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property UseOneOfForPolymorphism As Boolean
+  overload: FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism*
 references:
 - uid: FastEndpoints.Swagger
   commentId: N:FastEndpoints.Swagger
@@ -782,7 +811,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -1003,6 +1031,12 @@ references:
   name: MinEndpointVersion
   nameWithType: DocumentOptions.MinEndpointVersion
   fullName: FastEndpoints.Swagger.DocumentOptions.MinEndpointVersion
+- uid: FastEndpoints.Swagger.DocumentOptions.ReleaseVersion*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.ReleaseVersion
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_ReleaseVersion
+  name: ReleaseVersion
+  nameWithType: DocumentOptions.ReleaseVersion
+  fullName: FastEndpoints.Swagger.DocumentOptions.ReleaseVersion
 - uid: FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.ShowDeprecatedOps
   href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_ShowDeprecatedOps
@@ -1114,6 +1148,12 @@ references:
   name: TagCase
   nameWithType: TagCase
   fullName: FastEndpoints.Swagger.TagCase
+- uid: FastEndpoints.Swagger.DocumentOptions.TagStripSymbols*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.TagStripSymbols
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_TagStripSymbols
+  name: TagStripSymbols
+  nameWithType: DocumentOptions.TagStripSymbols
+  fullName: FastEndpoints.Swagger.DocumentOptions.TagStripSymbols
 - uid: FastEndpoints.Swagger.DocumentOptions.TagDescriptions*
   commentId: Overload:FastEndpoints.Swagger.DocumentOptions.TagDescriptions
   href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_TagDescriptions
@@ -1188,9 +1228,15 @@ references:
   name: PropertyNamingPolicy
   nameWithType: JsonSerializerOptions.PropertyNamingPolicy
   fullName: System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy
-- uid: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams*
-  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
-  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_UsePropertyNamingPolicyForParams
-  name: UsePropertyNamingPolicyForParams
-  nameWithType: DocumentOptions.UsePropertyNamingPolicyForParams
-  fullName: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicyForParams
+- uid: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_UsePropertyNamingPolicy
+  name: UsePropertyNamingPolicy
+  nameWithType: DocumentOptions.UsePropertyNamingPolicy
+  fullName: FastEndpoints.Swagger.DocumentOptions.UsePropertyNamingPolicy
+- uid: FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism*
+  commentId: Overload:FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism
+  href: FastEndpoints.Swagger.DocumentOptions.html#FastEndpoints_Swagger_DocumentOptions_UseOneOfForPolymorphism
+  name: UseOneOfForPolymorphism
+  nameWithType: DocumentOptions.UseOneOfForPolymorphism
+  fullName: FastEndpoints.Swagger.DocumentOptions.UseOneOfForPolymorphism

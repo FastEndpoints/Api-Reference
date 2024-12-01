@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ProblemDetails
- | FastEndpoints </title>
+    <title>Class ProblemDetails | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ProblemDetails
- | FastEndpoints ">
+    <meta name="title" content="Class ProblemDetails | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,12 +80,9 @@
 
 
 
-  <h1 id="FastEndpoints_ProblemDetails" data-uid="FastEndpoints.ProblemDetails" class="text-break">Class ProblemDetails
-</h1>
+  <h1 id="FastEndpoints_ProblemDetails" data-uid="FastEndpoints.ProblemDetails" class="text-break">Class ProblemDetails</h1>
   <div class="markdown level0 summary"><p>RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:</p>
-<p>
-    <code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>
-</p>
+<p><code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code></p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -216,14 +211,15 @@
 </h3>
 
 
-  <a id="FastEndpoints_ProblemDetails_AllowDuplicates_" data-uid="FastEndpoints.ProblemDetails.AllowDuplicates*"></a>
-  <h4 id="FastEndpoints_ProblemDetails_AllowDuplicates" data-uid="FastEndpoints.ProblemDetails.AllowDuplicates">AllowDuplicates</h4>
-  <div class="markdown level1 summary"><p>controls whether duplicate errors with the same name should be allowed.</p>
+  <a id="FastEndpoints_ProblemDetails_Detail_" data-uid="FastEndpoints.ProblemDetails.Detail*"></a>
+  <h4 id="FastEndpoints_ProblemDetails_Detail" data-uid="FastEndpoints.ProblemDetails.Detail">Detail</h4>
+  <div class="markdown level1 summary"><p>the details of the error</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool AllowDuplicates { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+public string? Detail { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -235,7 +231,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -292,32 +288,6 @@
   </table>
 
 
-  <a id="FastEndpoints_ProblemDetails_ResponseBuilder_" data-uid="FastEndpoints.ProblemDetails.ResponseBuilder*"></a>
-  <h4 id="FastEndpoints_ProblemDetails_ResponseBuilder" data-uid="FastEndpoints.ProblemDetails.ResponseBuilder">ResponseBuilder</h4>
-  <div class="markdown level1 summary"><p>the built-in function for transforming validation errors to a RFC7807 compatible problem details error response dto.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Func&lt;List&lt;ValidationFailure&gt;, HttpContext, int, object&gt; ResponseBuilder { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">ValidationFailure</span>&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
   <a id="FastEndpoints_ProblemDetails_Status_" data-uid="FastEndpoints.ProblemDetails.Status*"></a>
   <h4 id="FastEndpoints_ProblemDetails_Status" data-uid="FastEndpoints.ProblemDetails.Status">Status</h4>
   <div class="markdown level1 summary"></div>
@@ -368,32 +338,6 @@
   </table>
 
 
-  <a id="FastEndpoints_ProblemDetails_TitleValue_" data-uid="FastEndpoints.ProblemDetails.TitleValue*"></a>
-  <h4 id="FastEndpoints_ProblemDetails_TitleValue" data-uid="FastEndpoints.ProblemDetails.TitleValue">TitleValue</h4>
-  <div class="markdown level1 summary"><p>globally sets the 'Title' value of the problem details dto.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string TitleValue { set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
   <a id="FastEndpoints_ProblemDetails_TraceId_" data-uid="FastEndpoints.ProblemDetails.TraceId*"></a>
   <h4 id="FastEndpoints_ProblemDetails_TraceId" data-uid="FastEndpoints.ProblemDetails.TraceId">TraceId</h4>
   <div class="markdown level1 summary"></div>
@@ -426,32 +370,6 @@
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Type { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_ProblemDetails_TypeValue_" data-uid="FastEndpoints.ProblemDetails.TypeValue*"></a>
-  <h4 id="FastEndpoints_ProblemDetails_TypeValue" data-uid="FastEndpoints.ProblemDetails.TypeValue">TypeValue</h4>
-  <div class="markdown level1 summary"><p>globally sets the 'Type' value of the problem details dto.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string TypeValue { set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">

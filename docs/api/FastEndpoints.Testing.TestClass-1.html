@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class TestClass&lt;TFixture&gt;
- | FastEndpoints </title>
+    <title>Class TestClass&lt;TAppFixture&gt; | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class TestClass&lt;TFixture&gt;
- | FastEndpoints ">
+    <meta name="title" content="Class TestClass&lt;TAppFixture&gt; | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,23 +80,33 @@
 
 
 
-  <h1 id="FastEndpoints_Testing_TestClass_1" data-uid="FastEndpoints.Testing.TestClass`1" class="text-break">Class TestClass&lt;TFixture&gt;
-</h1>
-  <div class="markdown level0 summary"><p>abstract class for implementing a test-class, which is a collection of integration tests that may be related to each other.
-test methods can be run in a given order by decorating the methods with <span class="xref">Xunit.Priority.PriorityAttribute</span></p>
-</div>
+  <h1 id="FastEndpoints_Testing_TestClass_1" data-uid="FastEndpoints.Testing.TestClass`1" class="text-break">Class TestClass&lt;TAppFixture&gt;</h1>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">TestClass&lt;TFixture&gt;</span></div>
+    <div class="level1"><a class="xref" href="FastEndpoints.Testing.TestBase.html">TestBase</a></div>
+    <div class="level2"><a class="xref" href="FastEndpoints.Testing.TestBase-1.html">TestBase</a>&lt;TAppFixture&gt;</div>
+    <div class="level3"><span class="xref">TestClass&lt;TAppFixture&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><span class="xref">IClassFixture</span>&lt;TFixture&gt;</div>
+    <div><span class="xref">IAsyncLifetime</span></div>
+    <div><a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a></div>
+    <div><span class="xref">IClassFixture</span>&lt;TAppFixture&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Fake">TestBase.Fake</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_SetupAsync">TestBase.SetupAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_TearDownAsync">TestBase.TearDownAsync()</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -125,8 +133,8 @@ test methods can be run in a given order by decorating the methods with <span cl
   <h6><strong>Assembly</strong>: FastEndpoints.Testing.dll</h6>
   <h5 id="FastEndpoints_Testing_TestClass_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TestCaseOrderer(&quot;Xunit.Priority.PriorityOrderer&quot;, &quot;Xunit.Priority&quot;)]
-public abstract class TestClass&lt;TFixture&gt; : IClassFixture&lt;TFixture&gt; where TFixture : class, IFixture</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Use the TestBase&lt;TAppFixture&gt; class going forward. This class will be removed at the next major version jump.&quot;)]
+public abstract class TestClass&lt;TAppFixture&gt; : TestBase&lt;TAppFixture&gt;, IAsyncLifetime, IFaker, IClassFixture&lt;TAppFixture&gt; where TAppFixture : BaseFixture</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -138,11 +146,8 @@ public abstract class TestClass&lt;TFixture&gt; : IClassFixture&lt;TFixture&gt; 
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">TFixture</span></td>
-        <td><p>the type of the test fixture. a fixture is a shared data context for all tests of this class.
-the fixture is instantiated before any of the tests are executed and torn down after all tests have run.
-fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testing.TestFixture-1.html">TestFixture&lt;TProgram&gt;</a> abstract class.</p>
-</td>
+        <td><span class="parametername">TAppFixture</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -151,12 +156,12 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
 
 
   <a id="FastEndpoints_Testing_TestClass_1__ctor_" data-uid="FastEndpoints.Testing.TestClass`1.#ctor*"></a>
-  <h4 id="FastEndpoints_Testing_TestClass_1__ctor__0_Xunit_Abstractions_ITestOutputHelper_" data-uid="FastEndpoints.Testing.TestClass`1.#ctor(`0,Xunit.Abstractions.ITestOutputHelper)">TestClass(TFixture, ITestOutputHelper)</h4>
+  <h4 id="FastEndpoints_Testing_TestClass_1__ctor__0_Xunit_Abstractions_ITestOutputHelper_" data-uid="FastEndpoints.Testing.TestClass`1.#ctor(`0,Xunit.Abstractions.ITestOutputHelper)">TestClass(TAppFixture, ITestOutputHelper)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TestClass(TFixture f, ITestOutputHelper o)</code></pre>
+    <pre><code class="lang-csharp hljs">protected TestClass(TAppFixture a, ITestOutputHelper o)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -169,8 +174,8 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TFixture</span></td>
-        <td><span class="parametername">f</span></td>
+        <td><span class="xref">TAppFixture</span></td>
+        <td><span class="parametername">a</span></td>
         <td></td>
       </tr>
       <tr>
@@ -184,14 +189,14 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
 </h3>
 
 
-  <a id="FastEndpoints_Testing_TestClass_1_Fake_" data-uid="FastEndpoints.Testing.TestClass`1.Fake*"></a>
-  <h4 id="FastEndpoints_Testing_TestClass_1_Fake" data-uid="FastEndpoints.Testing.TestClass`1.Fake">Fake</h4>
-  <div class="markdown level1 summary"><p>bogus data generator</p>
+  <a id="FastEndpoints_Testing_TestClass_1_App_" data-uid="FastEndpoints.Testing.TestClass`1.App*"></a>
+  <h4 id="FastEndpoints_Testing_TestClass_1_App" data-uid="FastEndpoints.Testing.TestClass`1.App">App</h4>
+  <div class="markdown level1 summary"><p>app fixture that is shared among all tests of this class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Faker Fake { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected TAppFixture App { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -203,7 +208,7 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Faker</span></td>
+        <td><span class="xref">TAppFixture</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -212,12 +217,12 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
 
   <a id="FastEndpoints_Testing_TestClass_1_Fixture_" data-uid="FastEndpoints.Testing.TestClass`1.Fixture*"></a>
   <h4 id="FastEndpoints_Testing_TestClass_1_Fixture" data-uid="FastEndpoints.Testing.TestClass`1.Fixture">Fixture</h4>
-  <div class="markdown level1 summary"><p>fixture data that is shared among all tests of this class</p>
+  <div class="markdown level1 summary"><p>app fixture that is shared among all tests of this class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TFixture Fixture { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected TAppFixture Fixture { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -229,21 +234,24 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TFixture</span></td>
+        <td><span class="xref">TAppFixture</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="FastEndpoints_Testing_TestClass_1_Fixture_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>NOTE: this property will be deprecated in the future. use the <a class="xref" href="FastEndpoints.Testing.TestClass-1.html#FastEndpoints_Testing_TestClass_1_App">App</a> property instead.</p>
+</div>
 
 
   <a id="FastEndpoints_Testing_TestClass_1_Fx_" data-uid="FastEndpoints.Testing.TestClass`1.Fx*"></a>
   <h4 id="FastEndpoints_Testing_TestClass_1_Fx" data-uid="FastEndpoints.Testing.TestClass`1.Fx">Fx</h4>
-  <div class="markdown level1 summary"><p>fixture data that is shared among all tests of this class</p>
+  <div class="markdown level1 summary"><p>app fixture that is shared among all tests of this class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TFixture Fx { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected TAppFixture Fx { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -255,11 +263,14 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TFixture</span></td>
+        <td><span class="xref">TAppFixture</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="FastEndpoints_Testing_TestClass_1_Fx_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>NOTE: this property will be deprecated in the future. use the <a class="xref" href="FastEndpoints.Testing.TestClass-1.html#FastEndpoints_Testing_TestClass_1_App">App</a> property instead.</p>
+</div>
 
 
   <a id="FastEndpoints_Testing_TestClass_1_Output_" data-uid="FastEndpoints.Testing.TestClass`1.Output*"></a>
@@ -269,7 +280,7 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ITestOutputHelper Output { get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected ITestOutputHelper Output { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -287,6 +298,12 @@ fixtures are implemented by inheriting <a class="xref" href="FastEndpoints.Testi
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">Xunit.IAsyncLifetime</span>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a>
+  </div>
   <div>
       <span class="xref">Xunit.IClassFixture&lt;TFixture&gt;</span>
   </div>

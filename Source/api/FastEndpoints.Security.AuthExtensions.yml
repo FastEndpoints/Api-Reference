@@ -8,9 +8,11 @@ items:
   - FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.Security.Claims.Claim[])
   - FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.Security.Claims.Claim},System.ValueTuple{System.String,System.String}[])
   - FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List{System.String},System.String[])
+  - FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  - FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.Security.JwtSigningOptions},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
   - FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
-  - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
-  - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
+  - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
+  - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
   - FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
   - FastEndpoints.Security.AuthExtensions.ClaimValue(System.Security.Claims.ClaimsPrincipal,System.String)
   - FastEndpoints.Security.AuthExtensions.HasClaimType(System.Security.Claims.ClaimsPrincipal,System.String)
@@ -22,10 +24,6 @@ items:
   nameWithType: AuthExtensions
   fullName: FastEndpoints.Security.AuthExtensions
   type: Class
-  source:
-    id: AuthExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 15
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -44,50 +42,91 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
-  commentId: M:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
-  id: AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
+- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.Security.JwtSigningOptions},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.Security.JwtSigningOptions},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
+  id: AddAuthenticationJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.Security.JwtSigningOptions},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
   isExtensionMethod: true
   parent: FastEndpoints.Security.AuthExtensions
   langs:
   - csharp
   - vb
-  name: AddJWTBearerAuth(IServiceCollection, string, TokenSigningStyle, Action<TokenValidationParameters>?, Action<JwtBearerEvents>?)
-  nameWithType: AuthExtensions.AddJWTBearerAuth(IServiceCollection, string, JWTBearer.TokenSigningStyle, Action<TokenValidationParameters>?, Action<JwtBearerEvents>?)
-  fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Action<Microsoft.IdentityModel.Tokens.TokenValidationParameters>?, System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents>?)
+  name: AddAuthenticationJwtBearer(IServiceCollection, Action<JwtSigningOptions>, Action<JwtBearerOptions>?)
+  nameWithType: AuthExtensions.AddAuthenticationJwtBearer(IServiceCollection, Action<JwtSigningOptions>, Action<JwtBearerOptions>?)
+  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<FastEndpoints.Security.JwtSigningOptions>, System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>?)
   type: Method
-  source:
-    id: AddJWTBearerAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 24
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
   summary: configure and enable jwt bearer authentication
   example: []
   syntax:
-    content: public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, JWTBearer.TokenSigningStyle tokenSigningStyle = TokenSigningStyle.Symmetric, Action<TokenValidationParameters>? tokenValidation = null, Action<JwtBearerEvents>? bearerEvents = null)
+    content: public static IServiceCollection AddAuthenticationJwtBearer(this IServiceCollection services, Action<JwtSigningOptions> signingOptions, Action<JwtBearerOptions>? bearerOptions = null)
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    - id: signingOptions
+      type: System.Action{FastEndpoints.Security.JwtSigningOptions}
+      description: an action to configure <xref href="FastEndpoints.Security.JwtSigningOptions" data-throw-if-not-resolved="false"></xref>
+    - id: bearerOptions
+      type: System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
+      description: an action to configure <xref href="Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions" data-throw-if-not-resolved="false"></xref>
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function AddAuthenticationJwtBearer(services As IServiceCollection, signingOptions As Action(Of JwtSigningOptions), bearerOptions As Action(Of JwtBearerOptions) = Nothing) As IServiceCollection
+  overload: FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: ''
+  nameWithType.vb: AuthExtensions.AddAuthenticationJwtBearer(IServiceCollection, Action(Of JwtSigningOptions), Action(Of JwtBearerOptions))
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of FastEndpoints.Security.JwtSigningOptions), System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions))
+  name.vb: AddAuthenticationJwtBearer(IServiceCollection, Action(Of JwtSigningOptions), Action(Of JwtBearerOptions))
+- uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
+  id: AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters},System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents})
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddJWTBearerAuth(IServiceCollection, string, TokenSigningStyle, Action<TokenValidationParameters>?, Action<JwtBearerEvents>?)
+  nameWithType: AuthExtensions.AddJWTBearerAuth(IServiceCollection, string, TokenSigningStyle, Action<TokenValidationParameters>?, Action<JwtBearerEvents>?)
+  fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, FastEndpoints.Security.TokenSigningStyle, System.Action<Microsoft.IdentityModel.Tokens.TokenValidationParameters>?, System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents>?)
+  type: Method
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  syntax:
+    content: >-
+      [Obsolete("Use AddAuthenticationJwtBearer() method.")]
+
+      public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, TokenSigningStyle tokenSigningStyle = TokenSigningStyle.Symmetric, Action<TokenValidationParameters>? tokenValidation = null, Action<JwtBearerEvents>? bearerEvents = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     - id: tokenSigningKey
       type: System.String
-      description: the secret key to use for verifying the jwt tokens
     - id: tokenSigningStyle
-      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-      description: specify the token signing style
+      type: FastEndpoints.Security.TokenSigningStyle
     - id: tokenValidation
       type: System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}
-      description: configuration action to specify additional token validation parameters
     - id: bearerEvents
       type: System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents}
-      description: configuration action to specify custom jwt bearer events
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: Public Shared Function AddJWTBearerAuth(services As IServiceCollection, tokenSigningKey As String, tokenSigningStyle As JWTBearer.TokenSigningStyle = TokenSigningStyle.Symmetric, tokenValidation As Action(Of TokenValidationParameters) = Nothing, bearerEvents As Action(Of JwtBearerEvents) = Nothing) As IServiceCollection
+    content.vb: >-
+      <Obsolete("Use AddAuthenticationJwtBearer() method.")>
+
+      Public Shared Function AddJWTBearerAuth(services As IServiceCollection, tokenSigningKey As String, tokenSigningStyle As TokenSigningStyle = TokenSigningStyle.Symmetric, tokenValidation As Action(Of TokenValidationParameters) = Nothing, bearerEvents As Action(Of JwtBearerEvents) = Nothing) As IServiceCollection
   overload: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth*
-  nameWithType.vb: AuthExtensions.AddJWTBearerAuth(IServiceCollection, String, JWTBearer.TokenSigningStyle, Action(Of TokenValidationParameters), Action(Of JwtBearerEvents))
-  fullName.vb: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters), System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents))
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Use AddAuthenticationJwtBearer() method.
+  nameWithType.vb: AuthExtensions.AddJWTBearerAuth(IServiceCollection, String, TokenSigningStyle, Action(Of TokenValidationParameters), Action(Of JwtBearerEvents))
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, FastEndpoints.Security.TokenSigningStyle, System.Action(Of Microsoft.IdentityModel.Tokens.TokenValidationParameters), System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents))
   name.vb: AddJWTBearerAuth(IServiceCollection, String, TokenSigningStyle, Action(Of TokenValidationParameters), Action(Of JwtBearerEvents))
 - uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
   commentId: M:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
@@ -101,75 +140,117 @@ items:
   nameWithType: AuthExtensions.AddJWTBearerAuth(IServiceCollection, string, Action<JwtBearerOptions>)
   fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>)
   type: Method
-  source:
-    id: AddJWTBearerAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 45
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
-  summary: configure and enable jwt bearer authentication
-  example: []
   syntax:
-    content: public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, Action<JwtBearerOptions> jwtOptions)
+    content: >-
+      [Obsolete("Use AddAuthenticationJwtBearer() method.")]
+
+      public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, Action<JwtBearerOptions> jwtOptions)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     - id: tokenSigningKey
       type: System.String
-      description: the secret key to use for verifying the jwt tokens
     - id: jwtOptions
       type: System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
-      description: configuration action to specify options for the authentication scheme
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: Public Shared Function AddJWTBearerAuth(services As IServiceCollection, tokenSigningKey As String, jwtOptions As Action(Of JwtBearerOptions)) As IServiceCollection
+    content.vb: >-
+      <Obsolete("Use AddAuthenticationJwtBearer() method.")>
+
+      Public Shared Function AddJWTBearerAuth(services As IServiceCollection, tokenSigningKey As String, jwtOptions As Action(Of JwtBearerOptions)) As IServiceCollection
   overload: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Use AddAuthenticationJwtBearer() method.
   nameWithType.vb: AuthExtensions.AddJWTBearerAuth(IServiceCollection, String, Action(Of JwtBearerOptions))
   fullName.vb: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions))
   name.vb: AddJWTBearerAuth(IServiceCollection, String, Action(Of JwtBearerOptions))
-- uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
-  commentId: M:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
-  id: AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
+- uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
+  id: AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,FastEndpoints.Security.TokenSigningStyle,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions})
   isExtensionMethod: true
   parent: FastEndpoints.Security.AuthExtensions
   langs:
   - csharp
   - vb
   name: AddJWTBearerAuth(IServiceCollection, string, TokenSigningStyle, Action<JwtBearerOptions>?)
-  nameWithType: AuthExtensions.AddJWTBearerAuth(IServiceCollection, string, JWTBearer.TokenSigningStyle, Action<JwtBearerOptions>?)
-  fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>?)
+  nameWithType: AuthExtensions.AddJWTBearerAuth(IServiceCollection, string, TokenSigningStyle, Action<JwtBearerOptions>?)
+  fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, FastEndpoints.Security.TokenSigningStyle, System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>?)
   type: Method
-  source:
-    id: AddJWTBearerAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 56
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
-  summary: configure and enable jwt bearer authentication
-  example: []
   syntax:
-    content: public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, JWTBearer.TokenSigningStyle tokenSigningStyle, Action<JwtBearerOptions>? jwtOptions = null)
+    content: >-
+      [Obsolete("Use AddAuthenticationJwtBearer() method.")]
+
+      public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, string tokenSigningKey, TokenSigningStyle tokenSigningStyle, Action<JwtBearerOptions>? jwtOptions = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     - id: tokenSigningKey
       type: System.String
-      description: the secret key to use for verifying the jwt tokens
     - id: tokenSigningStyle
-      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-      description: specify the token signing style
+      type: FastEndpoints.Security.TokenSigningStyle
     - id: jwtOptions
       type: System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
-      description: configuration action to specify options for the authentication scheme
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: Public Shared Function AddJWTBearerAuth(services As IServiceCollection, tokenSigningKey As String, tokenSigningStyle As JWTBearer.TokenSigningStyle, jwtOptions As Action(Of JwtBearerOptions) = Nothing) As IServiceCollection
+    content.vb: >-
+      <Obsolete("Use AddAuthenticationJwtBearer() method.")>
+
+      Public Shared Function AddJWTBearerAuth(services As IServiceCollection, tokenSigningKey As String, tokenSigningStyle As TokenSigningStyle, jwtOptions As Action(Of JwtBearerOptions) = Nothing) As IServiceCollection
   overload: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth*
-  nameWithType.vb: AuthExtensions.AddJWTBearerAuth(IServiceCollection, String, JWTBearer.TokenSigningStyle, Action(Of JwtBearerOptions))
-  fullName.vb: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, FastEndpoints.Security.JWTBearer.TokenSigningStyle, System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions))
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Use AddAuthenticationJwtBearer() method.
+  nameWithType.vb: AuthExtensions.AddJWTBearerAuth(IServiceCollection, String, TokenSigningStyle, Action(Of JwtBearerOptions))
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, FastEndpoints.Security.TokenSigningStyle, System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions))
   name.vb: AddJWTBearerAuth(IServiceCollection, String, TokenSigningStyle, Action(Of JwtBearerOptions))
+- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  commentId: M:FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  id: AddAuthenticationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
+  isExtensionMethod: true
+  parent: FastEndpoints.Security.AuthExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddAuthenticationCookie(IServiceCollection, TimeSpan, Action<CookieAuthenticationOptions>?)
+  nameWithType: AuthExtensions.AddAuthenticationCookie(IServiceCollection, TimeSpan, Action<CookieAuthenticationOptions>?)
+  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.TimeSpan, System.Action<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>?)
+  type: Method
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: configure and enable cookie based authentication
+  example: []
+  syntax:
+    content: public static IServiceCollection AddAuthenticationCookie(this IServiceCollection services, TimeSpan validFor, Action<CookieAuthenticationOptions>? options = null)
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    - id: validFor
+      type: System.TimeSpan
+      description: specify how long the created cookie is valid for with a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>
+    - id: options
+      type: System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
+      description: optional action for configuring cookie authentication options
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function AddAuthenticationCookie(services As IServiceCollection, validFor As TimeSpan, options As Action(Of CookieAuthenticationOptions) = Nothing) As IServiceCollection
+  overload: FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie*
+  nameWithType.vb: AuthExtensions.AddAuthenticationCookie(IServiceCollection, TimeSpan, Action(Of CookieAuthenticationOptions))
+  fullName.vb: FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.TimeSpan, System.Action(Of Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions))
+  name.vb: AddAuthenticationCookie(IServiceCollection, TimeSpan, Action(Of CookieAuthenticationOptions))
 - uid: FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
   commentId: M:FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
   id: AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.TimeSpan,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})
@@ -182,30 +263,34 @@ items:
   nameWithType: AuthExtensions.AddCookieAuth(IServiceCollection, TimeSpan, Action<CookieAuthenticationOptions>?)
   fullName: FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.TimeSpan, System.Action<Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>?)
   type: Method
-  source:
-    id: AddCookieAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 106
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
-  summary: configure and enable cookie based authentication
-  example: []
   syntax:
-    content: public static IServiceCollection AddCookieAuth(this IServiceCollection services, TimeSpan validFor, Action<CookieAuthenticationOptions>? options = null)
+    content: >-
+      [Obsolete("Use AddAuthenticationCookie() method.")]
+
+      public static IServiceCollection AddCookieAuth(this IServiceCollection services, TimeSpan validFor, Action<CookieAuthenticationOptions>? options = null)
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
     - id: validFor
       type: System.TimeSpan
-      description: specify how long the created cookie is valid for with a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>
     - id: options
       type: System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
-      description: optional action for configuring cookie authentication options
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: Public Shared Function AddCookieAuth(services As IServiceCollection, validFor As TimeSpan, options As Action(Of CookieAuthenticationOptions) = Nothing) As IServiceCollection
+    content.vb: >-
+      <Obsolete("Use AddAuthenticationCookie() method.")>
+
+      Public Shared Function AddCookieAuth(services As IServiceCollection, validFor As TimeSpan, options As Action(Of CookieAuthenticationOptions) = Nothing) As IServiceCollection
   overload: FastEndpoints.Security.AuthExtensions.AddCookieAuth*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Use AddAuthenticationCookie() method.
   nameWithType.vb: AuthExtensions.AddCookieAuth(IServiceCollection, TimeSpan, Action(Of CookieAuthenticationOptions))
   fullName.vb: FastEndpoints.Security.AuthExtensions.AddCookieAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.TimeSpan, System.Action(Of Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions))
   name.vb: AddCookieAuth(IServiceCollection, TimeSpan, Action(Of CookieAuthenticationOptions))
@@ -221,10 +306,6 @@ items:
   nameWithType: AuthExtensions.HasPermission(ClaimsPrincipal, string)
   fullName: FastEndpoints.Security.AuthExtensions.HasPermission(System.Security.Claims.ClaimsPrincipal, string)
   type: Method
-  source:
-    id: HasPermission
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 128
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -257,10 +338,6 @@ items:
   nameWithType: AuthExtensions.HasClaimType(ClaimsPrincipal, string)
   fullName: FastEndpoints.Security.AuthExtensions.HasClaimType(System.Security.Claims.ClaimsPrincipal, string)
   type: Method
-  source:
-    id: HasClaimType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 135
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -293,10 +370,6 @@ items:
   nameWithType: AuthExtensions.ClaimValue(ClaimsPrincipal, string)
   fullName: FastEndpoints.Security.AuthExtensions.ClaimValue(System.Security.Claims.ClaimsPrincipal, string)
   type: Method
-  source:
-    id: ClaimValue
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 142
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -329,10 +402,6 @@ items:
   nameWithType: AuthExtensions.Add(List<Claim>, params Claim[])
   fullName: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List<System.Security.Claims.Claim>, params System.Security.Claims.Claim[])
   type: Method
-  source:
-    id: Add
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 149
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -363,10 +432,6 @@ items:
   nameWithType: AuthExtensions.Add(List<Claim>, params (string claimType, string claimValue)[])
   fullName: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List<System.Security.Claims.Claim>, params (string claimType, string claimValue)[])
   type: Method
-  source:
-    id: Add
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 155
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -397,10 +462,6 @@ items:
   nameWithType: AuthExtensions.Add(List<string>, params string[])
   fullName: FastEndpoints.Security.AuthExtensions.Add(System.Collections.Generic.List<string>, params string[])
   type: Method
-  source:
-    id: Add
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\AuthExtensions.cs
-    startLine: 162
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -674,17 +735,36 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth*
-  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth
-  href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_AddJWTBearerAuth_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_FastEndpoints_Security_JWTBearer_TokenSigningStyle_System_Action_Microsoft_IdentityModel_Tokens_TokenValidationParameters__System_Action_Microsoft_AspNetCore_Authentication_JwtBearer_JwtBearerEvents__
-  name: AddJWTBearerAuth
-  nameWithType: AuthExtensions.AddJWTBearerAuth
-  fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth
+- uid: FastEndpoints.Security.JwtSigningOptions
+  commentId: T:FastEndpoints.Security.JwtSigningOptions
+  href: FastEndpoints.Security.JwtSigningOptions.html
+  name: JwtSigningOptions
+  nameWithType: JwtSigningOptions
+  fullName: FastEndpoints.Security.JwtSigningOptions
+- uid: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
+  commentId: T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer.jwtbeareroptions
+  name: JwtBearerOptions
+  nameWithType: JwtBearerOptions
+  fullName: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer*
+  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer
+  href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_AddAuthenticationJwtBearer_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_FastEndpoints_Security_JwtSigningOptions__System_Action_Microsoft_AspNetCore_Authentication_JwtBearer_JwtBearerOptions__
+  name: AddAuthenticationJwtBearer
+  nameWithType: AuthExtensions.AddAuthenticationJwtBearer
+  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationJwtBearer
 - uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
   commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
   parent: Microsoft.Extensions.DependencyInjection
@@ -693,6 +773,145 @@ references:
   name: IServiceCollection
   nameWithType: IServiceCollection
   fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: System.Action{FastEndpoints.Security.JwtSigningOptions}
+  commentId: T:System.Action{FastEndpoints.Security.JwtSigningOptions}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<JwtSigningOptions>
+  nameWithType: Action<JwtSigningOptions>
+  fullName: System.Action<FastEndpoints.Security.JwtSigningOptions>
+  nameWithType.vb: Action(Of JwtSigningOptions)
+  fullName.vb: System.Action(Of FastEndpoints.Security.JwtSigningOptions)
+  name.vb: Action(Of JwtSigningOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.Security.JwtSigningOptions
+    name: JwtSigningOptions
+    href: FastEndpoints.Security.JwtSigningOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.Security.JwtSigningOptions
+    name: JwtSigningOptions
+    href: FastEndpoints.Security.JwtSigningOptions.html
+  - name: )
+- uid: System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
+  commentId: T:System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<JwtBearerOptions>
+  nameWithType: Action<JwtBearerOptions>
+  fullName: System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>
+  nameWithType.vb: Action(Of JwtBearerOptions)
+  fullName.vb: System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions)
+  name.vb: Action(Of JwtBearerOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
+    name: JwtBearerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer.jwtbeareroptions
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
+    name: JwtBearerOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer.jwtbeareroptions
+  - name: )
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth*
+  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth
+  href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_AddJWTBearerAuth_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_FastEndpoints_Security_TokenSigningStyle_System_Action_Microsoft_IdentityModel_Tokens_TokenValidationParameters__System_Action_Microsoft_AspNetCore_Authentication_JwtBearer_JwtBearerEvents__
+  name: AddJWTBearerAuth
+  nameWithType: AuthExtensions.AddJWTBearerAuth
+  fullName: FastEndpoints.Security.AuthExtensions.AddJWTBearerAuth
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -704,29 +923,13 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  commentId: T:FastEndpoints.Security.JWTBearer.TokenSigningStyle
+- uid: FastEndpoints.Security.TokenSigningStyle
+  commentId: T:FastEndpoints.Security.TokenSigningStyle
   parent: FastEndpoints.Security
-  href: FastEndpoints.Security.JWTBearer.html
-  name: JWTBearer.TokenSigningStyle
-  nameWithType: JWTBearer.TokenSigningStyle
-  fullName: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  spec.csharp:
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
-    href: FastEndpoints.Security.JWTBearer.html
-  - name: .
-  - uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    name: TokenSigningStyle
-    href: FastEndpoints.Security.JWTBearer.TokenSigningStyle.html
-  spec.vb:
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
-    href: FastEndpoints.Security.JWTBearer.html
-  - name: .
-  - uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    name: TokenSigningStyle
-    href: FastEndpoints.Security.JWTBearer.TokenSigningStyle.html
+  href: FastEndpoints.Security.TokenSigningStyle.html
+  name: TokenSigningStyle
+  nameWithType: TokenSigningStyle
+  fullName: FastEndpoints.Security.TokenSigningStyle
 - uid: System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}
   commentId: T:System.Action{Microsoft.IdentityModel.Tokens.TokenValidationParameters}
   parent: System
@@ -797,106 +1000,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer.jwtbearerevents
   - name: )
-- uid: Microsoft.Extensions.DependencyInjection
-  commentId: N:Microsoft.Extensions.DependencyInjection
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/microsoft
-  name: Microsoft.Extensions.DependencyInjection
-  nameWithType: Microsoft.Extensions.DependencyInjection
-  fullName: Microsoft.Extensions.DependencyInjection
-  spec.csharp:
-  - uid: Microsoft
-    name: Microsoft
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft
-  - name: .
-  - uid: Microsoft.Extensions
-    name: Extensions
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
-  - name: .
-  - uid: Microsoft.Extensions.DependencyInjection
-    name: DependencyInjection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
-  spec.vb:
-  - uid: Microsoft
-    name: Microsoft
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft
-  - name: .
-  - uid: Microsoft.Extensions
-    name: Extensions
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
-  - name: .
-  - uid: Microsoft.Extensions.DependencyInjection
-    name: DependencyInjection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
-- uid: System.Action`1
-  commentId: T:System.Action`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.action-1
-  name: Action<T>
-  nameWithType: Action<T>
-  fullName: System.Action<T>
-  nameWithType.vb: Action(Of T)
-  fullName.vb: System.Action(Of T)
-  name.vb: Action(Of T)
-  spec.csharp:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
-  commentId: T:System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions}
-  parent: System
-  definition: System.Action`1
-  href: https://learn.microsoft.com/dotnet/api/system.action-1
-  name: Action<JwtBearerOptions>
-  nameWithType: Action<JwtBearerOptions>
-  fullName: System.Action<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions>
-  nameWithType.vb: Action(Of JwtBearerOptions)
-  fullName.vb: System.Action(Of Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions)
-  name.vb: Action(Of JwtBearerOptions)
-  spec.csharp:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - uid: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
-    name: JwtBearerOptions
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer.jwtbeareroptions
-  - name: '>'
-  spec.vb:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions
-    name: JwtBearerOptions
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.jwtbearer.jwtbeareroptions
-  - name: )
 - uid: System.TimeSpan
   commentId: T:System.TimeSpan
   parent: System
@@ -905,12 +1008,12 @@ references:
   name: TimeSpan
   nameWithType: TimeSpan
   fullName: System.TimeSpan
-- uid: FastEndpoints.Security.AuthExtensions.AddCookieAuth*
-  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddCookieAuth
-  href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_AddCookieAuth_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_TimeSpan_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__
-  name: AddCookieAuth
-  nameWithType: AuthExtensions.AddCookieAuth
-  fullName: FastEndpoints.Security.AuthExtensions.AddCookieAuth
+- uid: FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie*
+  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie
+  href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_AddAuthenticationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_TimeSpan_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__
+  name: AddAuthenticationCookie
+  nameWithType: AuthExtensions.AddAuthenticationCookie
+  fullName: FastEndpoints.Security.AuthExtensions.AddAuthenticationCookie
 - uid: System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
   commentId: T:System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions}
   parent: System
@@ -946,6 +1049,12 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions
   - name: )
+- uid: FastEndpoints.Security.AuthExtensions.AddCookieAuth*
+  commentId: Overload:FastEndpoints.Security.AuthExtensions.AddCookieAuth
+  href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_AddCookieAuth_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_TimeSpan_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__
+  name: AddCookieAuth
+  nameWithType: AuthExtensions.AddCookieAuth
+  fullName: FastEndpoints.Security.AuthExtensions.AddCookieAuth
 - uid: FastEndpoints.Security.AuthExtensions.HasPermission*
   commentId: Overload:FastEndpoints.Security.AuthExtensions.HasPermission
   href: FastEndpoints.Security.AuthExtensions.html#FastEndpoints_Security_AuthExtensions_HasPermission_System_Security_Claims_ClaimsPrincipal_System_String_

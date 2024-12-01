@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class BindingOptions
- | FastEndpoints </title>
+    <title>Class BindingOptions | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class BindingOptions
- | FastEndpoints ">
+    <meta name="title" content="Class BindingOptions | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,8 +80,7 @@
 
 
 
-  <h1 id="FastEndpoints_BindingOptions" data-uid="FastEndpoints.BindingOptions" class="text-break">Class BindingOptions
-</h1>
+  <h1 id="FastEndpoints_BindingOptions" data-uid="FastEndpoints.BindingOptions" class="text-break">Class BindingOptions</h1>
   <div class="markdown level0 summary"><p>request binding options</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -125,15 +122,13 @@
 
   <a id="FastEndpoints_BindingOptions_FailureMessage_" data-uid="FastEndpoints.BindingOptions.FailureMessage*"></a>
   <h4 id="FastEndpoints_BindingOptions_FailureMessage" data-uid="FastEndpoints.BindingOptions.FailureMessage">FailureMessage</h4>
-  <div class="markdown level1 summary"><p>a function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.</p>
+  <div class="markdown level1 summary"><p>a function used to construct the failure message when a supplied value cannot be successfully bound to a dto property during model binding.</p>
 <p>
 NOTE: this only applies to non-STJ operations. for customizing error messages of STJ binding failures, specify a
 <a class="xref" href="FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer">JsonExceptionTransformer</a> func.
 </p>
 the following arguments are supplied to the function.
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the property which failed to bind</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>: the name of the property which failed to bind</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>: the value that was attempted which resulted in the failure</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the property which failed to bind</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>: the name of the property which failed to bind</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>: the value that was attempted which resulted in the failure</p>
 use these input parameters and construct your own error message string and return it from the function.
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -152,6 +147,66 @@ use these input parameters and construct your own error message string and retur
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BindingOptions_FormExceptionTransformer_" data-uid="FastEndpoints.BindingOptions.FormExceptionTransformer*"></a>
+  <h4 id="FastEndpoints_BindingOptions_FormExceptionTransformer" data-uid="FastEndpoints.BindingOptions.FormExceptionTransformer">FormExceptionTransformer</h4>
+  <div class="markdown level1 summary"><p>if this function is specified, any internal exceptions that are thrown by asp.net when accessing multipart form data will be caught and transformed to
+validation
+failures using this function. by default those exceptions are not caught and thrown out to the middleware pipeline. setting this func might come in handy
+if
+you need 413 responses (that arise from incoming request body size exceeding kestrel's <code>MaxRequestBodySize</code>) automatically transformed to 400 problem
+details
+responses.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;Exception, ValidationFailure&gt;? FormExceptionTransformer { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>, <span class="xref">ValidationFailure</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BindingOptions_JsonExceptionStatusCode_" data-uid="FastEndpoints.BindingOptions.JsonExceptionStatusCode*"></a>
+  <h4 id="FastEndpoints_BindingOptions_JsonExceptionStatusCode" data-uid="FastEndpoints.BindingOptions.JsonExceptionStatusCode">JsonExceptionStatusCode</h4>
+  <div class="markdown level1 summary"><p>this http status code will be used for all automatically sent <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonexception">JsonException</a> responses  which are built using the
+<a class="xref" href="FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer">JsonExceptionTransformer</a>
+func. defaults to 400.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int JsonExceptionStatusCode { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -195,11 +250,7 @@ NOTE: this only applies to STJ based operations. for customizing error messages 
   <div class="markdown level1 summary"><p>an optional action to be run after the endpoint level request binding has occured.
 it is intended as a way to perform common model binding logic that applies to all endpoints/requests.
 the action is passed in the following arguments:</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>: the request dto instance</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the request dto</p>
-<p><a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a>: the request binding context</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>: a cancellation token</p>
-<p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>: the request dto instance</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the request dto</p><p><a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a>: the request binding context</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>: a cancellation token</p><p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -217,6 +268,34 @@ the action is passed in the following arguments:</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-4">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BindingOptions_ReflectionCache_" data-uid="FastEndpoints.BindingOptions.ReflectionCache*"></a>
+  <h4 id="FastEndpoints_BindingOptions_ReflectionCache" data-uid="FastEndpoints.BindingOptions.ReflectionCache">ReflectionCache</h4>
+  <div class="markdown level1 summary"><p>the central cache of request dto related reflection data.
+populating this cache with source generated data will eliminate expression compilations during runtime as well as usage of
+reflection based property setters, etc. see the source generator documentation on how to populate this cache with generated data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReflectionCache ReflectionCache { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ReflectionCache.html">ReflectionCache</a></td>
         <td></td>
       </tr>
     </tbody>

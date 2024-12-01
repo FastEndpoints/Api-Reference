@@ -5,8 +5,11 @@ items:
   id: EndpointOptions
   parent: FastEndpoints
   children:
+  - FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
   - FastEndpoints.EndpointOptions.Configurator
   - FastEndpoints.EndpointOptions.Filter
+  - FastEndpoints.EndpointOptions.NameGenerator
+  - FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
   - FastEndpoints.EndpointOptions.RoutePrefix
   - FastEndpoints.EndpointOptions.ShortNames
   langs:
@@ -16,10 +19,6 @@ items:
   nameWithType: EndpointOptions
   fullName: FastEndpoints.EndpointOptions
   type: Class
-  source:
-    id: EndpointOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\EndpointOptions.cs
-    startLine: 5
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -37,6 +36,32 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: FastEndpoints.EndpointOptions.NameGenerator
+  commentId: P:FastEndpoints.EndpointOptions.NameGenerator
+  id: NameGenerator
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: NameGenerator
+  nameWithType: EndpointOptions.NameGenerator
+  fullName: FastEndpoints.EndpointOptions.NameGenerator
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    specify a function to customize the endpoint name/swagger operation id. generate an endpoint name however you wish and return a string
+
+    from your function. all available info for name generation is supplied via the <xref href="FastEndpoints.EndpointNameGenerationContext" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Func<EndpointNameGenerationContext, string> NameGenerator { set; }
+    parameters: []
+    return:
+      type: System.Func{FastEndpoints.EndpointNameGenerationContext,System.String}
+    content.vb: Public Property NameGenerator As Func(Of EndpointNameGenerationContext, String)
+  overload: FastEndpoints.EndpointOptions.NameGenerator*
 - uid: FastEndpoints.EndpointOptions.ShortNames
   commentId: P:FastEndpoints.EndpointOptions.ShortNames
   id: ShortNames
@@ -48,10 +73,6 @@ items:
   nameWithType: EndpointOptions.ShortNames
   fullName: FastEndpoints.EndpointOptions.ShortNames
   type: Property
-  source:
-    id: ShortNames
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\EndpointOptions.cs
-    startLine: 11
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -67,6 +88,34 @@ items:
       type: System.Boolean
     content.vb: Public Property ShortNames As Boolean
   overload: FastEndpoints.EndpointOptions.ShortNames*
+- uid: FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
+  commentId: P:FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
+  id: PrefixNameWithFirstTag
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: PrefixNameWithFirstTag
+  nameWithType: EndpointOptions.PrefixNameWithFirstTag
+  fullName: FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    set to true if you'd like to automatically prefix endpoint name (swagger operation id) with the first endpoint tag.
+
+    the generated the operation id would be in the form of: <code>MyTag_CreateOrderEndpoint</code>.  this should come in handy with generating separate api clients
+
+    with nswag using the "MultipleClientsFromOperationId" setting  which requires operation ids to be have a group name prefix with an underscore.
+  example: []
+  syntax:
+    content: public bool PrefixNameWithFirstTag { set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property PrefixNameWithFirstTag As Boolean
+  overload: FastEndpoints.EndpointOptions.PrefixNameWithFirstTag*
 - uid: FastEndpoints.EndpointOptions.RoutePrefix
   commentId: P:FastEndpoints.EndpointOptions.RoutePrefix
   id: RoutePrefix
@@ -78,10 +127,6 @@ items:
   nameWithType: EndpointOptions.RoutePrefix
   fullName: FastEndpoints.EndpointOptions.RoutePrefix
   type: Property
-  source:
-    id: RoutePrefix
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\EndpointOptions.cs
-    startLine: 16
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -105,10 +150,6 @@ items:
   nameWithType: EndpointOptions.Filter
   fullName: FastEndpoints.EndpointOptions.Filter
   type: Property
-  source:
-    id: Filter
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\EndpointOptions.cs
-    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -143,10 +184,6 @@ items:
   nameWithType: EndpointOptions.Configurator
   fullName: FastEndpoints.EndpointOptions.Configurator
   type: Property
-  source:
-    id: Configurator
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\EndpointOptions.cs
-    startLine: 42
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -175,6 +212,29 @@ items:
       type: System.Action{FastEndpoints.EndpointDefinition}
     content.vb: Public Property Configurator As Action(Of EndpointDefinition)
   overload: FastEndpoints.EndpointOptions.Configurator*
+- uid: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
+  commentId: P:FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
+  id: AllowEmptyRequestDtos
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: AllowEmptyRequestDtos
+  nameWithType: EndpointOptions.AllowEmptyRequestDtos
+  fullName: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: allows the use of empty request dtos
+  example: []
+  syntax:
+    content: public bool AllowEmptyRequestDtos { set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AllowEmptyRequestDtos As Boolean
+  overload: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos*
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -390,11 +450,101 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.EndpointNameGenerationContext
+  commentId: T:FastEndpoints.EndpointNameGenerationContext
+  href: FastEndpoints.EndpointNameGenerationContext.html
+  name: EndpointNameGenerationContext
+  nameWithType: EndpointNameGenerationContext
+  fullName: FastEndpoints.EndpointNameGenerationContext
+- uid: FastEndpoints.EndpointOptions.NameGenerator*
+  commentId: Overload:FastEndpoints.EndpointOptions.NameGenerator
+  href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_NameGenerator
+  name: NameGenerator
+  nameWithType: EndpointOptions.NameGenerator
+  fullName: FastEndpoints.EndpointOptions.NameGenerator
+- uid: System.Func{FastEndpoints.EndpointNameGenerationContext,System.String}
+  commentId: T:System.Func{FastEndpoints.EndpointNameGenerationContext,System.String}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<EndpointNameGenerationContext, string>
+  nameWithType: Func<EndpointNameGenerationContext, string>
+  fullName: System.Func<FastEndpoints.EndpointNameGenerationContext, string>
+  nameWithType.vb: Func(Of EndpointNameGenerationContext, String)
+  fullName.vb: System.Func(Of FastEndpoints.EndpointNameGenerationContext, String)
+  name.vb: Func(Of EndpointNameGenerationContext, String)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: FastEndpoints.EndpointNameGenerationContext
+    name: EndpointNameGenerationContext
+    href: FastEndpoints.EndpointNameGenerationContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.EndpointNameGenerationContext
+    name: EndpointNameGenerationContext
+    href: FastEndpoints.EndpointNameGenerationContext.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: FastEndpoints.EndpointOptions.ShortNames*
   commentId: Overload:FastEndpoints.EndpointOptions.ShortNames
   href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_ShortNames
@@ -412,6 +562,12 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: FastEndpoints.EndpointOptions.PrefixNameWithFirstTag*
+  commentId: Overload:FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
+  href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_PrefixNameWithFirstTag
+  name: PrefixNameWithFirstTag
+  nameWithType: EndpointOptions.PrefixNameWithFirstTag
+  fullName: FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
 - uid: FastEndpoints.EndpointOptions.RoutePrefix*
   commentId: Overload:FastEndpoints.EndpointOptions.RoutePrefix
   href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_RoutePrefix
@@ -480,40 +636,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
-- uid: System.Func`2
-  commentId: T:System.Func`2
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.func-2
-  name: Func<T, TResult>
-  nameWithType: Func<T, TResult>
-  fullName: System.Func<T, TResult>
-  nameWithType.vb: Func(Of T, TResult)
-  fullName.vb: System.Func(Of T, TResult)
-  name.vb: Func(Of T, TResult)
-  spec.csharp:
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: <
-  - name: T
-  - name: ','
-  - name: " "
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: System.Func`2
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: ','
-  - name: " "
-  - name: TResult
-  - name: )
 - uid: FastEndpoints.EndpointOptions.Configurator*
   commentId: Overload:FastEndpoints.EndpointOptions.Configurator
   href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_Configurator
@@ -581,3 +703,9 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos*
+  commentId: Overload:FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
+  href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_AllowEmptyRequestDtos
+  name: AllowEmptyRequestDtos
+  nameWithType: EndpointOptions.AllowEmptyRequestDtos
+  fullName: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos

@@ -13,28 +13,25 @@ items:
   nameWithType: PreProcessor<TRequest, TState>
   fullName: FastEndpoints.PreProcessor<TRequest, TState>
   type: Class
-  source:
-    id: PreProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\PreProcessor.cs
-    startLine: 7
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: inherit this class to create a pre-processor with access to the common processor state of the endpoint
   example: []
   syntax:
-    content: 'public abstract class PreProcessor<TRequest, TState> : IPreProcessor<TRequest>, IPreProcessor where TState : class, new()'
+    content: 'public abstract class PreProcessor<TRequest, TState> : IPreProcessor<TRequest>, IPreProcessor, IProcessor where TState : class, new()'
     typeParameters:
     - id: TRequest
       description: type of the request dto
     - id: TState
       description: type of the common processor state
-    content.vb: Public MustInherit Class PreProcessor(Of TRequest, TState As {Class, New}) Implements IPreProcessor(Of TRequest), IPreProcessor
+    content.vb: Public MustInherit Class PreProcessor(Of TRequest, TState As {Class, New}) Implements IPreProcessor(Of TRequest), IPreProcessor, IProcessor
   inheritance:
   - System.Object
   implements:
   - FastEndpoints.IPreProcessor{{TRequest}}
   - FastEndpoints.IPreProcessor
+  - FastEndpoints.IProcessor
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -57,10 +54,6 @@ items:
   nameWithType: PreProcessor<TRequest, TState>.PreProcessAsync(IPreProcessorContext<TRequest>, TState, CancellationToken)
   fullName: FastEndpoints.PreProcessor<TRequest, TState>.PreProcessAsync(FastEndpoints.IPreProcessorContext<TRequest>, TState, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: PreProcessAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\PreProcessor.cs
-    startLine: 24
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -137,6 +130,13 @@ references:
   name: IPreProcessor
   nameWithType: IPreProcessor
   fullName: FastEndpoints.IPreProcessor
+- uid: FastEndpoints.IProcessor
+  commentId: T:FastEndpoints.IProcessor
+  parent: FastEndpoints
+  href: FastEndpoints.IProcessor.html
+  name: IProcessor
+  nameWithType: IProcessor
+  fullName: FastEndpoints.IProcessor
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -358,7 +358,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System

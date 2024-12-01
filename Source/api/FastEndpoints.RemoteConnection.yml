@@ -5,14 +5,7 @@ items:
   id: RemoteConnection
   parent: FastEndpoints
   children:
-  - FastEndpoints.RemoteConnection.ChannelOptions
-  - FastEndpoints.RemoteConnection.RegisterClientStream``2
   - FastEndpoints.RemoteConnection.RegisterEvent``1
-  - FastEndpoints.RemoteConnection.RegisterServerStream``2
-  - FastEndpoints.RemoteConnection.Register``1
-  - FastEndpoints.RemoteConnection.Register``2
-  - FastEndpoints.RemoteConnection.RemoteAddress
-  - FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
   langs:
   - csharp
   - vb
@@ -20,120 +13,31 @@ items:
   nameWithType: RemoteConnection
   fullName: FastEndpoints.RemoteConnection
   type: Class
-  source:
-    id: RemoteConnection
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 11
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
   summary: represents a connection to a remote server that hosts command and event handlers
   example: []
   syntax:
-    content: public sealed class RemoteConnection
-    content.vb: Public NotInheritable Class RemoteConnection
+    content: 'public sealed class RemoteConnection : RemoteConnectionCore'
+    content.vb: Public NotInheritable Class RemoteConnection Inherits RemoteConnectionCore
   inheritance:
   - System.Object
+  - FastEndpoints.RemoteConnectionCore
   inheritedMembers:
+  - FastEndpoints.RemoteConnectionCore.ChannelOptions
+  - FastEndpoints.RemoteConnectionCore.RemoteAddress
+  - FastEndpoints.RemoteConnectionCore.Register``1
+  - FastEndpoints.RemoteConnectionCore.Register``2
+  - FastEndpoints.RemoteConnectionCore.RegisterServerStream``2
+  - FastEndpoints.RemoteConnectionCore.RegisterClientStream``2
+  - FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: FastEndpoints.RemoteConnection.ChannelOptions
-  commentId: P:FastEndpoints.RemoteConnection.ChannelOptions
-  id: ChannelOptions
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: ChannelOptions
-  nameWithType: RemoteConnection.ChannelOptions
-  fullName: FastEndpoints.RemoteConnection.ChannelOptions
-  type: Property
-  source:
-    id: ChannelOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 28
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: grpc channel settings
-  example: []
-  syntax:
-    content: public GrpcChannelOptions ChannelOptions { get; set; }
-    parameters: []
-    return:
-      type: Grpc.Net.Client.GrpcChannelOptions
-    content.vb: Public Property ChannelOptions As GrpcChannelOptions
-  overload: FastEndpoints.RemoteConnection.ChannelOptions*
-- uid: FastEndpoints.RemoteConnection.RemoteAddress
-  commentId: P:FastEndpoints.RemoteConnection.RemoteAddress
-  id: RemoteAddress
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: RemoteAddress
-  nameWithType: RemoteConnection.RemoteAddress
-  fullName: FastEndpoints.RemoteConnection.RemoteAddress
-  type: Property
-  source:
-    id: RemoteAddress
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 58
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: the address of the remote server
-  example: []
-  syntax:
-    content: public string RemoteAddress { get; init; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Property RemoteAddress As String
-  overload: FastEndpoints.RemoteConnection.RemoteAddress*
-- uid: FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
-  commentId: M:FastEndpoints.RemoteConnection.Subscribe``2(Grpc.Core.CallOptions)
-  id: Subscribe``2(Grpc.Core.CallOptions)
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: Subscribe<TEvent, TEventHandler>(CallOptions)
-  nameWithType: RemoteConnection.Subscribe<TEvent, TEventHandler>(CallOptions)
-  fullName: FastEndpoints.RemoteConnection.Subscribe<TEvent, TEventHandler>(Grpc.Core.CallOptions)
-  type: Method
-  source:
-    id: Subscribe
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 76
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: >-
-    subscribe to a broadcast channel for a given event type (<code class="typeparamref">TEvent</code>) on the remote host.
-
-    the received events will be handled by the specified handler (<code class="typeparamref">TEventHandler</code>) on this machine.
-  example: []
-  syntax:
-    content: 'public void Subscribe<TEvent, TEventHandler>(CallOptions callOptions = default) where TEvent : class, IEvent where TEventHandler : IEventHandler<TEvent>'
-    parameters:
-    - id: callOptions
-      type: Grpc.Core.CallOptions
-      description: the call options
-    typeParameters:
-    - id: TEvent
-      description: the type of the events that will be received
-    - id: TEventHandler
-      description: the handler that will be handling the received events
-    content.vb: Public Sub Subscribe(Of TEvent As {Class, IEvent}, TEventHandler As IEventHandler(Of TEvent))(callOptions As CallOptions = Nothing)
-  overload: FastEndpoints.RemoteConnection.Subscribe*
-  nameWithType.vb: RemoteConnection.Subscribe(Of TEvent, TEventHandler)(CallOptions)
-  fullName.vb: FastEndpoints.RemoteConnection.Subscribe(Of TEvent, TEventHandler)(Grpc.Core.CallOptions)
-  name.vb: Subscribe(Of TEvent, TEventHandler)(CallOptions)
 - uid: FastEndpoints.RemoteConnection.RegisterEvent``1
   commentId: M:FastEndpoints.RemoteConnection.RegisterEvent``1
   id: RegisterEvent``1
@@ -145,10 +49,6 @@ items:
   nameWithType: RemoteConnection.RegisterEvent<TEvent>()
   fullName: FastEndpoints.RemoteConnection.RegisterEvent<TEvent>()
   type: Method
-  source:
-    id: RegisterEvent
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 99
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
@@ -164,132 +64,6 @@ items:
   nameWithType.vb: RemoteConnection.RegisterEvent(Of TEvent)()
   fullName.vb: FastEndpoints.RemoteConnection.RegisterEvent(Of TEvent)()
   name.vb: RegisterEvent(Of TEvent)()
-- uid: FastEndpoints.RemoteConnection.Register``1
-  commentId: M:FastEndpoints.RemoteConnection.Register``1
-  id: Register``1
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: Register<TCommand>()
-  nameWithType: RemoteConnection.Register<TCommand>()
-  fullName: FastEndpoints.RemoteConnection.Register<TCommand>()
-  type: Method
-  source:
-    id: Register
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 118
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: register a "void" command (<xref href="FastEndpoints.ICommand" data-throw-if-not-resolved="false"></xref>) for this remote connection where the handler for it is hosted/located.
-  example: []
-  syntax:
-    content: 'public void Register<TCommand>() where TCommand : class, ICommand'
-    typeParameters:
-    - id: TCommand
-      description: the type of the command
-    content.vb: Public Sub Register(Of TCommand As {Class, ICommand})()
-  overload: FastEndpoints.RemoteConnection.Register*
-  nameWithType.vb: RemoteConnection.Register(Of TCommand)()
-  fullName.vb: FastEndpoints.RemoteConnection.Register(Of TCommand)()
-  name.vb: Register(Of TCommand)()
-- uid: FastEndpoints.RemoteConnection.Register``2
-  commentId: M:FastEndpoints.RemoteConnection.Register``2
-  id: Register``2
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: Register<TCommand, TResult>()
-  nameWithType: RemoteConnection.Register<TCommand, TResult>()
-  fullName: FastEndpoints.RemoteConnection.Register<TCommand, TResult>()
-  type: Method
-  source:
-    id: Register
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 138
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: register a "unary" command (<xref href="FastEndpoints.ICommand%601" data-throw-if-not-resolved="false"></xref>) for this remote connection where the handler for it is hosted/located.
-  example: []
-  syntax:
-    content: 'public void Register<TCommand, TResult>() where TCommand : class, ICommand<TResult> where TResult : class'
-    typeParameters:
-    - id: TCommand
-      description: the type of the command
-    - id: TResult
-      description: the type of the result
-    content.vb: Public Sub Register(Of TCommand As {Class, ICommand(Of TResult)}, TResult As Class)()
-  overload: FastEndpoints.RemoteConnection.Register*
-  nameWithType.vb: RemoteConnection.Register(Of TCommand, TResult)()
-  fullName.vb: FastEndpoints.RemoteConnection.Register(Of TCommand, TResult)()
-  name.vb: Register(Of TCommand, TResult)()
-- uid: FastEndpoints.RemoteConnection.RegisterServerStream``2
-  commentId: M:FastEndpoints.RemoteConnection.RegisterServerStream``2
-  id: RegisterServerStream``2
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: RegisterServerStream<TCommand, TResult>()
-  nameWithType: RemoteConnection.RegisterServerStream<TCommand, TResult>()
-  fullName: FastEndpoints.RemoteConnection.RegisterServerStream<TCommand, TResult>()
-  type: Method
-  source:
-    id: RegisterServerStream
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 158
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: register a "server stream" command (<xref href="FastEndpoints.IServerStreamCommand%601" data-throw-if-not-resolved="false"></xref>) for this remote connection where the handler for it is hosted/located.
-  example: []
-  syntax:
-    content: 'public void RegisterServerStream<TCommand, TResult>() where TCommand : class, IServerStreamCommand<TResult> where TResult : class'
-    typeParameters:
-    - id: TCommand
-      description: the type of the command
-    - id: TResult
-      description: the type of the result stream
-    content.vb: Public Sub RegisterServerStream(Of TCommand As {Class, IServerStreamCommand(Of TResult)}, TResult As Class)()
-  overload: FastEndpoints.RemoteConnection.RegisterServerStream*
-  nameWithType.vb: RemoteConnection.RegisterServerStream(Of TCommand, TResult)()
-  fullName.vb: FastEndpoints.RemoteConnection.RegisterServerStream(Of TCommand, TResult)()
-  name.vb: RegisterServerStream(Of TCommand, TResult)()
-- uid: FastEndpoints.RemoteConnection.RegisterClientStream``2
-  commentId: M:FastEndpoints.RemoteConnection.RegisterClientStream``2
-  id: RegisterClientStream``2
-  parent: FastEndpoints.RemoteConnection
-  langs:
-  - csharp
-  - vb
-  name: RegisterClientStream<T, TResult>()
-  nameWithType: RemoteConnection.RegisterClientStream<T, TResult>()
-  fullName: FastEndpoints.RemoteConnection.RegisterClientStream<T, TResult>()
-  type: Method
-  source:
-    id: RegisterClientStream
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\RemoteConnection.cs
-    startLine: 178
-  assemblies:
-  - FastEndpoints.Messaging.Remote
-  namespace: FastEndpoints
-  summary: register a remote handler for a "client stream" (<xref href="System.Collections.Generic.IAsyncEnumerable%601" data-throw-if-not-resolved="false"></xref>) for this remote connection.
-  example: []
-  syntax:
-    content: 'public void RegisterClientStream<T, TResult>() where T : class where TResult : class'
-    typeParameters:
-    - id: T
-      description: the type of the items in the stream
-    - id: TResult
-      description: the type of the result that will be received when the stream ends
-    content.vb: Public Sub RegisterClientStream(Of T As Class, TResult As Class)()
-  overload: FastEndpoints.RemoteConnection.RegisterClientStream*
-  nameWithType.vb: RemoteConnection.RegisterClientStream(Of T, TResult)()
-  fullName.vb: FastEndpoints.RemoteConnection.RegisterClientStream(Of T, TResult)()
-  name.vb: RegisterClientStream(Of T, TResult)()
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -308,6 +82,209 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
+- uid: FastEndpoints.RemoteConnectionCore
+  commentId: T:FastEndpoints.RemoteConnectionCore
+  parent: FastEndpoints
+  href: FastEndpoints.RemoteConnectionCore.html
+  name: RemoteConnectionCore
+  nameWithType: RemoteConnectionCore
+  fullName: FastEndpoints.RemoteConnectionCore
+- uid: FastEndpoints.RemoteConnectionCore.ChannelOptions
+  commentId: P:FastEndpoints.RemoteConnectionCore.ChannelOptions
+  parent: FastEndpoints.RemoteConnectionCore
+  name: ChannelOptions
+  nameWithType: RemoteConnectionCore.ChannelOptions
+  fullName: FastEndpoints.RemoteConnectionCore.ChannelOptions
+- uid: FastEndpoints.RemoteConnectionCore.RemoteAddress
+  commentId: P:FastEndpoints.RemoteConnectionCore.RemoteAddress
+  parent: FastEndpoints.RemoteConnectionCore
+  name: RemoteAddress
+  nameWithType: RemoteConnectionCore.RemoteAddress
+  fullName: FastEndpoints.RemoteConnectionCore.RemoteAddress
+- uid: FastEndpoints.RemoteConnectionCore.Register``1
+  commentId: M:FastEndpoints.RemoteConnectionCore.Register``1
+  parent: FastEndpoints.RemoteConnectionCore
+  name: Register<TCommand>()
+  nameWithType: RemoteConnectionCore.Register<TCommand>()
+  fullName: FastEndpoints.RemoteConnectionCore.Register<TCommand>()
+  nameWithType.vb: RemoteConnectionCore.Register(Of TCommand)()
+  fullName.vb: FastEndpoints.RemoteConnectionCore.Register(Of TCommand)()
+  name.vb: Register(Of TCommand)()
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnectionCore.Register``1
+    name: Register
+  - name: <
+  - name: TCommand
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnectionCore.Register``1
+    name: Register
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: )
+  - name: (
+  - name: )
+- uid: FastEndpoints.RemoteConnectionCore.Register``2
+  commentId: M:FastEndpoints.RemoteConnectionCore.Register``2
+  parent: FastEndpoints.RemoteConnectionCore
+  href: FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2
+  name: Register<TCommand, TResult>()
+  nameWithType: RemoteConnectionCore.Register<TCommand, TResult>()
+  fullName: FastEndpoints.RemoteConnectionCore.Register<TCommand, TResult>()
+  nameWithType.vb: RemoteConnectionCore.Register(Of TCommand, TResult)()
+  fullName.vb: FastEndpoints.RemoteConnectionCore.Register(Of TCommand, TResult)()
+  name.vb: Register(Of TCommand, TResult)()
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnectionCore.Register``2
+    name: Register
+    href: FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnectionCore.Register``2
+    name: Register
+    href: FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - name: )
+- uid: FastEndpoints.RemoteConnectionCore.RegisterServerStream``2
+  commentId: M:FastEndpoints.RemoteConnectionCore.RegisterServerStream``2
+  parent: FastEndpoints.RemoteConnectionCore
+  name: RegisterServerStream<TCommand, TResult>()
+  nameWithType: RemoteConnectionCore.RegisterServerStream<TCommand, TResult>()
+  fullName: FastEndpoints.RemoteConnectionCore.RegisterServerStream<TCommand, TResult>()
+  nameWithType.vb: RemoteConnectionCore.RegisterServerStream(Of TCommand, TResult)()
+  fullName.vb: FastEndpoints.RemoteConnectionCore.RegisterServerStream(Of TCommand, TResult)()
+  name.vb: RegisterServerStream(Of TCommand, TResult)()
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnectionCore.RegisterServerStream``2
+    name: RegisterServerStream
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnectionCore.RegisterServerStream``2
+    name: RegisterServerStream
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - name: )
+- uid: FastEndpoints.RemoteConnectionCore.RegisterClientStream``2
+  commentId: M:FastEndpoints.RemoteConnectionCore.RegisterClientStream``2
+  parent: FastEndpoints.RemoteConnectionCore
+  name: RegisterClientStream<T, TResult>()
+  nameWithType: RemoteConnectionCore.RegisterClientStream<T, TResult>()
+  fullName: FastEndpoints.RemoteConnectionCore.RegisterClientStream<T, TResult>()
+  nameWithType.vb: RemoteConnectionCore.RegisterClientStream(Of T, TResult)()
+  fullName.vb: FastEndpoints.RemoteConnectionCore.RegisterClientStream(Of T, TResult)()
+  name.vb: RegisterClientStream(Of T, TResult)()
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnectionCore.RegisterClientStream``2
+    name: RegisterClientStream
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnectionCore.RegisterClientStream``2
+    name: RegisterClientStream
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - name: )
+- uid: FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
+  commentId: M:FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
+  parent: FastEndpoints.RemoteConnectionCore
+  isExternal: true
+  href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs
+  name: Subscribe<TEvent, TEventHandler>(CallOptions, string)
+  nameWithType: RemoteConnectionCore.Subscribe<TEvent, TEventHandler>(CallOptions, string)
+  fullName: FastEndpoints.RemoteConnectionCore.Subscribe<TEvent, TEventHandler>(Grpc.Core.CallOptions, string)
+  nameWithType.vb: RemoteConnectionCore.Subscribe(Of TEvent, TEventHandler)(CallOptions, String)
+  fullName.vb: FastEndpoints.RemoteConnectionCore.Subscribe(Of TEvent, TEventHandler)(Grpc.Core.CallOptions, String)
+  name.vb: Subscribe(Of TEvent, TEventHandler)(CallOptions, String)
+  spec.csharp:
+  - uid: FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
+    name: Subscribe
+  - name: <
+  - name: TEvent
+  - name: ','
+  - name: " "
+  - name: TEventHandler
+  - name: '>'
+  - name: (
+  - uid: Grpc.Core.CallOptions
+    name: CallOptions
+    isExternal: true
+    href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
+    name: Subscribe
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: ','
+  - name: " "
+  - name: TEventHandler
+  - name: )
+  - name: (
+  - uid: Grpc.Core.CallOptions
+    name: CallOptions
+    isExternal: true
+    href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -505,108 +482,10 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.RemoteConnection.ChannelOptions*
-  commentId: Overload:FastEndpoints.RemoteConnection.ChannelOptions
-  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_ChannelOptions
-  name: ChannelOptions
-  nameWithType: RemoteConnection.ChannelOptions
-  fullName: FastEndpoints.RemoteConnection.ChannelOptions
-- uid: Grpc.Net.Client.GrpcChannelOptions
-  commentId: T:Grpc.Net.Client.GrpcChannelOptions
-  parent: Grpc.Net.Client
-  isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Net.Client/GrpcChannelOptions.cs
-  name: GrpcChannelOptions
-  nameWithType: GrpcChannelOptions
-  fullName: Grpc.Net.Client.GrpcChannelOptions
-- uid: Grpc.Net.Client
-  commentId: N:Grpc.Net.Client
-  isExternal: true
-  name: Grpc.Net.Client
-  nameWithType: Grpc.Net.Client
-  fullName: Grpc.Net.Client
-  spec.csharp:
-  - uid: Grpc
-    name: Grpc
-    isExternal: true
-  - name: .
-  - uid: Grpc.Net
-    name: Net
-    isExternal: true
-  - name: .
-  - uid: Grpc.Net.Client
-    name: Client
-    isExternal: true
-  spec.vb:
-  - uid: Grpc
-    name: Grpc
-    isExternal: true
-  - name: .
-  - uid: Grpc.Net
-    name: Net
-    isExternal: true
-  - name: .
-  - uid: Grpc.Net.Client
-    name: Client
-    isExternal: true
-- uid: FastEndpoints.RemoteConnection.RemoteAddress*
-  commentId: Overload:FastEndpoints.RemoteConnection.RemoteAddress
-  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_RemoteAddress
-  name: RemoteAddress
-  nameWithType: RemoteConnection.RemoteAddress
-  fullName: FastEndpoints.RemoteConnection.RemoteAddress
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: FastEndpoints.RemoteConnection.Subscribe*
-  commentId: Overload:FastEndpoints.RemoteConnection.Subscribe
-  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Subscribe__2_Grpc_Core_CallOptions_
-  name: Subscribe
-  nameWithType: RemoteConnection.Subscribe
-  fullName: FastEndpoints.RemoteConnection.Subscribe
-- uid: Grpc.Core.CallOptions
-  commentId: T:Grpc.Core.CallOptions
-  parent: Grpc.Core
-  isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs
-  name: CallOptions
-  nameWithType: CallOptions
-  fullName: Grpc.Core.CallOptions
-- uid: Grpc.Core
-  commentId: N:Grpc.Core
-  isExternal: true
-  name: Grpc.Core
-  nameWithType: Grpc.Core
-  fullName: Grpc.Core
-  spec.csharp:
-  - uid: Grpc
-    name: Grpc
-    isExternal: true
-  - name: .
-  - uid: Grpc.Core
-    name: Core
-    isExternal: true
-  spec.vb:
-  - uid: Grpc
-    name: Grpc
-    isExternal: true
-  - name: .
-  - uid: Grpc.Core
-    name: Core
-    isExternal: true
 - uid: FastEndpoints.HubMode.EventBroker
   commentId: F:FastEndpoints.HubMode.EventBroker
   href: FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker
@@ -619,106 +498,3 @@ references:
   name: RegisterEvent
   nameWithType: RemoteConnection.RegisterEvent
   fullName: FastEndpoints.RemoteConnection.RegisterEvent
-- uid: FastEndpoints.ICommand
-  commentId: T:FastEndpoints.ICommand
-  parent: FastEndpoints
-  href: FastEndpoints.ICommand.html
-  name: ICommand
-  nameWithType: ICommand
-  fullName: FastEndpoints.ICommand
-- uid: FastEndpoints.RemoteConnection.Register*
-  commentId: Overload:FastEndpoints.RemoteConnection.Register
-  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__1
-  name: Register
-  nameWithType: RemoteConnection.Register
-  fullName: FastEndpoints.RemoteConnection.Register
-- uid: FastEndpoints.ICommand`1
-  commentId: T:FastEndpoints.ICommand`1
-  href: FastEndpoints.ICommand-1.html
-  name: ICommand<TResult>
-  nameWithType: ICommand<TResult>
-  fullName: FastEndpoints.ICommand<TResult>
-  nameWithType.vb: ICommand(Of TResult)
-  fullName.vb: FastEndpoints.ICommand(Of TResult)
-  name.vb: ICommand(Of TResult)
-  spec.csharp:
-  - uid: FastEndpoints.ICommand`1
-    name: ICommand
-    href: FastEndpoints.ICommand-1.html
-  - name: <
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: FastEndpoints.ICommand`1
-    name: ICommand
-    href: FastEndpoints.ICommand-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: FastEndpoints.IServerStreamCommand`1
-  commentId: T:FastEndpoints.IServerStreamCommand`1
-  href: FastEndpoints.IServerStreamCommand-1.html
-  name: IServerStreamCommand<TResult>
-  nameWithType: IServerStreamCommand<TResult>
-  fullName: FastEndpoints.IServerStreamCommand<TResult>
-  nameWithType.vb: IServerStreamCommand(Of TResult)
-  fullName.vb: FastEndpoints.IServerStreamCommand(Of TResult)
-  name.vb: IServerStreamCommand(Of TResult)
-  spec.csharp:
-  - uid: FastEndpoints.IServerStreamCommand`1
-    name: IServerStreamCommand
-    href: FastEndpoints.IServerStreamCommand-1.html
-  - name: <
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: FastEndpoints.IServerStreamCommand`1
-    name: IServerStreamCommand
-    href: FastEndpoints.IServerStreamCommand-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: FastEndpoints.RemoteConnection.RegisterServerStream*
-  commentId: Overload:FastEndpoints.RemoteConnection.RegisterServerStream
-  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_RegisterServerStream__2
-  name: RegisterServerStream
-  nameWithType: RemoteConnection.RegisterServerStream
-  fullName: FastEndpoints.RemoteConnection.RegisterServerStream
-- uid: System.Collections.Generic.IAsyncEnumerable`1
-  commentId: T:System.Collections.Generic.IAsyncEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
-  name: IAsyncEnumerable<T>
-  nameWithType: IAsyncEnumerable<T>
-  fullName: System.Collections.Generic.IAsyncEnumerable<T>
-  nameWithType.vb: IAsyncEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IAsyncEnumerable(Of T)
-  name.vb: IAsyncEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IAsyncEnumerable`1
-    name: IAsyncEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IAsyncEnumerable`1
-    name: IAsyncEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: FastEndpoints.RemoteConnection.RegisterClientStream*
-  commentId: Overload:FastEndpoints.RemoteConnection.RegisterClientStream
-  href: FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_RegisterClientStream__2
-  name: RegisterClientStream
-  nameWithType: RemoteConnection.RegisterClientStream
-  fullName: FastEndpoints.RemoteConnection.RegisterClientStream

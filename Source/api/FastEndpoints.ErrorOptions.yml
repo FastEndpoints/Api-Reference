@@ -5,11 +5,12 @@ items:
   id: ErrorOptions
   parent: FastEndpoints
   children:
+  - FastEndpoints.ErrorOptions.ContentType
   - FastEndpoints.ErrorOptions.GeneralErrorsField
   - FastEndpoints.ErrorOptions.ProducesMetadataType
   - FastEndpoints.ErrorOptions.ResponseBuilder
   - FastEndpoints.ErrorOptions.StatusCode
-  - FastEndpoints.ErrorOptions.UseProblemDetails
+  - FastEndpoints.ErrorOptions.UseProblemDetails(System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig})
   langs:
   - csharp
   - vb
@@ -17,10 +18,6 @@ items:
   nameWithType: ErrorOptions
   fullName: FastEndpoints.ErrorOptions
   type: Class
-  source:
-    id: ErrorOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\ErrorOptions.cs
-    startLine: 9
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -49,10 +46,6 @@ items:
   nameWithType: ErrorOptions.StatusCode
   fullName: FastEndpoints.ErrorOptions.StatusCode
   type: Property
-  source:
-    id: StatusCode
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\ErrorOptions.cs
-    startLine: 14
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -65,6 +58,29 @@ items:
       type: System.Int32
     content.vb: Public Property StatusCode As Integer
   overload: FastEndpoints.ErrorOptions.StatusCode*
+- uid: FastEndpoints.ErrorOptions.ContentType
+  commentId: P:FastEndpoints.ErrorOptions.ContentType
+  id: ContentType
+  parent: FastEndpoints.ErrorOptions
+  langs:
+  - csharp
+  - vb
+  name: ContentType
+  nameWithType: ErrorOptions.ContentType
+  fullName: FastEndpoints.ErrorOptions.ContentType
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the content-type header value for 400 error responses
+  example: []
+  syntax:
+    content: public string ContentType { set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ContentType As String
+  overload: FastEndpoints.ErrorOptions.ContentType*
 - uid: FastEndpoints.ErrorOptions.ProducesMetadataType
   commentId: P:FastEndpoints.ErrorOptions.ProducesMetadataType
   id: ProducesMetadataType
@@ -76,10 +92,6 @@ items:
   nameWithType: ErrorOptions.ProducesMetadataType
   fullName: FastEndpoints.ErrorOptions.ProducesMetadataType
   type: Property
-  source:
-    id: ProducesMetadataType
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\ErrorOptions.cs
-    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -118,10 +130,6 @@ items:
   nameWithType: ErrorOptions.GeneralErrorsField
   fullName: FastEndpoints.ErrorOptions.GeneralErrorsField
   type: Property
-  source:
-    id: GeneralErrorsField
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\ErrorOptions.cs
-    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -148,10 +156,6 @@ items:
   nameWithType: ErrorOptions.ResponseBuilder
   fullName: FastEndpoints.ErrorOptions.ResponseBuilder
   type: Property
-  source:
-    id: ResponseBuilder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\ErrorOptions.cs
-    startLine: 43
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -162,7 +166,7 @@ items:
 
     this function will be run everytime an error response needs to be sent to the client.
 
-    the arguments for the func will be a list of validation failures, the http context and an http status code.
+    the arguments for the func will be a list of validation failures, the http context and a http status code.
 
     <p>
 
@@ -177,30 +181,33 @@ items:
       type: System.Func{System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
     content.vb: Public Property ResponseBuilder As Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
   overload: FastEndpoints.ErrorOptions.ResponseBuilder*
-- uid: FastEndpoints.ErrorOptions.UseProblemDetails
-  commentId: M:FastEndpoints.ErrorOptions.UseProblemDetails
-  id: UseProblemDetails
+- uid: FastEndpoints.ErrorOptions.UseProblemDetails(System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig})
+  commentId: M:FastEndpoints.ErrorOptions.UseProblemDetails(System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig})
+  id: UseProblemDetails(System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig})
   parent: FastEndpoints.ErrorOptions
   langs:
   - csharp
   - vb
-  name: UseProblemDetails()
-  nameWithType: ErrorOptions.UseProblemDetails()
-  fullName: FastEndpoints.ErrorOptions.UseProblemDetails()
+  name: UseProblemDetails(Action<ProblemDetailsConfig>?)
+  nameWithType: ErrorOptions.UseProblemDetails(Action<ErrorOptions.ProblemDetailsConfig>?)
+  fullName: FastEndpoints.ErrorOptions.UseProblemDetails(System.Action<FastEndpoints.ErrorOptions.ProblemDetailsConfig>?)
   type: Method
-  source:
-    id: UseProblemDetails
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\ErrorOptions.cs
-    startLine: 49
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: change the default error response builder to <xref href="FastEndpoints.ProblemDetails" data-throw-if-not-resolved="false"></xref> instead of <xref href="FastEndpoints.ErrorResponse" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
-    content: public void UseProblemDetails()
-    content.vb: Public Sub UseProblemDetails()
+    content: public void UseProblemDetails(Action<ErrorOptions.ProblemDetailsConfig>? config = null)
+    parameters:
+    - id: config
+      type: System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig}
+      description: an action for configuring global settings for <xref href="FastEndpoints.ProblemDetails" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Sub UseProblemDetails(config As Action(Of ErrorOptions.ProblemDetailsConfig) = Nothing)
   overload: FastEndpoints.ErrorOptions.UseProblemDetails*
+  nameWithType.vb: ErrorOptions.UseProblemDetails(Action(Of ErrorOptions.ProblemDetailsConfig))
+  fullName.vb: FastEndpoints.ErrorOptions.UseProblemDetails(System.Action(Of FastEndpoints.ErrorOptions.ProblemDetailsConfig))
+  name.vb: UseProblemDetails(Action(Of ProblemDetailsConfig))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -416,7 +423,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -438,6 +444,23 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: FastEndpoints.ErrorOptions.ContentType*
+  commentId: Overload:FastEndpoints.ErrorOptions.ContentType
+  href: FastEndpoints.ErrorOptions.html#FastEndpoints_ErrorOptions_ContentType
+  name: ContentType
+  nameWithType: ErrorOptions.ContentType
+  fullName: FastEndpoints.ErrorOptions.ContentType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata
   commentId: T:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata
   parent: Microsoft.AspNetCore.Http.Metadata
@@ -544,17 +567,6 @@ references:
   name: GeneralErrorsField
   nameWithType: ErrorOptions.GeneralErrorsField
   fullName: FastEndpoints.ErrorOptions.GeneralErrorsField
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: FastEndpoints.ErrorOptions.ProducesMetadataType
   commentId: P:FastEndpoints.ErrorOptions.ProducesMetadataType
   href: FastEndpoints.ErrorOptions.html#FastEndpoints_ErrorOptions_ProducesMetadataType
@@ -710,7 +722,76 @@ references:
   fullName: FastEndpoints.ErrorResponse
 - uid: FastEndpoints.ErrorOptions.UseProblemDetails*
   commentId: Overload:FastEndpoints.ErrorOptions.UseProblemDetails
-  href: FastEndpoints.ErrorOptions.html#FastEndpoints_ErrorOptions_UseProblemDetails
+  href: FastEndpoints.ErrorOptions.html#FastEndpoints_ErrorOptions_UseProblemDetails_System_Action_FastEndpoints_ErrorOptions_ProblemDetailsConfig__
   name: UseProblemDetails
   nameWithType: ErrorOptions.UseProblemDetails
   fullName: FastEndpoints.ErrorOptions.UseProblemDetails
+- uid: System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig}
+  commentId: T:System.Action{FastEndpoints.ErrorOptions.ProblemDetailsConfig}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<ErrorOptions.ProblemDetailsConfig>
+  nameWithType: Action<ErrorOptions.ProblemDetailsConfig>
+  fullName: System.Action<FastEndpoints.ErrorOptions.ProblemDetailsConfig>
+  nameWithType.vb: Action(Of ErrorOptions.ProblemDetailsConfig)
+  fullName.vb: System.Action(Of FastEndpoints.ErrorOptions.ProblemDetailsConfig)
+  name.vb: Action(Of ErrorOptions.ProblemDetailsConfig)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.ErrorOptions
+    name: ErrorOptions
+    href: FastEndpoints.ErrorOptions.html
+  - name: .
+  - uid: FastEndpoints.ErrorOptions.ProblemDetailsConfig
+    name: ProblemDetailsConfig
+    href: FastEndpoints.ErrorOptions.ProblemDetailsConfig.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.ErrorOptions
+    name: ErrorOptions
+    href: FastEndpoints.ErrorOptions.html
+  - name: .
+  - uid: FastEndpoints.ErrorOptions.ProblemDetailsConfig
+    name: ProblemDetailsConfig
+    href: FastEndpoints.ErrorOptions.ProblemDetailsConfig.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

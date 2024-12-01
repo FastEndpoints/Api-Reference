@@ -9,6 +9,7 @@ items:
   - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
   - FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
   - FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  - FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
   langs:
   - csharp
   - vb
@@ -16,10 +17,6 @@ items:
   nameWithType: CommandExtensions
   fullName: FastEndpoints.CommandExtensions
   type: Class
-  source:
-    id: CommandExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -48,10 +45,6 @@ items:
   nameWithType: CommandExtensions.ExecuteAsync<TCommand>(TCommand, CancellationToken)
   fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TCommand>(TCommand, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -91,10 +84,6 @@ items:
   nameWithType: CommandExtensions.ExecuteAsync<TResult>(ICommand<TResult>, CancellationToken)
   fullName: FastEndpoints.CommandExtensions.ExecuteAsync<TResult>(FastEndpoints.ICommand<TResult>, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -135,10 +124,6 @@ items:
   nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
   fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand>)
   type: Method
-  source:
-    id: RegisterForTesting
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 76
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -170,10 +155,6 @@ items:
   nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
   fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>(FastEndpoints.ICommandHandler<TCommand, TResult>)
   type: Method
-  source:
-    id: RegisterForTesting
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Commands\CommandExtensions.cs
-    startLine: 93
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -195,6 +176,39 @@ items:
   nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
   fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)(FastEndpoints.ICommandHandler(Of TCommand, TResult))
   name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
+- uid: FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
+  commentId: M:FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
+  id: RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
+  isExtensionMethod: true
+  parent: FastEndpoints.CommandExtensions
+  langs:
+  - csharp
+  - vb
+  name: RegisterGenericCommand(IServiceProvider, Type, Type)
+  nameWithType: CommandExtensions.RegisterGenericCommand(IServiceProvider, Type, Type)
+  fullName: FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider, System.Type, System.Type)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: register a generic command handler for a generic command
+  example: []
+  syntax:
+    content: public static IServiceProvider RegisterGenericCommand(this IServiceProvider sp, Type genericCommandType, Type genericHandlerType)
+    parameters:
+    - id: sp
+      type: System.IServiceProvider
+    - id: genericCommandType
+      type: System.Type
+      description: 'the open generic type of the command. ex: <code> typeof(MyCommand&lt;&gt;) </code>'
+    - id: genericHandlerType
+      type: System.Type
+      description: 'the open generic type of the command handler. ex: <code> typeof(MyCommandHandler&lt;,&gt;) </code>'
+    return:
+      type: System.IServiceProvider
+      description: ''
+    content.vb: Public Shared Function RegisterGenericCommand(sp As IServiceProvider, genericCommandType As Type, genericHandlerType As Type) As IServiceProvider
+  overload: FastEndpoints.CommandExtensions.RegisterGenericCommand*
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -434,7 +448,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -764,3 +777,25 @@ references:
   - name: " "
   - name: TResult
   - name: )
+- uid: FastEndpoints.CommandExtensions.RegisterGenericCommand*
+  commentId: Overload:FastEndpoints.CommandExtensions.RegisterGenericCommand
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterGenericCommand_System_IServiceProvider_System_Type_System_Type_
+  name: RegisterGenericCommand
+  nameWithType: CommandExtensions.RegisterGenericCommand
+  fullName: FastEndpoints.CommandExtensions.RegisterGenericCommand
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type

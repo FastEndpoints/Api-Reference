@@ -6,8 +6,11 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.BindingOptions.FailureMessage
+  - FastEndpoints.BindingOptions.FormExceptionTransformer
+  - FastEndpoints.BindingOptions.JsonExceptionStatusCode
   - FastEndpoints.BindingOptions.JsonExceptionTransformer
   - FastEndpoints.BindingOptions.Modifier
+  - FastEndpoints.BindingOptions.ReflectionCache
   - FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{System.Object,FastEndpoints.ParseResult})
   - FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})
   - FastEndpoints.BindingOptions.ValueParserWhen(System.Func{System.Reflection.PropertyInfo,System.Boolean},System.Func{System.Object,System.Type,FastEndpoints.ParseResult})
@@ -18,10 +21,6 @@ items:
   nameWithType: BindingOptions
   fullName: FastEndpoints.BindingOptions
   type: Class
-  source:
-    id: BindingOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 11
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -39,6 +38,34 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: FastEndpoints.BindingOptions.ReflectionCache
+  commentId: P:FastEndpoints.BindingOptions.ReflectionCache
+  id: ReflectionCache
+  parent: FastEndpoints.BindingOptions
+  langs:
+  - csharp
+  - vb
+  name: ReflectionCache
+  nameWithType: BindingOptions.ReflectionCache
+  fullName: FastEndpoints.BindingOptions.ReflectionCache
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    the central cache of request dto related reflection data.
+
+    populating this cache with source generated data will eliminate expression compilations during runtime as well as usage of
+
+    reflection based property setters, etc. see the source generator documentation on how to populate this cache with generated data.
+  example: []
+  syntax:
+    content: public ReflectionCache ReflectionCache { get; }
+    parameters: []
+    return:
+      type: FastEndpoints.ReflectionCache
+    content.vb: Public ReadOnly Property ReflectionCache As ReflectionCache
+  overload: FastEndpoints.BindingOptions.ReflectionCache*
 - uid: FastEndpoints.BindingOptions.FailureMessage
   commentId: P:FastEndpoints.BindingOptions.FailureMessage
   id: FailureMessage
@@ -50,15 +77,11 @@ items:
   nameWithType: BindingOptions.FailureMessage
   fullName: FastEndpoints.BindingOptions.FailureMessage
   type: Property
-  source:
-    id: FailureMessage
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: >-
-    a function used to construct the failure message when a supplied value cannot be succesfully bound to a dto property during model binding.
+    a function used to construct the failure message when a supplied value cannot be successfully bound to a dto property during model binding.
 
     <p>
 
@@ -70,11 +93,7 @@ items:
 
     the following arguments are supplied to the function.
 
-    <p><xref href="System.Type" data-throw-if-not-resolved="false"></xref>: the type of the property which failed to bind</p>
-
-    <p><xref href="System.String" data-throw-if-not-resolved="false"></xref>: the name of the property which failed to bind</p>
-
-    <p><xref href="Microsoft.Extensions.Primitives.StringValues" data-throw-if-not-resolved="false"></xref>: the value that was attempted which resulted in the failure</p>
+    <p><xref href="System.Type" data-throw-if-not-resolved="false"></xref>: the type of the property which failed to bind</p><p><xref href="System.String" data-throw-if-not-resolved="false"></xref>: the name of the property which failed to bind</p><p><xref href="Microsoft.Extensions.Primitives.StringValues" data-throw-if-not-resolved="false"></xref>: the value that was attempted which resulted in the failure</p>
 
     use these input parameters and construct your own error message string and return it from the function.
   example: []
@@ -96,10 +115,6 @@ items:
   nameWithType: BindingOptions.JsonExceptionTransformer
   fullName: FastEndpoints.BindingOptions.JsonExceptionTransformer
   type: Property
-  source:
-    id: JsonExceptionTransformer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 38
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -125,6 +140,70 @@ items:
       type: System.Func{System.Text.Json.JsonException,FluentValidation.Results.ValidationFailure}
     content.vb: Public Property JsonExceptionTransformer As Func(Of JsonException, ValidationFailure)
   overload: FastEndpoints.BindingOptions.JsonExceptionTransformer*
+- uid: FastEndpoints.BindingOptions.JsonExceptionStatusCode
+  commentId: P:FastEndpoints.BindingOptions.JsonExceptionStatusCode
+  id: JsonExceptionStatusCode
+  parent: FastEndpoints.BindingOptions
+  langs:
+  - csharp
+  - vb
+  name: JsonExceptionStatusCode
+  nameWithType: BindingOptions.JsonExceptionStatusCode
+  fullName: FastEndpoints.BindingOptions.JsonExceptionStatusCode
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    this http status code will be used for all automatically sent <xref href="System.Text.Json.JsonException" data-throw-if-not-resolved="false"></xref> responses  which are built using the
+
+    <xref href="FastEndpoints.BindingOptions.JsonExceptionTransformer" data-throw-if-not-resolved="false"></xref>
+
+    func. defaults to 400.
+  example: []
+  syntax:
+    content: public int JsonExceptionStatusCode { set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property JsonExceptionStatusCode As Integer
+  overload: FastEndpoints.BindingOptions.JsonExceptionStatusCode*
+- uid: FastEndpoints.BindingOptions.FormExceptionTransformer
+  commentId: P:FastEndpoints.BindingOptions.FormExceptionTransformer
+  id: FormExceptionTransformer
+  parent: FastEndpoints.BindingOptions
+  langs:
+  - csharp
+  - vb
+  name: FormExceptionTransformer
+  nameWithType: BindingOptions.FormExceptionTransformer
+  fullName: FastEndpoints.BindingOptions.FormExceptionTransformer
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    if this function is specified, any internal exceptions that are thrown by asp.net when accessing multipart form data will be caught and transformed to
+
+    validation
+
+    failures using this function. by default those exceptions are not caught and thrown out to the middleware pipeline. setting this func might come in handy
+
+    if
+
+    you need 413 responses (that arise from incoming request body size exceeding kestrel's <code>MaxRequestBodySize</code>) automatically transformed to 400 problem
+
+    details
+
+    responses.
+  example: []
+  syntax:
+    content: public Func<Exception, ValidationFailure>? FormExceptionTransformer { set; }
+    parameters: []
+    return:
+      type: System.Func{System.Exception,FluentValidation.Results.ValidationFailure}
+    content.vb: Public Property FormExceptionTransformer As Func(Of Exception, ValidationFailure)
+  overload: FastEndpoints.BindingOptions.FormExceptionTransformer*
 - uid: FastEndpoints.BindingOptions.Modifier
   commentId: P:FastEndpoints.BindingOptions.Modifier
   id: Modifier
@@ -136,10 +215,6 @@ items:
   nameWithType: BindingOptions.Modifier
   fullName: FastEndpoints.BindingOptions.Modifier
   type: Property
-  source:
-    id: Modifier
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 52
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -150,15 +225,7 @@ items:
 
     the action is passed in the following arguments:
 
-    <p><xref href="System.Object" data-throw-if-not-resolved="false"></xref>: the request dto instance</p>
-
-    <p><xref href="System.Type" data-throw-if-not-resolved="false"></xref>: the type of the request dto</p>
-
-    <p><xref href="FastEndpoints.BinderContext" data-throw-if-not-resolved="false"></xref>: the request binding context</p>
-
-    <p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref>: a cancellation token</p>
-
-    <p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
+    <p><xref href="System.Object" data-throw-if-not-resolved="false"></xref>: the request dto instance</p><p><xref href="System.Type" data-throw-if-not-resolved="false"></xref>: the type of the request dto</p><p><xref href="FastEndpoints.BinderContext" data-throw-if-not-resolved="false"></xref>: the request binding context</p><p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref>: a cancellation token</p><p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
   example: []
   syntax:
     content: public Action<object, Type, BinderContext, CancellationToken>? Modifier { set; }
@@ -178,10 +245,6 @@ items:
   nameWithType: BindingOptions.ValueParserFor<T>(Func<object?, ParseResult>)
   fullName: FastEndpoints.BindingOptions.ValueParserFor<T>(System.Func<object?, FastEndpoints.ParseResult>)
   type: Method
-  source:
-    id: ValueParserFor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 83
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -246,10 +309,6 @@ items:
   nameWithType: BindingOptions.ValueParserFor(Type, Func<object?, ParseResult>)
   fullName: FastEndpoints.BindingOptions.ValueParserFor(System.Type, System.Func<object?, FastEndpoints.ParseResult>)
   type: Method
-  source:
-    id: ValueParserFor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 115
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -314,10 +373,6 @@ items:
   nameWithType: BindingOptions.ValueParserWhen(Func<PropertyInfo, bool>, Func<object?, Type, ParseResult>)
   fullName: FastEndpoints.BindingOptions.ValueParserWhen(System.Func<System.Reflection.PropertyInfo, bool>, System.Func<object?, System.Type, FastEndpoints.ParseResult>)
   type: Method
-  source:
-    id: ValueParserWhen
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\BindingOptions.cs
-    startLine: 126
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -559,11 +614,23 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.BindingOptions.ReflectionCache*
+  commentId: Overload:FastEndpoints.BindingOptions.ReflectionCache
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_ReflectionCache
+  name: ReflectionCache
+  nameWithType: BindingOptions.ReflectionCache
+  fullName: FastEndpoints.BindingOptions.ReflectionCache
+- uid: FastEndpoints.ReflectionCache
+  commentId: T:FastEndpoints.ReflectionCache
+  parent: FastEndpoints
+  href: FastEndpoints.ReflectionCache.html
+  name: ReflectionCache
+  nameWithType: ReflectionCache
+  fullName: FastEndpoints.ReflectionCache
 - uid: FastEndpoints.BindingOptions.JsonExceptionTransformer
   commentId: P:FastEndpoints.BindingOptions.JsonExceptionTransformer
   href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer
@@ -721,6 +788,7 @@ references:
   - name: )
 - uid: System.Text.Json.JsonException
   commentId: T:System.Text.Json.JsonException
+  parent: System.Text.Json
   isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system.text.json.jsonexception
   name: JsonException
@@ -790,6 +858,43 @@ references:
     name: ValidationFailure
     isExternal: true
   - name: )
+- uid: System.Text.Json
+  commentId: N:System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json
+  nameWithType: System.Text.Json
+  fullName: System.Text.Json
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
 - uid: FluentValidation.Results
   commentId: N:FluentValidation.Results
   isExternal: true
@@ -845,6 +950,74 @@ references:
   - name: ','
   - name: " "
   - name: TResult
+  - name: )
+- uid: FastEndpoints.BindingOptions.JsonExceptionStatusCode*
+  commentId: Overload:FastEndpoints.BindingOptions.JsonExceptionStatusCode
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionStatusCode
+  name: JsonExceptionStatusCode
+  nameWithType: BindingOptions.JsonExceptionStatusCode
+  fullName: FastEndpoints.BindingOptions.JsonExceptionStatusCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FastEndpoints.BindingOptions.FormExceptionTransformer*
+  commentId: Overload:FastEndpoints.BindingOptions.FormExceptionTransformer
+  href: FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_FormExceptionTransformer
+  name: FormExceptionTransformer
+  nameWithType: BindingOptions.FormExceptionTransformer
+  fullName: FastEndpoints.BindingOptions.FormExceptionTransformer
+- uid: System.Func{System.Exception,FluentValidation.Results.ValidationFailure}
+  commentId: T:System.Func{System.Exception,FluentValidation.Results.ValidationFailure}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<Exception, ValidationFailure>
+  nameWithType: Func<Exception, ValidationFailure>
+  fullName: System.Func<System.Exception, FluentValidation.Results.ValidationFailure>
+  nameWithType.vb: Func(Of Exception, ValidationFailure)
+  fullName.vb: System.Func(Of System.Exception, FluentValidation.Results.ValidationFailure)
+  name.vb: Func(Of Exception, ValidationFailure)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Exception
+    name: Exception
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Exception
+    name: Exception
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Results.ValidationFailure
+    name: ValidationFailure
+    isExternal: true
   - name: )
 - uid: FastEndpoints.BinderContext
   commentId: T:FastEndpoints.BinderContext

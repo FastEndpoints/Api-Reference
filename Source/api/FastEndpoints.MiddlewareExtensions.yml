@@ -5,7 +5,7 @@ items:
   id: MiddlewareExtensions
   parent: FastEndpoints
   children:
-  - FastEndpoints.MiddlewareExtensions.UseAntiForgery(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+  - FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean},System.String[])
   langs:
   - csharp
   - vb
@@ -13,10 +13,6 @@ items:
   nameWithType: MiddlewareExtensions
   fullName: FastEndpoints.MiddlewareExtensions
   type: Class
-  source:
-    id: MiddlewareExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Middleware\MiddlewareExtensions.cs
-    startLine: 4
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -33,22 +29,18 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: FastEndpoints.MiddlewareExtensions.UseAntiForgery(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  commentId: M:FastEndpoints.MiddlewareExtensions.UseAntiForgery(Microsoft.AspNetCore.Builder.IApplicationBuilder)
-  id: UseAntiForgery(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+- uid: FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean},System.String[])
+  commentId: M:FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean},System.String[])
+  id: UseAntiforgeryFE(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean},System.String[])
   isExtensionMethod: true
   parent: FastEndpoints.MiddlewareExtensions
   langs:
   - csharp
   - vb
-  name: UseAntiForgery(IApplicationBuilder)
-  nameWithType: MiddlewareExtensions.UseAntiForgery(IApplicationBuilder)
-  fullName: FastEndpoints.MiddlewareExtensions.UseAntiForgery(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+  name: UseAntiforgeryFE(IApplicationBuilder, Func<HttpContext, bool>?, string[]?)
+  nameWithType: MiddlewareExtensions.UseAntiforgeryFE(IApplicationBuilder, Func<HttpContext, bool>?, string[]?)
+  fullName: FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Func<Microsoft.AspNetCore.Http.HttpContext, bool>?, string[]?)
   type: Method
-  source:
-    id: UseAntiForgery
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Middleware\MiddlewareExtensions.cs
-    startLine: 10
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -58,14 +50,26 @@ items:
     make sure to also add the anti-forgery services with <code>builder.Services.AddAntiForgery()</code>
   example: []
   syntax:
-    content: public static IApplicationBuilder UseAntiForgery(this IApplicationBuilder app)
+    content: public static IApplicationBuilder UseAntiforgeryFE(this IApplicationBuilder app, Func<HttpContext, bool>? skipRequestFilter = null, string[]? additionalContentTypes = null)
     parameters:
     - id: app
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
+    - id: skipRequestFilter
+      type: System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean}
+      description: >-
+        an optional predicate which can be used to skip anti-forgery checks for requests that satisfy a given condition.
+
+        provide a function that returns <code>true</code> for requests that you'd want the anti-forgery middleware to skip processing.
+    - id: additionalContentTypes
+      type: System.String[]
+      description: optional array of additional content-types to enforce antiforgery checks for (if the endpoint has enabled antiforgery).
     return:
       type: Microsoft.AspNetCore.Builder.IApplicationBuilder
-    content.vb: Public Shared Function UseAntiForgery(app As IApplicationBuilder) As IApplicationBuilder
-  overload: FastEndpoints.MiddlewareExtensions.UseAntiForgery*
+    content.vb: Public Shared Function UseAntiforgeryFE(app As IApplicationBuilder, skipRequestFilter As Func(Of HttpContext, Boolean) = Nothing, additionalContentTypes As String() = Nothing) As IApplicationBuilder
+  overload: FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE*
+  nameWithType.vb: MiddlewareExtensions.UseAntiforgeryFE(IApplicationBuilder, Func(Of HttpContext, Boolean), String())
+  fullName.vb: FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Func(Of Microsoft.AspNetCore.Http.HttpContext, Boolean), String())
+  name.vb: UseAntiforgeryFE(IApplicationBuilder, Func(Of HttpContext, Boolean), String())
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -305,17 +309,16 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.MiddlewareExtensions.UseAntiForgery*
-  commentId: Overload:FastEndpoints.MiddlewareExtensions.UseAntiForgery
-  href: FastEndpoints.MiddlewareExtensions.html#FastEndpoints_MiddlewareExtensions_UseAntiForgery_Microsoft_AspNetCore_Builder_IApplicationBuilder_
-  name: UseAntiForgery
-  nameWithType: MiddlewareExtensions.UseAntiForgery
-  fullName: FastEndpoints.MiddlewareExtensions.UseAntiForgery
+- uid: FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE*
+  commentId: Overload:FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE
+  href: FastEndpoints.MiddlewareExtensions.html#FastEndpoints_MiddlewareExtensions_UseAntiforgeryFE_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Func_Microsoft_AspNetCore_Http_HttpContext_System_Boolean__System_String___
+  name: UseAntiforgeryFE
+  nameWithType: MiddlewareExtensions.UseAntiforgeryFE
+  fullName: FastEndpoints.MiddlewareExtensions.UseAntiforgeryFE
 - uid: Microsoft.AspNetCore.Builder.IApplicationBuilder
   commentId: T:Microsoft.AspNetCore.Builder.IApplicationBuilder
   parent: Microsoft.AspNetCore.Builder
@@ -324,6 +327,76 @@ references:
   name: IApplicationBuilder
   nameWithType: IApplicationBuilder
   fullName: Microsoft.AspNetCore.Builder.IApplicationBuilder
+- uid: System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean}
+  commentId: T:System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<HttpContext, bool>
+  nameWithType: Func<HttpContext, bool>
+  fullName: System.Func<Microsoft.AspNetCore.Http.HttpContext, bool>
+  nameWithType.vb: Func(Of HttpContext, Boolean)
+  fullName.vb: System.Func(Of Microsoft.AspNetCore.Http.HttpContext, Boolean)
+  name.vb: Func(Of HttpContext, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
 - uid: Microsoft.AspNetCore.Builder
   commentId: N:Microsoft.AspNetCore.Builder
   isExternal: true
@@ -361,3 +434,37 @@ references:
     name: Builder
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )

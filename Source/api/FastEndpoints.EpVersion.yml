@@ -6,7 +6,10 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.EpVersion.Current
+  - FastEndpoints.EpVersion.DeprecateAt(System.Int32)
   - FastEndpoints.EpVersion.DeprecatedAt
+  - FastEndpoints.EpVersion.StartingRelease(System.Int32)
+  - FastEndpoints.EpVersion.StartingReleaseVersion
   langs:
   - csharp
   - vb
@@ -14,10 +17,6 @@ items:
   nameWithType: EpVersion
   fullName: FastEndpoints.EpVersion
   type: Class
-  source:
-    id: EpVersion
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 494
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -46,10 +45,6 @@ items:
   nameWithType: EpVersion.Current
   fullName: FastEndpoints.EpVersion.Current
   type: Property
-  source:
-    id: Current
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 496
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -60,6 +55,27 @@ items:
       type: System.Int32
     content.vb: Public Property Current As Integer
   overload: FastEndpoints.EpVersion.Current*
+- uid: FastEndpoints.EpVersion.StartingReleaseVersion
+  commentId: P:FastEndpoints.EpVersion.StartingReleaseVersion
+  id: StartingReleaseVersion
+  parent: FastEndpoints.EpVersion
+  langs:
+  - csharp
+  - vb
+  name: StartingReleaseVersion
+  nameWithType: EpVersion.StartingReleaseVersion
+  fullName: FastEndpoints.EpVersion.StartingReleaseVersion
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public int StartingReleaseVersion { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property StartingReleaseVersion As Integer
+  overload: FastEndpoints.EpVersion.StartingReleaseVersion*
 - uid: FastEndpoints.EpVersion.DeprecatedAt
   commentId: P:FastEndpoints.EpVersion.DeprecatedAt
   id: DeprecatedAt
@@ -71,10 +87,6 @@ items:
   nameWithType: EpVersion.DeprecatedAt
   fullName: FastEndpoints.EpVersion.DeprecatedAt
   type: Property
-  source:
-    id: DeprecatedAt
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Auxiliary\EndpointDefinition.cs
-    startLine: 497
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -85,6 +97,86 @@ items:
       type: System.Int32
     content.vb: Public Property DeprecatedAt As Integer
   overload: FastEndpoints.EpVersion.DeprecatedAt*
+- uid: FastEndpoints.EpVersion.StartingRelease(System.Int32)
+  commentId: M:FastEndpoints.EpVersion.StartingRelease(System.Int32)
+  id: StartingRelease(System.Int32)
+  parent: FastEndpoints.EpVersion
+  langs:
+  - csharp
+  - vb
+  name: StartingRelease(int)
+  nameWithType: EpVersion.StartingRelease(int)
+  fullName: FastEndpoints.EpVersion.StartingRelease(int)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    specify the "release" number of the swagger document where this endpoint should start showing up in.
+
+    for example, if a swagger doc such as the following is defined:
+
+    <pre><code class="lang-csharp">bld.Services.SwaggerDocument(
+           o =&gt;
+           {
+               o.DocumentSettings = d =&gt; d.DocumentName = "Release 2";
+               o.ReleaseVersion = 2;
+           })</code></pre>
+    this endpoint will only show up for the above doc and later if you do the following:
+
+    <pre><code class="lang-csharp">Version(n).StartingRelease(2);</code></pre>
+  example: []
+  syntax:
+    content: public EpVersion StartingRelease(int version)
+    parameters:
+    - id: version
+      type: System.Int32
+      description: the starting release version number of the swagger doc
+    return:
+      type: FastEndpoints.EpVersion
+    content.vb: Public Function StartingRelease(version As Integer) As EpVersion
+  overload: FastEndpoints.EpVersion.StartingRelease*
+  nameWithType.vb: EpVersion.StartingRelease(Integer)
+  fullName.vb: FastEndpoints.EpVersion.StartingRelease(Integer)
+  name.vb: StartingRelease(Integer)
+- uid: FastEndpoints.EpVersion.DeprecateAt(System.Int32)
+  commentId: M:FastEndpoints.EpVersion.DeprecateAt(System.Int32)
+  id: DeprecateAt(System.Int32)
+  parent: FastEndpoints.EpVersion
+  langs:
+  - csharp
+  - vb
+  name: DeprecateAt(int)
+  nameWithType: EpVersion.DeprecateAt(int)
+  fullName: FastEndpoints.EpVersion.DeprecateAt(int)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    specify starting at which version this endpoint should be considered deprecated.
+
+    <p>
+
+    NOTE: it would be the endpoint version to deprecate at for "release group" strategy, and the "release version" of the swagger doc when using the
+
+    "release version" strategy.
+
+    </p>
+  example: []
+  syntax:
+    content: public EpVersion DeprecateAt(int version)
+    parameters:
+    - id: version
+      type: System.Int32
+      description: ''
+    return:
+      type: FastEndpoints.EpVersion
+    content.vb: Public Function DeprecateAt(version As Integer) As EpVersion
+  overload: FastEndpoints.EpVersion.DeprecateAt*
+  nameWithType.vb: EpVersion.DeprecateAt(Integer)
+  fullName.vb: FastEndpoints.EpVersion.DeprecateAt(Integer)
+  name.vb: DeprecateAt(Integer)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -300,7 +392,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -322,9 +413,34 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: FastEndpoints.EpVersion.StartingReleaseVersion*
+  commentId: Overload:FastEndpoints.EpVersion.StartingReleaseVersion
+  href: FastEndpoints.EpVersion.html#FastEndpoints_EpVersion_StartingReleaseVersion
+  name: StartingReleaseVersion
+  nameWithType: EpVersion.StartingReleaseVersion
+  fullName: FastEndpoints.EpVersion.StartingReleaseVersion
 - uid: FastEndpoints.EpVersion.DeprecatedAt*
   commentId: Overload:FastEndpoints.EpVersion.DeprecatedAt
   href: FastEndpoints.EpVersion.html#FastEndpoints_EpVersion_DeprecatedAt
   name: DeprecatedAt
   nameWithType: EpVersion.DeprecatedAt
   fullName: FastEndpoints.EpVersion.DeprecatedAt
+- uid: FastEndpoints.EpVersion.StartingRelease*
+  commentId: Overload:FastEndpoints.EpVersion.StartingRelease
+  href: FastEndpoints.EpVersion.html#FastEndpoints_EpVersion_StartingRelease_System_Int32_
+  name: StartingRelease
+  nameWithType: EpVersion.StartingRelease
+  fullName: FastEndpoints.EpVersion.StartingRelease
+- uid: FastEndpoints.EpVersion
+  commentId: T:FastEndpoints.EpVersion
+  parent: FastEndpoints
+  href: FastEndpoints.EpVersion.html
+  name: EpVersion
+  nameWithType: EpVersion
+  fullName: FastEndpoints.EpVersion
+- uid: FastEndpoints.EpVersion.DeprecateAt*
+  commentId: Overload:FastEndpoints.EpVersion.DeprecateAt
+  href: FastEndpoints.EpVersion.html#FastEndpoints_EpVersion_DeprecateAt_System_Int32_
+  name: DeprecateAt
+  nameWithType: EpVersion.DeprecateAt
+  fullName: FastEndpoints.EpVersion.DeprecateAt

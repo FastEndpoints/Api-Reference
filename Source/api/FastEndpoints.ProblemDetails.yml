@@ -8,17 +8,14 @@ items:
   - FastEndpoints.ProblemDetails.#ctor
   - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.Nullable{System.Int32})
   - FastEndpoints.ProblemDetails.#ctor(System.Collections.Generic.IReadOnlyList{FluentValidation.Results.ValidationFailure},System.String,System.String,System.Int32)
-  - FastEndpoints.ProblemDetails.AllowDuplicates
+  - FastEndpoints.ProblemDetails.Detail
   - FastEndpoints.ProblemDetails.Errors
   - FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.ProblemDetails.Instance
-  - FastEndpoints.ProblemDetails.ResponseBuilder
   - FastEndpoints.ProblemDetails.Status
   - FastEndpoints.ProblemDetails.Title
-  - FastEndpoints.ProblemDetails.TitleValue
   - FastEndpoints.ProblemDetails.TraceId
   - FastEndpoints.ProblemDetails.Type
-  - FastEndpoints.ProblemDetails.TypeValue
   langs:
   - csharp
   - vb
@@ -26,19 +23,13 @@ items:
   nameWithType: ProblemDetails
   fullName: FastEndpoints.ProblemDetails
   type: Class
-  source:
-    id: ProblemDetails
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: >-
     RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:
 
-    <p>
-        <code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code>
-    </p>
+    <p><code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code></p>
   example: []
   syntax:
     content: 'public sealed class ProblemDetails : IResult'
@@ -54,114 +45,6 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: FastEndpoints.ProblemDetails.ResponseBuilder
-  commentId: P:FastEndpoints.ProblemDetails.ResponseBuilder
-  id: ResponseBuilder
-  parent: FastEndpoints.ProblemDetails
-  langs:
-  - csharp
-  - vb
-  name: ResponseBuilder
-  nameWithType: ProblemDetails.ResponseBuilder
-  fullName: FastEndpoints.ProblemDetails.ResponseBuilder
-  type: Property
-  source:
-    id: ResponseBuilder
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 29
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: the built-in function for transforming validation errors to a RFC7807 compatible problem details error response dto.
-  example: []
-  syntax:
-    content: public static Func<List<ValidationFailure>, HttpContext, int, object> ResponseBuilder { get; }
-    parameters: []
-    return:
-      type: System.Func{System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
-    content.vb: Public Shared ReadOnly Property ResponseBuilder As Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
-  overload: FastEndpoints.ProblemDetails.ResponseBuilder*
-- uid: FastEndpoints.ProblemDetails.AllowDuplicates
-  commentId: P:FastEndpoints.ProblemDetails.AllowDuplicates
-  id: AllowDuplicates
-  parent: FastEndpoints.ProblemDetails
-  langs:
-  - csharp
-  - vb
-  name: AllowDuplicates
-  nameWithType: ProblemDetails.AllowDuplicates
-  fullName: FastEndpoints.ProblemDetails.AllowDuplicates
-  type: Property
-  source:
-    id: AllowDuplicates
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 35
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: controls whether duplicate errors with the same name should be allowed.
-  example: []
-  syntax:
-    content: public static bool AllowDuplicates { set; }
-    parameters: []
-    return:
-      type: System.Boolean
-    content.vb: Public Shared Property AllowDuplicates As Boolean
-  overload: FastEndpoints.ProblemDetails.AllowDuplicates*
-- uid: FastEndpoints.ProblemDetails.TypeValue
-  commentId: P:FastEndpoints.ProblemDetails.TypeValue
-  id: TypeValue
-  parent: FastEndpoints.ProblemDetails
-  langs:
-  - csharp
-  - vb
-  name: TypeValue
-  nameWithType: ProblemDetails.TypeValue
-  fullName: FastEndpoints.ProblemDetails.TypeValue
-  type: Property
-  source:
-    id: TypeValue
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 40
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: globally sets the 'Type' value of the problem details dto.
-  example: []
-  syntax:
-    content: public static string TypeValue { set; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Shared Property TypeValue As String
-  overload: FastEndpoints.ProblemDetails.TypeValue*
-- uid: FastEndpoints.ProblemDetails.TitleValue
-  commentId: P:FastEndpoints.ProblemDetails.TitleValue
-  id: TitleValue
-  parent: FastEndpoints.ProblemDetails
-  langs:
-  - csharp
-  - vb
-  name: TitleValue
-  nameWithType: ProblemDetails.TitleValue
-  fullName: FastEndpoints.ProblemDetails.TitleValue
-  type: Property
-  source:
-    id: TitleValue
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 45
-  assemblies:
-  - FastEndpoints
-  namespace: FastEndpoints
-  summary: globally sets the 'Title' value of the problem details dto.
-  example: []
-  syntax:
-    content: public static string TitleValue { set; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Public Shared Property TitleValue As String
-  overload: FastEndpoints.ProblemDetails.TitleValue*
 - uid: FastEndpoints.ProblemDetails.Type
   commentId: P:FastEndpoints.ProblemDetails.Type
   id: Type
@@ -173,10 +56,6 @@ items:
   nameWithType: ProblemDetails.Type
   fullName: FastEndpoints.ProblemDetails.Type
   type: Property
-  source:
-    id: Type
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -198,10 +77,6 @@ items:
   nameWithType: ProblemDetails.Title
   fullName: FastEndpoints.ProblemDetails.Title
   type: Property
-  source:
-    id: Title
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 51
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -223,10 +98,6 @@ items:
   nameWithType: ProblemDetails.Status
   fullName: FastEndpoints.ProblemDetails.Status
   type: Property
-  source:
-    id: Status
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 55
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -248,10 +119,6 @@ items:
   nameWithType: ProblemDetails.Instance
   fullName: FastEndpoints.ProblemDetails.Instance
   type: Property
-  source:
-    id: Instance
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 58
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -273,10 +140,6 @@ items:
   nameWithType: ProblemDetails.TraceId
   fullName: FastEndpoints.ProblemDetails.TraceId
   type: Property
-  source:
-    id: TraceId
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 61
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -287,6 +150,43 @@ items:
       type: System.String
     content.vb: Public Property TraceId As String
   overload: FastEndpoints.ProblemDetails.TraceId*
+- uid: FastEndpoints.ProblemDetails.Detail
+  commentId: P:FastEndpoints.ProblemDetails.Detail
+  id: Detail
+  parent: FastEndpoints.ProblemDetails
+  langs:
+  - csharp
+  - vb
+  name: Detail
+  nameWithType: ProblemDetails.Detail
+  fullName: FastEndpoints.ProblemDetails.Detail
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the details of the error
+  example: []
+  syntax:
+    content: >-
+      [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+
+      public string? Detail { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <JsonIgnore(Condition:=JsonIgnoreCondition.WhenWritingNull)>
+
+      Public Property Detail As String
+  overload: FastEndpoints.ProblemDetails.Detail*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Condition
+      type: System.Text.Json.Serialization.JsonIgnoreCondition
+      value: 3
 - uid: FastEndpoints.ProblemDetails.Errors
   commentId: P:FastEndpoints.ProblemDetails.Errors
   id: Errors
@@ -298,10 +198,6 @@ items:
   nameWithType: ProblemDetails.Errors
   fullName: FastEndpoints.ProblemDetails.Errors
   type: Property
-  source:
-    id: Errors
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 64
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -323,10 +219,6 @@ items:
   nameWithType: ProblemDetails.ProblemDetails()
   fullName: FastEndpoints.ProblemDetails.ProblemDetails()
   type: Constructor
-  source:
-    id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 66
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -348,10 +240,6 @@ items:
   nameWithType: ProblemDetails.ProblemDetails(IReadOnlyList<ValidationFailure>, int?)
   fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.IReadOnlyList<FluentValidation.Results.ValidationFailure>, int?)
   type: Constructor
-  source:
-    id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 68
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -378,10 +266,6 @@ items:
   nameWithType: ProblemDetails.ProblemDetails(IReadOnlyList<ValidationFailure>, string, string, int)
   fullName: FastEndpoints.ProblemDetails.ProblemDetails(System.Collections.Generic.IReadOnlyList<FluentValidation.Results.ValidationFailure>, string, string, int)
   type: Constructor
-  source:
-    id: .ctor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 73
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -412,10 +296,6 @@ items:
   nameWithType: ProblemDetails.ExecuteAsync(HttpContext)
   fullName: FastEndpoints.ProblemDetails.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   type: Method
-  source:
-    id: ExecuteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\DTOs\ProblemDetails.cs
-    startLine: 96
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -657,7 +537,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -699,164 +578,12 @@ references:
     name: Http
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
-- uid: FastEndpoints.ProblemDetails.ResponseBuilder*
-  commentId: Overload:FastEndpoints.ProblemDetails.ResponseBuilder
-  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_ResponseBuilder
-  name: ResponseBuilder
-  nameWithType: ProblemDetails.ResponseBuilder
-  fullName: FastEndpoints.ProblemDetails.ResponseBuilder
-- uid: System.Func{System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
-  commentId: T:System.Func{System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.Object}
-  parent: System
-  definition: System.Func`4
-  href: https://learn.microsoft.com/dotnet/api/system.func-4
-  name: Func<List<ValidationFailure>, HttpContext, int, object>
-  nameWithType: Func<List<ValidationFailure>, HttpContext, int, object>
-  fullName: System.Func<System.Collections.Generic.List<FluentValidation.Results.ValidationFailure>, Microsoft.AspNetCore.Http.HttpContext, int, object>
-  nameWithType.vb: Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
-  fullName.vb: System.Func(Of System.Collections.Generic.List(Of FluentValidation.Results.ValidationFailure), Microsoft.AspNetCore.Http.HttpContext, Integer, Object)
-  name.vb: Func(Of List(Of ValidationFailure), HttpContext, Integer, Object)
-  spec.csharp:
-  - uid: System.Func`4
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-4
-  - name: <
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - uid: FluentValidation.Results.ValidationFailure
-    name: ValidationFailure
-    isExternal: true
-  - name: '>'
-  - name: ','
-  - name: " "
-  - uid: Microsoft.AspNetCore.Http.HttpContext
-    name: HttpContext
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  spec.vb:
-  - uid: System.Func`4
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-4
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: FluentValidation.Results.ValidationFailure
-    name: ValidationFailure
-    isExternal: true
-  - name: )
-  - name: ','
-  - name: " "
-  - uid: Microsoft.AspNetCore.Http.HttpContext
-    name: HttpContext
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )
-- uid: System.Func`4
-  commentId: T:System.Func`4
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.func-4
-  name: Func<T1, T2, T3, TResult>
-  nameWithType: Func<T1, T2, T3, TResult>
-  fullName: System.Func<T1, T2, T3, TResult>
-  nameWithType.vb: Func(Of T1, T2, T3, TResult)
-  fullName.vb: System.Func(Of T1, T2, T3, TResult)
-  name.vb: Func(Of T1, T2, T3, TResult)
-  spec.csharp:
-  - uid: System.Func`4
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-4
-  - name: <
-  - name: T1
-  - name: ','
-  - name: " "
-  - name: T2
-  - name: ','
-  - name: " "
-  - name: T3
-  - name: ','
-  - name: " "
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: System.Func`4
-    name: Func
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.func-4
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T1
-  - name: ','
-  - name: " "
-  - name: T2
-  - name: ','
-  - name: " "
-  - name: T3
-  - name: ','
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: FastEndpoints.ProblemDetails.AllowDuplicates*
-  commentId: Overload:FastEndpoints.ProblemDetails.AllowDuplicates
-  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_AllowDuplicates
-  name: AllowDuplicates
-  nameWithType: ProblemDetails.AllowDuplicates
-  fullName: FastEndpoints.ProblemDetails.AllowDuplicates
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: FastEndpoints.ProblemDetails.TypeValue*
-  commentId: Overload:FastEndpoints.ProblemDetails.TypeValue
-  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_TypeValue
-  name: TypeValue
-  nameWithType: ProblemDetails.TypeValue
-  fullName: FastEndpoints.ProblemDetails.TypeValue
+- uid: FastEndpoints.ProblemDetails.Type*
+  commentId: Overload:FastEndpoints.ProblemDetails.Type
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Type
+  name: Type
+  nameWithType: ProblemDetails.Type
+  fullName: FastEndpoints.ProblemDetails.Type
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -868,18 +595,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: FastEndpoints.ProblemDetails.TitleValue*
-  commentId: Overload:FastEndpoints.ProblemDetails.TitleValue
-  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_TitleValue
-  name: TitleValue
-  nameWithType: ProblemDetails.TitleValue
-  fullName: FastEndpoints.ProblemDetails.TitleValue
-- uid: FastEndpoints.ProblemDetails.Type*
-  commentId: Overload:FastEndpoints.ProblemDetails.Type
-  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Type
-  name: Type
-  nameWithType: ProblemDetails.Type
-  fullName: FastEndpoints.ProblemDetails.Type
 - uid: FastEndpoints.ProblemDetails.Title*
   commentId: Overload:FastEndpoints.ProblemDetails.Title
   href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Title
@@ -915,6 +630,12 @@ references:
   name: TraceId
   nameWithType: ProblemDetails.TraceId
   fullName: FastEndpoints.ProblemDetails.TraceId
+- uid: FastEndpoints.ProblemDetails.Detail*
+  commentId: Overload:FastEndpoints.ProblemDetails.Detail
+  href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Detail
+  name: Detail
+  nameWithType: ProblemDetails.Detail
+  fullName: FastEndpoints.ProblemDetails.Detail
 - uid: FastEndpoints.ProblemDetails.Errors*
   commentId: Overload:FastEndpoints.ProblemDetails.Errors
   href: FastEndpoints.ProblemDetails.html#FastEndpoints_ProblemDetails_Errors

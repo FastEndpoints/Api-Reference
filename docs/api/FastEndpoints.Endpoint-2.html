@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Endpoint&lt;TRequest, TResponse&gt;
- | FastEndpoints </title>
+    <title>Class Endpoint&lt;TRequest, TResponse&gt; | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Endpoint&lt;TRequest, TResponse&gt;
- | FastEndpoints ">
+    <meta name="title" content="Class Endpoint&lt;TRequest, TResponse&gt; | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,8 +80,7 @@
 
 
 
-  <h1 id="FastEndpoints_Endpoint_2" data-uid="FastEndpoints.Endpoint`2" class="text-break">Class Endpoint&lt;TRequest, TResponse&gt;
-</h1>
+  <h1 id="FastEndpoints_Endpoint_2" data-uid="FastEndpoints.Endpoint`2" class="text-break">Class Endpoint&lt;TRequest, TResponse&gt;</h1>
   <div class="markdown level0 summary"><p>use this base class for defining endpoints that use both request and response dtos.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -98,6 +95,7 @@
       <div class="level3"><a class="xref" href="FastEndpoints.EndpointWithoutRequest-1.html">EndpointWithoutRequest&lt;TResponse&gt;</a></div>
       <div class="level3"><a class="xref" href="FastEndpoints.Endpoint-1.html">Endpoint&lt;TRequest&gt;</a></div>
       <div class="level3"><a class="xref" href="FastEndpoints.Endpoint-3.html">Endpoint&lt;TRequest, TResponse, TMapper&gt;</a></div>
+      <div class="level3"><a class="xref" href="FastEndpoints.Ep.Req-1.Res-1.html">Ep.Req&lt;TRequest&gt;.Res&lt;TResponse&gt;</a></div>
       <div class="level3"><a class="xref" href="FastEndpoints.Security.RefreshTokenService-2.html">RefreshTokenService&lt;TRequest, TResponse&gt;</a></div>
   </div>
   <div class="implements">
@@ -498,7 +496,7 @@ generator package installed.</p>
         <td><span class="parametername">behavior</span></td>
         <td><p>specify whether to add the generated permission code as a permission requirement for this endpoint.
 this does the same thing as calling &quot;Permissions(...)&quot; method.
-i.e. if this optional argument is set to <a class="xref" href="FastEndpoints.Apply.html#FastEndpoints_Apply_ToThisEndpoint">ToThisEndpoint</a>, then a user principal must posses this permission code
+i.e. if this optional argument is set to <a class="xref" href="FastEndpoints.Apply.html#FastEndpoints_Apply_ToThisEndpoint">ToThisEndpoint</a>, then a user principal must possess this permission code
 in order to be allowed access to this endpoint. you don't need to explicitly specify it via a <code>Permissions(...)</code> call, when setting the
 <code class="paramref">behavior</code>.</p>
 </td>
@@ -757,7 +755,7 @@ authentication.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">dontAutoBindFormData</span></td>
         <td><p>set 'true' to disable auto binding of form data which enables uploading and reading of large files without buffering to memory/disk.
-you can access the multipart sections for reading via the FormFileSectionsAsync() method.</p>
+you can access the multipart sections for reading via the <a class="xref" href="FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormFileSectionsAsync_System_Threading_CancellationToken_">FormFileSectionsAsync(CancellationToken)</a> method.</p>
 </td>
       </tr>
     </tbody>
@@ -853,7 +851,7 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
 
   <a id="FastEndpoints_Endpoint_2_ClaimsAll_" data-uid="FastEndpoints.Endpoint`2.ClaimsAll*"></a>
   <h4 id="FastEndpoints_Endpoint_2_ClaimsAll_System_String___" data-uid="FastEndpoints.Endpoint`2.ClaimsAll(System.String[])">ClaimsAll(params string[])</h4>
-  <div class="markdown level1 summary"><p>allows access if the claims principal has ALL of the given claim types</p>
+  <div class="markdown level1 summary"><p>allows access if the claims principal has ALL the given claim types</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -884,7 +882,8 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   <h4 id="FastEndpoints_Endpoint_2_CreateScope" data-uid="FastEndpoints.Endpoint`2.CreateScope">CreateScope()</h4>
   <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when
 the work is complete.</p>
-<p><pre><code class="lang-csharp">using var scope = CreateScope();
+<p>
+   <pre><code class="lang-csharp">using var scope = CreateScope();
    var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -910,13 +909,13 @@ the work is complete.</p>
 
 
   <a id="FastEndpoints_Endpoint_2_CreateTokenWith_" data-uid="FastEndpoints.Endpoint`2.CreateTokenWith*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__" data-uid="FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})">CreateTokenWith&lt;TService&gt;(string, Action&lt;UserPrivileges&gt;)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_" data-uid="FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)">CreateTokenWith&lt;TService&gt;(string, Action&lt;UserPrivileges&gt;, TRequest?)</h4>
   <div class="markdown level1 summary"><p>create the access/refresh token pair response with a given refresh-token service.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task&lt;TResponse&gt; CreateTokenWith&lt;TService&gt;(string userId, Action&lt;UserPrivileges&gt; userPrivileges) where TService : IRefreshTokenService&lt;TResponse&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">protected Task&lt;TResponse&gt; CreateTokenWith&lt;TService&gt;(string userId, Action&lt;UserPrivileges&gt; userPrivileges, TRequest? request = default) where TService : IRefreshTokenService&lt;TResponse&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -937,8 +936,13 @@ the work is complete.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FastEndpoints.UserPrivileges.html">UserPrivileges</a>&gt;</td>
         <td><span class="parametername">userPrivileges</span></td>
-        <td><p>the user priviledges to be embeded in the jwt such as roles/claims/permissions</p>
+        <td><p>the user privileges to be embedded in the jwt such as roles/claims/permissions</p>
 </td>
+      </tr>
+      <tr>
+        <td><span class="xref">TRequest</span></td>
+        <td><span class="parametername">request</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -999,9 +1003,7 @@ the work is complete.</p>
         <td><span class="parametername">routePattern</span></td>
         <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
 the replacement words do not have to match the request dto property names.</p>
-<p>
-    <code>/invoice/{@id}/soft-delete</code>
-</p>
+<p><code>/invoice/{@id}/soft-delete</code></p>
 </td>
       </tr>
       <tr>
@@ -1044,10 +1046,9 @@ the replacement words do not have to match the request dto property names.</p>
 
   <a id="FastEndpoints_Endpoint_2_Description_" data-uid="FastEndpoints.Endpoint`2.Description*"></a>
   <h4 id="FastEndpoints_Endpoint_2_Description_System_Action_Microsoft_AspNetCore_Builder_RouteHandlerBuilder__System_Boolean_" data-uid="FastEndpoints.Endpoint`2.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)">Description(Action&lt;RouteHandlerBuilder&gt;, bool)</h4>
-  <div class="markdown level1 summary"><p>describe openapi metadata for this endpoint. optionaly specify whether or not you want to clear the default Accepts/Produces metadata.</p>
+  <div class="markdown level1 summary"><p>describe openapi metadata for this endpoint. optionally specify whether you want to clear the default Accepts/Produces metadata.</p>
 <p>
-EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code>
-</p>
+EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1080,6 +1081,18 @@ EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code>
   </table>
 
 
+  <a id="FastEndpoints_Endpoint_2_DontAutoSendResponse_" data-uid="FastEndpoints.Endpoint`2.DontAutoSendResponse*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_DontAutoSendResponse" data-uid="FastEndpoints.Endpoint`2.DontAutoSendResponse">DontAutoSendResponse()</h4>
+  <div class="markdown level1 summary"><p>disables auto sending of responses when the endpoint handler doesn't explicitly send a response. most useful for allowing a post-processor to
+handle sending of the response.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void DontAutoSendResponse()</code></pre>
+  </div>
+
+
   <a id="FastEndpoints_Endpoint_2_DontAutoTag_" data-uid="FastEndpoints.Endpoint`2.DontAutoTag*"></a>
   <h4 id="FastEndpoints_Endpoint_2_DontAutoTag" data-uid="FastEndpoints.Endpoint`2.DontAutoTag">DontAutoTag()</h4>
   <div class="markdown level1 summary"><p>if swagger auto tagging based on path segment is enabled, calling this method will prevent a tag from being added to this endpoint.</p>
@@ -1095,7 +1108,7 @@ EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code>
   <h4 id="FastEndpoints_Endpoint_2_DontCatchExceptions" data-uid="FastEndpoints.Endpoint`2.DontCatchExceptions">DontCatchExceptions()</h4>
   <div class="markdown level1 summary"><p>use this only if you have your own exception catching middleware.
 if this method is called in config, an automatic error response will not be sent to the client by the library.
-all exceptions will be thrown and it would be the responsibility of your exeception catching middleware to handle them.</p>
+all exceptions will be thrown, and it would be the responsibility of your exception catching middleware to handle them.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1179,8 +1192,8 @@ all exceptions will be thrown and it would be the responsibility of your execept
 
   <a id="FastEndpoints_Endpoint_2_FormFileSectionsAsync_" data-uid="FastEndpoints.Endpoint`2.FormFileSectionsAsync*"></a>
   <h4 id="FastEndpoints_Endpoint_2_FormFileSectionsAsync_System_Threading_CancellationToken_" data-uid="FastEndpoints.Endpoint`2.FormFileSectionsAsync(System.Threading.CancellationToken)">FormFileSectionsAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>gets a stream of nullable FileMultipartSections from the incoming multipart/form-data without buffering the whole file to memory/disk
-as done with IFormFile</p>
+  <div class="markdown level1 summary"><p>gets a stream of nullable <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.webutilities.filemultipartsection">FileMultipartSection</a>s from the incoming multipart/form-data without buffering data to memory/disk
+as done with <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iformfile">IFormFile</a>s.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1222,6 +1235,50 @@ as done with IFormFile</p>
   </table>
 
 
+  <a id="FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_" data-uid="FastEndpoints.Endpoint`2.FormMultipartSectionsAsync*"></a>
+  <h4 id="FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_" data-uid="FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)">FormMultipartSectionsAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>gets a stream of <a class="xref" href="FastEndpoints.MultipartSection.html">MultipartSection</a>s from the incoming multipart/form-data without buffering to memory/disk.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IAsyncEnumerable&lt;MultipartSection&gt; FormMultipartSectionsAsync(CancellationToken cancellation = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellation</span></td>
+        <td><p>optional cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="FastEndpoints.MultipartSection.html">MultipartSection</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_Endpoint_2_Get_" data-uid="FastEndpoints.Endpoint`2.Get*"></a>
   <h4 id="FastEndpoints_Endpoint_2_Get_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___" data-uid="FastEndpoints.Endpoint`2.Get(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">Get(string, Expression&lt;Func&lt;TRequest, object&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>specify a GET route pattern using a replacement expression.</p>
@@ -1246,9 +1303,7 @@ as done with IFormFile</p>
         <td><span class="parametername">routePattern</span></td>
         <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
 the replacement words do not have to match the request dto property names.</p>
-<p>
-    <code>/invoice/{@id}/print/{@pageNum}</code>
-</p>
+<p><code>/invoice/{@id}/print/{@pageNum}</code></p>
 </td>
       </tr>
       <tr>
@@ -1412,9 +1467,7 @@ WARNING: this method can only be called after the endpoint route has been specif
         <td><span class="parametername">routePattern</span></td>
         <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
 the replacement words do not have to match the request dto property names.</p>
-<p>
-    <code>/invoice/{@id}/print/{@pageNum}</code>
-</p>
+<p><code>/invoice/{@id}/print/{@pageNum}</code></p>
 </td>
       </tr>
       <tr>
@@ -1891,9 +1944,7 @@ the replacement words do not have to match the request dto property names.</p>
         <td><span class="parametername">routePattern</span></td>
         <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
 the replacement words do not have to match the request dto property names.</p>
-<p>
-    <code>/invoice/{@id}</code>
-</p>
+<p><code>/invoice/{@id}</code></p>
 </td>
       </tr>
       <tr>
@@ -1965,7 +2016,7 @@ the replacement words do not have to match the request dto property names.</p>
 
   <a id="FastEndpoints_Endpoint_2_PermissionsAll_" data-uid="FastEndpoints.Endpoint`2.PermissionsAll*"></a>
   <h4 id="FastEndpoints_Endpoint_2_PermissionsAll_System_String___" data-uid="FastEndpoints.Endpoint`2.PermissionsAll(System.String[])">PermissionsAll(params string[])</h4>
-  <div class="markdown level1 summary"><p>allows access if the claims principal has ALL of the given permissions</p>
+  <div class="markdown level1 summary"><p>allows access if the claims principal has ALL the given permissions</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -2075,9 +2126,7 @@ applied to this endpoint.</p>
         <td><span class="parametername">routePattern</span></td>
         <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
 the replacement words do not have to match the request dto property names.</p>
-<p>
-    <code>/invoice/{@id}/page/{@pageNum}</code>
-</p>
+<p><code>/invoice/{@id}/page/{@pageNum}</code></p>
 </td>
       </tr>
       <tr>
@@ -2148,7 +2197,8 @@ processors are executed in the order they are configured in the endpoint.</p>
 
   <a id="FastEndpoints_Endpoint_2_PostProcessors_" data-uid="FastEndpoints.Endpoint`2.PostProcessors*"></a>
   <h4 id="FastEndpoints_Endpoint_2_PostProcessors_FastEndpoints_IPostProcessor__0__1____" data-uid="FastEndpoints.Endpoint`2.PostProcessors(FastEndpoints.IPostProcessor{`0,`1}[])">PostProcessors(params IPostProcessor&lt;TRequest, TResponse&gt;[])</h4>
-  <div class="markdown level1 summary"><p>configure a collection of post-processors to be executed after the main handler function is done. processors are executed in the order they are  defined here.</p>
+  <div class="markdown level1 summary"><p>configure a collection of post-processors to be executed after the main handler function is done. processors are executed in the order they are  defined
+here.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -2205,7 +2255,8 @@ processors are executed in the order they are configured in the endpoint.</p>
 
   <a id="FastEndpoints_Endpoint_2_PreProcessors_" data-uid="FastEndpoints.Endpoint`2.PreProcessors*"></a>
   <h4 id="FastEndpoints_Endpoint_2_PreProcessors_FastEndpoints_IPreProcessor__0____" data-uid="FastEndpoints.Endpoint`2.PreProcessors(FastEndpoints.IPreProcessor{`0}[])">PreProcessors(params IPreProcessor&lt;TRequest&gt;[])</h4>
-  <div class="markdown level1 summary"><p>configure a collection of pre-processors to be executed before the main handler function is called. processors are executed in the order they are defined here.</p>
+  <div class="markdown level1 summary"><p>configure a collection of pre-processors to be executed before the main handler function is called. processors are executed in the order they are defined
+here.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -2225,7 +2276,7 @@ processors are executed in the order they are configured in the endpoint.</p>
       <tr>
         <td><a class="xref" href="FastEndpoints.IPreProcessor-1.html">IPreProcessor</a>&lt;TRequest&gt;[]</td>
         <td><span class="parametername">preProcessors</span></td>
-        <td><p>the pre processors to be executed</p>
+        <td><p>the pre-processors to be executed</p>
 </td>
       </tr>
     </tbody>
@@ -2391,9 +2442,7 @@ context</p>
         <td><span class="parametername">routePattern</span></td>
         <td><p>the words prefixed with @ will be replaced by property names of the <code>new</code> expression in the order they are specified.
 the replacement words do not have to match the request dto property names.</p>
-<p>
-    <code>/invoice/{@id}/page/{@pageNum}</code>
-</p>
+<p><code>/invoice/{@id}/page/{@pageNum}</code></p>
 </td>
       </tr>
       <tr>
@@ -3097,8 +3146,7 @@ route endpoint.
 <p>
 HINT: if pointing to an endpoint with multiple verbs, make sure to specify the 'verb' argument and if pointing to a multi route endpoint,
 specify the 'routeNumber' argument.
-</p>
-<p>
+</p><p>
 WARNING: this overload will not add a location header if you've set a custom endpoint name using .WithName() method. use the other overload
 that accepts a string endpoint name instead.
 </p>
@@ -3778,13 +3826,13 @@ then that will be executed before the normal response is sent.</p>
 
 
   <a id="FastEndpoints_Endpoint_2_SendRedirectAsync_" data-uid="FastEndpoints.Endpoint`2.SendRedirectAsync*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)">SendRedirectAsync(string, bool, CancellationToken)</h4>
+  <h4 id="FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_" data-uid="FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)">SendRedirectAsync(string, bool, bool)</h4>
   <div class="markdown level1 summary"><p>send a 302/301 redirect response</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task SendRedirectAsync(string location, bool isPermanant = false, CancellationToken cancellation = default)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Task SendRedirectAsync(string location, bool isPermanent = false, bool allowRemoteRedirects = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3804,14 +3852,14 @@ then that will be executed before the normal response is sent.</p>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">isPermanant</span></td>
+        <td><span class="parametername">isPermanent</span></td>
         <td><p>set to true for a 301 redirect. 302 is the default.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellation</span></td>
-        <td><p>optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">allowRemoteRedirects</span></td>
+        <td><p>set to true if it's ok to redirect to remote addresses, which is prone to open redirect attacks.</p>
 </td>
       </tr>
     </tbody>
@@ -3828,6 +3876,22 @@ then that will be executed before the normal response is sent.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if <code class="paramref">allowRemoteRedirects</code> is not set to true and the supplied url is not local</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -3966,7 +4030,7 @@ Results.Ok(...);</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task SendStringAsync(string content, int statusCode = 200, string contentType = &quot;text/plain&quot;, CancellationToken cancellation = default)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Task SendStringAsync(string content, int statusCode = 200, string contentType = &quot;text/plain; charset=utf-8&quot;, CancellationToken cancellation = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4617,13 +4681,13 @@ explicit about what validator is used by the endpoint.
 
 
   <a id="FastEndpoints_Endpoint_2_Version_" data-uid="FastEndpoints.Endpoint`2.Version*"></a>
-  <h4 id="FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__" data-uid="FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})">Version(int, int?)</h4>
-  <div class="markdown level1 summary"><p>specify the version of the endpoint if versioning is enabled</p>
+  <h4 id="FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_" data-uid="FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)">Version(int, int)</h4>
+  <div class="markdown level1 summary"><p>specify the version of this endpoint.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Version(int version, int? deprecateAt = null)</code></pre>
+    <pre><code class="lang-csharp hljs">protected EpVersion Version(int version, int deprecateAt = 0)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4642,10 +4706,25 @@ explicit about what validator is used by the endpoint.
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">deprecateAt</span></td>
-        <td><p>the version group number starting at which this endpoint should not be included in swagger document</p>
+        <td><p>the version number starting at which this endpoint should not be included in swagger document</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.EpVersion.html">EpVersion</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

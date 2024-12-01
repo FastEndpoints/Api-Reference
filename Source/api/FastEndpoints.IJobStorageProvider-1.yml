@@ -5,6 +5,7 @@ items:
   id: IJobStorageProvider`1
   parent: FastEndpoints
   children:
+  - FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
   - FastEndpoints.IJobStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams{`0})
   - FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync(`0,System.Threading.CancellationToken)
   - FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
@@ -17,10 +18,6 @@ items:
   nameWithType: IJobStorageProvider<TStorageRecord>
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>
   type: Interface
-  source:
-    id: IJobStorageProvider
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
-    startLine: 6
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -46,10 +43,6 @@ items:
   nameWithType: IJobStorageProvider<TStorageRecord>.StoreJobAsync(TStorageRecord, CancellationToken)
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.StoreJobAsync(TStorageRecord, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: StoreJobAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
-    startLine: 13
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -81,10 +74,6 @@ items:
   nameWithType: IJobStorageProvider<TStorageRecord>.GetNextBatchAsync(PendingJobSearchParams<TStorageRecord>)
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.GetNextBatchAsync(FastEndpoints.PendingJobSearchParams<TStorageRecord>)
   type: Method
-  source:
-    id: GetNextBatchAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
-    startLine: 19
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -114,10 +103,6 @@ items:
   nameWithType: IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync(TStorageRecord, CancellationToken)
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync(TStorageRecord, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: MarkJobAsCompleteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
-    startLine: 27
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -141,6 +126,40 @@ items:
   overload: FastEndpoints.IJobStorageProvider`1.MarkJobAsCompleteAsync*
   nameWithType.vb: IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync(TStorageRecord, CancellationToken)
   fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync(TStorageRecord, System.Threading.CancellationToken)
+- uid: FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  id: CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobStorageProvider`1
+  langs:
+  - csharp
+  - vb
+  name: CancelJobAsync(Guid, CancellationToken)
+  nameWithType: IJobStorageProvider<TStorageRecord>.CancelJobAsync(Guid, CancellationToken)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.CancelJobAsync(System.Guid, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    either delete the job storage record from the db using the supplied tracking id or update the <xref href="FastEndpoints.IJobStorageRecord.IsComplete" data-throw-if-not-resolved="false"></xref> field to true
+
+    with a partial update operation.
+  example: []
+  syntax:
+    content: Task CancelJobAsync(Guid trackingId, CancellationToken ct)
+    parameters:
+    - id: trackingId
+      type: System.Guid
+      description: the <xref href="FastEndpoints.IJobStorageRecord.TrackingID" data-throw-if-not-resolved="false"></xref> of the job to be cancelled
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function CancelJobAsync(trackingId As Guid, ct As CancellationToken) As Task
+  overload: FastEndpoints.IJobStorageProvider`1.CancelJobAsync*
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).CancelJobAsync(Guid, CancellationToken)
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).CancelJobAsync(System.Guid, System.Threading.CancellationToken)
 - uid: FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.IJobStorageProvider`1.OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
   id: OnHandlerExecutionFailureAsync(`0,System.Exception,System.Threading.CancellationToken)
@@ -152,10 +171,6 @@ items:
   nameWithType: IJobStorageProvider<TStorageRecord>.OnHandlerExecutionFailureAsync(TStorageRecord, Exception, CancellationToken)
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.OnHandlerExecutionFailureAsync(TStorageRecord, System.Exception, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: OnHandlerExecutionFailureAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
-    startLine: 46
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -172,9 +187,7 @@ items:
 
     if one or more jobs keep failing repeatedly, it may cause the whole queue to get stuck in a retry loop preventing it from progressing.
 
-    </p>
-
-    <p>
+    </p><p>
 
     to prevent this from happening and allow other jobs to be given a chance at execution, you can reschedule failed jobs
 
@@ -213,10 +226,6 @@ items:
   nameWithType: IJobStorageProvider<TStorageRecord>.PurgeStaleJobsAsync(StaleJobSearchParams<TStorageRecord>)
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.PurgeStaleJobsAsync(FastEndpoints.StaleJobSearchParams<TStorageRecord>)
   type: Method
-  source:
-    id: PurgeStaleJobsAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\IJobStorageProvider.cs
-    startLine: 55
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -492,6 +501,34 @@ references:
   fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.MarkJobAsCompleteAsync
   nameWithType.vb: IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync
   fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).MarkJobAsCompleteAsync
+- uid: FastEndpoints.IJobStorageRecord.TrackingID
+  commentId: P:FastEndpoints.IJobStorageRecord.TrackingID
+  href: FastEndpoints.IJobStorageRecord.html#FastEndpoints_IJobStorageRecord_TrackingID
+  name: TrackingID
+  nameWithType: IJobStorageRecord.TrackingID
+  fullName: FastEndpoints.IJobStorageRecord.TrackingID
+- uid: FastEndpoints.IJobStorageProvider`1.CancelJobAsync*
+  commentId: Overload:FastEndpoints.IJobStorageProvider`1.CancelJobAsync
+  href: FastEndpoints.IJobStorageProvider-1.html#FastEndpoints_IJobStorageProvider_1_CancelJobAsync_System_Guid_System_Threading_CancellationToken_
+  name: CancelJobAsync
+  nameWithType: IJobStorageProvider<TStorageRecord>.CancelJobAsync
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.CancelJobAsync
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).CancelJobAsync
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).CancelJobAsync
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System
+  commentId: N:System
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: FastEndpoints.ICommandHandler`1
   commentId: T:FastEndpoints.ICommandHandler`1
   href: FastEndpoints.ICommandHandler-1.html
@@ -546,13 +583,6 @@ references:
   name: Exception
   nameWithType: Exception
   fullName: System.Exception
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: FastEndpoints.IJobStorageRecord.ExpireOn
   commentId: P:FastEndpoints.IJobStorageRecord.ExpireOn
   href: FastEndpoints.IJobStorageRecord.html#FastEndpoints_IJobStorageRecord_ExpireOn

@@ -8,6 +8,7 @@ items:
   - FastEndpoints.JobQueueOptions.ExecutionTimeLimit
   - FastEndpoints.JobQueueOptions.LimitsFor``1(System.Int32,System.TimeSpan)
   - FastEndpoints.JobQueueOptions.MaxConcurrency
+  - FastEndpoints.JobQueueOptions.StorageProbeDelay
   langs:
   - csharp
   - vb
@@ -15,10 +16,6 @@ items:
   nameWithType: JobQueueOptions
   fullName: FastEndpoints.JobQueueOptions
   type: Class
-  source:
-    id: JobQueueOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueOptions.cs
-    startLine: 5
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -48,10 +45,6 @@ items:
   nameWithType: JobQueueOptions.MaxConcurrency
   fullName: FastEndpoints.JobQueueOptions.MaxConcurrency
   type: Property
-  source:
-    id: MaxConcurrency
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueOptions.cs
-    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -67,6 +60,34 @@ items:
       type: System.Int32
     content.vb: Public Property MaxConcurrency As Integer
   overload: FastEndpoints.JobQueueOptions.MaxConcurrency*
+- uid: FastEndpoints.JobQueueOptions.StorageProbeDelay
+  commentId: P:FastEndpoints.JobQueueOptions.StorageProbeDelay
+  id: StorageProbeDelay
+  parent: FastEndpoints.JobQueueOptions
+  langs:
+  - csharp
+  - vb
+  name: StorageProbeDelay
+  nameWithType: JobQueueOptions.StorageProbeDelay
+  fullName: FastEndpoints.JobQueueOptions.StorageProbeDelay
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    specifies the interval for periodic re-checks of the storage to detect any scheduled jobs. these checks ensure that re-scheduled jobs are promptly executed.
+
+    the default interval is set to 60 seconds. a shorter delay will make re-scheduled jobs run faster but will increase the overall load on the storage system,
+
+    due to too frequent queries being issued. only reduce this delay if you need re-scheduled jobs re-execute faster.
+  example: []
+  syntax:
+    content: public TimeSpan StorageProbeDelay { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Property StorageProbeDelay As TimeSpan
+  overload: FastEndpoints.JobQueueOptions.StorageProbeDelay*
 - uid: FastEndpoints.JobQueueOptions.ExecutionTimeLimit
   commentId: P:FastEndpoints.JobQueueOptions.ExecutionTimeLimit
   id: ExecutionTimeLimit
@@ -78,10 +99,6 @@ items:
   nameWithType: JobQueueOptions.ExecutionTimeLimit
   fullName: FastEndpoints.JobQueueOptions.ExecutionTimeLimit
   type: Property
-  source:
-    id: ExecutionTimeLimit
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueOptions.cs
-    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -108,10 +125,6 @@ items:
   nameWithType: JobQueueOptions.LimitsFor<TCommand>(int, TimeSpan)
   fullName: FastEndpoints.JobQueueOptions.LimitsFor<TCommand>(int, System.TimeSpan)
   type: Method
-  source:
-    id: LimitsFor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueOptions.cs
-    startLine: 34
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -380,7 +393,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -452,6 +464,20 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: FastEndpoints.JobQueueOptions.StorageProbeDelay*
+  commentId: Overload:FastEndpoints.JobQueueOptions.StorageProbeDelay
+  href: FastEndpoints.JobQueueOptions.html#FastEndpoints_JobQueueOptions_StorageProbeDelay
+  name: StorageProbeDelay
+  nameWithType: JobQueueOptions.StorageProbeDelay
+  fullName: FastEndpoints.JobQueueOptions.StorageProbeDelay
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
 - uid: System.Threading.Timeout.Infinite
   commentId: F:System.Threading.Timeout.Infinite
   isExternal: true
@@ -465,14 +491,6 @@ references:
   name: ExecutionTimeLimit
   nameWithType: JobQueueOptions.ExecutionTimeLimit
   fullName: FastEndpoints.JobQueueOptions.ExecutionTimeLimit
-- uid: System.TimeSpan
-  commentId: T:System.TimeSpan
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.timespan
-  name: TimeSpan
-  nameWithType: TimeSpan
-  fullName: System.TimeSpan
 - uid: System.OperationCanceledException
   commentId: T:System.OperationCanceledException
   isExternal: true

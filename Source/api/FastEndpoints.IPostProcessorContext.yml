@@ -9,6 +9,7 @@ items:
   - FastEndpoints.IPostProcessorContext.HasExceptionOccurred
   - FastEndpoints.IPostProcessorContext.HasValidationFailures
   - FastEndpoints.IPostProcessorContext.HttpContext
+  - FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled
   - FastEndpoints.IPostProcessorContext.Request
   - FastEndpoints.IPostProcessorContext.Response
   - FastEndpoints.IPostProcessorContext.ValidationFailures
@@ -19,10 +20,6 @@ items:
   nameWithType: IPostProcessorContext
   fullName: FastEndpoints.IPostProcessorContext
   type: Interface
-  source:
-    id: IPostProcessorContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 11
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -45,17 +42,13 @@ items:
   nameWithType: IPostProcessorContext.Request
   fullName: FastEndpoints.IPostProcessorContext.Request
   type: Property
-  source:
-    id: Request
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 16
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: gets the request object.
+  summary: gets the request object, which may be null if request binding has failed.
   example: []
   syntax:
-    content: object Request { get; }
+    content: object? Request { get; }
     parameters: []
     return:
       type: System.Object
@@ -72,10 +65,6 @@ items:
   nameWithType: IPostProcessorContext.Response
   fullName: FastEndpoints.IPostProcessorContext.Response
   type: Property
-  source:
-    id: Response
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -99,10 +88,6 @@ items:
   nameWithType: IPostProcessorContext.HttpContext
   fullName: FastEndpoints.IPostProcessorContext.HttpContext
   type: Property
-  source:
-    id: HttpContext
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -126,10 +111,6 @@ items:
   nameWithType: IPostProcessorContext.ValidationFailures
   fullName: FastEndpoints.IPostProcessorContext.ValidationFailures
   type: Property
-  source:
-    id: ValidationFailures
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 31
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -153,10 +134,6 @@ items:
   nameWithType: IPostProcessorContext.ExceptionDispatchInfo
   fullName: FastEndpoints.IPostProcessorContext.ExceptionDispatchInfo
   type: Property
-  source:
-    id: ExceptionDispatchInfo
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 37
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -183,10 +160,6 @@ items:
   nameWithType: IPostProcessorContext.HasExceptionOccurred
   fullName: FastEndpoints.IPostProcessorContext.HasExceptionOccurred
   type: Property
-  source:
-    id: HasExceptionOccurred
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 42
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -210,10 +183,6 @@ items:
   nameWithType: IPostProcessorContext.HasValidationFailures
   fullName: FastEndpoints.IPostProcessorContext.HasValidationFailures
   type: Property
-  source:
-    id: HasValidationFailures
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\IPostProcessorContext.cs
-    startLine: 48
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -226,6 +195,29 @@ items:
       type: System.Boolean
     content.vb: ReadOnly Property HasValidationFailures As Boolean
   overload: FastEndpoints.IPostProcessorContext.HasValidationFailures*
+- uid: FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled
+  commentId: M:FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled
+  id: MarkExceptionAsHandled
+  parent: FastEndpoints.IPostProcessorContext
+  langs:
+  - csharp
+  - vb
+  name: MarkExceptionAsHandled()
+  nameWithType: IPostProcessorContext.MarkExceptionAsHandled()
+  fullName: FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled()
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    call this method if you're handling the captured exception (via <xref href="FastEndpoints.IPostProcessorContext.ExceptionDispatchInfo" data-throw-if-not-resolved="false"></xref>) in a post-processor and the exception should not be thrown.
+
+    not calling this method will result in the captured exception being thrown after all the post-processors have run.
+  example: []
+  syntax:
+    content: void MarkExceptionAsHandled()
+    content.vb: Sub MarkExceptionAsHandled()
+  overload: FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled*
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -252,7 +244,6 @@ references:
   name.vb: Object
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -535,3 +526,16 @@ references:
   name: HasValidationFailures
   nameWithType: IPostProcessorContext.HasValidationFailures
   fullName: FastEndpoints.IPostProcessorContext.HasValidationFailures
+- uid: FastEndpoints.IPostProcessorContext.ExceptionDispatchInfo
+  commentId: P:FastEndpoints.IPostProcessorContext.ExceptionDispatchInfo
+  parent: FastEndpoints.IPostProcessorContext
+  href: FastEndpoints.IPostProcessorContext.html#FastEndpoints_IPostProcessorContext_ExceptionDispatchInfo
+  name: ExceptionDispatchInfo
+  nameWithType: IPostProcessorContext.ExceptionDispatchInfo
+  fullName: FastEndpoints.IPostProcessorContext.ExceptionDispatchInfo
+- uid: FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled*
+  commentId: Overload:FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled
+  href: FastEndpoints.IPostProcessorContext.html#FastEndpoints_IPostProcessorContext_MarkExceptionAsHandled
+  name: MarkExceptionAsHandled
+  nameWithType: IPostProcessorContext.MarkExceptionAsHandled
+  fullName: FastEndpoints.IPostProcessorContext.MarkExceptionAsHandled

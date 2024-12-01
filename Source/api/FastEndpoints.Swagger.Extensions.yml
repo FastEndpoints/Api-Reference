@@ -6,15 +6,18 @@ items:
   parent: FastEndpoints.Swagger
   children:
   - FastEndpoints.Swagger.Extensions.AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings,System.String,NSwag.OpenApiSecurityScheme,System.Collections.Generic.IEnumerable{System.String})
+  - FastEndpoints.Swagger.Extensions.AutoTagOverride(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.String)
   - FastEndpoints.Swagger.Extensions.ConfigureDefaults(NSwag.AspNetCore.SwaggerUiSettings,System.Action{NSwag.AspNetCore.SwaggerUiSettings})
   - FastEndpoints.Swagger.Extensions.DeActivateTryItOut(NSwag.AspNetCore.SwaggerUiSettings)
-  - FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions})
+  - FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions},System.IServiceProvider)
   - FastEndpoints.Swagger.Extensions.EnableJWTBearerAuth(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
   - FastEndpoints.Swagger.Extensions.GetEndpointDefinition(NSwag.Generation.Processors.Contexts.OperationProcessorContext)
   - FastEndpoints.Swagger.Extensions.GetExampleFromMetaData(Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata)
   - FastEndpoints.Swagger.Extensions.MarkNonNullablePropsAsRequired(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
   - FastEndpoints.Swagger.Extensions.SelectedJsonNamingPolicy
+  - FastEndpoints.Swagger.Extensions.ShowOperationIDs(NSwag.AspNetCore.SwaggerUiSettings)
   - FastEndpoints.Swagger.Extensions.SwaggerDocument(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.Swagger.DocumentOptions})
+  - FastEndpoints.Swagger.Extensions.SwaggerIgnore``2(FluentValidation.IRuleBuilderOptions{``0,``1},FluentValidation.ApplyConditionTo)
   - FastEndpoints.Swagger.Extensions.UseSwaggerGen(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{NSwag.AspNetCore.OpenApiDocumentMiddlewareSettings},System.Action{NSwag.AspNetCore.SwaggerUiSettings})
   langs:
   - csharp
@@ -23,10 +26,6 @@ items:
   nameWithType: Extensions
   fullName: FastEndpoints.Swagger.Extensions
   type: Class
-  source:
-    id: Extensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 22
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -56,10 +55,6 @@ items:
   nameWithType: Extensions.SelectedJsonNamingPolicy
   fullName: FastEndpoints.Swagger.Extensions.SelectedJsonNamingPolicy
   type: Property
-  source:
-    id: SelectedJsonNamingPolicy
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 27
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -84,10 +79,6 @@ items:
   nameWithType: Extensions.SwaggerDocument(IServiceCollection, Action<DocumentOptions>?)
   fullName: FastEndpoints.Swagger.Extensions.SwaggerDocument(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<FastEndpoints.Swagger.DocumentOptions>?)
   type: Method
-  source:
-    id: SwaggerDocument
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 33
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -120,10 +111,6 @@ items:
   nameWithType: Extensions.UseSwaggerGen(IApplicationBuilder, Action<OpenApiDocumentMiddlewareSettings>?, Action<SwaggerUiSettings>?)
   fullName: FastEndpoints.Swagger.Extensions.UseSwaggerGen(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<NSwag.AspNetCore.OpenApiDocumentMiddlewareSettings>?, System.Action<NSwag.AspNetCore.SwaggerUiSettings>?)
   type: Method
-  source:
-    id: UseSwaggerGen
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 95
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -150,40 +137,39 @@ items:
   nameWithType.vb: Extensions.UseSwaggerGen(IApplicationBuilder, Action(Of OpenApiDocumentMiddlewareSettings), Action(Of SwaggerUiSettings))
   fullName.vb: FastEndpoints.Swagger.Extensions.UseSwaggerGen(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of NSwag.AspNetCore.OpenApiDocumentMiddlewareSettings), System.Action(Of NSwag.AspNetCore.SwaggerUiSettings))
   name.vb: UseSwaggerGen(IApplicationBuilder, Action(Of OpenApiDocumentMiddlewareSettings), Action(Of SwaggerUiSettings))
-- uid: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions})
-  commentId: M:FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions})
-  id: EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions})
+- uid: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions},System.IServiceProvider)
+  commentId: M:FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions},System.IServiceProvider)
+  id: EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings,System.Action{FastEndpoints.Swagger.DocumentOptions},System.IServiceProvider)
   isExtensionMethod: true
   parent: FastEndpoints.Swagger.Extensions
   langs:
   - csharp
   - vb
-  name: EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action<DocumentOptions>)
-  nameWithType: Extensions.EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action<DocumentOptions>)
-  fullName: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, System.Action<FastEndpoints.Swagger.DocumentOptions>)
+  name: EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action<DocumentOptions>, IServiceProvider)
+  nameWithType: Extensions.EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action<DocumentOptions>, IServiceProvider)
+  fullName: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, System.Action<FastEndpoints.Swagger.DocumentOptions>, System.IServiceProvider)
   type: Method
-  source:
-    id: EnableFastEndpoints
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 109
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
   summary: enable support for FastEndpoints in swagger
   example: []
   syntax:
-    content: public static void EnableFastEndpoints(this AspNetCoreOpenApiDocumentGeneratorSettings settings, Action<DocumentOptions> documentOptions)
+    content: public static void EnableFastEndpoints(this AspNetCoreOpenApiDocumentGeneratorSettings settings, Action<DocumentOptions> documentOptions, IServiceProvider serviceProvider)
     parameters:
     - id: settings
       type: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
     - id: documentOptions
       type: System.Action{FastEndpoints.Swagger.DocumentOptions}
       description: the document options
-    content.vb: Public Shared Sub EnableFastEndpoints(settings As AspNetCoreOpenApiDocumentGeneratorSettings, documentOptions As Action(Of DocumentOptions))
+    - id: serviceProvider
+      type: System.IServiceProvider
+      description: the service provider
+    content.vb: Public Shared Sub EnableFastEndpoints(settings As AspNetCoreOpenApiDocumentGeneratorSettings, documentOptions As Action(Of DocumentOptions), serviceProvider As IServiceProvider)
   overload: FastEndpoints.Swagger.Extensions.EnableFastEndpoints*
-  nameWithType.vb: Extensions.EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action(Of DocumentOptions))
-  fullName.vb: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, System.Action(Of FastEndpoints.Swagger.DocumentOptions))
-  name.vb: EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action(Of DocumentOptions))
+  nameWithType.vb: Extensions.EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action(Of DocumentOptions), IServiceProvider)
+  fullName.vb: FastEndpoints.Swagger.Extensions.EnableFastEndpoints(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings, System.Action(Of FastEndpoints.Swagger.DocumentOptions), System.IServiceProvider)
+  name.vb: EnableFastEndpoints(AspNetCoreOpenApiDocumentGeneratorSettings, Action(Of DocumentOptions), IServiceProvider)
 - uid: FastEndpoints.Swagger.Extensions.EnableJWTBearerAuth(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
   commentId: M:FastEndpoints.Swagger.Extensions.EnableJWTBearerAuth(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
   id: EnableJWTBearerAuth(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
@@ -196,10 +182,6 @@ items:
   nameWithType: Extensions.EnableJWTBearerAuth(AspNetCoreOpenApiDocumentGeneratorSettings)
   fullName: FastEndpoints.Swagger.Extensions.EnableJWTBearerAuth(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
   type: Method
-  source:
-    id: EnableJWTBearerAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 119
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -224,10 +206,6 @@ items:
   nameWithType: Extensions.ConfigureDefaults(SwaggerUiSettings, Action<SwaggerUiSettings>?)
   fullName: FastEndpoints.Swagger.Extensions.ConfigureDefaults(NSwag.AspNetCore.SwaggerUiSettings, System.Action<NSwag.AspNetCore.SwaggerUiSettings>?)
   type: Method
-  source:
-    id: ConfigureDefaults
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 136
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -258,10 +236,6 @@ items:
   nameWithType: Extensions.DeActivateTryItOut(SwaggerUiSettings)
   fullName: FastEndpoints.Swagger.Extensions.DeActivateTryItOut(NSwag.AspNetCore.SwaggerUiSettings)
   type: Method
-  source:
-    id: DeActivateTryItOut
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 153
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -277,6 +251,30 @@ items:
       type: NSwag.AspNetCore.SwaggerUiSettings
     content.vb: Public Shared Sub DeActivateTryItOut(s As SwaggerUiSettings)
   overload: FastEndpoints.Swagger.Extensions.DeActivateTryItOut*
+- uid: FastEndpoints.Swagger.Extensions.ShowOperationIDs(NSwag.AspNetCore.SwaggerUiSettings)
+  commentId: M:FastEndpoints.Swagger.Extensions.ShowOperationIDs(NSwag.AspNetCore.SwaggerUiSettings)
+  id: ShowOperationIDs(NSwag.AspNetCore.SwaggerUiSettings)
+  isExtensionMethod: true
+  parent: FastEndpoints.Swagger.Extensions
+  langs:
+  - csharp
+  - vb
+  name: ShowOperationIDs(SwaggerUiSettings)
+  nameWithType: Extensions.ShowOperationIDs(SwaggerUiSettings)
+  fullName: FastEndpoints.Swagger.Extensions.ShowOperationIDs(NSwag.AspNetCore.SwaggerUiSettings)
+  type: Method
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: displays the swagger operation id in the swagger ui
+  example: []
+  syntax:
+    content: public static void ShowOperationIDs(this SwaggerUiSettings s)
+    parameters:
+    - id: s
+      type: NSwag.AspNetCore.SwaggerUiSettings
+    content.vb: Public Shared Sub ShowOperationIDs(s As SwaggerUiSettings)
+  overload: FastEndpoints.Swagger.Extensions.ShowOperationIDs*
 - uid: FastEndpoints.Swagger.Extensions.AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings,System.String,NSwag.OpenApiSecurityScheme,System.Collections.Generic.IEnumerable{System.String})
   commentId: M:FastEndpoints.Swagger.Extensions.AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings,System.String,NSwag.OpenApiSecurityScheme,System.Collections.Generic.IEnumerable{System.String})
   id: AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings,System.String,NSwag.OpenApiSecurityScheme,System.Collections.Generic.IEnumerable{System.String})
@@ -289,10 +287,6 @@ items:
   nameWithType: Extensions.AddAuth(OpenApiDocumentGeneratorSettings, string, OpenApiSecurityScheme, IEnumerable<string>?)
   fullName: FastEndpoints.Swagger.Extensions.AddAuth(NSwag.Generation.OpenApiDocumentGeneratorSettings, string, NSwag.OpenApiSecurityScheme, System.Collections.Generic.IEnumerable<string>?)
   type: Method
-  source:
-    id: AddAuth
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 163
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -332,10 +326,6 @@ items:
   nameWithType: Extensions.MarkNonNullablePropsAsRequired(AspNetCoreOpenApiDocumentGeneratorSettings)
   fullName: FastEndpoints.Swagger.Extensions.MarkNonNullablePropsAsRequired(NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings)
   type: Method
-  source:
-    id: MarkNonNullablePropsAsRequired
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 182
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -363,10 +353,6 @@ items:
   nameWithType: Extensions.GetEndpointDefinition(OperationProcessorContext)
   fullName: FastEndpoints.Swagger.Extensions.GetEndpointDefinition(NSwag.Generation.Processors.Contexts.OperationProcessorContext)
   type: Method
-  source:
-    id: GetEndpointDefinition
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 188
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -393,10 +379,6 @@ items:
   nameWithType: Extensions.GetExampleFromMetaData(IProducesResponseTypeMetadata)
   fullName: FastEndpoints.Swagger.Extensions.GetExampleFromMetaData(Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata)
   type: Method
-  source:
-    id: GetExampleFromMetaData
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Swagger\Extensions.cs
-    startLine: 199
   assemblies:
   - FastEndpoints.Swagger
   namespace: FastEndpoints.Swagger
@@ -411,6 +393,75 @@ items:
       type: System.Object
     content.vb: Public Shared Function GetExampleFromMetaData(metadata As IProducesResponseTypeMetadata) As Object
   overload: FastEndpoints.Swagger.Extensions.GetExampleFromMetaData*
+- uid: FastEndpoints.Swagger.Extensions.AutoTagOverride(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.String)
+  commentId: M:FastEndpoints.Swagger.Extensions.AutoTagOverride(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.String)
+  id: AutoTagOverride(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.Swagger.Extensions
+  langs:
+  - csharp
+  - vb
+  name: AutoTagOverride(IEndpointConventionBuilder, string)
+  nameWithType: Extensions.AutoTagOverride(IEndpointConventionBuilder, string)
+  fullName: FastEndpoints.Swagger.Extensions.AutoTagOverride(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder, string)
+  type: Method
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: when path based auto-tagging is enabled, you can use this method to specify an override tag name if necessary.
+  example: []
+  syntax:
+    content: public static IEndpointConventionBuilder AutoTagOverride(this IEndpointConventionBuilder b, string tag)
+    parameters:
+    - id: b
+      type: Microsoft.AspNetCore.Builder.IEndpointConventionBuilder
+    - id: tag
+      type: System.String
+      description: the tag name to use instead of the auto tag
+    return:
+      type: Microsoft.AspNetCore.Builder.IEndpointConventionBuilder
+    content.vb: Public Shared Function AutoTagOverride(b As IEndpointConventionBuilder, tag As String) As IEndpointConventionBuilder
+  overload: FastEndpoints.Swagger.Extensions.AutoTagOverride*
+  nameWithType.vb: Extensions.AutoTagOverride(IEndpointConventionBuilder, String)
+  fullName.vb: FastEndpoints.Swagger.Extensions.AutoTagOverride(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder, String)
+  name.vb: AutoTagOverride(IEndpointConventionBuilder, String)
+- uid: FastEndpoints.Swagger.Extensions.SwaggerIgnore``2(FluentValidation.IRuleBuilderOptions{``0,``1},FluentValidation.ApplyConditionTo)
+  commentId: M:FastEndpoints.Swagger.Extensions.SwaggerIgnore``2(FluentValidation.IRuleBuilderOptions{``0,``1},FluentValidation.ApplyConditionTo)
+  id: SwaggerIgnore``2(FluentValidation.IRuleBuilderOptions{``0,``1},FluentValidation.ApplyConditionTo)
+  isExtensionMethod: true
+  parent: FastEndpoints.Swagger.Extensions
+  langs:
+  - csharp
+  - vb
+  name: SwaggerIgnore<T, TProperty>(IRuleBuilderOptions<T, TProperty>, ApplyConditionTo)
+  nameWithType: Extensions.SwaggerIgnore<T, TProperty>(IRuleBuilderOptions<T, TProperty>, ApplyConditionTo)
+  fullName: FastEndpoints.Swagger.Extensions.SwaggerIgnore<T, TProperty>(FluentValidation.IRuleBuilderOptions<T, TProperty>, FluentValidation.ApplyConditionTo)
+  type: Method
+  assemblies:
+  - FastEndpoints.Swagger
+  namespace: FastEndpoints.Swagger
+  summary: disable swagger+fluentvalidation integration for a property rule
+  example: []
+  syntax:
+    content: public static IRuleBuilderOptions<T, TProperty> SwaggerIgnore<T, TProperty>(this IRuleBuilderOptions<T, TProperty> rule, ApplyConditionTo applyConditionTo = ApplyConditionTo.AllValidators)
+    parameters:
+    - id: rule
+      type: FluentValidation.IRuleBuilderOptions{{T},{TProperty}}
+    - id: applyConditionTo
+      type: FluentValidation.ApplyConditionTo
+      description: ''
+    typeParameters:
+    - id: T
+      description: ''
+    - id: TProperty
+      description: ''
+    return:
+      type: FluentValidation.IRuleBuilderOptions{{T},{TProperty}}
+    content.vb: Public Shared Function SwaggerIgnore(Of T, TProperty)(rule As IRuleBuilderOptions(Of T, TProperty), applyConditionTo As ApplyConditionTo = ApplyConditionTo.AllValidators) As IRuleBuilderOptions(Of T, TProperty)
+  overload: FastEndpoints.Swagger.Extensions.SwaggerIgnore*
+  nameWithType.vb: Extensions.SwaggerIgnore(Of T, TProperty)(IRuleBuilderOptions(Of T, TProperty), ApplyConditionTo)
+  fullName.vb: FastEndpoints.Swagger.Extensions.SwaggerIgnore(Of T, TProperty)(FluentValidation.IRuleBuilderOptions(Of T, TProperty), FluentValidation.ApplyConditionTo)
+  name.vb: SwaggerIgnore(Of T, TProperty)(IRuleBuilderOptions(Of T, TProperty), ApplyConditionTo)
 references:
 - uid: FastEndpoints.Swagger
   commentId: N:FastEndpoints.Swagger
@@ -666,7 +717,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -953,7 +1003,7 @@ references:
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
 - uid: FastEndpoints.Swagger.Extensions.EnableFastEndpoints*
   commentId: Overload:FastEndpoints.Swagger.Extensions.EnableFastEndpoints
-  href: FastEndpoints.Swagger.Extensions.html#FastEndpoints_Swagger_Extensions_EnableFastEndpoints_NSwag_Generation_AspNetCore_AspNetCoreOpenApiDocumentGeneratorSettings_System_Action_FastEndpoints_Swagger_DocumentOptions__
+  href: FastEndpoints.Swagger.Extensions.html#FastEndpoints_Swagger_Extensions_EnableFastEndpoints_NSwag_Generation_AspNetCore_AspNetCoreOpenApiDocumentGeneratorSettings_System_Action_FastEndpoints_Swagger_DocumentOptions__System_IServiceProvider_
   name: EnableFastEndpoints
   nameWithType: Extensions.EnableFastEndpoints
   fullName: FastEndpoints.Swagger.Extensions.EnableFastEndpoints
@@ -964,6 +1014,14 @@ references:
   name: AspNetCoreOpenApiDocumentGeneratorSettings
   nameWithType: AspNetCoreOpenApiDocumentGeneratorSettings
   fullName: NSwag.Generation.AspNetCore.AspNetCoreOpenApiDocumentGeneratorSettings
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
 - uid: NSwag.Generation.AspNetCore
   commentId: N:NSwag.Generation.AspNetCore
   isExternal: true
@@ -1047,6 +1105,12 @@ references:
   name: DeActivateTryItOut
   nameWithType: Extensions.DeActivateTryItOut
   fullName: FastEndpoints.Swagger.Extensions.DeActivateTryItOut
+- uid: FastEndpoints.Swagger.Extensions.ShowOperationIDs*
+  commentId: Overload:FastEndpoints.Swagger.Extensions.ShowOperationIDs
+  href: FastEndpoints.Swagger.Extensions.html#FastEndpoints_Swagger_Extensions_ShowOperationIDs_NSwag_AspNetCore_SwaggerUiSettings_
+  name: ShowOperationIDs
+  nameWithType: Extensions.ShowOperationIDs
+  fullName: FastEndpoints.Swagger.Extensions.ShowOperationIDs
 - uid: FastEndpoints.Swagger.Extensions.AddAuth*
   commentId: Overload:FastEndpoints.Swagger.Extensions.AddAuth
   href: FastEndpoints.Swagger.Extensions.html#FastEndpoints_Swagger_Extensions_AddAuth_NSwag_Generation_OpenApiDocumentGeneratorSettings_System_String_NSwag_OpenApiSecurityScheme_System_Collections_Generic_IEnumerable_System_String__
@@ -1278,7 +1342,6 @@ references:
     isExternal: true
 - uid: FastEndpoints.ProducesResponseTypeMetadata
   commentId: T:FastEndpoints.ProducesResponseTypeMetadata
-  href: FastEndpoints.ProducesResponseTypeMetadata.html
   name: ProducesResponseTypeMetadata
   nameWithType: ProducesResponseTypeMetadata
   fullName: FastEndpoints.ProducesResponseTypeMetadata
@@ -1343,3 +1406,99 @@ references:
     name: Metadata
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata
+- uid: FastEndpoints.Swagger.Extensions.AutoTagOverride*
+  commentId: Overload:FastEndpoints.Swagger.Extensions.AutoTagOverride
+  href: FastEndpoints.Swagger.Extensions.html#FastEndpoints_Swagger_Extensions_AutoTagOverride_Microsoft_AspNetCore_Builder_IEndpointConventionBuilder_System_String_
+  name: AutoTagOverride
+  nameWithType: Extensions.AutoTagOverride
+  fullName: FastEndpoints.Swagger.Extensions.AutoTagOverride
+- uid: Microsoft.AspNetCore.Builder.IEndpointConventionBuilder
+  commentId: T:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder
+  parent: Microsoft.AspNetCore.Builder
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder
+  name: IEndpointConventionBuilder
+  nameWithType: IEndpointConventionBuilder
+  fullName: Microsoft.AspNetCore.Builder.IEndpointConventionBuilder
+- uid: FastEndpoints.Swagger.Extensions.SwaggerIgnore*
+  commentId: Overload:FastEndpoints.Swagger.Extensions.SwaggerIgnore
+  href: FastEndpoints.Swagger.Extensions.html#FastEndpoints_Swagger_Extensions_SwaggerIgnore__2_FluentValidation_IRuleBuilderOptions___0___1__FluentValidation_ApplyConditionTo_
+  name: SwaggerIgnore
+  nameWithType: Extensions.SwaggerIgnore
+  fullName: FastEndpoints.Swagger.Extensions.SwaggerIgnore
+- uid: FluentValidation.IRuleBuilderOptions{{T},{TProperty}}
+  commentId: T:FluentValidation.IRuleBuilderOptions{``0,``1}
+  parent: FluentValidation
+  definition: FluentValidation.IRuleBuilderOptions`2
+  name: IRuleBuilderOptions<T, TProperty>
+  nameWithType: IRuleBuilderOptions<T, TProperty>
+  fullName: FluentValidation.IRuleBuilderOptions<T, TProperty>
+  nameWithType.vb: IRuleBuilderOptions(Of T, TProperty)
+  fullName.vb: FluentValidation.IRuleBuilderOptions(Of T, TProperty)
+  name.vb: IRuleBuilderOptions(Of T, TProperty)
+  spec.csharp:
+  - uid: FluentValidation.IRuleBuilderOptions`2
+    name: IRuleBuilderOptions
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProperty
+  - name: '>'
+  spec.vb:
+  - uid: FluentValidation.IRuleBuilderOptions`2
+    name: IRuleBuilderOptions
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProperty
+  - name: )
+- uid: FluentValidation.ApplyConditionTo
+  commentId: T:FluentValidation.ApplyConditionTo
+  parent: FluentValidation
+  isExternal: true
+  name: ApplyConditionTo
+  nameWithType: ApplyConditionTo
+  fullName: FluentValidation.ApplyConditionTo
+- uid: FluentValidation.IRuleBuilderOptions`2
+  commentId: T:FluentValidation.IRuleBuilderOptions`2
+  isExternal: true
+  name: IRuleBuilderOptions<T, TProperty>
+  nameWithType: IRuleBuilderOptions<T, TProperty>
+  fullName: FluentValidation.IRuleBuilderOptions<T, TProperty>
+  nameWithType.vb: IRuleBuilderOptions(Of T, TProperty)
+  fullName.vb: FluentValidation.IRuleBuilderOptions(Of T, TProperty)
+  name.vb: IRuleBuilderOptions(Of T, TProperty)
+  spec.csharp:
+  - uid: FluentValidation.IRuleBuilderOptions`2
+    name: IRuleBuilderOptions
+    isExternal: true
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProperty
+  - name: '>'
+  spec.vb:
+  - uid: FluentValidation.IRuleBuilderOptions`2
+    name: IRuleBuilderOptions
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TProperty
+  - name: )
+- uid: FluentValidation
+  commentId: N:FluentValidation
+  isExternal: true
+  name: FluentValidation
+  nameWithType: FluentValidation
+  fullName: FluentValidation

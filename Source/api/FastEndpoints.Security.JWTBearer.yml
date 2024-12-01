@@ -1,34 +1,26 @@
 ### YamlMime:ManagedReference
 items:
-- uid: FastEndpoints.Security.JWTBearer
-  commentId: T:FastEndpoints.Security.JWTBearer
-  id: JWTBearer
+- uid: FastEndpoints.Security.JwtBearer
+  commentId: T:FastEndpoints.Security.JwtBearer
+  id: JwtBearer
   parent: FastEndpoints.Security
   children:
-  - FastEndpoints.Security.JWTBearer.CreateToken(System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  - FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Action{FastEndpoints.UserPrivileges},System.String,System.String,System.Nullable{System.DateTime},FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  - FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  - FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  - FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
+  - FastEndpoints.Security.JwtBearer.CreateToken(System.Action{FastEndpoints.Security.JwtCreationOptions})
   langs:
   - csharp
   - vb
-  name: JWTBearer
-  nameWithType: JWTBearer
-  fullName: FastEndpoints.Security.JWTBearer
+  name: JwtBearer
+  nameWithType: JwtBearer
+  fullName: FastEndpoints.Security.JwtBearer
   type: Class
-  source:
-    id: JWTBearer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\JWTBearer.cs
-    startLine: 16
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
-  summary: static class for easy creation of jwt bearer auth tokens
+  summary: static class for easy creation of jwt bearer tokens
   example: []
   syntax:
-    content: public static class JWTBearer
-    content.vb: Public Module JWTBearer
+    content: public static class JwtBearer
+    content.vb: Public Module JwtBearer
   inheritance:
   - System.Object
   inheritedMembers:
@@ -39,258 +31,39 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  commentId: M:FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  id: CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  parent: FastEndpoints.Security.JWTBearer
+- uid: FastEndpoints.Security.JwtBearer.CreateToken(System.Action{FastEndpoints.Security.JwtCreationOptions})
+  commentId: M:FastEndpoints.Security.JwtBearer.CreateToken(System.Action{FastEndpoints.Security.JwtCreationOptions})
+  id: CreateToken(System.Action{FastEndpoints.Security.JwtCreationOptions})
+  parent: FastEndpoints.Security.JwtBearer
   langs:
   - csharp
   - vb
-  name: CreateToken(string, DateTime?, IEnumerable<string>?, IEnumerable<string>?, params (string claimType, string claimValue)[])
-  nameWithType: JWTBearer.CreateToken(string, DateTime?, IEnumerable<string>?, IEnumerable<string>?, params (string claimType, string claimValue)[])
-  fullName: FastEndpoints.Security.JWTBearer.CreateToken(string, System.DateTime?, System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, params (string claimType, string claimValue)[])
+  name: CreateToken(Action<JwtCreationOptions>)
+  nameWithType: JwtBearer.CreateToken(Action<JwtCreationOptions>)
+  fullName: FastEndpoints.Security.JwtBearer.CreateToken(System.Action<FastEndpoints.Security.JwtCreationOptions>)
   type: Method
-  source:
-    id: CreateToken
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\JWTBearer.cs
-    startLine: 26
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
-  summary: generate a jwt token with the supplied parameters
+  summary: generates jwt tokens with supplied settings.
   example: []
   syntax:
-    content: public static string CreateToken(string signingKey, DateTime? expireAt = null, IEnumerable<string>? permissions = null, IEnumerable<string>? roles = null, params (string claimType, string claimValue)[] claims)
+    content: public static string CreateToken(Action<JwtCreationOptions> options)
     parameters:
-    - id: signingKey
-      type: System.String
-      description: the secret key to use for signing the tokens
-    - id: expireAt
-      type: System.Nullable{System.DateTime}
-      description: the expiry date
-    - id: permissions
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more permissions to assign to the user principal
-    - id: roles
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more roles to assign the user principal
-    - id: claims
-      type: System.ValueTuple{System.String,System.String}[]
-      description: one or more claims to assign to the user principal
+    - id: options
+      type: System.Action{FastEndpoints.Security.JwtCreationOptions}
+      description: action to configure jwt creation options.
     return:
       type: System.String
-    content.vb: Public Shared Function CreateToken(signingKey As String, expireAt As Date? = Nothing, permissions As IEnumerable(Of String) = Nothing, roles As IEnumerable(Of String) = Nothing, ParamArray claims As (claimType As String, claimValue As String)()) As String
-  overload: FastEndpoints.Security.JWTBearer.CreateToken*
-  nameWithType.vb: JWTBearer.CreateToken(String, Date?, IEnumerable(Of String), IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-  fullName.vb: FastEndpoints.Security.JWTBearer.CreateToken(String, Date?, System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-  name.vb: CreateToken(String, Date?, IEnumerable(Of String), IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-- uid: FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  commentId: M:FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  id: CreateToken(System.String,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  parent: FastEndpoints.Security.JWTBearer
-  langs:
-  - csharp
-  - vb
-  name: CreateToken(string, string?, string?, DateTime?, IEnumerable<string>?, IEnumerable<string>?, params (string claimType, string claimValue)[])
-  nameWithType: JWTBearer.CreateToken(string, string?, string?, DateTime?, IEnumerable<string>?, IEnumerable<string>?, params (string claimType, string claimValue)[])
-  fullName: FastEndpoints.Security.JWTBearer.CreateToken(string, string?, string?, System.DateTime?, System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, params (string claimType, string claimValue)[])
-  type: Method
-  source:
-    id: CreateToken
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\JWTBearer.cs
-    startLine: 43
-  assemblies:
-  - FastEndpoints.Security
-  namespace: FastEndpoints.Security
-  summary: generate a jwt token with the supplied parameters
-  example: []
-  syntax:
-    content: public static string CreateToken(string signingKey, string? issuer, string? audience, DateTime? expireAt = null, IEnumerable<string>? permissions = null, IEnumerable<string>? roles = null, params (string claimType, string claimValue)[] claims)
-    parameters:
-    - id: signingKey
-      type: System.String
-      description: the secret key to use for signing the tokens
-    - id: issuer
-      type: System.String
-      description: the issue
-    - id: audience
-      type: System.String
-      description: the audience
-    - id: expireAt
-      type: System.Nullable{System.DateTime}
-      description: the expiry date
-    - id: permissions
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more permissions to assign to the user principal
-    - id: roles
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more roles to assign the user principal
-    - id: claims
-      type: System.ValueTuple{System.String,System.String}[]
-      description: one or more claims to assign to the user principal
-    return:
-      type: System.String
-    content.vb: Public Shared Function CreateToken(signingKey As String, issuer As String, audience As String, expireAt As Date? = Nothing, permissions As IEnumerable(Of String) = Nothing, roles As IEnumerable(Of String) = Nothing, ParamArray claims As (claimType As String, claimValue As String)()) As String
-  overload: FastEndpoints.Security.JWTBearer.CreateToken*
-  nameWithType.vb: JWTBearer.CreateToken(String, String, String, Date?, IEnumerable(Of String), IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-  fullName.vb: FastEndpoints.Security.JWTBearer.CreateToken(String, String, String, Date?, System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-  name.vb: CreateToken(String, String, String, Date?, IEnumerable(Of String), IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-- uid: FastEndpoints.Security.JWTBearer.CreateToken(System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  commentId: M:FastEndpoints.Security.JWTBearer.CreateToken(System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  id: CreateToken(System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle,System.String,System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.ValueTuple{System.String,System.String}[])
-  parent: FastEndpoints.Security.JWTBearer
-  langs:
-  - csharp
-  - vb
-  name: CreateToken(string, TokenSigningStyle, string?, string?, DateTime?, IEnumerable<string>?, IEnumerable<string>?, params (string claimType, string claimValue)[])
-  nameWithType: JWTBearer.CreateToken(string, JWTBearer.TokenSigningStyle, string?, string?, DateTime?, IEnumerable<string>?, IEnumerable<string>?, params (string claimType, string claimValue)[])
-  fullName: FastEndpoints.Security.JWTBearer.CreateToken(string, FastEndpoints.Security.JWTBearer.TokenSigningStyle, string?, string?, System.DateTime?, System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, params (string claimType, string claimValue)[])
-  type: Method
-  source:
-    id: CreateToken
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\JWTBearer.cs
-    startLine: 63
-  assemblies:
-  - FastEndpoints.Security
-  namespace: FastEndpoints.Security
-  summary: generate a jwt token with the supplied parameters and token signing style
-  example: []
-  syntax:
-    content: public static string CreateToken(string signingKey, JWTBearer.TokenSigningStyle signingStyle, string? issuer = null, string? audience = null, DateTime? expireAt = null, IEnumerable<string>? permissions = null, IEnumerable<string>? roles = null, params (string claimType, string claimValue)[] claims)
-    parameters:
-    - id: signingKey
-      type: System.String
-      description: the secret key to use for signing the tokens
-    - id: signingStyle
-      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-      description: the signing style to use (Symmertic or Asymmetric)
-    - id: issuer
-      type: System.String
-      description: the issue
-    - id: audience
-      type: System.String
-      description: the audience
-    - id: expireAt
-      type: System.Nullable{System.DateTime}
-      description: the expiry date
-    - id: permissions
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more permissions to assign to the user principal
-    - id: roles
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more roles to assign the user principal
-    - id: claims
-      type: System.ValueTuple{System.String,System.String}[]
-      description: one or more claims to assign to the user principal
-    return:
-      type: System.String
-    content.vb: Public Shared Function CreateToken(signingKey As String, signingStyle As JWTBearer.TokenSigningStyle, issuer As String = Nothing, audience As String = Nothing, expireAt As Date? = Nothing, permissions As IEnumerable(Of String) = Nothing, roles As IEnumerable(Of String) = Nothing, ParamArray claims As (claimType As String, claimValue As String)()) As String
-  overload: FastEndpoints.Security.JWTBearer.CreateToken*
-  nameWithType.vb: JWTBearer.CreateToken(String, JWTBearer.TokenSigningStyle, String, String, Date?, IEnumerable(Of String), IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-  fullName.vb: FastEndpoints.Security.JWTBearer.CreateToken(String, FastEndpoints.Security.JWTBearer.TokenSigningStyle, String, String, Date?, System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-  name.vb: CreateToken(String, TokenSigningStyle, String, String, Date?, IEnumerable(Of String), IEnumerable(Of String), ParamArray (claimType As String, claimValue As String)())
-- uid: FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Action{FastEndpoints.UserPrivileges},System.String,System.String,System.Nullable{System.DateTime},FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  commentId: M:FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Action{FastEndpoints.UserPrivileges},System.String,System.String,System.Nullable{System.DateTime},FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  id: CreateToken(System.String,System.Action{FastEndpoints.UserPrivileges},System.String,System.String,System.Nullable{System.DateTime},FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  parent: FastEndpoints.Security.JWTBearer
-  langs:
-  - csharp
-  - vb
-  name: CreateToken(string, Action<UserPrivileges>, string?, string?, DateTime?, TokenSigningStyle)
-  nameWithType: JWTBearer.CreateToken(string, Action<UserPrivileges>, string?, string?, DateTime?, JWTBearer.TokenSigningStyle)
-  fullName: FastEndpoints.Security.JWTBearer.CreateToken(string, System.Action<FastEndpoints.UserPrivileges>, string?, string?, System.DateTime?, FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  type: Method
-  source:
-    id: CreateToken
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\JWTBearer.cs
-    startLine: 82
-  assemblies:
-  - FastEndpoints.Security
-  namespace: FastEndpoints.Security
-  summary: generate a jwt token with the supplied parameters
-  example: []
-  syntax:
-    content: public static string CreateToken(string signingKey, Action<UserPrivileges> privileges, string? issuer = null, string? audience = null, DateTime? expireAt = null, JWTBearer.TokenSigningStyle signingStyle = TokenSigningStyle.Symmetric)
-    parameters:
-    - id: signingKey
-      type: System.String
-      description: the secret key to use for signing the tokens
-    - id: privileges
-      type: System.Action{FastEndpoints.UserPrivileges}
-      description: an action to specify the privileges of the user
-    - id: issuer
-      type: System.String
-      description: the issuer
-    - id: audience
-      type: System.String
-      description: the audience
-    - id: expireAt
-      type: System.Nullable{System.DateTime}
-      description: the expiry date
-    - id: signingStyle
-      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-      description: the signing style to use (Symmertic or Asymmetric)
-    return:
-      type: System.String
-    content.vb: Public Shared Function CreateToken(signingKey As String, privileges As Action(Of UserPrivileges), issuer As String = Nothing, audience As String = Nothing, expireAt As Date? = Nothing, signingStyle As JWTBearer.TokenSigningStyle = TokenSigningStyle.Symmetric) As String
-  overload: FastEndpoints.Security.JWTBearer.CreateToken*
-  nameWithType.vb: JWTBearer.CreateToken(String, Action(Of UserPrivileges), String, String, Date?, JWTBearer.TokenSigningStyle)
-  fullName.vb: FastEndpoints.Security.JWTBearer.CreateToken(String, System.Action(Of FastEndpoints.UserPrivileges), String, String, Date?, FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  name.vb: CreateToken(String, Action(Of UserPrivileges), String, String, Date?, TokenSigningStyle)
-- uid: FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  commentId: M:FastEndpoints.Security.JWTBearer.CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  id: CreateToken(System.String,System.Nullable{System.DateTime},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String,System.String,FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  parent: FastEndpoints.Security.JWTBearer
-  langs:
-  - csharp
-  - vb
-  name: CreateToken(string, DateTime?, IEnumerable<string>?, IEnumerable<string>?, IEnumerable<Claim>?, string?, string?, TokenSigningStyle)
-  nameWithType: JWTBearer.CreateToken(string, DateTime?, IEnumerable<string>?, IEnumerable<string>?, IEnumerable<Claim>?, string?, string?, JWTBearer.TokenSigningStyle)
-  fullName: FastEndpoints.Security.JWTBearer.CreateToken(string, System.DateTime?, System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<string>?, System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>?, string?, string?, FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  type: Method
-  source:
-    id: CreateToken
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\JWTBearer.cs
-    startLine: 106
-  assemblies:
-  - FastEndpoints.Security
-  namespace: FastEndpoints.Security
-  summary: generate a jwt token with the supplied parameters
-  example: []
-  syntax:
-    content: public static string CreateToken(string signingKey, DateTime? expireAt = null, IEnumerable<string>? permissions = null, IEnumerable<string>? roles = null, IEnumerable<Claim>? claims = null, string? issuer = null, string? audience = null, JWTBearer.TokenSigningStyle signingStyle = TokenSigningStyle.Symmetric)
-    parameters:
-    - id: signingKey
-      type: System.String
-      description: the secret key to use for signing the tokens
-    - id: expireAt
-      type: System.Nullable{System.DateTime}
-      description: the expiry date
-    - id: permissions
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more permissions to assign to the user principal
-    - id: roles
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: one or more roles to assign the user principal
-    - id: claims
-      type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-      description: one or more claims to assign to the user principal
-    - id: issuer
-      type: System.String
-      description: the issuer
-    - id: audience
-      type: System.String
-      description: the audience
-    - id: signingStyle
-      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-      description: the signing style to use (Symmetric or Asymmetric)
-    return:
-      type: System.String
-    content.vb: Public Shared Function CreateToken(signingKey As String, expireAt As Date? = Nothing, permissions As IEnumerable(Of String) = Nothing, roles As IEnumerable(Of String) = Nothing, claims As IEnumerable(Of Claim) = Nothing, issuer As String = Nothing, audience As String = Nothing, signingStyle As JWTBearer.TokenSigningStyle = TokenSigningStyle.Symmetric) As String
-  overload: FastEndpoints.Security.JWTBearer.CreateToken*
-  nameWithType.vb: JWTBearer.CreateToken(String, Date?, IEnumerable(Of String), IEnumerable(Of String), IEnumerable(Of Claim), String, String, JWTBearer.TokenSigningStyle)
-  fullName.vb: FastEndpoints.Security.JWTBearer.CreateToken(String, Date?, System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of String), System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim), String, String, FastEndpoints.Security.JWTBearer.TokenSigningStyle)
-  name.vb: CreateToken(String, Date?, IEnumerable(Of String), IEnumerable(Of String), IEnumerable(Of Claim), String, String, TokenSigningStyle)
+    content.vb: Public Shared Function CreateToken(options As Action(Of JwtCreationOptions)) As String
+  overload: FastEndpoints.Security.JwtBearer.CreateToken*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if a token signing key is not supplied.
+  nameWithType.vb: JwtBearer.CreateToken(Action(Of JwtCreationOptions))
+  fullName.vb: FastEndpoints.Security.JwtBearer.CreateToken(System.Action(Of FastEndpoints.Security.JwtCreationOptions))
+  name.vb: CreateToken(Action(Of JwtCreationOptions))
 references:
 - uid: FastEndpoints.Security
   commentId: N:FastEndpoints.Security
@@ -546,17 +319,56 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.Security.JWTBearer.CreateToken*
-  commentId: Overload:FastEndpoints.Security.JWTBearer.CreateToken
-  href: FastEndpoints.Security.JWTBearer.html#FastEndpoints_Security_JWTBearer_CreateToken_System_String_System_Nullable_System_DateTime__System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_String__System_ValueTuple_System_String_System_String____
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: FastEndpoints.Security.JwtBearer.CreateToken*
+  commentId: Overload:FastEndpoints.Security.JwtBearer.CreateToken
+  href: FastEndpoints.Security.JwtBearer.html#FastEndpoints_Security_JwtBearer_CreateToken_System_Action_FastEndpoints_Security_JwtCreationOptions__
   name: CreateToken
-  nameWithType: JWTBearer.CreateToken
-  fullName: FastEndpoints.Security.JWTBearer.CreateToken
+  nameWithType: JwtBearer.CreateToken
+  fullName: FastEndpoints.Security.JwtBearer.CreateToken
+- uid: System.Action{FastEndpoints.Security.JwtCreationOptions}
+  commentId: T:System.Action{FastEndpoints.Security.JwtCreationOptions}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<JwtCreationOptions>
+  nameWithType: Action<JwtCreationOptions>
+  fullName: System.Action<FastEndpoints.Security.JwtCreationOptions>
+  nameWithType.vb: Action(Of JwtCreationOptions)
+  fullName.vb: System.Action(Of FastEndpoints.Security.JwtCreationOptions)
+  name.vb: Action(Of JwtCreationOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.Security.JwtCreationOptions
+    name: JwtCreationOptions
+    href: FastEndpoints.Security.JwtCreationOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.Security.JwtCreationOptions
+    name: JwtCreationOptions
+    href: FastEndpoints.Security.JwtCreationOptions.html
+  - name: )
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -568,272 +380,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System.Nullable{System.DateTime}
-  commentId: T:System.Nullable{System.DateTime}
-  parent: System
-  definition: System.Nullable`1
-  href: https://learn.microsoft.com/dotnet/api/system.datetime
-  name: DateTime?
-  nameWithType: DateTime?
-  fullName: System.DateTime?
-  nameWithType.vb: Date?
-  fullName.vb: Date?
-  name.vb: Date?
-  spec.csharp:
-  - uid: System.DateTime
-    name: DateTime
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.datetime
-  - name: '?'
-  spec.vb:
-  - uid: System.DateTime
-    name: Date
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.datetime
-  - name: '?'
-- uid: System.Collections.Generic.IEnumerable{System.String}
-  commentId: T:System.Collections.Generic.IEnumerable{System.String}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<string>
-  nameWithType: IEnumerable<string>
-  fullName: System.Collections.Generic.IEnumerable<string>
-  nameWithType.vb: IEnumerable(Of String)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
-  name.vb: IEnumerable(Of String)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-- uid: System.ValueTuple{System.String,System.String}[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: (string claimType, string claimValue)[]
-  nameWithType: (string claimType, string claimValue)[]
-  fullName: (string claimType, string claimValue)[]
-  nameWithType.vb: (claimType As String, claimValue As String)()
-  fullName.vb: (claimType As String, claimValue As String)()
-  name.vb: (claimType As String, claimValue As String)()
-  spec.csharp:
-  - name: (
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: " "
-  - uid: System.ValueTuple{System.String,System.String}.claimType
-    name: claimType
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string-.claimtype
-  - name: ','
-  - name: " "
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: " "
-  - uid: System.ValueTuple{System.String,System.String}.claimValue
-    name: claimValue
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string-.claimvalue
-  - name: )
-  - name: '['
-  - name: ']'
-  spec.vb:
-  - name: (
-  - uid: System.ValueTuple{System.String,System.String}.claimType
-    name: claimType
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string-.claimtype
-  - name: " "
-  - name: As
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: ','
-  - name: " "
-  - uid: System.ValueTuple{System.String,System.String}.claimValue
-    name: claimValue
-    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string-.claimvalue
-  - name: " "
-  - name: As
-  - name: " "
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: )
-  - name: (
-  - name: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  commentId: T:FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  parent: FastEndpoints.Security
-  href: FastEndpoints.Security.JWTBearer.html
-  name: JWTBearer.TokenSigningStyle
-  nameWithType: JWTBearer.TokenSigningStyle
-  fullName: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  spec.csharp:
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
-    href: FastEndpoints.Security.JWTBearer.html
-  - name: .
-  - uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    name: TokenSigningStyle
-    href: FastEndpoints.Security.JWTBearer.TokenSigningStyle.html
-  spec.vb:
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
-    href: FastEndpoints.Security.JWTBearer.html
-  - name: .
-  - uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    name: TokenSigningStyle
-    href: FastEndpoints.Security.JWTBearer.TokenSigningStyle.html
-- uid: System.Action{FastEndpoints.UserPrivileges}
-  commentId: T:System.Action{FastEndpoints.UserPrivileges}
-  parent: System
-  definition: System.Action`1
-  href: https://learn.microsoft.com/dotnet/api/system.action-1
-  name: Action<UserPrivileges>
-  nameWithType: Action<UserPrivileges>
-  fullName: System.Action<FastEndpoints.UserPrivileges>
-  nameWithType.vb: Action(Of UserPrivileges)
-  fullName.vb: System.Action(Of FastEndpoints.UserPrivileges)
-  name.vb: Action(Of UserPrivileges)
-  spec.csharp:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: <
-  - uid: FastEndpoints.UserPrivileges
-    name: UserPrivileges
-    href: FastEndpoints.UserPrivileges.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Action`1
-    name: Action
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.action-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: FastEndpoints.UserPrivileges
-    name: UserPrivileges
-    href: FastEndpoints.UserPrivileges.html
-  - name: )
 - uid: System.Action`1
   commentId: T:System.Action`1
   isExternal: true
@@ -861,39 +407,4 @@ references:
   - name: Of
   - name: " "
   - name: T
-  - name: )
-- uid: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-  commentId: T:System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<Claim>
-  nameWithType: IEnumerable<Claim>
-  fullName: System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>
-  nameWithType.vb: IEnumerable(Of Claim)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim)
-  name.vb: IEnumerable(Of Claim)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: System.Security.Claims.Claim
-    name: Claim
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.security.claims.claim
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Security.Claims.Claim
-    name: Claim
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.security.claims.claim
   - name: )

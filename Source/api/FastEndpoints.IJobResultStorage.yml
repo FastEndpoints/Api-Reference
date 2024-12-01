@@ -1,0 +1,172 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.IJobResultStorage
+  commentId: T:FastEndpoints.IJobResultStorage
+  id: IJobResultStorage
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.IJobResultStorage.GetResult``1
+  - FastEndpoints.IJobResultStorage.Result
+  - FastEndpoints.IJobResultStorage.SetResult``1(``0)
+  langs:
+  - csharp
+  - vb
+  name: IJobResultStorage
+  nameWithType: IJobResultStorage
+  fullName: FastEndpoints.IJobResultStorage
+  type: Interface
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: addon interface to enable storage of job results on a job storage record (<xref href="FastEndpoints.IJobStorageRecord" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public interface IJobResultStorage
+    content.vb: Public Interface IJobResultStorage
+- uid: FastEndpoints.IJobResultStorage.Result
+  commentId: P:FastEndpoints.IJobResultStorage.Result
+  id: Result
+  parent: FastEndpoints.IJobResultStorage
+  langs:
+  - csharp
+  - vb
+  name: Result
+  nameWithType: IJobResultStorage.Result
+  fullName: FastEndpoints.IJobResultStorage.Result
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    the actual result object that will be embedded in the storage record.
+
+    if your database/orm (such as ef-core) doesn't support embedding objects, you can take the following steps:
+
+    <pre><code class="lang-csharp">1. add a [NotMapped] attribute to this property.
+
+    2. add a new property, either a string or byte[]
+
+    3. implement both GetResult() and SetResult() methods to serialize/deserialize the command object back and forth and store it in the newly added property.</code></pre>
+
+    you may use any serializer you please. recommendation is to use MessagePack.
+  example: []
+  syntax:
+    content: object? Result { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Property Result As Object
+  overload: FastEndpoints.IJobResultStorage.Result*
+- uid: FastEndpoints.IJobResultStorage.GetResult``1
+  commentId: M:FastEndpoints.IJobResultStorage.GetResult``1
+  id: GetResult``1
+  parent: FastEndpoints.IJobResultStorage
+  langs:
+  - csharp
+  - vb
+  name: GetResult<TResult>()
+  nameWithType: IJobResultStorage.GetResult<TResult>()
+  fullName: FastEndpoints.IJobResultStorage.GetResult<TResult>()
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: implement this function to customize the result deserialization.
+  example: []
+  syntax:
+    content: TResult? GetResult<TResult>()
+    typeParameters:
+    - id: TResult
+    return:
+      type: '{TResult}'
+    content.vb: Function GetResult(Of TResult)() As TResult
+  overload: FastEndpoints.IJobResultStorage.GetResult*
+  nameWithType.vb: IJobResultStorage.GetResult(Of TResult)()
+  fullName.vb: FastEndpoints.IJobResultStorage.GetResult(Of TResult)()
+  name.vb: GetResult(Of TResult)()
+- uid: FastEndpoints.IJobResultStorage.SetResult``1(``0)
+  commentId: M:FastEndpoints.IJobResultStorage.SetResult``1(``0)
+  id: SetResult``1(``0)
+  parent: FastEndpoints.IJobResultStorage
+  langs:
+  - csharp
+  - vb
+  name: SetResult<TResult>(TResult)
+  nameWithType: IJobResultStorage.SetResult<TResult>(TResult)
+  fullName: FastEndpoints.IJobResultStorage.SetResult<TResult>(TResult)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: implement this method to customize the result serialization.
+  example: []
+  syntax:
+    content: void SetResult<TResult>(TResult result)
+    parameters:
+    - id: result
+      type: '{TResult}'
+    typeParameters:
+    - id: TResult
+    content.vb: Sub SetResult(Of TResult)(result As TResult)
+  overload: FastEndpoints.IJobResultStorage.SetResult*
+  nameWithType.vb: IJobResultStorage.SetResult(Of TResult)(TResult)
+  fullName.vb: FastEndpoints.IJobResultStorage.SetResult(Of TResult)(TResult)
+  name.vb: SetResult(Of TResult)(TResult)
+references:
+- uid: FastEndpoints.IJobStorageRecord
+  commentId: T:FastEndpoints.IJobStorageRecord
+  href: FastEndpoints.IJobStorageRecord.html
+  name: IJobStorageRecord
+  nameWithType: IJobStorageRecord
+  fullName: FastEndpoints.IJobStorageRecord
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  href: FastEndpoints.html
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: FastEndpoints.IJobResultStorage.Result*
+  commentId: Overload:FastEndpoints.IJobResultStorage.Result
+  href: FastEndpoints.IJobResultStorage.html#FastEndpoints_IJobResultStorage_Result
+  name: Result
+  nameWithType: IJobResultStorage.Result
+  fullName: FastEndpoints.IJobResultStorage.Result
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.IJobResultStorage.GetResult*
+  commentId: Overload:FastEndpoints.IJobResultStorage.GetResult
+  href: FastEndpoints.IJobResultStorage.html#FastEndpoints_IJobResultStorage_GetResult__1
+  name: GetResult
+  nameWithType: IJobResultStorage.GetResult
+  fullName: FastEndpoints.IJobResultStorage.GetResult
+- uid: '{TResult}'
+  commentId: '!:TResult'
+  definition: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: FastEndpoints.IJobResultStorage.SetResult*
+  commentId: Overload:FastEndpoints.IJobResultStorage.SetResult
+  href: FastEndpoints.IJobResultStorage.html#FastEndpoints_IJobResultStorage_SetResult__1___0_
+  name: SetResult
+  nameWithType: IJobResultStorage.SetResult
+  fullName: FastEndpoints.IJobResultStorage.SetResult

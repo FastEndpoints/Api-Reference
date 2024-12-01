@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class HttpResponseExtensions
- | FastEndpoints </title>
+    <title>Class HttpResponseExtensions | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class HttpResponseExtensions
- | FastEndpoints ">
+    <meta name="title" content="Class HttpResponseExtensions | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,8 +80,7 @@
 
 
 
-  <h1 id="FastEndpoints_HttpResponseExtensions" data-uid="FastEndpoints.HttpResponseExtensions" class="text-break">Class HttpResponseExtensions
-</h1>
+  <h1 id="FastEndpoints_HttpResponseExtensions" data-uid="FastEndpoints.HttpResponseExtensions" class="text-break">Class HttpResponseExtensions</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -374,8 +371,7 @@ route endpoint.
 <p>
 HINT: if pointing to an endpoint with multiple verbs, make sure to specify the 'verb' argument and if pointing to a multi route endpoint,
 specify the 'routeNumber' argument.
-</p>
-<p>
+</p><p>
 WARNING: this overload will not add a location header if you've set a custom endpoint name using .WithName() method. use the other overload
 that accepts a string endpoint name instead.
 </p>
@@ -1082,13 +1078,13 @@ that accepts a string endpoint name instead.
 
 
   <a id="FastEndpoints_HttpResponseExtensions_SendRedirectAsync_" data-uid="FastEndpoints.HttpResponseExtensions.SendRedirectAsync*"></a>
-  <h4 id="FastEndpoints_HttpResponseExtensions_SendRedirectAsync_Microsoft_AspNetCore_Http_HttpResponse_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="FastEndpoints.HttpResponseExtensions.SendRedirectAsync(Microsoft.AspNetCore.Http.HttpResponse,System.String,System.Boolean,System.Threading.CancellationToken)">SendRedirectAsync(HttpResponse, string, bool, CancellationToken)</h4>
+  <h4 id="FastEndpoints_HttpResponseExtensions_SendRedirectAsync_Microsoft_AspNetCore_Http_HttpResponse_System_String_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpResponseExtensions.SendRedirectAsync(Microsoft.AspNetCore.Http.HttpResponse,System.String,System.Boolean,System.Boolean)">SendRedirectAsync(HttpResponse, string, bool, bool)</h4>
   <div class="markdown level1 summary"><p>send a 302/301 redirect response</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task SendRedirectAsync(this HttpResponse rsp, string location, bool isPermanant, CancellationToken cancellation = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task SendRedirectAsync(this HttpResponse rsp, string location, bool isPermanent, bool allowRemoteRedirects = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1113,14 +1109,14 @@ that accepts a string endpoint name instead.
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">isPermanant</span></td>
+        <td><span class="parametername">isPermanent</span></td>
         <td><p>set to true for a 301 redirect. 302 is the default.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellation</span></td>
-        <td><p>optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">allowRemoteRedirects</span></td>
+        <td><p>set to true if it's ok to redirect to remote addresses, which is prone to open redirect attacks.</p>
 </td>
       </tr>
     </tbody>
@@ -1140,11 +1136,27 @@ that accepts a string endpoint name instead.
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if <code class="paramref">allowRemoteRedirects</code> is not set to true and the supplied url is not local</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_HttpResponseExtensions_SendResultAsync_" data-uid="FastEndpoints.HttpResponseExtensions.SendResultAsync*"></a>
   <h4 id="FastEndpoints_HttpResponseExtensions_SendResultAsync_Microsoft_AspNetCore_Http_HttpResponse_Microsoft_AspNetCore_Http_IResult_" data-uid="FastEndpoints.HttpResponseExtensions.SendResultAsync(Microsoft.AspNetCore.Http.HttpResponse,Microsoft.AspNetCore.Http.IResult)">SendResultAsync(HttpResponse, IResult)</h4>
-  <div class="markdown level1 summary"><p>execute and send any <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a> produced by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.results">Results</a> class in minimal apis.</p>
+  <div class="markdown level1 summary"><p>execute and send any <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a> produced by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.results">Results</a> or TypedResults classes in minimal apis.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1169,9 +1181,9 @@ that accepts a string endpoint name instead.
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a></td>
         <td><span class="parametername">result</span></td>
-        <td><p>the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a> instance to execute such as:</p>
-<pre><code class="lang-csharp">Results.Forbid();
-Results.Ok(...);</code></pre>
+        <td><p>the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a> instance to execute such as from:</p>
+<pre><code class="lang-csharp">- Results.Ok();
+- TypedResults.NotFound();</code></pre>
 </td>
       </tr>
     </tbody>
@@ -1285,7 +1297,7 @@ Results.Ok(...);</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task SendStringAsync(this HttpResponse rsp, string content, int statusCode = 200, string contentType = &quot;text/plain&quot;, CancellationToken cancellation = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task SendStringAsync(this HttpResponse rsp, string content, int statusCode = 200, string contentType = &quot;text/plain; charset=utf-8&quot;, CancellationToken cancellation = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">

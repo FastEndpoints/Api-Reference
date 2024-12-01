@@ -5,7 +5,11 @@ items:
   id: RefreshTokenService`2
   parent: FastEndpoints.Security
   children:
-  - FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
+  - FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0},System.Boolean,System.Object)
+  - FastEndpoints.Security.RefreshTokenService`2.OnAfterInitialTokenCreationAsync(System.Object,`1)
+  - FastEndpoints.Security.RefreshTokenService`2.OnAfterRenewalTokenCreationAsync(`0,`1)
+  - FastEndpoints.Security.RefreshTokenService`2.OnBeforeInitialTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,System.Object)
+  - FastEndpoints.Security.RefreshTokenService`2.OnBeforeRenewalTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,`0)
   - FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync(`1)
   - FastEndpoints.Security.RefreshTokenService`2.RefreshRequestValidationAsync(`0)
   - FastEndpoints.Security.RefreshTokenService`2.SetRenewalPrivilegesAsync(`0,FastEndpoints.UserPrivileges)
@@ -17,17 +21,13 @@ items:
   nameWithType: RefreshTokenService<TRequest, TResponse>
   fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>
   type: Class
-  source:
-    id: RefreshTokenService
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshTokenService.cs
-    startLine: 7
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
   summary: implement this class to define your own refresh token endpoints.
   example: []
   syntax:
-    content: 'public abstract class RefreshTokenService<TRequest, TResponse> : Endpoint<TRequest, TResponse>, IEndpoint, IEventBus, IServiceResolverBase where TRequest : notnull, TokenRequest, new() where TResponse : notnull, TokenResponse, new()'
+    content: 'public abstract class RefreshTokenService<TRequest, TResponse> : Endpoint<TRequest, TResponse>, IEndpoint, IEventBus, IServiceResolverBase where TRequest : TokenRequest, new() where TResponse : TokenResponse, new()'
     typeParameters:
     - id: TRequest
       description: the type of the request dto that will be accepted by the refresh endpoint
@@ -53,8 +53,9 @@ items:
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Route``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Query``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.FormFileSectionsAsync(System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.PublishAsync``1({TEvent},FastEndpoints.Mode,System.Threading.CancellationToken)
-  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},{TRequest})
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ProcessorState``1
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.OnBeforeValidate({TRequest})
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.OnBeforeValidateAsync({TRequest},System.Threading.CancellationToken)
@@ -89,7 +90,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendNotFoundAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendUnauthorizedAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendForbiddenAsync(System.Threading.CancellationToken)
-  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendBytesAsync(System.Byte[],System.String,System.String,System.Nullable{System.DateTimeOffset},System.Boolean,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendFileAsync(System.IO.FileInfo,System.String,System.Nullable{System.DateTimeOffset},System.Boolean,System.Threading.CancellationToken)
@@ -108,6 +109,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Delete(System.String[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Delete(System.String,System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}})
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.DontAutoSendResponse
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.DontAutoTag
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.DontCatchExceptions
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.DontThrowIfValidationFails
@@ -148,7 +150,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Validator``1
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Verbs(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Verbs(System.String[])
-  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint{{TRequest},{TResponse}}.Version(System.Int32,System.Int32)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.ValidationFailed
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.Endpoint{{TRequest},{TResponse}}.AddError(System.String,System.String,FluentValidation.Severity)
@@ -185,10 +187,6 @@ items:
   nameWithType: RefreshTokenService<TRequest, TResponse>.Setup(Action<RefreshServiceOptions>)
   fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.Setup(System.Action<FastEndpoints.Security.RefreshServiceOptions>)
   type: Method
-  source:
-    id: Setup
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshTokenService.cs
-    startLine: 44
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -205,6 +203,140 @@ items:
   nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).Setup(Action(Of RefreshServiceOptions))
   fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).Setup(System.Action(Of FastEndpoints.Security.RefreshServiceOptions))
   name.vb: Setup(Action(Of RefreshServiceOptions))
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnBeforeInitialTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,System.Object)
+  commentId: M:FastEndpoints.Security.RefreshTokenService`2.OnBeforeInitialTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,System.Object)
+  id: OnBeforeInitialTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,System.Object)
+  parent: FastEndpoints.Security.RefreshTokenService`2
+  langs:
+  - csharp
+  - vb
+  name: OnBeforeInitialTokenCreationAsync(JwtCreationOptions, object?)
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnBeforeInitialTokenCreationAsync(JwtCreationOptions, object?)
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnBeforeInitialTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions, object?)
+  type: Method
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: >-
+    a hook for modifying jwt creation options per request when a login request comes in. this method is called right before the actual jwt token is created
+
+    allowing you to override token creation parameters per request if needed.
+  example: []
+  syntax:
+    content: public virtual Task OnBeforeInitialTokenCreationAsync(JwtCreationOptions jwtOptions, object? request)
+    parameters:
+    - id: jwtOptions
+      type: FastEndpoints.Security.JwtCreationOptions
+      description: jwt token creation options which you can modify per request
+    - id: request
+      type: System.Object
+      description: the request dto. maybe null unless you supply it to the <xref href="FastEndpoints.Endpoint%602.CreateTokenWith%60%601(System.String%2cSystem.Action%7bFastEndpoints.UserPrivileges%7d%2c%600)" data-throw-if-not-resolved="false"></xref> method.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnBeforeInitialTokenCreationAsync(jwtOptions As JwtCreationOptions, request As Object) As Task
+  overload: FastEndpoints.Security.RefreshTokenService`2.OnBeforeInitialTokenCreationAsync*
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnBeforeInitialTokenCreationAsync(JwtCreationOptions, Object)
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnBeforeInitialTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions, Object)
+  name.vb: OnBeforeInitialTokenCreationAsync(JwtCreationOptions, Object)
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnAfterInitialTokenCreationAsync(System.Object,`1)
+  commentId: M:FastEndpoints.Security.RefreshTokenService`2.OnAfterInitialTokenCreationAsync(System.Object,`1)
+  id: OnAfterInitialTokenCreationAsync(System.Object,`1)
+  parent: FastEndpoints.Security.RefreshTokenService`2
+  langs:
+  - csharp
+  - vb
+  name: OnAfterInitialTokenCreationAsync(object?, TResponse)
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnAfterInitialTokenCreationAsync(object?, TResponse)
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnAfterInitialTokenCreationAsync(object?, TResponse)
+  type: Method
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: a hook for modifying the created token response when a login request comes in.
+  example: []
+  syntax:
+    content: public virtual Task OnAfterInitialTokenCreationAsync(object? request, TResponse response)
+    parameters:
+    - id: request
+      type: System.Object
+      description: the request dto. maybe null unless you supply it to the <xref href="FastEndpoints.Endpoint%602.CreateTokenWith%60%601(System.String%2cSystem.Action%7bFastEndpoints.UserPrivileges%7d%2c%600)" data-throw-if-not-resolved="false"></xref> method.
+    - id: response
+      type: '{TResponse}'
+      description: the token response dto that is created
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnAfterInitialTokenCreationAsync(request As Object, response As TResponse) As Task
+  overload: FastEndpoints.Security.RefreshTokenService`2.OnAfterInitialTokenCreationAsync*
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnAfterInitialTokenCreationAsync(Object, TResponse)
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnAfterInitialTokenCreationAsync(Object, TResponse)
+  name.vb: OnAfterInitialTokenCreationAsync(Object, TResponse)
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnBeforeRenewalTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,`0)
+  commentId: M:FastEndpoints.Security.RefreshTokenService`2.OnBeforeRenewalTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,`0)
+  id: OnBeforeRenewalTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions,`0)
+  parent: FastEndpoints.Security.RefreshTokenService`2
+  langs:
+  - csharp
+  - vb
+  name: OnBeforeRenewalTokenCreationAsync(JwtCreationOptions, TRequest?)
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnBeforeRenewalTokenCreationAsync(JwtCreationOptions, TRequest?)
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnBeforeRenewalTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions, TRequest?)
+  type: Method
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: >-
+    a hook for modifying jwt creation options per request when a renewal request comes in. this method is called right before the actual jwt token is created
+
+    allowing you to override token creation parameters per request if needed.
+  example: []
+  syntax:
+    content: public virtual Task OnBeforeRenewalTokenCreationAsync(JwtCreationOptions jwtOptions, TRequest? request)
+    parameters:
+    - id: jwtOptions
+      type: FastEndpoints.Security.JwtCreationOptions
+      description: jwt token creation options which you can modify per request
+    - id: request
+      type: '{TRequest}'
+      description: the request dto. maybe null unless you supply it to the <xref href="FastEndpoints.Endpoint%602.CreateTokenWith%60%601(System.String%2cSystem.Action%7bFastEndpoints.UserPrivileges%7d%2c%600)" data-throw-if-not-resolved="false"></xref> method.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnBeforeRenewalTokenCreationAsync(jwtOptions As JwtCreationOptions, request As TRequest) As Task
+  overload: FastEndpoints.Security.RefreshTokenService`2.OnBeforeRenewalTokenCreationAsync*
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnBeforeRenewalTokenCreationAsync(JwtCreationOptions, TRequest)
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnBeforeRenewalTokenCreationAsync(FastEndpoints.Security.JwtCreationOptions, TRequest)
+  name.vb: OnBeforeRenewalTokenCreationAsync(JwtCreationOptions, TRequest)
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnAfterRenewalTokenCreationAsync(`0,`1)
+  commentId: M:FastEndpoints.Security.RefreshTokenService`2.OnAfterRenewalTokenCreationAsync(`0,`1)
+  id: OnAfterRenewalTokenCreationAsync(`0,`1)
+  parent: FastEndpoints.Security.RefreshTokenService`2
+  langs:
+  - csharp
+  - vb
+  name: OnAfterRenewalTokenCreationAsync(TRequest?, TResponse)
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnAfterRenewalTokenCreationAsync(TRequest?, TResponse)
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnAfterRenewalTokenCreationAsync(TRequest?, TResponse)
+  type: Method
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: a hook for modifying the created token response when a renewal request comes in.
+  example: []
+  syntax:
+    content: public virtual Task OnAfterRenewalTokenCreationAsync(TRequest? request, TResponse response)
+    parameters:
+    - id: request
+      type: '{TRequest}'
+      description: the request dto. maybe null unless you supply it to the <xref href="FastEndpoints.Endpoint%602.CreateTokenWith%60%601(System.String%2cSystem.Action%7bFastEndpoints.UserPrivileges%7d%2c%600)" data-throw-if-not-resolved="false"></xref> method.
+    - id: response
+      type: '{TResponse}'
+      description: the token response dto that is created
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnAfterRenewalTokenCreationAsync(request As TRequest, response As TResponse) As Task
+  overload: FastEndpoints.Security.RefreshTokenService`2.OnAfterRenewalTokenCreationAsync*
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnAfterRenewalTokenCreationAsync(TRequest, TResponse)
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnAfterRenewalTokenCreationAsync(TRequest, TResponse)
+  name.vb: OnAfterRenewalTokenCreationAsync(TRequest, TResponse)
 - uid: FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync(`1)
   commentId: M:FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync(`1)
   id: PersistTokenAsync(`1)
@@ -216,10 +348,6 @@ items:
   nameWithType: RefreshTokenService<TRequest, TResponse>.PersistTokenAsync(TResponse)
   fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.PersistTokenAsync(TResponse)
   type: Method
-  source:
-    id: PersistTokenAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshTokenService.cs
-    startLine: 55
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -251,10 +379,6 @@ items:
   nameWithType: RefreshTokenService<TRequest, TResponse>.RefreshRequestValidationAsync(TRequest)
   fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.RefreshRequestValidationAsync(TRequest)
   type: Method
-  source:
-    id: RefreshRequestValidationAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshTokenService.cs
-    startLine: 64
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -263,9 +387,9 @@ items:
 
     if the token is not valid and a new token pair should not be created, simply add validation errors using the <code>AddError()</code> method.
 
-    the failures you add will be sent to the requesting client.
+    the failures you add will be sent to the requesting client. if no failures are added, validation passes and a new token pair will be created and sent to
 
-    if no failures are added, validation passes and a new token pair will be created and sent to the client.
+    the client.
   example: []
   syntax:
     content: public abstract Task RefreshRequestValidationAsync(TRequest req)
@@ -290,15 +414,11 @@ items:
   nameWithType: RefreshTokenService<TRequest, TResponse>.SetRenewalPrivilegesAsync(TRequest, UserPrivileges)
   fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.SetRenewalPrivilegesAsync(TRequest, FastEndpoints.UserPrivileges)
   type: Method
-  source:
-    id: SetRenewalPrivilegesAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshTokenService.cs
-    startLine: 72
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
   summary: >-
-    specify the user privileges to be embeded in the jwt when a refresh request is received and validation has passed.
+    specify the user privileges to be embedded in the jwt when a refresh request is received and validation has passed.
 
     this only applies to renewal/refresh requests received to the refresh endpoint and not the initial jwt creation.
   example: []
@@ -310,55 +430,57 @@ items:
       description: the request dto received from the client
     - id: privileges
       type: FastEndpoints.UserPrivileges
-      description: the user priviledges to be embeded in the jwt such as roles/claims/permissions
+      description: the user privileges to be embedded in the jwt such as roles/claims/permissions
     return:
       type: System.Threading.Tasks.Task
     content.vb: Public MustOverride Function SetRenewalPrivilegesAsync(request As TRequest, privileges As UserPrivileges) As Task
   overload: FastEndpoints.Security.RefreshTokenService`2.SetRenewalPrivilegesAsync*
   nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).SetRenewalPrivilegesAsync(TRequest, UserPrivileges)
   fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).SetRenewalPrivilegesAsync(TRequest, FastEndpoints.UserPrivileges)
-- uid: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
-  commentId: M:FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
-  id: CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0})
+- uid: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0},System.Boolean,System.Object)
+  commentId: M:FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0},System.Boolean,System.Object)
+  id: CreateCustomToken``1(System.String,System.Action{FastEndpoints.UserPrivileges},System.Func{`1,``0},System.Boolean,System.Object)
   parent: FastEndpoints.Security.RefreshTokenService`2
   langs:
   - csharp
   - vb
-  name: CreateCustomToken<T>(string, Action<UserPrivileges>, Func<TResponse, T>)
-  nameWithType: RefreshTokenService<TRequest, TResponse>.CreateCustomToken<T>(string, Action<UserPrivileges>, Func<TResponse, T>)
-  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.CreateCustomToken<T>(string, System.Action<FastEndpoints.UserPrivileges>, System.Func<TResponse, T>)
+  name: CreateCustomToken<T>(string, Action<UserPrivileges>, Func<TResponse, T>, bool, object?)
+  nameWithType: RefreshTokenService<TRequest, TResponse>.CreateCustomToken<T>(string, Action<UserPrivileges>, Func<TResponse, T>, bool, object?)
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.CreateCustomToken<T>(string, System.Action<FastEndpoints.UserPrivileges>, System.Func<TResponse, T>, bool, object?)
   type: Method
-  source:
-    id: CreateCustomToken
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshTokenService.cs
-    startLine: 81
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
   summary: create a token response and map it to a different type. useful if you need to create the token manually by yourself.
   example: []
   syntax:
-    content: public Task<T> CreateCustomToken<T>(string userId, Action<UserPrivileges> privileges, Func<TResponse, T> map)
+    content: public Task<T> CreateCustomToken<T>(string userId, Action<UserPrivileges> privileges, Func<TResponse, T> map, bool isRenewal = false, object? request = null)
     parameters:
     - id: userId
       type: System.String
       description: the id of the user to create the token for
     - id: privileges
       type: System.Action{FastEndpoints.UserPrivileges}
-      description: the user priviledges to be embeded in the jwt such as roles/claims/permissions
+      description: the user privileges to be embedded in the jwt such as roles/claims/permissions
     - id: map
       type: System.Func{{TResponse},{T}}
       description: a func that maps properties from <code class="typeparamref">TResponse</code> to <code class="typeparamref">T</code>
+    - id: isRenewal
+      type: System.Boolean
+      description: specify if this is an initial login request or a renewal/refresh request
+    - id: request
+      type: System.Object
+      description: the request dto
     typeParameters:
     - id: T
       description: the type to map to
     return:
       type: System.Threading.Tasks.Task{{T}}
-    content.vb: Public Function CreateCustomToken(Of T)(userId As String, privileges As Action(Of UserPrivileges), map As Func(Of TResponse, T)) As Task(Of T)
+    content.vb: Public Function CreateCustomToken(Of T)(userId As String, privileges As Action(Of UserPrivileges), map As Func(Of TResponse, T), isRenewal As Boolean = False, request As Object = Nothing) As Task(Of T)
   overload: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken*
-  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).CreateCustomToken(Of T)(String, Action(Of UserPrivileges), Func(Of TResponse, T))
-  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).CreateCustomToken(Of T)(String, System.Action(Of FastEndpoints.UserPrivileges), System.Func(Of TResponse, T))
-  name.vb: CreateCustomToken(Of T)(String, Action(Of UserPrivileges), Func(Of TResponse, T))
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).CreateCustomToken(Of T)(String, Action(Of UserPrivileges), Func(Of TResponse, T), Boolean, Object)
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).CreateCustomToken(Of T)(String, System.Action(Of FastEndpoints.UserPrivileges), System.Func(Of TResponse, T), Boolean, Object)
+  name.vb: CreateCustomToken(Of T)(String, Action(Of UserPrivileges), Func(Of TResponse, T), Boolean, Object)
 references:
 - uid: FastEndpoints.Security
   commentId: N:FastEndpoints.Security
@@ -802,6 +924,36 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
+  definition: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  name: FormMultipartSectionsAsync(CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.FormMultipartSectionsAsync(CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).FormMultipartSectionsAsync(CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{`0,`1}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{`0,`1}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.PublishAsync``1({TEvent},FastEndpoints.Mode,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint{`0,`1}.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
@@ -857,21 +1009,21 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
-  commentId: M:FastEndpoints.Endpoint{`0,`1}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},{TRequest})
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
   parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
-  definition: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
-  name: CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  nameWithType: Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges))
-  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
+  definition: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
+  name: CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  nameWithType: Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>, TRequest)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges), TRequest)
+  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint{`0,`1}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint{`0,`1}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: <
   - name: TService
   - name: '>'
@@ -891,11 +1043,14 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint{`0,`1}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint{`0,`1}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: (
   - name: Of
   - name: " "
@@ -919,6 +1074,9 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: )
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.ProcessorState``1
   commentId: M:FastEndpoints.Endpoint{`0,`1}.ProcessorState``1
@@ -1951,21 +2109,21 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.Endpoint{`0,`1}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
   parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
-  definition: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
-  name: SendRedirectAsync(string, bool, CancellationToken)
-  nameWithType: Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, CancellationToken)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, System.Threading.CancellationToken)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, CancellationToken)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, System.Threading.CancellationToken)
-  name.vb: SendRedirectAsync(String, Boolean, CancellationToken)
+  definition: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
+  name: SendRedirectAsync(string, bool, bool)
+  nameWithType: Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, bool)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, bool)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, Boolean)
+  name.vb: SendRedirectAsync(String, Boolean, Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint{`0,`1}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint{`0,`1}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: string
@@ -1979,15 +2137,15 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: bool
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint{`0,`1}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint{`0,`1}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: String
@@ -2001,10 +2159,10 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: Boolean
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint{`0,`1}.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
@@ -2996,6 +3154,28 @@ references:
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.DontAutoSendResponse
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.DontAutoSendResponse
+  parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
+  definition: FastEndpoints.Endpoint`2.DontAutoSendResponse
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  name: DontAutoSendResponse()
+  nameWithType: Endpoint<TRequest, TResponse>.DontAutoSendResponse()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoSendResponse()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontAutoSendResponse()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoSendResponse()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{`0,`1}.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{`0,`1}.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.DontAutoTag
   commentId: M:FastEndpoints.Endpoint{`0,`1}.DontAutoTag
@@ -4703,21 +4883,21 @@ references:
   - name: (
   - name: )
   - name: )
-- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.Version(System.Int32,System.Nullable{System.Int32})
-  commentId: M:FastEndpoints.Endpoint{`0,`1}.Version(System.Int32,System.Nullable{System.Int32})
+- uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.Version(System.Int32,System.Int32)
+  commentId: M:FastEndpoints.Endpoint{`0,`1}.Version(System.Int32,System.Int32)
   parent: FastEndpoints.Endpoint{{TRequest},{TResponse}}
-  definition: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
-  name: Version(int, int?)
-  nameWithType: Endpoint<TRequest, TResponse>.Version(int, int?)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Version(int, int?)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Version(Integer, Integer?)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Version(Integer, Integer?)
-  name.vb: Version(Integer, Integer?)
+  definition: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
+  name: Version(int, int)
+  nameWithType: Endpoint<TRequest, TResponse>.Version(int, int)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Version(int, int)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Version(Integer, Integer)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Version(Integer, Integer)
+  name.vb: Version(Integer, Integer)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint{`0,`1}.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint{`0,`1}.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -4729,12 +4909,11 @@ references:
     name: int
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint{`0,`1}.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint{`0,`1}.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -4746,7 +4925,6 @@ references:
     name: Integer
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},{TResponse}}.ValidationFailed
   commentId: P:FastEndpoints.Endpoint{`0,`1}.ValidationFailed
@@ -5511,7 +5689,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -5888,6 +6065,35 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
+- uid: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  name: FormMultipartSectionsAsync(CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.FormMultipartSectionsAsync(CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).FormMultipartSectionsAsync(CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   isExternal: true
@@ -5942,20 +6148,20 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
-  commentId: M:FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+- uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
+  commentId: M:FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
   isExternal: true
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
-  name: CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  nameWithType: Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges))
-  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
+  name: CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  nameWithType: Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>, TRequest)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges), TRequest)
+  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: <
   - name: TService
   - name: '>'
@@ -5975,11 +6181,14 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: (
   - name: Of
   - name: " "
@@ -6003,6 +6212,9 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: )
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
 - uid: FastEndpoints.Endpoint`2.ProcessorState``1
   commentId: M:FastEndpoints.Endpoint`2.ProcessorState``1
@@ -6985,20 +7197,20 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+- uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
   isExternal: true
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
-  name: SendRedirectAsync(string, bool, CancellationToken)
-  nameWithType: Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, CancellationToken)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, System.Threading.CancellationToken)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, CancellationToken)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, System.Threading.CancellationToken)
-  name.vb: SendRedirectAsync(String, Boolean, CancellationToken)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
+  name: SendRedirectAsync(string, bool, bool)
+  nameWithType: Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, bool)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, bool)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, Boolean)
+  name.vb: SendRedirectAsync(String, Boolean, Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: string
@@ -7012,15 +7224,15 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: bool
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: String
@@ -7034,10 +7246,10 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: Boolean
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
 - uid: FastEndpoints.Endpoint`2.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint`2.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
@@ -8010,6 +8222,26 @@ references:
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: FastEndpoints.Endpoint`2.DontAutoSendResponse
+  commentId: M:FastEndpoints.Endpoint`2.DontAutoSendResponse
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  name: DontAutoSendResponse()
+  nameWithType: Endpoint<TRequest, TResponse>.DontAutoSendResponse()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoSendResponse()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontAutoSendResponse()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoSendResponse()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
   - name: )
 - uid: FastEndpoints.Endpoint`2.DontAutoTag
   commentId: M:FastEndpoints.Endpoint`2.DontAutoTag
@@ -9661,20 +9893,20 @@ references:
   - name: (
   - name: )
   - name: )
-- uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
-  commentId: M:FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
+- uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
+  commentId: M:FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
   isExternal: true
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
-  name: Version(int, int?)
-  nameWithType: Endpoint<TRequest, TResponse>.Version(int, int?)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Version(int, int?)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Version(Integer, Integer?)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Version(Integer, Integer?)
-  name.vb: Version(Integer, Integer?)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
+  name: Version(int, int)
+  nameWithType: Endpoint<TRequest, TResponse>.Version(int, int)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Version(int, int)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Version(Integer, Integer)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Version(Integer, Integer)
+  name.vb: Version(Integer, Integer)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -9686,12 +9918,11 @@ references:
     name: int
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -9703,7 +9934,6 @@ references:
     name: Integer
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
 - uid: FastEndpoints.Endpoint`2.ValidationFailed
   commentId: P:FastEndpoints.Endpoint`2.ValidationFailed
@@ -10167,20 +10397,21 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync*
-  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync
-  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_PersistTokenAsync__1_
-  name: PersistTokenAsync
-  nameWithType: RefreshTokenService<TRequest, TResponse>.PersistTokenAsync
-  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.PersistTokenAsync
-  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).PersistTokenAsync
-  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).PersistTokenAsync
-- uid: '{TResponse}'
-  commentId: '!:TResponse'
-  definition: TResponse
-  name: TResponse
-  nameWithType: TResponse
-  fullName: TResponse
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnBeforeInitialTokenCreationAsync*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.OnBeforeInitialTokenCreationAsync
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_OnBeforeInitialTokenCreationAsync_FastEndpoints_Security_JwtCreationOptions_System_Object_
+  name: OnBeforeInitialTokenCreationAsync
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnBeforeInitialTokenCreationAsync
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnBeforeInitialTokenCreationAsync
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnBeforeInitialTokenCreationAsync
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnBeforeInitialTokenCreationAsync
+- uid: FastEndpoints.Security.JwtCreationOptions
+  commentId: T:FastEndpoints.Security.JwtCreationOptions
+  parent: FastEndpoints.Security
+  href: FastEndpoints.Security.JwtCreationOptions.html
+  name: JwtCreationOptions
+  nameWithType: JwtCreationOptions
+  fullName: FastEndpoints.Security.JwtCreationOptions
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -10189,10 +10420,6 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
-- uid: TResponse
-  name: TResponse
-  nameWithType: TResponse
-  fullName: TResponse
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
@@ -10230,14 +10457,32 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: FastEndpoints.Security.RefreshTokenService`2.RefreshRequestValidationAsync*
-  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.RefreshRequestValidationAsync
-  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_RefreshRequestValidationAsync__0_
-  name: RefreshRequestValidationAsync
-  nameWithType: RefreshTokenService<TRequest, TResponse>.RefreshRequestValidationAsync
-  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.RefreshRequestValidationAsync
-  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).RefreshRequestValidationAsync
-  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).RefreshRequestValidationAsync
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnAfterInitialTokenCreationAsync*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.OnAfterInitialTokenCreationAsync
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_OnAfterInitialTokenCreationAsync_System_Object__1_
+  name: OnAfterInitialTokenCreationAsync
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnAfterInitialTokenCreationAsync
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnAfterInitialTokenCreationAsync
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnAfterInitialTokenCreationAsync
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnAfterInitialTokenCreationAsync
+- uid: '{TResponse}'
+  commentId: '!:TResponse'
+  definition: TResponse
+  name: TResponse
+  nameWithType: TResponse
+  fullName: TResponse
+- uid: TResponse
+  name: TResponse
+  nameWithType: TResponse
+  fullName: TResponse
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnBeforeRenewalTokenCreationAsync*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.OnBeforeRenewalTokenCreationAsync
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_OnBeforeRenewalTokenCreationAsync_FastEndpoints_Security_JwtCreationOptions__0_
+  name: OnBeforeRenewalTokenCreationAsync
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnBeforeRenewalTokenCreationAsync
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnBeforeRenewalTokenCreationAsync
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnBeforeRenewalTokenCreationAsync
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnBeforeRenewalTokenCreationAsync
 - uid: '{TRequest}'
   commentId: '!:TRequest'
   definition: TRequest
@@ -10248,6 +10493,30 @@ references:
   name: TRequest
   nameWithType: TRequest
   fullName: TRequest
+- uid: FastEndpoints.Security.RefreshTokenService`2.OnAfterRenewalTokenCreationAsync*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.OnAfterRenewalTokenCreationAsync
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_OnAfterRenewalTokenCreationAsync__0__1_
+  name: OnAfterRenewalTokenCreationAsync
+  nameWithType: RefreshTokenService<TRequest, TResponse>.OnAfterRenewalTokenCreationAsync
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.OnAfterRenewalTokenCreationAsync
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).OnAfterRenewalTokenCreationAsync
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).OnAfterRenewalTokenCreationAsync
+- uid: FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.PersistTokenAsync
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_PersistTokenAsync__1_
+  name: PersistTokenAsync
+  nameWithType: RefreshTokenService<TRequest, TResponse>.PersistTokenAsync
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.PersistTokenAsync
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).PersistTokenAsync
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).PersistTokenAsync
+- uid: FastEndpoints.Security.RefreshTokenService`2.RefreshRequestValidationAsync*
+  commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.RefreshRequestValidationAsync
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_RefreshRequestValidationAsync__0_
+  name: RefreshRequestValidationAsync
+  nameWithType: RefreshTokenService<TRequest, TResponse>.RefreshRequestValidationAsync
+  fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.RefreshRequestValidationAsync
+  nameWithType.vb: RefreshTokenService(Of TRequest, TResponse).RefreshRequestValidationAsync
+  fullName.vb: FastEndpoints.Security.RefreshTokenService(Of TRequest, TResponse).RefreshRequestValidationAsync
 - uid: FastEndpoints.Security.RefreshTokenService`2.SetRenewalPrivilegesAsync*
   commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.SetRenewalPrivilegesAsync
   href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_SetRenewalPrivilegesAsync__0_FastEndpoints_UserPrivileges_
@@ -10265,7 +10534,7 @@ references:
   fullName: FastEndpoints.UserPrivileges
 - uid: FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken*
   commentId: Overload:FastEndpoints.Security.RefreshTokenService`2.CreateCustomToken
-  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_CreateCustomToken__1_System_String_System_Action_FastEndpoints_UserPrivileges__System_Func__1___0__
+  href: FastEndpoints.Security.RefreshTokenService-2.html#FastEndpoints_Security_RefreshTokenService_2_CreateCustomToken__1_System_String_System_Action_FastEndpoints_UserPrivileges__System_Func__1___0__System_Boolean_System_Object_
   name: CreateCustomToken
   nameWithType: RefreshTokenService<TRequest, TResponse>.CreateCustomToken
   fullName: FastEndpoints.Security.RefreshTokenService<TRequest, TResponse>.CreateCustomToken
@@ -10350,6 +10619,17 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System.Threading.Tasks.Task{{T}}
   commentId: T:System.Threading.Tasks.Task{``0}
   parent: System.Threading.Tasks

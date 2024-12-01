@@ -13,17 +13,13 @@ items:
   nameWithType: PostProcessor<TRequest, TState, TResponse>
   fullName: FastEndpoints.PostProcessor<TRequest, TState, TResponse>
   type: Class
-  source:
-    id: PostProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\PostProcessor.cs
-    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: inherit this class to create a post-processor with access to the common processor state of the endpoint.
   example: []
   syntax:
-    content: 'public abstract class PostProcessor<TRequest, TState, TResponse> : IPostProcessor<TRequest, TResponse>, IPostProcessor where TState : class, new()'
+    content: 'public abstract class PostProcessor<TRequest, TState, TResponse> : IPostProcessor<TRequest, TResponse>, IPostProcessor, IProcessor where TState : class, new()'
     typeParameters:
     - id: TRequest
       description: type of the request DTO.
@@ -31,12 +27,13 @@ items:
       description: type of the common processor state.
     - id: TResponse
       description: type of the response.
-    content.vb: Public MustInherit Class PostProcessor(Of TRequest, TState As {Class, New}, TResponse) Implements IPostProcessor(Of TRequest, TResponse), IPostProcessor
+    content.vb: Public MustInherit Class PostProcessor(Of TRequest, TState As {Class, New}, TResponse) Implements IPostProcessor(Of TRequest, TResponse), IPostProcessor, IProcessor
   inheritance:
   - System.Object
   implements:
   - FastEndpoints.IPostProcessor{{TRequest},{TResponse}}
   - FastEndpoints.IPostProcessor
+  - FastEndpoints.IProcessor
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -59,10 +56,6 @@ items:
   nameWithType: PostProcessor<TRequest, TState, TResponse>.PostProcessAsync(IPostProcessorContext<TRequest, TResponse>, TState, CancellationToken)
   fullName: FastEndpoints.PostProcessor<TRequest, TState, TResponse>.PostProcessAsync(FastEndpoints.IPostProcessorContext<TRequest, TResponse>, TState, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: PostProcessAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\PostProcessor.cs
-    startLine: 26
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -146,6 +139,13 @@ references:
   name: IPostProcessor
   nameWithType: IPostProcessor
   fullName: FastEndpoints.IPostProcessor
+- uid: FastEndpoints.IProcessor
+  commentId: T:FastEndpoints.IProcessor
+  parent: FastEndpoints
+  href: FastEndpoints.IProcessor.html
+  name: IProcessor
+  nameWithType: IProcessor
+  fullName: FastEndpoints.IProcessor
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -367,7 +367,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System

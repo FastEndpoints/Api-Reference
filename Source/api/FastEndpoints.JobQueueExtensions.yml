@@ -6,7 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.JobQueueExtensions.AddJobQueues``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  - FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  - FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
   - FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.JobQueueOptions})
   langs:
   - csharp
@@ -15,10 +15,6 @@ items:
   nameWithType: JobQueueExtensions
   fullName: FastEndpoints.JobQueueExtensions
   type: Class
-  source:
-    id: JobQueueExtensions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
-    startLine: 8
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -49,17 +45,13 @@ items:
   nameWithType: JobQueueExtensions.AddJobQueues<TStorageRecord, TStorageProvider>(IServiceCollection)
   fullName: FastEndpoints.JobQueueExtensions.AddJobQueues<TStorageRecord, TStorageProvider>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   type: Method
-  source:
-    id: AddJobQueues
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
-    startLine: 18
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: add job queue functionality
   example: []
   syntax:
-    content: 'public static IServiceCollection AddJobQueues<TStorageRecord, TStorageProvider>(this IServiceCollection svc) where TStorageRecord : IJobStorageRecord, new() where TStorageProvider : class, IJobStorageProvider<TStorageRecord>'
+    content: 'public static IServiceCollection AddJobQueues<TStorageRecord, TStorageProvider>(this IServiceCollection svc) where TStorageRecord : class, IJobStorageRecord, new() where TStorageProvider : class, IJobStorageProvider<TStorageRecord>'
     parameters:
     - id: svc
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -70,7 +62,7 @@ items:
       description: the implementation type of the job storage provider
     return:
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    content.vb: Public Shared Function AddJobQueues(Of TStorageRecord As {IJobStorageRecord, New}, TStorageProvider As {Class, IJobStorageProvider(Of TStorageRecord)})(svc As IServiceCollection) As IServiceCollection
+    content.vb: Public Shared Function AddJobQueues(Of TStorageRecord As {Class, IJobStorageRecord, New}, TStorageProvider As {Class, IJobStorageProvider(Of TStorageRecord)})(svc As IServiceCollection) As IServiceCollection
   overload: FastEndpoints.JobQueueExtensions.AddJobQueues*
   nameWithType.vb: JobQueueExtensions.AddJobQueues(Of TStorageRecord, TStorageProvider)(IServiceCollection)
   fullName.vb: FastEndpoints.JobQueueExtensions.AddJobQueues(Of TStorageRecord, TStorageProvider)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
@@ -87,10 +79,6 @@ items:
   nameWithType: JobQueueExtensions.UseJobQueues(IApplicationBuilder, Action<JobQueueOptions>?)
   fullName: FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<FastEndpoints.JobQueueOptions>?)
   type: Method
-  source:
-    id: UseJobQueues
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
-    startLine: 35
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -115,32 +103,28 @@ items:
   nameWithType.vb: JobQueueExtensions.UseJobQueues(IApplicationBuilder, Action(Of JobQueueOptions))
   fullName.vb: FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of FastEndpoints.JobQueueOptions))
   name.vb: UseJobQueues(IApplicationBuilder, Action(Of JobQueueOptions))
-- uid: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
-  id: QueueJobAsync(FastEndpoints.ICommand,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+- uid: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  id: QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
   isExtensionMethod: true
   parent: FastEndpoints.JobQueueExtensions
   langs:
   - csharp
   - vb
-  name: QueueJobAsync(ICommand, DateTime?, DateTime?, CancellationToken)
-  nameWithType: JobQueueExtensions.QueueJobAsync(ICommand, DateTime?, DateTime?, CancellationToken)
-  fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand, System.DateTime?, System.DateTime?, System.Threading.CancellationToken)
+  name: QueueJobAsync(ICommandBase, DateTime?, DateTime?, CancellationToken)
+  nameWithType: JobQueueExtensions.QueueJobAsync(ICommandBase, DateTime?, DateTime?, CancellationToken)
+  fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase, System.DateTime?, System.DateTime?, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: QueueJobAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Messaging\Jobs\JobQueueExtensions.cs
-    startLine: 66
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: queues up a given command in the respective job queue for that command type.
   example: []
   syntax:
-    content: public static Task QueueJobAsync(this ICommand cmd, DateTime? executeAfter = null, DateTime? expireOn = null, CancellationToken ct = default)
+    content: public static Task<Guid> QueueJobAsync(this ICommandBase cmd, DateTime? executeAfter = null, DateTime? expireOn = null, CancellationToken ct = default)
     parameters:
     - id: cmd
-      type: FastEndpoints.ICommand
+      type: FastEndpoints.ICommandBase
       description: the command to be queued
     - id: executeAfter
       type: System.Nullable{System.DateTime}
@@ -152,12 +136,16 @@ items:
       type: System.Threading.CancellationToken
       description: cancellation token
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Public Shared Function QueueJobAsync(cmd As ICommand, executeAfter As Date? = Nothing, expireOn As Date? = Nothing, ct As CancellationToken = Nothing) As Task
+      type: System.Threading.Tasks.Task{System.Guid}
+    content.vb: Public Shared Function QueueJobAsync(cmd As ICommandBase, executeAfter As Date? = Nothing, expireOn As Date? = Nothing, ct As CancellationToken = Nothing) As Task(Of Guid)
   overload: FastEndpoints.JobQueueExtensions.QueueJobAsync*
-  nameWithType.vb: JobQueueExtensions.QueueJobAsync(ICommand, Date?, Date?, CancellationToken)
-  fullName.vb: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommand, Date?, Date?, System.Threading.CancellationToken)
-  name.vb: QueueJobAsync(ICommand, Date?, Date?, CancellationToken)
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: thrown if the <code class="paramref">executeAfter</code> and <code class="paramref">expireOn</code> arguments are not UTC values
+  nameWithType.vb: JobQueueExtensions.QueueJobAsync(ICommandBase, Date?, Date?, CancellationToken)
+  fullName.vb: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase, Date?, Date?, System.Threading.CancellationToken)
+  name.vb: QueueJobAsync(ICommandBase, Date?, Date?, CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -397,7 +385,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -572,19 +559,26 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: FastEndpoints.JobQueueExtensions.QueueJobAsync*
   commentId: Overload:FastEndpoints.JobQueueExtensions.QueueJobAsync
-  href: FastEndpoints.JobQueueExtensions.html#FastEndpoints_JobQueueExtensions_QueueJobAsync_FastEndpoints_ICommand_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Threading_CancellationToken_
+  href: FastEndpoints.JobQueueExtensions.html#FastEndpoints_JobQueueExtensions_QueueJobAsync_FastEndpoints_ICommandBase_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Threading_CancellationToken_
   name: QueueJobAsync
   nameWithType: JobQueueExtensions.QueueJobAsync
   fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync
-- uid: FastEndpoints.ICommand
-  commentId: T:FastEndpoints.ICommand
+- uid: FastEndpoints.ICommandBase
+  commentId: T:FastEndpoints.ICommandBase
   parent: FastEndpoints
-  href: FastEndpoints.ICommand.html
-  name: ICommand
-  nameWithType: ICommand
-  fullName: FastEndpoints.ICommand
+  href: FastEndpoints.ICommandBase.html
+  name: ICommandBase
+  nameWithType: ICommandBase
+  fullName: FastEndpoints.ICommandBase
 - uid: System.Nullable{System.DateTime}
   commentId: T:System.Nullable{System.DateTime}
   parent: System
@@ -616,14 +610,41 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
-- uid: System.Threading.Tasks.Task
-  commentId: T:System.Threading.Tasks.Task
+- uid: System.Threading.Tasks.Task{System.Guid}
+  commentId: T:System.Threading.Tasks.Task{System.Guid}
   parent: System.Threading.Tasks
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
-  name: Task
-  nameWithType: Task
-  fullName: System.Threading.Tasks.Task
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Guid>
+  nameWithType: Task<Guid>
+  fullName: System.Threading.Tasks.Task<System.Guid>
+  nameWithType.vb: Task(Of Guid)
+  fullName.vb: System.Threading.Tasks.Task(Of System.Guid)
+  name.vb: Task(Of Guid)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
 - uid: System.Nullable`1
   commentId: T:System.Nullable`1
   isExternal: true
@@ -679,6 +700,34 @@ references:
     name: Threading
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true

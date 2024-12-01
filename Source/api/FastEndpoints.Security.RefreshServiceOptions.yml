@@ -10,6 +10,9 @@ items:
   - FastEndpoints.Security.RefreshServiceOptions.Endpoint(System.String,System.Action{FastEndpoints.EndpointDefinition})
   - FastEndpoints.Security.RefreshServiceOptions.Issuer
   - FastEndpoints.Security.RefreshServiceOptions.RefreshTokenValidity
+  - FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded
+  - FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm
+  - FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm
   - FastEndpoints.Security.RefreshServiceOptions.TokenSigningKey
   - FastEndpoints.Security.RefreshServiceOptions.TokenSigningStyle
   langs:
@@ -19,10 +22,6 @@ items:
   nameWithType: RefreshServiceOptions
   fullName: FastEndpoints.Security.RefreshServiceOptions
   type: Class
-  source:
-    id: RefreshServiceOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 2
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -50,10 +49,6 @@ items:
   nameWithType: RefreshServiceOptions.TokenSigningKey
   fullName: FastEndpoints.Security.RefreshServiceOptions.TokenSigningKey
   type: Property
-  source:
-    id: TokenSigningKey
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 7
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -77,22 +72,67 @@ items:
   nameWithType: RefreshServiceOptions.TokenSigningStyle
   fullName: FastEndpoints.Security.RefreshServiceOptions.TokenSigningStyle
   type: Property
-  source:
-    id: TokenSigningStyle
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 13
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
   summary: specifies the signing style of the jwt. default is symmetric.
   example: []
   syntax:
-    content: public JWTBearer.TokenSigningStyle TokenSigningStyle { set; }
+    content: public TokenSigningStyle TokenSigningStyle { set; }
     parameters: []
     return:
-      type: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    content.vb: Public Property TokenSigningStyle As JWTBearer.TokenSigningStyle
+      type: FastEndpoints.Security.TokenSigningStyle
+    content.vb: Public Property TokenSigningStyle As TokenSigningStyle
   overload: FastEndpoints.Security.RefreshServiceOptions.TokenSigningStyle*
+- uid: FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm
+  commentId: P:FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm
+  id: TokenSigningAlgorithm
+  parent: FastEndpoints.Security.RefreshServiceOptions
+  langs:
+  - csharp
+  - vb
+  name: TokenSigningAlgorithm
+  nameWithType: RefreshServiceOptions.TokenSigningAlgorithm
+  fullName: FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm
+  type: Property
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: >-
+    security algo used to sign tokens.
+
+    defaults to HmacSha256 for symmetric keys.
+  example: []
+  syntax:
+    content: public string TokenSigningAlgorithm { set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TokenSigningAlgorithm As String
+  overload: FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm*
+- uid: FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded
+  commentId: P:FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded
+  id: SigningKeyIsPemEncoded
+  parent: FastEndpoints.Security.RefreshServiceOptions
+  langs:
+  - csharp
+  - vb
+  name: SigningKeyIsPemEncoded
+  nameWithType: RefreshServiceOptions.SigningKeyIsPemEncoded
+  fullName: FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded
+  type: Property
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: specifies whether the key is pem encoded.
+  example: []
+  syntax:
+    content: public bool SigningKeyIsPemEncoded { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property SigningKeyIsPemEncoded As Boolean
+  overload: FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded*
 - uid: FastEndpoints.Security.RefreshServiceOptions.AccessTokenValidity
   commentId: P:FastEndpoints.Security.RefreshServiceOptions.AccessTokenValidity
   id: AccessTokenValidity
@@ -104,10 +144,6 @@ items:
   nameWithType: RefreshServiceOptions.AccessTokenValidity
   fullName: FastEndpoints.Security.RefreshServiceOptions.AccessTokenValidity
   type: Property
-  source:
-    id: AccessTokenValidity
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 19
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -131,10 +167,6 @@ items:
   nameWithType: RefreshServiceOptions.RefreshTokenValidity
   fullName: FastEndpoints.Security.RefreshServiceOptions.RefreshTokenValidity
   type: Property
-  source:
-    id: RefreshTokenValidity
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 25
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -158,10 +190,6 @@ items:
   nameWithType: RefreshServiceOptions.Issuer
   fullName: FastEndpoints.Security.RefreshServiceOptions.Issuer
   type: Property
-  source:
-    id: Issuer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 31
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -185,10 +213,6 @@ items:
   nameWithType: RefreshServiceOptions.Audience
   fullName: FastEndpoints.Security.RefreshServiceOptions.Audience
   type: Property
-  source:
-    id: Audience
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 37
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -201,6 +225,29 @@ items:
       type: System.String
     content.vb: Public Property Audience As String
   overload: FastEndpoints.Security.RefreshServiceOptions.Audience*
+- uid: FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm
+  commentId: P:FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm
+  id: TokenCompressionAlgorithm
+  parent: FastEndpoints.Security.RefreshServiceOptions
+  langs:
+  - csharp
+  - vb
+  name: TokenCompressionAlgorithm
+  nameWithType: RefreshServiceOptions.TokenCompressionAlgorithm
+  fullName: FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm
+  type: Property
+  assemblies:
+  - FastEndpoints.Security
+  namespace: FastEndpoints.Security
+  summary: the compression algorithm  compressing the token payload.
+  example: []
+  syntax:
+    content: public string? TokenCompressionAlgorithm { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TokenCompressionAlgorithm As String
+  overload: FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm*
 - uid: FastEndpoints.Security.RefreshServiceOptions.Endpoint(System.String,System.Action{FastEndpoints.EndpointDefinition})
   commentId: M:FastEndpoints.Security.RefreshServiceOptions.Endpoint(System.String,System.Action{FastEndpoints.EndpointDefinition})
   id: Endpoint(System.String,System.Action{FastEndpoints.EndpointDefinition})
@@ -212,10 +259,6 @@ items:
   nameWithType: RefreshServiceOptions.Endpoint(string, Action<EndpointDefinition>)
   fullName: FastEndpoints.Security.RefreshServiceOptions.Endpoint(string, System.Action<FastEndpoints.EndpointDefinition>)
   type: Method
-  source:
-    id: Endpoint
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Security\RefreshTokens\RefreshServiceOptions.cs
-    startLine: 48
   assemblies:
   - FastEndpoints.Security
   namespace: FastEndpoints.Security
@@ -490,7 +533,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -518,29 +560,36 @@ references:
   name: TokenSigningStyle
   nameWithType: RefreshServiceOptions.TokenSigningStyle
   fullName: FastEndpoints.Security.RefreshServiceOptions.TokenSigningStyle
-- uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  commentId: T:FastEndpoints.Security.JWTBearer.TokenSigningStyle
+- uid: FastEndpoints.Security.TokenSigningStyle
+  commentId: T:FastEndpoints.Security.TokenSigningStyle
   parent: FastEndpoints.Security
-  href: FastEndpoints.Security.JWTBearer.html
-  name: JWTBearer.TokenSigningStyle
-  nameWithType: JWTBearer.TokenSigningStyle
-  fullName: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-  spec.csharp:
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
-    href: FastEndpoints.Security.JWTBearer.html
-  - name: .
-  - uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    name: TokenSigningStyle
-    href: FastEndpoints.Security.JWTBearer.TokenSigningStyle.html
-  spec.vb:
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
-    href: FastEndpoints.Security.JWTBearer.html
-  - name: .
-  - uid: FastEndpoints.Security.JWTBearer.TokenSigningStyle
-    name: TokenSigningStyle
-    href: FastEndpoints.Security.JWTBearer.TokenSigningStyle.html
+  href: FastEndpoints.Security.TokenSigningStyle.html
+  name: TokenSigningStyle
+  nameWithType: TokenSigningStyle
+  fullName: FastEndpoints.Security.TokenSigningStyle
+- uid: FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm*
+  commentId: Overload:FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm
+  href: FastEndpoints.Security.RefreshServiceOptions.html#FastEndpoints_Security_RefreshServiceOptions_TokenSigningAlgorithm
+  name: TokenSigningAlgorithm
+  nameWithType: RefreshServiceOptions.TokenSigningAlgorithm
+  fullName: FastEndpoints.Security.RefreshServiceOptions.TokenSigningAlgorithm
+- uid: FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded*
+  commentId: Overload:FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded
+  href: FastEndpoints.Security.RefreshServiceOptions.html#FastEndpoints_Security_RefreshServiceOptions_SigningKeyIsPemEncoded
+  name: SigningKeyIsPemEncoded
+  nameWithType: RefreshServiceOptions.SigningKeyIsPemEncoded
+  fullName: FastEndpoints.Security.RefreshServiceOptions.SigningKeyIsPemEncoded
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: FastEndpoints.Security.RefreshServiceOptions.AccessTokenValidity*
   commentId: Overload:FastEndpoints.Security.RefreshServiceOptions.AccessTokenValidity
   href: FastEndpoints.Security.RefreshServiceOptions.html#FastEndpoints_Security_RefreshServiceOptions_AccessTokenValidity
@@ -573,6 +622,12 @@ references:
   name: Audience
   nameWithType: RefreshServiceOptions.Audience
   fullName: FastEndpoints.Security.RefreshServiceOptions.Audience
+- uid: FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm*
+  commentId: Overload:FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm
+  href: FastEndpoints.Security.RefreshServiceOptions.html#FastEndpoints_Security_RefreshServiceOptions_TokenCompressionAlgorithm
+  name: TokenCompressionAlgorithm
+  nameWithType: RefreshServiceOptions.TokenCompressionAlgorithm
+  fullName: FastEndpoints.Security.RefreshServiceOptions.TokenCompressionAlgorithm
 - uid: FastEndpoints.Security.RefreshServiceOptions.Endpoint*
   commentId: Overload:FastEndpoints.Security.RefreshServiceOptions.Endpoint
   href: FastEndpoints.Security.RefreshServiceOptions.html#FastEndpoints_Security_RefreshServiceOptions_Endpoint_System_String_System_Action_FastEndpoints_EndpointDefinition__

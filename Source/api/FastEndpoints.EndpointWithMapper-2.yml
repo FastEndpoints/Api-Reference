@@ -13,27 +13,25 @@ items:
   nameWithType: EndpointWithMapper<TRequest, TMapper>
   fullName: FastEndpoints.EndpointWithMapper<TRequest, TMapper>
   type: Class
-  source:
-    id: EndpointWithMapper
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Endpoint.cs
-    startLine: 22
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: use this base class for defining endpoints that only use a request dto and don't use a response dto but uses a request mapper.
   example: []
   syntax:
-    content: 'public abstract class EndpointWithMapper<TRequest, TMapper> : Endpoint<TRequest, object?>, IEndpoint, IEventBus, IServiceResolverBase, IHasMapper<TMapper>, IHasMapper where TRequest : notnull where TMapper : IRequestMapper'
+    content: 'public abstract class EndpointWithMapper<TRequest, TMapper> : Endpoint<TRequest, object?>, IEndpoint, IEventBus, IServiceResolverBase, IHasMapper<TMapper>, IHasMapper where TRequest : notnull where TMapper : class, IRequestMapper'
     typeParameters:
     - id: TRequest
       description: the type of the request dto
     - id: TMapper
       description: the type of the entity mapper
-    content.vb: Public MustInherit Class EndpointWithMapper(Of TRequest, TMapper As IRequestMapper) Inherits Endpoint(Of TRequest, Object) Implements IEndpoint, IEventBus, IServiceResolverBase, IHasMapper(Of TMapper), IHasMapper
+    content.vb: Public MustInherit Class EndpointWithMapper(Of TRequest, TMapper As {Class, IRequestMapper}) Inherits Endpoint(Of TRequest, Object) Implements IEndpoint, IEventBus, IServiceResolverBase, IHasMapper(Of TMapper), IHasMapper
   inheritance:
   - System.Object
   - FastEndpoints.BaseEndpoint
   - FastEndpoints.Endpoint{{TRequest},System.Object}
+  derivedClasses:
+  - FastEndpoints.Ep.Req`1.NoRes.Map`1
   implements:
   - FastEndpoints.IEndpoint
   - FastEndpoints.IEventBus
@@ -51,8 +49,9 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Route``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Query``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.FormFileSectionsAsync(System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.PublishAsync``1({TEvent},FastEndpoints.Mode,System.Threading.CancellationToken)
-  - FastEndpoints.Endpoint{{TRequest},System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},{TRequest})
   - FastEndpoints.Endpoint{{TRequest},System.Object}.ProcessorState``1
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnBeforeValidate({TRequest})
   - FastEndpoints.Endpoint{{TRequest},System.Object}.OnBeforeValidateAsync({TRequest},System.Threading.CancellationToken)
@@ -87,7 +86,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.SendNotFoundAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.SendUnauthorizedAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.SendForbiddenAsync(System.Threading.CancellationToken)
-  - FastEndpoints.Endpoint{{TRequest},System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.SendBytesAsync(System.Byte[],System.String,System.String,System.Nullable{System.DateTimeOffset},System.Boolean,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.SendFileAsync(System.IO.FileInfo,System.String,System.Nullable{System.DateTimeOffset},System.Boolean,System.Threading.CancellationToken)
@@ -106,6 +105,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Delete(System.String[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Delete(System.String,System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}})
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.DontAutoSendResponse
   - FastEndpoints.Endpoint{{TRequest},System.Object}.DontAutoTag
   - FastEndpoints.Endpoint{{TRequest},System.Object}.DontCatchExceptions
   - FastEndpoints.Endpoint{{TRequest},System.Object}.DontThrowIfValidationFails
@@ -146,7 +146,7 @@ items:
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Validator``1
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Verbs(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{{TRequest},System.Object}.Verbs(System.String[])
-  - FastEndpoints.Endpoint{{TRequest},System.Object}.Version(System.Int32,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint{{TRequest},System.Object}.Version(System.Int32,System.Int32)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.ValidationFailed
   - FastEndpoints.Endpoint{{TRequest},System.Object}.AddError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.Endpoint{{TRequest},System.Object}.AddError(System.String,System.String,FluentValidation.Severity)
@@ -183,10 +183,6 @@ items:
   nameWithType: EndpointWithMapper<TRequest, TMapper>.Map
   fullName: FastEndpoints.EndpointWithMapper<TRequest, TMapper>.Map
   type: Property
-  source:
-    id: Map
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Endpoint.cs
-    startLine: 32
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -673,6 +669,36 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
+  definition: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  name: FormMultipartSectionsAsync(CancellationToken)
+  nameWithType: Endpoint<TRequest, object>.FormMultipartSectionsAsync(CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, object>.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of TRequest, Object).FormMultipartSectionsAsync(CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.PublishAsync``1({TEvent},FastEndpoints.Mode,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
@@ -728,21 +754,21 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
-  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},{TRequest})
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
-  definition: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
-  name: CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  nameWithType: Endpoint<TRequest, object>.CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  fullName: FastEndpoints.Endpoint<TRequest, object>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>)
-  nameWithType.vb: Endpoint(Of TRequest, Object).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges))
-  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
+  definition: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
+  name: CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  nameWithType: Endpoint<TRequest, object>.CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  fullName: FastEndpoints.Endpoint<TRequest, object>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>, TRequest)
+  nameWithType.vb: Endpoint(Of TRequest, Object).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges), TRequest)
+  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint{`0,System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: <
   - name: TService
   - name: '>'
@@ -762,11 +788,14 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint{`0,System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: (
   - name: Of
   - name: " "
@@ -790,6 +819,9 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: )
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ProcessorState``1
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.ProcessorState``1
@@ -1861,21 +1893,21 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
-  definition: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
-  name: SendRedirectAsync(string, bool, CancellationToken)
-  nameWithType: Endpoint<TRequest, object>.SendRedirectAsync(string, bool, CancellationToken)
-  fullName: FastEndpoints.Endpoint<TRequest, object>.SendRedirectAsync(string, bool, System.Threading.CancellationToken)
-  nameWithType.vb: Endpoint(Of TRequest, Object).SendRedirectAsync(String, Boolean, CancellationToken)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).SendRedirectAsync(String, Boolean, System.Threading.CancellationToken)
-  name.vb: SendRedirectAsync(String, Boolean, CancellationToken)
+  definition: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
+  name: SendRedirectAsync(string, bool, bool)
+  nameWithType: Endpoint<TRequest, object>.SendRedirectAsync(string, bool, bool)
+  fullName: FastEndpoints.Endpoint<TRequest, object>.SendRedirectAsync(string, bool, bool)
+  nameWithType.vb: Endpoint(Of TRequest, Object).SendRedirectAsync(String, Boolean, Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).SendRedirectAsync(String, Boolean, Boolean)
+  name.vb: SendRedirectAsync(String, Boolean, Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint{`0,System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: string
@@ -1889,15 +1921,15 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: bool
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint{`0,System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: String
@@ -1911,10 +1943,10 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: Boolean
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
@@ -2906,6 +2938,28 @@ references:
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.DontAutoSendResponse
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.DontAutoSendResponse
+  parent: FastEndpoints.Endpoint{{TRequest},System.Object}
+  definition: FastEndpoints.Endpoint`2.DontAutoSendResponse
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  name: DontAutoSendResponse()
+  nameWithType: Endpoint<TRequest, object>.DontAutoSendResponse()
+  fullName: FastEndpoints.Endpoint<TRequest, object>.DontAutoSendResponse()
+  nameWithType.vb: Endpoint(Of TRequest, Object).DontAutoSendResponse()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).DontAutoSendResponse()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.DontAutoTag
   commentId: M:FastEndpoints.Endpoint{`0,System.Object}.DontAutoTag
@@ -4619,21 +4673,21 @@ references:
   - name: (
   - name: )
   - name: )
-- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.Version(System.Int32,System.Nullable{System.Int32})
-  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.Version(System.Int32,System.Nullable{System.Int32})
+- uid: FastEndpoints.Endpoint{{TRequest},System.Object}.Version(System.Int32,System.Int32)
+  commentId: M:FastEndpoints.Endpoint{`0,System.Object}.Version(System.Int32,System.Int32)
   parent: FastEndpoints.Endpoint{{TRequest},System.Object}
-  definition: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
-  name: Version(int, int?)
-  nameWithType: Endpoint<TRequest, object>.Version(int, int?)
-  fullName: FastEndpoints.Endpoint<TRequest, object>.Version(int, int?)
-  nameWithType.vb: Endpoint(Of TRequest, Object).Version(Integer, Integer?)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).Version(Integer, Integer?)
-  name.vb: Version(Integer, Integer?)
+  definition: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
+  name: Version(int, int)
+  nameWithType: Endpoint<TRequest, object>.Version(int, int)
+  fullName: FastEndpoints.Endpoint<TRequest, object>.Version(int, int)
+  nameWithType.vb: Endpoint(Of TRequest, Object).Version(Integer, Integer)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, Object).Version(Integer, Integer)
+  name.vb: Version(Integer, Integer)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint{`0,System.Object}.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -4645,12 +4699,11 @@ references:
     name: int
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint{`0,System.Object}.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint{`0,System.Object}.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -4662,7 +4715,6 @@ references:
     name: Integer
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
 - uid: FastEndpoints.Endpoint{{TRequest},System.Object}.ValidationFailed
   commentId: P:FastEndpoints.Endpoint{`0,System.Object}.ValidationFailed
@@ -5427,7 +5479,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -5823,6 +5874,35 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
+- uid: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  name: FormMultipartSectionsAsync(CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.FormMultipartSectionsAsync(CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).FormMultipartSectionsAsync(CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).FormMultipartSectionsAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.FormMultipartSectionsAsync(System.Threading.CancellationToken)
+    name: FormMultipartSectionsAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_FormMultipartSectionsAsync_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
 - uid: FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint`2.PublishAsync``1(``0,FastEndpoints.Mode,System.Threading.CancellationToken)
   isExternal: true
@@ -5877,20 +5957,20 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
-  commentId: M:FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+- uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
+  commentId: M:FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
   isExternal: true
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
-  name: CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  nameWithType: Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, Action<UserPrivileges>)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges))
-  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges))
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
+  name: CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  nameWithType: Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, Action<UserPrivileges>, TRequest)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.CreateTokenWith<TService>(string, System.Action<FastEndpoints.UserPrivileges>, TRequest)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateTokenWith(Of TService)(String, System.Action(Of FastEndpoints.UserPrivileges), TRequest)
+  name.vb: CreateTokenWith(Of TService)(String, Action(Of UserPrivileges), TRequest)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: <
   - name: TService
   - name: '>'
@@ -5910,11 +5990,14 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: '>'
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges})
+  - uid: FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
     name: CreateTokenWith
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateTokenWith__1_System_String_System_Action_FastEndpoints_UserPrivileges___0_
   - name: (
   - name: Of
   - name: " "
@@ -5938,6 +6021,9 @@ references:
     name: UserPrivileges
     href: FastEndpoints.UserPrivileges.html
   - name: )
+  - name: ','
+  - name: " "
+  - name: TRequest
   - name: )
 - uid: FastEndpoints.Endpoint`2.ProcessorState``1
   commentId: M:FastEndpoints.Endpoint`2.ProcessorState``1
@@ -6920,20 +7006,20 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
-- uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+- uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
+  commentId: M:FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
   isExternal: true
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
-  name: SendRedirectAsync(string, bool, CancellationToken)
-  nameWithType: Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, CancellationToken)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, System.Threading.CancellationToken)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, CancellationToken)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, System.Threading.CancellationToken)
-  name.vb: SendRedirectAsync(String, Boolean, CancellationToken)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
+  name: SendRedirectAsync(string, bool, bool)
+  nameWithType: Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, bool)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendRedirectAsync(string, bool, bool)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, Boolean)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendRedirectAsync(String, Boolean, Boolean)
+  name.vb: SendRedirectAsync(String, Boolean, Boolean)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: string
@@ -6947,15 +7033,15 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: bool
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Threading.CancellationToken)
+  - uid: FastEndpoints.Endpoint`2.SendRedirectAsync(System.String,System.Boolean,System.Boolean)
     name: SendRedirectAsync
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Threading_CancellationToken_
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendRedirectAsync_System_String_System_Boolean_System_Boolean_
   - name: (
   - uid: System.String
     name: String
@@ -6969,10 +7055,10 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: ','
   - name: " "
-  - uid: System.Threading.CancellationToken
-    name: CancellationToken
+  - uid: System.Boolean
+    name: Boolean
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
 - uid: FastEndpoints.Endpoint`2.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint`2.SendHeadersAsync(System.Action{Microsoft.AspNetCore.Http.IHeaderDictionary},System.Int32,System.Threading.CancellationToken)
@@ -7945,6 +8031,26 @@ references:
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: FastEndpoints.Endpoint`2.DontAutoSendResponse
+  commentId: M:FastEndpoints.Endpoint`2.DontAutoSendResponse
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  name: DontAutoSendResponse()
+  nameWithType: Endpoint<TRequest, TResponse>.DontAutoSendResponse()
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.DontAutoSendResponse()
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).DontAutoSendResponse()
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).DontAutoSendResponse()
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.DontAutoSendResponse
+    name: DontAutoSendResponse
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_DontAutoSendResponse
+  - name: (
   - name: )
 - uid: FastEndpoints.Endpoint`2.DontAutoTag
   commentId: M:FastEndpoints.Endpoint`2.DontAutoTag
@@ -9596,20 +9702,20 @@ references:
   - name: (
   - name: )
   - name: )
-- uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
-  commentId: M:FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
+- uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
+  commentId: M:FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
   isExternal: true
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
-  name: Version(int, int?)
-  nameWithType: Endpoint<TRequest, TResponse>.Version(int, int?)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Version(int, int?)
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Version(Integer, Integer?)
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Version(Integer, Integer?)
-  name.vb: Version(Integer, Integer?)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
+  name: Version(int, int)
+  nameWithType: Endpoint<TRequest, TResponse>.Version(int, int)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Version(int, int)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Version(Integer, Integer)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Version(Integer, Integer)
+  name.vb: Version(Integer, Integer)
   spec.csharp:
-  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -9621,12 +9727,11 @@ references:
     name: int
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
   spec.vb:
-  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Nullable{System.Int32})
+  - uid: FastEndpoints.Endpoint`2.Version(System.Int32,System.Int32)
     name: Version
-    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Nullable_System_Int32__
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Version_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -9638,7 +9743,6 @@ references:
     name: Integer
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: '?'
   - name: )
 - uid: FastEndpoints.Endpoint`2.ValidationFailed
   commentId: P:FastEndpoints.Endpoint`2.ValidationFailed

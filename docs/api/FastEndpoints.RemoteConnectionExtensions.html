@@ -1,15 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class RemoteConnectionExtensions
- | FastEndpoints </title>
+    <title>Class RemoteConnectionExtensions | FastEndpoints </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class RemoteConnectionExtensions
- | FastEndpoints ">
+    <meta name="title" content="Class RemoteConnectionExtensions | FastEndpoints ">
     <meta name="generator" content="docfx ">
   <meta name="description" content="A light-weight REST Api framework for ASP.Net 6 that implements REPR (Request-Endpoint-Response) Pattern">
     <link rel="shortcut icon" href="../images/favicon-32x32.ico">
@@ -65,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -82,8 +80,7 @@
 
 
 
-  <h1 id="FastEndpoints_RemoteConnectionExtensions" data-uid="FastEndpoints.RemoteConnectionExtensions" class="text-break">Class RemoteConnectionExtensions
-</h1>
+  <h1 id="FastEndpoints_RemoteConnectionExtensions" data-uid="FastEndpoints.RemoteConnectionExtensions" class="text-break">Class RemoteConnectionExtensions</h1>
   <div class="markdown level0 summary"><p>client extension methods</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -178,8 +175,8 @@
   <h4 id="FastEndpoints_RemoteConnectionExtensions_MapRemote_Microsoft_Extensions_Hosting_IHost_System_String_System_Action_FastEndpoints_RemoteConnection__" data-uid="FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})">MapRemote(IHost, string, Action&lt;RemoteConnection&gt;)</h4>
   <div class="markdown level1 summary"><p>creates a grpc channel/connection to a remote server that hosts a known collection of command handlers and event hubs.</p>
 <p>
-IMPORTANT: call the <a class="xref" href="FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Register__2">Register&lt;TCommand, TResult&gt;()</a> method (using action <code class="paramref">r</code>) to specify which commands are handled by this remote server.
-event subscriptions can be specified using <a class="xref" href="FastEndpoints.RemoteConnection.html#FastEndpoints_RemoteConnection_Subscribe__2_Grpc_Core_CallOptions_">Subscribe&lt;TEvent, TEventHandler&gt;(CallOptions)</a> method.
+IMPORTANT: call the <a class="xref" href="FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2">Register&lt;TCommand, TResult&gt;()</a> method (using action <code class="paramref">r</code>) to specify which commands are handled by
+this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -233,320 +230,6 @@ event subscriptions can be specified using <a class="xref" href="FastEndpoints.R
   </table>
 
 
-  <a id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync_FastEndpoints_ICommand_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)">RemoteExecuteAsync(ICommand, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>execute the command on the relevant remote server</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task RemoteExecuteAsync(this ICommand command, CallOptions options = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FastEndpoints.ICommand.html">ICommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
-        <td><span class="parametername">options</span></td>
-        <td><p>call options</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>thrown if the relevant remote handler has not been registered</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync__1_FastEndpoints_ICommand___0__Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)">RemoteExecuteAsync&lt;TResult&gt;(ICommand&lt;TResult&gt;, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>execute the command on the relevant remote server and get back a result</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; RemoteExecuteAsync&lt;TResult&gt;(this ICommand&lt;TResult&gt; command, CallOptions options = default) where TResult : class</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FastEndpoints.ICommand-1.html">ICommand</a>&lt;TResult&gt;</td>
-        <td><span class="parametername">command</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
-        <td><span class="parametername">options</span></td>
-        <td><p>call options</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TResult&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td><p>the type of the result</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>thrown if the relevant remote handler has not been registered</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync__1_FastEndpoints_IServerStreamCommand___0__Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},Grpc.Core.CallOptions)">RemoteExecuteAsync&lt;TResult&gt;(IServerStreamCommand&lt;TResult&gt;, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>execute the command on the relevant remote server and get back a stream of <code class="typeparamref">TResult</code></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;TResult&gt; RemoteExecuteAsync&lt;TResult&gt;(this IServerStreamCommand&lt;TResult&gt; command, CallOptions options = default) where TResult : class</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FastEndpoints.IServerStreamCommand-1.html">IServerStreamCommand</a>&lt;TResult&gt;</td>
-        <td><span class="parametername">command</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
-        <td><span class="parametername">options</span></td>
-        <td><p>call options</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TResult&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td><p>the type of the result stream</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>thrown if the relevant remote handler has not been registered</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionExtensions_RemoteExecuteAsync__2_System_Collections_Generic_IAsyncEnumerable___0__Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)">RemoteExecuteAsync&lt;T, TResult&gt;(IAsyncEnumerable&lt;T&gt;, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>send the stream of <code class="typeparamref">T</code> to the relevant remote server and get back a result of <code class="typeparamref">TResult</code></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; RemoteExecuteAsync&lt;T, TResult&gt;(this IAsyncEnumerable&lt;T&gt; commands, CallOptions options = default) where T : class where TResult : class</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;T&gt;</td>
-        <td><span class="parametername">commands</span></td>
-        <td><p>the stream to send</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
-        <td><span class="parametername">options</span></td>
-        <td><p>call options</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TResult&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>the type of item in the stream</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TResult</span></td>
-        <td><p>the type of the result that will be returned when the stream ends</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>thrown if the relevant remote handler has not been registered</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
   <a id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*"></a>
   <h4 id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)">RemotePublishAsync(IEvent, CallOptions)</h4>
   <div class="markdown level1 summary"><p>publish the event to the relevant remote server that's running in <a class="xref" href="FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker">EventBroker</a></p>
@@ -572,7 +255,7 @@ event subscriptions can be specified using <a class="xref" href="FastEndpoints.R
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/9124a4cb8c210a27bab47cce3da694d0d0b049ea/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">options</span></td>
         <td><p>call options</p>
 </td>

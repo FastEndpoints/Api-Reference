@@ -13,26 +13,23 @@ items:
   nameWithType: GlobalPostProcessor<TState>
   fullName: FastEndpoints.GlobalPostProcessor<TState>
   type: Class
-  source:
-    id: GlobalPostProcessor
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\GlobalPostProcessor.cs
-    startLine: 6
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
   summary: inherit this class to create a global post-processor with access to the common processor state of the endpoint
   example: []
   syntax:
-    content: 'public abstract class GlobalPostProcessor<TState> : IGlobalPostProcessor, IPostProcessor where TState : class, new()'
+    content: 'public abstract class GlobalPostProcessor<TState> : IGlobalPostProcessor, IPostProcessor, IProcessor where TState : class, new()'
     typeParameters:
     - id: TState
       description: type of the common processor state
-    content.vb: Public MustInherit Class GlobalPostProcessor(Of TState As {Class, New}) Implements IGlobalPostProcessor, IPostProcessor
+    content.vb: Public MustInherit Class GlobalPostProcessor(Of TState As {Class, New}) Implements IGlobalPostProcessor, IPostProcessor, IProcessor
   inheritance:
   - System.Object
   implements:
   - FastEndpoints.IGlobalPostProcessor
   - FastEndpoints.IPostProcessor
+  - FastEndpoints.IProcessor
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -55,10 +52,6 @@ items:
   nameWithType: GlobalPostProcessor<TState>.PostProcessAsync(IPostProcessorContext, TState, CancellationToken)
   fullName: FastEndpoints.GlobalPostProcessor<TState>.PostProcessAsync(FastEndpoints.IPostProcessorContext, TState, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: PostProcessAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Endpoint\Processor\GlobalPostProcessor.cs
-    startLine: 23
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -115,6 +108,13 @@ references:
   name: IPostProcessor
   nameWithType: IPostProcessor
   fullName: FastEndpoints.IPostProcessor
+- uid: FastEndpoints.IProcessor
+  commentId: T:FastEndpoints.IProcessor
+  parent: FastEndpoints
+  href: FastEndpoints.IProcessor.html
+  name: IProcessor
+  nameWithType: IProcessor
+  fullName: FastEndpoints.IProcessor
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -336,7 +336,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System

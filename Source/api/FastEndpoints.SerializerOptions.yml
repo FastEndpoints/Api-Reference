@@ -5,6 +5,7 @@ items:
   id: SerializerOptions
   parent: FastEndpoints
   children:
+  - FastEndpoints.SerializerOptions.CharacterEncoding
   - FastEndpoints.SerializerOptions.Options
   - FastEndpoints.SerializerOptions.RequestDeserializer
   - FastEndpoints.SerializerOptions.ResponseSerializer
@@ -16,10 +17,6 @@ items:
   nameWithType: SerializerOptions
   fullName: FastEndpoints.SerializerOptions
   type: Class
-  source:
-    id: SerializerOptions
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\SerializerOptions.cs
-    startLine: 10
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -48,10 +45,6 @@ items:
   nameWithType: SerializerOptions.Options
   fullName: FastEndpoints.SerializerOptions.Options
   type: Property
-  source:
-    id: Options
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\SerializerOptions.cs
-    startLine: 15
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -75,10 +68,6 @@ items:
   nameWithType: SerializerOptions.SerializerErrorsField
   fullName: FastEndpoints.SerializerOptions.SerializerErrorsField
   type: Property
-  source:
-    id: SerializerErrorsField
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\SerializerOptions.cs
-    startLine: 21
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -94,6 +83,32 @@ items:
       type: System.String
     content.vb: Public Property SerializerErrorsField As String
   overload: FastEndpoints.SerializerOptions.SerializerErrorsField*
+- uid: FastEndpoints.SerializerOptions.CharacterEncoding
+  commentId: P:FastEndpoints.SerializerOptions.CharacterEncoding
+  id: CharacterEncoding
+  parent: FastEndpoints.SerializerOptions
+  langs:
+  - csharp
+  - vb
+  name: CharacterEncoding
+  nameWithType: SerializerOptions.CharacterEncoding
+  fullName: FastEndpoints.SerializerOptions.CharacterEncoding
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    the charset used for responses. this will be appended to the content-type header when the <xref href="FastEndpoints.SerializerOptions.ResponseSerializer" data-throw-if-not-resolved="false"></xref> func is used.
+
+    defaults to <code>utf-8</code>. set to <code>null</code> to disable appending a charset.
+  example: []
+  syntax:
+    content: public string? CharacterEncoding { set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CharacterEncoding As String
+  overload: FastEndpoints.SerializerOptions.CharacterEncoding*
 - uid: FastEndpoints.SerializerOptions.RequestDeserializer
   commentId: P:FastEndpoints.SerializerOptions.RequestDeserializer
   id: RequestDeserializer
@@ -105,10 +120,6 @@ items:
   nameWithType: SerializerOptions.RequestDeserializer
   fullName: FastEndpoints.SerializerOptions.RequestDeserializer
   type: Property
-  source:
-    id: RequestDeserializer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\SerializerOptions.cs
-    startLine: 31
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -117,13 +128,7 @@ items:
 
     the input parameters of the func are as follows:
 
-    <p><xref href="Microsoft.AspNetCore.Http.HttpRequest" data-throw-if-not-resolved="false"></xref> : the incoming request</p>
-
-    <p><xref href="System.Type" data-throw-if-not-resolved="false"></xref> : the type of the request dto which the request body will be deserialized into</p>
-
-    <p><xref href="System.Text.Json.Serialization.JsonSerializerContext" data-throw-if-not-resolved="false"></xref>? : json serializer context if code generation is used</p>
-
-    <p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> : a cancellation token</p>
+    <p><xref href="Microsoft.AspNetCore.Http.HttpRequest" data-throw-if-not-resolved="false"></xref> : the incoming request</p><p><xref href="System.Type" data-throw-if-not-resolved="false"></xref> : the type of the request dto which the request body will be deserialized into</p><p><xref href="System.Text.Json.Serialization.JsonSerializerContext" data-throw-if-not-resolved="false"></xref>? : json serializer context if code generation is used</p><p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> : a cancellation token</p>
   example: []
   syntax:
     content: public Func<HttpRequest, Type, JsonSerializerContext?, CancellationToken, ValueTask<object?>> RequestDeserializer { set; }
@@ -143,10 +148,6 @@ items:
   nameWithType: SerializerOptions.ResponseSerializer
   fullName: FastEndpoints.SerializerOptions.ResponseSerializer
   type: Property
-  source:
-    id: ResponseSerializer
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Library\Config\SerializerOptions.cs
-    startLine: 57
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
@@ -159,24 +160,11 @@ items:
 
     the parameters of the func are as follows:
 
-    <p><xref href="Microsoft.AspNetCore.Http.HttpResponse" data-throw-if-not-resolved="false"></xref> : the http response object</p>
-
-    <p><xref href="System.Object" data-throw-if-not-resolved="false"></xref> : the response dto to be serialized</p>
-
-    <p><xref href="System.String" data-throw-if-not-resolved="false"></xref> : the response content-type</p>
-
-    <p><xref href="System.Text.Json.Serialization.JsonSerializerContext" data-throw-if-not-resolved="false"></xref>? : json serializer context if code generation is used</p>
-
-    <p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> : a cancellation token</p>
-
-    <p>example:</p>
-
-    <pre><code class="lang-csharp">config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =&gt;
-
-    {
-        rsp.ContentType = cType;
-        return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);
-    };</code></pre>
+    <p><xref href="Microsoft.AspNetCore.Http.HttpResponse" data-throw-if-not-resolved="false"></xref> : the http response object</p><p><xref href="System.Object" data-throw-if-not-resolved="false"></xref> : the response dto to be serialized</p><p><xref href="System.String" data-throw-if-not-resolved="false"></xref> : the response content-type</p><p><xref href="System.Text.Json.Serialization.JsonSerializerContext" data-throw-if-not-resolved="false"></xref>? : json serializer context if code generation is used</p><p><xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> : a cancellation token</p><p>example:</p><pre><code class="lang-csharp">config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =&gt;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 rsp.ContentType = cType;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             };</code></pre>
   example: []
   syntax:
     content: public Func<HttpResponse, object?, string, JsonSerializerContext?, CancellationToken, Task> ResponseSerializer { set; }
@@ -400,7 +388,6 @@ references:
   - name: )
 - uid: System
   commentId: N:System
-  isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
   name: System
   nameWithType: System
@@ -473,6 +460,18 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: FastEndpoints.SerializerOptions.ResponseSerializer
+  commentId: P:FastEndpoints.SerializerOptions.ResponseSerializer
+  href: FastEndpoints.SerializerOptions.html#FastEndpoints_SerializerOptions_ResponseSerializer
+  name: ResponseSerializer
+  nameWithType: SerializerOptions.ResponseSerializer
+  fullName: FastEndpoints.SerializerOptions.ResponseSerializer
+- uid: FastEndpoints.SerializerOptions.CharacterEncoding*
+  commentId: Overload:FastEndpoints.SerializerOptions.CharacterEncoding
+  href: FastEndpoints.SerializerOptions.html#FastEndpoints_SerializerOptions_CharacterEncoding
+  name: CharacterEncoding
+  nameWithType: SerializerOptions.CharacterEncoding
+  fullName: FastEndpoints.SerializerOptions.CharacterEncoding
 - uid: Microsoft.AspNetCore.Http.HttpRequest
   commentId: T:Microsoft.AspNetCore.Http.HttpRequest
   isExternal: true

@@ -16,12 +16,8 @@ items:
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>
   type: Interface
-  source:
-    id: IEventSubscriberStorageProvider
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
-    startLine: 6
   assemblies:
-  - FastEndpoints.Messaging.Remote
+  - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
   summary: interface for implementing a storage provider for an event subscription client app (gRPC client)
   example: []
@@ -45,12 +41,8 @@ items:
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.StoreEventAsync(TStorageRecord, CancellationToken)
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.StoreEventAsync(TStorageRecord, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: StoreEventAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
-    startLine: 13
   assemblies:
-  - FastEndpoints.Messaging.Remote
+  - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
   summary: store the event storage record however you please. ideally on a nosql database.
   example: []
@@ -80,12 +72,8 @@ items:
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.GetNextBatchAsync(PendingRecordSearchParams<TStorageRecord>)
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.GetNextBatchAsync(FastEndpoints.PendingRecordSearchParams<TStorageRecord>)
   type: Method
-  source:
-    id: GetNextBatchAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
-    startLine: 19
   assemblies:
-  - FastEndpoints.Messaging.Remote
+  - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
   summary: fetch the next batch of pending event storage records that need to be processed.
   example: []
@@ -113,12 +101,8 @@ items:
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.MarkEventAsCompleteAsync(TStorageRecord, CancellationToken)
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.MarkEventAsCompleteAsync(TStorageRecord, System.Threading.CancellationToken)
   type: Method
-  source:
-    id: MarkEventAsCompleteAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
-    startLine: 27
   assemblies:
-  - FastEndpoints.Messaging.Remote
+  - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
   summary: >-
     mark the event storage record as complete by either replacing the entity on storage with the supplied instance or
@@ -151,12 +135,8 @@ items:
   nameWithType: IEventSubscriberStorageProvider<TStorageRecord>.PurgeStaleRecordsAsync(StaleRecordSearchParams<TStorageRecord>)
   fullName: FastEndpoints.IEventSubscriberStorageProvider<TStorageRecord>.PurgeStaleRecordsAsync(FastEndpoints.StaleRecordSearchParams<TStorageRecord>)
   type: Method
-  source:
-    id: PurgeStaleRecordsAsync
-    path: D:\SOURCE-CONTROL\FastEndpoints\Src\Messaging.Remote\Client\Events\Storage\IEventSubscriberStorageProvider.cs
-    startLine: 41
   assemblies:
-  - FastEndpoints.Messaging.Remote
+  - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
   summary: >-
     this method will be called hourly. implement this method to remove stale records (completed or expired) from storage.
@@ -169,9 +149,7 @@ items:
 
     NOTE: the default match criteria is:
 
-    <pre><code class="lang-csharp">r =&gt; r.IsComplete || DateTime.UtcNow &gt;= r.ExpireOn</code></pre>
-
-    </p>
+    <pre><code class="lang-csharp">r =&gt; r.IsComplete || DateTime.UtcNow &gt;= r.ExpireOn</code></pre></p>
   example: []
   syntax:
     content: ValueTask PurgeStaleRecordsAsync(StaleRecordSearchParams<TStorageRecord> parameters)

@@ -1,0 +1,334 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.IJobTracker`1
+  commentId: T:FastEndpoints.IJobTracker`1
+  id: IJobTracker`1
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.IJobTracker`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  - FastEndpoints.IJobTracker`1.GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: IJobTracker<TCommand>
+  nameWithType: IJobTracker<TCommand>
+  fullName: FastEndpoints.IJobTracker<TCommand>
+  type: Interface
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the interface defining a job tracker
+  example: []
+  syntax:
+    content: 'public interface IJobTracker<TCommand> where TCommand : ICommandBase'
+    typeParameters:
+    - id: TCommand
+      description: the command type of the job
+    content.vb: Public Interface IJobTracker(Of TCommand As ICommandBase)
+  nameWithType.vb: IJobTracker(Of TCommand)
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand)
+  name.vb: IJobTracker(Of TCommand)
+- uid: FastEndpoints.IJobTracker`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobTracker`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  id: CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobTracker`1
+  langs:
+  - csharp
+  - vb
+  name: CancelJobAsync(Guid, CancellationToken)
+  nameWithType: IJobTracker<TCommand>.CancelJobAsync(Guid, CancellationToken)
+  fullName: FastEndpoints.IJobTracker<TCommand>.CancelJobAsync(System.Guid, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    cancel a job by its tracking id. if the job is currently executing, the cancellation token passed down to the command handler method will be notified of the
+
+    cancellation. the job storage record will also be marked complete via <xref href="FastEndpoints.IJobStorageProvider%601.CancelJobAsync(System.Guid%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> method of the job storage
+
+    provider, which will prevent the job from being picked up for execution.
+  example: []
+  syntax:
+    content: Task CancelJobAsync(Guid trackingId, CancellationToken ct = default)
+    parameters:
+    - id: trackingId
+      type: System.Guid
+      description: the job tracking id
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: optional cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function CancelJobAsync(trackingId As Guid, ct As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.IJobTracker`1.CancelJobAsync*
+  exceptions:
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: >-
+      this method will throw any exceptions that the job storage provider may throw in case of transient errors. you can safely retry calling this
+
+      method repeatedly with the same tracking id.
+  nameWithType.vb: IJobTracker(Of TCommand).CancelJobAsync(Guid, CancellationToken)
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand).CancelJobAsync(System.Guid, System.Threading.CancellationToken)
+- uid: FastEndpoints.IJobTracker`1.GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobTracker`1.GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
+  id: GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobTracker`1
+  langs:
+  - csharp
+  - vb
+  name: GetJobResultAsync<TResult>(Guid, CancellationToken)
+  nameWithType: IJobTracker<TCommand>.GetJobResultAsync<TResult>(Guid, CancellationToken)
+  fullName: FastEndpoints.IJobTracker<TCommand>.GetJobResultAsync<TResult>(System.Guid, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    retrieve the result of a command (that returns a result) which was previously queued as a job.
+
+    the returned result will be null/default until the job is actually complete.
+  example: []
+  syntax:
+    content: Task<TResult?> GetJobResultAsync<TResult>(Guid trackingId, CancellationToken ct = default)
+    parameters:
+    - id: trackingId
+      type: System.Guid
+      description: the job tracking id
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TResult
+      description: the type of the expected result
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+    content.vb: Function GetJobResultAsync(Of TResult)(trackingId As Guid, ct As CancellationToken = Nothing) As Task(Of TResult)
+  overload: FastEndpoints.IJobTracker`1.GetJobResultAsync*
+  nameWithType.vb: IJobTracker(Of TCommand).GetJobResultAsync(Of TResult)(Guid, CancellationToken)
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand).GetJobResultAsync(Of TResult)(System.Guid, System.Threading.CancellationToken)
+  name.vb: GetJobResultAsync(Of TResult)(Guid, CancellationToken)
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  href: FastEndpoints.html
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+  isExternal: true
+  href: FastEndpoints.IJobStorageProvider-1.html#FastEndpoints_IJobStorageProvider_1_CancelJobAsync_System_Guid_System_Threading_CancellationToken_
+  name: CancelJobAsync(Guid, CancellationToken)
+  nameWithType: IJobStorageProvider<TStorageRecord>.CancelJobAsync(Guid, CancellationToken)
+  fullName: FastEndpoints.IJobStorageProvider<TStorageRecord>.CancelJobAsync(System.Guid, System.Threading.CancellationToken)
+  nameWithType.vb: IJobStorageProvider(Of TStorageRecord).CancelJobAsync(Guid, CancellationToken)
+  fullName.vb: FastEndpoints.IJobStorageProvider(Of TStorageRecord).CancelJobAsync(System.Guid, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+    name: CancelJobAsync
+    href: FastEndpoints.IJobStorageProvider-1.html#FastEndpoints_IJobStorageProvider_1_CancelJobAsync_System_Guid_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IJobStorageProvider`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
+    name: CancelJobAsync
+    href: FastEndpoints.IJobStorageProvider-1.html#FastEndpoints_IJobStorageProvider_1_CancelJobAsync_System_Guid_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: FastEndpoints.IJobTracker`1.CancelJobAsync*
+  commentId: Overload:FastEndpoints.IJobTracker`1.CancelJobAsync
+  href: FastEndpoints.IJobTracker-1.html#FastEndpoints_IJobTracker_1_CancelJobAsync_System_Guid_System_Threading_CancellationToken_
+  name: CancelJobAsync
+  nameWithType: IJobTracker<TCommand>.CancelJobAsync
+  fullName: FastEndpoints.IJobTracker<TCommand>.CancelJobAsync
+  nameWithType.vb: IJobTracker(Of TCommand).CancelJobAsync
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand).CancelJobAsync
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System
+  commentId: N:System
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FastEndpoints.IJobTracker`1.GetJobResultAsync*
+  commentId: Overload:FastEndpoints.IJobTracker`1.GetJobResultAsync
+  href: FastEndpoints.IJobTracker-1.html#FastEndpoints_IJobTracker_1_GetJobResultAsync__1_System_Guid_System_Threading_CancellationToken_
+  name: GetJobResultAsync
+  nameWithType: IJobTracker<TCommand>.GetJobResultAsync
+  fullName: FastEndpoints.IJobTracker<TCommand>.GetJobResultAsync
+  nameWithType.vb: IJobTracker(Of TCommand).GetJobResultAsync
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand).GetJobResultAsync
+- uid: System.Threading.Tasks.Task{{TResult}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
