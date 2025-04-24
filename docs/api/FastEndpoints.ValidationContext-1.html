@@ -111,6 +111,9 @@
       <a class="xref" href="FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_Nullable_System_Int32__">ValidationContext.ThrowError(string, int?)</a>
     </div>
     <div>
+      <a class="xref" href="FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__">ValidationContext.ThrowError(string, string, Severity, int?)</a>
+    </div>
+    <div>
       <a class="xref" href="FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowIfAnyErrors_System_Nullable_System_Int32__">ValidationContext.ThrowIfAnyErrors(int?)</a>
     </div>
     <div>
@@ -264,6 +267,60 @@ handler execution flow. no execution will continue past this call.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">errorMessage</span></td>
         <td><p>the error message</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">statusCode</span></td>
+        <td><p>an optional status code to be used when building the error response</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_ValidationContext_1_ThrowError_" data-uid="FastEndpoints.ValidationContext`1.ThrowError*"></a>
+  <h4 id="FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__" data-uid="FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})">ThrowError(Expression&lt;Func&lt;T, object?&gt;&gt;, string, string, Severity, int?)</h4>
+  <div class="markdown level1 summary"><p>adds an error message for the specified property of the request dto and sends back a 400 bad request with error details immediately interrupting
+handler execution flow. no execution will continue past this call.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ThrowError(Expression&lt;Func&lt;T, object?&gt;&gt; property, string errorMessage, string errorCode, Severity severity = Severity.Error, int? statusCode = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</td>
+        <td><span class="parametername">property</span></td>
+        <td><p>the property to add the error message for</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">errorMessage</span></td>
+        <td><p>the error message</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">errorCode</span></td>
+        <td><p>the error code associated with the error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Severity</span></td>
+        <td><span class="parametername">severity</span></td>
+        <td><p>the severity of the error</p>
 </td>
       </tr>
       <tr>

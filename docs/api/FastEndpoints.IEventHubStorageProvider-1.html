@@ -212,6 +212,7 @@ or if you'd like to retry expired events, update the <a class="xref" href="FastE
 <p>
 NOTE: the default match criteria is:
 <pre><code class="lang-csharp">r =&gt; r.IsComplete || DateTime.UtcNow &gt;= r.ExpireOn</code></pre>
+
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -298,14 +299,18 @@ simply return a collection of unique subscriber IDs.</p>
   </table>
 
 
-  <a id="FastEndpoints_IEventHubStorageProvider_1_StoreEventAsync_" data-uid="FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync*"></a>
-  <h4 id="FastEndpoints_IEventHubStorageProvider_1_StoreEventAsync__0_System_Threading_CancellationToken_" data-uid="FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync(`0,System.Threading.CancellationToken)">StoreEventAsync(TStorageRecord, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>store the event storage record however you please. ideally on a nosql database.</p>
+  <a id="FastEndpoints_IEventHubStorageProvider_1_StoreEventsAsync_" data-uid="FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync*"></a>
+  <h4 id="FastEndpoints_IEventHubStorageProvider_1_StoreEventsAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_" data-uid="FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">StoreEventsAsync(IEnumerable&lt;TStorageRecord&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>store the event storage records however you please. ideally on a nosql database.</p>
+<p>
+WARNING: make sure to use a transaction or batch insert to ensure all the records are committed in one go.
+if only some of the records succeed in being stored, it could lead to duplicate events being published due to the built-in retry mechanism.
+</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ValueTask StoreEventAsync(TStorageRecord r, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">ValueTask StoreEventsAsync(IEnumerable&lt;TStorageRecord&gt; r, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -318,9 +323,9 @@ simply return a collection of unique subscriber IDs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TStorageRecord</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TStorageRecord&gt;</td>
         <td><span class="parametername">r</span></td>
-        <td><p>the event storage record which contains the actual event object as well as some metadata</p>
+        <td><p>the event storage records which contains the actual event objects as well as some metadata</p>
 </td>
       </tr>
       <tr>

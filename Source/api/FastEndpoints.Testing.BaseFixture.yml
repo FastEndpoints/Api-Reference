@@ -5,6 +5,8 @@ items:
   id: BaseFixture
   parent: FastEndpoints.Testing
   children:
+  - FastEndpoints.Testing.BaseFixture.Cancellation
+  - FastEndpoints.Testing.BaseFixture.Context
   - FastEndpoints.Testing.BaseFixture.Fake
   - FastEndpoints.Testing.BaseFixture.WafCache
   langs:
@@ -61,6 +63,48 @@ items:
   overload: FastEndpoints.Testing.BaseFixture.Fake*
   implements:
   - FastEndpoints.Testing.IFaker.Fake
+- uid: FastEndpoints.Testing.BaseFixture.Context
+  commentId: P:FastEndpoints.Testing.BaseFixture.Context
+  id: Context
+  parent: FastEndpoints.Testing.BaseFixture
+  langs:
+  - csharp
+  - vb
+  name: Context
+  nameWithType: BaseFixture.Context
+  fullName: FastEndpoints.Testing.BaseFixture.Context
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public ITestContext Context { get; }
+    parameters: []
+    return:
+      type: Xunit.ITestContext
+    content.vb: Public ReadOnly Property Context As ITestContext
+  overload: FastEndpoints.Testing.BaseFixture.Context*
+- uid: FastEndpoints.Testing.BaseFixture.Cancellation
+  commentId: P:FastEndpoints.Testing.BaseFixture.Cancellation
+  id: Cancellation
+  parent: FastEndpoints.Testing.BaseFixture
+  langs:
+  - csharp
+  - vb
+  name: Cancellation
+  nameWithType: BaseFixture.Cancellation
+  fullName: FastEndpoints.Testing.BaseFixture.Cancellation
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public CancellationToken Cancellation { get; }
+    parameters: []
+    return:
+      type: System.Threading.CancellationToken
+    content.vb: Public ReadOnly Property Cancellation As CancellationToken
+  overload: FastEndpoints.Testing.BaseFixture.Cancellation*
 - uid: FastEndpoints.Testing.BaseFixture.WafCache
   commentId: F:FastEndpoints.Testing.BaseFixture.WafCache
   id: WafCache
@@ -397,6 +441,66 @@ references:
   name: Bogus
   nameWithType: Bogus
   fullName: Bogus
+- uid: FastEndpoints.Testing.BaseFixture.Context*
+  commentId: Overload:FastEndpoints.Testing.BaseFixture.Context
+  href: FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Context
+  name: Context
+  nameWithType: BaseFixture.Context
+  fullName: FastEndpoints.Testing.BaseFixture.Context
+- uid: Xunit.ITestContext
+  commentId: T:Xunit.ITestContext
+  parent: Xunit
+  isExternal: true
+  name: ITestContext
+  nameWithType: ITestContext
+  fullName: Xunit.ITestContext
+- uid: Xunit
+  commentId: N:Xunit
+  isExternal: true
+  name: Xunit
+  nameWithType: Xunit
+  fullName: Xunit
+- uid: FastEndpoints.Testing.BaseFixture.Cancellation*
+  commentId: Overload:FastEndpoints.Testing.BaseFixture.Cancellation
+  href: FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Cancellation
+  name: Cancellation
+  nameWithType: BaseFixture.Cancellation
+  fullName: FastEndpoints.Testing.BaseFixture.Cancellation
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Collections.Concurrent.ConcurrentDictionary{System.Type,FastEndpoints.Testing.BaseFixture.AsyncLazy{System.Object}}
   commentId: T:System.Collections.Concurrent.ConcurrentDictionary{System.Type,FastEndpoints.Testing.BaseFixture.AsyncLazy{System.Object}}
   parent: System.Collections.Concurrent

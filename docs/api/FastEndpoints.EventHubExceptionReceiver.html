@@ -123,14 +123,14 @@
 </h3>
 
 
-  <a id="FastEndpoints_EventHubExceptionReceiver_OnGetNextEventRecordError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError*"></a>
-  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnGetNextEventRecordError__1_System_String_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)">OnGetNextEventRecordError&lt;TEvent&gt;(string, int, Exception, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble retrieving the next event record.</p>
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnGetNextBatchError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnGetNextBatchError__1_System_String_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)">OnGetNextBatchError&lt;TEvent&gt;(string, int, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble retrieving the next batch of event records.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task OnGetNextEventRecordError&lt;TEvent&gt;(string subscriberID, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task OnGetNextBatchError&lt;TEvent&gt;(string subscriberID, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -151,7 +151,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">attemptCount</span></td>
-        <td><p>the number of times the record was attempted to be retrieved</p>
+        <td><p>the number of times the operation was attempted</p>
 </td>
       </tr>
       <tr>
@@ -345,14 +345,14 @@
   </table>
 
 
-  <a id="FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError*"></a>
-  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordError__1_FastEndpoints_IEventStorageRecord_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)">OnStoreEventRecordError&lt;TEvent&gt;(IEventStorageRecord, int, Exception, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble persisting an event record.</p>
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnRestoreSubscriberIDsError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnRestoreSubscriberIDsError_System_Type_System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError(System.Type,System.Int32,System.Exception,System.Threading.CancellationToken)">OnRestoreSubscriberIDsError(Type, int, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble restoring event subscribers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task OnStoreEventRecordError&lt;TEvent&gt;(IEventStorageRecord record, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task OnRestoreSubscriberIDsError(Type eventType, int attemptCount, Exception exception, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -365,15 +365,72 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></td>
-        <td><span class="parametername">record</span></td>
-        <td><p>the event storage record that was supposed to be persisted</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">eventType</span></td>
+        <td><p>the type of the event</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">attemptCount</span></td>
-        <td><p>the number of times the record was attempted to be persisted</p>
+        <td><p>the number of times the subscriber were attempted to be retrieved</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>the actual exception that was thrown by the operation</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnSerializeEventError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnSerializeEventError__1___0_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError``1(``0,System.Exception,System.Threading.CancellationToken)">OnSerializeEventError&lt;TEvent&gt;(TEvent, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble serializing an event object calling the
+<a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a>.<a class="xref" href="FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_">SetEvent&lt;TEvent&gt;(TEvent)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task OnSerializeEventError&lt;TEvent&gt;(TEvent @event, Exception exception, CancellationToken ct) where TEvent : class, IEvent</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEvent</span></td>
+        <td><span class="parametername">event</span></td>
+        <td><p>the event object that failed to serialize</p>
 </td>
       </tr>
       <tr>
@@ -417,6 +474,84 @@
       <tr>
         <td><span class="parametername">TEvent</span></td>
         <td><p>the type of the event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordsError_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError*"></a>
+  <h4 id="FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordsError__1_System_Collections_Generic_IEnumerable_FastEndpoints_IEventStorageRecord__System_Int32_System_Exception_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord},System.Int32,System.Exception,System.Threading.CancellationToken)">OnStoreEventRecordsError&lt;TEvent&gt;(IEnumerable&lt;IEventStorageRecord&gt;, int, Exception, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>this method is triggered when the storage provider has trouble persisting event storage records.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task OnStoreEventRecordsError&lt;TEvent&gt;(IEnumerable&lt;IEventStorageRecord&gt; records, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a>&gt;</td>
+        <td><span class="parametername">records</span></td>
+        <td><p>the event storage records that were supposed to be persisted</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">attemptCount</span></td>
+        <td><p>the number of times the operation was attempted</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>the actual exception that was thrown by the operation</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the events</p>
 </td>
       </tr>
     </tbody>

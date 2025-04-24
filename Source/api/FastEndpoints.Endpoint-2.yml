@@ -19,6 +19,8 @@ items:
   - FastEndpoints.Endpoint`2.Claims(System.String[])
   - FastEndpoints.Endpoint`2.ClaimsAll(System.String[])
   - FastEndpoints.Endpoint`2.Config
+  - FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  - FastEndpoints.Endpoint`2.Connect(System.String[])
   - FastEndpoints.Endpoint`2.CreateScope
   - FastEndpoints.Endpoint`2.CreateTokenWith``1(System.String,System.Action{FastEndpoints.UserPrivileges},`0)
   - FastEndpoints.Endpoint`2.Delete(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
@@ -42,6 +44,7 @@ items:
   - FastEndpoints.Endpoint`2.Head(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Head(System.String[])
   - FastEndpoints.Endpoint`2.HttpMethod
+  - FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
   - FastEndpoints.Endpoint`2.Logger
   - FastEndpoints.Endpoint`2.OnAfterHandle(`0,`1)
   - FastEndpoints.Endpoint`2.OnAfterHandleAsync(`0,`1,System.Threading.CancellationToken)
@@ -54,6 +57,8 @@ items:
   - FastEndpoints.Endpoint`2.OnValidationFailed
   - FastEndpoints.Endpoint`2.OnValidationFailedAsync(System.Threading.CancellationToken)
   - FastEndpoints.Endpoint`2.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  - FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  - FastEndpoints.Endpoint`2.Options(System.String[])
   - FastEndpoints.Endpoint`2.Patch(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
   - FastEndpoints.Endpoint`2.Patch(System.String[])
   - FastEndpoints.Endpoint`2.Permissions(System.String[])
@@ -73,7 +78,9 @@ items:
   - FastEndpoints.Endpoint`2.Query``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint`2.RequestBinder(FastEndpoints.IRequestBinder{`0})
   - FastEndpoints.Endpoint`2.Resolve(System.Type)
+  - FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
   - FastEndpoints.Endpoint`2.Resolve``1
+  - FastEndpoints.Endpoint`2.Resolve``1(System.String)
   - FastEndpoints.Endpoint`2.Response
   - FastEndpoints.Endpoint`2.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   - FastEndpoints.Endpoint`2.ResponseInterceptor(FastEndpoints.IResponseInterceptor)
@@ -82,6 +89,8 @@ items:
   - FastEndpoints.Endpoint`2.RoutePrefixOverride(System.String)
   - FastEndpoints.Endpoint`2.Route``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint`2.Routes(System.String[])
+  - FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint`2.SendAsync(`1,System.Int32,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint`2.SendBytesAsync(System.Byte[],System.String,System.String,System.Nullable{System.DateTimeOffset},System.Boolean,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint`2.SendCreatedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
@@ -111,10 +120,16 @@ items:
   - FastEndpoints.Endpoint`2.Throttle(System.Int32,System.Double,System.String)
   - FastEndpoints.Endpoint`2.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint`2.ThrowError(System.String,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  - FastEndpoints.Endpoint`2.Trace(System.String[])
   - FastEndpoints.Endpoint`2.TryResolve(System.Type)
+  - FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
   - FastEndpoints.Endpoint`2.TryResolve``1
+  - FastEndpoints.Endpoint`2.TryResolve``1(System.String)
   - FastEndpoints.Endpoint`2.User
   - FastEndpoints.Endpoint`2.ValidationFailed
   - FastEndpoints.Endpoint`2.Validator``1
@@ -383,8 +398,10 @@ items:
     the work is complete.
 
     <p>
-       <pre><code class="lang-csharp">using var scope = CreateScope();
-       var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre></p>
+
+        <pre><code class="lang-csharp">using var scope = CreateScope();
+        var scopedService = scope.Resolve<MyService>();</code></pre>
+    </p>
   example: []
   syntax:
     content: public IServiceScope CreateScope()
@@ -396,6 +413,150 @@ items:
   - FastEndpoints.IServiceResolverBase.CreateScope
   nameWithType.vb: Endpoint(Of TRequest, TResponse).CreateScope()
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).CreateScope()
+- uid: FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+  commentId: M:FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+  id: TryResolve``1(System.String)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: TryResolve<TService>(string)
+  nameWithType: Endpoint<TRequest, TResponse>.TryResolve<TService>(string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.TryResolve<TService>(string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: 'public TService? TryResolve<TService>(string keyName) where TService : class'
+    parameters:
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Public Function TryResolve(Of TService As Class)(keyName As String) As TService
+  overload: FastEndpoints.Endpoint`2.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve(Of TService)(String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).TryResolve(Of TService)(String)
+  name.vb: TryResolve(Of TService)(String)
+- uid: FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+  commentId: M:FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+  id: TryResolve(System.Type,System.String)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: TryResolve(Type, string)
+  nameWithType: Endpoint<TRequest, TResponse>.TryResolve(Type, string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.TryResolve(System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: public object? TryResolve(Type typeOfService, string keyName)
+    parameters:
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    return:
+      type: System.Object
+    content.vb: Public Function TryResolve(typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.Endpoint`2.TryResolve*
+  implements:
+  - FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve(Type, String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).TryResolve(System.Type, String)
+  name.vb: TryResolve(Type, String)
+- uid: FastEndpoints.Endpoint`2.Resolve``1(System.String)
+  commentId: M:FastEndpoints.Endpoint`2.Resolve``1(System.String)
+  id: Resolve``1(System.String)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Resolve<TService>(string)
+  nameWithType: Endpoint<TRequest, TResponse>.Resolve<TService>(string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Resolve<TService>(string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: 'public TService Resolve<TService>(string keyName) where TService : class'
+    parameters:
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Public Function Resolve(Of TService As Class)(keyName As String) As TService
+  overload: FastEndpoints.Endpoint`2.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve(Of TService)(String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Resolve(Of TService)(String)
+  name.vb: Resolve(Of TService)(String)
+- uid: FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+  commentId: M:FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+  id: Resolve(System.Type,System.String)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Type, string)
+  nameWithType: Endpoint<TRequest, TResponse>.Resolve(Type, string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Resolve(System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: public object Resolve(Type typeOfService, string keyName)
+    parameters:
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    return:
+      type: System.Object
+    content.vb: Public Function Resolve(typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.Endpoint`2.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  implements:
+  - FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve(Type, String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Resolve(System.Type, String)
+  name.vb: Resolve(Type, String)
 - uid: FastEndpoints.Endpoint`2.Route``1(System.String,System.Boolean)
   commentId: M:FastEndpoints.Endpoint`2.Route``1(System.String,System.Boolean)
   id: Route``1(System.String,System.Boolean)
@@ -1307,9 +1468,9 @@ items:
   langs:
   - csharp
   - vb
-  name: SendCreatedAtAsync<TEndpoint>(object?, TResponse, Http?, int?, bool, CancellationToken)
-  nameWithType: Endpoint<TRequest, TResponse>.SendCreatedAtAsync<TEndpoint>(object?, TResponse, Http?, int?, bool, CancellationToken)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendCreatedAtAsync<TEndpoint>(object?, TResponse, FastEndpoints.Http?, int?, bool, System.Threading.CancellationToken)
+  name: SendCreatedAtAsync<TEndpoint>(object?, TResponse?, Http?, int?, bool, CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.SendCreatedAtAsync<TEndpoint>(object?, TResponse?, Http?, int?, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendCreatedAtAsync<TEndpoint>(object?, TResponse?, FastEndpoints.Http?, int?, bool, System.Threading.CancellationToken)
   type: Method
   assemblies:
   - FastEndpoints
@@ -1323,7 +1484,9 @@ items:
 
     specify the 'routeNumber' argument.
 
-    </p><p>
+    </p>
+
+    <p>
 
     WARNING: this overload will not add a location header if you've set a custom endpoint name using .WithName() method. use the other overload
 
@@ -1332,7 +1495,7 @@ items:
     </p>
   example: []
   syntax:
-    content: 'protected Task SendCreatedAtAsync<TEndpoint>(object? routeValues, TResponse responseBody, Http? verb = null, int? routeNumber = null, bool generateAbsoluteUrl = false, CancellationToken cancellation = default) where TEndpoint : IEndpoint'
+    content: 'protected Task SendCreatedAtAsync<TEndpoint>(object? routeValues = null, TResponse? responseBody = default, Http? verb = null, int? routeNumber = null, bool generateAbsoluteUrl = false, CancellationToken cancellation = default) where TEndpoint : IEndpoint'
     parameters:
     - id: routeValues
       type: System.Object
@@ -1348,7 +1511,7 @@ items:
       description: only useful when pointing to a multi route endpoint
     - id: generateAbsoluteUrl
       type: System.Boolean
-      description: set to true for generating a absolute url instead of relative url for the location header
+      description: set to true for generating an absolute url instead of relative url for the location header
     - id: cancellation
       type: System.Threading.CancellationToken
       description: optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used
@@ -1357,7 +1520,7 @@ items:
       description: the type of the endpoint where the resource can be retrieved from
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Protected Function SendCreatedAtAsync(Of TEndpoint As IEndpoint)(routeValues As Object, responseBody As TResponse, verb As Http? = Nothing, routeNumber As Integer? = Nothing, generateAbsoluteUrl As Boolean = False, cancellation As CancellationToken = Nothing) As Task
+    content.vb: Protected Function SendCreatedAtAsync(Of TEndpoint As IEndpoint)(routeValues As Object = Nothing, responseBody As TResponse = Nothing, verb As Http? = Nothing, routeNumber As Integer? = Nothing, generateAbsoluteUrl As Boolean = False, cancellation As CancellationToken = Nothing) As Task
   overload: FastEndpoints.Endpoint`2.SendCreatedAtAsync*
   nameWithType.vb: Endpoint(Of TRequest, TResponse).SendCreatedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendCreatedAtAsync(Of TEndpoint)(Object, TResponse, FastEndpoints.Http?, Integer?, Boolean, System.Threading.CancellationToken)
@@ -1369,9 +1532,9 @@ items:
   langs:
   - csharp
   - vb
-  name: SendCreatedAtAsync(string, object?, TResponse, bool, CancellationToken)
-  nameWithType: Endpoint<TRequest, TResponse>.SendCreatedAtAsync(string, object?, TResponse, bool, CancellationToken)
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendCreatedAtAsync(string, object?, TResponse, bool, System.Threading.CancellationToken)
+  name: SendCreatedAtAsync(string, object?, TResponse?, bool, CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.SendCreatedAtAsync(string, object?, TResponse?, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendCreatedAtAsync(string, object?, TResponse?, bool, System.Threading.CancellationToken)
   type: Method
   assemblies:
   - FastEndpoints
@@ -1388,7 +1551,7 @@ items:
     </p>
   example: []
   syntax:
-    content: protected Task SendCreatedAtAsync(string endpointName, object? routeValues, TResponse responseBody, bool generateAbsoluteUrl = false, CancellationToken cancellation = default)
+    content: protected Task SendCreatedAtAsync(string endpointName, object? routeValues = null, TResponse? responseBody = default, bool generateAbsoluteUrl = false, CancellationToken cancellation = default)
     parameters:
     - id: endpointName
       type: System.String
@@ -1401,17 +1564,131 @@ items:
       description: the content to be serialized in the response body
     - id: generateAbsoluteUrl
       type: System.Boolean
-      description: set to true for generating a absolute url instead of relative url for the location header
+      description: set to true for generating an absolute url instead of relative url for the location header
     - id: cancellation
       type: System.Threading.CancellationToken
       description: optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Protected Function SendCreatedAtAsync(endpointName As String, routeValues As Object, responseBody As TResponse, generateAbsoluteUrl As Boolean = False, cancellation As CancellationToken = Nothing) As Task
+    content.vb: Protected Function SendCreatedAtAsync(endpointName As String, routeValues As Object = Nothing, responseBody As TResponse = Nothing, generateAbsoluteUrl As Boolean = False, cancellation As CancellationToken = Nothing) As Task
   overload: FastEndpoints.Endpoint`2.SendCreatedAtAsync*
   nameWithType.vb: Endpoint(Of TRequest, TResponse).SendCreatedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendCreatedAtAsync(String, Object, TResponse, Boolean, System.Threading.CancellationToken)
   name.vb: SendCreatedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
+- uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  id: SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: SendAcceptedAtAsync<TEndpoint>(object?, TResponse?, Http?, int?, bool, CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.SendAcceptedAtAsync<TEndpoint>(object?, TResponse?, Http?, int?, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendAcceptedAtAsync<TEndpoint>(object?, TResponse?, FastEndpoints.Http?, int?, bool, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    send a 202 accepted response with a location header containing where the resource can be retrieved from.
+
+    <p>
+
+    HINT: if pointing to an endpoint with multiple verbs, make sure to specify the 'verb' argument and if pointing to a multi route endpoint,
+
+    specify the 'routeNumber' argument.
+
+    </p>
+
+    <p>
+
+    WARNING: this overload will not add a location header if you've set a custom endpoint name using .WithName() method. use the other overload
+
+    that accepts a string endpoint name instead.
+
+    </p>
+  example: []
+  syntax:
+    content: 'protected Task SendAcceptedAtAsync<TEndpoint>(object? routeValues = null, TResponse? responseBody = default, Http? verb = null, int? routeNumber = null, bool generateAbsoluteUrl = false, CancellationToken cancellation = default) where TEndpoint : IEndpoint'
+    parameters:
+    - id: routeValues
+      type: System.Object
+      description: a route values object with key/value pairs of route information
+    - id: responseBody
+      type: '{TResponse}'
+      description: the content to be serialized in the response body
+    - id: verb
+      type: System.Nullable{FastEndpoints.Http}
+      description: only useful when pointing to a multi verb endpoint
+    - id: routeNumber
+      type: System.Nullable{System.Int32}
+      description: only useful when pointing to a multi route endpoint
+    - id: generateAbsoluteUrl
+      type: System.Boolean
+      description: set to true for generating an absolute url instead of relative url for the location header
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used
+    typeParameters:
+    - id: TEndpoint
+      description: the type of the endpoint where the resource can be retrieved from
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Protected Function SendAcceptedAtAsync(Of TEndpoint As IEndpoint)(routeValues As Object = Nothing, responseBody As TResponse = Nothing, verb As Http? = Nothing, routeNumber As Integer? = Nothing, generateAbsoluteUrl As Boolean = False, cancellation As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.Endpoint`2.SendAcceptedAtAsync*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, FastEndpoints.Http?, Integer?, Boolean, System.Threading.CancellationToken)
+  name.vb: SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
+- uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  id: SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: SendAcceptedAtAsync(string, object?, TResponse?, bool, CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.SendAcceptedAtAsync(string, object?, TResponse?, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendAcceptedAtAsync(string, object?, TResponse?, bool, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    send a 202 accepted response with a location header containing where the resource can be retrieved from.
+
+    <p>
+
+    WARNING: this method is only supported on single verb/route endpoints. it will not produce a `Location` header if used in a multi verb or multi
+
+    route endpoint.
+
+    </p>
+  example: []
+  syntax:
+    content: protected Task SendAcceptedAtAsync(string endpointName, object? routeValues = null, TResponse? responseBody = default, bool generateAbsoluteUrl = false, CancellationToken cancellation = default)
+    parameters:
+    - id: endpointName
+      type: System.String
+      description: the name of the endpoint to use for link generation (openapi route id)
+    - id: routeValues
+      type: System.Object
+      description: a route values object with key/value pairs of route information
+    - id: responseBody
+      type: '{TResponse}'
+      description: the content to be serialized in the response body
+    - id: generateAbsoluteUrl
+      type: System.Boolean
+      description: set to true for generating an absolute url instead of relative url for the location header
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: optional cancellation token. if not specified, the <code>HttpContext.RequestAborted</code> token is used
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Protected Function SendAcceptedAtAsync(endpointName As String, routeValues As Object = Nothing, responseBody As TResponse = Nothing, generateAbsoluteUrl As Boolean = False, cancellation As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.Endpoint`2.SendAcceptedAtAsync*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(String, Object, TResponse, Boolean, System.Threading.CancellationToken)
+  name.vb: SendAcceptedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
 - uid: FastEndpoints.Endpoint`2.SendStringAsync(System.String,System.Int32,System.String,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.Endpoint`2.SendStringAsync(System.String,System.Int32,System.String,System.Threading.CancellationToken)
   id: SendStringAsync(System.String,System.Int32,System.String,System.Threading.CancellationToken)
@@ -1495,7 +1772,7 @@ items:
   assemblies:
   - FastEndpoints
   namespace: FastEndpoints
-  summary: send an http 200 ok response without any body
+  summary: send an http 200 ok response without a body.
   example: []
   syntax:
     content: protected Task SendOkAsync(CancellationToken cancellation = default)
@@ -2224,6 +2501,69 @@ items:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).ClaimsAll(ParamArray String())
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ClaimsAll(ParamArray String())
   name.vb: ClaimsAll(ParamArray String())
+- uid: FastEndpoints.Endpoint`2.Connect(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Connect(System.String[])
+  id: Connect(System.String[])
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Connect(params string[])
+  nameWithType: Endpoint<TRequest, TResponse>.Connect(params string[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Connect(params string[])
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify to listen for CONNECT requests on one or more routes.
+  example: []
+  syntax:
+    content: protected void Connect(params string[] routePatterns)
+    parameters:
+    - id: routePatterns
+      type: System.String[]
+    content.vb: Protected Sub Connect(ParamArray routePatterns As String())
+  overload: FastEndpoints.Endpoint`2.Connect*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Connect(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Connect(ParamArray String())
+  name.vb: Connect(ParamArray String())
+- uid: FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  id: Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Connect(string, Expression<Func<TRequest, object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Connect(string, Expression<Func<TRequest, object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Connect(string, System.Linq.Expressions.Expression<System.Func<TRequest, object>>)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify a CONNECT route pattern using a replacement expression.
+  example: []
+  syntax:
+    content: protected void Connect(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: >-
+        the words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.
+
+        the replacement words do not have to match the request dto property names.
+
+        <p>
+            <code>/invoice/{@id}</code>
+        </p>
+    - id: members
+      type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
+      description: <code>r =&gt; new { r.InvoiceID }</code>
+    content.vb: Protected Sub Connect(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Connect*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Connect(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Connect(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
+  name.vb: Connect(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
   commentId: M:FastEndpoints.Endpoint`2.Delete(System.String[])
   id: Delete(System.String[])
@@ -2276,7 +2616,9 @@ items:
 
         the replacement words do not have to match the request dto property names.
 
-        <p><code>/invoice/{@id}/soft-delete</code></p>
+        <p>
+            <code>/invoice/{@id}/soft-delete</code>
+        </p>
     - id: members
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
       description: <code>r =&gt; new { r.InvoiceID }</code>
@@ -2304,7 +2646,9 @@ items:
 
     <p>
 
-    EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code></p>
+    EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code>
+
+    </p>
   example: []
   syntax:
     content: protected void Description(Action<RouteHandlerBuilder> builder, bool clearDefaults = false)
@@ -2493,7 +2837,9 @@ items:
 
         the replacement words do not have to match the request dto property names.
 
-        <p><code>/invoice/{@id}/print/{@pageNum}</code></p>
+        <p>
+            <code>/invoice/{@id}/print/{@pageNum}</code>
+        </p>
     - id: members
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
       description: <code>r =&gt; new { r.InvoiceID, r.PageNumber }</code>
@@ -2594,7 +2940,9 @@ items:
 
         the replacement words do not have to match the request dto property names.
 
-        <p><code>/invoice/{@id}/print/{@pageNum}</code></p>
+        <p>
+            <code>/invoice/{@id}/print/{@pageNum}</code>
+        </p>
     - id: members
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
       description: <code>r =&gt; new { r.InvoiceID, r.PageNumber }</code>
@@ -2603,6 +2951,33 @@ items:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Head(String, Expression(Of Func(Of TRequest, Object)))
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
   name.vb: Head(String, Expression(Of Func(Of TRequest, Object)))
+- uid: FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  commentId: M:FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  id: Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Idempotency(Action<IdempotencyOptions>?)
+  nameWithType: Endpoint<TRequest, TResponse>.Idempotency(Action<IdempotencyOptions>?)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Idempotency(System.Action<FastEndpoints.IdempotencyOptions>?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify idempotency requirements for this endpoint
+  example: []
+  syntax:
+    content: protected void Idempotency(Action<IdempotencyOptions>? options = null)
+    parameters:
+    - id: options
+      type: System.Action{FastEndpoints.IdempotencyOptions}
+      description: the idempotency options
+    content.vb: Protected Sub Idempotency(options As Action(Of IdempotencyOptions) = Nothing)
+  overload: FastEndpoints.Endpoint`2.Idempotency*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Idempotency(Action(Of IdempotencyOptions))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Idempotency(System.Action(Of FastEndpoints.IdempotencyOptions))
+  name.vb: Idempotency(Action(Of IdempotencyOptions))
 - uid: FastEndpoints.Endpoint`2.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   commentId: M:FastEndpoints.Endpoint`2.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   id: Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
@@ -2630,6 +3005,69 @@ items:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(Action(Of RouteHandlerBuilder))
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(System.Action(Of Microsoft.AspNetCore.Builder.RouteHandlerBuilder))
   name.vb: Options(Action(Of RouteHandlerBuilder))
+- uid: FastEndpoints.Endpoint`2.Options(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Options(System.String[])
+  id: Options(System.String[])
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Options(params string[])
+  nameWithType: Endpoint<TRequest, TResponse>.Options(params string[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options(params string[])
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify to listen for OPTIONS requests on one or more routes.
+  example: []
+  syntax:
+    content: protected void Options(params string[] routePatterns)
+    parameters:
+    - id: routePatterns
+      type: System.String[]
+    content.vb: Protected Sub Options(ParamArray routePatterns As String())
+  overload: FastEndpoints.Endpoint`2.Options*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(ParamArray String())
+  name.vb: Options(ParamArray String())
+- uid: FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  id: Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Options(string, Expression<Func<TRequest, object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Options(string, Expression<Func<TRequest, object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options(string, System.Linq.Expressions.Expression<System.Func<TRequest, object>>)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify a OPTIONS route pattern using a replacement expression.
+  example: []
+  syntax:
+    content: protected void Options(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: >-
+        the words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.
+
+        the replacement words do not have to match the request dto property names.
+
+        <p>
+            <code>/invoice/{@id}</code>
+        </p>
+    - id: members
+      type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
+      description: <code>r =&gt; new { r.InvoiceID }</code>
+    content.vb: Protected Sub Options(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Options*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
+  name.vb: Options(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
   commentId: M:FastEndpoints.Endpoint`2.Patch(System.String[])
   id: Patch(System.String[])
@@ -2682,7 +3120,9 @@ items:
 
         the replacement words do not have to match the request dto property names.
 
-        <p><code>/invoice/{@id}</code></p>
+        <p>
+            <code>/invoice/{@id}</code>
+        </p>
     - id: members
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
       description: <code>r =&gt; new { r.InvoiceID }</code>
@@ -2854,7 +3294,9 @@ items:
 
         the replacement words do not have to match the request dto property names.
 
-        <p><code>/invoice/{@id}/page/{@pageNum}</code></p>
+        <p>
+            <code>/invoice/{@id}/page/{@pageNum}</code>
+        </p>
     - id: members
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
       description: <code>r =&gt; new { r.InvoiceID, r.PageNumber }</code>
@@ -3033,7 +3475,9 @@ items:
 
         the replacement words do not have to match the request dto property names.
 
-        <p><code>/invoice/{@id}/page/{@pageNum}</code></p>
+        <p>
+            <code>/invoice/{@id}/page/{@pageNum}</code>
+        </p>
     - id: members
       type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
       description: <code>r =&gt; new { r.InvoiceID, r.PageNumber }</code>
@@ -3218,11 +3662,12 @@ items:
   summary: specify one or more route patterns this endpoint should be listening for
   example: []
   syntax:
-    content: protected void Routes(params string[] patterns)
+    content: public override void Routes(params string[] patterns)
     parameters:
     - id: patterns
       type: System.String[]
-    content.vb: Protected Sub Routes(ParamArray patterns As String())
+    content.vb: Public Overrides Sub Routes(ParamArray patterns As String())
+  overridden: FastEndpoints.BaseEndpoint.Routes(System.String[])
   overload: FastEndpoints.Endpoint`2.Routes*
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Routes(ParamArray String())
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Routes(ParamArray String())
@@ -3433,6 +3878,69 @@ items:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Throttle(Integer, Double, String)
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Throttle(Integer, Double, String)
   name.vb: Throttle(Integer, Double, String)
+- uid: FastEndpoints.Endpoint`2.Trace(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Trace(System.String[])
+  id: Trace(System.String[])
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Trace(params string[])
+  nameWithType: Endpoint<TRequest, TResponse>.Trace(params string[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Trace(params string[])
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify to listen for TRACE requests on one or more routes.
+  example: []
+  syntax:
+    content: protected void Trace(params string[] routePatterns)
+    parameters:
+    - id: routePatterns
+      type: System.String[]
+    content.vb: Protected Sub Trace(ParamArray routePatterns As String())
+  overload: FastEndpoints.Endpoint`2.Trace*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Trace(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Trace(ParamArray String())
+  name.vb: Trace(ParamArray String())
+- uid: FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  id: Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: Trace(string, Expression<Func<TRequest, object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Trace(string, Expression<Func<TRequest, object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Trace(string, System.Linq.Expressions.Expression<System.Func<TRequest, object>>)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify a TRACE route pattern using a replacement expression.
+  example: []
+  syntax:
+    content: protected void Trace(string routePattern, Expression<Func<TRequest, object>> members)
+    parameters:
+    - id: routePattern
+      type: System.String
+      description: >-
+        the words prefixed with @ will be replaced by property names of the `new` expression in the order they are specified.
+
+        the replacement words do not have to match the request dto property names.
+
+        <p>
+            <code>/invoice/{@id}</code>
+        </p>
+    - id: members
+      type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
+      description: <code>r =&gt; new { r.InvoiceID }</code>
+    content.vb: Protected Sub Trace(routePattern As String, members As Expression(Of Func(Of TRequest, Object)))
+  overload: FastEndpoints.Endpoint`2.Trace*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Trace(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Trace(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
+  name.vb: Trace(String, Expression(Of Func(Of TRequest, Object)))
 - uid: FastEndpoints.Endpoint`2.Validator``1
   commentId: M:FastEndpoints.Endpoint`2.Validator``1
   id: Validator``1
@@ -3485,11 +3993,11 @@ items:
   summary: specify one or more http method verbs this endpoint should be accepting requests for
   example: []
   syntax:
-    content: protected void Verbs(params Http[] methods)
+    content: public void Verbs(params Http[] methods)
     parameters:
     - id: methods
       type: FastEndpoints.Http[]
-    content.vb: Protected Sub Verbs(ParamArray methods As Http())
+    content.vb: Public Sub Verbs(ParamArray methods As Http())
   overload: FastEndpoints.Endpoint`2.Verbs*
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(ParamArray Http())
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Verbs(ParamArray FastEndpoints.Http())
@@ -3511,11 +4019,11 @@ items:
   summary: specify one or more http method verbs this endpoint should be accepting requests for
   example: []
   syntax:
-    content: public override sealed void Verbs(params string[] methods)
+    content: public override void Verbs(params string[] methods)
     parameters:
     - id: methods
       type: System.String[]
-    content.vb: Public NotOverridable Overrides Sub Verbs(ParamArray methods As String())
+    content.vb: Public Overrides Sub Verbs(ParamArray methods As String())
   overridden: FastEndpoints.BaseEndpoint.Verbs(System.String[])
   overload: FastEndpoints.Endpoint`2.Verbs*
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Verbs(ParamArray String())
@@ -3690,7 +4198,7 @@ items:
   summary: >-
     adds a <xref href="FluentValidation.Results.ValidationFailure" data-throw-if-not-resolved="false"></xref> to the validation failure collection of the endpoint and send back a 400 bad request with error details
 
-    immediately interrupting handler execution flow. if there are any vallidation failures, no execution will continue past this call.
+    immediately interrupting handler execution flow. i.e. execution will not continue past this call.
   example: []
   syntax:
     content: public void ThrowError(ValidationFailure failure, int? statusCode = null)
@@ -3721,9 +4229,9 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   summary: >-
-    add a "GeneralError" to the validation failure list and send back a 400 bad request with error details immediately interrupting handler execution
+    adds a "GeneralError" to the validation failure list and sends back a 400 bad request with error details immediately interrupting handler execution
 
-    flow. if there are any vallidation failures, no execution will continue past this call.
+    flow. i.e. execution will not continue past this call.
   example: []
   syntax:
     content: public void ThrowError(string message, int? statusCode = null)
@@ -3739,6 +4247,45 @@ items:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(String, Integer?)
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(String, Integer?)
   name.vb: ThrowError(String, Integer?)
+- uid: FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  id: ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: ThrowError(string, string, Severity, int?)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(string, string, Severity, int?)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(string, string, FluentValidation.Severity, int?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    adds a "GeneralError" to the validation failure list and sends back a 400 bad request with error details immediately interrupting handler execution
+
+    flow. i.e. execution will not continue past this call.
+  example: []
+  syntax:
+    content: public void ThrowError(string message, string errorCode, Severity severity = Severity.Error, int? statusCode = null)
+    parameters:
+    - id: message
+      type: System.String
+      description: the error message
+    - id: errorCode
+      type: System.String
+      description: the error code associated with the error
+    - id: severity
+      type: FluentValidation.Severity
+      description: the severity of the error
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+      description: an optional status code to be used when building the error response
+    content.vb: Public Sub ThrowError(message As String, errorCode As String, severity As Severity = Severity.Error, statusCode As Integer? = Nothing)
+  overload: FastEndpoints.Endpoint`2.ThrowError*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(String, String, Severity, Integer?)
 - uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   id: ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
@@ -3775,6 +4322,48 @@ items:
   nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(Expression(Of Func(Of TRequest, Object)), String, Integer?)
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)), String, Integer?)
   name.vb: ThrowError(Expression(Of Func(Of TRequest, Object)), String, Integer?)
+- uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  id: ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.Endpoint`2
+  langs:
+  - csharp
+  - vb
+  name: ThrowError(Expression<Func<TRequest, object?>>, string, string, Severity, int?)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(Expression<Func<TRequest, object?>>, string, string, Severity, int?)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(System.Linq.Expressions.Expression<System.Func<TRequest, object?>>, string, string, FluentValidation.Severity, int?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    adds an error message for the specified property of the request dto and sends back a 400 bad request with error details immediately interrupting
+
+    handler execution flow. no execution will continue past this call.
+  example: []
+  syntax:
+    content: public void ThrowError(Expression<Func<TRequest, object?>> property, string errorMessage, string errorCode, Severity severity = Severity.Error, int? statusCode = null)
+    parameters:
+    - id: property
+      type: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
+      description: the property to add the error message for
+    - id: errorMessage
+      type: System.String
+      description: the error message
+    - id: errorCode
+      type: System.String
+      description: the error code associated with the error
+    - id: severity
+      type: FluentValidation.Severity
+      description: the severity of the error
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+      description: an optional status code to be used when building the error response
+    content.vb: Public Sub ThrowError([property] As Expression(Of Func(Of TRequest, Object)), errorMessage As String, errorCode As String, severity As Severity = Severity.Error, statusCode As Integer? = Nothing)
+  overload: FastEndpoints.Endpoint`2.ThrowError*
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(Expression(Of Func(Of TRequest, Object)), String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)), String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of TRequest, Object)), String, String, Severity, Integer?)
 - uid: FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint`2.ThrowIfAnyErrors(System.Nullable{System.Int32})
   id: ThrowIfAnyErrors(System.Nullable{System.Int32})
@@ -4539,14 +5128,45 @@ references:
     name: DependencyInjection
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
-- uid: FastEndpoints.Endpoint`2.Route*
-  commentId: Overload:FastEndpoints.Endpoint`2.Route
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Route__1_System_String_System_Boolean_
-  name: Route
-  nameWithType: Endpoint<TRequest, TResponse>.Route
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Route
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Route
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Route
+- uid: FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1_System_String_
+  name: TryResolve<TService>(string)
+  nameWithType: IServiceResolverBase.TryResolve<TService>(string)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>(string)
+  nameWithType.vb: IServiceResolverBase.TryResolve(Of TService)(String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)(String)
+  name.vb: TryResolve(Of TService)(String)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1_System_String_
+  - name: <
+  - name: TService
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TService
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -4558,6 +5178,139 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_System_String_
+  name: TryResolve(Type, string)
+  nameWithType: IServiceResolverBase.TryResolve(Type, string)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve(System.Type, string)
+  nameWithType.vb: IServiceResolverBase.TryResolve(Type, String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(System.Type, String)
+  name.vb: TryResolve(Type, String)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+    name: TryResolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_TryResolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1_System_String_
+  name: Resolve<TService>(string)
+  nameWithType: IServiceResolverBase.Resolve<TService>(string)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>(string)
+  nameWithType.vb: IServiceResolverBase.Resolve(Of TService)(String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(Of TService)(String)
+  name.vb: Resolve(Of TService)(String)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1_System_String_
+  - name: <
+  - name: TService
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TService
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  isExternal: true
+  href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_System_String_
+  name: Resolve(Type, string)
+  nameWithType: IServiceResolverBase.Resolve(Type, string)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve(System.Type, string)
+  nameWithType.vb: IServiceResolverBase.Resolve(Type, String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(System.Type, String)
+  name.vb: Resolve(Type, String)
+  spec.csharp:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+    name: Resolve
+    href: FastEndpoints.IServiceResolverBase.html#FastEndpoints_IServiceResolverBase_Resolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Route*
+  commentId: Overload:FastEndpoints.Endpoint`2.Route
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Route__1_System_String_System_Boolean_
+  name: Route
+  nameWithType: Endpoint<TRequest, TResponse>.Route
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Route
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Route
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Route
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -5567,6 +6320,14 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync*
+  commentId: Overload:FastEndpoints.Endpoint`2.SendAcceptedAtAsync
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  name: SendAcceptedAtAsync
+  nameWithType: Endpoint<TRequest, TResponse>.SendAcceptedAtAsync
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendAcceptedAtAsync
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync
 - uid: FastEndpoints.Endpoint`2.SendStringAsync*
   commentId: Overload:FastEndpoints.Endpoint`2.SendStringAsync
   href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendStringAsync_System_String_System_Int32_System_String_System_Threading_CancellationToken_
@@ -6002,14 +6763,14 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ClaimsAll
   nameWithType.vb: Endpoint(Of TRequest, TResponse).ClaimsAll
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ClaimsAll
-- uid: FastEndpoints.Endpoint`2.Delete*
-  commentId: Overload:FastEndpoints.Endpoint`2.Delete
-  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Delete_System_String___
-  name: Delete
-  nameWithType: Endpoint<TRequest, TResponse>.Delete
-  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete
-  nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete
-  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete
+- uid: FastEndpoints.Endpoint`2.Connect*
+  commentId: Overload:FastEndpoints.Endpoint`2.Connect
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  name: Connect
+  nameWithType: Endpoint<TRequest, TResponse>.Connect
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Connect
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Connect
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Connect
 - uid: System.Linq.Expressions.Expression{System.Func{{TRequest},System.Object}}
   commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Object}}
   parent: System.Linq.Expressions
@@ -6130,6 +6891,14 @@ references:
     name: Expressions
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: FastEndpoints.Endpoint`2.Delete*
+  commentId: Overload:FastEndpoints.Endpoint`2.Delete
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Delete_System_String___
+  name: Delete
+  nameWithType: Endpoint<TRequest, TResponse>.Delete
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Delete
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Delete
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Delete
 - uid: FastEndpoints.Endpoint`2.Description*
   commentId: Overload:FastEndpoints.Endpoint`2.Description
   href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Description_System_Action_Microsoft_AspNetCore_Builder_RouteHandlerBuilder__System_Boolean_
@@ -6274,6 +7043,47 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Head
   nameWithType.vb: Endpoint(Of TRequest, TResponse).Head
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Head
+- uid: FastEndpoints.Endpoint`2.Idempotency*
+  commentId: Overload:FastEndpoints.Endpoint`2.Idempotency
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  name: Idempotency
+  nameWithType: Endpoint<TRequest, TResponse>.Idempotency
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Idempotency
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Idempotency
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Idempotency
+- uid: System.Action{FastEndpoints.IdempotencyOptions}
+  commentId: T:System.Action{FastEndpoints.IdempotencyOptions}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<IdempotencyOptions>
+  nameWithType: Action<IdempotencyOptions>
+  fullName: System.Action<FastEndpoints.IdempotencyOptions>
+  nameWithType.vb: Action(Of IdempotencyOptions)
+  fullName.vb: System.Action(Of FastEndpoints.IdempotencyOptions)
+  name.vb: Action(Of IdempotencyOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: )
 - uid: FastEndpoints.Endpoint`2.Options*
   commentId: Overload:FastEndpoints.Endpoint`2.Options
   href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_Action_Microsoft_AspNetCore_Builder_RouteHandlerBuilder__
@@ -6613,6 +7423,45 @@ references:
   fullName: FastEndpoints.Endpoint<TRequest, TResponse>.RoutePrefixOverride
   nameWithType.vb: Endpoint(Of TRequest, TResponse).RoutePrefixOverride
   fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).RoutePrefixOverride
+- uid: FastEndpoints.BaseEndpoint.Routes(System.String[])
+  commentId: M:FastEndpoints.BaseEndpoint.Routes(System.String[])
+  parent: FastEndpoints.BaseEndpoint
+  isExternal: true
+  href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Routes_System_String___
+  name: Routes(params string[])
+  nameWithType: BaseEndpoint.Routes(params string[])
+  fullName: FastEndpoints.BaseEndpoint.Routes(params string[])
+  nameWithType.vb: BaseEndpoint.Routes(ParamArray String())
+  fullName.vb: FastEndpoints.BaseEndpoint.Routes(ParamArray String())
+  name.vb: Routes(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.BaseEndpoint.Routes(System.String[])
+    name: Routes
+    href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Routes_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.BaseEndpoint.Routes(System.String[])
+    name: Routes
+    href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Routes_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint`2.Routes*
   commentId: Overload:FastEndpoints.Endpoint`2.Routes
   href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Routes_System_String___
@@ -6763,6 +7612,14 @@ references:
   nameWithType.vb: Double
   fullName.vb: Double
   name.vb: Double
+- uid: FastEndpoints.Endpoint`2.Trace*
+  commentId: Overload:FastEndpoints.Endpoint`2.Trace
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  name: Trace
+  nameWithType: Endpoint<TRequest, TResponse>.Trace
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Trace
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Trace
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Trace
 - uid: FastEndpoints.Endpoint`2.Validator*
   commentId: Overload:FastEndpoints.Endpoint`2.Validator
   href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Validator__1

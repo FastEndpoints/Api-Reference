@@ -97,9 +97,6 @@ Classes
       <h4><a class="xref" href="FastEndpoints.BindingOptions.html">BindingOptions</a></h4>
       <section><p>request binding options</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.ClassDefinition.html">ClassDefinition</a></h4>
-      <section><p>represents reflection data for a given class</p>
-</section>
       <h4><a class="xref" href="FastEndpoints.CommandExtensions.html">CommandExtensions</a></h4>
       <section></section>
       <h4><a class="xref" href="FastEndpoints.CommandHandlerBase-1.html">CommandHandlerBase&lt;TCommand&gt;</a></h4>
@@ -111,8 +108,14 @@ Classes
       <h4><a class="xref" href="FastEndpoints.CommandHandler-2.html">CommandHandler&lt;TCommand, TResult&gt;</a></h4>
       <section><p>inherit this base class if you'd like to manipulate validation state of the calling endpoint from within the command handler.</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.CommandMiddlewareConfig.html">CommandMiddlewareConfig</a></h4>
+      <section><p>command middleware configuration</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.Config.html">Config</a></h4>
       <section><p>global configuration settings for FastEndpoints</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.DontBindAttribute.html">DontBindAttribute</a></h4>
+      <section><p>you can prevent one or more binding sources from supplying values for a dto property decorated with this attribute.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.DontInjectAttribute.html">DontInjectAttribute</a></h4>
       <section><p>endpoint properties marked with this attribute will disable property injection for that property</p>
@@ -222,11 +225,17 @@ using a seperate entity mapper.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.EventHubExceptionReceiverExtensions.html">EventHubExceptionReceiverExtensions</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.EventReceiver-1.html">EventReceiver&lt;TEvent&gt;</a></h4>
+      <section><p>the default implementation of an event receiver that can be used to test the execution of and event.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.ExceptionHandlerExtensions.html">ExceptionHandlerExtensions</a></h4>
       <section><p>extensions for global exception handling</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.Factory.html">Factory</a></h4>
       <section><p>a factory for instantiating endpoints/event/mappers/validators/etc. for testing purposes</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.FormFieldAttribute.html">FormFieldAttribute</a></h4>
+      <section><p>disables all other binding sources for a dto property except form fields.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.FromAttribute.html">FromAttribute</a></h4>
       <section><p>properties decorated with this attribute will have their values auto bound from the relevant claim of the current user principal.
@@ -242,20 +251,21 @@ this is a shorter alias for the [FromClaim] attribute.</p>
       <h4><a class="xref" href="FastEndpoints.FromFormAttribute.html">FromFormAttribute</a></h4>
       <section><p>if a request dto property is decorated with this attribute, that property will be bound from complex multipart form data (including files) from the
 incoming request. only valid on complex type properties. only one dto property can be decorated. the incoming form data should be in the correct format.
-incoming content-type must be <code>multipart/form-data</code><p>
+incoming content-type must be <code>multipart/form-data</code></p>
+<p>
 HINT: recursively binding complex object graphs from form data is less performant than binding to top level dto properties.
-so... use sparingly!</p>
-
+so... use sparingly!
+</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.FromHeaderAttribute.html">FromHeaderAttribute</a></h4>
       <section><p>properties decorated with this attribute will have their values auto bound from the relevant http header of the current request.</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.FromQueryParamsAttribute.html">FromQueryParamsAttribute</a></h4>
-      <section><p>properties decorated with this attribute will be bound by obtaining the values from query string parameters with matching names.</p>
+      <h4><a class="xref" href="FastEndpoints.FromQueryAttribute.html">FromQueryAttribute</a></h4>
+      <section><p>if a request dto property is decorated with this attribute, that property will be bound from complex query parameter data from the  incoming request.
+only valid on complex type properties. only one dto property can be decorated. the incoming query parameters should be in the correct format.</p>
 <p>
-WARNING:
-valid only on complex types with at least one public property.
-only one dto property can be decorated with this attribute.
+HINT: recursively binding complex object graphs from query parameters is less performant than binding to top level primitive dto properties.
+so... use sparingly!
 </p>
 </section>
       <h4><a class="xref" href="FastEndpoints.GlobalPostProcessor-1.html">GlobalPostProcessor&lt;TState&gt;</a></h4>
@@ -308,6 +318,13 @@ only one dto property can be decorated with this attribute.
 </section>
       <h4><a class="xref" href="FastEndpoints.HttpResponseExtensions.html">HttpResponseExtensions</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.IdempotencyConfig.html">IdempotencyConfig</a></h4>
+      <section></section>
+      <h4><a class="xref" href="FastEndpoints.IdempotencyExtensions.html">IdempotencyExtensions</a></h4>
+      <section></section>
+      <h4><a class="xref" href="FastEndpoints.IdempotencyOptions.html">IdempotencyOptions</a></h4>
+      <section><p>idempotency settings for an endpoint</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.InMemoryEventHubStorage.html">InMemoryEventHubStorage</a></h4>
       <section></section>
       <h4><a class="xref" href="FastEndpoints.InMemoryEventQueue.html">InMemoryEventQueue</a></h4>
@@ -324,10 +341,15 @@ only one dto property can be decorated with this attribute.
       <h4><a class="xref" href="FastEndpoints.JobQueueOptions.html">JobQueueOptions</a></h4>
       <section><p>options for job queues</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.JobResult-1.html">JobResult&lt;TResult&gt;</a></h4>
+      <section><p>a wrapper for holding a job execution result as well as any progress details.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.JobTracker-1.html">JobTracker&lt;TCommand&gt;</a></h4>
       <section><p>a <a class="xref" href="FastEndpoints.IJobTracker-1.html">IJobTracker&lt;TCommand&gt;</a> implementation used for tracking queued jobs</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.JsonBindException.html">JsonBindException</a></h4>
+      <section></section>
+      <h4><a class="xref" href="FastEndpoints.KestrelExtensions.html">KestrelExtensions</a></h4>
       <section></section>
       <h4><a class="xref" href="FastEndpoints.KeyedServiceAttribute.html">KeyedServiceAttribute</a></h4>
       <section><p>use this attribute to mark a property to be auto injected from the DI container.</p>
@@ -367,16 +389,16 @@ only one dto property can be decorated with this attribute.
 </section>
       <h4><a class="xref" href="FastEndpoints.ProblemDetails.html">ProblemDetails</a></h4>
       <section><p>RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:</p>
-<p><code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code></p>
+<pre><code class="lang-csharp">app.UseFastEndpoints(c =&gt; c.Errors.UseProblemDetails())</code></pre>
 </section>
       <h4><a class="xref" href="FastEndpoints.ProblemDetails.Error.html">ProblemDetails.Error</a></h4>
       <section><p>the error details object</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.PropertyDefinition.html">PropertyDefinition</a></h4>
-      <section><p>represents reflection data for a property of a class</p>
+      <section><p>represents reflection data for a property of a type</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.QueryParamAttribute.html">QueryParamAttribute</a></h4>
-      <section><p>properties decorated with this attribute will have a corresponding request parameter added to the swagger schema</p>
+      <section><p>disables all other binding sources for a dto property except query params.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.ReflectionCache.html">ReflectionCache</a></h4>
       <section><p>the central repository of reflection related data for request dtos and their children</p>
@@ -420,6 +442,9 @@ specify the service type with the <code class="typeparamref">TService</code> gen
 </section>
       <h4><a class="xref" href="FastEndpoints.RouteHandlerBuilderExtensions.html">RouteHandlerBuilderExtensions</a></h4>
       <section></section>
+      <h4><a class="xref" href="FastEndpoints.RouteParamAttribute.html">RouteParamAttribute</a></h4>
+      <section><p>disables all other binding sources for a dto property except route params.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.SecurityOptions.html">SecurityOptions</a></h4>
       <section><p>global security options</p>
 </section>
@@ -460,6 +485,9 @@ specify the service type with the <code class="typeparamref">TService</code> gen
       <section><p>response dto properties marked with this attribute will cause an automatic response header to be added to the http response with the value from the property  that is
 annotated.</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.TypeDefinition.html">TypeDefinition</a></h4>
+      <section><p>represents reflection data for a given type</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.UserPrivileges.html">UserPrivileges</a></h4>
       <section><p>the priviledges of the user which will be embedded in the jwt or cookie</p>
 </section>
@@ -486,7 +514,7 @@ do not maintain state in your validators.
       <h4><a class="xref" href="FastEndpoints.VersioningOptions.html">VersioningOptions</a></h4>
       <section><p>global endpoint versioning options</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.VoidResult.html">VoidResult</a></h4>
+      <h4><a class="xref" href="FastEndpoints.Void.html">Void</a></h4>
       <section></section>
     <h3 id="structs">
 Structs
@@ -547,6 +575,9 @@ Interfaces
       <h4><a class="xref" href="FastEndpoints.ICommandHandler-2.html">ICommandHandler&lt;TCommand, TResult&gt;</a></h4>
       <section><p>interface to be implemented by a command handler for a given command type that returns a result</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.ICommandMiddleware-2.html">ICommandMiddleware&lt;TCommand, TResult&gt;</a></h4>
+      <section><p>interface for creating a command middleware used to build a pipeline around command handlers.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.ICommand-1.html">ICommand&lt;TResult&gt;</a></h4>
       <section><p>interface for a command that returns a <code class="typeparamref">TResult</code></p>
 </section>
@@ -571,6 +602,9 @@ Interfaces
       <h4><a class="xref" href="FastEndpoints.IEventHubStorageProvider-1.html">IEventHubStorageProvider&lt;TStorageRecord&gt;</a></h4>
       <section><p>interface for implementing a storage provider for event hub app (gRPC server)</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.IEventReceiver-1.html">IEventReceiver&lt;TEvent&gt;</a></h4>
+      <section><p>interface for an event receiver that can be used to test the receipt of events in testing.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.IEventStorageRecord.html">IEventStorageRecord</a></h4>
       <section><p>interface for implementing an event storage record that encapsulates/embeds an event (<a class="xref" href="FastEndpoints.IEvent.html">IEvent</a>)</p>
 </section>
@@ -583,8 +617,9 @@ Interfaces
       <h4><a class="xref" href="FastEndpoints.IGlobalPreProcessor.html">IGlobalPreProcessor</a></h4>
       <section><p>interface for defining global pre-processors to be executed before the main endpoint handler is called</p>
 </section>
-      <h4><a class="xref" href="FastEndpoints.IHasMapper.html">IHasMapper</a></h4>
-      <section><p>marker interface for endpoints that has a mapper</p>
+      <h4><a class="xref" href="FastEndpoints.IHasCommandType.html">IHasCommandType</a></h4>
+      <section><p>implement this interface on your job storage record if you'd like to persist the full type name of the command class which is associated with the storage record.
+you don't need to set the value yourself as it will be automatically set by the system.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IHasMapper-1.html">IHasMapper&lt;TMapper&gt;</a></h4>
       <section><p>marker/constraint for endpoints that have a mapper generic argument</p>
@@ -592,6 +627,10 @@ Interfaces
       <h4><a class="xref" href="FastEndpoints.IHasServerCallContext.html">IHasServerCallContext</a></h4>
       <section><p>implement this interface on command handler classes in order to access the <a class="xref" href="FastEndpoints.IHasServerCallContext.html#FastEndpoints_IHasServerCallContext_ServerCallContext">ServerCallContext</a></p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.IHasTrackingID.html">IHasTrackingID</a></h4>
+      <section></section>
+      <h4><a class="xref" href="FastEndpoints.IJobResult.html">IJobResult</a></h4>
+      <section></section>
       <h4><a class="xref" href="FastEndpoints.IJobResultProvider.html">IJobResultProvider</a></h4>
       <section><p>addon interface to enable a job storage provider (<a class="xref" href="FastEndpoints.IJobStorageProvider-1.html">IJobStorageProvider&lt;TStorageRecord&gt;</a>) to support commands that return results.</p>
 </section>
@@ -654,11 +693,19 @@ endpoint.</p>
       <h4><a class="xref" href="FastEndpoints.IRequestMapper.html">IRequestMapper</a></h4>
       <section><p>marker interface for request only mappers</p>
 </section>
+      <h4><a class="xref" href="FastEndpoints.IRequestMapper-2.html">IRequestMapper&lt;TRequest, TEntity&gt;</a></h4>
+      <section><p>use this interface to implement a domain entity mapper for your endpoints that only has a request dto and no response dto.</p>
+<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>
+</section>
       <h4><a class="xref" href="FastEndpoints.IResponseInterceptor.html">IResponseInterceptor</a></h4>
       <section><p>interface for defining a response interceptor to be executed before the main endpoint handler executes</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IResponseMapper.html">IResponseMapper</a></h4>
       <section><p>marker interface for response only mappers</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.IResponseMapper-2.html">IResponseMapper&lt;TResponse, TEntity&gt;</a></h4>
+      <section><p>use this interface to implement a domain entity mapper for your endpoints that only has a response dto and no request dto.</p>
+<p>HINT: entity mappers are used as singletons for performance reasons. do not maintain state in the mappers.</p>
 </section>
       <h4><a class="xref" href="FastEndpoints.IServerStreamCommandHandler-2.html">IServerStreamCommandHandler&lt;TCommand, TResult&gt;</a></h4>
       <section><p>interface to be implemented by a command handler for a given command type that returns <code class="typeparamref">TResult</code> stream</p>
@@ -673,6 +720,9 @@ implement this interface and register the implementation in MS DI for customizin
       <h4><a class="xref" href="FastEndpoints.IServiceResolverBase.html">IServiceResolverBase</a></h4>
       <section><p>interface used by fastendpoints for resolving services from the DI container.
 implement this interface and register the implementation in MS DI for customizing service resolving.</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.ITrackableJob-1.html">ITrackableJob&lt;TResult&gt;</a></h4>
+      <section><p>interface for a trackable job that returns a <code class="typeparamref">TResult</code></p>
 </section>
     <h3 id="enums">
 Enums
@@ -696,6 +746,15 @@ Enums
 </section>
       <h4><a class="xref" href="FastEndpoints.Order.html">Order</a></h4>
       <section><p>enum used to specify whether to execute global pre/post processors before endpoint level processors</p>
+</section>
+      <h4><a class="xref" href="FastEndpoints.Source.html">Source</a></h4>
+      <section><p>enum for choosing which binding sources to disable for a given property using the <a class="xref" href="FastEndpoints.DontBindAttribute.html">DontBindAttribute</a></p>
+</section>
+    <h3 id="delegates">
+Delegates
+</h3>
+      <h4><a class="xref" href="FastEndpoints.CommandDelegate-1.html">CommandDelegate&lt;TResult&gt;</a></h4>
+      <section><p>command delegate</p>
 </section>
 
 

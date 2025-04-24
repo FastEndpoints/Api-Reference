@@ -5,7 +5,7 @@ items:
   id: EnableAdvancedTestingAttribute
   parent: FastEndpoints.Testing
   children:
-  - FastEndpoints.Testing.EnableAdvancedTestingAttribute.#ctor(System.String,System.String)
+  - FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType
   langs:
   - csharp
   - vb
@@ -17,7 +17,9 @@ items:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
   summary: >-
-    this assembly level attribute allows you to order tests at all levels (assembly,collection,class) using the <xref href="FastEndpoints.Testing.PriorityAttribute" data-throw-if-not-resolved="false"></xref> as well as enable support
+    this assembly level attribute allows you to order tests at all levels (assembly,collection,class) using the <xref href="FastEndpoints.Testing.PriorityAttribute" data-throw-if-not-resolved="false"></xref> as well as
+
+    enable support
 
     for assembly fixtures via the <xref href="FastEndpoints.Testing.TestBaseWithAssemblyFixture%601" data-throw-if-not-resolved="false"></xref> class.
   example: []
@@ -25,20 +27,16 @@ items:
     content: >-
       [AttributeUsage(AttributeTargets.Assembly)]
 
-      [TestFrameworkDiscoverer("Xunit.Sdk.TestFrameworkTypeDiscoverer", "xunit.execution.{Platform}")]
-
       public sealed class EnableAdvancedTestingAttribute : Attribute, ITestFrameworkAttribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Assembly)>
-
-      <TestFrameworkDiscoverer("Xunit.Sdk.TestFrameworkTypeDiscoverer", "xunit.execution.{Platform}")>
 
       Public NotInheritable Class EnableAdvancedTestingAttribute Inherits Attribute Implements ITestFrameworkAttribute
   inheritance:
   - System.Object
   - System.Attribute
   implements:
-  - Xunit.Sdk.ITestFrameworkAttribute
+  - Xunit.v3.ITestFrameworkAttribute
   inheritedMembers:
   - System.Attribute.Equals(System.Object)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
@@ -87,39 +85,31 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 1
-  - type: Xunit.Sdk.TestFrameworkDiscovererAttribute
-    ctor: Xunit.Sdk.TestFrameworkDiscovererAttribute.#ctor(System.String,System.String)
-    arguments:
-    - type: System.String
-      value: Xunit.Sdk.TestFrameworkTypeDiscoverer
-    - type: System.String
-      value: xunit.execution.{Platform}
-- uid: FastEndpoints.Testing.EnableAdvancedTestingAttribute.#ctor(System.String,System.String)
-  commentId: M:FastEndpoints.Testing.EnableAdvancedTestingAttribute.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType
+  commentId: P:FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType
+  id: FrameworkType
   parent: FastEndpoints.Testing.EnableAdvancedTestingAttribute
   langs:
   - csharp
   - vb
-  name: EnableAdvancedTestingAttribute(string, string)
-  nameWithType: EnableAdvancedTestingAttribute.EnableAdvancedTestingAttribute(string, string)
-  fullName: FastEndpoints.Testing.EnableAdvancedTestingAttribute.EnableAdvancedTestingAttribute(string, string)
-  type: Constructor
+  name: FrameworkType
+  nameWithType: EnableAdvancedTestingAttribute.FrameworkType
+  fullName: FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType
+  type: Property
   assemblies:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
+  summary: Gets the framework type; must implement <xref href="Xunit.v3.ITestFramework" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
-    content: public EnableAdvancedTestingAttribute(string _ = "FastEndpoints.Testing.TestFramework", string __ = "FastEndpoints.Testing")
-    parameters:
-    - id: _
-      type: System.String
-    - id: __
-      type: System.String
-    content.vb: Public Sub New(_ As String = "FastEndpoints.Testing.TestFramework", __ As String = "FastEndpoints.Testing")
-  overload: FastEndpoints.Testing.EnableAdvancedTestingAttribute.#ctor*
-  nameWithType.vb: EnableAdvancedTestingAttribute.New(String, String)
-  fullName.vb: FastEndpoints.Testing.EnableAdvancedTestingAttribute.New(String, String)
-  name.vb: New(String, String)
+    content: public Type FrameworkType { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public ReadOnly Property FrameworkType As Type
+  overload: FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType*
+  implements:
+  - Xunit.v3.ITestFrameworkAttribute.FrameworkType
 references:
 - uid: FastEndpoints.Testing.PriorityAttribute
   commentId: T:FastEndpoints.Testing.PriorityAttribute
@@ -193,13 +183,13 @@ references:
   name: Attribute
   nameWithType: Attribute
   fullName: System.Attribute
-- uid: Xunit.Sdk.ITestFrameworkAttribute
-  commentId: T:Xunit.Sdk.ITestFrameworkAttribute
-  parent: Xunit.Sdk
+- uid: Xunit.v3.ITestFrameworkAttribute
+  commentId: T:Xunit.v3.ITestFrameworkAttribute
+  parent: Xunit.v3
   isExternal: true
   name: ITestFrameworkAttribute
   nameWithType: ITestFrameworkAttribute
-  fullName: Xunit.Sdk.ITestFrameworkAttribute
+  fullName: Xunit.v3.ITestFrameworkAttribute
 - uid: System.Attribute.Equals(System.Object)
   commentId: M:System.Attribute.Equals(System.Object)
   parent: System.Attribute
@@ -1950,45 +1940,52 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Xunit.Sdk
-  commentId: N:Xunit.Sdk
+- uid: Xunit.v3
+  commentId: N:Xunit.v3
   isExternal: true
-  name: Xunit.Sdk
-  nameWithType: Xunit.Sdk
-  fullName: Xunit.Sdk
+  name: Xunit.v3
+  nameWithType: Xunit.v3
+  fullName: Xunit.v3
   spec.csharp:
   - uid: Xunit
     name: Xunit
     isExternal: true
   - name: .
-  - uid: Xunit.Sdk
-    name: Sdk
+  - uid: Xunit.v3
+    name: v3
     isExternal: true
   spec.vb:
   - uid: Xunit
     name: Xunit
     isExternal: true
   - name: .
-  - uid: Xunit.Sdk
-    name: Sdk
+  - uid: Xunit.v3
+    name: v3
     isExternal: true
-- uid: FastEndpoints.Testing.EnableAdvancedTestingAttribute.#ctor*
-  commentId: Overload:FastEndpoints.Testing.EnableAdvancedTestingAttribute.#ctor
-  href: FastEndpoints.Testing.EnableAdvancedTestingAttribute.html#FastEndpoints_Testing_EnableAdvancedTestingAttribute__ctor_System_String_System_String_
-  name: EnableAdvancedTestingAttribute
-  nameWithType: EnableAdvancedTestingAttribute.EnableAdvancedTestingAttribute
-  fullName: FastEndpoints.Testing.EnableAdvancedTestingAttribute.EnableAdvancedTestingAttribute
-  nameWithType.vb: EnableAdvancedTestingAttribute.New
-  fullName.vb: FastEndpoints.Testing.EnableAdvancedTestingAttribute.New
-  name.vb: New
-- uid: System.String
-  commentId: T:System.String
+- uid: Xunit.v3.ITestFramework
+  commentId: T:Xunit.v3.ITestFramework
+  isExternal: true
+  name: ITestFramework
+  nameWithType: ITestFramework
+  fullName: Xunit.v3.ITestFramework
+- uid: FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType*
+  commentId: Overload:FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType
+  href: FastEndpoints.Testing.EnableAdvancedTestingAttribute.html#FastEndpoints_Testing_EnableAdvancedTestingAttribute_FrameworkType
+  name: FrameworkType
+  nameWithType: EnableAdvancedTestingAttribute.FrameworkType
+  fullName: FastEndpoints.Testing.EnableAdvancedTestingAttribute.FrameworkType
+- uid: Xunit.v3.ITestFrameworkAttribute.FrameworkType
+  commentId: P:Xunit.v3.ITestFrameworkAttribute.FrameworkType
+  parent: Xunit.v3.ITestFrameworkAttribute
+  isExternal: true
+  name: FrameworkType
+  nameWithType: ITestFrameworkAttribute.FrameworkType
+  fullName: Xunit.v3.ITestFrameworkAttribute.FrameworkType
+- uid: System.Type
+  commentId: T:System.Type
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type

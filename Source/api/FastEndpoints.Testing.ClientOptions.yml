@@ -8,6 +8,7 @@ items:
   - FastEndpoints.Testing.ClientOptions.AddHandlers(System.Net.Http.DelegatingHandler[])
   - FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
   - FastEndpoints.Testing.ClientOptions.BaseAddress
+  - FastEndpoints.Testing.ClientOptions.BypassCaching
   - FastEndpoints.Testing.ClientOptions.HandleCookies
   - FastEndpoints.Testing.ClientOptions.MaxAutomaticRedirections
   - FastEndpoints.Testing.ClientOptions.ThrottleBypassHeaderName
@@ -76,11 +77,11 @@ items:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
   summary: >-
-    setting this value would cause the outgoing request to contain a header with the specified name and a unique value per request, which would allow test code to bypass the
+    setting this value would cause the outgoing request to contain a header with the specified name and a unique value per request, which would allow test
 
-    throttling limits enforced by the endpoints. make sure the header name matches with what is configured at the global or endpoint level. if it's not customized, use the
+    code to bypass the throttling limits enforced by the endpoints. make sure the header name matches with what is configured at the global or endpoint level.
 
-    default name <code>X-Forwarded-For</code>
+    if it's not customized, use the default name <code>X-Forwarded-For</code>
   example: []
   syntax:
     content: public string? ThrottleBypassHeaderName { get; set; }
@@ -89,6 +90,32 @@ items:
       type: System.String
     content.vb: Public Property ThrottleBypassHeaderName As String
   overload: FastEndpoints.Testing.ClientOptions.ThrottleBypassHeaderName*
+- uid: FastEndpoints.Testing.ClientOptions.BypassCaching
+  commentId: P:FastEndpoints.Testing.ClientOptions.BypassCaching
+  id: BypassCaching
+  parent: FastEndpoints.Testing.ClientOptions
+  langs:
+  - csharp
+  - vb
+  name: BypassCaching
+  nameWithType: ClientOptions.BypassCaching
+  fullName: FastEndpoints.Testing.ClientOptions.BypassCaching
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  summary: >-
+    setting this to <code>true</code> would cause the outgoing request to contain a 'no-cache' header as well as a randomly generated query parameter,
+
+    which would allow  test code to bypass both output caching and response caching  enforced by the endpoints.
+  example: []
+  syntax:
+    content: public bool BypassCaching { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property BypassCaching As Boolean
+  overload: FastEndpoints.Testing.ClientOptions.BypassCaching*
 - uid: FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
   commentId: P:FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
   id: AllowAutoRedirect
@@ -505,12 +532,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: FastEndpoints.Testing.ClientOptions.AllowAutoRedirect*
-  commentId: Overload:FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
-  href: FastEndpoints.Testing.ClientOptions.html#FastEndpoints_Testing_ClientOptions_AllowAutoRedirect
-  name: AllowAutoRedirect
-  nameWithType: ClientOptions.AllowAutoRedirect
-  fullName: FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
+- uid: FastEndpoints.Testing.ClientOptions.BypassCaching*
+  commentId: Overload:FastEndpoints.Testing.ClientOptions.BypassCaching
+  href: FastEndpoints.Testing.ClientOptions.html#FastEndpoints_Testing_ClientOptions_BypassCaching
+  name: BypassCaching
+  nameWithType: ClientOptions.BypassCaching
+  fullName: FastEndpoints.Testing.ClientOptions.BypassCaching
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -522,6 +549,12 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: FastEndpoints.Testing.ClientOptions.AllowAutoRedirect*
+  commentId: Overload:FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
+  href: FastEndpoints.Testing.ClientOptions.html#FastEndpoints_Testing_ClientOptions_AllowAutoRedirect
+  name: AllowAutoRedirect
+  nameWithType: ClientOptions.AllowAutoRedirect
+  fullName: FastEndpoints.Testing.ClientOptions.AllowAutoRedirect
 - uid: FastEndpoints.Testing.ClientOptions.MaxAutomaticRedirections*
   commentId: Overload:FastEndpoints.Testing.ClientOptions.MaxAutomaticRedirections
   href: FastEndpoints.Testing.ClientOptions.html#FastEndpoints_Testing_ClientOptions_MaxAutomaticRedirections

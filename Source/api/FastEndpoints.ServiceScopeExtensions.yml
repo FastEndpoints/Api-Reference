@@ -6,9 +6,13 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
+  - FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
   - FastEndpoints.ServiceScopeExtensions.Resolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope)
+  - FastEndpoints.ServiceScopeExtensions.Resolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
   - FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type)
+  - FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
   - FastEndpoints.ServiceScopeExtensions.TryResolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope)
+  - FastEndpoints.ServiceScopeExtensions.TryResolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
   langs:
   - csharp
   - vb
@@ -162,6 +166,150 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: Thrown if requested service cannot be resolved
+- uid: FastEndpoints.ServiceScopeExtensions.TryResolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
+  commentId: M:FastEndpoints.ServiceScopeExtensions.TryResolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
+  id: TryResolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.ServiceScopeExtensions
+  langs:
+  - csharp
+  - vb
+  name: TryResolve<TService>(IServiceScope, string)
+  nameWithType: ServiceScopeExtensions.TryResolve<TService>(IServiceScope, string)
+  fullName: FastEndpoints.ServiceScopeExtensions.TryResolve<TService>(Microsoft.Extensions.DependencyInjection.IServiceScope, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: 'public static TService? TryResolve<TService>(this IServiceScope scope, string keyName) where TService : class'
+    parameters:
+    - id: scope
+      type: Microsoft.Extensions.DependencyInjection.IServiceScope
+    - id: keyName
+      type: System.String
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Public Shared Function TryResolve(Of TService As Class)(scope As IServiceScope, keyName As String) As TService
+  overload: FastEndpoints.ServiceScopeExtensions.TryResolve*
+  nameWithType.vb: ServiceScopeExtensions.TryResolve(Of TService)(IServiceScope, String)
+  fullName.vb: FastEndpoints.ServiceScopeExtensions.TryResolve(Of TService)(Microsoft.Extensions.DependencyInjection.IServiceScope, String)
+  name.vb: TryResolve(Of TService)(IServiceScope, String)
+- uid: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
+  commentId: M:FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
+  id: TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.ServiceScopeExtensions
+  langs:
+  - csharp
+  - vb
+  name: TryResolve(IServiceScope, Type, string)
+  nameWithType: ServiceScopeExtensions.TryResolve(IServiceScope, Type, string)
+  fullName: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope, System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: public static object? TryResolve(this IServiceScope scope, Type typeOfService, string keyName)
+    parameters:
+    - id: scope
+      type: Microsoft.Extensions.DependencyInjection.IServiceScope
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Shared Function TryResolve(scope As IServiceScope, typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.ServiceScopeExtensions.TryResolve*
+  nameWithType.vb: ServiceScopeExtensions.TryResolve(IServiceScope, Type, String)
+  fullName.vb: FastEndpoints.ServiceScopeExtensions.TryResolve(Microsoft.Extensions.DependencyInjection.IServiceScope, System.Type, String)
+  name.vb: TryResolve(IServiceScope, Type, String)
+- uid: FastEndpoints.ServiceScopeExtensions.Resolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
+  commentId: M:FastEndpoints.ServiceScopeExtensions.Resolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
+  id: Resolve``1(Microsoft.Extensions.DependencyInjection.IServiceScope,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.ServiceScopeExtensions
+  langs:
+  - csharp
+  - vb
+  name: Resolve<TService>(IServiceScope, string)
+  nameWithType: ServiceScopeExtensions.Resolve<TService>(IServiceScope, string)
+  fullName: FastEndpoints.ServiceScopeExtensions.Resolve<TService>(Microsoft.Extensions.DependencyInjection.IServiceScope, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: 'public static TService Resolve<TService>(this IServiceScope scope, string keyName) where TService : class'
+    parameters:
+    - id: scope
+      type: Microsoft.Extensions.DependencyInjection.IServiceScope
+    - id: keyName
+      type: System.String
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Public Shared Function Resolve(Of TService As Class)(scope As IServiceScope, keyName As String) As TService
+  overload: FastEndpoints.ServiceScopeExtensions.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  nameWithType.vb: ServiceScopeExtensions.Resolve(Of TService)(IServiceScope, String)
+  fullName.vb: FastEndpoints.ServiceScopeExtensions.Resolve(Of TService)(Microsoft.Extensions.DependencyInjection.IServiceScope, String)
+  name.vb: Resolve(Of TService)(IServiceScope, String)
+- uid: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
+  commentId: M:FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
+  id: Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope,System.Type,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.ServiceScopeExtensions
+  langs:
+  - csharp
+  - vb
+  name: Resolve(IServiceScope, Type, string)
+  nameWithType: ServiceScopeExtensions.Resolve(IServiceScope, Type, string)
+  fullName: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope, System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: public static object Resolve(this IServiceScope scope, Type typeOfService, string keyName)
+    parameters:
+    - id: scope
+      type: Microsoft.Extensions.DependencyInjection.IServiceScope
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Shared Function Resolve(scope As IServiceScope, typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.ServiceScopeExtensions.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  nameWithType.vb: ServiceScopeExtensions.Resolve(IServiceScope, Type, String)
+  fullName.vb: FastEndpoints.ServiceScopeExtensions.Resolve(Microsoft.Extensions.DependencyInjection.IServiceScope, System.Type, String)
+  name.vb: Resolve(IServiceScope, Type, String)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -487,3 +635,14 @@ references:
   name: Resolve
   nameWithType: ServiceScopeExtensions.Resolve
   fullName: FastEndpoints.ServiceScopeExtensions.Resolve
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

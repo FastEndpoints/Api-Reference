@@ -7,9 +7,13 @@ items:
   children:
   - FastEndpoints.RemoteConnectionCoreExtensions.MapRemoteCore(System.IServiceProvider,System.String,System.Action{FastEndpoints.RemoteConnectionCore})
   - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
+  - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
   - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
+  - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},Grpc.Core.CallOptions)
+  - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},System.Threading.CancellationToken)
   - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)
+  - FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -55,9 +59,9 @@ items:
 
     <p>
 
-    IMPORTANT: call the <xref href="FastEndpoints.RemoteConnectionCore.Register%60%602" data-throw-if-not-resolved="false"></xref> method (using action <code class="paramref">r</code>) to specify which commands are handled by
+    IMPORTANT: call the <xref href="FastEndpoints.RemoteConnectionCore.Register%60%602" data-throw-if-not-resolved="false"></xref> method (using action <code class="paramref">r</code>) to specify which commands are
 
-    this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
+    handled by this remote server. event subscriptions can be specified using <code>.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
 
     </p>
   example: []
@@ -80,6 +84,40 @@ items:
   nameWithType.vb: RemoteConnectionCoreExtensions.MapRemoteCore(IServiceProvider, String, Action(Of RemoteConnectionCore))
   fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.MapRemoteCore(System.IServiceProvider, String, System.Action(Of FastEndpoints.RemoteConnectionCore))
   name.vb: MapRemoteCore(IServiceProvider, String, Action(Of RemoteConnectionCore))
+- uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
+  id: RemoteExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.RemoteConnectionCoreExtensions
+  langs:
+  - csharp
+  - vb
+  name: RemoteExecuteAsync(ICommand, CancellationToken)
+  nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync(ICommand, CancellationToken)
+  fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Core
+  namespace: FastEndpoints
+  summary: execute the command on the relevant remote server
+  example: []
+  syntax:
+    content: public static Task RemoteExecuteAsync(this ICommand command, CancellationToken ct)
+    parameters:
+    - id: command
+      type: FastEndpoints.ICommand
+      description: ''
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemoteExecuteAsync(command As ICommand, ct As CancellationToken) As Task
+  overload: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the relevant remote handler has not been registered
 - uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
   id: RemoteExecuteAsync(FastEndpoints.ICommand,Grpc.Core.CallOptions)
@@ -114,6 +152,46 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
+- uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  id: RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.RemoteConnectionCoreExtensions
+  langs:
+  - csharp
+  - vb
+  name: RemoteExecuteAsync<TResult>(ICommand<TResult>, CancellationToken)
+  nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync<TResult>(ICommand<TResult>, CancellationToken)
+  fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync<TResult>(FastEndpoints.ICommand<TResult>, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Core
+  namespace: FastEndpoints
+  summary: execute the command on the relevant remote server and get back a <code class="typeparamref">TResult</code> result
+  example: []
+  syntax:
+    content: 'public static Task<TResult> RemoteExecuteAsync<TResult>(this ICommand<TResult> command, CancellationToken ct) where TResult : class'
+    parameters:
+    - id: command
+      type: FastEndpoints.ICommand{{TResult}}
+      description: ''
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TResult
+      description: the type of the result
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+    content.vb: Public Shared Function RemoteExecuteAsync(Of TResult As Class)(command As ICommand(Of TResult), ct As CancellationToken) As Task(Of TResult)
+  overload: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the relevant remote handler has not been registered
+  nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
+  fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), System.Threading.CancellationToken)
+  name.vb: RemoteExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
 - uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
   id: RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)
@@ -129,7 +207,7 @@ items:
   assemblies:
   - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
-  summary: execute the command on the relevant remote server and get back a result
+  summary: execute the command on the relevant remote server and get back a <code class="typeparamref">TResult</code> result
   example: []
   syntax:
     content: 'public static Task<TResult> RemoteExecuteAsync<TResult>(this ICommand<TResult> command, CallOptions options = default) where TResult : class'
@@ -154,6 +232,46 @@ items:
   nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(ICommand(Of TResult), CallOptions)
   fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), Grpc.Core.CallOptions)
   name.vb: RemoteExecuteAsync(Of TResult)(ICommand(Of TResult), CallOptions)
+- uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},System.Threading.CancellationToken)
+  id: RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.RemoteConnectionCoreExtensions
+  langs:
+  - csharp
+  - vb
+  name: RemoteExecuteAsync<TResult>(IServerStreamCommand<TResult>, CancellationToken)
+  nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync<TResult>(IServerStreamCommand<TResult>, CancellationToken)
+  fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync<TResult>(FastEndpoints.IServerStreamCommand<TResult>, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Core
+  namespace: FastEndpoints
+  summary: execute the command on the relevant remote server and get back a stream of <code class="typeparamref">TResult</code>
+  example: []
+  syntax:
+    content: 'public static IAsyncEnumerable<TResult> RemoteExecuteAsync<TResult>(this IServerStreamCommand<TResult> command, CancellationToken ct) where TResult : class'
+    parameters:
+    - id: command
+      type: FastEndpoints.IServerStreamCommand{{TResult}}
+      description: ''
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TResult
+      description: the type of the result stream
+    return:
+      type: System.Collections.Generic.IAsyncEnumerable{{TResult}}
+    content.vb: Public Shared Function RemoteExecuteAsync(Of TResult As Class)(command As IServerStreamCommand(Of TResult), ct As CancellationToken) As IAsyncEnumerable(Of TResult)
+  overload: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the relevant remote handler has not been registered
+  nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(IServerStreamCommand(Of TResult), CancellationToken)
+  fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(FastEndpoints.IServerStreamCommand(Of TResult), System.Threading.CancellationToken)
+  name.vb: RemoteExecuteAsync(Of TResult)(IServerStreamCommand(Of TResult), CancellationToken)
 - uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},Grpc.Core.CallOptions)
   id: RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},Grpc.Core.CallOptions)
@@ -194,6 +312,48 @@ items:
   nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(IServerStreamCommand(Of TResult), CallOptions)
   fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TResult)(FastEndpoints.IServerStreamCommand(Of TResult), Grpc.Core.CallOptions)
   name.vb: RemoteExecuteAsync(Of TResult)(IServerStreamCommand(Of TResult), CallOptions)
+- uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)
+  id: RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.RemoteConnectionCoreExtensions
+  langs:
+  - csharp
+  - vb
+  name: RemoteExecuteAsync<TCommand, TResult>(IAsyncEnumerable<TCommand>, CancellationToken)
+  nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync<TCommand, TResult>(IAsyncEnumerable<TCommand>, CancellationToken)
+  fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync<TCommand, TResult>(System.Collections.Generic.IAsyncEnumerable<TCommand>, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Core
+  namespace: FastEndpoints
+  summary: send the stream of <code class="typeparamref">TCommand</code> commands to the relevant remote server and get back a result of <code class="typeparamref">TResult</code>
+  example: []
+  syntax:
+    content: 'public static Task<TResult> RemoteExecuteAsync<TCommand, TResult>(this IAsyncEnumerable<TCommand> commands, CancellationToken ct) where TCommand : class where TResult : class'
+    parameters:
+    - id: commands
+      type: System.Collections.Generic.IAsyncEnumerable{{TCommand}}
+      description: the stream to send
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TCommand
+      description: the type of command in the stream
+    - id: TResult
+      description: the type of the result that will be returned when the stream ends
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+    content.vb: Public Shared Function RemoteExecuteAsync(Of TCommand As Class, TResult As Class)(commands As IAsyncEnumerable(Of TCommand), ct As CancellationToken) As Task(Of TResult)
+  overload: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the relevant remote handler has not been registered
+  nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TCommand, TResult)(IAsyncEnumerable(Of TCommand), CancellationToken)
+  fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TCommand, TResult)(System.Collections.Generic.IAsyncEnumerable(Of TCommand), System.Threading.CancellationToken)
+  name.vb: RemoteExecuteAsync(Of TCommand, TResult)(IAsyncEnumerable(Of TCommand), CancellationToken)
 - uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)
   id: RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)
@@ -202,40 +362,40 @@ items:
   langs:
   - csharp
   - vb
-  name: RemoteExecuteAsync<T, TResult>(IAsyncEnumerable<T>, CallOptions)
-  nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync<T, TResult>(IAsyncEnumerable<T>, CallOptions)
-  fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync<T, TResult>(System.Collections.Generic.IAsyncEnumerable<T>, Grpc.Core.CallOptions)
+  name: RemoteExecuteAsync<TCommand, TResult>(IAsyncEnumerable<TCommand>, CallOptions)
+  nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync<TCommand, TResult>(IAsyncEnumerable<TCommand>, CallOptions)
+  fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync<TCommand, TResult>(System.Collections.Generic.IAsyncEnumerable<TCommand>, Grpc.Core.CallOptions)
   type: Method
   assemblies:
   - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
-  summary: send the stream of <code class="typeparamref">T</code> to the relevant remote server and get back a result of <code class="typeparamref">TResult</code>
+  summary: send the stream of <code class="typeparamref">TCommand</code> commands to the relevant remote server and get back a result of <code class="typeparamref">TResult</code>
   example: []
   syntax:
-    content: 'public static Task<TResult> RemoteExecuteAsync<T, TResult>(this IAsyncEnumerable<T> commands, CallOptions options = default) where T : class where TResult : class'
+    content: 'public static Task<TResult> RemoteExecuteAsync<TCommand, TResult>(this IAsyncEnumerable<TCommand> commands, CallOptions options = default) where TCommand : class where TResult : class'
     parameters:
     - id: commands
-      type: System.Collections.Generic.IAsyncEnumerable{{T}}
+      type: System.Collections.Generic.IAsyncEnumerable{{TCommand}}
       description: the stream to send
     - id: options
       type: Grpc.Core.CallOptions
       description: call options
     typeParameters:
-    - id: T
-      description: the type of item in the stream
+    - id: TCommand
+      description: the type of command in the stream
     - id: TResult
       description: the type of the result that will be returned when the stream ends
     return:
       type: System.Threading.Tasks.Task{{TResult}}
-    content.vb: Public Shared Function RemoteExecuteAsync(Of T As Class, TResult As Class)(commands As IAsyncEnumerable(Of T), options As CallOptions = Nothing) As Task(Of TResult)
+    content.vb: Public Shared Function RemoteExecuteAsync(Of TCommand As Class, TResult As Class)(commands As IAsyncEnumerable(Of TCommand), options As CallOptions = Nothing) As Task(Of TResult)
   overload: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: thrown if the relevant remote handler has not been registered
-  nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of T, TResult)(IAsyncEnumerable(Of T), CallOptions)
-  fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of T, TResult)(System.Collections.Generic.IAsyncEnumerable(Of T), Grpc.Core.CallOptions)
-  name.vb: RemoteExecuteAsync(Of T, TResult)(IAsyncEnumerable(Of T), CallOptions)
+  nameWithType.vb: RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TCommand, TResult)(IAsyncEnumerable(Of TCommand), CallOptions)
+  fullName.vb: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(Of TCommand, TResult)(System.Collections.Generic.IAsyncEnumerable(Of TCommand), Grpc.Core.CallOptions)
+  name.vb: RemoteExecuteAsync(Of TCommand, TResult)(IAsyncEnumerable(Of TCommand), CallOptions)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -617,7 +777,7 @@ references:
   fullName: System.InvalidOperationException
 - uid: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*
   commentId: Overload:FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync
-  href: FastEndpoints.RemoteConnectionCoreExtensions.html#FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_FastEndpoints_ICommand_Grpc_Core_CallOptions_
+  href: FastEndpoints.RemoteConnectionCoreExtensions.html#FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_FastEndpoints_ICommand_System_Threading_CancellationToken_
   name: RemoteExecuteAsync
   nameWithType: RemoteConnectionCoreExtensions.RemoteExecuteAsync
   fullName: FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync
@@ -628,14 +788,14 @@ references:
   name: ICommand
   nameWithType: ICommand
   fullName: FastEndpoints.ICommand
-- uid: Grpc.Core.CallOptions
-  commentId: T:Grpc.Core.CallOptions
-  parent: Grpc.Core
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs
-  name: CallOptions
-  nameWithType: CallOptions
-  fullName: Grpc.Core.CallOptions
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -644,28 +804,33 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
-- uid: Grpc.Core
-  commentId: N:Grpc.Core
+- uid: System.Threading
+  commentId: N:System.Threading
   isExternal: true
-  name: Grpc.Core
-  nameWithType: Grpc.Core
-  fullName: Grpc.Core
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
   spec.csharp:
-  - uid: Grpc
-    name: Grpc
+  - uid: System
+    name: System
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
-  - uid: Grpc.Core
-    name: Core
+  - uid: System.Threading
+    name: Threading
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
   spec.vb:
-  - uid: Grpc
-    name: Grpc
+  - uid: System
+    name: System
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
-  - uid: Grpc.Core
-    name: Core
+  - uid: System.Threading
+    name: Threading
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
@@ -703,6 +868,36 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Grpc.Core.CallOptions
+  commentId: T:Grpc.Core.CallOptions
+  parent: Grpc.Core
+  isExternal: true
+  href: https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs
+  name: CallOptions
+  nameWithType: CallOptions
+  fullName: Grpc.Core.CallOptions
+- uid: Grpc.Core
+  commentId: N:Grpc.Core
+  isExternal: true
+  name: Grpc.Core
+  nameWithType: Grpc.Core
+  fullName: Grpc.Core
+  spec.csharp:
+  - uid: Grpc
+    name: Grpc
+    isExternal: true
+  - name: .
+  - uid: Grpc.Core
+    name: Core
+    isExternal: true
+  spec.vb:
+  - uid: Grpc
+    name: Grpc
+    isExternal: true
+  - name: .
+  - uid: Grpc.Core
+    name: Core
+    isExternal: true
 - uid: FastEndpoints.ICommand{{TResult}}
   commentId: T:FastEndpoints.ICommand{``0}
   parent: FastEndpoints
@@ -952,24 +1147,24 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: System.Collections.Generic.IAsyncEnumerable{{T}}
+- uid: System.Collections.Generic.IAsyncEnumerable{{TCommand}}
   commentId: T:System.Collections.Generic.IAsyncEnumerable{``0}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IAsyncEnumerable`1
   href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
-  name: IAsyncEnumerable<T>
-  nameWithType: IAsyncEnumerable<T>
-  fullName: System.Collections.Generic.IAsyncEnumerable<T>
-  nameWithType.vb: IAsyncEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IAsyncEnumerable(Of T)
-  name.vb: IAsyncEnumerable(Of T)
+  name: IAsyncEnumerable<TCommand>
+  nameWithType: IAsyncEnumerable<TCommand>
+  fullName: System.Collections.Generic.IAsyncEnumerable<TCommand>
+  nameWithType.vb: IAsyncEnumerable(Of TCommand)
+  fullName.vb: System.Collections.Generic.IAsyncEnumerable(Of TCommand)
+  name.vb: IAsyncEnumerable(Of TCommand)
   spec.csharp:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
     name: IAsyncEnumerable
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1
   - name: <
-  - name: T
+  - name: TCommand
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.IAsyncEnumerable`1
@@ -979,5 +1174,5 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - name: T
+  - name: TCommand
   - name: )

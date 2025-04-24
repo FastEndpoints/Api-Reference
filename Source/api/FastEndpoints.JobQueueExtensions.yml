@@ -6,7 +6,10 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.JobQueueExtensions.AddJobQueues``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - FastEndpoints.JobQueueExtensions.CreateJob``1(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime})
   - FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
+  - FastEndpoints.JobQueueExtensions.TriggerJobExecution(FastEndpoints.ICommandBase)
+  - FastEndpoints.JobQueueExtensions.TriggerJobExecution``1
   - FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{FastEndpoints.JobQueueOptions})
   langs:
   - csharp
@@ -103,6 +106,101 @@ items:
   nameWithType.vb: JobQueueExtensions.UseJobQueues(IApplicationBuilder, Action(Of JobQueueOptions))
   fullName.vb: FastEndpoints.JobQueueExtensions.UseJobQueues(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action(Of FastEndpoints.JobQueueOptions))
   name.vb: UseJobQueues(IApplicationBuilder, Action(Of JobQueueOptions))
+- uid: FastEndpoints.JobQueueExtensions.CreateJob``1(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime})
+  commentId: M:FastEndpoints.JobQueueExtensions.CreateJob``1(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime})
+  id: CreateJob``1(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime})
+  isExtensionMethod: true
+  parent: FastEndpoints.JobQueueExtensions
+  langs:
+  - csharp
+  - vb
+  name: CreateJob<TStorageRecord>(ICommandBase, DateTime?, DateTime?)
+  nameWithType: JobQueueExtensions.CreateJob<TStorageRecord>(ICommandBase, DateTime?, DateTime?)
+  fullName: FastEndpoints.JobQueueExtensions.CreateJob<TStorageRecord>(FastEndpoints.ICommandBase, System.DateTime?, System.DateTime?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: creates a new job object for the provided command.
+  example: []
+  syntax:
+    content: 'public static TStorageRecord CreateJob<TStorageRecord>(this ICommandBase cmd, DateTime? executeAfter = null, DateTime? expireOn = null) where TStorageRecord : class, IJobStorageRecord, new()'
+    parameters:
+    - id: cmd
+      type: FastEndpoints.ICommandBase
+      description: the command to be set in the job
+    - id: executeAfter
+      type: System.Nullable{System.DateTime}
+      description: if set, the job won't be executed before this date/time. if unspecified, execution is attempted as soon as possible.
+    - id: expireOn
+      type: System.Nullable{System.DateTime}
+      description: if set, job will be considered stale/expired after this date/time. if unspecified, jobs expire after 4 hours of creation.
+    typeParameters:
+    - id: TStorageRecord
+      description: the type of your <xref href="FastEndpoints.IJobStorageRecord" data-throw-if-not-resolved="false"></xref> concrete class
+    return:
+      type: '{TStorageRecord}'
+      description: the new job object
+    content.vb: Public Shared Function CreateJob(Of TStorageRecord As {Class, IJobStorageRecord, New})(cmd As ICommandBase, executeAfter As Date? = Nothing, expireOn As Date? = Nothing) As TStorageRecord
+  overload: FastEndpoints.JobQueueExtensions.CreateJob*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: thrown if the <code class="paramref">executeAfter</code> and <code class="paramref">expireOn</code> arguments are not UTC values
+  nameWithType.vb: JobQueueExtensions.CreateJob(Of TStorageRecord)(ICommandBase, Date?, Date?)
+  fullName.vb: FastEndpoints.JobQueueExtensions.CreateJob(Of TStorageRecord)(FastEndpoints.ICommandBase, Date?, Date?)
+  name.vb: CreateJob(Of TStorageRecord)(ICommandBase, Date?, Date?)
+- uid: FastEndpoints.JobQueueExtensions.TriggerJobExecution(FastEndpoints.ICommandBase)
+  commentId: M:FastEndpoints.JobQueueExtensions.TriggerJobExecution(FastEndpoints.ICommandBase)
+  id: TriggerJobExecution(FastEndpoints.ICommandBase)
+  isExtensionMethod: true
+  parent: FastEndpoints.JobQueueExtensions
+  langs:
+  - csharp
+  - vb
+  name: TriggerJobExecution(ICommandBase)
+  nameWithType: JobQueueExtensions.TriggerJobExecution(ICommandBase)
+  fullName: FastEndpoints.JobQueueExtensions.TriggerJobExecution(FastEndpoints.ICommandBase)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: triggers the execution of jobs in the respective queue for that command type.
+  example: []
+  syntax:
+    content: public static void TriggerJobExecution(this ICommandBase cmd)
+    parameters:
+    - id: cmd
+      type: FastEndpoints.ICommandBase
+      description: the command used to determine which queue to trigger
+    content.vb: Public Shared Sub TriggerJobExecution(cmd As ICommandBase)
+  overload: FastEndpoints.JobQueueExtensions.TriggerJobExecution*
+- uid: FastEndpoints.JobQueueExtensions.TriggerJobExecution``1
+  commentId: M:FastEndpoints.JobQueueExtensions.TriggerJobExecution``1
+  id: TriggerJobExecution``1
+  parent: FastEndpoints.JobQueueExtensions
+  langs:
+  - csharp
+  - vb
+  name: TriggerJobExecution<TCommand>()
+  nameWithType: JobQueueExtensions.TriggerJobExecution<TCommand>()
+  fullName: FastEndpoints.JobQueueExtensions.TriggerJobExecution<TCommand>()
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: triggers the execution of jobs in the respective queue for that command type.
+  example: []
+  syntax:
+    content: 'public static void TriggerJobExecution<TCommand>() where TCommand : ICommandBase'
+    typeParameters:
+    - id: TCommand
+      description: the command type used to determine which queue to trigger
+    content.vb: Public Shared Sub TriggerJobExecution(Of TCommand As ICommandBase)()
+  overload: FastEndpoints.JobQueueExtensions.TriggerJobExecution*
+  nameWithType.vb: JobQueueExtensions.TriggerJobExecution(Of TCommand)()
+  fullName.vb: FastEndpoints.JobQueueExtensions.TriggerJobExecution(Of TCommand)()
+  name.vb: TriggerJobExecution(Of TCommand)()
 - uid: FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
   commentId: M:FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
   id: QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)
@@ -559,6 +657,12 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: FastEndpoints.IJobStorageRecord
+  commentId: T:FastEndpoints.IJobStorageRecord
+  href: FastEndpoints.IJobStorageRecord.html
+  name: IJobStorageRecord
+  nameWithType: IJobStorageRecord
+  fullName: FastEndpoints.IJobStorageRecord
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true
@@ -566,12 +670,12 @@ references:
   name: ArgumentException
   nameWithType: ArgumentException
   fullName: System.ArgumentException
-- uid: FastEndpoints.JobQueueExtensions.QueueJobAsync*
-  commentId: Overload:FastEndpoints.JobQueueExtensions.QueueJobAsync
-  href: FastEndpoints.JobQueueExtensions.html#FastEndpoints_JobQueueExtensions_QueueJobAsync_FastEndpoints_ICommandBase_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Threading_CancellationToken_
-  name: QueueJobAsync
-  nameWithType: JobQueueExtensions.QueueJobAsync
-  fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync
+- uid: FastEndpoints.JobQueueExtensions.CreateJob*
+  commentId: Overload:FastEndpoints.JobQueueExtensions.CreateJob
+  href: FastEndpoints.JobQueueExtensions.html#FastEndpoints_JobQueueExtensions_CreateJob__1_FastEndpoints_ICommandBase_System_Nullable_System_DateTime__System_Nullable_System_DateTime__
+  name: CreateJob
+  nameWithType: JobQueueExtensions.CreateJob
+  fullName: FastEndpoints.JobQueueExtensions.CreateJob
 - uid: FastEndpoints.ICommandBase
   commentId: T:FastEndpoints.ICommandBase
   parent: FastEndpoints
@@ -602,6 +706,56 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.datetime
   - name: '?'
+- uid: '{TStorageRecord}'
+  commentId: '!:TStorageRecord'
+  definition: TStorageRecord
+  name: TStorageRecord
+  nameWithType: TStorageRecord
+  fullName: TStorageRecord
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: TStorageRecord
+  name: TStorageRecord
+  nameWithType: TStorageRecord
+  fullName: TStorageRecord
+- uid: FastEndpoints.JobQueueExtensions.TriggerJobExecution*
+  commentId: Overload:FastEndpoints.JobQueueExtensions.TriggerJobExecution
+  href: FastEndpoints.JobQueueExtensions.html#FastEndpoints_JobQueueExtensions_TriggerJobExecution_FastEndpoints_ICommandBase_
+  name: TriggerJobExecution
+  nameWithType: JobQueueExtensions.TriggerJobExecution
+  fullName: FastEndpoints.JobQueueExtensions.TriggerJobExecution
+- uid: FastEndpoints.JobQueueExtensions.QueueJobAsync*
+  commentId: Overload:FastEndpoints.JobQueueExtensions.QueueJobAsync
+  href: FastEndpoints.JobQueueExtensions.html#FastEndpoints_JobQueueExtensions_QueueJobAsync_FastEndpoints_ICommandBase_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Threading_CancellationToken_
+  name: QueueJobAsync
+  nameWithType: JobQueueExtensions.QueueJobAsync
+  fullName: FastEndpoints.JobQueueExtensions.QueueJobAsync
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -644,34 +798,6 @@ references:
     name: Guid
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.guid
-  - name: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: System.Threading
   commentId: N:System.Threading

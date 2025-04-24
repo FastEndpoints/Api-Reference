@@ -91,11 +91,11 @@ test methods can be run in a given order by decorating the methods with <a class
     <div class="level1"><a class="xref" href="FastEndpoints.Testing.TestBase.html">TestBase</a></div>
     <div class="level2"><span class="xref">TestBase&lt;TAppFixture&gt;</span></div>
       <div class="level3"><a class="xref" href="FastEndpoints.Testing.TestBase-2.html">TestBase</a>&lt;TAppFixture, TState&gt;</div>
-      <div class="level3"><a class="xref" href="FastEndpoints.Testing.TestClass-1.html">TestClass&lt;TAppFixture&gt;</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><span class="xref">IAsyncLifetime</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a></div>
     <div><span class="xref">IClassFixture</span>&lt;TAppFixture&gt;</div>
   </div>
@@ -103,6 +103,15 @@ test methods can be run in a given order by decorating the methods with <a class
     <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Fake">TestBase.Fake</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Context">TestBase.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Cancellation">TestBase.Cancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Output">TestBase.Output</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_SetupAsync">TestBase.SetupAsync()</a>
@@ -136,7 +145,7 @@ test methods can be run in a given order by decorating the methods with <a class
   <h6><strong>Assembly</strong>: FastEndpoints.Testing.dll</h6>
   <h5 id="FastEndpoints_Testing_TestBase_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class TestBase&lt;TAppFixture&gt; : TestBase, IAsyncLifetime, IFaker, IClassFixture&lt;TAppFixture&gt; where TAppFixture : BaseFixture</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class TestBase&lt;TAppFixture&gt; : TestBase, IAsyncLifetime, IAsyncDisposable, IFaker, IClassFixture&lt;TAppFixture&gt; where TAppFixture : BaseFixture</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -150,21 +159,21 @@ test methods can be run in a given order by decorating the methods with <a class
       <tr>
         <td><span class="parametername">TAppFixture</span></td>
         <td><p>
-    the type of the app fixture. an app fixture is an implementation of <a class="xref" href="FastEndpoints.Testing.AppFixture-1.html">AppFixture&lt;TProgram&gt;</a> abstract class which is a uniquely configured
-    running
-    instance of your application being tested (sut). the app fixture instance is created only once before any of the test methods are executed and torn
-    down after all
-    test methods of the class have run. all test methods of the test-class will be accessing that same fixture instance per test run. the underlying WAF
-    instance
-    however is cached and reused per each derived app fixture type in order to speed up test execution. i.e. it's recommended to use the same derived app
-    fixture type
-    with multiple test-classes.
-    </p>
+the type of the app fixture. an app fixture is an implementation of <a class="xref" href="FastEndpoints.Testing.AppFixture-1.html">AppFixture&lt;TProgram&gt;</a> abstract class which is a uniquely configured
+running
+instance of your application being tested (sut). the app fixture instance is created only once before any of the test methods are executed and torn
+down after all
+test methods of the class have run. all test methods of the test-class will be accessing that same fixture instance per test run. the underlying WAF
+instance
+however is cached and reused per each derived app fixture type in order to speed up test execution. i.e. it's recommended to use the same derived app
+fixture type
+with multiple test-classes.
+</p>
 <p>
-    to share common state between multiple test-methods of the same test-class, you can inherit the <a class="xref" href="FastEndpoints.Testing.TestBase-2.html">TestBase&lt;TAppFixture, TState&gt;</a> abstract
-    class and
-    provide an additional "state fixture" for the test-class.
-    </p>
+to share common state between multiple test-methods of the same test-class, you can inherit the <a class="xref" href="FastEndpoints.Testing.TestBase-2.html">TestBase&lt;TAppFixture, TState&gt;</a> abstract
+class and
+provide an additional "state fixture" for the test-class.
+</p>
 </td>
       </tr>
     </tbody>
@@ -172,6 +181,9 @@ test methods can be run in a given order by decorating the methods with <a class
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">Xunit.IAsyncLifetime</span>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
   </div>
   <div>
       <a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a>

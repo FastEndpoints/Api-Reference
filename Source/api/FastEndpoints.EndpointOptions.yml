@@ -8,6 +8,7 @@ items:
   - FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
   - FastEndpoints.EndpointOptions.Configurator
   - FastEndpoints.EndpointOptions.Filter
+  - FastEndpoints.EndpointOptions.GlobalResponseModifier
   - FastEndpoints.EndpointOptions.NameGenerator
   - FastEndpoints.EndpointOptions.PrefixNameWithFirstTag
   - FastEndpoints.EndpointOptions.RoutePrefix
@@ -164,7 +165,7 @@ items:
 
     return 'true' to include.
 
-    this function will executed for each endpoint that has been discovered during startup.
+    this function will execute for each endpoint that has been discovered during startup.
   example: []
   syntax:
     content: public Func<EndpointDefinition, bool>? Filter { set; }
@@ -235,6 +236,38 @@ items:
       type: System.Boolean
     content.vb: Public Property AllowEmptyRequestDtos As Boolean
   overload: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos*
+- uid: FastEndpoints.EndpointOptions.GlobalResponseModifier
+  commentId: P:FastEndpoints.EndpointOptions.GlobalResponseModifier
+  id: GlobalResponseModifier
+  parent: FastEndpoints.EndpointOptions
+  langs:
+  - csharp
+  - vb
+  name: GlobalResponseModifier
+  nameWithType: EndpointOptions.GlobalResponseModifier
+  fullName: FastEndpoints.EndpointOptions.GlobalResponseModifier
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    a global response modifier which will be executed right before any response is written to the response stream, giving you a chance to modify the
+
+    response before being sent.
+
+    the arguments for the func are:
+
+    <pre><code class="lang-csharp">HttpContext : the http context of the current request/response
+
+    object? : response content which may be null</code></pre>
+  example: []
+  syntax:
+    content: public Action<HttpContext, object?>? GlobalResponseModifier { set; }
+    parameters: []
+    return:
+      type: System.Action{Microsoft.AspNetCore.Http.HttpContext,System.Object}
+    content.vb: Public Property GlobalResponseModifier As Action(Of HttpContext, Object)
+  overload: FastEndpoints.EndpointOptions.GlobalResponseModifier*
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -709,3 +742,90 @@ references:
   name: AllowEmptyRequestDtos
   nameWithType: EndpointOptions.AllowEmptyRequestDtos
   fullName: FastEndpoints.EndpointOptions.AllowEmptyRequestDtos
+- uid: FastEndpoints.EndpointOptions.GlobalResponseModifier*
+  commentId: Overload:FastEndpoints.EndpointOptions.GlobalResponseModifier
+  href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_GlobalResponseModifier
+  name: GlobalResponseModifier
+  nameWithType: EndpointOptions.GlobalResponseModifier
+  fullName: FastEndpoints.EndpointOptions.GlobalResponseModifier
+- uid: System.Action{Microsoft.AspNetCore.Http.HttpContext,System.Object}
+  commentId: T:System.Action{Microsoft.AspNetCore.Http.HttpContext,System.Object}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<HttpContext, object>
+  nameWithType: Action<HttpContext, object>
+  fullName: System.Action<Microsoft.AspNetCore.Http.HttpContext, object>
+  nameWithType.vb: Action(Of HttpContext, Object)
+  fullName.vb: System.Action(Of Microsoft.AspNetCore.Http.HttpContext, Object)
+  name.vb: Action(Of HttpContext, Object)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )

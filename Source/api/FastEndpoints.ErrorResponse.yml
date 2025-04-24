@@ -10,6 +10,7 @@ items:
   - FastEndpoints.ErrorResponse.Errors
   - FastEndpoints.ErrorResponse.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.ErrorResponse.Message
+  - FastEndpoints.ErrorResponse.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
   - FastEndpoints.ErrorResponse.StatusCode
   langs:
   - csharp
@@ -24,12 +25,13 @@ items:
   summary: the dto used to send an error response to the client
   example: []
   syntax:
-    content: 'public sealed class ErrorResponse : IResult'
-    content.vb: Public NotInheritable Class ErrorResponse Implements IResult
+    content: 'public sealed class ErrorResponse : IResult, IEndpointMetadataProvider'
+    content.vb: Public NotInheritable Class ErrorResponse Implements IResult, IEndpointMetadataProvider
   inheritance:
   - System.Object
   implements:
   - Microsoft.AspNetCore.Http.IResult
+  - Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -187,6 +189,40 @@ items:
   overload: FastEndpoints.ErrorResponse.ExecuteAsync*
   implements:
   - Microsoft.AspNetCore.Http.IResult.ExecuteAsync(Microsoft.AspNetCore.Http.HttpContext)
+- uid: FastEndpoints.ErrorResponse.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+  commentId: M:FastEndpoints.ErrorResponse.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+  id: PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+  parent: FastEndpoints.ErrorResponse
+  langs:
+  - csharp
+  - vb
+  name: PopulateMetadata(MethodInfo, EndpointBuilder)
+  nameWithType: ErrorResponse.PopulateMetadata(MethodInfo, EndpointBuilder)
+  fullName: FastEndpoints.ErrorResponse.PopulateMetadata(System.Reflection.MethodInfo, Microsoft.AspNetCore.Builder.EndpointBuilder)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: Populates metadata for the related <xref href="Microsoft.AspNetCore.Http.Endpoint" data-throw-if-not-resolved="false"></xref> and <xref href="System.Reflection.MethodInfo" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    This method is called by RequestDelegateFactory when creating a <xref href="Microsoft.AspNetCore.Http.RequestDelegate" data-throw-if-not-resolved="false"></xref> and by MVC when creating endpoints for controller actions.
+
+    This is called for each parameter and return type of the route handler or action with a declared type implementing this interface.
+
+    Add or remove objects on the <xref href="Microsoft.AspNetCore.Builder.EndpointBuilder.Metadata" data-throw-if-not-resolved="false"></xref> property of the <code class="paramref">builder</code> to modify the <xref href="Microsoft.AspNetCore.Http.Endpoint.Metadata" data-throw-if-not-resolved="false"></xref> being built.
+  example: []
+  syntax:
+    content: public static void PopulateMetadata(MethodInfo _, EndpointBuilder builder)
+    parameters:
+    - id: _
+      type: System.Reflection.MethodInfo
+    - id: builder
+      type: Microsoft.AspNetCore.Builder.EndpointBuilder
+      description: The <xref href="Microsoft.AspNetCore.Builder.EndpointBuilder" data-throw-if-not-resolved="false"></xref> used to construct the endpoint for the given <code class="paramref">method</code>.
+    content.vb: Public Shared Sub PopulateMetadata(_ As MethodInfo, builder As EndpointBuilder)
+  overload: FastEndpoints.ErrorResponse.PopulateMetadata*
+  implements:
+  - Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -213,6 +249,14 @@ references:
   name: IResult
   nameWithType: IResult
   fullName: Microsoft.AspNetCore.Http.IResult
+- uid: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider
+  commentId: T:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider
+  parent: Microsoft.AspNetCore.Http.Metadata
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointmetadataprovider
+  name: IEndpointMetadataProvider
+  nameWithType: IEndpointMetadataProvider
+  fullName: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -451,6 +495,53 @@ references:
     name: Http
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+- uid: Microsoft.AspNetCore.Http.Metadata
+  commentId: N:Microsoft.AspNetCore.Http.Metadata
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Http.Metadata
+  nameWithType: Microsoft.AspNetCore.Http.Metadata
+  fullName: Microsoft.AspNetCore.Http.Metadata
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+  - name: .
+  - uid: Microsoft.AspNetCore.Http.Metadata
+    name: Metadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+  - name: .
+  - uid: Microsoft.AspNetCore.Http.Metadata
+    name: Metadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata
 - uid: FastEndpoints.ErrorResponse.StatusCode*
   commentId: Overload:FastEndpoints.ErrorResponse.StatusCode
   href: FastEndpoints.ErrorResponse.html#FastEndpoints_ErrorResponse_StatusCode
@@ -782,3 +873,160 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Microsoft.AspNetCore.Http.Endpoint
+  commentId: T:Microsoft.AspNetCore.Http.Endpoint
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.endpoint
+  name: Endpoint
+  nameWithType: Endpoint
+  fullName: Microsoft.AspNetCore.Http.Endpoint
+- uid: System.Reflection.MethodInfo
+  commentId: T:System.Reflection.MethodInfo
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo
+  name: MethodInfo
+  nameWithType: MethodInfo
+  fullName: System.Reflection.MethodInfo
+- uid: Microsoft.AspNetCore.Http.RequestDelegate
+  commentId: T:Microsoft.AspNetCore.Http.RequestDelegate
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.requestdelegate
+  name: RequestDelegate
+  nameWithType: RequestDelegate
+  fullName: Microsoft.AspNetCore.Http.RequestDelegate
+- uid: Microsoft.AspNetCore.Builder.EndpointBuilder.Metadata
+  commentId: P:Microsoft.AspNetCore.Builder.EndpointBuilder.Metadata
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder.metadata
+  name: Metadata
+  nameWithType: EndpointBuilder.Metadata
+  fullName: Microsoft.AspNetCore.Builder.EndpointBuilder.Metadata
+- uid: Microsoft.AspNetCore.Http.Endpoint.Metadata
+  commentId: P:Microsoft.AspNetCore.Http.Endpoint.Metadata
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.endpoint.metadata
+  name: Metadata
+  nameWithType: Endpoint.Metadata
+  fullName: Microsoft.AspNetCore.Http.Endpoint.Metadata
+- uid: Microsoft.AspNetCore.Builder.EndpointBuilder
+  commentId: T:Microsoft.AspNetCore.Builder.EndpointBuilder
+  parent: Microsoft.AspNetCore.Builder
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder
+  name: EndpointBuilder
+  nameWithType: EndpointBuilder
+  fullName: Microsoft.AspNetCore.Builder.EndpointBuilder
+- uid: FastEndpoints.ErrorResponse.PopulateMetadata*
+  commentId: Overload:FastEndpoints.ErrorResponse.PopulateMetadata
+  href: FastEndpoints.ErrorResponse.html#FastEndpoints_ErrorResponse_PopulateMetadata_System_Reflection_MethodInfo_Microsoft_AspNetCore_Builder_EndpointBuilder_
+  name: PopulateMetadata
+  nameWithType: ErrorResponse.PopulateMetadata
+  fullName: FastEndpoints.ErrorResponse.PopulateMetadata
+- uid: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+  commentId: M:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+  parent: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointmetadataprovider.populatemetadata
+  name: PopulateMetadata(MethodInfo, EndpointBuilder)
+  nameWithType: IEndpointMetadataProvider.PopulateMetadata(MethodInfo, EndpointBuilder)
+  fullName: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata(System.Reflection.MethodInfo, Microsoft.AspNetCore.Builder.EndpointBuilder)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+    name: PopulateMetadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointmetadataprovider.populatemetadata
+  - name: (
+  - uid: System.Reflection.MethodInfo
+    name: MethodInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo
+  - name: ','
+  - name: " "
+  - uid: Microsoft.AspNetCore.Builder.EndpointBuilder
+    name: EndpointBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder
+  - name: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)
+    name: PopulateMetadata
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointmetadataprovider.populatemetadata
+  - name: (
+  - uid: System.Reflection.MethodInfo
+    name: MethodInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo
+  - name: ','
+  - name: " "
+  - uid: Microsoft.AspNetCore.Builder.EndpointBuilder
+    name: EndpointBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder
+  - name: )
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: Microsoft.AspNetCore.Builder
+  commentId: N:Microsoft.AspNetCore.Builder
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Builder
+  nameWithType: Microsoft.AspNetCore.Builder
+  fullName: Microsoft.AspNetCore.Builder
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Builder
+    name: Builder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Builder
+    name: Builder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder

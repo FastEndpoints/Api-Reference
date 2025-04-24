@@ -18,11 +18,17 @@ items:
   summary: abstract class for creating a collection definition
   example: []
   syntax:
-    content: 'public abstract class TestCollection<TAppFixture> : ICollectionFixture<TAppFixture> where TAppFixture : BaseFixture'
+    content: >-
+      [CollectionDefinition]
+
+      public abstract class TestCollection<TAppFixture> : ICollectionFixture<TAppFixture> where TAppFixture : BaseFixture
     typeParameters:
     - id: TAppFixture
       description: the type of the app fixture that will last for the full lifetime of the test-collection
-    content.vb: Public MustInherit Class TestCollection(Of TAppFixture As BaseFixture) Implements ICollectionFixture(Of TAppFixture)
+    content.vb: >-
+      <CollectionDefinition>
+
+      Public MustInherit Class TestCollection(Of TAppFixture As BaseFixture) Implements ICollectionFixture(Of TAppFixture)
   inheritance:
   - System.Object
   derivedClasses:
@@ -37,6 +43,10 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: Xunit.CollectionDefinitionAttribute
+    ctor: Xunit.CollectionDefinitionAttribute.#ctor
+    arguments: []
   nameWithType.vb: TestCollection(Of TAppFixture)
   fullName.vb: FastEndpoints.Testing.TestCollection(Of TAppFixture)
   name.vb: TestCollection(Of TAppFixture)

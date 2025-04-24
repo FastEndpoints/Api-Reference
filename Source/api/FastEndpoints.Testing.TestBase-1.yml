@@ -21,39 +21,57 @@ items:
     test methods can be run in a given order by decorating the methods with <xref href="FastEndpoints.Testing.PriorityAttribute" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
-    content: 'public abstract class TestBase<TAppFixture> : TestBase, IAsyncLifetime, IFaker, IClassFixture<TAppFixture> where TAppFixture : BaseFixture'
+    content: 'public abstract class TestBase<TAppFixture> : TestBase, IAsyncLifetime, IAsyncDisposable, IFaker, IClassFixture<TAppFixture> where TAppFixture : BaseFixture'
     typeParameters:
     - id: TAppFixture
       description: >-
         <p>
-            the type of the app fixture. an app fixture is an implementation of <xref href="FastEndpoints.Testing.AppFixture%601" data-throw-if-not-resolved="false"></xref> abstract class which is a uniquely configured
-            running
-            instance of your application being tested (sut). the app fixture instance is created only once before any of the test methods are executed and torn
-            down after all
-            test methods of the class have run. all test methods of the test-class will be accessing that same fixture instance per test run. the underlying WAF
-            instance
-            however is cached and reused per each derived app fixture type in order to speed up test execution. i.e. it's recommended to use the same derived app
-            fixture type
-            with multiple test-classes.
-            </p>
+
+        the type of the app fixture. an app fixture is an implementation of <xref href="FastEndpoints.Testing.AppFixture%601" data-throw-if-not-resolved="false"></xref> abstract class which is a uniquely configured
+
+        running
+
+        instance of your application being tested (sut). the app fixture instance is created only once before any of the test methods are executed and torn
+
+        down after all
+
+        test methods of the class have run. all test methods of the test-class will be accessing that same fixture instance per test run. the underlying WAF
+
+        instance
+
+        however is cached and reused per each derived app fixture type in order to speed up test execution. i.e. it's recommended to use the same derived app
+
+        fixture type
+
+        with multiple test-classes.
+
+        </p>
+
         <p>
-            to share common state between multiple test-methods of the same test-class, you can inherit the <xref href="FastEndpoints.Testing.TestBase%602" data-throw-if-not-resolved="false"></xref> abstract
-            class and
-            provide an additional "state fixture" for the test-class.
-            </p>
-    content.vb: Public MustInherit Class TestBase(Of TAppFixture As BaseFixture) Inherits TestBase Implements IAsyncLifetime, IFaker, IClassFixture(Of TAppFixture)
+
+        to share common state between multiple test-methods of the same test-class, you can inherit the <xref href="FastEndpoints.Testing.TestBase%602" data-throw-if-not-resolved="false"></xref> abstract
+
+        class and
+
+        provide an additional "state fixture" for the test-class.
+
+        </p>
+    content.vb: Public MustInherit Class TestBase(Of TAppFixture As BaseFixture) Inherits TestBase Implements IAsyncLifetime, IAsyncDisposable, IFaker, IClassFixture(Of TAppFixture)
   inheritance:
   - System.Object
   - FastEndpoints.Testing.TestBase
   derivedClasses:
   - FastEndpoints.Testing.TestBase`2
-  - FastEndpoints.Testing.TestClass`1
   implements:
   - Xunit.IAsyncLifetime
+  - System.IAsyncDisposable
   - FastEndpoints.Testing.IFaker
   - Xunit.IClassFixture{{TAppFixture}}
   inheritedMembers:
   - FastEndpoints.Testing.TestBase.Fake
+  - FastEndpoints.Testing.TestBase.Context
+  - FastEndpoints.Testing.TestBase.Cancellation
+  - FastEndpoints.Testing.TestBase.Output
   - FastEndpoints.Testing.TestBase.SetupAsync
   - FastEndpoints.Testing.TestBase.TearDownAsync
   - System.Object.Equals(System.Object)
@@ -176,6 +194,14 @@ references:
   name: IAsyncLifetime
   nameWithType: IAsyncLifetime
   fullName: Xunit.IAsyncLifetime
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
 - uid: FastEndpoints.Testing.IFaker
   commentId: T:FastEndpoints.Testing.IFaker
   parent: FastEndpoints.Testing
@@ -216,6 +242,27 @@ references:
   name: Fake
   nameWithType: TestBase.Fake
   fullName: FastEndpoints.Testing.TestBase.Fake
+- uid: FastEndpoints.Testing.TestBase.Context
+  commentId: P:FastEndpoints.Testing.TestBase.Context
+  parent: FastEndpoints.Testing.TestBase
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Context
+  name: Context
+  nameWithType: TestBase.Context
+  fullName: FastEndpoints.Testing.TestBase.Context
+- uid: FastEndpoints.Testing.TestBase.Cancellation
+  commentId: P:FastEndpoints.Testing.TestBase.Cancellation
+  parent: FastEndpoints.Testing.TestBase
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Cancellation
+  name: Cancellation
+  nameWithType: TestBase.Cancellation
+  fullName: FastEndpoints.Testing.TestBase.Cancellation
+- uid: FastEndpoints.Testing.TestBase.Output
+  commentId: P:FastEndpoints.Testing.TestBase.Output
+  parent: FastEndpoints.Testing.TestBase
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Output
+  name: Output
+  nameWithType: TestBase.Output
+  fullName: FastEndpoints.Testing.TestBase.Output
 - uid: FastEndpoints.Testing.TestBase.SetupAsync
   commentId: M:FastEndpoints.Testing.TestBase.SetupAsync
   parent: FastEndpoints.Testing.TestBase

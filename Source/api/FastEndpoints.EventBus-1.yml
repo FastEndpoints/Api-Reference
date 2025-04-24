@@ -5,8 +5,9 @@ items:
   id: EventBus`1
   parent: FastEndpoints
   children:
-  - FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})
+  - FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}},FastEndpoints.IEventReceiver{`0})
   - FastEndpoints.EventBus`1.PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
+  - FastEndpoints.EventBus`1.PublishFilteredAsync(`0,System.Func{System.Type,System.Boolean},FastEndpoints.Mode,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -38,16 +39,16 @@ items:
   nameWithType.vb: EventBus(Of TEvent)
   fullName.vb: FastEndpoints.EventBus(Of TEvent)
   name.vb: EventBus(Of TEvent)
-- uid: FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})
-  commentId: M:FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})
-  id: '#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})'
+- uid: FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}},FastEndpoints.IEventReceiver{`0})
+  commentId: M:FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}},FastEndpoints.IEventReceiver{`0})
+  id: '#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}},FastEndpoints.IEventReceiver{`0})'
   parent: FastEndpoints.EventBus`1
   langs:
   - csharp
   - vb
-  name: EventBus(IEnumerable<IEventHandler<TEvent>>?)
-  nameWithType: EventBus<TEvent>.EventBus(IEnumerable<IEventHandler<TEvent>>?)
-  fullName: FastEndpoints.EventBus<TEvent>.EventBus(System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>?)
+  name: EventBus(IEnumerable<IEventHandler<TEvent>>?, IEventReceiver<TEvent>?)
+  nameWithType: EventBus<TEvent>.EventBus(IEnumerable<IEventHandler<TEvent>>?, IEventReceiver<TEvent>?)
+  fullName: FastEndpoints.EventBus<TEvent>.EventBus(System.Collections.Generic.IEnumerable<FastEndpoints.IEventHandler<TEvent>>?, FastEndpoints.IEventReceiver<TEvent>?)
   type: Constructor
   assemblies:
   - FastEndpoints
@@ -55,16 +56,19 @@ items:
   summary: instantiates an event bus for the given event dto type.
   example: []
   syntax:
-    content: public EventBus(IEnumerable<IEventHandler<TEvent>>? eventHandlers = null)
+    content: public EventBus(IEnumerable<IEventHandler<TEvent>>? eventHandlers = null, IEventReceiver<TEvent>? testEventReceiver = null)
     parameters:
     - id: eventHandlers
       type: System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{{TEvent}}}
       description: a collection of concrete event handler implementations that should receive notifications from this event bus
-    content.vb: Public Sub New(eventHandlers As IEnumerable(Of IEventHandler(Of TEvent)) = Nothing)
+    - id: testEventReceiver
+      type: FastEndpoints.IEventReceiver{{TEvent}}
+      description: a test event receiver that can be used to assert receipt of events
+    content.vb: Public Sub New(eventHandlers As IEnumerable(Of IEventHandler(Of TEvent)) = Nothing, testEventReceiver As IEventReceiver(Of TEvent) = Nothing)
   overload: FastEndpoints.EventBus`1.#ctor*
-  nameWithType.vb: EventBus(Of TEvent).New(IEnumerable(Of IEventHandler(Of TEvent)))
-  fullName.vb: FastEndpoints.EventBus(Of TEvent).New(System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent)))
-  name.vb: New(IEnumerable(Of IEventHandler(Of TEvent)))
+  nameWithType.vb: EventBus(Of TEvent).New(IEnumerable(Of IEventHandler(Of TEvent)), IEventReceiver(Of TEvent))
+  fullName.vb: FastEndpoints.EventBus(Of TEvent).New(System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventHandler(Of TEvent)), FastEndpoints.IEventReceiver(Of TEvent))
+  name.vb: New(IEnumerable(Of IEventHandler(Of TEvent)), IEventReceiver(Of TEvent))
 - uid: FastEndpoints.EventBus`1.PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.EventBus`1.PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
   id: PublishAsync(`0,FastEndpoints.Mode,System.Threading.CancellationToken)
@@ -102,11 +106,60 @@ items:
 
         <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
 
-        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all of the subscribers complete their work.
+        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all the subscribers complete their work.
     content.vb: Public Function PublishAsync(eventModel As TEvent, waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
   overload: FastEndpoints.EventBus`1.PublishAsync*
   nameWithType.vb: EventBus(Of TEvent).PublishAsync(TEvent, Mode, CancellationToken)
   fullName.vb: FastEndpoints.EventBus(Of TEvent).PublishAsync(TEvent, FastEndpoints.Mode, System.Threading.CancellationToken)
+- uid: FastEndpoints.EventBus`1.PublishFilteredAsync(`0,System.Func{System.Type,System.Boolean},FastEndpoints.Mode,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventBus`1.PublishFilteredAsync(`0,System.Func{System.Type,System.Boolean},FastEndpoints.Mode,System.Threading.CancellationToken)
+  id: PublishFilteredAsync(`0,System.Func{System.Type,System.Boolean},FastEndpoints.Mode,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventBus`1
+  langs:
+  - csharp
+  - vb
+  name: PublishFilteredAsync(TEvent, Func<Type, bool>, Mode, CancellationToken)
+  nameWithType: EventBus<TEvent>.PublishFilteredAsync(TEvent, Func<Type, bool>, Mode, CancellationToken)
+  fullName: FastEndpoints.EventBus<TEvent>.PublishFilteredAsync(TEvent, System.Func<System.Type, bool>, FastEndpoints.Mode, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: publish the given model/dto to a subset of the subscribers of the event notification
+  example: []
+  syntax:
+    content: public Task PublishFilteredAsync(TEvent eventModel, Func<Type, bool> handlerFilter, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default)
+    parameters:
+    - id: eventModel
+      type: '{TEvent}'
+      description: the notification event model/dto to publish
+    - id: handlerFilter
+      type: System.Func{System.Type,System.Boolean}
+      description: >-
+        a predicate for selecting which of the registered event handlers should be executed. if the predicate returns <code>false</code> for a particular event
+
+        handler, that handler will not be executed during the invocation.
+    - id: waitMode
+      type: FastEndpoints.Mode
+      description: specify whether to wait for none, any or all of the subscribers to complete their work
+    - id: cancellation
+      type: System.Threading.CancellationToken
+      description: an optional cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+      description: >-
+        a Task that matches the wait mode specified.
+
+        <xref href="FastEndpoints.Mode.WaitForNone" data-throw-if-not-resolved="false"></xref> returns an already completed Task (fire and forget).
+
+        <xref href="FastEndpoints.Mode.WaitForAny" data-throw-if-not-resolved="false"></xref> returns a Task that will complete when any of the subscribers complete their work.
+
+        <xref href="FastEndpoints.Mode.WaitForAll" data-throw-if-not-resolved="false"></xref> return a Task that will complete only when all the subscribers complete their work.
+    content.vb: Public Function PublishFilteredAsync(eventModel As TEvent, handlerFilter As Func(Of Type, Boolean), waitMode As Mode = Mode.WaitForAll, cancellation As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.EventBus`1.PublishFilteredAsync*
+  nameWithType.vb: EventBus(Of TEvent).PublishFilteredAsync(TEvent, Func(Of Type, Boolean), Mode, CancellationToken)
+  fullName.vb: FastEndpoints.EventBus(Of TEvent).PublishFilteredAsync(TEvent, System.Func(Of System.Type, Boolean), FastEndpoints.Mode, System.Threading.CancellationToken)
+  name.vb: PublishFilteredAsync(TEvent, Func(Of Type, Boolean), Mode, CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -335,7 +388,7 @@ references:
   fullName: System
 - uid: FastEndpoints.EventBus`1.#ctor*
   commentId: Overload:FastEndpoints.EventBus`1.#ctor
-  href: FastEndpoints.EventBus-1.html#FastEndpoints_EventBus_1__ctor_System_Collections_Generic_IEnumerable_FastEndpoints_IEventHandler__0___
+  href: FastEndpoints.EventBus-1.html#FastEndpoints_EventBus_1__ctor_System_Collections_Generic_IEnumerable_FastEndpoints_IEventHandler__0___FastEndpoints_IEventReceiver__0__
   name: EventBus
   nameWithType: EventBus<TEvent>.EventBus
   fullName: FastEndpoints.EventBus<TEvent>.EventBus
@@ -380,6 +433,33 @@ references:
   - name: " "
   - name: TEvent
   - name: )
+  - name: )
+- uid: FastEndpoints.IEventReceiver{{TEvent}}
+  commentId: T:FastEndpoints.IEventReceiver{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
   - name: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
@@ -446,6 +526,31 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FastEndpoints.IEventReceiver`1
+  commentId: T:FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
 - uid: FastEndpoints.Mode.WaitForNone
   commentId: F:FastEndpoints.Mode.WaitForNone
   href: FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForNone
@@ -569,3 +674,92 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FastEndpoints.EventBus`1.PublishFilteredAsync*
+  commentId: Overload:FastEndpoints.EventBus`1.PublishFilteredAsync
+  href: FastEndpoints.EventBus-1.html#FastEndpoints_EventBus_1_PublishFilteredAsync__0_System_Func_System_Type_System_Boolean__FastEndpoints_Mode_System_Threading_CancellationToken_
+  name: PublishFilteredAsync
+  nameWithType: EventBus<TEvent>.PublishFilteredAsync
+  fullName: FastEndpoints.EventBus<TEvent>.PublishFilteredAsync
+  nameWithType.vb: EventBus(Of TEvent).PublishFilteredAsync
+  fullName.vb: FastEndpoints.EventBus(Of TEvent).PublishFilteredAsync
+- uid: System.Func{System.Type,System.Boolean}
+  commentId: T:System.Func{System.Type,System.Boolean}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<Type, bool>
+  nameWithType: Func<Type, bool>
+  fullName: System.Func<System.Type, bool>
+  nameWithType.vb: Func(Of Type, Boolean)
+  fullName.vb: System.Func(Of System.Type, Boolean)
+  name.vb: Func(Of Type, Boolean)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )

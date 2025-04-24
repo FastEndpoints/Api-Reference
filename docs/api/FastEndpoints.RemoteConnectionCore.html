@@ -141,7 +141,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Net.Client/GrpcChannel.cs">GrpcChannel</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Net.Client/GrpcChannel.cs">GrpcChannel</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -172,12 +172,12 @@
   </table>
 
 
-  <h4 id="FastEndpoints_RemoteConnectionCore_ServiceProvider" data-uid="FastEndpoints.RemoteConnectionCore.ServiceProvider">ServiceProvider</h4>
+  <h4 id="FastEndpoints_RemoteConnectionCore_UnixSocketPath" data-uid="FastEndpoints.RemoteConnectionCore.UnixSocketPath">UnixSocketPath</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IServiceProvider ServiceProvider</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly string? UnixSocketPath</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -189,7 +189,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -217,7 +217,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Net.Client/GrpcChannelOptions.cs">GrpcChannelOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Net.Client/GrpcChannelOptions.cs">GrpcChannelOptions</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -396,9 +396,69 @@ the received events will be handled by the specified handler (<code class="typep
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">callOptions</span></td>
         <td><p>the call options</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">clientIdentifier</span></td>
+        <td><p>a unique identifier for this client. this will be used to create a durable subscriber id which will allow the server to
+uniquely identify this subscriber/client across disconnections. if you don't set this value, only one subscriber from a single machine is possible.
+i.e. if you spin up multiple instances of this subscriber they will all connect to the server with the same subscriber id, which will result in
+unpredictable event receiving behavior.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the events that will be received</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TEventHandler</span></td>
+        <td><p>the handler that will be handling the received events</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_RemoteConnectionCore_Subscribe_" data-uid="FastEndpoints.RemoteConnectionCore.Subscribe*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionCore_Subscribe__2_System_Threading_CancellationToken_System_String_" data-uid="FastEndpoints.RemoteConnectionCore.Subscribe``2(System.Threading.CancellationToken,System.String)">Subscribe&lt;TEvent, TEventHandler&gt;(CancellationToken, string)</h4>
+  <div class="markdown level1 summary"><p>subscribe to a broadcast channel for a given event type (<code class="typeparamref">TEvent</code>) on the remote host.
+the received events will be handled by the specified handler (<code class="typeparamref">TEventHandler</code>) on this machine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Subscribe&lt;TEvent, TEventHandler&gt;(CancellationToken ct, string clientIdentifier = &quot;default&quot;) where TEvent : class, IEvent where TEventHandler : IEventHandler&lt;TEvent&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
 </td>
       </tr>
       <tr>

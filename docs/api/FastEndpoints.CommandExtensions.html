@@ -122,6 +122,56 @@
 </h3>
 
 
+  <a id="FastEndpoints_CommandExtensions_AddCommandMiddleware_" data-uid="FastEndpoints.CommandExtensions.AddCommandMiddleware*"></a>
+  <h4 id="FastEndpoints_CommandExtensions_AddCommandMiddleware_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_FastEndpoints_CommandMiddlewareConfig__" data-uid="FastEndpoints.CommandExtensions.AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.CommandMiddlewareConfig})">AddCommandMiddleware(IServiceCollection, Action&lt;CommandMiddlewareConfig&gt;)</h4>
+  <div class="markdown level1 summary"><p>register a common middleware pipeline for command handlers. the middleware can be created as open generic classes that implement the
+<a class="xref" href="FastEndpoints.ICommandMiddleware-2.html">ICommandMiddleware&lt;TCommand, TResult&gt;</a> interface as well as closed generic classes implementing the same interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddCommandMiddleware(this IServiceCollection services, Action&lt;CommandMiddlewareConfig&gt; config)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
+        <td><span class="parametername">services</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FastEndpoints.CommandMiddlewareConfig.html">CommandMiddlewareConfig</a>&gt;</td>
+        <td><span class="parametername">config</span></td>
+        <td><p>configuration action for adding middleware components to the pipeline</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_CommandExtensions_ExecuteAsync_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync*"></a>
   <h4 id="FastEndpoints_CommandExtensions_ExecuteAsync__1_FastEndpoints_ICommand___0__System_Threading_CancellationToken_" data-uid="FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)">ExecuteAsync&lt;TResult&gt;(ICommand&lt;TResult&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>executes the command and returns a result</p>
@@ -211,7 +261,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task ExecuteAsync&lt;TCommand&gt;(this TCommand command, CancellationToken ct = default) where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task ExecuteAsync&lt;TCommand&gt;(this TCommand command, CancellationToken ct = default) where TCommand : class, ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -286,13 +336,13 @@
 
 
   <a id="FastEndpoints_CommandExtensions_RegisterForTesting_" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting*"></a>
-  <h4 id="FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})">RegisterForTesting&lt;TCommand&gt;(ICommandHandler&lt;TCommand&gt;)</h4>
+  <h4 id="FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__" data-uid="FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})">RegisterForTesting&lt;TCommand&gt;(ICommandHandler&lt;TCommand, Void&gt;)</h4>
   <div class="markdown level1 summary"><p>registers a fake command handler for unit testing purposes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterForTesting&lt;TCommand&gt;(this ICommandHandler&lt;TCommand&gt; handler) where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public static void RegisterForTesting&lt;TCommand&gt;(this ICommandHandler&lt;TCommand, Void&gt; handler) where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -305,7 +355,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FastEndpoints.ICommandHandler-1.html">ICommandHandler</a>&lt;TCommand&gt;</td>
+        <td><a class="xref" href="FastEndpoints.ICommandHandler-2.html">ICommandHandler</a>&lt;TCommand, <a class="xref" href="FastEndpoints.Void.html">Void</a>&gt;</td>
         <td><span class="parametername">handler</span></td>
         <td><p>a fake handler instance</p>
 </td>
@@ -430,6 +480,70 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_CommandExtensions_RegisterGenericCommand_" data-uid="FastEndpoints.CommandExtensions.RegisterGenericCommand*"></a>
+  <h4 id="FastEndpoints_CommandExtensions_RegisterGenericCommand__2_System_IServiceProvider_" data-uid="FastEndpoints.CommandExtensions.RegisterGenericCommand``2(System.IServiceProvider)">RegisterGenericCommand&lt;TCommand, THandler&gt;(IServiceProvider)</h4>
+  <div class="markdown level1 summary"><p>register a generic command handler for a generic command</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceProvider RegisterGenericCommand&lt;TCommand, THandler&gt;(this IServiceProvider sp) where TCommand : ICommand where THandler : ICommandHandler</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the type of the command</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">THandler</span></td>
+        <td><p>the type of the command handler</p>
+</td>
       </tr>
     </tbody>
   </table>

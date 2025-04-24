@@ -6,6 +6,7 @@ items:
   parent: FastEndpoints
   children:
   - FastEndpoints.IEndpoint.Definition
+  - FastEndpoints.IEndpoint.GetName``1(System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.String)
   - FastEndpoints.IEndpoint.HttpContext
   - FastEndpoints.IEndpoint.TestURLFor``1
   - FastEndpoints.IEndpoint.TestUrlCache
@@ -94,6 +95,43 @@ items:
       type: FastEndpoints.EndpointDefinition
     content.vb: ReadOnly Property Definition As EndpointDefinition
   overload: FastEndpoints.IEndpoint.Definition*
+- uid: FastEndpoints.IEndpoint.GetName``1(System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.String)
+  commentId: M:FastEndpoints.IEndpoint.GetName``1(System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.String)
+  id: GetName``1(System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.String)
+  parent: FastEndpoints.IEndpoint
+  langs:
+  - csharp
+  - vb
+  name: GetName<TEndpoint>(Http?, int?, string?)
+  nameWithType: IEndpoint.GetName<TEndpoint>(Http?, int?, string?)
+  fullName: FastEndpoints.IEndpoint.GetName<TEndpoint>(FastEndpoints.Http?, int?, string?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: retrieves the name of a given endpoint by supplying its type. the name is generated using the <xref href="FastEndpoints.EndpointOptions.NameGenerator" data-throw-if-not-resolved="false"></xref> func.
+  example: []
+  syntax:
+    content: 'public static string GetName<TEndpoint>(Http? verb = null, int? routeNumber = null, string? tagPrefix = null) where TEndpoint : IEndpoint'
+    parameters:
+    - id: verb
+      type: System.Nullable{FastEndpoints.Http}
+      description: the http verb, if the target is a multi-verb endpoint.
+    - id: routeNumber
+      type: System.Nullable{System.Int32}
+      description: the route number, if the target is a multi route endpoint.
+    - id: tagPrefix
+      type: System.String
+      description: tag prefix
+    typeParameters:
+    - id: TEndpoint
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetName(Of TEndpoint As IEndpoint)(verb As Http? = Nothing, routeNumber As Integer? = Nothing, tagPrefix As String = Nothing) As String
+  overload: FastEndpoints.IEndpoint.GetName*
+  nameWithType.vb: IEndpoint.GetName(Of TEndpoint)(Http?, Integer?, String)
+  fullName.vb: FastEndpoints.IEndpoint.GetName(Of TEndpoint)(FastEndpoints.Http?, Integer?, String)
+  name.vb: GetName(Of TEndpoint)(Http?, Integer?, String)
 - uid: FastEndpoints.IEndpoint.TestUrlCache
   commentId: P:FastEndpoints.IEndpoint.TestUrlCache
   id: TestUrlCache
@@ -315,6 +353,101 @@ references:
   name: EndpointDefinition
   nameWithType: EndpointDefinition
   fullName: FastEndpoints.EndpointDefinition
+- uid: FastEndpoints.EndpointOptions.NameGenerator
+  commentId: P:FastEndpoints.EndpointOptions.NameGenerator
+  href: FastEndpoints.EndpointOptions.html#FastEndpoints_EndpointOptions_NameGenerator
+  name: NameGenerator
+  nameWithType: EndpointOptions.NameGenerator
+  fullName: FastEndpoints.EndpointOptions.NameGenerator
+- uid: FastEndpoints.IEndpoint.GetName*
+  commentId: Overload:FastEndpoints.IEndpoint.GetName
+  href: FastEndpoints.IEndpoint.html#FastEndpoints_IEndpoint_GetName__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_String_
+  name: GetName
+  nameWithType: IEndpoint.GetName
+  fullName: FastEndpoints.IEndpoint.GetName
+- uid: System.Nullable{FastEndpoints.Http}
+  commentId: T:System.Nullable{FastEndpoints.Http}
+  parent: System
+  definition: System.Nullable`1
+  name: Http?
+  nameWithType: Http?
+  fullName: FastEndpoints.Http?
+  spec.csharp:
+  - uid: FastEndpoints.Http
+    name: Http
+  - name: '?'
+  spec.vb:
+  - uid: FastEndpoints.Http
+    name: Http
+  - name: '?'
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: FastEndpoints.IEndpoint.TestUrlCache*
   commentId: Overload:FastEndpoints.IEndpoint.TestUrlCache
   href: FastEndpoints.IEndpoint.html#FastEndpoints_IEndpoint_TestUrlCache
@@ -445,20 +578,3 @@ references:
   name: TestURLFor
   nameWithType: IEndpoint.TestURLFor
   fullName: FastEndpoints.IEndpoint.TestURLFor
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: System
-  commentId: N:System
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System

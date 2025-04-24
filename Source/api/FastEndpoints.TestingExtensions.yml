@@ -5,9 +5,11 @@ items:
   id: TestingExtensions
   parent: FastEndpoints
   children:
+  - FastEndpoints.TestingExtensions.GetTestEventReceiver``1(System.IServiceProvider)
   - FastEndpoints.TestingExtensions.RegisterTestCommandHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.TestingExtensions.RegisterTestCommandHandler``3(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.TestingExtensions.RegisterTestEventHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - FastEndpoints.TestingExtensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   langs:
   - csharp
   - vb
@@ -65,6 +67,68 @@ items:
   nameWithType.vb: TestingExtensions.RegisterTestEventHandler(Of TEvent, THandler)(IServiceCollection)
   fullName.vb: FastEndpoints.TestingExtensions.RegisterTestEventHandler(Of TEvent, THandler)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   name.vb: RegisterTestEventHandler(Of TEvent, THandler)(IServiceCollection)
+- uid: FastEndpoints.TestingExtensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.TestingExtensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  isExtensionMethod: true
+  parent: FastEndpoints.TestingExtensions
+  langs:
+  - csharp
+  - vb
+  name: RegisterTestEventReceivers(IServiceCollection)
+  nameWithType: TestingExtensions.RegisterTestEventReceivers(IServiceCollection)
+  fullName: FastEndpoints.TestingExtensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: registers test event receivers for the purpose of testing receipt of events.
+  example: []
+  syntax:
+    content: public static IServiceCollection RegisterTestEventReceivers(this IServiceCollection s)
+    parameters:
+    - id: s
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function RegisterTestEventReceivers(s As IServiceCollection) As IServiceCollection
+  overload: FastEndpoints.TestingExtensions.RegisterTestEventReceivers*
+- uid: FastEndpoints.TestingExtensions.GetTestEventReceiver``1(System.IServiceProvider)
+  commentId: M:FastEndpoints.TestingExtensions.GetTestEventReceiver``1(System.IServiceProvider)
+  id: GetTestEventReceiver``1(System.IServiceProvider)
+  isExtensionMethod: true
+  parent: FastEndpoints.TestingExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTestEventReceiver<TEvent>(IServiceProvider)
+  nameWithType: TestingExtensions.GetTestEventReceiver<TEvent>(IServiceProvider)
+  fullName: FastEndpoints.TestingExtensions.GetTestEventReceiver<TEvent>(System.IServiceProvider)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: gets a test event receiver for a given event type.
+  example: []
+  syntax:
+    content: 'public static IEventReceiver<TEvent> GetTestEventReceiver<TEvent>(this IServiceProvider provider) where TEvent : IEvent'
+    parameters:
+    - id: provider
+      type: System.IServiceProvider
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: FastEndpoints.IEventReceiver{{TEvent}}
+    content.vb: Public Shared Function GetTestEventReceiver(Of TEvent As IEvent)(provider As IServiceProvider) As IEventReceiver(Of TEvent)
+  overload: FastEndpoints.TestingExtensions.GetTestEventReceiver*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown when test event receivers are not registered
+  nameWithType.vb: TestingExtensions.GetTestEventReceiver(Of TEvent)(IServiceProvider)
+  fullName.vb: FastEndpoints.TestingExtensions.GetTestEventReceiver(Of TEvent)(System.IServiceProvider)
+  name.vb: GetTestEventReceiver(Of TEvent)(IServiceProvider)
 - uid: FastEndpoints.TestingExtensions.RegisterTestCommandHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   commentId: M:FastEndpoints.TestingExtensions.RegisterTestCommandHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   id: RegisterTestCommandHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
@@ -425,6 +489,85 @@ references:
     name: DependencyInjection
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+- uid: FastEndpoints.TestingExtensions.RegisterTestEventReceivers*
+  commentId: Overload:FastEndpoints.TestingExtensions.RegisterTestEventReceivers
+  href: FastEndpoints.TestingExtensions.html#FastEndpoints_TestingExtensions_RegisterTestEventReceivers_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  name: RegisterTestEventReceivers
+  nameWithType: TestingExtensions.RegisterTestEventReceivers
+  fullName: FastEndpoints.TestingExtensions.RegisterTestEventReceivers
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: FastEndpoints.TestingExtensions.GetTestEventReceiver*
+  commentId: Overload:FastEndpoints.TestingExtensions.GetTestEventReceiver
+  href: FastEndpoints.TestingExtensions.html#FastEndpoints_TestingExtensions_GetTestEventReceiver__1_System_IServiceProvider_
+  name: GetTestEventReceiver
+  nameWithType: TestingExtensions.GetTestEventReceiver
+  fullName: FastEndpoints.TestingExtensions.GetTestEventReceiver
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: FastEndpoints.IEventReceiver{{TEvent}}
+  commentId: T:FastEndpoints.IEventReceiver{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+- uid: FastEndpoints.IEventReceiver`1
+  commentId: T:FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
 - uid: FastEndpoints.TestingExtensions.RegisterTestCommandHandler*
   commentId: Overload:FastEndpoints.TestingExtensions.RegisterTestCommandHandler
   href: FastEndpoints.TestingExtensions.html#FastEndpoints_TestingExtensions_RegisterTestCommandHandler__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_

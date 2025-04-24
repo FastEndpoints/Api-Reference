@@ -138,13 +138,13 @@
 
 
   <a id="FastEndpoints_EventBus_1__ctor_" data-uid="FastEndpoints.EventBus`1.#ctor*"></a>
-  <h4 id="FastEndpoints_EventBus_1__ctor_System_Collections_Generic_IEnumerable_FastEndpoints_IEventHandler__0___" data-uid="FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}})">EventBus(IEnumerable&lt;IEventHandler&lt;TEvent&gt;&gt;?)</h4>
+  <h4 id="FastEndpoints_EventBus_1__ctor_System_Collections_Generic_IEnumerable_FastEndpoints_IEventHandler__0___FastEndpoints_IEventReceiver__0__" data-uid="FastEndpoints.EventBus`1.#ctor(System.Collections.Generic.IEnumerable{FastEndpoints.IEventHandler{`0}},FastEndpoints.IEventReceiver{`0})">EventBus(IEnumerable&lt;IEventHandler&lt;TEvent&gt;&gt;?, IEventReceiver&lt;TEvent&gt;?)</h4>
   <div class="markdown level1 summary"><p>instantiates an event bus for the given event dto type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EventBus(IEnumerable&lt;IEventHandler&lt;TEvent&gt;&gt;? eventHandlers = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public EventBus(IEnumerable&lt;IEventHandler&lt;TEvent&gt;&gt;? eventHandlers = null, IEventReceiver&lt;TEvent&gt;? testEventReceiver = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -160,6 +160,12 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FastEndpoints.IEventHandler-1.html">IEventHandler</a>&lt;TEvent&gt;&gt;</td>
         <td><span class="parametername">eventHandlers</span></td>
         <td><p>a collection of concrete event handler implementations that should receive notifications from this event bus</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEventReceiver-1.html">IEventReceiver</a>&lt;TEvent&gt;</td>
+        <td><span class="parametername">testEventReceiver</span></td>
+        <td><p>a test event receiver that can be used to assert receipt of events</p>
 </td>
       </tr>
     </tbody>
@@ -221,7 +227,74 @@
         <td><p>a Task that matches the wait mode specified.
 <a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForNone">WaitForNone</a> returns an already completed Task (fire and forget).
 <a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAny">WaitForAny</a> returns a Task that will complete when any of the subscribers complete their work.
-<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAll">WaitForAll</a> return a Task that will complete only when all of the subscribers complete their work.</p>
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAll">WaitForAll</a> return a Task that will complete only when all the subscribers complete their work.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EventBus_1_PublishFilteredAsync_" data-uid="FastEndpoints.EventBus`1.PublishFilteredAsync*"></a>
+  <h4 id="FastEndpoints_EventBus_1_PublishFilteredAsync__0_System_Func_System_Type_System_Boolean__FastEndpoints_Mode_System_Threading_CancellationToken_" data-uid="FastEndpoints.EventBus`1.PublishFilteredAsync(`0,System.Func{System.Type,System.Boolean},FastEndpoints.Mode,System.Threading.CancellationToken)">PublishFilteredAsync(TEvent, Func&lt;Type, bool&gt;, Mode, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>publish the given model/dto to a subset of the subscribers of the event notification</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task PublishFilteredAsync(TEvent eventModel, Func&lt;Type, bool&gt; handlerFilter, Mode waitMode = Mode.WaitForAll, CancellationToken cancellation = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TEvent</span></td>
+        <td><span class="parametername">eventModel</span></td>
+        <td><p>the notification event model/dto to publish</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">handlerFilter</span></td>
+        <td><p>a predicate for selecting which of the registered event handlers should be executed. if the predicate returns <code>false</code> for a particular event
+handler, that handler will not be executed during the invocation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.Mode.html">Mode</a></td>
+        <td><span class="parametername">waitMode</span></td>
+        <td><p>specify whether to wait for none, any or all of the subscribers to complete their work</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellation</span></td>
+        <td><p>an optional cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>a Task that matches the wait mode specified.
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForNone">WaitForNone</a> returns an already completed Task (fire and forget).
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAny">WaitForAny</a> returns a Task that will complete when any of the subscribers complete their work.
+<a class="xref" href="FastEndpoints.Mode.html#FastEndpoints_Mode_WaitForAll">WaitForAll</a> return a Task that will complete only when all the subscribers complete their work.</p>
 </td>
       </tr>
     </tbody>

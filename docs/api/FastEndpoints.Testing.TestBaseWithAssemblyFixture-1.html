@@ -93,6 +93,7 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><span class="xref">IAsyncLifetime</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a></div>
   </div>
   <div class="inheritedMembers">
@@ -123,7 +124,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.Testing.dll</h6>
   <h5 id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class TestBaseWithAssemblyFixture&lt;TAppFixture&gt; : IAsyncLifetime, IFaker where TAppFixture : BaseFixture</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class TestBaseWithAssemblyFixture&lt;TAppFixture&gt; : IAsyncLifetime, IAsyncDisposable, IFaker where TAppFixture : BaseFixture</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -143,6 +144,56 @@
   </table>
   <h3 id="properties">Properties
 </h3>
+
+
+  <a id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Cancellation_" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation*"></a>
+  <h4 id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Cancellation" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation">Cancellation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CancellationToken Cancellation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Context_" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context*"></a>
+  <h4 id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Context" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context">Context</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITestContext Context { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ITestContext</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Fake_" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Fake*"></a>
@@ -169,6 +220,31 @@
       </tr>
     </tbody>
   </table>
+
+
+  <a id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Output_" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output*"></a>
+  <h4 id="FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Output" data-uid="FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output">Output</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITestOutputHelper Output { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ITestOutputHelper</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
 
@@ -181,7 +257,7 @@ it is run before any of the test-methods of the class is executed.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task SetupAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask SetupAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -193,7 +269,7 @@ it is run before any of the test-methods of the class is executed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -208,7 +284,7 @@ it is run after all test-methods have executed.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task TearDownAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask TearDownAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -220,7 +296,7 @@ it is run after all test-methods have executed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -228,6 +304,9 @@ it is run after all test-methods have executed.</p>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">Xunit.IAsyncLifetime</span>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
   </div>
   <div>
       <a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a>

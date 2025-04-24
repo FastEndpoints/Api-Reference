@@ -40,6 +40,8 @@ items:
   - FastEndpoints.EndpointDefinition.EndpointVersion(System.Int32,System.Int32)
   - FastEndpoints.EndpointDefinition.FormDataContentType
   - FastEndpoints.EndpointDefinition.Group``1
+  - FastEndpoints.EndpointDefinition.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  - FastEndpoints.EndpointDefinition.IdempotencyOptions
   - FastEndpoints.EndpointDefinition.MapperType
   - FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   - FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
@@ -50,10 +52,12 @@ items:
   - FastEndpoints.EndpointDefinition.PolicyBuilder
   - FastEndpoints.EndpointDefinition.PostProcessor``1(FastEndpoints.Order)
   - FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPostProcessor[])
+  - FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,System.Type[])
   - FastEndpoints.EndpointDefinition.PostProcessorsList
   - FastEndpoints.EndpointDefinition.PreBuiltUserPolicies
   - FastEndpoints.EndpointDefinition.PreProcessor``1(FastEndpoints.Order)
   - FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
+  - FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,System.Type[])
   - FastEndpoints.EndpointDefinition.PreProcessorsList
   - FastEndpoints.EndpointDefinition.ReqDtoType
   - FastEndpoints.EndpointDefinition.ResDtoType
@@ -694,6 +698,27 @@ items:
       type: System.String
     content.vb: Public Property FormDataContentType As String
   overload: FastEndpoints.EndpointDefinition.FormDataContentType*
+- uid: FastEndpoints.EndpointDefinition.IdempotencyOptions
+  commentId: P:FastEndpoints.EndpointDefinition.IdempotencyOptions
+  id: IdempotencyOptions
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: IdempotencyOptions
+  nameWithType: EndpointDefinition.IdempotencyOptions
+  fullName: FastEndpoints.EndpointDefinition.IdempotencyOptions
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  syntax:
+    content: public IdempotencyOptions? IdempotencyOptions { get; }
+    parameters: []
+    return:
+      type: FastEndpoints.IdempotencyOptions
+    content.vb: Public Property IdempotencyOptions As IdempotencyOptions
+  overload: FastEndpoints.EndpointDefinition.IdempotencyOptions*
 - uid: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   commentId: P:FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   id: OverriddenRoutePrefix
@@ -1019,7 +1044,7 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   summary: >-
-    allows access if the claims principal has ALL of the given claim types
+    allows access if the claims principal has ALL the given claim types
 
     <p>HINT: these claims will be applied in addition to endpoint level claims if there's any</p>
   example: []
@@ -1049,11 +1074,13 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   summary: >-
-    describe openapi metadata for this endpoint. optionally specify whether or not you want to clear the default Accepts/Produces metadata.
+    describe openapi metadata for this endpoint. optionally specify whether you want to clear the default Accepts/Produces metadata.
 
     <p>
 
-    EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code></p>
+    EXAMPLE: <code>b =&gt; b.Accepts&lt;Request&gt;("text/plain")</code>
+
+    </p>
   example: []
   syntax:
     content: public void Description(Action<RouteHandlerBuilder> builder, bool clearDefaults = false)
@@ -1131,7 +1158,7 @@ items:
 
     if this method is called in config, an automatic error response will not be sent to the client by the library.
 
-    all exceptions will be thrown and it would be your exception catching middleware to handle them.
+    all exceptions will be thrown, and it would be your exception catching middleware to handle them.
   example: []
   syntax:
     content: public void DontCatchExceptions()
@@ -1245,6 +1272,33 @@ items:
   nameWithType.vb: EndpointDefinition.Group(Of TEndpointGroup)()
   fullName.vb: FastEndpoints.EndpointDefinition.Group(Of TEndpointGroup)()
   name.vb: Group(Of TEndpointGroup)()
+- uid: FastEndpoints.EndpointDefinition.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  commentId: M:FastEndpoints.EndpointDefinition.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  id: Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: Idempotency(Action<IdempotencyOptions>?)
+  nameWithType: EndpointDefinition.Idempotency(Action<IdempotencyOptions>?)
+  fullName: FastEndpoints.EndpointDefinition.Idempotency(System.Action<FastEndpoints.IdempotencyOptions>?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: specify idempotency requirements for this endpoint
+  example: []
+  syntax:
+    content: public void Idempotency(Action<IdempotencyOptions>? options = null)
+    parameters:
+    - id: options
+      type: System.Action{FastEndpoints.IdempotencyOptions}
+      description: the idempotency options
+    content.vb: Public Sub Idempotency(options As Action(Of IdempotencyOptions) = Nothing)
+  overload: FastEndpoints.EndpointDefinition.Idempotency*
+  nameWithType.vb: EndpointDefinition.Idempotency(Action(Of IdempotencyOptions))
+  fullName.vb: FastEndpoints.EndpointDefinition.Idempotency(System.Action(Of FastEndpoints.IdempotencyOptions))
+  name.vb: Idempotency(Action(Of IdempotencyOptions))
 - uid: FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   commentId: M:FastEndpoints.EndpointDefinition.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   id: Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
@@ -1317,7 +1371,7 @@ items:
   - FastEndpoints
   namespace: FastEndpoints
   summary: >-
-    allows access if the claims principal has ALL of the given permissions
+    allows access if the claims principal has ALL the given permissions
 
     <p>HINT: these permissions will be applied in addition to endpoint level permissions if there's any</p>
   example: []
@@ -1460,6 +1514,43 @@ items:
   nameWithType.vb: EndpointDefinition.PostProcessor(Of TPostProcessor)(Order)
   fullName.vb: FastEndpoints.EndpointDefinition.PostProcessor(Of TPostProcessor)(FastEndpoints.Order)
   name.vb: PostProcessor(Of TPostProcessor)(Order)
+- uid: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,System.Type[])
+  commentId: M:FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order,System.Type[])
+  id: PostProcessors(FastEndpoints.Order,System.Type[])
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: PostProcessors(Order, params Type[])
+  nameWithType: EndpointDefinition.PostProcessors(Order, params Type[])
+  fullName: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, params System.Type[])
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: adds open-generic post-processors to the endpoint definition which are to be executed in addition to the ones configured at the endpoint level.
+  example: []
+  syntax:
+    content: public void PostProcessors(Order order, params Type[] processorTypes)
+    parameters:
+    - id: order
+      type: FastEndpoints.Order
+      description: >-
+        set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global pre-processors should be executed before endpoint pre-processors.
+
+        <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+    - id: processorTypes
+      type: System.Type[]
+      description: open generic post-processor types
+    content.vb: Public Sub PostProcessors(order As Order, ParamArray processorTypes As Type())
+  overload: FastEndpoints.EndpointDefinition.PostProcessors*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the supplied post-processor types are not open generic.
+  nameWithType.vb: EndpointDefinition.PostProcessors(Order, ParamArray Type())
+  fullName.vb: FastEndpoints.EndpointDefinition.PostProcessors(FastEndpoints.Order, ParamArray System.Type())
+  name.vb: PostProcessors(Order, ParamArray Type())
 - uid: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   commentId: M:FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
   id: PreProcessors(FastEndpoints.Order,FastEndpoints.IGlobalPreProcessor[])
@@ -1526,6 +1617,43 @@ items:
   nameWithType.vb: EndpointDefinition.PreProcessor(Of TPreProcessor)(Order)
   fullName.vb: FastEndpoints.EndpointDefinition.PreProcessor(Of TPreProcessor)(FastEndpoints.Order)
   name.vb: PreProcessor(Of TPreProcessor)(Order)
+- uid: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,System.Type[])
+  commentId: M:FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order,System.Type[])
+  id: PreProcessors(FastEndpoints.Order,System.Type[])
+  parent: FastEndpoints.EndpointDefinition
+  langs:
+  - csharp
+  - vb
+  name: PreProcessors(Order, params Type[])
+  nameWithType: EndpointDefinition.PreProcessors(Order, params Type[])
+  fullName: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, params System.Type[])
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: adds open-generic pre-processors to the endpoint definition which are to be executed in addition to the ones configured at the endpoint level.
+  example: []
+  syntax:
+    content: public void PreProcessors(Order order, params Type[] processorTypes)
+    parameters:
+    - id: order
+      type: FastEndpoints.Order
+      description: >-
+        set to <xref href="FastEndpoints.Order.Before" data-throw-if-not-resolved="false"></xref> if the global pre-processors should be executed before endpoint pre-processors.
+
+        <xref href="FastEndpoints.Order.After" data-throw-if-not-resolved="false"></xref> will execute global processors after endpoint level processors
+    - id: processorTypes
+      type: System.Type[]
+      description: open generic pre-processor types
+    content.vb: Public Sub PreProcessors(order As Order, ParamArray processorTypes As Type())
+  overload: FastEndpoints.EndpointDefinition.PreProcessors*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the supplied pre-processor types are not open generic.
+  nameWithType.vb: EndpointDefinition.PreProcessors(Order, ParamArray Type())
+  fullName.vb: FastEndpoints.EndpointDefinition.PreProcessors(FastEndpoints.Order, ParamArray System.Type())
+  name.vb: PreProcessors(Order, ParamArray Type())
 - uid: FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   commentId: M:FastEndpoints.EndpointDefinition.ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
   id: ResponseCache(System.Int32,Microsoft.AspNetCore.Mvc.ResponseCacheLocation,System.Boolean,System.String,System.String[])
@@ -1641,7 +1769,9 @@ items:
 
     this is ignored if a global route prefix is not configured.
 
-    global prefix can be ignored by setting <code>string.Empty</code><p>
+    global prefix can be ignored by setting <code>string.Empty</code>
+
+    <p>
 
     WARNING: setting a route prefix override globally makes the endpoint level override ineffective. i.e. RoutePrefixOverride() method call on
 
@@ -1757,7 +1887,9 @@ items:
   summary: >-
     specify one or more string tags for this endpoint so they can be used in the exclusion filter during registration.
 
-    <p>HINT: these tags will be applied in addition to endpoint level tags if there's any</p><p>TIP: these tags have nothing to do with swagger tags!</p>
+    <p>HINT: these tags will be applied in addition to endpoint level tags if there's any</p>
+
+    <p>TIP: these tags have nothing to do with swagger tags!</p>
   example: []
   syntax:
     content: public void Tags(params string[] endpointTags)
@@ -2508,6 +2640,19 @@ references:
   name: FormDataContentType
   nameWithType: EndpointDefinition.FormDataContentType
   fullName: FastEndpoints.EndpointDefinition.FormDataContentType
+- uid: FastEndpoints.EndpointDefinition.IdempotencyOptions*
+  commentId: Overload:FastEndpoints.EndpointDefinition.IdempotencyOptions
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_IdempotencyOptions
+  name: IdempotencyOptions
+  nameWithType: EndpointDefinition.IdempotencyOptions
+  fullName: FastEndpoints.EndpointDefinition.IdempotencyOptions
+- uid: FastEndpoints.IdempotencyOptions
+  commentId: T:FastEndpoints.IdempotencyOptions
+  parent: FastEndpoints
+  href: FastEndpoints.IdempotencyOptions.html
+  name: IdempotencyOptions
+  nameWithType: IdempotencyOptions
+  fullName: FastEndpoints.IdempotencyOptions
 - uid: FastEndpoints.EndpointDefinition.OverriddenRoutePrefix*
   commentId: Overload:FastEndpoints.EndpointDefinition.OverriddenRoutePrefix
   href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_OverriddenRoutePrefix
@@ -2792,6 +2937,45 @@ references:
   name: Group
   nameWithType: EndpointDefinition.Group
   fullName: FastEndpoints.EndpointDefinition.Group
+- uid: FastEndpoints.EndpointDefinition.Idempotency*
+  commentId: Overload:FastEndpoints.EndpointDefinition.Idempotency
+  href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  name: Idempotency
+  nameWithType: EndpointDefinition.Idempotency
+  fullName: FastEndpoints.EndpointDefinition.Idempotency
+- uid: System.Action{FastEndpoints.IdempotencyOptions}
+  commentId: T:System.Action{FastEndpoints.IdempotencyOptions}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<IdempotencyOptions>
+  nameWithType: Action<IdempotencyOptions>
+  fullName: System.Action<FastEndpoints.IdempotencyOptions>
+  nameWithType.vb: Action(Of IdempotencyOptions)
+  fullName.vb: System.Action(Of FastEndpoints.IdempotencyOptions)
+  name.vb: Action(Of IdempotencyOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: )
 - uid: FastEndpoints.EndpointDefinition.Options*
   commentId: Overload:FastEndpoints.EndpointDefinition.Options
   href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_Options_System_Action_Microsoft_AspNetCore_Builder_RouteHandlerBuilder__
@@ -2874,6 +3058,29 @@ references:
   name: PostProcessor
   nameWithType: EndpointDefinition.PostProcessor
   fullName: FastEndpoints.EndpointDefinition.PostProcessor
+- uid: System.Type[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type[]
+  nameWithType: Type[]
+  fullName: System.Type[]
+  nameWithType.vb: Type()
+  fullName.vb: System.Type()
+  name.vb: Type()
+  spec.csharp:
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: (
+  - name: )
 - uid: FastEndpoints.EndpointDefinition.PreProcessors*
   commentId: Overload:FastEndpoints.EndpointDefinition.PreProcessors
   href: FastEndpoints.EndpointDefinition.html#FastEndpoints_EndpointDefinition_PreProcessors_FastEndpoints_Order_FastEndpoints_IGlobalPreProcessor___

@@ -5,7 +5,10 @@ items:
   id: TestBaseWithAssemblyFixture`1
   parent: FastEndpoints.Testing
   children:
+  - FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation
+  - FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context
   - FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Fake
+  - FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output
   - FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.SetupAsync
   - FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.TearDownAsync
   langs:
@@ -21,17 +24,18 @@ items:
   summary: abstract class for implementing a test-class with an assembly level app fixture.
   example: []
   syntax:
-    content: 'public abstract class TestBaseWithAssemblyFixture<TAppFixture> : IAsyncLifetime, IFaker where TAppFixture : BaseFixture'
+    content: 'public abstract class TestBaseWithAssemblyFixture<TAppFixture> : IAsyncLifetime, IAsyncDisposable, IFaker where TAppFixture : BaseFixture'
     typeParameters:
     - id: TAppFixture
       description: the type of the assembly level app fixture.
-    content.vb: Public MustInherit Class TestBaseWithAssemblyFixture(Of TAppFixture As BaseFixture) Implements IAsyncLifetime, IFaker
+    content.vb: Public MustInherit Class TestBaseWithAssemblyFixture(Of TAppFixture As BaseFixture) Implements IAsyncLifetime, IAsyncDisposable, IFaker
   inheritance:
   - System.Object
   derivedClasses:
   - FastEndpoints.Testing.TestBaseWithAssemblyFixture`2
   implements:
   - Xunit.IAsyncLifetime
+  - System.IAsyncDisposable
   - FastEndpoints.Testing.IFaker
   inheritedMembers:
   - System.Object.Equals(System.Object)
@@ -71,6 +75,75 @@ items:
   - FastEndpoints.Testing.IFaker.Fake
   nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Fake
   fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Fake
+- uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context
+  commentId: P:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context
+  id: Context
+  parent: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1
+  langs:
+  - csharp
+  - vb
+  name: Context
+  nameWithType: TestBaseWithAssemblyFixture<TAppFixture>.Context
+  fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.Context
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public ITestContext Context { get; }
+    parameters: []
+    return:
+      type: Xunit.ITestContext
+    content.vb: Public ReadOnly Property Context As ITestContext
+  overload: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context*
+  nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Context
+  fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Context
+- uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation
+  commentId: P:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation
+  id: Cancellation
+  parent: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1
+  langs:
+  - csharp
+  - vb
+  name: Cancellation
+  nameWithType: TestBaseWithAssemblyFixture<TAppFixture>.Cancellation
+  fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.Cancellation
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public CancellationToken Cancellation { get; }
+    parameters: []
+    return:
+      type: System.Threading.CancellationToken
+    content.vb: Public ReadOnly Property Cancellation As CancellationToken
+  overload: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation*
+  nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Cancellation
+  fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Cancellation
+- uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output
+  commentId: P:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output
+  id: Output
+  parent: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: TestBaseWithAssemblyFixture<TAppFixture>.Output
+  fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.Output
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public ITestOutputHelper Output { get; }
+    parameters: []
+    return:
+      type: Xunit.ITestOutputHelper
+    content.vb: Public ReadOnly Property Output As ITestOutputHelper
+  overload: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output*
+  nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Output
+  fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Output
 - uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.SetupAsync
   commentId: M:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.SetupAsync
   id: SetupAsync
@@ -91,10 +164,10 @@ items:
     it is run before any of the test-methods of the class is executed.
   example: []
   syntax:
-    content: protected virtual Task SetupAsync()
+    content: protected virtual ValueTask SetupAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function SetupAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function SetupAsync() As ValueTask
   overload: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.SetupAsync*
   nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).SetupAsync()
   fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).SetupAsync()
@@ -118,10 +191,10 @@ items:
     it is run after all test-methods have executed.
   example: []
   syntax:
-    content: protected virtual Task TearDownAsync()
+    content: protected virtual ValueTask TearDownAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function TearDownAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function TearDownAsync() As ValueTask
   overload: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.TearDownAsync*
   nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).TearDownAsync()
   fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).TearDownAsync()
@@ -166,6 +239,14 @@ references:
   name: IAsyncLifetime
   nameWithType: IAsyncLifetime
   fullName: Xunit.IAsyncLifetime
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
 - uid: FastEndpoints.Testing.IFaker
   commentId: T:FastEndpoints.Testing.IFaker
   parent: FastEndpoints.Testing
@@ -432,6 +513,79 @@ references:
   name: Bogus
   nameWithType: Bogus
   fullName: Bogus
+- uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context*
+  commentId: Overload:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Context
+  href: FastEndpoints.Testing.TestBaseWithAssemblyFixture-1.html#FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Context
+  name: Context
+  nameWithType: TestBaseWithAssemblyFixture<TAppFixture>.Context
+  fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.Context
+  nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Context
+  fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Context
+- uid: Xunit.ITestContext
+  commentId: T:Xunit.ITestContext
+  parent: Xunit
+  isExternal: true
+  name: ITestContext
+  nameWithType: ITestContext
+  fullName: Xunit.ITestContext
+- uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation*
+  commentId: Overload:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Cancellation
+  href: FastEndpoints.Testing.TestBaseWithAssemblyFixture-1.html#FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Cancellation
+  name: Cancellation
+  nameWithType: TestBaseWithAssemblyFixture<TAppFixture>.Cancellation
+  fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.Cancellation
+  nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Cancellation
+  fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Cancellation
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output*
+  commentId: Overload:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.Output
+  href: FastEndpoints.Testing.TestBaseWithAssemblyFixture-1.html#FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_Output
+  name: Output
+  nameWithType: TestBaseWithAssemblyFixture<TAppFixture>.Output
+  fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.Output
+  nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).Output
+  fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).Output
+- uid: Xunit.ITestOutputHelper
+  commentId: T:Xunit.ITestOutputHelper
+  parent: Xunit
+  isExternal: true
+  name: ITestOutputHelper
+  nameWithType: ITestOutputHelper
+  fullName: Xunit.ITestOutputHelper
 - uid: FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.SetupAsync*
   commentId: Overload:FastEndpoints.Testing.TestBaseWithAssemblyFixture`1.SetupAsync
   href: FastEndpoints.Testing.TestBaseWithAssemblyFixture-1.html#FastEndpoints_Testing_TestBaseWithAssemblyFixture_1_SetupAsync
@@ -440,14 +594,14 @@ references:
   fullName: FastEndpoints.Testing.TestBaseWithAssemblyFixture<TAppFixture>.SetupAsync
   nameWithType.vb: TestBaseWithAssemblyFixture(Of TAppFixture).SetupAsync
   fullName.vb: FastEndpoints.Testing.TestBaseWithAssemblyFixture(Of TAppFixture).SetupAsync
-- uid: System.Threading.Tasks.Task
-  commentId: T:System.Threading.Tasks.Task
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
   parent: System.Threading.Tasks
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
-  name: Task
-  nameWithType: Task
-  fullName: System.Threading.Tasks.Task
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true

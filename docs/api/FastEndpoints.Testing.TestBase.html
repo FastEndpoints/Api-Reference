@@ -94,6 +94,7 @@ test methods can be run in a given order by decorating the methods with <a class
   <div class="implements">
     <h5>Implements</h5>
     <div><span class="xref">IAsyncLifetime</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a></div>
   </div>
   <div class="inheritedMembers">
@@ -124,11 +125,61 @@ test methods can be run in a given order by decorating the methods with <a class
   <h6><strong>Assembly</strong>: FastEndpoints.Testing.dll</h6>
   <h5 id="FastEndpoints_Testing_TestBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TestCaseOrderer(&quot;FastEndpoints.Testing.TestCaseOrderer&quot;, &quot;FastEndpoints.Testing&quot;)]
-public abstract class TestBase : IAsyncLifetime, IFaker</code></pre>
+    <pre><code class="lang-csharp hljs">[TestCaseOrderer(typeof(TestCaseOrderer))]
+public abstract class TestBase : IAsyncLifetime, IAsyncDisposable, IFaker</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
+
+
+  <a id="FastEndpoints_Testing_TestBase_Cancellation_" data-uid="FastEndpoints.Testing.TestBase.Cancellation*"></a>
+  <h4 id="FastEndpoints_Testing_TestBase_Cancellation" data-uid="FastEndpoints.Testing.TestBase.Cancellation">Cancellation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CancellationToken Cancellation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Testing_TestBase_Context_" data-uid="FastEndpoints.Testing.TestBase.Context*"></a>
+  <h4 id="FastEndpoints_Testing_TestBase_Context" data-uid="FastEndpoints.Testing.TestBase.Context">Context</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITestContext Context { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ITestContext</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <a id="FastEndpoints_Testing_TestBase_Fake_" data-uid="FastEndpoints.Testing.TestBase.Fake*"></a>
@@ -155,19 +206,45 @@ public abstract class TestBase : IAsyncLifetime, IFaker</code></pre>
       </tr>
     </tbody>
   </table>
+
+
+  <a id="FastEndpoints_Testing_TestBase_Output_" data-uid="FastEndpoints.Testing.TestBase.Output*"></a>
+  <h4 id="FastEndpoints_Testing_TestBase_Output" data-uid="FastEndpoints.Testing.TestBase.Output">Output</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITestOutputHelper Output { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ITestOutputHelper</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
 
 
   <a id="FastEndpoints_Testing_TestBase_SetupAsync_" data-uid="FastEndpoints.Testing.TestBase.SetupAsync*"></a>
   <h4 id="FastEndpoints_Testing_TestBase_SetupAsync" data-uid="FastEndpoints.Testing.TestBase.SetupAsync">SetupAsync()</h4>
-  <div class="markdown level1 summary"><p>override this method if you'd like to do some one-time setup for the test-class.
-it is run before any of the test-methods of the class is executed.</p>
+  <div class="markdown level1 summary"><p>override this method if you'd like to do some setup before each test-case gets executed.
+it is run per test and is analogous to an async constructor for the test-class.
+TIP: xunit creates a fresh instance of the test-class per test.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task SetupAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask SetupAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -179,7 +256,7 @@ it is run before any of the test-methods of the class is executed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -188,13 +265,14 @@ it is run before any of the test-methods of the class is executed.</p>
 
   <a id="FastEndpoints_Testing_TestBase_TearDownAsync_" data-uid="FastEndpoints.Testing.TestBase.TearDownAsync*"></a>
   <h4 id="FastEndpoints_Testing_TestBase_TearDownAsync" data-uid="FastEndpoints.Testing.TestBase.TearDownAsync">TearDownAsync()</h4>
-  <div class="markdown level1 summary"><p>override this method if you'd like to do some one-time teardown for the test-class.
-it is run after all test-methods have executed.</p>
+  <div class="markdown level1 summary"><p>override this method if you'd like to do some teardown/cleanup after each test-case has completed.
+it is run per test and is analogous to an async destructor for the test-class.
+TIP: xunit creates a fresh instance of the test-class per test.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task TearDownAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask TearDownAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -206,7 +284,7 @@ it is run after all test-methods have executed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -214,6 +292,9 @@ it is run after all test-methods have executed.</p>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">Xunit.IAsyncLifetime</span>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
   </div>
   <div>
       <a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a>

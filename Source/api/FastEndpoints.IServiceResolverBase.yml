@@ -7,9 +7,13 @@ items:
   children:
   - FastEndpoints.IServiceResolverBase.CreateScope
   - FastEndpoints.IServiceResolverBase.Resolve(System.Type)
+  - FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
   - FastEndpoints.IServiceResolverBase.Resolve``1
+  - FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
   - FastEndpoints.IServiceResolverBase.TryResolve(System.Type)
+  - FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
   - FastEndpoints.IServiceResolverBase.TryResolve``1
+  - FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
   langs:
   - csharp
   - vb
@@ -48,8 +52,10 @@ items:
     the work is complete.
 
     <p>
-       <pre><code class="lang-csharp">using var scope = CreateScope();
-       var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre></p>
+
+        <pre><code class="lang-csharp">using var scope = CreateScope();
+        var scopedService = scope.Resolve<MyService>();</code></pre>
+    </p>
   example: []
   syntax:
     content: IServiceScope CreateScope()
@@ -173,6 +179,142 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: Thrown if requested service cannot be resolved
+- uid: FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve``1(System.String)
+  id: TryResolve``1(System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  langs:
+  - csharp
+  - vb
+  name: TryResolve<TService>(string)
+  nameWithType: IServiceResolverBase.TryResolve<TService>(string)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve<TService>(string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: 'TService? TryResolve<TService>(string keyName) where TService : class'
+    parameters:
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Function TryResolve(Of TService As Class)(keyName As String) As TService
+  overload: FastEndpoints.IServiceResolverBase.TryResolve*
+  nameWithType.vb: IServiceResolverBase.TryResolve(Of TService)(String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(Of TService)(String)
+  name.vb: TryResolve(Of TService)(String)
+- uid: FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.TryResolve(System.Type,System.String)
+  id: TryResolve(System.Type,System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  langs:
+  - csharp
+  - vb
+  name: TryResolve(Type, string)
+  nameWithType: IServiceResolverBase.TryResolve(Type, string)
+  fullName: FastEndpoints.IServiceResolverBase.TryResolve(System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: object? TryResolve(Type typeOfService, string keyName)
+    parameters:
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    return:
+      type: System.Object
+    content.vb: Function TryResolve(typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.IServiceResolverBase.TryResolve*
+  nameWithType.vb: IServiceResolverBase.TryResolve(Type, String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.TryResolve(System.Type, String)
+  name.vb: TryResolve(Type, String)
+- uid: FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve``1(System.String)
+  id: Resolve``1(System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  langs:
+  - csharp
+  - vb
+  name: Resolve<TService>(string)
+  nameWithType: IServiceResolverBase.Resolve<TService>(string)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve<TService>(string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: 'TService Resolve<TService>(string keyName) where TService : class'
+    parameters:
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Function Resolve(Of TService As Class)(keyName As String) As TService
+  overload: FastEndpoints.IServiceResolverBase.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  nameWithType.vb: IServiceResolverBase.Resolve(Of TService)(String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(Of TService)(String)
+  name.vb: Resolve(Of TService)(String)
+- uid: FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+  commentId: M:FastEndpoints.IServiceResolverBase.Resolve(System.Type,System.String)
+  id: Resolve(System.Type,System.String)
+  parent: FastEndpoints.IServiceResolverBase
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Type, string)
+  nameWithType: IServiceResolverBase.Resolve(Type, string)
+  fullName: FastEndpoints.IServiceResolverBase.Resolve(System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: object Resolve(Type typeOfService, string keyName)
+    parameters:
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+      description: the key name for resolving keyed service
+    return:
+      type: System.Object
+    content.vb: Function Resolve(typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.IServiceResolverBase.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  nameWithType.vb: IServiceResolverBase.Resolve(Type, String)
+  fullName.vb: FastEndpoints.IServiceResolverBase.Resolve(System.Type, String)
+  name.vb: Resolve(Type, String)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -285,3 +427,14 @@ references:
   name: Resolve
   nameWithType: IServiceResolverBase.Resolve
   fullName: FastEndpoints.IServiceResolverBase.Resolve
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

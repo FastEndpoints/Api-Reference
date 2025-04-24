@@ -123,6 +123,81 @@
 </h3>
 
 
+  <a id="FastEndpoints_Messaging_Remote_Testing_Extensions_GetTestEventReceiver_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver*"></a>
+  <h4 id="FastEndpoints_Messaging_Remote_Testing_Extensions_GetTestEventReceiver__1_System_IServiceProvider_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver``1(System.IServiceProvider)">GetTestEventReceiver&lt;TEvent&gt;(IServiceProvider)</h4>
+  <div class="markdown level1 summary"><p>gets a test event receiver for a given event type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEventReceiver&lt;TEvent&gt; GetTestEventReceiver&lt;TEvent&gt;(this IServiceProvider provider) where TEvent : IEvent</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">provider</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEventReceiver-1.html">IEventReceiver</a>&lt;TEvent&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TEvent</span></td>
+        <td><p>the type of the event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown when test event receivers are not registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestCommandHandler_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestCommandHandler*"></a>
   <h4 id="FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestCommandHandler__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestCommandHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">RegisterTestCommandHandler&lt;TCommand, THandler&gt;(IServiceCollection)</h4>
   <div class="markdown level1 summary"><p>register test/fake/mock command handlers for integration testing gRPC commands</p>
@@ -130,7 +205,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterTestCommandHandler&lt;TCommand, THandler&gt;(this IServiceCollection s) where TCommand : ICommand where THandler : class, ICommandHandler&lt;TCommand&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection RegisterTestCommandHandler&lt;TCommand, THandler&gt;(this IServiceCollection s) where TCommand : ICommand where THandler : class, ICommandHandler&lt;TCommand&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -145,6 +220,21 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
         <td><span class="parametername">s</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -179,7 +269,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterTestEventHandler&lt;TEvent, THandler&gt;(this IServiceCollection s) where TEvent : IEvent where THandler : class, IEventHandler&lt;TEvent&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection RegisterTestEventHandler&lt;TEvent, THandler&gt;(this IServiceCollection s) where TEvent : IEvent where THandler : class, IEventHandler&lt;TEvent&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -194,6 +284,21 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
         <td><span class="parametername">s</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -221,6 +326,49 @@
   </table>
 
 
+  <a id="FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestEventReceivers_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers*"></a>
+  <h4 id="FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestEventReceivers_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)">RegisterTestEventReceivers(IServiceCollection)</h4>
+  <div class="markdown level1 summary"><p>registers test event receivers for the purpose of testing receipt of events.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection RegisterTestEventReceivers(this IServiceCollection s)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
+        <td><span class="parametername">s</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestRemote_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestRemote*"></a>
   <h4 id="FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestRemote_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_AspNetCore_TestHost_TestServer_" data-uid="FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestRemote(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.TestHost.TestServer)">RegisterTestRemote(IServiceCollection, TestServer)</h4>
   <div class="markdown level1 summary"><p>enables communicating with a remote gRPC server in the WAF testing environment</p>
@@ -228,7 +376,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterTestRemote(this IServiceCollection s, TestServer remote)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection RegisterTestRemote(this IServiceCollection s, TestServer remote)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -250,6 +398,21 @@
         <td><span class="parametername">remote</span></td>
         <td><p>the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.testhost.testserver">TestServer</a> of the target WAF</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

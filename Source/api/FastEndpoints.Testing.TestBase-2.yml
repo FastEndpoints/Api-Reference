@@ -21,7 +21,7 @@ items:
     test methods can be run in a given order by decorating the methods with <xref href="FastEndpoints.Testing.PriorityAttribute" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
-    content: 'public abstract class TestBase<TAppFixture, TState> : TestBase<TAppFixture>, IAsyncLifetime, IFaker, IClassFixture<TAppFixture>, IClassFixture<TState> where TAppFixture : BaseFixture where TState : StateFixture'
+    content: 'public abstract class TestBase<TAppFixture, TState> : TestBase<TAppFixture>, IAsyncLifetime, IAsyncDisposable, IFaker, IClassFixture<TAppFixture>, IClassFixture<TState> where TAppFixture : BaseFixture where TState : StateFixture'
     typeParameters:
     - id: TAppFixture
       description: >-
@@ -44,18 +44,22 @@ items:
         with multiple test-classes.
     - id: TState
       description: the type of the shared state fixture. implement a "state fixture" by inheriting <xref href="FastEndpoints.Testing.StateFixture" data-throw-if-not-resolved="false"></xref> abstract class.
-    content.vb: Public MustInherit Class TestBase(Of TAppFixture As BaseFixture, TState As StateFixture) Inherits TestBase(Of TAppFixture) Implements IAsyncLifetime, IFaker, IClassFixture(Of TAppFixture), IClassFixture(Of TState)
+    content.vb: Public MustInherit Class TestBase(Of TAppFixture As BaseFixture, TState As StateFixture) Inherits TestBase(Of TAppFixture) Implements IAsyncLifetime, IAsyncDisposable, IFaker, IClassFixture(Of TAppFixture), IClassFixture(Of TState)
   inheritance:
   - System.Object
   - FastEndpoints.Testing.TestBase
   - FastEndpoints.Testing.TestBase{{TAppFixture}}
   implements:
   - Xunit.IAsyncLifetime
+  - System.IAsyncDisposable
   - FastEndpoints.Testing.IFaker
   - Xunit.IClassFixture{{TAppFixture}}
   - Xunit.IClassFixture{{TState}}
   inheritedMembers:
   - FastEndpoints.Testing.TestBase.Fake
+  - FastEndpoints.Testing.TestBase.Context
+  - FastEndpoints.Testing.TestBase.Cancellation
+  - FastEndpoints.Testing.TestBase.Output
   - FastEndpoints.Testing.TestBase.SetupAsync
   - FastEndpoints.Testing.TestBase.TearDownAsync
   - System.Object.Equals(System.Object)
@@ -180,6 +184,14 @@ references:
   name: IAsyncLifetime
   nameWithType: IAsyncLifetime
   fullName: Xunit.IAsyncLifetime
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
 - uid: FastEndpoints.Testing.IFaker
   commentId: T:FastEndpoints.Testing.IFaker
   parent: FastEndpoints.Testing
@@ -246,6 +258,27 @@ references:
   name: Fake
   nameWithType: TestBase.Fake
   fullName: FastEndpoints.Testing.TestBase.Fake
+- uid: FastEndpoints.Testing.TestBase.Context
+  commentId: P:FastEndpoints.Testing.TestBase.Context
+  parent: FastEndpoints.Testing.TestBase
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Context
+  name: Context
+  nameWithType: TestBase.Context
+  fullName: FastEndpoints.Testing.TestBase.Context
+- uid: FastEndpoints.Testing.TestBase.Cancellation
+  commentId: P:FastEndpoints.Testing.TestBase.Cancellation
+  parent: FastEndpoints.Testing.TestBase
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Cancellation
+  name: Cancellation
+  nameWithType: TestBase.Cancellation
+  fullName: FastEndpoints.Testing.TestBase.Cancellation
+- uid: FastEndpoints.Testing.TestBase.Output
+  commentId: P:FastEndpoints.Testing.TestBase.Output
+  parent: FastEndpoints.Testing.TestBase
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Output
+  name: Output
+  nameWithType: TestBase.Output
+  fullName: FastEndpoints.Testing.TestBase.Output
 - uid: FastEndpoints.Testing.TestBase.SetupAsync
   commentId: M:FastEndpoints.Testing.TestBase.SetupAsync
   parent: FastEndpoints.Testing.TestBase

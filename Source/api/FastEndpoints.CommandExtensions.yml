@@ -5,11 +5,13 @@ items:
   id: CommandExtensions
   parent: FastEndpoints
   children:
+  - FastEndpoints.CommandExtensions.AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.CommandMiddlewareConfig})
   - FastEndpoints.CommandExtensions.ExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)
   - FastEndpoints.CommandExtensions.ExecuteAsync``1(``0,System.Threading.CancellationToken)
-  - FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  - FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
   - FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   - FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
+  - FastEndpoints.CommandExtensions.RegisterGenericCommand``2(System.IServiceProvider)
   langs:
   - csharp
   - vb
@@ -51,7 +53,7 @@ items:
   summary: executes the command that does not return a result
   example: []
   syntax:
-    content: 'public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = default) where TCommand : ICommand'
+    content: 'public static Task ExecuteAsync<TCommand>(this TCommand command, CancellationToken ct = default) where TCommand : class, ICommand'
     parameters:
     - id: command
       type: '{TCommand}'
@@ -63,7 +65,7 @@ items:
     - id: TCommand
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Shared Function ExecuteAsync(Of TCommand As ICommand)(command As TCommand, ct As CancellationToken = Nothing) As Task
+    content.vb: Public Shared Function ExecuteAsync(Of TCommand As {Class, ICommand})(command As TCommand, ct As CancellationToken = Nothing) As Task
   overload: FastEndpoints.CommandExtensions.ExecuteAsync*
   exceptions:
   - type: System.InvalidOperationException
@@ -112,17 +114,17 @@ items:
   nameWithType.vb: CommandExtensions.ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
   fullName.vb: FastEndpoints.CommandExtensions.ExecuteAsync(Of TResult)(FastEndpoints.ICommand(Of TResult), System.Threading.CancellationToken)
   name.vb: ExecuteAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
-- uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
-  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
-  id: RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
+  id: RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
   isExtensionMethod: true
   parent: FastEndpoints.CommandExtensions
   langs:
   - csharp
   - vb
-  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
-  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
-  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand>)
+  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand, Void>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand, Void>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand, FastEndpoints.Void>)
   type: Method
   assemblies:
   - FastEndpoints
@@ -130,19 +132,19 @@ items:
   summary: registers a fake command handler for unit testing purposes
   example: []
   syntax:
-    content: 'public static void RegisterForTesting<TCommand>(this ICommandHandler<TCommand> handler) where TCommand : ICommand'
+    content: 'public static void RegisterForTesting<TCommand>(this ICommandHandler<TCommand, Void> handler) where TCommand : ICommand'
     parameters:
     - id: handler
-      type: FastEndpoints.ICommandHandler{{TCommand}}
+      type: FastEndpoints.ICommandHandler{{TCommand},FastEndpoints.Void}
       description: a fake handler instance
     typeParameters:
     - id: TCommand
       description: type of the command
-    content.vb: Public Shared Sub RegisterForTesting(Of TCommand As ICommand)(handler As ICommandHandler(Of TCommand))
+    content.vb: Public Shared Sub RegisterForTesting(Of TCommand As ICommand)(handler As ICommandHandler(Of TCommand, Void))
   overload: FastEndpoints.CommandExtensions.RegisterForTesting*
-  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
-  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand))
-  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand, Void))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand, FastEndpoints.Void))
+  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand, Void))
 - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
   id: RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
@@ -176,6 +178,41 @@ items:
   nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
   fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)(FastEndpoints.ICommandHandler(Of TCommand, TResult))
   name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
+- uid: FastEndpoints.CommandExtensions.RegisterGenericCommand``2(System.IServiceProvider)
+  commentId: M:FastEndpoints.CommandExtensions.RegisterGenericCommand``2(System.IServiceProvider)
+  id: RegisterGenericCommand``2(System.IServiceProvider)
+  isExtensionMethod: true
+  parent: FastEndpoints.CommandExtensions
+  langs:
+  - csharp
+  - vb
+  name: RegisterGenericCommand<TCommand, THandler>(IServiceProvider)
+  nameWithType: CommandExtensions.RegisterGenericCommand<TCommand, THandler>(IServiceProvider)
+  fullName: FastEndpoints.CommandExtensions.RegisterGenericCommand<TCommand, THandler>(System.IServiceProvider)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: register a generic command handler for a generic command
+  example: []
+  syntax:
+    content: 'public static IServiceProvider RegisterGenericCommand<TCommand, THandler>(this IServiceProvider sp) where TCommand : ICommand where THandler : ICommandHandler'
+    parameters:
+    - id: sp
+      type: System.IServiceProvider
+    typeParameters:
+    - id: TCommand
+      description: the type of the command
+    - id: THandler
+      description: the type of the command handler
+    return:
+      type: System.IServiceProvider
+      description: ''
+    content.vb: Public Shared Function RegisterGenericCommand(Of TCommand As ICommand, THandler As ICommandHandler)(sp As IServiceProvider) As IServiceProvider
+  overload: FastEndpoints.CommandExtensions.RegisterGenericCommand*
+  nameWithType.vb: CommandExtensions.RegisterGenericCommand(Of TCommand, THandler)(IServiceProvider)
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterGenericCommand(Of TCommand, THandler)(System.IServiceProvider)
+  name.vb: RegisterGenericCommand(Of TCommand, THandler)(IServiceProvider)
 - uid: FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
   commentId: M:FastEndpoints.CommandExtensions.RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
   id: RegisterGenericCommand(System.IServiceProvider,System.Type,System.Type)
@@ -209,6 +246,41 @@ items:
       description: ''
     content.vb: Public Shared Function RegisterGenericCommand(sp As IServiceProvider, genericCommandType As Type, genericHandlerType As Type) As IServiceProvider
   overload: FastEndpoints.CommandExtensions.RegisterGenericCommand*
+- uid: FastEndpoints.CommandExtensions.AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.CommandMiddlewareConfig})
+  commentId: M:FastEndpoints.CommandExtensions.AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.CommandMiddlewareConfig})
+  id: AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{FastEndpoints.CommandMiddlewareConfig})
+  isExtensionMethod: true
+  parent: FastEndpoints.CommandExtensions
+  langs:
+  - csharp
+  - vb
+  name: AddCommandMiddleware(IServiceCollection, Action<CommandMiddlewareConfig>)
+  nameWithType: CommandExtensions.AddCommandMiddleware(IServiceCollection, Action<CommandMiddlewareConfig>)
+  fullName: FastEndpoints.CommandExtensions.AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<FastEndpoints.CommandMiddlewareConfig>)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    register a common middleware pipeline for command handlers. the middleware can be created as open generic classes that implement the
+
+    <xref href="FastEndpoints.ICommandMiddleware%602" data-throw-if-not-resolved="false"></xref> interface as well as closed generic classes implementing the same interface.
+  example: []
+  syntax:
+    content: public static IServiceCollection AddCommandMiddleware(this IServiceCollection services, Action<CommandMiddlewareConfig> config)
+    parameters:
+    - id: services
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    - id: config
+      type: System.Action{FastEndpoints.CommandMiddlewareConfig}
+      description: configuration action for adding middleware components to the pipeline
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function AddCommandMiddleware(services As IServiceCollection, config As Action(Of CommandMiddlewareConfig)) As IServiceCollection
+  overload: FastEndpoints.CommandExtensions.AddCommandMiddleware*
+  nameWithType.vb: CommandExtensions.AddCommandMiddleware(IServiceCollection, Action(Of CommandMiddlewareConfig))
+  fullName.vb: FastEndpoints.CommandExtensions.AddCommandMiddleware(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of FastEndpoints.CommandMiddlewareConfig))
+  name.vb: AddCommandMiddleware(IServiceCollection, Action(Of CommandMiddlewareConfig))
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -663,88 +735,46 @@ references:
   - name: )
 - uid: FastEndpoints.CommandExtensions.RegisterForTesting*
   commentId: Overload:FastEndpoints.CommandExtensions.RegisterForTesting
-  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
   name: RegisterForTesting
   nameWithType: CommandExtensions.RegisterForTesting
   fullName: FastEndpoints.CommandExtensions.RegisterForTesting
-- uid: FastEndpoints.ICommandHandler{{TCommand}}
-  commentId: T:FastEndpoints.ICommandHandler{``0}
-  parent: FastEndpoints
-  definition: FastEndpoints.ICommandHandler`1
-  name: ICommandHandler<TCommand>
-  nameWithType: ICommandHandler<TCommand>
-  fullName: FastEndpoints.ICommandHandler<TCommand>
-  nameWithType.vb: ICommandHandler(Of TCommand)
-  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
-  name.vb: ICommandHandler(Of TCommand)
-  spec.csharp:
-  - uid: FastEndpoints.ICommandHandler`1
-    name: ICommandHandler
-  - name: <
-  - name: TCommand
-  - name: '>'
-  spec.vb:
-  - uid: FastEndpoints.ICommandHandler`1
-    name: ICommandHandler
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TCommand
-  - name: )
-- uid: FastEndpoints.ICommandHandler`1
-  commentId: T:FastEndpoints.ICommandHandler`1
-  href: FastEndpoints.ICommandHandler-1.html
-  name: ICommandHandler<TCommand>
-  nameWithType: ICommandHandler<TCommand>
-  fullName: FastEndpoints.ICommandHandler<TCommand>
-  nameWithType.vb: ICommandHandler(Of TCommand)
-  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand)
-  name.vb: ICommandHandler(Of TCommand)
-  spec.csharp:
-  - uid: FastEndpoints.ICommandHandler`1
-    name: ICommandHandler
-    href: FastEndpoints.ICommandHandler-1.html
-  - name: <
-  - name: TCommand
-  - name: '>'
-  spec.vb:
-  - uid: FastEndpoints.ICommandHandler`1
-    name: ICommandHandler
-    href: FastEndpoints.ICommandHandler-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TCommand
-  - name: )
-- uid: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
-  commentId: T:FastEndpoints.ICommandHandler{``0,``1}
+- uid: FastEndpoints.ICommandHandler{{TCommand},FastEndpoints.Void}
+  commentId: T:FastEndpoints.ICommandHandler{``0,FastEndpoints.Void}
   parent: FastEndpoints
   definition: FastEndpoints.ICommandHandler`2
-  name: ICommandHandler<TCommand, TResult>
-  nameWithType: ICommandHandler<TCommand, TResult>
-  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
-  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
-  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
-  name.vb: ICommandHandler(Of TCommand, TResult)
+  href: FastEndpoints.ICommandHandler-2.html
+  name: ICommandHandler<TCommand, Void>
+  nameWithType: ICommandHandler<TCommand, Void>
+  fullName: FastEndpoints.ICommandHandler<TCommand, FastEndpoints.Void>
+  nameWithType.vb: ICommandHandler(Of TCommand, Void)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, FastEndpoints.Void)
+  name.vb: ICommandHandler(Of TCommand, Void)
   spec.csharp:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
   - name: <
   - name: TCommand
   - name: ','
   - name: " "
-  - name: TResult
+  - uid: FastEndpoints.Void
+    name: Void
+    href: FastEndpoints.Void.html
   - name: '>'
   spec.vb:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
   - name: (
   - name: Of
   - name: " "
   - name: TCommand
   - name: ','
   - name: " "
-  - name: TResult
+  - uid: FastEndpoints.Void
+    name: Void
+    href: FastEndpoints.Void.html
   - name: )
 - uid: FastEndpoints.ICommandHandler`2
   commentId: T:FastEndpoints.ICommandHandler`2
@@ -777,9 +807,39 @@ references:
   - name: " "
   - name: TResult
   - name: )
+- uid: FastEndpoints.ICommandHandler{{TCommand},{TResult}}
+  commentId: T:FastEndpoints.ICommandHandler{``0,``1}
+  parent: FastEndpoints
+  definition: FastEndpoints.ICommandHandler`2
+  name: ICommandHandler<TCommand, TResult>
+  nameWithType: ICommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
+  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
+  name.vb: ICommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: FastEndpoints.CommandExtensions.RegisterGenericCommand*
   commentId: Overload:FastEndpoints.CommandExtensions.RegisterGenericCommand
-  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterGenericCommand_System_IServiceProvider_System_Type_System_Type_
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterGenericCommand__2_System_IServiceProvider_
   name: RegisterGenericCommand
   nameWithType: CommandExtensions.RegisterGenericCommand
   fullName: FastEndpoints.CommandExtensions.RegisterGenericCommand
@@ -799,3 +859,146 @@ references:
   name: Type
   nameWithType: Type
   fullName: System.Type
+- uid: FastEndpoints.ICommandMiddleware`2
+  commentId: T:FastEndpoints.ICommandMiddleware`2
+  href: FastEndpoints.ICommandMiddleware-2.html
+  name: ICommandMiddleware<TCommand, TResult>
+  nameWithType: ICommandMiddleware<TCommand, TResult>
+  fullName: FastEndpoints.ICommandMiddleware<TCommand, TResult>
+  nameWithType.vb: ICommandMiddleware(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandMiddleware(Of TCommand, TResult)
+  name.vb: ICommandMiddleware(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandMiddleware`2
+    name: ICommandMiddleware
+    href: FastEndpoints.ICommandMiddleware-2.html
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandMiddleware`2
+    name: ICommandMiddleware
+    href: FastEndpoints.ICommandMiddleware-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FastEndpoints.CommandExtensions.AddCommandMiddleware*
+  commentId: Overload:FastEndpoints.CommandExtensions.AddCommandMiddleware
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_AddCommandMiddleware_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_FastEndpoints_CommandMiddlewareConfig__
+  name: AddCommandMiddleware
+  nameWithType: CommandExtensions.AddCommandMiddleware
+  fullName: FastEndpoints.CommandExtensions.AddCommandMiddleware
+- uid: Microsoft.Extensions.DependencyInjection.IServiceCollection
+  commentId: T:Microsoft.Extensions.DependencyInjection.IServiceCollection
+  parent: Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: Microsoft.Extensions.DependencyInjection.IServiceCollection
+- uid: System.Action{FastEndpoints.CommandMiddlewareConfig}
+  commentId: T:System.Action{FastEndpoints.CommandMiddlewareConfig}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<CommandMiddlewareConfig>
+  nameWithType: Action<CommandMiddlewareConfig>
+  fullName: System.Action<FastEndpoints.CommandMiddlewareConfig>
+  nameWithType.vb: Action(Of CommandMiddlewareConfig)
+  fullName.vb: System.Action(Of FastEndpoints.CommandMiddlewareConfig)
+  name.vb: Action(Of CommandMiddlewareConfig)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.CommandMiddlewareConfig
+    name: CommandMiddlewareConfig
+    href: FastEndpoints.CommandMiddlewareConfig.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.CommandMiddlewareConfig
+    name: CommandMiddlewareConfig
+    href: FastEndpoints.CommandMiddlewareConfig.html
+  - name: )
+- uid: Microsoft.Extensions.DependencyInjection
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.DependencyInjection
+    name: DependencyInjection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

@@ -9,7 +9,7 @@ items:
   - FastEndpoints.IEventHubStorageProvider`1.MarkEventAsCompleteAsync(`0,System.Threading.CancellationToken)
   - FastEndpoints.IEventHubStorageProvider`1.PurgeStaleRecordsAsync(FastEndpoints.StaleRecordSearchParams{`0})
   - FastEndpoints.IEventHubStorageProvider`1.RestoreSubscriberIDsForEventTypeAsync(FastEndpoints.SubscriberIDRestorationParams{`0})
-  - FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync(`0,System.Threading.CancellationToken)
+  - FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -63,37 +63,47 @@ items:
   nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord).RestoreSubscriberIDsForEventTypeAsync(SubscriberIDRestorationParams(Of TStorageRecord))
   fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord).RestoreSubscriberIDsForEventTypeAsync(FastEndpoints.SubscriberIDRestorationParams(Of TStorageRecord))
   name.vb: RestoreSubscriberIDsForEventTypeAsync(SubscriberIDRestorationParams(Of TStorageRecord))
-- uid: FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync(`0,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync(`0,System.Threading.CancellationToken)
-  id: StoreEventAsync(`0,System.Threading.CancellationToken)
+- uid: FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)
+  id: StoreEventsAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)
   parent: FastEndpoints.IEventHubStorageProvider`1
   langs:
   - csharp
   - vb
-  name: StoreEventAsync(TStorageRecord, CancellationToken)
-  nameWithType: IEventHubStorageProvider<TStorageRecord>.StoreEventAsync(TStorageRecord, CancellationToken)
-  fullName: FastEndpoints.IEventHubStorageProvider<TStorageRecord>.StoreEventAsync(TStorageRecord, System.Threading.CancellationToken)
+  name: StoreEventsAsync(IEnumerable<TStorageRecord>, CancellationToken)
+  nameWithType: IEventHubStorageProvider<TStorageRecord>.StoreEventsAsync(IEnumerable<TStorageRecord>, CancellationToken)
+  fullName: FastEndpoints.IEventHubStorageProvider<TStorageRecord>.StoreEventsAsync(System.Collections.Generic.IEnumerable<TStorageRecord>, System.Threading.CancellationToken)
   type: Method
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: store the event storage record however you please. ideally on a nosql database.
+  summary: >-
+    store the event storage records however you please. ideally on a nosql database.
+
+    <p>
+
+    WARNING: make sure to use a transaction or batch insert to ensure all the records are committed in one go.
+
+    if only some of the records succeed in being stored, it could lead to duplicate events being published due to the built-in retry mechanism.
+
+    </p>
   example: []
   syntax:
-    content: ValueTask StoreEventAsync(TStorageRecord r, CancellationToken ct)
+    content: ValueTask StoreEventsAsync(IEnumerable<TStorageRecord> r, CancellationToken ct)
     parameters:
     - id: r
-      type: '{TStorageRecord}'
-      description: the event storage record which contains the actual event object as well as some metadata
+      type: System.Collections.Generic.IEnumerable{{TStorageRecord}}
+      description: the event storage records which contains the actual event objects as well as some metadata
     - id: ct
       type: System.Threading.CancellationToken
       description: cancellation token
     return:
       type: System.Threading.Tasks.ValueTask
-    content.vb: Function StoreEventAsync(r As TStorageRecord, ct As CancellationToken) As ValueTask
-  overload: FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync*
-  nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord).StoreEventAsync(TStorageRecord, CancellationToken)
-  fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord).StoreEventAsync(TStorageRecord, System.Threading.CancellationToken)
+    content.vb: Function StoreEventsAsync(r As IEnumerable(Of TStorageRecord), ct As CancellationToken) As ValueTask
+  overload: FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync*
+  nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord).StoreEventsAsync(IEnumerable(Of TStorageRecord), CancellationToken)
+  fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord).StoreEventsAsync(System.Collections.Generic.IEnumerable(Of TStorageRecord), System.Threading.CancellationToken)
+  name.vb: StoreEventsAsync(IEnumerable(Of TStorageRecord), CancellationToken)
 - uid: FastEndpoints.IEventHubStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingRecordSearchParams{`0})
   commentId: M:FastEndpoints.IEventHubStorageProvider`1.GetNextBatchAsync(FastEndpoints.PendingRecordSearchParams{`0})
   id: GetNextBatchAsync(FastEndpoints.PendingRecordSearchParams{`0})
@@ -182,7 +192,9 @@ items:
 
     NOTE: the default match criteria is:
 
-    <pre><code class="lang-csharp">r =&gt; r.IsComplete || DateTime.UtcNow &gt;= r.ExpireOn</code></pre></p>
+    <pre><code class="lang-csharp">r =&gt; r.IsComplete || DateTime.UtcNow &gt;= r.ExpireOn</code></pre>
+
+    </p>
   example: []
   syntax:
     content: ValueTask PurgeStaleRecordsAsync(StaleRecordSearchParams<TStorageRecord> parameters)
@@ -378,20 +390,43 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync*
-  commentId: Overload:FastEndpoints.IEventHubStorageProvider`1.StoreEventAsync
-  href: FastEndpoints.IEventHubStorageProvider-1.html#FastEndpoints_IEventHubStorageProvider_1_StoreEventAsync__0_System_Threading_CancellationToken_
-  name: StoreEventAsync
-  nameWithType: IEventHubStorageProvider<TStorageRecord>.StoreEventAsync
-  fullName: FastEndpoints.IEventHubStorageProvider<TStorageRecord>.StoreEventAsync
-  nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord).StoreEventAsync
-  fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord).StoreEventAsync
-- uid: '{TStorageRecord}'
-  commentId: '!:TStorageRecord'
-  definition: TStorageRecord
-  name: TStorageRecord
-  nameWithType: TStorageRecord
-  fullName: TStorageRecord
+- uid: FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync*
+  commentId: Overload:FastEndpoints.IEventHubStorageProvider`1.StoreEventsAsync
+  href: FastEndpoints.IEventHubStorageProvider-1.html#FastEndpoints_IEventHubStorageProvider_1_StoreEventsAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_
+  name: StoreEventsAsync
+  nameWithType: IEventHubStorageProvider<TStorageRecord>.StoreEventsAsync
+  fullName: FastEndpoints.IEventHubStorageProvider<TStorageRecord>.StoreEventsAsync
+  nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord).StoreEventsAsync
+  fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord).StoreEventsAsync
+- uid: System.Collections.Generic.IEnumerable{{TStorageRecord}}
+  commentId: T:System.Collections.Generic.IEnumerable{`0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<TStorageRecord>
+  nameWithType: IEnumerable<TStorageRecord>
+  fullName: System.Collections.Generic.IEnumerable<TStorageRecord>
+  nameWithType.vb: IEnumerable(Of TStorageRecord)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of TStorageRecord)
+  name.vb: IEnumerable(Of TStorageRecord)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: TStorageRecord
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TStorageRecord
+  - name: )
 - uid: System.Threading.CancellationToken
   commentId: T:System.Threading.CancellationToken
   parent: System.Threading
@@ -408,10 +443,71 @@ references:
   name: ValueTask
   nameWithType: ValueTask
   fullName: System.Threading.Tasks.ValueTask
-- uid: TStorageRecord
-  name: TStorageRecord
-  nameWithType: TStorageRecord
-  fullName: TStorageRecord
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: System.Threading
   commentId: N:System.Threading
   isExternal: true
@@ -557,6 +653,12 @@ references:
   fullName: FastEndpoints.IEventHubStorageProvider<TStorageRecord>.MarkEventAsCompleteAsync
   nameWithType.vb: IEventHubStorageProvider(Of TStorageRecord).MarkEventAsCompleteAsync
   fullName.vb: FastEndpoints.IEventHubStorageProvider(Of TStorageRecord).MarkEventAsCompleteAsync
+- uid: '{TStorageRecord}'
+  commentId: '!:TStorageRecord'
+  definition: TStorageRecord
+  name: TStorageRecord
+  nameWithType: TStorageRecord
+  fullName: TStorageRecord
 - uid: FastEndpoints.IEventStorageRecord
   commentId: T:FastEndpoints.IEventStorageRecord
   parent: FastEndpoints
@@ -564,6 +666,10 @@ references:
   name: IEventStorageRecord
   nameWithType: IEventStorageRecord
   fullName: FastEndpoints.IEventStorageRecord
+- uid: TStorageRecord
+  name: TStorageRecord
+  nameWithType: TStorageRecord
+  fullName: TStorageRecord
 - uid: FastEndpoints.IEventStorageRecord.ExpireOn
   commentId: P:FastEndpoints.IEventStorageRecord.ExpireOn
   parent: FastEndpoints.IEventStorageRecord

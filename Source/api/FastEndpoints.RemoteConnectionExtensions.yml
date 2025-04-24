@@ -8,6 +8,7 @@ items:
   - FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})
   - FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)
+  - FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -53,9 +54,9 @@ items:
 
     <p>
 
-    IMPORTANT: call the <xref href="FastEndpoints.RemoteConnectionCore.Register%60%602" data-throw-if-not-resolved="false"></xref> method (using action <code class="paramref">r</code>) to specify which commands are handled by
+    IMPORTANT: call the <xref href="FastEndpoints.RemoteConnectionCore.Register%60%602" data-throw-if-not-resolved="false"></xref> method (using action <code class="paramref">r</code>) to specify which commands are
 
-    this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
+    handled by this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
 
     </p>
   example: []
@@ -96,7 +97,7 @@ items:
   summary: register a custom event subscriber storage provider
   example: []
   syntax:
-    content: 'public static void AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(this IServiceCollection services) where TStorageRecord : IEventStorageRecord, new() where TStorageProvider : class, IEventSubscriberStorageProvider<TStorageRecord>'
+    content: 'public static IServiceCollection AddEventSubscriberStorageProvider<TStorageRecord, TStorageProvider>(this IServiceCollection services) where TStorageRecord : IEventStorageRecord, new() where TStorageProvider : class, IEventSubscriberStorageProvider<TStorageRecord>'
     parameters:
     - id: services
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -105,11 +106,47 @@ items:
       description: the type of the storage record
     - id: TStorageProvider
       description: ''
-    content.vb: Public Shared Sub AddEventSubscriberStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventSubscriberStorageProvider(Of TStorageRecord)})(services As IServiceCollection)
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function AddEventSubscriberStorageProvider(Of TStorageRecord As {IEventStorageRecord, New}, TStorageProvider As {Class, IEventSubscriberStorageProvider(Of TStorageRecord)})(services As IServiceCollection) As IServiceCollection
   overload: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider*
   nameWithType.vb: RemoteConnectionExtensions.AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IServiceCollection)
   fullName.vb: FastEndpoints.RemoteConnectionExtensions.AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   name.vb: AddEventSubscriberStorageProvider(Of TStorageRecord, TStorageProvider)(IServiceCollection)
+- uid: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,System.Threading.CancellationToken)
+  id: RemotePublishAsync(FastEndpoints.IEvent,System.Threading.CancellationToken)
+  isExtensionMethod: true
+  parent: FastEndpoints.RemoteConnectionExtensions
+  langs:
+  - csharp
+  - vb
+  name: RemotePublishAsync(IEvent, CancellationToken)
+  nameWithType: RemoteConnectionExtensions.RemotePublishAsync(IEvent, CancellationToken)
+  fullName: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: publish the event to the relevant remote server that's running in <xref href="FastEndpoints.HubMode.EventBroker" data-throw-if-not-resolved="false"></xref> mode.
+  example: []
+  syntax:
+    content: public static Task RemotePublishAsync(this IEvent @event, CancellationToken ct)
+    parameters:
+    - id: event
+      type: FastEndpoints.IEvent
+      description: ''
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function RemotePublishAsync([event] As IEvent, ct As CancellationToken) As Task
+  overload: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown if the relevant remote handler has not been registered
 - uid: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)
   commentId: M:FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)
   id: RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)
@@ -125,7 +162,7 @@ items:
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: publish the event to the relevant remote server that's running in <xref href="FastEndpoints.HubMode.EventBroker" data-throw-if-not-resolved="false"></xref>
+  summary: publish the event to the relevant remote server that's running in <xref href="FastEndpoints.HubMode.EventBroker" data-throw-if-not-resolved="false"></xref> mode.
   example: []
   syntax:
     content: public static Task RemotePublishAsync(this IEvent @event, CallOptions options = default)
@@ -619,7 +656,7 @@ references:
   fullName: System.InvalidOperationException
 - uid: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*
   commentId: Overload:FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync
-  href: FastEndpoints.RemoteConnectionExtensions.html#FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_Grpc_Core_CallOptions_
+  href: FastEndpoints.RemoteConnectionExtensions.html#FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_System_Threading_CancellationToken_
   name: RemotePublishAsync
   nameWithType: RemoteConnectionExtensions.RemotePublishAsync
   fullName: FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync
@@ -630,14 +667,14 @@ references:
   name: IEvent
   nameWithType: IEvent
   fullName: FastEndpoints.IEvent
-- uid: Grpc.Core.CallOptions
-  commentId: T:Grpc.Core.CallOptions
-  parent: Grpc.Core
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
   isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs
-  name: CallOptions
-  nameWithType: CallOptions
-  fullName: Grpc.Core.CallOptions
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task
   commentId: T:System.Threading.Tasks.Task
   parent: System.Threading.Tasks
@@ -646,28 +683,33 @@ references:
   name: Task
   nameWithType: Task
   fullName: System.Threading.Tasks.Task
-- uid: Grpc.Core
-  commentId: N:Grpc.Core
+- uid: System.Threading
+  commentId: N:System.Threading
   isExternal: true
-  name: Grpc.Core
-  nameWithType: Grpc.Core
-  fullName: Grpc.Core
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
   spec.csharp:
-  - uid: Grpc
-    name: Grpc
+  - uid: System
+    name: System
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
-  - uid: Grpc.Core
-    name: Core
+  - uid: System.Threading
+    name: Threading
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
   spec.vb:
-  - uid: Grpc
-    name: Grpc
+  - uid: System
+    name: System
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
   - name: .
-  - uid: Grpc.Core
-    name: Core
+  - uid: System.Threading
+    name: Threading
     isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
@@ -705,3 +747,33 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Grpc.Core.CallOptions
+  commentId: T:Grpc.Core.CallOptions
+  parent: Grpc.Core
+  isExternal: true
+  href: https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs
+  name: CallOptions
+  nameWithType: CallOptions
+  fullName: Grpc.Core.CallOptions
+- uid: Grpc.Core
+  commentId: N:Grpc.Core
+  isExternal: true
+  name: Grpc.Core
+  nameWithType: Grpc.Core
+  fullName: Grpc.Core
+  spec.csharp:
+  - uid: Grpc
+    name: Grpc
+    isExternal: true
+  - name: .
+  - uid: Grpc.Core
+    name: Core
+    isExternal: true
+  spec.vb:
+  - uid: Grpc
+    name: Grpc
+    isExternal: true
+  - name: .
+  - uid: Grpc.Core
+    name: Core
+    isExternal: true

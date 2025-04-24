@@ -130,7 +130,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AddEventSubscriberStorageProvider&lt;TStorageRecord, TStorageProvider&gt;(this IServiceCollection services) where TStorageRecord : IEventStorageRecord, new() where TStorageProvider : class, IEventSubscriberStorageProvider&lt;TStorageRecord&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddEventSubscriberStorageProvider&lt;TStorageRecord, TStorageProvider&gt;(this IServiceCollection services) where TStorageRecord : IEventStorageRecord, new() where TStorageProvider : class, IEventSubscriberStorageProvider&lt;TStorageRecord&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -145,6 +145,21 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
         <td><span class="parametername">services</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -175,8 +190,8 @@
   <h4 id="FastEndpoints_RemoteConnectionExtensions_MapRemote_Microsoft_Extensions_Hosting_IHost_System_String_System_Action_FastEndpoints_RemoteConnection__" data-uid="FastEndpoints.RemoteConnectionExtensions.MapRemote(Microsoft.Extensions.Hosting.IHost,System.String,System.Action{FastEndpoints.RemoteConnection})">MapRemote(IHost, string, Action&lt;RemoteConnection&gt;)</h4>
   <div class="markdown level1 summary"><p>creates a grpc channel/connection to a remote server that hosts a known collection of command handlers and event hubs.</p>
 <p>
-IMPORTANT: call the <a class="xref" href="FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2">Register&lt;TCommand, TResult&gt;()</a> method (using action <code class="paramref">r</code>) to specify which commands are handled by
-this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
+IMPORTANT: call the <a class="xref" href="FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2">Register&lt;TCommand, TResult&gt;()</a> method (using action <code class="paramref">r</code>) to specify which commands are
+handled by this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -232,7 +247,7 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
 
   <a id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*"></a>
   <h4 id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,Grpc.Core.CallOptions)">RemotePublishAsync(IEvent, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>publish the event to the relevant remote server that's running in <a class="xref" href="FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker">EventBroker</a></p>
+  <div class="markdown level1 summary"><p>publish the event to the relevant remote server that's running in <a class="xref" href="FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker">EventBroker</a> mode.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -255,9 +270,74 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">options</span></td>
         <td><p>call options</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if the relevant remote handler has not been registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionExtensions_RemotePublishAsync_FastEndpoints_IEvent_System_Threading_CancellationToken_" data-uid="FastEndpoints.RemoteConnectionExtensions.RemotePublishAsync(FastEndpoints.IEvent,System.Threading.CancellationToken)">RemotePublishAsync(IEvent, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>publish the event to the relevant remote server that's running in <a class="xref" href="FastEndpoints.HubMode.html#FastEndpoints_HubMode_EventBroker">EventBroker</a> mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task RemotePublishAsync(this IEvent @event, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.IEvent.html">IEvent</a></td>
+        <td><span class="parametername">event</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
 </td>
       </tr>
     </tbody>

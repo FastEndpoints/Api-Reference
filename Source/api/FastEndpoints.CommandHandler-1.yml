@@ -19,11 +19,11 @@ items:
   summary: inherit this base class if you'd like to manipulate validation state of the calling endpoint from within the command handler.
   example: []
   syntax:
-    content: 'public abstract class CommandHandler<TCommand> : CommandHandlerBase<TCommand>, ICommandHandler<TCommand>, ICommandHandler where TCommand : ICommand'
+    content: 'public abstract class CommandHandler<TCommand> : CommandHandlerBase<TCommand>, ICommandHandler<TCommand>, ICommandHandler<TCommand, Void>, ICommandHandler where TCommand : ICommand'
     typeParameters:
     - id: TCommand
       description: the type of the command that will be handled by this command handler
-    content.vb: Public MustInherit Class CommandHandler(Of TCommand As ICommand) Inherits CommandHandlerBase(Of TCommand) Implements ICommandHandler(Of TCommand), ICommandHandler
+    content.vb: Public MustInherit Class CommandHandler(Of TCommand As ICommand) Inherits CommandHandlerBase(Of TCommand) Implements ICommandHandler(Of TCommand), ICommandHandler(Of TCommand, Void), ICommandHandler
   inheritance:
   - System.Object
   - FastEndpoints.ValidationContext
@@ -31,17 +31,20 @@ items:
   - FastEndpoints.CommandHandlerBase{{TCommand}}
   implements:
   - FastEndpoints.ICommandHandler{{TCommand}}
+  - FastEndpoints.ICommandHandler{{TCommand},FastEndpoints.Void}
   - FastEndpoints.ICommandHandler
   inheritedMembers:
   - FastEndpoints.ValidationContext{{TCommand}}.Instance
   - FastEndpoints.ValidationContext{{TCommand}}.AddError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.ValidationContext{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.Nullable{System.Int32})
+  - FastEndpoints.ValidationContext{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.ValidationContext.ValidationFailures
   - FastEndpoints.ValidationContext.ValidationFailed
   - FastEndpoints.ValidationContext.AddError(FluentValidation.Results.ValidationFailure)
   - FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   - FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
+  - FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -51,7 +54,8 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
   extensionMethods:
-  - FastEndpoints.ICommandHandler{`0}.FastEndpoints.CommandExtensions.RegisterForTesting``1
+  - FastEndpoints.ICommandHandler{`0,FastEndpoints.Void}.FastEndpoints.CommandExtensions.RegisterForTesting``1
+  - FastEndpoints.ICommandHandler{`0,FastEndpoints.Void}.FastEndpoints.CommandExtensions.RegisterForTesting``2
   nameWithType.vb: CommandHandler(Of TCommand)
   fullName.vb: FastEndpoints.CommandHandler(Of TCommand)
   name.vb: CommandHandler(Of TCommand)
@@ -168,7 +172,7 @@ references:
   - name: TCommand
   - name: )
 - uid: FastEndpoints.ICommandHandler{{TCommand}}
-  commentId: T:FastEndpoints.ICommandHandler{``0}
+  commentId: T:FastEndpoints.ICommandHandler{`0}
   parent: FastEndpoints
   definition: FastEndpoints.ICommandHandler`1
   name: ICommandHandler<TCommand>
@@ -190,6 +194,43 @@ references:
   - name: Of
   - name: " "
   - name: TCommand
+  - name: )
+- uid: FastEndpoints.ICommandHandler{{TCommand},FastEndpoints.Void}
+  commentId: T:FastEndpoints.ICommandHandler{``0,FastEndpoints.Void}
+  parent: FastEndpoints
+  definition: FastEndpoints.ICommandHandler`2
+  href: FastEndpoints.ICommandHandler-2.html
+  name: ICommandHandler<TCommand, Void>
+  nameWithType: ICommandHandler<TCommand, Void>
+  fullName: FastEndpoints.ICommandHandler<TCommand, FastEndpoints.Void>
+  nameWithType.vb: ICommandHandler(Of TCommand, Void)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, FastEndpoints.Void)
+  name.vb: ICommandHandler(Of TCommand, Void)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
+    href: FastEndpoints.Void.html
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
+    href: FastEndpoints.Void.html
   - name: )
 - uid: FastEndpoints.ICommandHandler
   commentId: T:FastEndpoints.ICommandHandler
@@ -398,6 +439,119 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: '?'
   - name: )
+- uid: FastEndpoints.ValidationContext{{TCommand}}.ThrowError(System.Linq.Expressions.Expression{System.Func{{TCommand},System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.ValidationContext{{TCommand}}
+  definition: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(Expression<Func<TCommand, object>>, string, string, Severity, int?)
+  nameWithType: ValidationContext<TCommand>.ThrowError(Expression<Func<TCommand, object>>, string, string, Severity, int?)
+  fullName: FastEndpoints.ValidationContext<TCommand>.ThrowError(System.Linq.Expressions.Expression<System.Func<TCommand, object>>, string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: ValidationContext(Of TCommand).ThrowError(Expression(Of Func(Of TCommand, Object)), String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext(Of TCommand).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TCommand, Object)), String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of TCommand, Object)), String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext{`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
 - uid: FastEndpoints.ValidationContext.ValidationFailures
   commentId: P:FastEndpoints.ValidationContext.ValidationFailures
   parent: FastEndpoints.ValidationContext
@@ -571,6 +725,73 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+- uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.ValidationContext
+  isExternal: true
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(string, string, Severity, int?)
+  nameWithType: ValidationContext.ThrowError(string, string, Severity, int?)
+  fullName: FastEndpoints.ValidationContext.ThrowError(string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: ValidationContext.ThrowError(String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowError(String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -831,47 +1052,114 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
-- uid: FastEndpoints.ICommandHandler{`0}.FastEndpoints.CommandExtensions.RegisterForTesting``1
-  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+- uid: FastEndpoints.ICommandHandler{`0,FastEndpoints.Void}.FastEndpoints.CommandExtensions.RegisterForTesting``1
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
   parent: FastEndpoints.CommandExtensions
-  definition: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
-  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
-  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
-  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
-  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand>)
-  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
-  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand))
-  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
+  definition: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
+  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand, Void>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand, Void>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand, FastEndpoints.Void>)
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand, Void))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand, FastEndpoints.Void))
+  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand, Void))
   spec.csharp:
-  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{`0})
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{`0,FastEndpoints.Void})
     name: RegisterForTesting
-    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
   - name: <
   - name: TCommand
   - name: '>'
   - name: (
-  - uid: FastEndpoints.ICommandHandler`1
+  - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
   - name: <
   - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
   - name: '>'
   - name: )
   spec.vb:
-  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{`0})
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{`0,FastEndpoints.Void})
     name: RegisterForTesting
-    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
   - name: (
   - name: Of
   - name: " "
   - name: TCommand
   - name: )
   - name: (
-  - uid: FastEndpoints.ICommandHandler`1
+  - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
   - name: (
   - name: Of
   - name: " "
   - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
+  - name: )
+  - name: )
+- uid: FastEndpoints.ICommandHandler{`0,FastEndpoints.Void}.FastEndpoints.CommandExtensions.RegisterForTesting``2
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  parent: FastEndpoints.CommandExtensions
+  definition: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  name: RegisterForTesting<TCommand, Void>(ICommandHandler<TCommand, Void>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand, Void>(ICommandHandler<TCommand, Void>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, FastEndpoints.Void>(FastEndpoints.ICommandHandler<TCommand, FastEndpoints.Void>)
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, Void)(ICommandHandler(Of TCommand, Void))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, FastEndpoints.Void)(FastEndpoints.ICommandHandler(Of TCommand, FastEndpoints.Void))
+  name.vb: RegisterForTesting(Of TCommand, Void)(ICommandHandler(Of TCommand, Void))
+  spec.csharp:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{`0,FastEndpoints.Void})
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
+  - name: '>'
+  - name: (
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{`0,FastEndpoints.Void})
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
+  - name: )
+  - name: (
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
   - name: )
   - name: )
 - uid: System
@@ -955,6 +1243,37 @@ references:
   - name: Of
   - name: " "
   - name: TCommand
+  - name: )
+- uid: FastEndpoints.ICommandHandler`2
+  commentId: T:FastEndpoints.ICommandHandler`2
+  href: FastEndpoints.ICommandHandler-2.html
+  name: ICommandHandler<TCommand, TResult>
+  nameWithType: ICommandHandler<TCommand, TResult>
+  fullName: FastEndpoints.ICommandHandler<TCommand, TResult>
+  nameWithType.vb: ICommandHandler(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandHandler(Of TCommand, TResult)
+  name.vb: ICommandHandler(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+    href: FastEndpoints.ICommandHandler-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
   - name: )
 - uid: FastEndpoints.ValidationContext`1.Instance
   commentId: P:FastEndpoints.ValidationContext`1.Instance
@@ -1152,45 +1471,165 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: '?'
   - name: )
-- uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
-  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
-  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
-  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
-  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand>)
-  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand>)
-  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
-  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand))
-  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand))
+- uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  isExternal: true
+  href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(Expression<Func<T, object>>, string, string, Severity, int?)
+  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, object>>, string, string, Severity, int?)
+  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, object>>, string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, String, Severity, Integer?)
   spec.csharp:
-  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext-1.html#FastEndpoints_ValidationContext_1_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
+  name: RegisterForTesting<TCommand>(ICommandHandler<TCommand, Void>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand>(ICommandHandler<TCommand, Void>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand>(FastEndpoints.ICommandHandler<TCommand, FastEndpoints.Void>)
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand, Void))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand)(FastEndpoints.ICommandHandler(Of TCommand, FastEndpoints.Void))
+  name.vb: RegisterForTesting(Of TCommand)(ICommandHandler(Of TCommand, Void))
+  spec.csharp:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
     name: RegisterForTesting
-    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
   - name: <
   - name: TCommand
   - name: '>'
   - name: (
-  - uid: FastEndpoints.ICommandHandler`1
+  - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
   - name: <
   - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
   - name: '>'
   - name: )
   spec.vb:
-  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0})
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``1(FastEndpoints.ICommandHandler{``0,FastEndpoints.Void})
     name: RegisterForTesting
-    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0__
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__1_FastEndpoints_ICommandHandler___0_FastEndpoints_Void__
   - name: (
   - name: Of
   - name: " "
   - name: TCommand
   - name: )
   - name: (
-  - uid: FastEndpoints.ICommandHandler`1
+  - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler
   - name: (
   - name: Of
   - name: " "
   - name: TCommand
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Void
+    name: Void
   - name: )
   - name: )
 - uid: FastEndpoints.CommandExtensions
@@ -1200,6 +1639,59 @@ references:
   name: CommandExtensions
   nameWithType: CommandExtensions
   fullName: FastEndpoints.CommandExtensions
+- uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  commentId: M:FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+  href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  name: RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
+  nameWithType: CommandExtensions.RegisterForTesting<TCommand, TResult>(ICommandHandler<TCommand, TResult>)
+  fullName: FastEndpoints.CommandExtensions.RegisterForTesting<TCommand, TResult>(FastEndpoints.ICommandHandler<TCommand, TResult>)
+  nameWithType.vb: CommandExtensions.RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
+  fullName.vb: FastEndpoints.CommandExtensions.RegisterForTesting(Of TCommand, TResult)(FastEndpoints.ICommandHandler(Of TCommand, TResult))
+  name.vb: RegisterForTesting(Of TCommand, TResult)(ICommandHandler(Of TCommand, TResult))
+  spec.csharp:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: (
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.CommandExtensions.RegisterForTesting``2(FastEndpoints.ICommandHandler{``0,``1})
+    name: RegisterForTesting
+    href: FastEndpoints.CommandExtensions.html#FastEndpoints_CommandExtensions_RegisterForTesting__2_FastEndpoints_ICommandHandler___0___1__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: (
+  - uid: FastEndpoints.ICommandHandler`2
+    name: ICommandHandler
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+  - name: )
 - uid: FastEndpoints.CommandHandler`1.ExecuteAsync*
   commentId: Overload:FastEndpoints.CommandHandler`1.ExecuteAsync
   href: FastEndpoints.CommandHandler-1.html#FastEndpoints_CommandHandler_1_ExecuteAsync__0_System_Threading_CancellationToken_

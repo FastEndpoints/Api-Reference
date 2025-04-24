@@ -5,10 +5,12 @@ items:
   id: EventHubExceptionReceiver
   parent: FastEndpoints
   children:
-  - FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
   - FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
   - FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
-  - FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError(System.Type,System.Int32,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError``1(``0,System.Exception,System.Threading.CancellationToken)
+  - FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord},System.Int32,System.Exception,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -34,31 +36,69 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
-  id: OnGetNextEventRecordError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError(System.Type,System.Int32,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError(System.Type,System.Int32,System.Exception,System.Threading.CancellationToken)
+  id: OnRestoreSubscriberIDsError(System.Type,System.Int32,System.Exception,System.Threading.CancellationToken)
   parent: FastEndpoints.EventHubExceptionReceiver
   langs:
   - csharp
   - vb
-  name: OnGetNextEventRecordError<TEvent>(string, int, Exception, CancellationToken)
-  nameWithType: EventHubExceptionReceiver.OnGetNextEventRecordError<TEvent>(string, int, Exception, CancellationToken)
-  fullName: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError<TEvent>(string, int, System.Exception, System.Threading.CancellationToken)
+  name: OnRestoreSubscriberIDsError(Type, int, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnRestoreSubscriberIDsError(Type, int, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError(System.Type, int, System.Exception, System.Threading.CancellationToken)
   type: Method
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: this method is triggered when the storage provider has trouble retrieving the next event record.
+  summary: this method is triggered when the storage provider has trouble restoring event subscribers.
   example: []
   syntax:
-    content: 'public virtual Task OnGetNextEventRecordError<TEvent>(string subscriberID, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent'
+    content: public virtual Task OnRestoreSubscriberIDsError(Type eventType, int attemptCount, Exception exception, CancellationToken ct)
+    parameters:
+    - id: eventType
+      type: System.Type
+      description: the type of the event
+    - id: attemptCount
+      type: System.Int32
+      description: the number of times the subscriber were attempted to be retrieved
+    - id: exception
+      type: System.Exception
+      description: the actual exception that was thrown by the operation
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnRestoreSubscriberIDsError(eventType As Type, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError*
+  nameWithType.vb: EventHubExceptionReceiver.OnRestoreSubscriberIDsError(Type, Integer, Exception, CancellationToken)
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError(System.Type, Integer, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnRestoreSubscriberIDsError(Type, Integer, Exception, CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  id: OnGetNextBatchError``1(System.String,System.Int32,System.Exception,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventHubExceptionReceiver
+  langs:
+  - csharp
+  - vb
+  name: OnGetNextBatchError<TEvent>(string, int, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnGetNextBatchError<TEvent>(string, int, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError<TEvent>(string, int, System.Exception, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: this method is triggered when the storage provider has trouble retrieving the next batch of event records.
+  example: []
+  syntax:
+    content: 'public virtual Task OnGetNextBatchError<TEvent>(string subscriberID, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent'
     parameters:
     - id: subscriberID
       type: System.String
       description: the unique ID of the subscriber
     - id: attemptCount
       type: System.Int32
-      description: the number of times the record was attempted to be retrieved
+      description: the number of times the operation was attempted
     - id: exception
       type: System.Exception
       description: the actual exception that was thrown by the operation
@@ -70,11 +110,11 @@ items:
       description: the type of the event
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Overridable Function OnGetNextEventRecordError(Of TEvent As {Class, IEvent})(subscriberID As String, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
-  overload: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError*
-  nameWithType.vb: EventHubExceptionReceiver.OnGetNextEventRecordError(Of TEvent)(String, Integer, Exception, CancellationToken)
-  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError(Of TEvent)(String, Integer, System.Exception, System.Threading.CancellationToken)
-  name.vb: OnGetNextEventRecordError(Of TEvent)(String, Integer, Exception, CancellationToken)
+    content.vb: Public Overridable Function OnGetNextBatchError(Of TEvent As {Class, IEvent})(subscriberID As String, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError*
+  nameWithType.vb: EventHubExceptionReceiver.OnGetNextBatchError(Of TEvent)(String, Integer, Exception, CancellationToken)
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError(Of TEvent)(String, Integer, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnGetNextBatchError(Of TEvent)(String, Integer, Exception, CancellationToken)
 - uid: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
   id: OnMarkEventAsCompleteError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
@@ -116,31 +156,31 @@ items:
   nameWithType.vb: EventHubExceptionReceiver.OnMarkEventAsCompleteError(Of TEvent)(IEventStorageRecord, Integer, Exception, CancellationToken)
   fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError(Of TEvent)(FastEndpoints.IEventStorageRecord, Integer, System.Exception, System.Threading.CancellationToken)
   name.vb: OnMarkEventAsCompleteError(Of TEvent)(IEventStorageRecord, Integer, Exception, CancellationToken)
-- uid: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
-  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
-  id: OnStoreEventRecordError``1(FastEndpoints.IEventStorageRecord,System.Int32,System.Exception,System.Threading.CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord},System.Int32,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord},System.Int32,System.Exception,System.Threading.CancellationToken)
+  id: OnStoreEventRecordsError``1(System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord},System.Int32,System.Exception,System.Threading.CancellationToken)
   parent: FastEndpoints.EventHubExceptionReceiver
   langs:
   - csharp
   - vb
-  name: OnStoreEventRecordError<TEvent>(IEventStorageRecord, int, Exception, CancellationToken)
-  nameWithType: EventHubExceptionReceiver.OnStoreEventRecordError<TEvent>(IEventStorageRecord, int, Exception, CancellationToken)
-  fullName: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError<TEvent>(FastEndpoints.IEventStorageRecord, int, System.Exception, System.Threading.CancellationToken)
+  name: OnStoreEventRecordsError<TEvent>(IEnumerable<IEventStorageRecord>, int, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnStoreEventRecordsError<TEvent>(IEnumerable<IEventStorageRecord>, int, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError<TEvent>(System.Collections.Generic.IEnumerable<FastEndpoints.IEventStorageRecord>, int, System.Exception, System.Threading.CancellationToken)
   type: Method
   assemblies:
   - FastEndpoints.Messaging.Remote
   namespace: FastEndpoints
-  summary: this method is triggered when the storage provider has trouble persisting an event record.
+  summary: this method is triggered when the storage provider has trouble persisting event storage records.
   example: []
   syntax:
-    content: 'public virtual Task OnStoreEventRecordError<TEvent>(IEventStorageRecord record, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent'
+    content: 'public virtual Task OnStoreEventRecordsError<TEvent>(IEnumerable<IEventStorageRecord> records, int attemptCount, Exception exception, CancellationToken ct) where TEvent : class, IEvent'
     parameters:
-    - id: record
-      type: FastEndpoints.IEventStorageRecord
-      description: the event storage record that was supposed to be persisted
+    - id: records
+      type: System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord}
+      description: the event storage records that were supposed to be persisted
     - id: attemptCount
       type: System.Int32
-      description: the number of times the record was attempted to be persisted
+      description: the number of times the operation was attempted
     - id: exception
       type: System.Exception
       description: the actual exception that was thrown by the operation
@@ -149,14 +189,14 @@ items:
       description: cancellation token
     typeParameters:
     - id: TEvent
-      description: the type of the event
+      description: the type of the events
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Overridable Function OnStoreEventRecordError(Of TEvent As {Class, IEvent})(record As IEventStorageRecord, attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
-  overload: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError*
-  nameWithType.vb: EventHubExceptionReceiver.OnStoreEventRecordError(Of TEvent)(IEventStorageRecord, Integer, Exception, CancellationToken)
-  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError(Of TEvent)(FastEndpoints.IEventStorageRecord, Integer, System.Exception, System.Threading.CancellationToken)
-  name.vb: OnStoreEventRecordError(Of TEvent)(IEventStorageRecord, Integer, Exception, CancellationToken)
+    content.vb: Public Overridable Function OnStoreEventRecordsError(Of TEvent As {Class, IEvent})(records As IEnumerable(Of IEventStorageRecord), attemptCount As Integer, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError*
+  nameWithType.vb: EventHubExceptionReceiver.OnStoreEventRecordsError(Of TEvent)(IEnumerable(Of IEventStorageRecord), Integer, Exception, CancellationToken)
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError(Of TEvent)(System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventStorageRecord), Integer, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnStoreEventRecordsError(Of TEvent)(IEnumerable(Of IEventStorageRecord), Integer, Exception, CancellationToken)
 - uid: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
   id: OnInMemoryQueueOverflow``1(FastEndpoints.IEventStorageRecord,System.Threading.CancellationToken)
@@ -192,6 +232,47 @@ items:
   nameWithType.vb: EventHubExceptionReceiver.OnInMemoryQueueOverflow(Of TEvent)(IEventStorageRecord, CancellationToken)
   fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow(Of TEvent)(FastEndpoints.IEventStorageRecord, System.Threading.CancellationToken)
   name.vb: OnInMemoryQueueOverflow(Of TEvent)(IEventStorageRecord, CancellationToken)
+- uid: FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError``1(``0,System.Exception,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError``1(``0,System.Exception,System.Threading.CancellationToken)
+  id: OnSerializeEventError``1(``0,System.Exception,System.Threading.CancellationToken)
+  parent: FastEndpoints.EventHubExceptionReceiver
+  langs:
+  - csharp
+  - vb
+  name: OnSerializeEventError<TEvent>(TEvent, Exception, CancellationToken)
+  nameWithType: EventHubExceptionReceiver.OnSerializeEventError<TEvent>(TEvent, Exception, CancellationToken)
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError<TEvent>(TEvent, System.Exception, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote
+  namespace: FastEndpoints
+  summary: >-
+    this method is triggered when the storage provider has trouble serializing an event object calling the
+
+    <xref href="FastEndpoints.IEventStorageRecord" data-throw-if-not-resolved="false"></xref>.<xref href="FastEndpoints.IEventStorageRecord.SetEvent%60%601(%60%600)" data-throw-if-not-resolved="false"></xref> method.
+  example: []
+  syntax:
+    content: 'public virtual Task OnSerializeEventError<TEvent>(TEvent @event, Exception exception, CancellationToken ct) where TEvent : class, IEvent'
+    parameters:
+    - id: event
+      type: '{TEvent}'
+      description: the event object that failed to serialize
+    - id: exception
+      type: System.Exception
+      description: the actual exception that was thrown by the operation
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function OnSerializeEventError(Of TEvent As {Class, IEvent})([event] As TEvent, exception As Exception, ct As CancellationToken) As Task
+  overload: FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError*
+  nameWithType.vb: EventHubExceptionReceiver.OnSerializeEventError(Of TEvent)(TEvent, Exception, CancellationToken)
+  fullName.vb: FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError(Of TEvent)(TEvent, System.Exception, System.Threading.CancellationToken)
+  name.vb: OnSerializeEventError(Of TEvent)(TEvent, Exception, CancellationToken)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -435,23 +516,20 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError*
-  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError
-  href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnGetNextEventRecordError__1_System_String_System_Int32_System_Exception_System_Threading_CancellationToken_
-  name: OnGetNextEventRecordError
-  nameWithType: EventHubExceptionReceiver.OnGetNextEventRecordError
-  fullName: FastEndpoints.EventHubExceptionReceiver.OnGetNextEventRecordError
-- uid: System.String
-  commentId: T:System.String
+- uid: FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError
+  href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnRestoreSubscriberIDsError_System_Type_System_Int32_System_Exception_System_Threading_CancellationToken_
+  name: OnRestoreSubscriberIDsError
+  nameWithType: EventHubExceptionReceiver.OnRestoreSubscriberIDsError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnRestoreSubscriberIDsError
+- uid: System.Type
+  commentId: T:System.Type
   parent: System
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -551,6 +629,23 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError
+  href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnGetNextBatchError__1_System_String_System_Int32_System_Exception_System_Threading_CancellationToken_
+  name: OnGetNextBatchError
+  nameWithType: EventHubExceptionReceiver.OnGetNextBatchError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnGetNextBatchError
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError*
   commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnMarkEventAsCompleteError
   href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnMarkEventAsCompleteError__1_FastEndpoints_IEventStorageRecord_System_Int32_System_Exception_System_Threading_CancellationToken_
@@ -564,15 +659,158 @@ references:
   name: IEventStorageRecord
   nameWithType: IEventStorageRecord
   fullName: FastEndpoints.IEventStorageRecord
-- uid: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError*
-  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError
-  href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordError__1_FastEndpoints_IEventStorageRecord_System_Int32_System_Exception_System_Threading_CancellationToken_
-  name: OnStoreEventRecordError
-  nameWithType: EventHubExceptionReceiver.OnStoreEventRecordError
-  fullName: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordError
+- uid: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError
+  href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnStoreEventRecordsError__1_System_Collections_Generic_IEnumerable_FastEndpoints_IEventStorageRecord__System_Int32_System_Exception_System_Threading_CancellationToken_
+  name: OnStoreEventRecordsError
+  nameWithType: EventHubExceptionReceiver.OnStoreEventRecordsError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnStoreEventRecordsError
+- uid: System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord}
+  commentId: T:System.Collections.Generic.IEnumerable{FastEndpoints.IEventStorageRecord}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<IEventStorageRecord>
+  nameWithType: IEnumerable<IEventStorageRecord>
+  fullName: System.Collections.Generic.IEnumerable<FastEndpoints.IEventStorageRecord>
+  nameWithType.vb: IEnumerable(Of IEventStorageRecord)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of FastEndpoints.IEventStorageRecord)
+  name.vb: IEnumerable(Of IEventStorageRecord)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: FastEndpoints.IEventStorageRecord
+    name: IEventStorageRecord
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.IEventStorageRecord
+    name: IEventStorageRecord
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow*
   commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow
   href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnInMemoryQueueOverflow__1_FastEndpoints_IEventStorageRecord_System_Threading_CancellationToken_
   name: OnInMemoryQueueOverflow
   nameWithType: EventHubExceptionReceiver.OnInMemoryQueueOverflow
   fullName: FastEndpoints.EventHubExceptionReceiver.OnInMemoryQueueOverflow
+- uid: FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+  commentId: M:FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+  href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_
+  name: SetEvent<TEvent>(TEvent)
+  nameWithType: IEventStorageRecord.SetEvent<TEvent>(TEvent)
+  fullName: FastEndpoints.IEventStorageRecord.SetEvent<TEvent>(TEvent)
+  nameWithType.vb: IEventStorageRecord.SetEvent(Of TEvent)(TEvent)
+  fullName.vb: FastEndpoints.IEventStorageRecord.SetEvent(Of TEvent)(TEvent)
+  name.vb: SetEvent(Of TEvent)(TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+    name: SetEvent
+    href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_
+  - name: <
+  - name: TEvent
+  - name: '>'
+  - name: (
+  - name: TEvent
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.IEventStorageRecord.SetEvent``1(``0)
+    name: SetEvent
+    href: FastEndpoints.IEventStorageRecord.html#FastEndpoints_IEventStorageRecord_SetEvent__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+  - name: (
+  - name: TEvent
+  - name: )
+- uid: FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError*
+  commentId: Overload:FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError
+  href: FastEndpoints.EventHubExceptionReceiver.html#FastEndpoints_EventHubExceptionReceiver_OnSerializeEventError__1___0_System_Exception_System_Threading_CancellationToken_
+  name: OnSerializeEventError
+  nameWithType: EventHubExceptionReceiver.OnSerializeEventError
+  fullName: FastEndpoints.EventHubExceptionReceiver.OnSerializeEventError
+- uid: '{TEvent}'
+  commentId: '!:TEvent'
+  definition: TEvent
+  name: TEvent
+  nameWithType: TEvent
+  fullName: TEvent
+- uid: TEvent
+  name: TEvent
+  nameWithType: TEvent
+  fullName: TEvent

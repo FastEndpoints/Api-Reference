@@ -13,8 +13,9 @@ items:
   - FastEndpoints.RemoteConnectionCore.Register``1
   - FastEndpoints.RemoteConnectionCore.Register``2
   - FastEndpoints.RemoteConnectionCore.RemoteAddress
-  - FastEndpoints.RemoteConnectionCore.ServiceProvider
   - FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
+  - FastEndpoints.RemoteConnectionCore.Subscribe``2(System.Threading.CancellationToken,System.String)
+  - FastEndpoints.RemoteConnectionCore.UnixSocketPath
   langs:
   - csharp
   - vb
@@ -130,27 +131,25 @@ items:
       type: System.String
     content.vb: Public ReadOnly Property RemoteAddress As String
   overload: FastEndpoints.RemoteConnectionCore.RemoteAddress*
-- uid: FastEndpoints.RemoteConnectionCore.ServiceProvider
-  commentId: F:FastEndpoints.RemoteConnectionCore.ServiceProvider
-  id: ServiceProvider
+- uid: FastEndpoints.RemoteConnectionCore.UnixSocketPath
+  commentId: F:FastEndpoints.RemoteConnectionCore.UnixSocketPath
+  id: UnixSocketPath
   parent: FastEndpoints.RemoteConnectionCore
   langs:
   - csharp
   - vb
-  name: ServiceProvider
-  nameWithType: RemoteConnectionCore.ServiceProvider
-  fullName: FastEndpoints.RemoteConnectionCore.ServiceProvider
+  name: UnixSocketPath
+  nameWithType: RemoteConnectionCore.UnixSocketPath
+  fullName: FastEndpoints.RemoteConnectionCore.UnixSocketPath
   type: Field
   assemblies:
   - FastEndpoints.Messaging.Remote.Core
   namespace: FastEndpoints
-  summary: ''
-  example: []
   syntax:
-    content: protected readonly IServiceProvider ServiceProvider
+    content: protected readonly string? UnixSocketPath
     return:
-      type: System.IServiceProvider
-    content.vb: Protected ReadOnly ServiceProvider As IServiceProvider
+      type: System.String
+    content.vb: Protected ReadOnly UnixSocketPath As String
 - uid: FastEndpoints.RemoteConnectionCore.Register``1
   commentId: M:FastEndpoints.RemoteConnectionCore.Register``1
   id: Register``1
@@ -261,6 +260,51 @@ items:
   nameWithType.vb: RemoteConnectionCore.RegisterClientStream(Of T, TResult)()
   fullName.vb: FastEndpoints.RemoteConnectionCore.RegisterClientStream(Of T, TResult)()
   name.vb: RegisterClientStream(Of T, TResult)()
+- uid: FastEndpoints.RemoteConnectionCore.Subscribe``2(System.Threading.CancellationToken,System.String)
+  commentId: M:FastEndpoints.RemoteConnectionCore.Subscribe``2(System.Threading.CancellationToken,System.String)
+  id: Subscribe``2(System.Threading.CancellationToken,System.String)
+  parent: FastEndpoints.RemoteConnectionCore
+  langs:
+  - csharp
+  - vb
+  name: Subscribe<TEvent, TEventHandler>(CancellationToken, string)
+  nameWithType: RemoteConnectionCore.Subscribe<TEvent, TEventHandler>(CancellationToken, string)
+  fullName: FastEndpoints.RemoteConnectionCore.Subscribe<TEvent, TEventHandler>(System.Threading.CancellationToken, string)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Core
+  namespace: FastEndpoints
+  summary: >-
+    subscribe to a broadcast channel for a given event type (<code class="typeparamref">TEvent</code>) on the remote host.
+
+    the received events will be handled by the specified handler (<code class="typeparamref">TEventHandler</code>) on this machine.
+  example: []
+  syntax:
+    content: 'public void Subscribe<TEvent, TEventHandler>(CancellationToken ct, string clientIdentifier = "default") where TEvent : class, IEvent where TEventHandler : IEventHandler<TEvent>'
+    parameters:
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    - id: clientIdentifier
+      type: System.String
+      description: >-
+        a unique identifier for this client. this will be used to create a durable subscriber id which will allow the server to
+
+        uniquely identify this subscriber/client across disconnections. if you don't set this value, only one subscriber from a single machine is possible.
+
+        i.e. if you spin up multiple instances of this subscriber they will all connect to the server with the same subscriber id, which will result in
+
+        unpredictable event receiving behavior.
+    typeParameters:
+    - id: TEvent
+      description: the type of the events that will be received
+    - id: TEventHandler
+      description: the handler that will be handling the received events
+    content.vb: Public Sub Subscribe(Of TEvent As {Class, IEvent}, TEventHandler As IEventHandler(Of TEvent))(ct As CancellationToken, clientIdentifier As String = "default")
+  overload: FastEndpoints.RemoteConnectionCore.Subscribe*
+  nameWithType.vb: RemoteConnectionCore.Subscribe(Of TEvent, TEventHandler)(CancellationToken, String)
+  fullName.vb: FastEndpoints.RemoteConnectionCore.Subscribe(Of TEvent, TEventHandler)(System.Threading.CancellationToken, String)
+  name.vb: Subscribe(Of TEvent, TEventHandler)(CancellationToken, String)
 - uid: FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
   commentId: M:FastEndpoints.RemoteConnectionCore.Subscribe``2(Grpc.Core.CallOptions,System.String)
   id: Subscribe``2(Grpc.Core.CallOptions,System.String)
@@ -669,7 +713,7 @@ references:
   commentId: T:Grpc.Net.Client.GrpcChannel
   parent: Grpc.Net.Client
   isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Net.Client/GrpcChannel.cs
+  href: https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Net.Client/GrpcChannel.cs
   name: GrpcChannel
   nameWithType: GrpcChannel
   fullName: Grpc.Net.Client.GrpcChannel
@@ -713,7 +757,7 @@ references:
   commentId: T:Grpc.Net.Client.GrpcChannelOptions
   parent: Grpc.Net.Client
   isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Net.Client/GrpcChannelOptions.cs
+  href: https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Net.Client/GrpcChannelOptions.cs
   name: GrpcChannelOptions
   nameWithType: GrpcChannelOptions
   fullName: Grpc.Net.Client.GrpcChannelOptions
@@ -734,14 +778,6 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System.IServiceProvider
-  commentId: T:System.IServiceProvider
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
-  name: IServiceProvider
-  nameWithType: IServiceProvider
-  fullName: System.IServiceProvider
 - uid: FastEndpoints.ICommand
   commentId: T:FastEndpoints.ICommand
   parent: FastEndpoints
@@ -847,15 +883,50 @@ references:
   fullName: FastEndpoints.RemoteConnectionCore.RegisterClientStream
 - uid: FastEndpoints.RemoteConnectionCore.Subscribe*
   commentId: Overload:FastEndpoints.RemoteConnectionCore.Subscribe
-  href: FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Subscribe__2_Grpc_Core_CallOptions_System_String_
+  href: FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Subscribe__2_System_Threading_CancellationToken_System_String_
   name: Subscribe
   nameWithType: RemoteConnectionCore.Subscribe
   fullName: FastEndpoints.RemoteConnectionCore.Subscribe
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: Grpc.Core.CallOptions
   commentId: T:Grpc.Core.CallOptions
   parent: Grpc.Core
   isExternal: true
-  href: https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs
+  href: https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs
   name: CallOptions
   nameWithType: CallOptions
   fullName: Grpc.Core.CallOptions

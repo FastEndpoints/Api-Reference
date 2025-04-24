@@ -108,17 +108,17 @@ items:
   summary: override this method to customize the request binding logic
   example: []
   syntax:
-    content: public virtual ValueTask<TRequest> BindAsync(BinderContext ctx, CancellationToken cancellation)
+    content: public virtual ValueTask<TRequest> BindAsync(BinderContext ctx, CancellationToken ct)
     parameters:
     - id: ctx
       type: FastEndpoints.BinderContext
       description: the request binder context which holds all the data required for binding the incoming request
-    - id: cancellation
+    - id: ct
       type: System.Threading.CancellationToken
       description: cancellation token
     return:
       type: System.Threading.Tasks.ValueTask{{TRequest}}
-    content.vb: Public Overridable Function BindAsync(ctx As BinderContext, cancellation As CancellationToken) As ValueTask(Of TRequest)
+    content.vb: Public Overridable Function BindAsync(ctx As BinderContext, ct As CancellationToken) As ValueTask(Of TRequest)
   overload: FastEndpoints.RequestBinder`1.BindAsync*
   exceptions:
   - type: FastEndpoints.ValidationFailureException

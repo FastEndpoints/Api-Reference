@@ -8,6 +8,7 @@ items:
   - FastEndpoints.ValidationContext`1.AddError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.ValidationContext`1.Instance
   - FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
+  - FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   langs:
   - csharp
   - vb
@@ -35,6 +36,7 @@ items:
   - FastEndpoints.ValidationContext.AddError(System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.ValidationContext.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   - FastEndpoints.ValidationContext.ThrowError(System.String,System.Nullable{System.Int32})
+  - FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.ValidationContext.ThrowIfAnyErrors(System.Nullable{System.Int32})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -141,6 +143,48 @@ items:
   nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, Integer?)
   fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, Integer?)
   name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, Integer?)
+- uid: FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ValidationContext`1.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  id: ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.ValidationContext`1
+  langs:
+  - csharp
+  - vb
+  name: ThrowError(Expression<Func<T, object?>>, string, string, Severity, int?)
+  nameWithType: ValidationContext<T>.ThrowError(Expression<Func<T, object?>>, string, string, Severity, int?)
+  fullName: FastEndpoints.ValidationContext<T>.ThrowError(System.Linq.Expressions.Expression<System.Func<T, object?>>, string, string, FluentValidation.Severity, int?)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    adds an error message for the specified property of the request dto and sends back a 400 bad request with error details immediately interrupting
+
+    handler execution flow. no execution will continue past this call.
+  example: []
+  syntax:
+    content: public void ThrowError(Expression<Func<T, object?>> property, string errorMessage, string errorCode, Severity severity = Severity.Error, int? statusCode = null)
+    parameters:
+    - id: property
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+      description: the property to add the error message for
+    - id: errorMessage
+      type: System.String
+      description: the error message
+    - id: errorCode
+      type: System.String
+      description: the error code associated with the error
+    - id: severity
+      type: FluentValidation.Severity
+      description: the severity of the error
+    - id: statusCode
+      type: System.Nullable{System.Int32}
+      description: an optional status code to be used when building the error response
+    content.vb: Public Sub ThrowError([property] As Expression(Of Func(Of T, Object)), errorMessage As String, errorCode As String, severity As Severity = Severity.Error, statusCode As Integer? = Nothing)
+  overload: FastEndpoints.ValidationContext`1.ThrowError*
+  nameWithType.vb: ValidationContext(Of T).ThrowError(Expression(Of Func(Of T, Object)), String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext(Of T).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of T, Object)), String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of T, Object)), String, String, Severity, Integer?)
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -339,6 +383,73 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+- uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.ValidationContext
+  isExternal: true
+  href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(string, string, Severity, int?)
+  nameWithType: ValidationContext.ThrowError(string, string, Severity, int?)
+  fullName: FastEndpoints.ValidationContext.ThrowError(string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: ValidationContext.ThrowError(String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.ValidationContext.ThrowError(String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.ValidationContext.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.ValidationContext.html#FastEndpoints_ValidationContext_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
   - name: ','
   - name: " "
   - uid: System.Int32

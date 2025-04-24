@@ -127,8 +127,8 @@
   <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_MapRemoteCore_System_IServiceProvider_System_String_System_Action_FastEndpoints_RemoteConnectionCore__" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.MapRemoteCore(System.IServiceProvider,System.String,System.Action{FastEndpoints.RemoteConnectionCore})">MapRemoteCore(IServiceProvider, string, Action&lt;RemoteConnectionCore&gt;)</h4>
   <div class="markdown level1 summary"><p>creates a grpc channel/connection to a remote server that hosts a known collection of command handlers and event hubs.</p>
 <p>
-IMPORTANT: call the <a class="xref" href="FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2">Register&lt;TCommand, TResult&gt;()</a> method (using action <code class="paramref">r</code>) to specify which commands are handled by
-this remote server. event subscriptions can be specified using <code>app.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
+IMPORTANT: call the <a class="xref" href="FastEndpoints.RemoteConnectionCore.html#FastEndpoints_RemoteConnectionCore_Register__2">Register&lt;TCommand, TResult&gt;()</a> method (using action <code class="paramref">r</code>) to specify which commands are
+handled by this remote server. event subscriptions can be specified using <code>.Subscribe&lt;TEvent, TEventHandler&gt;()</code> method.
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -207,7 +207,7 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">options</span></td>
         <td><p>call options</p>
 </td>
@@ -248,8 +248,73 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
 
 
   <a id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_FastEndpoints_ICommand_System_Threading_CancellationToken_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync(FastEndpoints.ICommand,System.Threading.CancellationToken)">RemoteExecuteAsync(ICommand, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>execute the command on the relevant remote server</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task RemoteExecuteAsync(this ICommand command, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ICommand.html">ICommand</a></td>
+        <td><span class="parametername">command</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if the relevant remote handler has not been registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*"></a>
   <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync__1_FastEndpoints_ICommand___0__Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},Grpc.Core.CallOptions)">RemoteExecuteAsync&lt;TResult&gt;(ICommand&lt;TResult&gt;, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>execute the command on the relevant remote server and get back a result</p>
+  <div class="markdown level1 summary"><p>execute the command on the relevant remote server and get back a <code class="typeparamref">TResult</code> result</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -272,9 +337,90 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">options</span></td>
         <td><p>call options</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TResult&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>the type of the result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if the relevant remote handler has not been registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync__1_FastEndpoints_ICommand___0__System_Threading_CancellationToken_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.ICommand{``0},System.Threading.CancellationToken)">RemoteExecuteAsync&lt;TResult&gt;(ICommand&lt;TResult&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>execute the command on the relevant remote server and get back a <code class="typeparamref">TResult</code> result</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; RemoteExecuteAsync&lt;TResult&gt;(this ICommand&lt;TResult&gt; command, CancellationToken ct) where TResult : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ICommand-1.html">ICommand</a>&lt;TResult&gt;</td>
+        <td><span class="parametername">command</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
 </td>
       </tr>
     </tbody>
@@ -353,7 +499,7 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">options</span></td>
         <td><p>call options</p>
 </td>
@@ -410,13 +556,13 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
 
 
   <a id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*"></a>
-  <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync__2_System_Collections_Generic_IAsyncEnumerable___0__Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)">RemoteExecuteAsync&lt;T, TResult&gt;(IAsyncEnumerable&lt;T&gt;, CallOptions)</h4>
-  <div class="markdown level1 summary"><p>send the stream of <code class="typeparamref">T</code> to the relevant remote server and get back a result of <code class="typeparamref">TResult</code></p>
+  <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync__1_FastEndpoints_IServerStreamCommand___0__System_Threading_CancellationToken_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``1(FastEndpoints.IServerStreamCommand{``0},System.Threading.CancellationToken)">RemoteExecuteAsync&lt;TResult&gt;(IServerStreamCommand&lt;TResult&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>execute the command on the relevant remote server and get back a stream of <code class="typeparamref">TResult</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; RemoteExecuteAsync&lt;T, TResult&gt;(this IAsyncEnumerable&lt;T&gt; commands, CallOptions options = default) where T : class where TResult : class</code></pre>
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;TResult&gt; RemoteExecuteAsync&lt;TResult&gt;(this IServerStreamCommand&lt;TResult&gt; command, CancellationToken ct) where TResult : class</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -429,13 +575,94 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;T&gt;</td>
+        <td><a class="xref" href="FastEndpoints.IServerStreamCommand-1.html">IServerStreamCommand</a>&lt;TResult&gt;</td>
+        <td><span class="parametername">command</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TResult&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>the type of the result stream</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if the relevant remote handler has not been registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync__2_System_Collections_Generic_IAsyncEnumerable___0__Grpc_Core_CallOptions_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},Grpc.Core.CallOptions)">RemoteExecuteAsync&lt;TCommand, TResult&gt;(IAsyncEnumerable&lt;TCommand&gt;, CallOptions)</h4>
+  <div class="markdown level1 summary"><p>send the stream of <code class="typeparamref">TCommand</code> commands to the relevant remote server and get back a result of <code class="typeparamref">TResult</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; RemoteExecuteAsync&lt;TCommand, TResult&gt;(this IAsyncEnumerable&lt;TCommand&gt; commands, CallOptions options = default) where TCommand : class where TResult : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TCommand&gt;</td>
         <td><span class="parametername">commands</span></td>
         <td><p>the stream to send</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
+        <td><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/8fa80f0dfc72a870227c77e0fa25855f34a84464/src/Grpc.Core.Api/CallOptions.cs">CallOptions</a></td>
         <td><span class="parametername">options</span></td>
         <td><p>call options</p>
 </td>
@@ -467,8 +694,95 @@ this remote server. event subscriptions can be specified using <code>app.Subscri
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>the type of item in the stream</p>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the type of command in the stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>the type of the result that will be returned when the stream ends</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown if the relevant remote handler has not been registered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync*"></a>
+  <h4 id="FastEndpoints_RemoteConnectionCoreExtensions_RemoteExecuteAsync__2_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken_" data-uid="FastEndpoints.RemoteConnectionCoreExtensions.RemoteExecuteAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)">RemoteExecuteAsync&lt;TCommand, TResult&gt;(IAsyncEnumerable&lt;TCommand&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>send the stream of <code class="typeparamref">TCommand</code> commands to the relevant remote server and get back a result of <code class="typeparamref">TResult</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResult&gt; RemoteExecuteAsync&lt;TCommand, TResult&gt;(this IAsyncEnumerable&lt;TCommand&gt; commands, CancellationToken ct) where TCommand : class where TResult : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TCommand&gt;</td>
+        <td><span class="parametername">commands</span></td>
+        <td><p>the stream to send</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TResult&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the type of command in the stream</p>
 </td>
       </tr>
       <tr>

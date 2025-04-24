@@ -128,7 +128,9 @@ NOTE: this only applies to non-STJ operations. for customizing error messages of
 <a class="xref" href="FastEndpoints.BindingOptions.html#FastEndpoints_BindingOptions_JsonExceptionTransformer">JsonExceptionTransformer</a> func.
 </p>
 the following arguments are supplied to the function.
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the property which failed to bind</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>: the name of the property which failed to bind</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>: the value that was attempted which resulted in the failure</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the property which failed to bind</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>: the name of the property which failed to bind</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>: the value that was attempted which resulted in the failure</p>
 use these input parameters and construct your own error message string and return it from the function.
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -250,7 +252,11 @@ NOTE: this only applies to STJ based operations. for customizing error messages 
   <div class="markdown level1 summary"><p>an optional action to be run after the endpoint level request binding has occured.
 it is intended as a way to perform common model binding logic that applies to all endpoints/requests.
 the action is passed in the following arguments:</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>: the request dto instance</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the request dto</p><p><a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a>: the request binding context</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>: a cancellation token</p><p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>: the request dto instance</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>: the type of the request dto</p>
+<p><a class="xref" href="FastEndpoints.BinderContext.html">BinderContext</a>: the request binding context</p>
+<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>: a cancellation token</p>
+<p>WARNING: be mindful of the performance cost of using reflection to modify the request dto object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -300,12 +306,39 @@ reflection based property setters, etc. see the source generator documentation o
       </tr>
     </tbody>
   </table>
+
+
+  <a id="FastEndpoints_BindingOptions_UsePropertyNamingPolicy_" data-uid="FastEndpoints.BindingOptions.UsePropertyNamingPolicy*"></a>
+  <h4 id="FastEndpoints_BindingOptions_UsePropertyNamingPolicy" data-uid="FastEndpoints.BindingOptions.UsePropertyNamingPolicy">UsePropertyNamingPolicy</h4>
+  <div class="markdown level1 summary"><p>specify whether to use the json property naming policy when matching incoming field names to dto property names for non-json model binding.
+only applies when field names are not specified on properties with attributes such as [BindFrom(...)], [FromClaim(...)], [FromHeader(...)] etc.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UsePropertyNamingPolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
 
 
   <a id="FastEndpoints_BindingOptions_ValueParserFor_" data-uid="FastEndpoints.BindingOptions.ValueParserFor*"></a>
-  <h4 id="FastEndpoints_BindingOptions_ValueParserFor_System_Type_System_Func_System_Object_FastEndpoints_ParseResult__" data-uid="FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{System.Object,FastEndpoints.ParseResult})">ValueParserFor(Type, Func&lt;object?, ParseResult&gt;)</h4>
+  <h4 id="FastEndpoints_BindingOptions_ValueParserFor_System_Type_System_Func_Microsoft_Extensions_Primitives_StringValues_FastEndpoints_ParseResult__" data-uid="FastEndpoints.BindingOptions.ValueParserFor(System.Type,System.Func{Microsoft.Extensions.Primitives.StringValues,FastEndpoints.ParseResult})">ValueParserFor(Type, Func&lt;StringValues, ParseResult&gt;)</h4>
   <div class="markdown level1 summary"><p>add a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto
 properties from query/route/forms/headers/claims.
 this is an alternative approach to adding a <code>TryParse()</code> function to your types that need model binding support from the abovementioned binding
@@ -317,7 +350,7 @@ in STJ when it comes to query/route/forms/headers/claims binding sources.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ValueParserFor(Type type, Func&lt;object?, ParseResult&gt; parser)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ValueParserFor(Type type, Func&lt;StringValues, ParseResult&gt; parser)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -336,7 +369,7 @@ in STJ when it comes to query/route/forms/headers/claims binding sources.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;</td>
         <td><span class="parametername">parser</span></td>
         <td><p>a function that takes in a nullable object and returns a <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a> as the output.</p>
 <pre><code class="lang-csharp">app.UseFastEndpoints(c =&gt;
@@ -357,25 +390,10 @@ public static class MyParsers
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <a id="FastEndpoints_BindingOptions_ValueParserFor_" data-uid="FastEndpoints.BindingOptions.ValueParserFor*"></a>
-  <h4 id="FastEndpoints_BindingOptions_ValueParserFor__1_System_Func_System_Object_FastEndpoints_ParseResult__" data-uid="FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{System.Object,FastEndpoints.ParseResult})">ValueParserFor&lt;T&gt;(Func&lt;object?, ParseResult&gt;)</h4>
+  <h4 id="FastEndpoints_BindingOptions_ValueParserFor__1_System_Func_Microsoft_Extensions_Primitives_StringValues_FastEndpoints_ParseResult__" data-uid="FastEndpoints.BindingOptions.ValueParserFor``1(System.Func{Microsoft.Extensions.Primitives.StringValues,FastEndpoints.ParseResult})">ValueParserFor&lt;T&gt;(Func&lt;StringValues, ParseResult&gt;)</h4>
   <div class="markdown level1 summary"><p>add a custom value parser function for any given type which the default model binder will use to parse values when model binding request dto
 properties from query/route/forms/headers/claims.
 this is an alternative approach to adding a <code>TryParse()</code> function to your types that need model binding support from the abovementioned binding
@@ -387,7 +405,7 @@ in STJ when it comes to query/route/forms/headers/claims binding sources.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ValueParserFor&lt;T&gt;(Func&lt;object?, ParseResult&gt; parser)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ValueParserFor&lt;T&gt;(Func&lt;StringValues, ParseResult&gt; parser)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -400,7 +418,7 @@ in STJ when it comes to query/route/forms/headers/claims binding sources.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.stringvalues">StringValues</a>, <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a>&gt;</td>
         <td><span class="parametername">parser</span></td>
         <td><p>a function that takes in a nullable object and returns a <a class="xref" href="FastEndpoints.ParseResult.html">ParseResult</a> as the output.</p>
 <pre><code class="lang-csharp">app.UseFastEndpoints(c =&gt;
@@ -418,21 +436,6 @@ public static class MyParsers
     }
 }</code></pre>
 </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
       </tr>
     </tbody>
   </table>

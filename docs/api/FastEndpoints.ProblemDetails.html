@@ -82,7 +82,7 @@
 
   <h1 id="FastEndpoints_ProblemDetails" data-uid="FastEndpoints.ProblemDetails" class="text-break">Class ProblemDetails</h1>
   <div class="markdown level0 summary"><p>RFC7807 compatible problem details/ error response class. this can be used by configuring startup like so:</p>
-<p><code>app.UseFastEndpoints(x =&gt; x.Errors.ResponseBuilder = ProblemDetails.ResponseBuilder);</code></p>
+<pre><code class="lang-csharp">app.UseFastEndpoints(c =&gt; c.Errors.UseProblemDetails())</code></pre>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -93,6 +93,7 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointmetadataprovider">IEndpointMetadataProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -119,7 +120,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_ProblemDetails_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ProblemDetails : IResult</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class ProblemDetails : IResult, IEndpointMetadataProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -433,9 +434,51 @@ public string? Detail { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
+
+
+  <a id="FastEndpoints_ProblemDetails_PopulateMetadata_" data-uid="FastEndpoints.ProblemDetails.PopulateMetadata*"></a>
+  <h4 id="FastEndpoints_ProblemDetails_PopulateMetadata_System_Reflection_MethodInfo_Microsoft_AspNetCore_Builder_EndpointBuilder_" data-uid="FastEndpoints.ProblemDetails.PopulateMetadata(System.Reflection.MethodInfo,Microsoft.AspNetCore.Builder.EndpointBuilder)">PopulateMetadata(MethodInfo, EndpointBuilder)</h4>
+  <div class="markdown level1 summary"><p>Populates metadata for the related <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.endpoint">Endpoint</a> and <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void PopulateMetadata(MethodInfo _, EndpointBuilder builder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">_</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder">EndpointBuilder</a></td>
+        <td><span class="parametername">builder</span></td>
+        <td><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder">EndpointBuilder</a> used to construct the endpoint for the given <code class="paramref">method</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="FastEndpoints_ProblemDetails_PopulateMetadata_System_Reflection_MethodInfo_Microsoft_AspNetCore_Builder_EndpointBuilder__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is called by RequestDelegateFactory when creating a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.requestdelegate">RequestDelegate</a> and by MVC when creating endpoints for controller actions.
+This is called for each parameter and return type of the route handler or action with a declared type implementing this interface.
+Add or remove objects on the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.endpointbuilder.metadata">Metadata</a> property of the <code class="paramref">builder</code> to modify the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.endpoint.metadata">Metadata</a> being built.</p>
+</div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.iresult">IResult</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointmetadataprovider">IEndpointMetadataProvider</a>
   </div>
 
 </article>

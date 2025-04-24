@@ -5,8 +5,10 @@ items:
   id: Extensions
   parent: FastEndpoints.Messaging.Remote.Testing
   children:
+  - FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver``1(System.IServiceProvider)
   - FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestCommandHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  - FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestRemote(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.TestHost.TestServer)
   langs:
   - csharp
@@ -51,7 +53,7 @@ items:
   summary: enables communicating with a remote gRPC server in the WAF testing environment
   example: []
   syntax:
-    content: public static void RegisterTestRemote(this IServiceCollection s, TestServer remote)
+    content: public static IServiceCollection RegisterTestRemote(this IServiceCollection s, TestServer remote)
     parameters:
     - id: s
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -59,7 +61,9 @@ items:
     - id: remote
       type: Microsoft.AspNetCore.TestHost.TestServer
       description: the <xref href="Microsoft.AspNetCore.TestHost.TestServer" data-throw-if-not-resolved="false"></xref> of the target WAF
-    content.vb: Public Shared Sub RegisterTestRemote(s As IServiceCollection, remote As TestServer)
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function RegisterTestRemote(s As IServiceCollection, remote As TestServer) As IServiceCollection
   overload: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestRemote*
 - uid: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   commentId: M:FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventHandler``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)
@@ -79,7 +83,7 @@ items:
   summary: register test/fake/mock event handlers for integration testing gRPC event queues
   example: []
   syntax:
-    content: 'public static void RegisterTestEventHandler<TEvent, THandler>(this IServiceCollection s) where TEvent : IEvent where THandler : class, IEventHandler<TEvent>'
+    content: 'public static IServiceCollection RegisterTestEventHandler<TEvent, THandler>(this IServiceCollection s) where TEvent : IEvent where THandler : class, IEventHandler<TEvent>'
     parameters:
     - id: s
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -88,7 +92,9 @@ items:
       description: the type of the event model to register a test handler for
     - id: THandler
       description: the type of the test event handler
-    content.vb: Public Shared Sub RegisterTestEventHandler(Of TEvent As IEvent, THandler As {Class, IEventHandler(Of TEvent)})(s As IServiceCollection)
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function RegisterTestEventHandler(Of TEvent As IEvent, THandler As {Class, IEventHandler(Of TEvent)})(s As IServiceCollection) As IServiceCollection
   overload: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventHandler*
   nameWithType.vb: Extensions.RegisterTestEventHandler(Of TEvent, THandler)(IServiceCollection)
   fullName.vb: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventHandler(Of TEvent, THandler)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
@@ -111,7 +117,7 @@ items:
   summary: register test/fake/mock command handlers for integration testing gRPC commands
   example: []
   syntax:
-    content: 'public static void RegisterTestCommandHandler<TCommand, THandler>(this IServiceCollection s) where TCommand : ICommand where THandler : class, ICommandHandler<TCommand>'
+    content: 'public static IServiceCollection RegisterTestCommandHandler<TCommand, THandler>(this IServiceCollection s) where TCommand : ICommand where THandler : class, ICommandHandler<TCommand>'
     parameters:
     - id: s
       type: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -120,11 +126,75 @@ items:
       description: the type of the command model to register a test handler for
     - id: THandler
       description: the type of the test command handler
-    content.vb: Public Shared Sub RegisterTestCommandHandler(Of TCommand As ICommand, THandler As {Class, ICommandHandler(Of TCommand)})(s As IServiceCollection)
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function RegisterTestCommandHandler(Of TCommand As ICommand, THandler As {Class, ICommandHandler(Of TCommand)})(s As IServiceCollection) As IServiceCollection
   overload: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestCommandHandler*
   nameWithType.vb: Extensions.RegisterTestCommandHandler(Of TCommand, THandler)(IServiceCollection)
   fullName.vb: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestCommandHandler(Of TCommand, THandler)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   name.vb: RegisterTestCommandHandler(Of TCommand, THandler)(IServiceCollection)
+- uid: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  commentId: M:FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  id: RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  isExtensionMethod: true
+  parent: FastEndpoints.Messaging.Remote.Testing.Extensions
+  langs:
+  - csharp
+  - vb
+  name: RegisterTestEventReceivers(IServiceCollection)
+  nameWithType: Extensions.RegisterTestEventReceivers(IServiceCollection)
+  fullName: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Testing
+  namespace: FastEndpoints.Messaging.Remote.Testing
+  summary: registers test event receivers for the purpose of testing receipt of events.
+  example: []
+  syntax:
+    content: public static IServiceCollection RegisterTestEventReceivers(this IServiceCollection s)
+    parameters:
+    - id: s
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    return:
+      type: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    content.vb: Public Shared Function RegisterTestEventReceivers(s As IServiceCollection) As IServiceCollection
+  overload: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers*
+- uid: FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver``1(System.IServiceProvider)
+  commentId: M:FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver``1(System.IServiceProvider)
+  id: GetTestEventReceiver``1(System.IServiceProvider)
+  isExtensionMethod: true
+  parent: FastEndpoints.Messaging.Remote.Testing.Extensions
+  langs:
+  - csharp
+  - vb
+  name: GetTestEventReceiver<TEvent>(IServiceProvider)
+  nameWithType: Extensions.GetTestEventReceiver<TEvent>(IServiceProvider)
+  fullName: FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver<TEvent>(System.IServiceProvider)
+  type: Method
+  assemblies:
+  - FastEndpoints.Messaging.Remote.Testing
+  namespace: FastEndpoints.Messaging.Remote.Testing
+  summary: gets a test event receiver for a given event type.
+  example: []
+  syntax:
+    content: 'public static IEventReceiver<TEvent> GetTestEventReceiver<TEvent>(this IServiceProvider provider) where TEvent : IEvent'
+    parameters:
+    - id: provider
+      type: System.IServiceProvider
+    typeParameters:
+    - id: TEvent
+      description: the type of the event
+    return:
+      type: FastEndpoints.IEventReceiver{{TEvent}}
+    content.vb: Public Shared Function GetTestEventReceiver(Of TEvent As IEvent)(provider As IServiceProvider) As IEventReceiver(Of TEvent)
+  overload: FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: thrown when test event receivers are not registered
+  nameWithType.vb: Extensions.GetTestEventReceiver(Of TEvent)(IServiceProvider)
+  fullName.vb: FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver(Of TEvent)(System.IServiceProvider)
+  name.vb: GetTestEventReceiver(Of TEvent)(IServiceProvider)
 references:
 - uid: FastEndpoints.Messaging.Remote.Testing
   commentId: N:FastEndpoints.Messaging.Remote.Testing
@@ -508,3 +578,88 @@ references:
   name: RegisterTestCommandHandler
   nameWithType: Extensions.RegisterTestCommandHandler
   fullName: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestCommandHandler
+- uid: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers*
+  commentId: Overload:FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers
+  href: FastEndpoints.Messaging.Remote.Testing.Extensions.html#FastEndpoints_Messaging_Remote_Testing_Extensions_RegisterTestEventReceivers_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  name: RegisterTestEventReceivers
+  nameWithType: Extensions.RegisterTestEventReceivers
+  fullName: FastEndpoints.Messaging.Remote.Testing.Extensions.RegisterTestEventReceivers
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver*
+  commentId: Overload:FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver
+  href: FastEndpoints.Messaging.Remote.Testing.Extensions.html#FastEndpoints_Messaging_Remote_Testing_Extensions_GetTestEventReceiver__1_System_IServiceProvider_
+  name: GetTestEventReceiver
+  nameWithType: Extensions.GetTestEventReceiver
+  fullName: FastEndpoints.Messaging.Remote.Testing.Extensions.GetTestEventReceiver
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: FastEndpoints.IEventReceiver{{TEvent}}
+  commentId: T:FastEndpoints.IEventReceiver{`0}
+  parent: FastEndpoints
+  definition: FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+- uid: FastEndpoints.IEventReceiver`1
+  commentId: T:FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  href: FastEndpoints.html
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints

@@ -120,13 +120,13 @@
 
 
   <a id="FastEndpoints_BinderContext__ctor_" data-uid="FastEndpoints.BinderContext.#ctor*"></a>
-  <h4 id="FastEndpoints_BinderContext__ctor_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_List_FluentValidation_Results_ValidationFailure__System_Text_Json_Serialization_JsonSerializerContext_System_Boolean_" data-uid="FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean)">BinderContext(HttpContext, List&lt;ValidationFailure&gt;, JsonSerializerContext?, bool)</h4>
+  <h4 id="FastEndpoints_BinderContext__ctor_Microsoft_AspNetCore_Http_HttpContext_System_Collections_Generic_List_FluentValidation_Results_ValidationFailure__System_Text_Json_Serialization_JsonSerializerContext_System_Boolean_System_Collections_Generic_IEnumerable_System_String__" data-uid="FastEndpoints.BinderContext.#ctor(Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{FluentValidation.Results.ValidationFailure},System.Text.Json.Serialization.JsonSerializerContext,System.Boolean,System.Collections.Generic.IEnumerable{System.String})">BinderContext(HttpContext, List&lt;ValidationFailure&gt;, JsonSerializerContext?, bool, IEnumerable&lt;string&gt;)</h4>
   <div class="markdown level1 summary"><p>constructor of the binder context</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BinderContext(HttpContext httpContext, List&lt;ValidationFailure&gt; validationFailures, JsonSerializerContext? jsonSerializerContext, bool dontAutoBindForms)</code></pre>
+    <pre><code class="lang-csharp hljs">public BinderContext(HttpContext httpContext, List&lt;ValidationFailure&gt; validationFailures, JsonSerializerContext? jsonSerializerContext, bool dontAutoBindForms, IEnumerable&lt;string&gt; bindRequiredProps)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -160,6 +160,12 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">dontAutoBindForms</span></td>
         <td><p>whether to enable auto binding of form data</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">bindRequiredProps</span></td>
+        <td><p>collection of required property names</p>
 </td>
       </tr>
     </tbody>
@@ -273,6 +279,32 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   </table>
 
 
+  <a id="FastEndpoints_BinderContext_UnboundRequiredProperties_" data-uid="FastEndpoints.BinderContext.UnboundRequiredProperties*"></a>
+  <h4 id="FastEndpoints_BinderContext_UnboundRequiredProperties" data-uid="FastEndpoints.BinderContext.UnboundRequiredProperties">UnboundRequiredProperties</h4>
+  <div class="markdown level1 summary"><p>indicates which required properties were not bound due to missing input from the request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; UnboundRequiredProperties { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_BinderContext_ValidationFailures_" data-uid="FastEndpoints.BinderContext.ValidationFailures*"></a>
   <h4 id="FastEndpoints_BinderContext_ValidationFailures" data-uid="FastEndpoints.BinderContext.ValidationFailures">ValidationFailures</h4>
   <div class="markdown level1 summary"><p>a list of validation failures for the endpoint. you can add your own validation failures for properties of the request dto using this property.</p>
@@ -306,8 +338,10 @@ you can access the multipart sections for reading via the FormFileSectionsAsync(
   <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when
 the work is complete.</p>
 <p>
-   <pre><code class="lang-csharp">using var scope = CreateScope();
-   var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;using var scope = CreateScope();
+var scopedService = scope.Resolve&lt;MyService&gt;();&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -354,6 +388,72 @@ the work is complete.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">typeOfService</span></td>
         <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown if requested service cannot be resolved</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BinderContext_Resolve_" data-uid="FastEndpoints.BinderContext.Resolve*"></a>
+  <h4 id="FastEndpoints_BinderContext_Resolve_System_Type_System_String_" data-uid="FastEndpoints.BinderContext.Resolve(System.Type,System.String)">Resolve(Type, string)</h4>
+  <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Resolve(Type typeOfService, string keyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">typeOfService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
 </td>
       </tr>
     </tbody>
@@ -449,6 +549,82 @@ the work is complete.</p>
   </table>
 
 
+  <a id="FastEndpoints_BinderContext_Resolve_" data-uid="FastEndpoints.BinderContext.Resolve*"></a>
+  <h4 id="FastEndpoints_BinderContext_Resolve__1_System_String_" data-uid="FastEndpoints.BinderContext.Resolve``1(System.String)">Resolve&lt;TService&gt;(string)</h4>
+  <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TService Resolve&lt;TService&gt;(string keyName) where TService : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown if requested service cannot be resolved</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_BinderContext_TryResolve_" data-uid="FastEndpoints.BinderContext.TryResolve*"></a>
   <h4 id="FastEndpoints_BinderContext_TryResolve_System_Type_" data-uid="FastEndpoints.BinderContext.TryResolve(System.Type)">TryResolve(Type)</h4>
   <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
@@ -494,6 +670,56 @@ the work is complete.</p>
 
 
   <a id="FastEndpoints_BinderContext_TryResolve_" data-uid="FastEndpoints.BinderContext.TryResolve*"></a>
+  <h4 id="FastEndpoints_BinderContext_TryResolve_System_Type_System_String_" data-uid="FastEndpoints.BinderContext.TryResolve(System.Type,System.String)">TryResolve(Type, string)</h4>
+  <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? TryResolve(Type typeOfService, string keyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">typeOfService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BinderContext_TryResolve_" data-uid="FastEndpoints.BinderContext.TryResolve*"></a>
   <h4 id="FastEndpoints_BinderContext_TryResolve__1" data-uid="FastEndpoints.BinderContext.TryResolve``1">TryResolve&lt;TService&gt;()</h4>
   <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
 </div>
@@ -502,6 +728,66 @@ the work is complete.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TService? TryResolve&lt;TService&gt;() where TService : class</code></pre>
   </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_BinderContext_TryResolve_" data-uid="FastEndpoints.BinderContext.TryResolve*"></a>
+  <h4 id="FastEndpoints_BinderContext_TryResolve__1_System_String_" data-uid="FastEndpoints.BinderContext.TryResolve``1(System.String)">TryResolve&lt;TService&gt;(string)</h4>
+  <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TService? TryResolve&lt;TService&gt;(string keyName) where TService : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>

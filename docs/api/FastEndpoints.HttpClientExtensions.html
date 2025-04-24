@@ -189,14 +189,14 @@ the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http
 
 
   <a id="FastEndpoints_HttpClientExtensions_DELETEAsync_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_DELETEAsync__2_System_Net_Http_HttpClient_System_String___0_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync``2(System.Net.Http.HttpClient,System.String,``0)">DELETEAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_DELETEAsync__2_System_Net_Http_HttpClient_System_String___0_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Boolean)">DELETEAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool)</h4>
   <div class="markdown level1 summary"><p>make a DELETE request using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as
 well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; DELETEAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; DELETEAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool populateHeaders = true) where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -223,6 +223,12 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -266,13 +272,13 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_DELETEAsync_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_DELETEAsync__2_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync``2(System.Net.Http.HttpClient,``1)">DELETEAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_DELETEAsync__2_System_Net_Http_HttpClient___1_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync``2(System.Net.Http.HttpClient,``1,System.Boolean)">DELETEAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool)</h4>
   <div class="markdown level1 summary"><p>make a DELETE request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; DELETEAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; DELETEAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -293,6 +299,12 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -336,14 +348,14 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_DELETEAsync_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_DELETEAsync__3_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync``3(System.Net.Http.HttpClient,``1)">DELETEAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_DELETEAsync__3_System_Net_Http_HttpClient___1_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.DELETEAsync``3(System.Net.Http.HttpClient,``1,System.Boolean)">DELETEAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool)</h4>
   <div class="markdown level1 summary"><p>make a DELETE request to an endpoint using auto route discovery using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing
 the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; DELETEAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; DELETEAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -364,6 +376,12 @@ the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -477,14 +495,14 @@ the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http
 
 
   <a id="FastEndpoints_HttpClientExtensions_GETAsync_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_GETAsync__2_System_Net_Http_HttpClient_System_String___0_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient,System.String,``0)">GETAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_GETAsync__2_System_Net_Http_HttpClient_System_String___0_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Boolean)">GETAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool)</h4>
   <div class="markdown level1 summary"><p>make a GET request using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well
 as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; GETAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; GETAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool populateHeaders = true) where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -511,6 +529,12 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -554,13 +578,13 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_GETAsync_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_GETAsync__2_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient,``1)">GETAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_GETAsync__2_System_Net_Http_HttpClient___1_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync``2(System.Net.Http.HttpClient,``1,System.Boolean)">GETAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool)</h4>
   <div class="markdown level1 summary"><p>make a GET request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; GETAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; GETAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -581,6 +605,12 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -624,14 +654,14 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_GETAsync_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_GETAsync__3_System_Net_Http_HttpClient___1_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync``3(System.Net.Http.HttpClient,``1)">GETAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_GETAsync__3_System_Net_Http_HttpClient___1_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.GETAsync``3(System.Net.Http.HttpClient,``1,System.Boolean)">GETAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool)</h4>
   <div class="markdown level1 summary"><p>make a GET request to an endpoint using auto route discovery using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the
 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; GETAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; GETAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -652,6 +682,12 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
         <td><span class="xref">TRequest</span></td>
         <td><span class="parametername">request</span></td>
         <td><p>the request dto</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -765,14 +801,14 @@ the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http
 
 
   <a id="FastEndpoints_HttpClientExtensions_PATCHAsync_" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PATCHAsync__2_System_Net_Http_HttpClient_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})">PATCHAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PATCHAsync__2_System_Net_Http_HttpClient_System_String___0_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Boolean,System.Boolean)">PATCHAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a PATCH request using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as
 well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PATCHAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PATCHAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -802,9 +838,15 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -848,13 +890,13 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_PATCHAsync_" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PATCHAsync__2_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">PATCHAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PATCHAsync__2_System_Net_Http_HttpClient___1_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync``2(System.Net.Http.HttpClient,``1,System.Boolean,System.Boolean)">PATCHAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a PATCH request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; PATCHAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; PATCHAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -878,9 +920,15 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -924,14 +972,14 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_PATCHAsync_" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PATCHAsync__3_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">PATCHAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PATCHAsync__3_System_Net_Http_HttpClient___1_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.PATCHAsync``3(System.Net.Http.HttpClient,``1,System.Boolean,System.Boolean)">PATCHAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a PATCH request to an endpoint using auto route discovery using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the
 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PATCHAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PATCHAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -955,9 +1003,15 @@ well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1071,14 +1125,14 @@ the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http
 
 
   <a id="FastEndpoints_HttpClientExtensions_POSTAsync_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})">POSTAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient_System_String___0_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Boolean,System.Boolean)">POSTAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a POST request using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well
 as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1108,9 +1162,15 @@ as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1154,13 +1214,13 @@ as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_POSTAsync_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">POSTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__2_System_Net_Http_HttpClient___1_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``2(System.Net.Http.HttpClient,``1,System.Boolean,System.Boolean)">POSTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a POST request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; POSTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; POSTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1184,9 +1244,15 @@ as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1230,14 +1296,14 @@ as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_POSTAsync_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__3_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_POSTAsync__3_System_Net_Http_HttpClient___1_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.POSTAsync``3(System.Net.Http.HttpClient,``1,System.Boolean,System.Boolean)">POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a POST request to an endpoint using auto route discovery using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the
 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; POSTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1261,9 +1327,15 @@ as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1377,14 +1449,14 @@ as the <code class="typeparamref">TResponse</code> DTO/&gt;.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_PUTAsync_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Nullable{System.Boolean})">PUTAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient_System_String___0_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,System.String,``0,System.Boolean,System.Boolean)">PUTAsync&lt;TRequest, TResponse&gt;(HttpClient, string, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a PUT request using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well
 as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool? sendAsFormData = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TRequest, TResponse&gt;(this HttpClient client, string requestUri, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1414,9 +1486,15 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1460,13 +1538,13 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_PUTAsync_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">PUTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__2_System_Net_Http_HttpClient___1_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``2(System.Net.Http.HttpClient,``1,System.Boolean,System.Boolean)">PUTAsync&lt;TEndpoint, TRequest&gt;(HttpClient, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a PUT request to an endpoint using auto route discovery using a request dto that does not send back a response dto.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; PUTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;HttpResponseMessage&gt; PUTAsync&lt;TEndpoint, TRequest&gt;(this HttpClient client, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1490,9 +1568,15 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1536,14 +1620,14 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_PUTAsync_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__3_System_Net_Http_HttpClient___1_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1,System.Nullable{System.Boolean})">PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_PUTAsync__3_System_Net_Http_HttpClient___1_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.PUTAsync``3(System.Net.Http.HttpClient,``1,System.Boolean,System.Boolean)">PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(HttpClient, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>make a PUT request to an endpoint using auto route discovery using a request dto and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the
 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as well as the <code class="typeparamref">TResponse</code> DTO.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool? sendAsFormData = null) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; PUTAsync&lt;TEndpoint, TRequest, TResponse&gt;(this HttpClient client, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TEndpoint : IEndpoint where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1567,9 +1651,15 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to true, headers will be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>
@@ -1618,14 +1708,14 @@ as the <code class="typeparamref">TResponse</code> DTO.</p>
 
 
   <a id="FastEndpoints_HttpClientExtensions_SENDAsync_" data-uid="FastEndpoints.HttpClientExtensions.SENDAsync*"></a>
-  <h4 id="FastEndpoints_HttpClientExtensions_SENDAsync__2_System_Net_Http_HttpClient_System_Net_Http_HttpMethod_System_String___0_System_Nullable_System_Boolean__" data-uid="FastEndpoints.HttpClientExtensions.SENDAsync``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Nullable{System.Boolean})">SENDAsync&lt;TRequest, TResponse&gt;(HttpClient, HttpMethod, string, TRequest, bool?)</h4>
+  <h4 id="FastEndpoints_HttpClientExtensions_SENDAsync__2_System_Net_Http_HttpClient_System_Net_Http_HttpMethod_System_String___0_System_Boolean_System_Boolean_" data-uid="FastEndpoints.HttpClientExtensions.SENDAsync``2(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.String,``0,System.Boolean,System.Boolean)">SENDAsync&lt;TRequest, TResponse&gt;(HttpClient, HttpMethod, string, TRequest, bool, bool)</h4>
   <div class="markdown level1 summary"><p>send a request DTO to a given endpoint URL and get back a <a class="xref" href="FastEndpoints.TestResult-1.html">TestResult&lt;TResponse&gt;</a> containing the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpresponsemessage">HttpResponseMessage</a> as
 well as the <code class="typeparamref">TResponse</code> DTO</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; SENDAsync&lt;TRequest, TResponse&gt;(this HttpClient client, HttpMethod method, string requestUri, TRequest request, bool? sendAsFormData = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;TestResult&lt;TResponse&gt;&gt; SENDAsync&lt;TRequest, TResponse&gt;(this HttpClient client, HttpMethod method, string requestUri, TRequest request, bool sendAsFormData = false, bool populateHeaders = true) where TRequest : notnull</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1661,9 +1751,15 @@ well as the <code class="typeparamref">TResponse</code> DTO</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">sendAsFormData</span></td>
         <td><p>when set to true, the request dto will be automatically converted to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.multipartformdatacontent">MultipartFormDataContent</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">populateHeaders</span></td>
+        <td><p>when set to false, headers will not be automatically added to the http request from request dto properties decorated with the [FromHeader] attribute.</p>
 </td>
       </tr>
     </tbody>

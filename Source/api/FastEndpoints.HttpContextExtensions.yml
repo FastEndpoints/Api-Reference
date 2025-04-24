@@ -8,10 +8,14 @@ items:
   - FastEndpoints.HttpContextExtensions.MarkResponseStart(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.ProcessorState``1(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,System.Type)
+  - FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
   - FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  - FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
   - FastEndpoints.HttpContextExtensions.ResponseStarted(Microsoft.AspNetCore.Http.HttpContext)
   - FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,System.Type)
+  - FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
   - FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
+  - FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
   langs:
   - csharp
   - vb
@@ -35,6 +39,154 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  commentId: M:FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  id: TryResolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: TryResolve<TService>(HttpContext, string)
+  nameWithType: HttpContextExtensions.TryResolve<TService>(HttpContext, string)
+  fullName: FastEndpoints.HttpContextExtensions.TryResolve<TService>(Microsoft.AspNetCore.Http.HttpContext, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: 'public static TService? TryResolve<TService>(this HttpContext _, string keyName) where TService : class'
+    parameters:
+    - id: _
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: keyName
+      type: System.String
+      description: the key name to resolve a keyed service
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Public Shared Function TryResolve(Of TService As Class)(_ As HttpContext, keyName As String) As TService
+  overload: FastEndpoints.HttpContextExtensions.TryResolve*
+  nameWithType.vb: HttpContextExtensions.TryResolve(Of TService)(HttpContext, String)
+  fullName.vb: FastEndpoints.HttpContextExtensions.TryResolve(Of TService)(Microsoft.AspNetCore.Http.HttpContext, String)
+  name.vb: TryResolve(Of TService)(HttpContext, String)
+- uid: FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
+  commentId: M:FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
+  id: TryResolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: TryResolve(HttpContext, Type, string)
+  nameWithType: HttpContextExtensions.TryResolve(HttpContext, Type, string)
+  fullName: FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext, System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.
+  example: []
+  syntax:
+    content: public static object? TryResolve(this HttpContext _, Type typeOfService, string keyName)
+    parameters:
+    - id: _
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+      description: the key name to resolve a keyed service
+    return:
+      type: System.Object
+    content.vb: Public Shared Function TryResolve(_ As HttpContext, typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.HttpContextExtensions.TryResolve*
+  nameWithType.vb: HttpContextExtensions.TryResolve(HttpContext, Type, String)
+  fullName.vb: FastEndpoints.HttpContextExtensions.TryResolve(Microsoft.AspNetCore.Http.HttpContext, System.Type, String)
+  name.vb: TryResolve(HttpContext, Type, String)
+- uid: FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  commentId: M:FastEndpoints.HttpContextExtensions.Resolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  id: Resolve``1(Microsoft.AspNetCore.Http.HttpContext,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: Resolve<TService>(HttpContext, string)
+  nameWithType: HttpContextExtensions.Resolve<TService>(HttpContext, string)
+  fullName: FastEndpoints.HttpContextExtensions.Resolve<TService>(Microsoft.AspNetCore.Http.HttpContext, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: 'public static TService Resolve<TService>(this HttpContext _, string keyName) where TService : class'
+    parameters:
+    - id: _
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: keyName
+      type: System.String
+      description: the key name to resolve a keyed service
+    typeParameters:
+    - id: TService
+      description: the type of the service to resolve
+    return:
+      type: '{TService}'
+    content.vb: Public Shared Function Resolve(Of TService As Class)(_ As HttpContext, keyName As String) As TService
+  overload: FastEndpoints.HttpContextExtensions.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  nameWithType.vb: HttpContextExtensions.Resolve(Of TService)(HttpContext, String)
+  fullName.vb: FastEndpoints.HttpContextExtensions.Resolve(Of TService)(Microsoft.AspNetCore.Http.HttpContext, String)
+  name.vb: Resolve(Of TService)(HttpContext, String)
+- uid: FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
+  commentId: M:FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
+  id: Resolve(Microsoft.AspNetCore.Http.HttpContext,System.Type,System.String)
+  isExtensionMethod: true
+  parent: FastEndpoints.HttpContextExtensions
+  langs:
+  - csharp
+  - vb
+  name: Resolve(HttpContext, Type, string)
+  nameWithType: HttpContextExtensions.Resolve(HttpContext, Type, string)
+  fullName: FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext, System.Type, string)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: resolve an instance for the given type from the dependency injection container. will throw if unresolvable.
+  example: []
+  syntax:
+    content: public static object Resolve(this HttpContext _, Type typeOfService, string keyName)
+    parameters:
+    - id: _
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: typeOfService
+      type: System.Type
+      description: the type of the service to resolve
+    - id: keyName
+      type: System.String
+      description: the key name to resolve a keyed service
+    return:
+      type: System.Object
+    content.vb: Public Shared Function Resolve(_ As HttpContext, typeOfService As Type, keyName As String) As Object
+  overload: FastEndpoints.HttpContextExtensions.Resolve*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if requested service cannot be resolved
+  nameWithType.vb: HttpContextExtensions.Resolve(HttpContext, Type, String)
+  fullName.vb: FastEndpoints.HttpContextExtensions.Resolve(Microsoft.AspNetCore.Http.HttpContext, System.Type, String)
+  name.vb: Resolve(HttpContext, Type, String)
 - uid: FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
   commentId: M:FastEndpoints.HttpContextExtensions.TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
   id: TryResolve``1(Microsoft.AspNetCore.Http.HttpContext)
@@ -500,7 +652,7 @@ references:
   fullName: System
 - uid: FastEndpoints.HttpContextExtensions.TryResolve*
   commentId: Overload:FastEndpoints.HttpContextExtensions.TryResolve
-  href: FastEndpoints.HttpContextExtensions.html#FastEndpoints_HttpContextExtensions_TryResolve__1_Microsoft_AspNetCore_Http_HttpContext_
+  href: FastEndpoints.HttpContextExtensions.html#FastEndpoints_HttpContextExtensions_TryResolve__1_Microsoft_AspNetCore_Http_HttpContext_System_String_
   name: TryResolve
   nameWithType: HttpContextExtensions.TryResolve
   fullName: FastEndpoints.HttpContextExtensions.TryResolve
@@ -512,6 +664,17 @@ references:
   name: HttpContext
   nameWithType: HttpContext
   fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: '{TService}'
   commentId: '!:TService'
   definition: TService
@@ -576,7 +739,7 @@ references:
   fullName: System.InvalidOperationException
 - uid: FastEndpoints.HttpContextExtensions.Resolve*
   commentId: Overload:FastEndpoints.HttpContextExtensions.Resolve
-  href: FastEndpoints.HttpContextExtensions.html#FastEndpoints_HttpContextExtensions_Resolve__1_Microsoft_AspNetCore_Http_HttpContext_
+  href: FastEndpoints.HttpContextExtensions.html#FastEndpoints_HttpContextExtensions_Resolve__1_Microsoft_AspNetCore_Http_HttpContext_System_String_
   name: Resolve
   nameWithType: HttpContextExtensions.Resolve
   fullName: FastEndpoints.HttpContextExtensions.Resolve

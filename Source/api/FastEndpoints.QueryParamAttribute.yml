@@ -4,7 +4,8 @@ items:
   commentId: T:FastEndpoints.QueryParamAttribute
   id: QueryParamAttribute
   parent: FastEndpoints
-  children: []
+  children:
+  - FastEndpoints.QueryParamAttribute.#ctor
   langs:
   - csharp
   - vb
@@ -15,23 +16,26 @@ items:
   assemblies:
   - FastEndpoints.Attributes
   namespace: FastEndpoints
-  summary: properties decorated with this attribute will have a corresponding request parameter added to the swagger schema
+  summary: disables all other binding sources for a dto property except query params.
   example: []
   syntax:
     content: >-
       [AttributeUsage(AttributeTargets.Property)]
 
-      public class QueryParamAttribute : Attribute
+      public class QueryParamAttribute : DontBindAttribute
     content.vb: >-
       <AttributeUsage(AttributeTargets.Property)>
 
-      Public Class QueryParamAttribute Inherits Attribute
+      Public Class QueryParamAttribute Inherits DontBindAttribute
   inheritance:
   - System.Object
   - System.Attribute
+  - FastEndpoints.DontBindAttribute
   derivedClasses:
-  - FastEndpoints.FromQueryParamsAttribute
+  - FastEndpoints.FromQueryAttribute
   inheritedMembers:
+  - FastEndpoints.DontBindAttribute.BindingSources
+  - FastEndpoints.DontBindAttribute.IsRequired
   - System.Attribute.Equals(System.Object)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type)
   - System.Attribute.GetCustomAttribute(System.Reflection.Assembly,System.Type,System.Boolean)
@@ -80,6 +84,29 @@ items:
     arguments:
     - type: System.AttributeTargets
       value: 128
+- uid: FastEndpoints.QueryParamAttribute.#ctor
+  commentId: M:FastEndpoints.QueryParamAttribute.#ctor
+  id: '#ctor'
+  parent: FastEndpoints.QueryParamAttribute
+  langs:
+  - csharp
+  - vb
+  name: QueryParamAttribute()
+  nameWithType: QueryParamAttribute.QueryParamAttribute()
+  fullName: FastEndpoints.QueryParamAttribute.QueryParamAttribute()
+  type: Constructor
+  assemblies:
+  - FastEndpoints.Attributes
+  namespace: FastEndpoints
+  summary: disables all other binding sources for a dto property except query params.
+  example: []
+  syntax:
+    content: public QueryParamAttribute()
+    content.vb: Public Sub New()
+  overload: FastEndpoints.QueryParamAttribute.#ctor*
+  nameWithType.vb: QueryParamAttribute.New()
+  fullName.vb: FastEndpoints.QueryParamAttribute.New()
+  name.vb: New()
 references:
 - uid: FastEndpoints
   commentId: N:FastEndpoints
@@ -106,6 +133,27 @@ references:
   name: Attribute
   nameWithType: Attribute
   fullName: System.Attribute
+- uid: FastEndpoints.DontBindAttribute
+  commentId: T:FastEndpoints.DontBindAttribute
+  parent: FastEndpoints
+  href: FastEndpoints.DontBindAttribute.html
+  name: DontBindAttribute
+  nameWithType: DontBindAttribute
+  fullName: FastEndpoints.DontBindAttribute
+- uid: FastEndpoints.DontBindAttribute.BindingSources
+  commentId: P:FastEndpoints.DontBindAttribute.BindingSources
+  parent: FastEndpoints.DontBindAttribute
+  href: FastEndpoints.DontBindAttribute.html#FastEndpoints_DontBindAttribute_BindingSources
+  name: BindingSources
+  nameWithType: DontBindAttribute.BindingSources
+  fullName: FastEndpoints.DontBindAttribute.BindingSources
+- uid: FastEndpoints.DontBindAttribute.IsRequired
+  commentId: P:FastEndpoints.DontBindAttribute.IsRequired
+  parent: FastEndpoints.DontBindAttribute
+  href: FastEndpoints.DontBindAttribute.html#FastEndpoints_DontBindAttribute_IsRequired
+  name: IsRequired
+  nameWithType: DontBindAttribute.IsRequired
+  fullName: FastEndpoints.DontBindAttribute.IsRequired
 - uid: System.Attribute.Equals(System.Object)
   commentId: M:System.Attribute.Equals(System.Object)
   parent: System.Attribute
@@ -1880,3 +1928,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: FastEndpoints.QueryParamAttribute.#ctor*
+  commentId: Overload:FastEndpoints.QueryParamAttribute.#ctor
+  href: FastEndpoints.QueryParamAttribute.html#FastEndpoints_QueryParamAttribute__ctor
+  name: QueryParamAttribute
+  nameWithType: QueryParamAttribute.QueryParamAttribute
+  fullName: FastEndpoints.QueryParamAttribute.QueryParamAttribute
+  nameWithType.vb: QueryParamAttribute.New
+  fullName.vb: FastEndpoints.QueryParamAttribute.New
+  name.vb: New

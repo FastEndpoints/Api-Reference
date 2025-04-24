@@ -89,17 +89,23 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="FastEndpoints.Testing.BaseFixture.html">BaseFixture</a></div>
     <div class="level2"><span class="xref">AppFixture&lt;TProgram&gt;</span></div>
-      <div class="level3"><a class="xref" href="FastEndpoints.Testing.TestFixture-1.html">TestFixture&lt;TProgram&gt;</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="FastEndpoints.Testing.IFaker.html">IFaker</a></div>
     <div><span class="xref">IAsyncLifetime</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Fake">BaseFixture.Fake</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Context">BaseFixture.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Cancellation">BaseFixture.Cancellation</a>
     </div>
     <div>
       <a class="xref" href="FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_WafCache">BaseFixture.WafCache</a>
@@ -130,7 +136,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.Testing.dll</h6>
   <h5 id="FastEndpoints_Testing_AppFixture_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class AppFixture&lt;TProgram&gt; : BaseFixture, IFaker, IAsyncLifetime where TProgram : class</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class AppFixture&lt;TProgram&gt; : BaseFixture, IFaker, IAsyncLifetime, IAsyncDisposable where TProgram : class</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -145,104 +151,6 @@
         <td><span class="parametername">TProgram</span></td>
         <td><p>the type of the web application to bootstrap via <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1">WebApplicationFactory&lt;TEntryPoint&gt;</a></p>
 </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="constructors">Constructors
-</h3>
-
-
-  <a id="FastEndpoints_Testing_AppFixture_1__ctor_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor*"></a>
-  <h4 id="FastEndpoints_Testing_AppFixture_1__ctor" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor">AppFixture()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected AppFixture()</code></pre>
-  </div>
-
-
-  <a id="FastEndpoints_Testing_AppFixture_1__ctor_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor*"></a>
-  <h4 id="FastEndpoints_Testing_AppFixture_1__ctor_Xunit_Abstractions_IMessageSink_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink)">AppFixture(IMessageSink)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected AppFixture(IMessageSink s)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IMessageSink</span></td>
-        <td><span class="parametername">s</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_Testing_AppFixture_1__ctor_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor*"></a>
-  <h4 id="FastEndpoints_Testing_AppFixture_1__ctor_Xunit_Abstractions_IMessageSink_Xunit_Abstractions_ITestOutputHelper_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink,Xunit.Abstractions.ITestOutputHelper)">AppFixture(IMessageSink, ITestOutputHelper)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected AppFixture(IMessageSink s, ITestOutputHelper h)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IMessageSink</span></td>
-        <td><span class="parametername">s</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ITestOutputHelper</span></td>
-        <td><span class="parametername">h</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="FastEndpoints_Testing_AppFixture_1__ctor_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor*"></a>
-  <h4 id="FastEndpoints_Testing_AppFixture_1__ctor_Xunit_Abstractions_ITestOutputHelper_" data-uid="FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.ITestOutputHelper)">AppFixture(ITestOutputHelper)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected AppFixture(ITestOutputHelper h)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ITestOutputHelper</span></td>
-        <td><span class="parametername">h</span></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
@@ -361,7 +269,8 @@
 
   <a id="FastEndpoints_Testing_AppFixture_1_ConfigureAppHost_" data-uid="FastEndpoints.Testing.AppFixture`1.ConfigureAppHost*"></a>
   <h4 id="FastEndpoints_Testing_AppFixture_1_ConfigureAppHost_Microsoft_Extensions_Hosting_IHostBuilder_" data-uid="FastEndpoints.Testing.AppFixture`1.ConfigureAppHost(Microsoft.Extensions.Hosting.IHostBuilder)">ConfigureAppHost(IHostBuilder)</h4>
-  <div class="markdown level1 summary"><p>override this method if you'd like to provide any configuration for the generic app host of the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1">WebApplicationFactory&lt;TEntryPoint&gt;</a></p>
+  <div class="markdown level1 summary"><p>override this method if you'd like to provide any configuration for the generic app host of the underlying
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1">WebApplicationFactory&lt;TEntryPoint&gt;</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -525,14 +434,31 @@
 
 
   <a id="FastEndpoints_Testing_AppFixture_1_CreateHandler_" data-uid="FastEndpoints.Testing.AppFixture`1.CreateHandler*"></a>
-  <h4 id="FastEndpoints_Testing_AppFixture_1_CreateHandler" data-uid="FastEndpoints.Testing.AppFixture`1.CreateHandler">CreateHandler()</h4>
+  <h4 id="FastEndpoints_Testing_AppFixture_1_CreateHandler_System_Action_Microsoft_AspNetCore_Http_HttpContext__" data-uid="FastEndpoints.Testing.AppFixture`1.CreateHandler(System.Action{Microsoft.AspNetCore.Http.HttpContext})">CreateHandler(Action&lt;HttpContext&gt;?)</h4>
   <div class="markdown level1 summary"><p>create a http message handler for the underlying web host/test server</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HttpMessageHandler CreateHandler()</code></pre>
+    <pre><code class="lang-csharp hljs">public HttpMessageHandler CreateHandler(Action&lt;HttpContext&gt;? c = null)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>&gt;</td>
+        <td><span class="parametername">c</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -552,13 +478,14 @@
 
   <a id="FastEndpoints_Testing_AppFixture_1_PreSetupAsync_" data-uid="FastEndpoints.Testing.AppFixture`1.PreSetupAsync*"></a>
   <h4 id="FastEndpoints_Testing_AppFixture_1_PreSetupAsync" data-uid="FastEndpoints.Testing.AppFixture`1.PreSetupAsync">PreSetupAsync()</h4>
-  <div class="markdown level1 summary"><p>this will be called before the WAF is initialized. override this method if you'd like to do something before the WAF is initialized that is going to contribute to
+  <div class="markdown level1 summary"><p>this will be called before the WAF is initialized. override this method if you'd like to do something before the WAF is initialized that is going to
+contribute to
 the creation of the WAF, such as initialization of a 'TestContainer'.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task PreSetupAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask PreSetupAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -570,7 +497,7 @@ the creation of the WAF, such as initialization of a 'TestContainer'.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -585,7 +512,7 @@ it is run before any of the test-methods of the class is executed, but after the
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task SetupAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask SetupAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -597,7 +524,7 @@ it is run before any of the test-methods of the class is executed, but after the
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -612,7 +539,7 @@ it is run after all test-methods have executed.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task TearDownAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask TearDownAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -624,7 +551,7 @@ it is run after all test-methods have executed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -635,6 +562,9 @@ it is run after all test-methods have executed.</p>
   </div>
   <div>
       <span class="xref">Xunit.IAsyncLifetime</span>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
   </div>
 
 </article>

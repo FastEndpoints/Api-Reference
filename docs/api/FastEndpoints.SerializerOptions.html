@@ -147,6 +147,33 @@ defaults to <code>utf-8</code>. set to <code>null</code> to disable appending a 
   </table>
 
 
+  <a id="FastEndpoints_SerializerOptions_EnableJsonIgnoreAttributeOnRequiredProperties_" data-uid="FastEndpoints.SerializerOptions.EnableJsonIgnoreAttributeOnRequiredProperties*"></a>
+  <h4 id="FastEndpoints_SerializerOptions_EnableJsonIgnoreAttributeOnRequiredProperties" data-uid="FastEndpoints.SerializerOptions.EnableJsonIgnoreAttributeOnRequiredProperties">EnableJsonIgnoreAttributeOnRequiredProperties</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonignoreattribute">JsonIgnoreAttribute</a> and the <code>required</code> keyword cannot be typically used together with dto properties.
+this setting allows you to use the two together.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableJsonIgnoreAttributeOnRequiredProperties { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_SerializerOptions_Options_" data-uid="FastEndpoints.SerializerOptions.Options*"></a>
   <h4 id="FastEndpoints_SerializerOptions_Options" data-uid="FastEndpoints.SerializerOptions.Options">Options</h4>
   <div class="markdown level1 summary"><p>the json serializer options</p>
@@ -177,7 +204,10 @@ defaults to <code>utf-8</code>. set to <code>null</code> to disable appending a 
   <h4 id="FastEndpoints_SerializerOptions_RequestDeserializer" data-uid="FastEndpoints.SerializerOptions.RequestDeserializer">RequestDeserializer</h4>
   <div class="markdown level1 summary"><p>a function for deserializing the incoming http request body. this function will be executed for each request received if it has a json request body.
 the input parameters of the func are as follows:</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httprequest">HttpRequest</a> : the incoming request</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> : the type of the request dto which the request body will be deserialized into</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>? : json serializer context if code generation is used</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> : a cancellation token</p>
+<pre><code class="lang-csharp">HttpRequest : the incoming request
+Type : the type of the request dto which the request body will be deserialized into
+JsonSerializerContext? : json serializer context if code generation is used
+CancellationToken : a cancellation token</code></pre>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -207,11 +237,17 @@ the input parameters of the func are as follows:</p>
 this function will be executed whenever a json response is being sent to the client.
 you should set the content-type and write directly to the http response body stream in this function.
 the parameters of the func are as follows:</p>
-<p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpresponse">HttpResponse</a> : the http response object</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a> : the response dto to be serialized</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> : the response content-type</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>? : json serializer context if code generation is used</p><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> : a cancellation token</p><p>example:</p><pre><code class="lang-csharp">config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =&gt;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             rsp.ContentType = cType;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         };</code></pre>
+<pre><code class="lang-csharp">HttpResponse : the http response object.
+object : the response dto to be serialized.
+string : the response content-type.
+JsonSerializerContext? : json serializer context if code generation is used.
+CancellationToken : a cancellation token.</code></pre>
+<p>example:</p>
+<pre><code class="lang-csharp">config.ResponseSerializer = (rsp, dto, cType, jCtx , ct) =&gt;
+{
+    rsp.ContentType = cType;
+    return rsp.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(dto), ct);
+};</code></pre>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>

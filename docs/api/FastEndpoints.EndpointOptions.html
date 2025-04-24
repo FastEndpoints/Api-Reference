@@ -188,7 +188,7 @@ the function you set here will be executed for each endpoint during startup.
 you can inspect the EndpointSettings to check what the current endpoint is, if needed.
 return 'false' from the function if you want to exclude an endpoint from registration.
 return 'true' to include.
-this function will executed for each endpoint that has been discovered during startup.</p>
+this function will execute for each endpoint that has been discovered during startup.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -206,6 +206,36 @@ this function will executed for each endpoint that has been discovered during st
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="FastEndpoints.EndpointDefinition.html">EndpointDefinition</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_EndpointOptions_GlobalResponseModifier_" data-uid="FastEndpoints.EndpointOptions.GlobalResponseModifier*"></a>
+  <h4 id="FastEndpoints_EndpointOptions_GlobalResponseModifier" data-uid="FastEndpoints.EndpointOptions.GlobalResponseModifier">GlobalResponseModifier</h4>
+  <div class="markdown level1 summary"><p>a global response modifier which will be executed right before any response is written to the response stream, giving you a chance to modify the
+response before being sent.
+the arguments for the func are:</p>
+<pre><code class="lang-csharp">HttpContext : the http context of the current request/response
+object? : response content which may be null</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;HttpContext, object?&gt;? GlobalResponseModifier { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

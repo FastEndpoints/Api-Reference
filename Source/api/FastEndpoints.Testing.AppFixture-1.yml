@@ -5,17 +5,13 @@ items:
   id: AppFixture`1
   parent: FastEndpoints.Testing
   children:
-  - FastEndpoints.Testing.AppFixture`1.#ctor
-  - FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink)
-  - FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink,Xunit.Abstractions.ITestOutputHelper)
-  - FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.ITestOutputHelper)
   - FastEndpoints.Testing.AppFixture`1.Client
   - FastEndpoints.Testing.AppFixture`1.ConfigureApp(Microsoft.AspNetCore.Hosting.IWebHostBuilder)
   - FastEndpoints.Testing.AppFixture`1.ConfigureAppHost(Microsoft.Extensions.Hosting.IHostBuilder)
   - FastEndpoints.Testing.AppFixture`1.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   - FastEndpoints.Testing.AppFixture`1.CreateClient(FastEndpoints.Testing.ClientOptions)
   - FastEndpoints.Testing.AppFixture`1.CreateClient(System.Action{System.Net.Http.HttpClient},FastEndpoints.Testing.ClientOptions)
-  - FastEndpoints.Testing.AppFixture`1.CreateHandler
+  - FastEndpoints.Testing.AppFixture`1.CreateHandler(System.Action{Microsoft.AspNetCore.Http.HttpContext})
   - FastEndpoints.Testing.AppFixture`1.PreSetupAsync
   - FastEndpoints.Testing.AppFixture`1.Server
   - FastEndpoints.Testing.AppFixture`1.Services
@@ -34,21 +30,22 @@ items:
   summary: inherit this class to create a class fixture for an implementation of <xref href="FastEndpoints.Testing.TestBase%601" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
-    content: 'public abstract class AppFixture<TProgram> : BaseFixture, IFaker, IAsyncLifetime where TProgram : class'
+    content: 'public abstract class AppFixture<TProgram> : BaseFixture, IFaker, IAsyncLifetime, IAsyncDisposable where TProgram : class'
     typeParameters:
     - id: TProgram
       description: the type of the web application to bootstrap via <xref href="Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601" data-throw-if-not-resolved="false"></xref>
-    content.vb: Public MustInherit Class AppFixture(Of TProgram As Class) Inherits BaseFixture Implements IFaker, IAsyncLifetime
+    content.vb: Public MustInherit Class AppFixture(Of TProgram As Class) Inherits BaseFixture Implements IFaker, IAsyncLifetime, IAsyncDisposable
   inheritance:
   - System.Object
   - FastEndpoints.Testing.BaseFixture
-  derivedClasses:
-  - FastEndpoints.Testing.TestFixture`1
   implements:
   - FastEndpoints.Testing.IFaker
   - Xunit.IAsyncLifetime
+  - System.IAsyncDisposable
   inheritedMembers:
   - FastEndpoints.Testing.BaseFixture.Fake
+  - FastEndpoints.Testing.BaseFixture.Context
+  - FastEndpoints.Testing.BaseFixture.Cancellation
   - FastEndpoints.Testing.BaseFixture.WafCache
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -135,101 +132,6 @@ items:
   overload: FastEndpoints.Testing.AppFixture`1.Client*
   nameWithType.vb: AppFixture(Of TProgram).Client
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).Client
-- uid: FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink)
-  commentId: M:FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink)
-  id: '#ctor(Xunit.Abstractions.IMessageSink)'
-  parent: FastEndpoints.Testing.AppFixture`1
-  langs:
-  - csharp
-  - vb
-  name: AppFixture(IMessageSink)
-  nameWithType: AppFixture<TProgram>.AppFixture(IMessageSink)
-  fullName: FastEndpoints.Testing.AppFixture<TProgram>.AppFixture(Xunit.Abstractions.IMessageSink)
-  type: Constructor
-  assemblies:
-  - FastEndpoints.Testing
-  namespace: FastEndpoints.Testing
-  syntax:
-    content: protected AppFixture(IMessageSink s)
-    parameters:
-    - id: s
-      type: Xunit.Abstractions.IMessageSink
-    content.vb: Protected Sub New(s As IMessageSink)
-  overload: FastEndpoints.Testing.AppFixture`1.#ctor*
-  nameWithType.vb: AppFixture(Of TProgram).New(IMessageSink)
-  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).New(Xunit.Abstractions.IMessageSink)
-  name.vb: New(IMessageSink)
-- uid: FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.ITestOutputHelper)
-  commentId: M:FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.ITestOutputHelper)
-  id: '#ctor(Xunit.Abstractions.ITestOutputHelper)'
-  parent: FastEndpoints.Testing.AppFixture`1
-  langs:
-  - csharp
-  - vb
-  name: AppFixture(ITestOutputHelper)
-  nameWithType: AppFixture<TProgram>.AppFixture(ITestOutputHelper)
-  fullName: FastEndpoints.Testing.AppFixture<TProgram>.AppFixture(Xunit.Abstractions.ITestOutputHelper)
-  type: Constructor
-  assemblies:
-  - FastEndpoints.Testing
-  namespace: FastEndpoints.Testing
-  syntax:
-    content: protected AppFixture(ITestOutputHelper h)
-    parameters:
-    - id: h
-      type: Xunit.Abstractions.ITestOutputHelper
-    content.vb: Protected Sub New(h As ITestOutputHelper)
-  overload: FastEndpoints.Testing.AppFixture`1.#ctor*
-  nameWithType.vb: AppFixture(Of TProgram).New(ITestOutputHelper)
-  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).New(Xunit.Abstractions.ITestOutputHelper)
-  name.vb: New(ITestOutputHelper)
-- uid: FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink,Xunit.Abstractions.ITestOutputHelper)
-  commentId: M:FastEndpoints.Testing.AppFixture`1.#ctor(Xunit.Abstractions.IMessageSink,Xunit.Abstractions.ITestOutputHelper)
-  id: '#ctor(Xunit.Abstractions.IMessageSink,Xunit.Abstractions.ITestOutputHelper)'
-  parent: FastEndpoints.Testing.AppFixture`1
-  langs:
-  - csharp
-  - vb
-  name: AppFixture(IMessageSink, ITestOutputHelper)
-  nameWithType: AppFixture<TProgram>.AppFixture(IMessageSink, ITestOutputHelper)
-  fullName: FastEndpoints.Testing.AppFixture<TProgram>.AppFixture(Xunit.Abstractions.IMessageSink, Xunit.Abstractions.ITestOutputHelper)
-  type: Constructor
-  assemblies:
-  - FastEndpoints.Testing
-  namespace: FastEndpoints.Testing
-  syntax:
-    content: protected AppFixture(IMessageSink s, ITestOutputHelper h)
-    parameters:
-    - id: s
-      type: Xunit.Abstractions.IMessageSink
-    - id: h
-      type: Xunit.Abstractions.ITestOutputHelper
-    content.vb: Protected Sub New(s As IMessageSink, h As ITestOutputHelper)
-  overload: FastEndpoints.Testing.AppFixture`1.#ctor*
-  nameWithType.vb: AppFixture(Of TProgram).New(IMessageSink, ITestOutputHelper)
-  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).New(Xunit.Abstractions.IMessageSink, Xunit.Abstractions.ITestOutputHelper)
-  name.vb: New(IMessageSink, ITestOutputHelper)
-- uid: FastEndpoints.Testing.AppFixture`1.#ctor
-  commentId: M:FastEndpoints.Testing.AppFixture`1.#ctor
-  id: '#ctor'
-  parent: FastEndpoints.Testing.AppFixture`1
-  langs:
-  - csharp
-  - vb
-  name: AppFixture()
-  nameWithType: AppFixture<TProgram>.AppFixture()
-  fullName: FastEndpoints.Testing.AppFixture<TProgram>.AppFixture()
-  type: Constructor
-  assemblies:
-  - FastEndpoints.Testing
-  namespace: FastEndpoints.Testing
-  syntax:
-    content: protected AppFixture()
-    content.vb: Protected Sub New()
-  overload: FastEndpoints.Testing.AppFixture`1.#ctor*
-  nameWithType.vb: AppFixture(Of TProgram).New()
-  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).New()
-  name.vb: New()
 - uid: FastEndpoints.Testing.AppFixture`1.PreSetupAsync
   commentId: M:FastEndpoints.Testing.AppFixture`1.PreSetupAsync
   id: PreSetupAsync
@@ -245,15 +147,17 @@ items:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
   summary: >-
-    this will be called before the WAF is initialized. override this method if you'd like to do something before the WAF is initialized that is going to contribute to
+    this will be called before the WAF is initialized. override this method if you'd like to do something before the WAF is initialized that is going to
+
+    contribute to
 
     the creation of the WAF, such as initialization of a 'TestContainer'.
   example: []
   syntax:
-    content: protected virtual Task PreSetupAsync()
+    content: protected virtual ValueTask PreSetupAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function PreSetupAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function PreSetupAsync() As ValueTask
   overload: FastEndpoints.Testing.AppFixture`1.PreSetupAsync*
   nameWithType.vb: AppFixture(Of TProgram).PreSetupAsync()
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).PreSetupAsync()
@@ -277,10 +181,10 @@ items:
     it is run before any of the test-methods of the class is executed, but after the WAF is initialized.
   example: []
   syntax:
-    content: protected virtual Task SetupAsync()
+    content: protected virtual ValueTask SetupAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function SetupAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function SetupAsync() As ValueTask
   overload: FastEndpoints.Testing.AppFixture`1.SetupAsync*
   nameWithType.vb: AppFixture(Of TProgram).SetupAsync()
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).SetupAsync()
@@ -304,10 +208,10 @@ items:
     it is run after all test-methods have executed.
   example: []
   syntax:
-    content: protected virtual Task TearDownAsync()
+    content: protected virtual ValueTask TearDownAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function TearDownAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function TearDownAsync() As ValueTask
   overload: FastEndpoints.Testing.AppFixture`1.TearDownAsync*
   nameWithType.vb: AppFixture(Of TProgram).TearDownAsync()
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).TearDownAsync()
@@ -325,7 +229,10 @@ items:
   assemblies:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
-  summary: override this method if you'd like to provide any configuration for the generic app host of the underlying <xref href="Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601" data-throw-if-not-resolved="false"></xref>
+  summary: >-
+    override this method if you'd like to provide any configuration for the generic app host of the underlying
+
+    <xref href="Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: protected virtual IHost ConfigureAppHost(IHostBuilder a)
@@ -452,16 +359,16 @@ items:
   nameWithType.vb: AppFixture(Of TProgram).CreateClient(Action(Of HttpClient), ClientOptions)
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).CreateClient(System.Action(Of System.Net.Http.HttpClient), FastEndpoints.Testing.ClientOptions)
   name.vb: CreateClient(Action(Of HttpClient), ClientOptions)
-- uid: FastEndpoints.Testing.AppFixture`1.CreateHandler
-  commentId: M:FastEndpoints.Testing.AppFixture`1.CreateHandler
-  id: CreateHandler
+- uid: FastEndpoints.Testing.AppFixture`1.CreateHandler(System.Action{Microsoft.AspNetCore.Http.HttpContext})
+  commentId: M:FastEndpoints.Testing.AppFixture`1.CreateHandler(System.Action{Microsoft.AspNetCore.Http.HttpContext})
+  id: CreateHandler(System.Action{Microsoft.AspNetCore.Http.HttpContext})
   parent: FastEndpoints.Testing.AppFixture`1
   langs:
   - csharp
   - vb
-  name: CreateHandler()
-  nameWithType: AppFixture<TProgram>.CreateHandler()
-  fullName: FastEndpoints.Testing.AppFixture<TProgram>.CreateHandler()
+  name: CreateHandler(Action<HttpContext>?)
+  nameWithType: AppFixture<TProgram>.CreateHandler(Action<HttpContext>?)
+  fullName: FastEndpoints.Testing.AppFixture<TProgram>.CreateHandler(System.Action<Microsoft.AspNetCore.Http.HttpContext>?)
   type: Method
   assemblies:
   - FastEndpoints.Testing
@@ -469,13 +376,17 @@ items:
   summary: create a http message handler for the underlying web host/test server
   example: []
   syntax:
-    content: public HttpMessageHandler CreateHandler()
+    content: public HttpMessageHandler CreateHandler(Action<HttpContext>? c = null)
+    parameters:
+    - id: c
+      type: System.Action{Microsoft.AspNetCore.Http.HttpContext}
     return:
       type: System.Net.Http.HttpMessageHandler
-    content.vb: Public Function CreateHandler() As HttpMessageHandler
+    content.vb: Public Function CreateHandler(c As Action(Of HttpContext) = Nothing) As HttpMessageHandler
   overload: FastEndpoints.Testing.AppFixture`1.CreateHandler*
-  nameWithType.vb: AppFixture(Of TProgram).CreateHandler()
-  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).CreateHandler()
+  nameWithType.vb: AppFixture(Of TProgram).CreateHandler(Action(Of HttpContext))
+  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).CreateHandler(System.Action(Of Microsoft.AspNetCore.Http.HttpContext))
+  name.vb: CreateHandler(Action(Of HttpContext))
 references:
 - uid: FastEndpoints.Testing.TestBase`1
   commentId: T:FastEndpoints.Testing.TestBase`1
@@ -584,6 +495,14 @@ references:
   name: IAsyncLifetime
   nameWithType: IAsyncLifetime
   fullName: Xunit.IAsyncLifetime
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
 - uid: FastEndpoints.Testing.BaseFixture.Fake
   commentId: P:FastEndpoints.Testing.BaseFixture.Fake
   parent: FastEndpoints.Testing.BaseFixture
@@ -591,6 +510,20 @@ references:
   name: Fake
   nameWithType: BaseFixture.Fake
   fullName: FastEndpoints.Testing.BaseFixture.Fake
+- uid: FastEndpoints.Testing.BaseFixture.Context
+  commentId: P:FastEndpoints.Testing.BaseFixture.Context
+  parent: FastEndpoints.Testing.BaseFixture
+  href: FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Context
+  name: Context
+  nameWithType: BaseFixture.Context
+  fullName: FastEndpoints.Testing.BaseFixture.Context
+- uid: FastEndpoints.Testing.BaseFixture.Cancellation
+  commentId: P:FastEndpoints.Testing.BaseFixture.Cancellation
+  parent: FastEndpoints.Testing.BaseFixture
+  href: FastEndpoints.Testing.BaseFixture.html#FastEndpoints_Testing_BaseFixture_Cancellation
+  name: Cancellation
+  nameWithType: BaseFixture.Cancellation
+  fullName: FastEndpoints.Testing.BaseFixture.Cancellation
 - uid: FastEndpoints.Testing.BaseFixture.WafCache
   commentId: F:FastEndpoints.Testing.BaseFixture.WafCache
   parent: FastEndpoints.Testing.BaseFixture
@@ -951,51 +884,6 @@ references:
     name: Http
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.net.http
-- uid: FastEndpoints.Testing.AppFixture`1.#ctor*
-  commentId: Overload:FastEndpoints.Testing.AppFixture`1.#ctor
-  href: FastEndpoints.Testing.AppFixture-1.html#FastEndpoints_Testing_AppFixture_1__ctor_Xunit_Abstractions_IMessageSink_
-  name: AppFixture
-  nameWithType: AppFixture<TProgram>.AppFixture
-  fullName: FastEndpoints.Testing.AppFixture<TProgram>.AppFixture
-  nameWithType.vb: AppFixture(Of TProgram).New
-  fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).New
-  name.vb: New
-- uid: Xunit.Abstractions.IMessageSink
-  commentId: T:Xunit.Abstractions.IMessageSink
-  parent: Xunit.Abstractions
-  isExternal: true
-  name: IMessageSink
-  nameWithType: IMessageSink
-  fullName: Xunit.Abstractions.IMessageSink
-- uid: Xunit.Abstractions
-  commentId: N:Xunit.Abstractions
-  isExternal: true
-  name: Xunit.Abstractions
-  nameWithType: Xunit.Abstractions
-  fullName: Xunit.Abstractions
-  spec.csharp:
-  - uid: Xunit
-    name: Xunit
-    isExternal: true
-  - name: .
-  - uid: Xunit.Abstractions
-    name: Abstractions
-    isExternal: true
-  spec.vb:
-  - uid: Xunit
-    name: Xunit
-    isExternal: true
-  - name: .
-  - uid: Xunit.Abstractions
-    name: Abstractions
-    isExternal: true
-- uid: Xunit.Abstractions.ITestOutputHelper
-  commentId: T:Xunit.Abstractions.ITestOutputHelper
-  parent: Xunit.Abstractions
-  isExternal: true
-  name: ITestOutputHelper
-  nameWithType: ITestOutputHelper
-  fullName: Xunit.Abstractions.ITestOutputHelper
 - uid: FastEndpoints.Testing.AppFixture`1.PreSetupAsync*
   commentId: Overload:FastEndpoints.Testing.AppFixture`1.PreSetupAsync
   href: FastEndpoints.Testing.AppFixture-1.html#FastEndpoints_Testing_AppFixture_1_PreSetupAsync
@@ -1004,14 +892,14 @@ references:
   fullName: FastEndpoints.Testing.AppFixture<TProgram>.PreSetupAsync
   nameWithType.vb: AppFixture(Of TProgram).PreSetupAsync
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).PreSetupAsync
-- uid: System.Threading.Tasks.Task
-  commentId: T:System.Threading.Tasks.Task
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
   parent: System.Threading.Tasks
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
-  name: Task
-  nameWithType: Task
-  fullName: System.Threading.Tasks.Task
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true
@@ -1312,12 +1200,47 @@ references:
   - name: )
 - uid: FastEndpoints.Testing.AppFixture`1.CreateHandler*
   commentId: Overload:FastEndpoints.Testing.AppFixture`1.CreateHandler
-  href: FastEndpoints.Testing.AppFixture-1.html#FastEndpoints_Testing_AppFixture_1_CreateHandler
+  href: FastEndpoints.Testing.AppFixture-1.html#FastEndpoints_Testing_AppFixture_1_CreateHandler_System_Action_Microsoft_AspNetCore_Http_HttpContext__
   name: CreateHandler
   nameWithType: AppFixture<TProgram>.CreateHandler
   fullName: FastEndpoints.Testing.AppFixture<TProgram>.CreateHandler
   nameWithType.vb: AppFixture(Of TProgram).CreateHandler
   fullName.vb: FastEndpoints.Testing.AppFixture(Of TProgram).CreateHandler
+- uid: System.Action{Microsoft.AspNetCore.Http.HttpContext}
+  commentId: T:System.Action{Microsoft.AspNetCore.Http.HttpContext}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<HttpContext>
+  nameWithType: Action<HttpContext>
+  fullName: System.Action<Microsoft.AspNetCore.Http.HttpContext>
+  nameWithType.vb: Action(Of HttpContext)
+  fullName.vb: System.Action(Of Microsoft.AspNetCore.Http.HttpContext)
+  name.vb: Action(Of HttpContext)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: )
 - uid: System.Net.Http.HttpMessageHandler
   commentId: T:System.Net.Http.HttpMessageHandler
   parent: System.Net.Http

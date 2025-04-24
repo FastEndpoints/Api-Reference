@@ -187,6 +187,95 @@
   </table>
 
 
+  <a id="FastEndpoints_JobQueueExtensions_CreateJob_" data-uid="FastEndpoints.JobQueueExtensions.CreateJob*"></a>
+  <h4 id="FastEndpoints_JobQueueExtensions_CreateJob__1_FastEndpoints_ICommandBase_System_Nullable_System_DateTime__System_Nullable_System_DateTime__" data-uid="FastEndpoints.JobQueueExtensions.CreateJob``1(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">CreateJob&lt;TStorageRecord&gt;(ICommandBase, DateTime?, DateTime?)</h4>
+  <div class="markdown level1 summary"><p>creates a new job object for the provided command.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TStorageRecord CreateJob&lt;TStorageRecord&gt;(this ICommandBase cmd, DateTime? executeAfter = null, DateTime? expireOn = null) where TStorageRecord : class, IJobStorageRecord, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ICommandBase.html">ICommandBase</a></td>
+        <td><span class="parametername">cmd</span></td>
+        <td><p>the command to be set in the job</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td><span class="parametername">executeAfter</span></td>
+        <td><p>if set, the job won't be executed before this date/time. if unspecified, execution is attempted as soon as possible.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td><span class="parametername">expireOn</span></td>
+        <td><p>if set, job will be considered stale/expired after this date/time. if unspecified, jobs expire after 4 hours of creation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TStorageRecord</span></td>
+        <td><p>the new job object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TStorageRecord</span></td>
+        <td><p>the type of your <a class="xref" href="FastEndpoints.IJobStorageRecord.html">IJobStorageRecord</a> concrete class</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>thrown if the <code class="paramref">executeAfter</code> and <code class="paramref">expireOn</code> arguments are not UTC values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_JobQueueExtensions_QueueJobAsync_" data-uid="FastEndpoints.JobQueueExtensions.QueueJobAsync*"></a>
   <h4 id="FastEndpoints_JobQueueExtensions_QueueJobAsync_FastEndpoints_ICommandBase_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Threading_CancellationToken_" data-uid="FastEndpoints.JobQueueExtensions.QueueJobAsync(FastEndpoints.ICommandBase,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">QueueJobAsync(ICommandBase, DateTime?, DateTime?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>queues up a given command in the respective job queue for that command type.</p>
@@ -259,6 +348,62 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p>thrown if the <code class="paramref">executeAfter</code> and <code class="paramref">expireOn</code> arguments are not UTC values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_JobQueueExtensions_TriggerJobExecution_" data-uid="FastEndpoints.JobQueueExtensions.TriggerJobExecution*"></a>
+  <h4 id="FastEndpoints_JobQueueExtensions_TriggerJobExecution_FastEndpoints_ICommandBase_" data-uid="FastEndpoints.JobQueueExtensions.TriggerJobExecution(FastEndpoints.ICommandBase)">TriggerJobExecution(ICommandBase)</h4>
+  <div class="markdown level1 summary"><p>triggers the execution of jobs in the respective queue for that command type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void TriggerJobExecution(this ICommandBase cmd)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FastEndpoints.ICommandBase.html">ICommandBase</a></td>
+        <td><span class="parametername">cmd</span></td>
+        <td><p>the command used to determine which queue to trigger</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_JobQueueExtensions_TriggerJobExecution_" data-uid="FastEndpoints.JobQueueExtensions.TriggerJobExecution*"></a>
+  <h4 id="FastEndpoints_JobQueueExtensions_TriggerJobExecution__1" data-uid="FastEndpoints.JobQueueExtensions.TriggerJobExecution``1">TriggerJobExecution&lt;TCommand&gt;()</h4>
+  <div class="markdown level1 summary"><p>triggers the execution of jobs in the respective queue for that command type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void TriggerJobExecution&lt;TCommand&gt;() where TCommand : ICommandBase</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td><p>the command type used to determine which queue to trigger</p>
 </td>
       </tr>
     </tbody>

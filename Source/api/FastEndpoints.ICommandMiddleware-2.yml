@@ -1,0 +1,275 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.ICommandMiddleware`2
+  commentId: T:FastEndpoints.ICommandMiddleware`2
+  id: ICommandMiddleware`2
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.ICommandMiddleware`2.ExecuteAsync(`0,FastEndpoints.CommandDelegate{`1},System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: ICommandMiddleware<TCommand, TResult>
+  nameWithType: ICommandMiddleware<TCommand, TResult>
+  fullName: FastEndpoints.ICommandMiddleware<TCommand, TResult>
+  type: Interface
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: interface for creating a command middleware used to build a pipeline around command handlers.
+  example: []
+  syntax:
+    content: 'public interface ICommandMiddleware<in TCommand, TResult> where TCommand : ICommand<TResult>'
+    typeParameters:
+    - id: TCommand
+      description: the type of the command
+    - id: TResult
+      description: the type of the result
+    content.vb: Public Interface ICommandMiddleware(Of In TCommand As ICommand(Of TResult), TResult)
+  nameWithType.vb: ICommandMiddleware(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandMiddleware(Of TCommand, TResult)
+  name.vb: ICommandMiddleware(Of TCommand, TResult)
+- uid: FastEndpoints.ICommandMiddleware`2.ExecuteAsync(`0,FastEndpoints.CommandDelegate{`1},System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.ICommandMiddleware`2.ExecuteAsync(`0,FastEndpoints.CommandDelegate{`1},System.Threading.CancellationToken)
+  id: ExecuteAsync(`0,FastEndpoints.CommandDelegate{`1},System.Threading.CancellationToken)
+  parent: FastEndpoints.ICommandMiddleware`2
+  langs:
+  - csharp
+  - vb
+  name: ExecuteAsync(TCommand, CommandDelegate<TResult>, CancellationToken)
+  nameWithType: ICommandMiddleware<TCommand, TResult>.ExecuteAsync(TCommand, CommandDelegate<TResult>, CancellationToken)
+  fullName: FastEndpoints.ICommandMiddleware<TCommand, TResult>.ExecuteAsync(TCommand, FastEndpoints.CommandDelegate<TResult>, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    implement this method to run some common piece of logic for all command handlers.
+
+    make sure to execute the <code class="paramref">next</code> delegate within your logic in order to no break the pipeline.
+  example: []
+  syntax:
+    content: Task<TResult> ExecuteAsync(TCommand command, CommandDelegate<TResult> next, CancellationToken ct)
+    parameters:
+    - id: command
+      type: '{TCommand}'
+      description: the command instance
+    - id: next
+      type: FastEndpoints.CommandDelegate{{TResult}}
+      description: the command delegate to execute next
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    return:
+      type: System.Threading.Tasks.Task{{TResult}}
+    content.vb: Function ExecuteAsync(command As TCommand, [next] As CommandDelegate(Of TResult), ct As CancellationToken) As Task(Of TResult)
+  overload: FastEndpoints.ICommandMiddleware`2.ExecuteAsync*
+  nameWithType.vb: ICommandMiddleware(Of TCommand, TResult).ExecuteAsync(TCommand, CommandDelegate(Of TResult), CancellationToken)
+  fullName.vb: FastEndpoints.ICommandMiddleware(Of TCommand, TResult).ExecuteAsync(TCommand, FastEndpoints.CommandDelegate(Of TResult), System.Threading.CancellationToken)
+  name.vb: ExecuteAsync(TCommand, CommandDelegate(Of TResult), CancellationToken)
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  href: FastEndpoints.html
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: FastEndpoints.ICommandMiddleware`2.ExecuteAsync*
+  commentId: Overload:FastEndpoints.ICommandMiddleware`2.ExecuteAsync
+  href: FastEndpoints.ICommandMiddleware-2.html#FastEndpoints_ICommandMiddleware_2_ExecuteAsync__0_FastEndpoints_CommandDelegate__1__System_Threading_CancellationToken_
+  name: ExecuteAsync
+  nameWithType: ICommandMiddleware<TCommand, TResult>.ExecuteAsync
+  fullName: FastEndpoints.ICommandMiddleware<TCommand, TResult>.ExecuteAsync
+  nameWithType.vb: ICommandMiddleware(Of TCommand, TResult).ExecuteAsync
+  fullName.vb: FastEndpoints.ICommandMiddleware(Of TCommand, TResult).ExecuteAsync
+- uid: '{TCommand}'
+  commentId: '!:TCommand'
+  definition: TCommand
+  name: TCommand
+  nameWithType: TCommand
+  fullName: TCommand
+- uid: FastEndpoints.CommandDelegate{{TResult}}
+  commentId: T:FastEndpoints.CommandDelegate{`1}
+  parent: FastEndpoints
+  definition: FastEndpoints.CommandDelegate`1
+  href: FastEndpoints.CommandDelegate-1.html
+  name: CommandDelegate<TResult>
+  nameWithType: CommandDelegate<TResult>
+  fullName: FastEndpoints.CommandDelegate<TResult>
+  nameWithType.vb: CommandDelegate(Of TResult)
+  fullName.vb: FastEndpoints.CommandDelegate(Of TResult)
+  name.vb: CommandDelegate(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate
+    href: FastEndpoints.CommandDelegate-1.html
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate
+    href: FastEndpoints.CommandDelegate-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{{TResult}}
+  commentId: T:System.Threading.Tasks.Task{``0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: TCommand
+  name: TCommand
+  nameWithType: TCommand
+  fullName: TCommand
+- uid: FastEndpoints.CommandDelegate`1
+  commentId: T:FastEndpoints.CommandDelegate`1
+  href: FastEndpoints.CommandDelegate-1.html
+  name: CommandDelegate<TResult>
+  nameWithType: CommandDelegate<TResult>
+  fullName: FastEndpoints.CommandDelegate<TResult>
+  nameWithType.vb: CommandDelegate(Of TResult)
+  fullName.vb: FastEndpoints.CommandDelegate(Of TResult)
+  name.vb: CommandDelegate(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate
+    href: FastEndpoints.CommandDelegate-1.html
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate
+    href: FastEndpoints.CommandDelegate-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

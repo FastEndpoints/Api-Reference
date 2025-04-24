@@ -5,7 +5,10 @@ items:
   id: TestBase
   parent: FastEndpoints.Testing
   children:
+  - FastEndpoints.Testing.TestBase.Cancellation
+  - FastEndpoints.Testing.TestBase.Context
   - FastEndpoints.Testing.TestBase.Fake
+  - FastEndpoints.Testing.TestBase.Output
   - FastEndpoints.Testing.TestBase.SetupAsync
   - FastEndpoints.Testing.TestBase.TearDownAsync
   langs:
@@ -25,19 +28,20 @@ items:
   example: []
   syntax:
     content: >-
-      [TestCaseOrderer("FastEndpoints.Testing.TestCaseOrderer", "FastEndpoints.Testing")]
+      [TestCaseOrderer(typeof(TestCaseOrderer))]
 
-      public abstract class TestBase : IAsyncLifetime, IFaker
+      public abstract class TestBase : IAsyncLifetime, IAsyncDisposable, IFaker
     content.vb: >-
-      <TestCaseOrderer("FastEndpoints.Testing.TestCaseOrderer", "FastEndpoints.Testing")>
+      <TestCaseOrderer(GetType(TestCaseOrderer))>
 
-      Public MustInherit Class TestBase Implements IAsyncLifetime, IFaker
+      Public MustInherit Class TestBase Implements IAsyncLifetime, IAsyncDisposable, IFaker
   inheritance:
   - System.Object
   derivedClasses:
   - FastEndpoints.Testing.TestBase`1
   implements:
   - Xunit.IAsyncLifetime
+  - System.IAsyncDisposable
   - FastEndpoints.Testing.IFaker
   inheritedMembers:
   - System.Object.Equals(System.Object)
@@ -47,14 +51,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-  attributes:
-  - type: Xunit.TestCaseOrdererAttribute
-    ctor: Xunit.TestCaseOrdererAttribute.#ctor(System.String,System.String)
-    arguments:
-    - type: System.String
-      value: FastEndpoints.Testing.TestCaseOrderer
-    - type: System.String
-      value: FastEndpoints.Testing
 - uid: FastEndpoints.Testing.TestBase.Fake
   commentId: P:FastEndpoints.Testing.TestBase.Fake
   id: Fake
@@ -80,6 +76,69 @@ items:
   overload: FastEndpoints.Testing.TestBase.Fake*
   implements:
   - FastEndpoints.Testing.IFaker.Fake
+- uid: FastEndpoints.Testing.TestBase.Context
+  commentId: P:FastEndpoints.Testing.TestBase.Context
+  id: Context
+  parent: FastEndpoints.Testing.TestBase
+  langs:
+  - csharp
+  - vb
+  name: Context
+  nameWithType: TestBase.Context
+  fullName: FastEndpoints.Testing.TestBase.Context
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public ITestContext Context { get; }
+    parameters: []
+    return:
+      type: Xunit.ITestContext
+    content.vb: Public ReadOnly Property Context As ITestContext
+  overload: FastEndpoints.Testing.TestBase.Context*
+- uid: FastEndpoints.Testing.TestBase.Cancellation
+  commentId: P:FastEndpoints.Testing.TestBase.Cancellation
+  id: Cancellation
+  parent: FastEndpoints.Testing.TestBase
+  langs:
+  - csharp
+  - vb
+  name: Cancellation
+  nameWithType: TestBase.Cancellation
+  fullName: FastEndpoints.Testing.TestBase.Cancellation
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public CancellationToken Cancellation { get; }
+    parameters: []
+    return:
+      type: System.Threading.CancellationToken
+    content.vb: Public ReadOnly Property Cancellation As CancellationToken
+  overload: FastEndpoints.Testing.TestBase.Cancellation*
+- uid: FastEndpoints.Testing.TestBase.Output
+  commentId: P:FastEndpoints.Testing.TestBase.Output
+  id: Output
+  parent: FastEndpoints.Testing.TestBase
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: TestBase.Output
+  fullName: FastEndpoints.Testing.TestBase.Output
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public ITestOutputHelper Output { get; }
+    parameters: []
+    return:
+      type: Xunit.ITestOutputHelper
+    content.vb: Public ReadOnly Property Output As ITestOutputHelper
+  overload: FastEndpoints.Testing.TestBase.Output*
 - uid: FastEndpoints.Testing.TestBase.SetupAsync
   commentId: M:FastEndpoints.Testing.TestBase.SetupAsync
   id: SetupAsync
@@ -95,15 +154,17 @@ items:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
   summary: >-
-    override this method if you'd like to do some one-time setup for the test-class.
+    override this method if you'd like to do some setup before each test-case gets executed.
 
-    it is run before any of the test-methods of the class is executed.
+    it is run per test and is analogous to an async constructor for the test-class.
+
+    TIP: xunit creates a fresh instance of the test-class per test.
   example: []
   syntax:
-    content: protected virtual Task SetupAsync()
+    content: protected virtual ValueTask SetupAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function SetupAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function SetupAsync() As ValueTask
   overload: FastEndpoints.Testing.TestBase.SetupAsync*
 - uid: FastEndpoints.Testing.TestBase.TearDownAsync
   commentId: M:FastEndpoints.Testing.TestBase.TearDownAsync
@@ -120,15 +181,17 @@ items:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
   summary: >-
-    override this method if you'd like to do some one-time teardown for the test-class.
+    override this method if you'd like to do some teardown/cleanup after each test-case has completed.
 
-    it is run after all test-methods have executed.
+    it is run per test and is analogous to an async destructor for the test-class.
+
+    TIP: xunit creates a fresh instance of the test-class per test.
   example: []
   syntax:
-    content: protected virtual Task TearDownAsync()
+    content: protected virtual ValueTask TearDownAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function TearDownAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function TearDownAsync() As ValueTask
   overload: FastEndpoints.Testing.TestBase.TearDownAsync*
 references:
 - uid: FastEndpoints.Testing.PriorityAttribute
@@ -177,6 +240,14 @@ references:
   name: IAsyncLifetime
   nameWithType: IAsyncLifetime
   fullName: Xunit.IAsyncLifetime
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
 - uid: FastEndpoints.Testing.IFaker
   commentId: T:FastEndpoints.Testing.IFaker
   parent: FastEndpoints.Testing
@@ -441,20 +512,87 @@ references:
   name: Bogus
   nameWithType: Bogus
   fullName: Bogus
+- uid: FastEndpoints.Testing.TestBase.Context*
+  commentId: Overload:FastEndpoints.Testing.TestBase.Context
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Context
+  name: Context
+  nameWithType: TestBase.Context
+  fullName: FastEndpoints.Testing.TestBase.Context
+- uid: Xunit.ITestContext
+  commentId: T:Xunit.ITestContext
+  parent: Xunit
+  isExternal: true
+  name: ITestContext
+  nameWithType: ITestContext
+  fullName: Xunit.ITestContext
+- uid: FastEndpoints.Testing.TestBase.Cancellation*
+  commentId: Overload:FastEndpoints.Testing.TestBase.Cancellation
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Cancellation
+  name: Cancellation
+  nameWithType: TestBase.Cancellation
+  fullName: FastEndpoints.Testing.TestBase.Cancellation
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: FastEndpoints.Testing.TestBase.Output*
+  commentId: Overload:FastEndpoints.Testing.TestBase.Output
+  href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_Output
+  name: Output
+  nameWithType: TestBase.Output
+  fullName: FastEndpoints.Testing.TestBase.Output
+- uid: Xunit.ITestOutputHelper
+  commentId: T:Xunit.ITestOutputHelper
+  parent: Xunit
+  isExternal: true
+  name: ITestOutputHelper
+  nameWithType: ITestOutputHelper
+  fullName: Xunit.ITestOutputHelper
 - uid: FastEndpoints.Testing.TestBase.SetupAsync*
   commentId: Overload:FastEndpoints.Testing.TestBase.SetupAsync
   href: FastEndpoints.Testing.TestBase.html#FastEndpoints_Testing_TestBase_SetupAsync
   name: SetupAsync
   nameWithType: TestBase.SetupAsync
   fullName: FastEndpoints.Testing.TestBase.SetupAsync
-- uid: System.Threading.Tasks.Task
-  commentId: T:System.Threading.Tasks.Task
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
   parent: System.Threading.Tasks
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
-  name: Task
-  nameWithType: Task
-  fullName: System.Threading.Tasks.Task
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true

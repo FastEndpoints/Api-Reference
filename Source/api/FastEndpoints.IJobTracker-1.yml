@@ -7,6 +7,7 @@ items:
   children:
   - FastEndpoints.IJobTracker`1.CancelJobAsync(System.Guid,System.Threading.CancellationToken)
   - FastEndpoints.IJobTracker`1.GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
+  - FastEndpoints.IJobTracker`1.StoreJobResultAsync``1(System.Guid,``0,System.Threading.CancellationToken)
   langs:
   - csharp
   - vb
@@ -71,6 +72,44 @@ items:
       method repeatedly with the same tracking id.
   nameWithType.vb: IJobTracker(Of TCommand).CancelJobAsync(Guid, CancellationToken)
   fullName.vb: FastEndpoints.IJobTracker(Of TCommand).CancelJobAsync(System.Guid, System.Threading.CancellationToken)
+- uid: FastEndpoints.IJobTracker`1.StoreJobResultAsync``1(System.Guid,``0,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.IJobTracker`1.StoreJobResultAsync``1(System.Guid,``0,System.Threading.CancellationToken)
+  id: StoreJobResultAsync``1(System.Guid,``0,System.Threading.CancellationToken)
+  parent: FastEndpoints.IJobTracker`1
+  langs:
+  - csharp
+  - vb
+  name: StoreJobResultAsync<TResult>(Guid, TResult, CancellationToken)
+  nameWithType: IJobTracker<TCommand>.StoreJobResultAsync<TResult>(Guid, TResult, CancellationToken)
+  fullName: FastEndpoints.IJobTracker<TCommand>.StoreJobResultAsync<TResult>(System.Guid, TResult, System.Threading.CancellationToken)
+  type: Method
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: this method can be used to either store a preliminary job result and/or job progress before the job execution fully completes.
+  example: []
+  syntax:
+    content: 'Task StoreJobResultAsync<TResult>(Guid trackingId, TResult result, CancellationToken ct = default) where TResult : IJobResult'
+    parameters:
+    - id: trackingId
+      type: System.Guid
+      description: the job tracking id
+    - id: result
+      type: '{TResult}'
+      description: the preliminary job result or progress to store
+    - id: ct
+      type: System.Threading.CancellationToken
+      description: cancellation token
+    typeParameters:
+    - id: TResult
+      description: the type of the preliminary result or progress
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function StoreJobResultAsync(Of TResult As IJobResult)(trackingId As Guid, result As TResult, ct As CancellationToken = Nothing) As Task
+  overload: FastEndpoints.IJobTracker`1.StoreJobResultAsync*
+  nameWithType.vb: IJobTracker(Of TCommand).StoreJobResultAsync(Of TResult)(Guid, TResult, CancellationToken)
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand).StoreJobResultAsync(Of TResult)(System.Guid, TResult, System.Threading.CancellationToken)
+  name.vb: StoreJobResultAsync(Of TResult)(Guid, TResult, CancellationToken)
 - uid: FastEndpoints.IJobTracker`1.GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
   commentId: M:FastEndpoints.IJobTracker`1.GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
   id: GetJobResultAsync``1(System.Guid,System.Threading.CancellationToken)
@@ -267,6 +306,24 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FastEndpoints.IJobTracker`1.StoreJobResultAsync*
+  commentId: Overload:FastEndpoints.IJobTracker`1.StoreJobResultAsync
+  href: FastEndpoints.IJobTracker-1.html#FastEndpoints_IJobTracker_1_StoreJobResultAsync__1_System_Guid___0_System_Threading_CancellationToken_
+  name: StoreJobResultAsync
+  nameWithType: IJobTracker<TCommand>.StoreJobResultAsync
+  fullName: FastEndpoints.IJobTracker<TCommand>.StoreJobResultAsync
+  nameWithType.vb: IJobTracker(Of TCommand).StoreJobResultAsync
+  fullName.vb: FastEndpoints.IJobTracker(Of TCommand).StoreJobResultAsync
+- uid: '{TResult}'
+  commentId: '!:TResult'
+  definition: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
+- uid: TResult
+  name: TResult
+  nameWithType: TResult
+  fullName: TResult
 - uid: FastEndpoints.IJobTracker`1.GetJobResultAsync*
   commentId: Overload:FastEndpoints.IJobTracker`1.GetJobResultAsync
   href: FastEndpoints.IJobTracker-1.html#FastEndpoints_IJobTracker_1_GetJobResultAsync__1_System_Guid_System_Threading_CancellationToken_

@@ -92,6 +92,10 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="FastEndpoints.IRequestMapper-2.html">IRequestMapper</a>&lt;TRequest, TEntity&gt;</div>
+    <div><a class="xref" href="FastEndpoints.IRequestMapper.html">IRequestMapper</a></div>
+    <div><a class="xref" href="FastEndpoints.IResponseMapper-2.html">IResponseMapper</a>&lt;TResponse, TEntity&gt;</div>
+    <div><a class="xref" href="FastEndpoints.IResponseMapper.html">IResponseMapper</a></div>
     <div><a class="xref" href="FastEndpoints.IMapper.html">IMapper</a></div>
     <div><a class="xref" href="FastEndpoints.IServiceResolverBase.html">IServiceResolverBase</a></div>
   </div>
@@ -123,7 +127,7 @@
   <h6><strong>Assembly</strong>: FastEndpoints.dll</h6>
   <h5 id="FastEndpoints_Mapper_3_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Mapper&lt;TRequest, TResponse, TEntity&gt; : IMapper, IServiceResolverBase where TRequest : notnull where TResponse : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Mapper&lt;TRequest, TResponse, TEntity&gt; : IRequestMapper&lt;TRequest, TEntity&gt;, IRequestMapper, IResponseMapper&lt;TResponse, TEntity&gt;, IResponseMapper, IMapper, IServiceResolverBase where TRequest : notnull where TResponse : notnull</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -160,8 +164,10 @@
   <div class="markdown level1 summary"><p>if you'd like to resolve scoped or transient services from the MS DI container, obtain a service scope from this method and dispose the scope when
 the work is complete.</p>
 <p>
-   <pre><code class="lang-csharp">using var scope = CreateScope();
-   var scopedService = scope.Resolve&lt;MyService&gt;();</code></pre>
+<pre><code>&lt;pre&gt;&lt;code class=&quot;lang-csharp&quot;&gt;using var scope = CreateScope();
+var scopedService = scope.Resolve&lt;MyService&gt;();&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -187,7 +193,7 @@ the work is complete.</p>
 
   <a id="FastEndpoints_Mapper_3_FromEntity_" data-uid="FastEndpoints.Mapper`3.FromEntity*"></a>
   <h4 id="FastEndpoints_Mapper_3_FromEntity__2_" data-uid="FastEndpoints.Mapper`3.FromEntity(`2)">FromEntity(TEntity)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping a domain entity to a response dto</p>
+  <div class="markdown level1 summary"><p>implement this method and place the logic for mapping a domain entity to a response dto</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -231,12 +237,12 @@ the work is complete.</p>
 
   <a id="FastEndpoints_Mapper_3_FromEntityAsync_" data-uid="FastEndpoints.Mapper`3.FromEntityAsync*"></a>
   <h4 id="FastEndpoints_Mapper_3_FromEntityAsync__2_System_Threading_CancellationToken_" data-uid="FastEndpoints.Mapper`3.FromEntityAsync(`2,System.Threading.CancellationToken)">FromEntityAsync(TEntity, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping a domain entity to a response dto</p>
+  <div class="markdown level1 summary"><p>implement this method and place the logic for mapping a domain entity to a response dto</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;TResponse&gt; FromEntityAsync(TEntity e, CancellationToken ct = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;TResponse&gt; FromEntityAsync(TEntity e, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -340,6 +346,72 @@ the work is complete.</p>
 
 
   <a id="FastEndpoints_Mapper_3_Resolve_" data-uid="FastEndpoints.Mapper`3.Resolve*"></a>
+  <h4 id="FastEndpoints_Mapper_3_Resolve_System_Type_System_String_" data-uid="FastEndpoints.Mapper`3.Resolve(System.Type,System.String)">Resolve(Type, string)</h4>
+  <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Resolve(Type typeOfService, string keyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">typeOfService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown if requested service cannot be resolved</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Mapper_3_Resolve_" data-uid="FastEndpoints.Mapper`3.Resolve*"></a>
   <h4 id="FastEndpoints_Mapper_3_Resolve__1" data-uid="FastEndpoints.Mapper`3.Resolve``1">Resolve&lt;TService&gt;()</h4>
   <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
 </div>
@@ -397,9 +469,85 @@ the work is complete.</p>
   </table>
 
 
+  <a id="FastEndpoints_Mapper_3_Resolve_" data-uid="FastEndpoints.Mapper`3.Resolve*"></a>
+  <h4 id="FastEndpoints_Mapper_3_Resolve__1_System_String_" data-uid="FastEndpoints.Mapper`3.Resolve``1(System.String)">Resolve&lt;TService&gt;(string)</h4>
+  <div class="markdown level1 summary"><p>resolve an instance for the given type from the dependency injection container. will throw if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TService Resolve&lt;TService&gt;(string keyName) where TService : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown if requested service cannot be resolved</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_Mapper_3_ToEntity_" data-uid="FastEndpoints.Mapper`3.ToEntity*"></a>
   <h4 id="FastEndpoints_Mapper_3_ToEntity__0_" data-uid="FastEndpoints.Mapper`3.ToEntity(`0)">ToEntity(TRequest)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping the request dto to the desired domain entity</p>
+  <div class="markdown level1 summary"><p>implement this method and place the logic for mapping the request dto to the desired domain entity</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -443,12 +591,12 @@ the work is complete.</p>
 
   <a id="FastEndpoints_Mapper_3_ToEntityAsync_" data-uid="FastEndpoints.Mapper`3.ToEntityAsync*"></a>
   <h4 id="FastEndpoints_Mapper_3_ToEntityAsync__0_System_Threading_CancellationToken_" data-uid="FastEndpoints.Mapper`3.ToEntityAsync(`0,System.Threading.CancellationToken)">ToEntityAsync(TRequest, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping the request dto to the desired domain entity</p>
+  <div class="markdown level1 summary"><p>implement this method and place the logic for mapping the request dto to the desired domain entity</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;TEntity&gt; ToEntityAsync(TRequest r, CancellationToken ct = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;TEntity&gt; ToEntityAsync(TRequest r, CancellationToken ct)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -536,6 +684,56 @@ the work is complete.</p>
 
 
   <a id="FastEndpoints_Mapper_3_TryResolve_" data-uid="FastEndpoints.Mapper`3.TryResolve*"></a>
+  <h4 id="FastEndpoints_Mapper_3_TryResolve_System_Type_System_String_" data-uid="FastEndpoints.Mapper`3.TryResolve(System.Type,System.String)">TryResolve(Type, string)</h4>
+  <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? TryResolve(Type typeOfService, string keyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">typeOfService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="FastEndpoints_Mapper_3_TryResolve_" data-uid="FastEndpoints.Mapper`3.TryResolve*"></a>
   <h4 id="FastEndpoints_Mapper_3_TryResolve__1" data-uid="FastEndpoints.Mapper`3.TryResolve``1">TryResolve&lt;TService&gt;()</h4>
   <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
 </div>
@@ -577,9 +775,69 @@ the work is complete.</p>
   </table>
 
 
+  <a id="FastEndpoints_Mapper_3_TryResolve_" data-uid="FastEndpoints.Mapper`3.TryResolve*"></a>
+  <h4 id="FastEndpoints_Mapper_3_TryResolve__1_System_String_" data-uid="FastEndpoints.Mapper`3.TryResolve``1(System.String)">TryResolve&lt;TService&gt;(string)</h4>
+  <div class="markdown level1 summary"><p>try to resolve an instance for the given type from the dependency injection container. will return null if unresolvable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TService? TryResolve&lt;TService&gt;(string keyName) where TService : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">keyName</span></td>
+        <td><p>the key name for resolving keyed service</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TService</span></td>
+        <td><p>the type of the service to resolve</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="FastEndpoints_Mapper_3_UpdateEntity_" data-uid="FastEndpoints.Mapper`3.UpdateEntity*"></a>
   <h4 id="FastEndpoints_Mapper_3_UpdateEntity__0__2_" data-uid="FastEndpoints.Mapper`3.UpdateEntity(`0,`2)">UpdateEntity(TRequest, TEntity)</h4>
-  <div class="markdown level1 summary"><p>override this method and place the logic for mapping the updated request dto to the desired domain entity</p>
+  <div class="markdown level1 summary"><p>implement this method and place the logic for mapping the updated request dto to the desired domain entity</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -625,7 +883,75 @@ the work is complete.</p>
       </tr>
     </tbody>
   </table>
+
+
+  <a id="FastEndpoints_Mapper_3_UpdateEntityAsync_" data-uid="FastEndpoints.Mapper`3.UpdateEntityAsync*"></a>
+  <h4 id="FastEndpoints_Mapper_3_UpdateEntityAsync__0__2_System_Threading_CancellationToken_" data-uid="FastEndpoints.Mapper`3.UpdateEntityAsync(`0,`2,System.Threading.CancellationToken)">UpdateEntityAsync(TRequest, TEntity, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>implement this method and place the logic for mapping the updated request dto to the desired domain entity</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;TEntity&gt; UpdateEntityAsync(TRequest r, TEntity e, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRequest</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>the request dto to update from</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TEntity</span></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>the domain entity to update</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>a cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEntity&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FastEndpoints.IRequestMapper-2.html">IRequestMapper&lt;TRequest, TEntity&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IRequestMapper.html">IRequestMapper</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IResponseMapper-2.html">IResponseMapper&lt;TResponse, TEntity&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FastEndpoints.IResponseMapper.html">IResponseMapper</a>
+  </div>
   <div>
       <a class="xref" href="FastEndpoints.IMapper.html">IMapper</a>
   </div>

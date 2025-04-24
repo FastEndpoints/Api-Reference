@@ -5,6 +5,8 @@ items:
   id: StateFixture
   parent: FastEndpoints.Testing
   children:
+  - FastEndpoints.Testing.StateFixture.Cancellation
+  - FastEndpoints.Testing.StateFixture.Context
   - FastEndpoints.Testing.StateFixture.Fake
   - FastEndpoints.Testing.StateFixture.SetupAsync
   - FastEndpoints.Testing.StateFixture.TearDownAsync
@@ -19,12 +21,13 @@ items:
   - FastEndpoints.Testing
   namespace: FastEndpoints.Testing
   syntax:
-    content: 'public abstract class StateFixture : IAsyncLifetime, IFaker'
-    content.vb: Public MustInherit Class StateFixture Implements IAsyncLifetime, IFaker
+    content: 'public abstract class StateFixture : IAsyncLifetime, IAsyncDisposable, IFaker'
+    content.vb: Public MustInherit Class StateFixture Implements IAsyncLifetime, IAsyncDisposable, IFaker
   inheritance:
   - System.Object
   implements:
   - Xunit.IAsyncLifetime
+  - System.IAsyncDisposable
   - FastEndpoints.Testing.IFaker
   inheritedMembers:
   - System.Object.Equals(System.Object)
@@ -59,6 +62,48 @@ items:
   overload: FastEndpoints.Testing.StateFixture.Fake*
   implements:
   - FastEndpoints.Testing.IFaker.Fake
+- uid: FastEndpoints.Testing.StateFixture.Context
+  commentId: P:FastEndpoints.Testing.StateFixture.Context
+  id: Context
+  parent: FastEndpoints.Testing.StateFixture
+  langs:
+  - csharp
+  - vb
+  name: Context
+  nameWithType: StateFixture.Context
+  fullName: FastEndpoints.Testing.StateFixture.Context
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public ITestContext Context { get; }
+    parameters: []
+    return:
+      type: Xunit.ITestContext
+    content.vb: Public ReadOnly Property Context As ITestContext
+  overload: FastEndpoints.Testing.StateFixture.Context*
+- uid: FastEndpoints.Testing.StateFixture.Cancellation
+  commentId: P:FastEndpoints.Testing.StateFixture.Cancellation
+  id: Cancellation
+  parent: FastEndpoints.Testing.StateFixture
+  langs:
+  - csharp
+  - vb
+  name: Cancellation
+  nameWithType: StateFixture.Cancellation
+  fullName: FastEndpoints.Testing.StateFixture.Cancellation
+  type: Property
+  assemblies:
+  - FastEndpoints.Testing
+  namespace: FastEndpoints.Testing
+  syntax:
+    content: public CancellationToken Cancellation { get; }
+    parameters: []
+    return:
+      type: System.Threading.CancellationToken
+    content.vb: Public ReadOnly Property Cancellation As CancellationToken
+  overload: FastEndpoints.Testing.StateFixture.Cancellation*
 - uid: FastEndpoints.Testing.StateFixture.SetupAsync
   commentId: M:FastEndpoints.Testing.StateFixture.SetupAsync
   id: SetupAsync
@@ -79,10 +124,10 @@ items:
     it is run before any of the test-methods of the class is executed.
   example: []
   syntax:
-    content: protected virtual Task SetupAsync()
+    content: protected virtual ValueTask SetupAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function SetupAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function SetupAsync() As ValueTask
   overload: FastEndpoints.Testing.StateFixture.SetupAsync*
 - uid: FastEndpoints.Testing.StateFixture.TearDownAsync
   commentId: M:FastEndpoints.Testing.StateFixture.TearDownAsync
@@ -104,10 +149,10 @@ items:
     it is run after all test-methods have executed.
   example: []
   syntax:
-    content: protected virtual Task TearDownAsync()
+    content: protected virtual ValueTask TearDownAsync()
     return:
-      type: System.Threading.Tasks.Task
-    content.vb: Protected Overridable Function TearDownAsync() As Task
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Protected Overridable Function TearDownAsync() As ValueTask
   overload: FastEndpoints.Testing.StateFixture.TearDownAsync*
 references:
 - uid: FastEndpoints.Testing
@@ -150,6 +195,14 @@ references:
   name: IAsyncLifetime
   nameWithType: IAsyncLifetime
   fullName: Xunit.IAsyncLifetime
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
 - uid: FastEndpoints.Testing.IFaker
   commentId: T:FastEndpoints.Testing.IFaker
   parent: FastEndpoints.Testing
@@ -414,20 +467,74 @@ references:
   name: Bogus
   nameWithType: Bogus
   fullName: Bogus
+- uid: FastEndpoints.Testing.StateFixture.Context*
+  commentId: Overload:FastEndpoints.Testing.StateFixture.Context
+  href: FastEndpoints.Testing.StateFixture.html#FastEndpoints_Testing_StateFixture_Context
+  name: Context
+  nameWithType: StateFixture.Context
+  fullName: FastEndpoints.Testing.StateFixture.Context
+- uid: Xunit.ITestContext
+  commentId: T:Xunit.ITestContext
+  parent: Xunit
+  isExternal: true
+  name: ITestContext
+  nameWithType: ITestContext
+  fullName: Xunit.ITestContext
+- uid: FastEndpoints.Testing.StateFixture.Cancellation*
+  commentId: Overload:FastEndpoints.Testing.StateFixture.Cancellation
+  href: FastEndpoints.Testing.StateFixture.html#FastEndpoints_Testing_StateFixture_Cancellation
+  name: Cancellation
+  nameWithType: StateFixture.Cancellation
+  fullName: FastEndpoints.Testing.StateFixture.Cancellation
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: FastEndpoints.Testing.StateFixture.SetupAsync*
   commentId: Overload:FastEndpoints.Testing.StateFixture.SetupAsync
   href: FastEndpoints.Testing.StateFixture.html#FastEndpoints_Testing_StateFixture_SetupAsync
   name: SetupAsync
   nameWithType: StateFixture.SetupAsync
   fullName: FastEndpoints.Testing.StateFixture.SetupAsync
-- uid: System.Threading.Tasks.Task
-  commentId: T:System.Threading.Tasks.Task
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
   parent: System.Threading.Tasks
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
-  name: Task
-  nameWithType: Task
-  fullName: System.Threading.Tasks.Task
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
 - uid: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
   isExternal: true

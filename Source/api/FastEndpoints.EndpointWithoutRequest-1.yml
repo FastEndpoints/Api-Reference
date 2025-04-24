@@ -47,6 +47,10 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve``1
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve(System.Type)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.CreateScope
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.TryResolve``1(System.String)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.TryResolve(System.Type,System.String)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve``1(System.String)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve(System.Type,System.String)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Route``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Query``1(System.String,System.Boolean)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.FormFileSectionsAsync(System.Threading.CancellationToken)
@@ -79,6 +83,8 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendInterceptedAsync(System.Object,System.Int32,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendCreatedAtAsync``1(System.Object,{TResponse},System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendCreatedAtAsync(System.String,System.Object,{TResponse},System.Boolean,System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendAcceptedAtAsync``1(System.Object,{TResponse},System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendAcceptedAtAsync(System.String,System.Object,{TResponse},System.Boolean,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendStringAsync(System.String,System.Int32,System.String,System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendOkAsync({TResponse},System.Threading.CancellationToken)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendOkAsync(System.Threading.CancellationToken)
@@ -103,6 +109,8 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AuthSchemes(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Claims(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ClaimsAll(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Connect(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Connect(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Description(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder},System.Boolean)
@@ -116,7 +124,10 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Group``1
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Head(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Permissions(System.String[])
@@ -144,6 +155,8 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Summary(FastEndpoints.EndpointSummary)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Tags(System.String[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Throttle(System.Int32,System.Double,System.String)
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Trace(System.String[])
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Trace(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(FastEndpoints.Http[])
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Verbs(System.String[])
@@ -154,13 +167,16 @@ items:
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.AddError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity)
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(FluentValidation.Results.ValidationFailure,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.String,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.Nullable{System.Int32})
+  - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
   - FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowIfAnyErrors(System.Nullable{System.Int32})
   - FastEndpoints.BaseEndpoint.Definition
   - FastEndpoints.BaseEndpoint.HttpContext
   - FastEndpoints.BaseEndpoint.ValidationFailures
   - FastEndpoints.BaseEndpoint.Configure
   - FastEndpoints.BaseEndpoint.Verbs(System.String[])
+  - FastEndpoints.BaseEndpoint.Routes(System.String[])
   - FastEndpoints.BaseEndpoint.Group``1
   - FastEndpoints.BaseEndpoint.GetAclHash(System.String)
   - System.Object.Equals(System.Object)
@@ -602,6 +618,170 @@ references:
     name: CreateScope
     href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateScope
   - name: (
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.TryResolve``1(System.String)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.TryResolve``1(System.String)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve__1_System_String_
+  name: TryResolve<TService>(string)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.TryResolve<TService>(string)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.TryResolve<TService>(string)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).TryResolve(Of TService)(String)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).TryResolve(Of TService)(String)
+  name.vb: TryResolve(Of TService)(String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.TryResolve``1(System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve__1_System_String_
+  - name: <
+  - name: TService
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.TryResolve``1(System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TService
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.TryResolve(System.Type,System.String)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.TryResolve(System.Type,System.String)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve_System_Type_System_String_
+  name: TryResolve(Type, string)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.TryResolve(Type, string)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.TryResolve(System.Type, string)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).TryResolve(Type, String)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).TryResolve(System.Type, String)
+  name.vb: TryResolve(Type, String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.TryResolve(System.Type,System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.TryResolve(System.Type,System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve``1(System.String)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Resolve``1(System.String)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Resolve``1(System.String)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve__1_System_String_
+  name: Resolve<TService>(string)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Resolve<TService>(string)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Resolve<TService>(string)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Resolve(Of TService)(String)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Resolve(Of TService)(String)
+  name.vb: Resolve(Of TService)(String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Resolve``1(System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve__1_System_String_
+  - name: <
+  - name: TService
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Resolve``1(System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TService
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Resolve(System.Type,System.String)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Resolve(System.Type,System.String)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve_System_Type_System_String_
+  name: Resolve(Type, string)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Resolve(Type, string)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Resolve(System.Type, string)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Resolve(Type, String)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Resolve(System.Type, String)
+  name.vb: Resolve(Type, String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Resolve(System.Type,System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Resolve(System.Type,System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Route``1(System.String,System.Boolean)
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Route``1(System.String,System.Boolean)
@@ -1633,6 +1813,172 @@ references:
   - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendCreatedAtAsync(System.String,System.Object,`0,System.Boolean,System.Threading.CancellationToken)
     name: SendCreatedAtAsync
     href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendCreatedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendAcceptedAtAsync``1(System.Object,{TResponse},System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendAcceptedAtAsync``1(System.Object,`0,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  name: SendAcceptedAtAsync<TEndpoint>(object, TResponse, Http?, int?, bool, CancellationToken)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.SendAcceptedAtAsync<TEndpoint>(object, TResponse, Http?, int?, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.SendAcceptedAtAsync<TEndpoint>(object, TResponse, FastEndpoints.Http?, int?, bool, System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, FastEndpoints.Http?, Integer?, Boolean, System.Threading.CancellationToken)
+  name.vb: SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendAcceptedAtAsync``1(System.Object,`0,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  - name: <
+  - name: TEndpoint
+  - name: '>'
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Http
+    name: Http
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendAcceptedAtAsync``1(System.Object,`0,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEndpoint
+  - name: )
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Http
+    name: Http
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.SendAcceptedAtAsync(System.String,System.Object,{TResponse},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendAcceptedAtAsync(System.String,System.Object,`0,System.Boolean,System.Threading.CancellationToken)
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
+  name: SendAcceptedAtAsync(string, object, TResponse, bool, CancellationToken)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.SendAcceptedAtAsync(string, object, TResponse, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.SendAcceptedAtAsync(string, object, TResponse, bool, System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).SendAcceptedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).SendAcceptedAtAsync(String, Object, TResponse, Boolean, System.Threading.CancellationToken)
+  name.vb: SendAcceptedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendAcceptedAtAsync(System.String,System.Object,`0,System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.SendAcceptedAtAsync(System.String,System.Object,`0,System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
   - name: (
   - uid: System.String
     name: String
@@ -2829,6 +3175,126 @@ references:
   - name: (
   - name: )
   - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Connect(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Connect(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Connect(System.String[])
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  name: Connect(params string[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Connect(params string[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Connect(params string[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Connect(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Connect(ParamArray String())
+  name.vb: Connect(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Connect(System.String[])
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Connect(System.String[])
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Connect(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Connect(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  name: Connect(string, Expression<Func<EmptyRequest, object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Connect(string, Expression<Func<EmptyRequest, object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Connect(string, System.Linq.Expressions.Expression<System.Func<FastEndpoints.EmptyRequest, object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Connect(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Connect(String, System.Linq.Expressions.Expression(Of System.Func(Of FastEndpoints.EmptyRequest, Object)))
+  name.vb: Connect(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Connect(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Connect(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Delete(System.String[])
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Delete(System.String[])
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -3387,6 +3853,49 @@ references:
   - name: )
   - name: )
   - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  name: Idempotency(Action<IdempotencyOptions>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Idempotency(Action<IdempotencyOptions>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Idempotency(System.Action<FastEndpoints.IdempotencyOptions>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Idempotency(Action(Of IdempotencyOptions))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Idempotency(System.Action(Of FastEndpoints.IdempotencyOptions))
+  name.vb: Idempotency(Action(Of IdempotencyOptions))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+    name: Idempotency
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+    name: Idempotency
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -3430,6 +3939,126 @@ references:
     name: RouteHandlerBuilder
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.routehandlerbuilder
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Options(System.String[])
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String___
+  name: Options(params string[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Options(params string[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Options(params string[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Options(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Options(ParamArray String())
+  name.vb: Options(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.String[])
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.String[])
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Options(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  name: Options(string, Expression<Func<EmptyRequest, object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Options(string, Expression<Func<EmptyRequest, object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Options(string, System.Linq.Expressions.Expression<System.Func<FastEndpoints.EmptyRequest, object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Options(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Options(String, System.Linq.Expressions.Expression(Of System.Func(Of FastEndpoints.EmptyRequest, Object)))
+  name.vb: Options(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Options(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
   - name: )
   - name: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Patch(System.String[])
@@ -4665,6 +5294,126 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Trace(System.String[])
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Trace(System.String[])
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Trace(System.String[])
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  name: Trace(params string[])
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Trace(params string[])
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Trace(params string[])
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Trace(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Trace(ParamArray String())
+  name.vb: Trace(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Trace(System.String[])
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Trace(System.String[])
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Trace(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Trace(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  name: Trace(string, Expression<Func<EmptyRequest, object>>)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.Trace(string, Expression<Func<EmptyRequest, object>>)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.Trace(string, System.Linq.Expressions.Expression<System.Func<FastEndpoints.EmptyRequest, object>>)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).Trace(String, Expression(Of Func(Of EmptyRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).Trace(String, System.Linq.Expressions.Expression(Of System.Func(Of FastEndpoints.EmptyRequest, Object)))
+  name.vb: Trace(String, Expression(Of Func(Of EmptyRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Trace(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Trace(System.String,System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}})
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.Validator``1
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.Validator``1
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -5095,6 +5844,73 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: '?'
   - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(string, string, Severity, int?)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.ThrowError(string, string, Severity, int?)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ThrowError(string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).ThrowError(String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ThrowError(String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
 - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.Nullable{System.Int32})
   parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
@@ -5182,6 +5998,123 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+- uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  parent: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,{TResponse}}
+  definition: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(Expression<Func<EmptyRequest, object>>, string, string, Severity, int?)
+  nameWithType: Endpoint<EmptyRequest, TResponse>.ThrowError(Expression<Func<EmptyRequest, object>>, string, string, Severity, int?)
+  fullName: FastEndpoints.Endpoint<FastEndpoints.EmptyRequest, TResponse>.ThrowError(System.Linq.Expressions.Expression<System.Func<FastEndpoints.EmptyRequest, object>>, string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: Endpoint(Of EmptyRequest, TResponse).ThrowError(Expression(Of Func(Of EmptyRequest, Object)), String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.Endpoint(Of FastEndpoints.EmptyRequest, TResponse).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of FastEndpoints.EmptyRequest, Object)), String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of EmptyRequest, Object)), String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint{FastEndpoints.EmptyRequest,`0}.ThrowError(System.Linq.Expressions.Expression{System.Func{FastEndpoints.EmptyRequest,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.EmptyRequest
+    name: EmptyRequest
+    href: FastEndpoints.EmptyRequest.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -5292,6 +6225,45 @@ references:
   - uid: FastEndpoints.BaseEndpoint.Verbs(System.String[])
     name: Verbs
     href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Verbs_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.BaseEndpoint.Routes(System.String[])
+  commentId: M:FastEndpoints.BaseEndpoint.Routes(System.String[])
+  parent: FastEndpoints.BaseEndpoint
+  isExternal: true
+  href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Routes_System_String___
+  name: Routes(params string[])
+  nameWithType: BaseEndpoint.Routes(params string[])
+  fullName: FastEndpoints.BaseEndpoint.Routes(params string[])
+  nameWithType.vb: BaseEndpoint.Routes(ParamArray String())
+  fullName.vb: FastEndpoints.BaseEndpoint.Routes(ParamArray String())
+  name.vb: Routes(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.BaseEndpoint.Routes(System.String[])
+    name: Routes
+    href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Routes_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.BaseEndpoint.Routes(System.String[])
+    name: Routes
+    href: FastEndpoints.BaseEndpoint.html#FastEndpoints_BaseEndpoint_Routes_System_String___
   - name: (
   - name: ParamArray
   - name: " "
@@ -5824,6 +6796,166 @@ references:
     name: CreateScope
     href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_CreateScope
   - name: (
+  - name: )
+- uid: FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+  commentId: M:FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve__1_System_String_
+  name: TryResolve<TService>(string)
+  nameWithType: Endpoint<TRequest, TResponse>.TryResolve<TService>(string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.TryResolve<TService>(string)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve(Of TService)(String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).TryResolve(Of TService)(String)
+  name.vb: TryResolve(Of TService)(String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve__1_System_String_
+  - name: <
+  - name: TService
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.TryResolve``1(System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TService
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+  commentId: M:FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve_System_Type_System_String_
+  name: TryResolve(Type, string)
+  nameWithType: Endpoint<TRequest, TResponse>.TryResolve(Type, string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.TryResolve(System.Type, string)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).TryResolve(Type, String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).TryResolve(System.Type, String)
+  name.vb: TryResolve(Type, String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.TryResolve(System.Type,System.String)
+    name: TryResolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_TryResolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Resolve``1(System.String)
+  commentId: M:FastEndpoints.Endpoint`2.Resolve``1(System.String)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve__1_System_String_
+  name: Resolve<TService>(string)
+  nameWithType: Endpoint<TRequest, TResponse>.Resolve<TService>(string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Resolve<TService>(string)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve(Of TService)(String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Resolve(Of TService)(String)
+  name.vb: Resolve(Of TService)(String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Resolve``1(System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve__1_System_String_
+  - name: <
+  - name: TService
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Resolve``1(System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TService
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+  commentId: M:FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve_System_Type_System_String_
+  name: Resolve(Type, string)
+  nameWithType: Endpoint<TRequest, TResponse>.Resolve(Type, string)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Resolve(System.Type, string)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Resolve(Type, String)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Resolve(System.Type, String)
+  name.vb: Resolve(Type, String)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Resolve(System.Type,System.String)
+    name: Resolve
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Resolve_System_Type_System_String_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
 - uid: FastEndpoints.Endpoint`2.Route``1(System.String,System.Boolean)
   commentId: M:FastEndpoints.Endpoint`2.Route``1(System.String,System.Boolean)
@@ -6771,6 +7903,170 @@ references:
   - uid: FastEndpoints.Endpoint`2.SendCreatedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
     name: SendCreatedAtAsync
     href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendCreatedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  name: SendAcceptedAtAsync<TEndpoint>(object, TResponse, Http?, int?, bool, CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.SendAcceptedAtAsync<TEndpoint>(object, TResponse, Http?, int?, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendAcceptedAtAsync<TEndpoint>(object, TResponse, FastEndpoints.Http?, int?, bool, System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, FastEndpoints.Http?, Integer?, Boolean, System.Threading.CancellationToken)
+  name.vb: SendAcceptedAtAsync(Of TEndpoint)(Object, TResponse, Http?, Integer?, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  - name: <
+  - name: TEndpoint
+  - name: '>'
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Http
+    name: Http
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync``1(System.Object,`1,System.Nullable{FastEndpoints.Http},System.Nullable{System.Int32},System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync__1_System_Object__1_System_Nullable_FastEndpoints_Http__System_Nullable_System_Int32__System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEndpoint
+  - name: )
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: FastEndpoints.Http
+    name: Http
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
+  name: SendAcceptedAtAsync(string, object, TResponse, bool, CancellationToken)
+  nameWithType: Endpoint<TRequest, TResponse>.SendAcceptedAtAsync(string, object, TResponse, bool, CancellationToken)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.SendAcceptedAtAsync(string, object, TResponse, bool, System.Threading.CancellationToken)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).SendAcceptedAtAsync(String, Object, TResponse, Boolean, System.Threading.CancellationToken)
+  name.vb: SendAcceptedAtAsync(String, Object, TResponse, Boolean, CancellationToken)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.SendAcceptedAtAsync(System.String,System.Object,`1,System.Boolean,System.Threading.CancellationToken)
+    name: SendAcceptedAtAsync
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_SendAcceptedAtAsync_System_String_System_Object__1_System_Boolean_System_Threading_CancellationToken_
   - name: (
   - uid: System.String
     name: String
@@ -7942,6 +9238,120 @@ references:
   - name: (
   - name: )
   - name: )
+- uid: FastEndpoints.Endpoint`2.Connect(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Connect(System.String[])
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  name: Connect(params string[])
+  nameWithType: Endpoint<TRequest, TResponse>.Connect(params string[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Connect(params string[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Connect(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Connect(ParamArray String())
+  name.vb: Connect(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Connect(System.String[])
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Connect(System.String[])
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  name: Connect(string, Expression<Func<TRequest, object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Connect(string, Expression<Func<TRequest, object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Connect(string, System.Linq.Expressions.Expression<System.Func<TRequest, object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Connect(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Connect(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
+  name.vb: Connect(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Connect(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+    name: Connect
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Connect_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint`2.Delete(System.String[])
   commentId: M:FastEndpoints.Endpoint`2.Delete(System.String[])
   isExternal: true
@@ -8469,6 +9879,48 @@ references:
   - name: )
   - name: )
   - name: )
+- uid: FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  commentId: M:FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  name: Idempotency(Action<IdempotencyOptions>)
+  nameWithType: Endpoint<TRequest, TResponse>.Idempotency(Action<IdempotencyOptions>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Idempotency(System.Action<FastEndpoints.IdempotencyOptions>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Idempotency(Action(Of IdempotencyOptions))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Idempotency(System.Action(Of FastEndpoints.IdempotencyOptions))
+  name.vb: Idempotency(Action(Of IdempotencyOptions))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+    name: Idempotency
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Idempotency(System.Action{FastEndpoints.IdempotencyOptions})
+    name: Idempotency
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Idempotency_System_Action_FastEndpoints_IdempotencyOptions__
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    href: FastEndpoints.IdempotencyOptions.html
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint`2.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   commentId: M:FastEndpoints.Endpoint`2.Options(System.Action{Microsoft.AspNetCore.Builder.RouteHandlerBuilder})
   isExternal: true
@@ -8511,6 +9963,120 @@ references:
     name: RouteHandlerBuilder
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.routehandlerbuilder
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Options(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Options(System.String[])
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String___
+  name: Options(params string[])
+  nameWithType: Endpoint<TRequest, TResponse>.Options(params string[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options(params string[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(ParamArray String())
+  name.vb: Options(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Options(System.String[])
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Options(System.String[])
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  name: Options(string, Expression<Func<TRequest, object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Options(string, Expression<Func<TRequest, object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Options(string, System.Linq.Expressions.Expression<System.Func<TRequest, object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Options(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Options(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
+  name.vb: Options(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Options(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+    name: Options
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Options_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
   - name: )
   - name: )
 - uid: FastEndpoints.Endpoint`2.Patch(System.String[])
@@ -9682,6 +11248,120 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
+- uid: FastEndpoints.Endpoint`2.Trace(System.String[])
+  commentId: M:FastEndpoints.Endpoint`2.Trace(System.String[])
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  name: Trace(params string[])
+  nameWithType: Endpoint<TRequest, TResponse>.Trace(params string[])
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Trace(params string[])
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Trace(ParamArray String())
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Trace(ParamArray String())
+  name.vb: Trace(ParamArray String())
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Trace(System.String[])
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Trace(System.String[])
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+  - name: )
+- uid: FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  commentId: M:FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  name: Trace(string, Expression<Func<TRequest, object>>)
+  nameWithType: Endpoint<TRequest, TResponse>.Trace(string, Expression<Func<TRequest, object>>)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.Trace(string, System.Linq.Expressions.Expression<System.Func<TRequest, object>>)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).Trace(String, Expression(Of Func(Of TRequest, Object)))
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).Trace(String, System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)))
+  name.vb: Trace(String, Expression(Of Func(Of TRequest, Object)))
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.Trace(System.String,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})
+    name: Trace
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Trace_System_String_System_Linq_Expressions_Expression_System_Func__0_System_Object___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: )
 - uid: FastEndpoints.Endpoint`2.Validator``1
   commentId: M:FastEndpoints.Endpoint`2.Validator``1
   href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_Validator__1
@@ -10095,6 +11775,72 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: '?'
   - name: )
+- uid: FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(string, string, Severity, int?)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(string, string, Severity, int?)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
 - uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Nullable{System.Int32})
   isExternal: true
@@ -10177,6 +11923,118 @@ references:
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+- uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  commentId: M:FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+  isExternal: true
+  href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  name: ThrowError(Expression<Func<TRequest, object>>, string, string, Severity, int?)
+  nameWithType: Endpoint<TRequest, TResponse>.ThrowError(Expression<Func<TRequest, object>>, string, string, Severity, int?)
+  fullName: FastEndpoints.Endpoint<TRequest, TResponse>.ThrowError(System.Linq.Expressions.Expression<System.Func<TRequest, object>>, string, string, FluentValidation.Severity, int?)
+  nameWithType.vb: Endpoint(Of TRequest, TResponse).ThrowError(Expression(Of Func(Of TRequest, Object)), String, String, Severity, Integer?)
+  fullName.vb: FastEndpoints.Endpoint(Of TRequest, TResponse).ThrowError(System.Linq.Expressions.Expression(Of System.Func(Of TRequest, Object)), String, String, FluentValidation.Severity, Integer?)
+  name.vb: ThrowError(Expression(Of Func(Of TRequest, Object)), String, String, Severity, Integer?)
+  spec.csharp:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: FastEndpoints.Endpoint`2.ThrowError(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.String,FluentValidation.Severity,System.Nullable{System.Int32})
+    name: ThrowError
+    href: FastEndpoints.Endpoint-2.html#FastEndpoints_Endpoint_2_ThrowError_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_String_FluentValidation_Severity_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: FluentValidation.Severity
+    name: Severity
+    isExternal: true
   - name: ','
   - name: " "
   - uid: System.Int32

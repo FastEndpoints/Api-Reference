@@ -25,9 +25,9 @@ items:
   - uid: FastEndpoints.BindingSource
     name: BindingSource
     type: Enum
-  - uid: FastEndpoints.ClassDefinition
-    name: ClassDefinition
-    type: Class
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate<TResult>
+    type: Delegate
   - uid: FastEndpoints.CommandExtensions
     name: CommandExtensions
     type: Class
@@ -40,8 +40,14 @@ items:
   - uid: FastEndpoints.CommandHandler`2
     name: CommandHandler<TCommand, TResult>
     type: Class
+  - uid: FastEndpoints.CommandMiddlewareConfig
+    name: CommandMiddlewareConfig
+    type: Class
   - uid: FastEndpoints.Config
     name: Config
+    type: Class
+  - uid: FastEndpoints.DontBindAttribute
+    name: DontBindAttribute
     type: Class
   - uid: FastEndpoints.DontInjectAttribute
     name: DontInjectAttribute
@@ -160,11 +166,17 @@ items:
   - uid: FastEndpoints.EventHubExceptionReceiverExtensions
     name: EventHubExceptionReceiverExtensions
     type: Class
+  - uid: FastEndpoints.EventReceiver`1
+    name: EventReceiver<TEvent>
+    type: Class
   - uid: FastEndpoints.ExceptionHandlerExtensions
     name: ExceptionHandlerExtensions
     type: Class
   - uid: FastEndpoints.Factory
     name: Factory
+    type: Class
+  - uid: FastEndpoints.FormFieldAttribute
+    name: FormFieldAttribute
     type: Class
   - uid: FastEndpoints.FromAttribute
     name: FromAttribute
@@ -181,8 +193,8 @@ items:
   - uid: FastEndpoints.FromHeaderAttribute
     name: FromHeaderAttribute
     type: Class
-  - uid: FastEndpoints.FromQueryParamsAttribute
-    name: FromQueryParamsAttribute
+  - uid: FastEndpoints.FromQueryAttribute
+    name: FromQueryAttribute
     type: Class
   - uid: FastEndpoints.GlobalPostProcessor`1
     name: GlobalPostProcessor<TState>
@@ -262,6 +274,9 @@ items:
   - uid: FastEndpoints.ICommandHandler`2
     name: ICommandHandler<TCommand, TResult>
     type: Interface
+  - uid: FastEndpoints.ICommandMiddleware`2
+    name: ICommandMiddleware<TCommand, TResult>
+    type: Interface
   - uid: FastEndpoints.ICommand`1
     name: ICommand<TResult>
     type: Interface
@@ -286,6 +301,9 @@ items:
   - uid: FastEndpoints.IEventHubStorageProvider`1
     name: IEventHubStorageProvider<TStorageRecord>
     type: Interface
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver<TEvent>
+    type: Interface
   - uid: FastEndpoints.IEventStorageRecord
     name: IEventStorageRecord
     type: Interface
@@ -298,14 +316,20 @@ items:
   - uid: FastEndpoints.IGlobalPreProcessor
     name: IGlobalPreProcessor
     type: Interface
-  - uid: FastEndpoints.IHasMapper
-    name: IHasMapper
+  - uid: FastEndpoints.IHasCommandType
+    name: IHasCommandType
     type: Interface
   - uid: FastEndpoints.IHasMapper`1
     name: IHasMapper<TMapper>
     type: Interface
   - uid: FastEndpoints.IHasServerCallContext
     name: IHasServerCallContext
+    type: Interface
+  - uid: FastEndpoints.IHasTrackingID
+    name: IHasTrackingID
+    type: Interface
+  - uid: FastEndpoints.IJobResult
+    name: IJobResult
     type: Interface
   - uid: FastEndpoints.IJobResultProvider
     name: IJobResultProvider
@@ -364,11 +388,17 @@ items:
   - uid: FastEndpoints.IRequestMapper
     name: IRequestMapper
     type: Interface
+  - uid: FastEndpoints.IRequestMapper`2
+    name: IRequestMapper<TRequest, TEntity>
+    type: Interface
   - uid: FastEndpoints.IResponseInterceptor
     name: IResponseInterceptor
     type: Interface
   - uid: FastEndpoints.IResponseMapper
     name: IResponseMapper
+    type: Interface
+  - uid: FastEndpoints.IResponseMapper`2
+    name: IResponseMapper<TResponse, TEntity>
     type: Interface
   - uid: FastEndpoints.IServerStreamCommandHandler`2
     name: IServerStreamCommandHandler<TCommand, TResult>
@@ -382,6 +412,18 @@ items:
   - uid: FastEndpoints.IServiceResolverBase
     name: IServiceResolverBase
     type: Interface
+  - uid: FastEndpoints.ITrackableJob`1
+    name: ITrackableJob<TResult>
+    type: Interface
+  - uid: FastEndpoints.IdempotencyConfig
+    name: IdempotencyConfig
+    type: Class
+  - uid: FastEndpoints.IdempotencyExtensions
+    name: IdempotencyExtensions
+    type: Class
+  - uid: FastEndpoints.IdempotencyOptions
+    name: IdempotencyOptions
+    type: Class
   - uid: FastEndpoints.InMemoryEventHubStorage
     name: InMemoryEventHubStorage
     type: Class
@@ -400,11 +442,17 @@ items:
   - uid: FastEndpoints.JobQueueOptions
     name: JobQueueOptions
     type: Class
+  - uid: FastEndpoints.JobResult`1
+    name: JobResult<TResult>
+    type: Class
   - uid: FastEndpoints.JobTracker`1
     name: JobTracker<TCommand>
     type: Class
   - uid: FastEndpoints.JsonBindException
     name: JsonBindException
+    type: Class
+  - uid: FastEndpoints.KestrelExtensions
+    name: KestrelExtensions
     type: Class
   - uid: FastEndpoints.KeyedServiceAttribute
     name: KeyedServiceAttribute
@@ -511,6 +559,9 @@ items:
   - uid: FastEndpoints.RouteHandlerBuilderExtensions
     name: RouteHandlerBuilderExtensions
     type: Class
+  - uid: FastEndpoints.RouteParamAttribute
+    name: RouteParamAttribute
+    type: Class
   - uid: FastEndpoints.SecurityOptions
     name: SecurityOptions
     type: Class
@@ -520,6 +571,9 @@ items:
   - uid: FastEndpoints.ServiceScopeExtensions
     name: ServiceScopeExtensions
     type: Class
+  - uid: FastEndpoints.Source
+    name: Source
+    type: Enum
   - uid: FastEndpoints.StaleJobSearchParams`1
     name: StaleJobSearchParams<TStorageRecord>
     type: Struct
@@ -559,6 +613,9 @@ items:
   - uid: FastEndpoints.ToHeaderAttribute
     name: ToHeaderAttribute
     type: Class
+  - uid: FastEndpoints.TypeDefinition
+    name: TypeDefinition
+    type: Class
   - uid: FastEndpoints.UserPrivileges
     name: UserPrivileges
     type: Class
@@ -580,8 +637,8 @@ items:
   - uid: FastEndpoints.VersioningOptions
     name: VersioningOptions
     type: Class
-  - uid: FastEndpoints.VoidResult
-    name: VoidResult
+  - uid: FastEndpoints.Void
+    name: Void
     type: Class
 - uid: FastEndpoints.AspVersioning
   name: FastEndpoints.AspVersioning
@@ -651,9 +708,6 @@ items:
     type: Class
   - uid: FastEndpoints.Security.CookieAuth
     name: CookieAuth
-    type: Class
-  - uid: FastEndpoints.Security.JWTBearer
-    name: JWTBearer
     type: Class
   - uid: FastEndpoints.Security.JwtBearer
     name: JwtBearer
@@ -753,17 +807,11 @@ items:
   - uid: FastEndpoints.Testing.TestBase`2
     name: TestBase<TAppFixture, TState>
     type: Class
-  - uid: FastEndpoints.Testing.TestClass`1
-    name: TestClass<TAppFixture>
-    type: Class
   - uid: FastEndpoints.Testing.TestCollection`1
     name: TestCollection<TAppFixture>
     type: Class
   - uid: FastEndpoints.Testing.TestCollection`2
     name: TestCollection<TAppFixture, TState>
-    type: Class
-  - uid: FastEndpoints.Testing.TestFixture`1
-    name: TestFixture<TProgram>
     type: Class
 - uid: NJsonSchema.Generation
   name: NJsonSchema.Generation

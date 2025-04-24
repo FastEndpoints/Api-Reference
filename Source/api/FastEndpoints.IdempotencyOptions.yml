@@ -1,0 +1,708 @@
+### YamlMime:ManagedReference
+items:
+- uid: FastEndpoints.IdempotencyOptions
+  commentId: T:FastEndpoints.IdempotencyOptions
+  id: IdempotencyOptions
+  parent: FastEndpoints
+  children:
+  - FastEndpoints.IdempotencyOptions.AddHeaderToResponse
+  - FastEndpoints.IdempotencyOptions.AdditionalHeaders
+  - FastEndpoints.IdempotencyOptions.CacheDuration
+  - FastEndpoints.IdempotencyOptions.HeaderName
+  - FastEndpoints.IdempotencyOptions.IgnoreRequestBody
+  - FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator
+  - FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription
+  - FastEndpoints.IdempotencyOptions.SwaggerHeaderType
+  langs:
+  - csharp
+  - vb
+  name: IdempotencyOptions
+  nameWithType: IdempotencyOptions
+  fullName: FastEndpoints.IdempotencyOptions
+  type: Class
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: idempotency settings for an endpoint
+  example: []
+  syntax:
+    content: public sealed class IdempotencyOptions
+    content.vb: Public NotInheritable Class IdempotencyOptions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FastEndpoints.IdempotencyOptions.HeaderName
+  commentId: P:FastEndpoints.IdempotencyOptions.HeaderName
+  id: HeaderName
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: HeaderName
+  nameWithType: IdempotencyOptions.HeaderName
+  fullName: FastEndpoints.IdempotencyOptions.HeaderName
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the header name that will contain the idempotency key. defaults to <code>Idempotency-Key</code>
+  example: []
+  syntax:
+    content: public string HeaderName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HeaderName As String
+  overload: FastEndpoints.IdempotencyOptions.HeaderName*
+- uid: FastEndpoints.IdempotencyOptions.AdditionalHeaders
+  commentId: P:FastEndpoints.IdempotencyOptions.AdditionalHeaders
+  id: AdditionalHeaders
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: AdditionalHeaders
+  nameWithType: IdempotencyOptions.AdditionalHeaders
+  fullName: FastEndpoints.IdempotencyOptions.AdditionalHeaders
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    any additional headers that should participate in the generation of the cache-key.
+
+    see the source/definition for the list of default additional headers.
+  example: []
+  syntax:
+    content: public HashSet<string> AdditionalHeaders { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.String}
+    content.vb: Public Property AdditionalHeaders As HashSet(Of String)
+  overload: FastEndpoints.IdempotencyOptions.AdditionalHeaders*
+- uid: FastEndpoints.IdempotencyOptions.IgnoreRequestBody
+  commentId: P:FastEndpoints.IdempotencyOptions.IgnoreRequestBody
+  id: IgnoreRequestBody
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: IgnoreRequestBody
+  nameWithType: IdempotencyOptions.IgnoreRequestBody
+  fullName: FastEndpoints.IdempotencyOptions.IgnoreRequestBody
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    by default, the contents of the request body (form data/json) is taken into consideration when determining the uniqueness of incoming requests even if the
+
+    idempotency-key is the same among them. i.e. if two different requests come in with the same idempotency-key but with different request body content, they
+
+    will be  considered to be unique requests and the endpoint will be executed for each request.
+  remarks: >-
+    this involves buffering the request body content per each request in order to generate a sha512 hash of the incoming body content. if the clients making
+
+    requests are under strict quality control and are guaranteed to not reuse idempotency keys, you can set this to <code>true</code> to prevent the hashing of
+
+    request body content.
+  example: []
+  syntax:
+    content: public bool IgnoreRequestBody { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IgnoreRequestBody As Boolean
+  overload: FastEndpoints.IdempotencyOptions.IgnoreRequestBody*
+- uid: FastEndpoints.IdempotencyOptions.CacheDuration
+  commentId: P:FastEndpoints.IdempotencyOptions.CacheDuration
+  id: CacheDuration
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: CacheDuration
+  nameWithType: IdempotencyOptions.CacheDuration
+  fullName: FastEndpoints.IdempotencyOptions.CacheDuration
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: >-
+    determines how long the cached responses will remain in the cache store before being evicted.
+
+    defaults to 10 minutes.
+  example: []
+  syntax:
+    content: public TimeSpan CacheDuration { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Property CacheDuration As TimeSpan
+  overload: FastEndpoints.IdempotencyOptions.CacheDuration*
+- uid: FastEndpoints.IdempotencyOptions.AddHeaderToResponse
+  commentId: P:FastEndpoints.IdempotencyOptions.AddHeaderToResponse
+  id: AddHeaderToResponse
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: AddHeaderToResponse
+  nameWithType: IdempotencyOptions.AddHeaderToResponse
+  fullName: FastEndpoints.IdempotencyOptions.AddHeaderToResponse
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: by default, the idempotency header will be automatically added to the response headers collection. set <code>false</code> to prevent that from happening.
+  example: []
+  syntax:
+    content: public bool AddHeaderToResponse { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AddHeaderToResponse As Boolean
+  overload: FastEndpoints.IdempotencyOptions.AddHeaderToResponse*
+- uid: FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription
+  commentId: P:FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription
+  id: SwaggerHeaderDescription
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: SwaggerHeaderDescription
+  nameWithType: IdempotencyOptions.SwaggerHeaderDescription
+  fullName: FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the description text for the swagger request header parameter
+  example: []
+  syntax:
+    content: public string? SwaggerHeaderDescription { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SwaggerHeaderDescription As String
+  overload: FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription*
+- uid: FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator
+  commentId: P:FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator
+  id: SwaggerExampleGenerator
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: SwaggerExampleGenerator
+  nameWithType: IdempotencyOptions.SwaggerExampleGenerator
+  fullName: FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: a function to generate an example value for the swagger request param header
+  example: []
+  syntax:
+    content: public Func<object>? SwaggerExampleGenerator { get; set; }
+    parameters: []
+    return:
+      type: System.Func{System.Object}
+    content.vb: Public Property SwaggerExampleGenerator As Func(Of Object)
+  overload: FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator*
+- uid: FastEndpoints.IdempotencyOptions.SwaggerHeaderType
+  commentId: P:FastEndpoints.IdempotencyOptions.SwaggerHeaderType
+  id: SwaggerHeaderType
+  parent: FastEndpoints.IdempotencyOptions
+  langs:
+  - csharp
+  - vb
+  name: SwaggerHeaderType
+  nameWithType: IdempotencyOptions.SwaggerHeaderType
+  fullName: FastEndpoints.IdempotencyOptions.SwaggerHeaderType
+  type: Property
+  assemblies:
+  - FastEndpoints
+  namespace: FastEndpoints
+  summary: the type/format of the swagger example value
+  example: []
+  syntax:
+    content: public Type? SwaggerHeaderType { get; set; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public Property SwaggerHeaderType As Type
+  overload: FastEndpoints.IdempotencyOptions.SwaggerHeaderType*
+references:
+- uid: FastEndpoints
+  commentId: N:FastEndpoints
+  href: FastEndpoints.html
+  name: FastEndpoints
+  nameWithType: FastEndpoints
+  fullName: FastEndpoints
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FastEndpoints.IdempotencyOptions.HeaderName*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.HeaderName
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_HeaderName
+  name: HeaderName
+  nameWithType: IdempotencyOptions.HeaderName
+  fullName: FastEndpoints.IdempotencyOptions.HeaderName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FastEndpoints.IdempotencyOptions.AdditionalHeaders*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.AdditionalHeaders
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_AdditionalHeaders
+  name: AdditionalHeaders
+  nameWithType: IdempotencyOptions.AdditionalHeaders
+  fullName: FastEndpoints.IdempotencyOptions.AdditionalHeaders
+- uid: System.Collections.Generic.HashSet{System.String}
+  commentId: T:System.Collections.Generic.HashSet{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<string>
+  nameWithType: HashSet<string>
+  fullName: System.Collections.Generic.HashSet<string>
+  nameWithType.vb: HashSet(Of String)
+  fullName.vb: System.Collections.Generic.HashSet(Of String)
+  name.vb: HashSet(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FastEndpoints.IdempotencyOptions.IgnoreRequestBody*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.IgnoreRequestBody
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_IgnoreRequestBody
+  name: IgnoreRequestBody
+  nameWithType: IdempotencyOptions.IgnoreRequestBody
+  fullName: FastEndpoints.IdempotencyOptions.IgnoreRequestBody
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FastEndpoints.IdempotencyOptions.CacheDuration*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.CacheDuration
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_CacheDuration
+  name: CacheDuration
+  nameWithType: IdempotencyOptions.CacheDuration
+  fullName: FastEndpoints.IdempotencyOptions.CacheDuration
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: FastEndpoints.IdempotencyOptions.AddHeaderToResponse*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.AddHeaderToResponse
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_AddHeaderToResponse
+  name: AddHeaderToResponse
+  nameWithType: IdempotencyOptions.AddHeaderToResponse
+  fullName: FastEndpoints.IdempotencyOptions.AddHeaderToResponse
+- uid: FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_SwaggerHeaderDescription
+  name: SwaggerHeaderDescription
+  nameWithType: IdempotencyOptions.SwaggerHeaderDescription
+  fullName: FastEndpoints.IdempotencyOptions.SwaggerHeaderDescription
+- uid: FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_SwaggerExampleGenerator
+  name: SwaggerExampleGenerator
+  nameWithType: IdempotencyOptions.SwaggerExampleGenerator
+  fullName: FastEndpoints.IdempotencyOptions.SwaggerExampleGenerator
+- uid: System.Func{System.Object}
+  commentId: T:System.Func{System.Object}
+  parent: System
+  definition: System.Func`1
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<object>
+  nameWithType: Func<object>
+  fullName: System.Func<object>
+  nameWithType.vb: Func(Of Object)
+  fullName.vb: System.Func(Of Object)
+  name.vb: Func(Of Object)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-1
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FastEndpoints.IdempotencyOptions.SwaggerHeaderType*
+  commentId: Overload:FastEndpoints.IdempotencyOptions.SwaggerHeaderType
+  href: FastEndpoints.IdempotencyOptions.html#FastEndpoints_IdempotencyOptions_SwaggerHeaderType
+  name: SwaggerHeaderType
+  nameWithType: IdempotencyOptions.SwaggerHeaderType
+  fullName: FastEndpoints.IdempotencyOptions.SwaggerHeaderType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type

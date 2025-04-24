@@ -11,12 +11,14 @@ items:
   - FastEndpoints.BinderContext
   - FastEndpoints.BindingOptions
   - FastEndpoints.BindingSource
-  - FastEndpoints.ClassDefinition
+  - FastEndpoints.CommandDelegate`1
   - FastEndpoints.CommandExtensions
   - FastEndpoints.CommandHandlerBase`1
   - FastEndpoints.CommandHandler`1
   - FastEndpoints.CommandHandler`2
+  - FastEndpoints.CommandMiddlewareConfig
   - FastEndpoints.Config
+  - FastEndpoints.DontBindAttribute
   - FastEndpoints.DontInjectAttribute
   - FastEndpoints.DontRegisterAttribute
   - FastEndpoints.EmptyObject
@@ -56,14 +58,16 @@ items:
   - FastEndpoints.EventExtensions
   - FastEndpoints.EventHubExceptionReceiver
   - FastEndpoints.EventHubExceptionReceiverExtensions
+  - FastEndpoints.EventReceiver`1
   - FastEndpoints.ExceptionHandlerExtensions
   - FastEndpoints.Factory
+  - FastEndpoints.FormFieldAttribute
   - FastEndpoints.FromAttribute
   - FastEndpoints.FromBodyAttribute
   - FastEndpoints.FromClaimAttribute
   - FastEndpoints.FromFormAttribute
   - FastEndpoints.FromHeaderAttribute
-  - FastEndpoints.FromQueryParamsAttribute
+  - FastEndpoints.FromQueryAttribute
   - FastEndpoints.GlobalPostProcessor`1
   - FastEndpoints.GlobalPreProcessor`1
   - FastEndpoints.Group
@@ -90,6 +94,7 @@ items:
   - FastEndpoints.ICommandHandler
   - FastEndpoints.ICommandHandler`1
   - FastEndpoints.ICommandHandler`2
+  - FastEndpoints.ICommandMiddleware`2
   - FastEndpoints.ICommand`1
   - FastEndpoints.IEndpoint
   - FastEndpoints.IEndpointFactory
@@ -98,13 +103,16 @@ items:
   - FastEndpoints.IEventHandler
   - FastEndpoints.IEventHandler`1
   - FastEndpoints.IEventHubStorageProvider`1
+  - FastEndpoints.IEventReceiver`1
   - FastEndpoints.IEventStorageRecord
   - FastEndpoints.IEventSubscriberStorageProvider`1
   - FastEndpoints.IGlobalPostProcessor
   - FastEndpoints.IGlobalPreProcessor
-  - FastEndpoints.IHasMapper
+  - FastEndpoints.IHasCommandType
   - FastEndpoints.IHasMapper`1
   - FastEndpoints.IHasServerCallContext
+  - FastEndpoints.IHasTrackingID
+  - FastEndpoints.IJobResult
   - FastEndpoints.IJobResultProvider
   - FastEndpoints.IJobResultStorage
   - FastEndpoints.IJobStorageProvider`1
@@ -124,20 +132,28 @@ items:
   - FastEndpoints.IProcessor
   - FastEndpoints.IRequestBinder`1
   - FastEndpoints.IRequestMapper
+  - FastEndpoints.IRequestMapper`2
   - FastEndpoints.IResponseInterceptor
   - FastEndpoints.IResponseMapper
+  - FastEndpoints.IResponseMapper`2
   - FastEndpoints.IServerStreamCommandHandler`2
   - FastEndpoints.IServerStreamCommand`1
   - FastEndpoints.IServiceResolver
   - FastEndpoints.IServiceResolverBase
+  - FastEndpoints.ITrackableJob`1
+  - FastEndpoints.IdempotencyConfig
+  - FastEndpoints.IdempotencyExtensions
+  - FastEndpoints.IdempotencyOptions
   - FastEndpoints.InMemoryEventHubStorage
   - FastEndpoints.InMemoryEventQueue
   - FastEndpoints.InMemoryEventStorageRecord
   - FastEndpoints.InternalErrorResponse
   - FastEndpoints.JobQueueExtensions
   - FastEndpoints.JobQueueOptions
+  - FastEndpoints.JobResult`1
   - FastEndpoints.JobTracker`1
   - FastEndpoints.JsonBindException
+  - FastEndpoints.KestrelExtensions
   - FastEndpoints.KeyedServiceAttribute
   - FastEndpoints.LifeTime
   - FastEndpoints.MainExtensions
@@ -173,9 +189,11 @@ items:
   - FastEndpoints.ResponseHeader
   - FastEndpoints.ResponseMapper`2
   - FastEndpoints.RouteHandlerBuilderExtensions
+  - FastEndpoints.RouteParamAttribute
   - FastEndpoints.SecurityOptions
   - FastEndpoints.SerializerOptions
   - FastEndpoints.ServiceScopeExtensions
+  - FastEndpoints.Source
   - FastEndpoints.StaleJobSearchParams`1
   - FastEndpoints.StaleRecordSearchParams`1
   - FastEndpoints.SubGroup`1
@@ -189,6 +207,7 @@ items:
   - FastEndpoints.ThrottleAttribute
   - FastEndpoints.ThrottleOptions
   - FastEndpoints.ToHeaderAttribute
+  - FastEndpoints.TypeDefinition
   - FastEndpoints.UserPrivileges
   - FastEndpoints.ValidationContext
   - FastEndpoints.ValidationContext`1
@@ -196,7 +215,7 @@ items:
   - FastEndpoints.ValidationOptions
   - FastEndpoints.Validator`1
   - FastEndpoints.VersioningOptions
-  - FastEndpoints.VoidResult
+  - FastEndpoints.Void
   langs:
   - csharp
   - vb
@@ -207,30 +226,38 @@ items:
   assemblies:
   - FastEndpoints.Attributes
 references:
-- uid: FastEndpoints.AllowFileUploadsAttribute
-  commentId: T:FastEndpoints.AllowFileUploadsAttribute
-  href: FastEndpoints.AllowFileUploadsAttribute.html
-  name: AllowFileUploadsAttribute
-  nameWithType: AllowFileUploadsAttribute
-  fullName: FastEndpoints.AllowFileUploadsAttribute
 - uid: FastEndpoints.BindFromAttribute
   commentId: T:FastEndpoints.BindFromAttribute
   href: FastEndpoints.BindFromAttribute.html
   name: BindFromAttribute
   nameWithType: BindFromAttribute
   fullName: FastEndpoints.BindFromAttribute
-- uid: FastEndpoints.DontInjectAttribute
-  commentId: T:FastEndpoints.DontInjectAttribute
-  href: FastEndpoints.DontInjectAttribute.html
-  name: DontInjectAttribute
-  nameWithType: DontInjectAttribute
-  fullName: FastEndpoints.DontInjectAttribute
-- uid: FastEndpoints.DontRegisterAttribute
-  commentId: T:FastEndpoints.DontRegisterAttribute
-  href: FastEndpoints.DontRegisterAttribute.html
-  name: DontRegisterAttribute
-  nameWithType: DontRegisterAttribute
-  fullName: FastEndpoints.DontRegisterAttribute
+- uid: FastEndpoints.DontBindAttribute
+  commentId: T:FastEndpoints.DontBindAttribute
+  parent: FastEndpoints
+  href: FastEndpoints.DontBindAttribute.html
+  name: DontBindAttribute
+  nameWithType: DontBindAttribute
+  fullName: FastEndpoints.DontBindAttribute
+- uid: FastEndpoints.FormFieldAttribute
+  commentId: T:FastEndpoints.FormFieldAttribute
+  href: FastEndpoints.FormFieldAttribute.html
+  name: FormFieldAttribute
+  nameWithType: FormFieldAttribute
+  fullName: FastEndpoints.FormFieldAttribute
+- uid: FastEndpoints.RouteParamAttribute
+  commentId: T:FastEndpoints.RouteParamAttribute
+  href: FastEndpoints.RouteParamAttribute.html
+  name: RouteParamAttribute
+  nameWithType: RouteParamAttribute
+  fullName: FastEndpoints.RouteParamAttribute
+- uid: FastEndpoints.QueryParamAttribute
+  commentId: T:FastEndpoints.QueryParamAttribute
+  parent: FastEndpoints
+  href: FastEndpoints.QueryParamAttribute.html
+  name: QueryParamAttribute
+  nameWithType: QueryParamAttribute
+  fullName: FastEndpoints.QueryParamAttribute
 - uid: FastEndpoints.FromAttribute
   commentId: T:FastEndpoints.FromAttribute
   href: FastEndpoints.FromAttribute.html
@@ -262,24 +289,24 @@ references:
   name: FromHeaderAttribute
   nameWithType: FromHeaderAttribute
   fullName: FastEndpoints.FromHeaderAttribute
-- uid: FastEndpoints.FromQueryParamsAttribute
-  commentId: T:FastEndpoints.FromQueryParamsAttribute
-  href: FastEndpoints.FromQueryParamsAttribute.html
-  name: FromQueryParamsAttribute
-  nameWithType: FromQueryParamsAttribute
-  fullName: FastEndpoints.FromQueryParamsAttribute
+- uid: FastEndpoints.FromQueryAttribute
+  commentId: T:FastEndpoints.FromQueryAttribute
+  href: FastEndpoints.FromQueryAttribute.html
+  name: FromQueryAttribute
+  nameWithType: FromQueryAttribute
+  fullName: FastEndpoints.FromQueryAttribute
 - uid: FastEndpoints.HasPermissionAttribute
   commentId: T:FastEndpoints.HasPermissionAttribute
   href: FastEndpoints.HasPermissionAttribute.html
   name: HasPermissionAttribute
   nameWithType: HasPermissionAttribute
   fullName: FastEndpoints.HasPermissionAttribute
-- uid: FastEndpoints.HideFromDocsAttribute
-  commentId: T:FastEndpoints.HideFromDocsAttribute
-  href: FastEndpoints.HideFromDocsAttribute.html
-  name: HideFromDocsAttribute
-  nameWithType: HideFromDocsAttribute
-  fullName: FastEndpoints.HideFromDocsAttribute
+- uid: FastEndpoints.AllowFileUploadsAttribute
+  commentId: T:FastEndpoints.AllowFileUploadsAttribute
+  href: FastEndpoints.AllowFileUploadsAttribute.html
+  name: AllowFileUploadsAttribute
+  nameWithType: AllowFileUploadsAttribute
+  fullName: FastEndpoints.AllowFileUploadsAttribute
 - uid: FastEndpoints.HttpAttribute
   commentId: T:FastEndpoints.HttpAttribute
   parent: FastEndpoints
@@ -317,6 +344,30 @@ references:
   name: HttpPutAttribute
   nameWithType: HttpPutAttribute
   fullName: FastEndpoints.HttpPutAttribute
+- uid: FastEndpoints.ThrottleAttribute
+  commentId: T:FastEndpoints.ThrottleAttribute
+  href: FastEndpoints.ThrottleAttribute.html
+  name: ThrottleAttribute
+  nameWithType: ThrottleAttribute
+  fullName: FastEndpoints.ThrottleAttribute
+- uid: FastEndpoints.DontInjectAttribute
+  commentId: T:FastEndpoints.DontInjectAttribute
+  href: FastEndpoints.DontInjectAttribute.html
+  name: DontInjectAttribute
+  nameWithType: DontInjectAttribute
+  fullName: FastEndpoints.DontInjectAttribute
+- uid: FastEndpoints.DontRegisterAttribute
+  commentId: T:FastEndpoints.DontRegisterAttribute
+  href: FastEndpoints.DontRegisterAttribute.html
+  name: DontRegisterAttribute
+  nameWithType: DontRegisterAttribute
+  fullName: FastEndpoints.DontRegisterAttribute
+- uid: FastEndpoints.HideFromDocsAttribute
+  commentId: T:FastEndpoints.HideFromDocsAttribute
+  href: FastEndpoints.HideFromDocsAttribute.html
+  name: HideFromDocsAttribute
+  nameWithType: HideFromDocsAttribute
+  fullName: FastEndpoints.HideFromDocsAttribute
 - uid: FastEndpoints.KeyedServiceAttribute
   commentId: T:FastEndpoints.KeyedServiceAttribute
   href: FastEndpoints.KeyedServiceAttribute.html
@@ -329,13 +380,6 @@ references:
   name: NotImplementedAttribute
   nameWithType: NotImplementedAttribute
   fullName: FastEndpoints.NotImplementedAttribute
-- uid: FastEndpoints.QueryParamAttribute
-  commentId: T:FastEndpoints.QueryParamAttribute
-  parent: FastEndpoints
-  href: FastEndpoints.QueryParamAttribute.html
-  name: QueryParamAttribute
-  nameWithType: QueryParamAttribute
-  fullName: FastEndpoints.QueryParamAttribute
 - uid: FastEndpoints.RegisterServiceAttribute`1
   commentId: T:FastEndpoints.RegisterServiceAttribute`1
   href: FastEndpoints.RegisterServiceAttribute-1.html
@@ -368,18 +412,18 @@ references:
   name: LifeTime
   nameWithType: LifeTime
   fullName: FastEndpoints.LifeTime
-- uid: FastEndpoints.ThrottleAttribute
-  commentId: T:FastEndpoints.ThrottleAttribute
-  href: FastEndpoints.ThrottleAttribute.html
-  name: ThrottleAttribute
-  nameWithType: ThrottleAttribute
-  fullName: FastEndpoints.ThrottleAttribute
 - uid: FastEndpoints.ToHeaderAttribute
   commentId: T:FastEndpoints.ToHeaderAttribute
   href: FastEndpoints.ToHeaderAttribute.html
   name: ToHeaderAttribute
   nameWithType: ToHeaderAttribute
   fullName: FastEndpoints.ToHeaderAttribute
+- uid: FastEndpoints.ParseResult
+  commentId: T:FastEndpoints.ParseResult
+  href: FastEndpoints.ParseResult.html
+  name: ParseResult
+  nameWithType: ParseResult
+  fullName: FastEndpoints.ParseResult
 - uid: FastEndpoints.ReflectionCache
   commentId: T:FastEndpoints.ReflectionCache
   parent: FastEndpoints
@@ -387,12 +431,12 @@ references:
   name: ReflectionCache
   nameWithType: ReflectionCache
   fullName: FastEndpoints.ReflectionCache
-- uid: FastEndpoints.ClassDefinition
-  commentId: T:FastEndpoints.ClassDefinition
-  href: FastEndpoints.ClassDefinition.html
-  name: ClassDefinition
-  nameWithType: ClassDefinition
-  fullName: FastEndpoints.ClassDefinition
+- uid: FastEndpoints.TypeDefinition
+  commentId: T:FastEndpoints.TypeDefinition
+  href: FastEndpoints.TypeDefinition.html
+  name: TypeDefinition
+  nameWithType: TypeDefinition
+  fullName: FastEndpoints.TypeDefinition
 - uid: FastEndpoints.PropertyDefinition
   commentId: T:FastEndpoints.PropertyDefinition
   href: FastEndpoints.PropertyDefinition.html
@@ -406,6 +450,13 @@ references:
   name: Http
   nameWithType: Http
   fullName: FastEndpoints.Http
+- uid: FastEndpoints.Source
+  commentId: T:FastEndpoints.Source
+  parent: FastEndpoints
+  href: FastEndpoints.Source.html
+  name: Source
+  nameWithType: Source
+  fullName: FastEndpoints.Source
 - uid: FastEndpoints.UserPrivileges
   commentId: T:FastEndpoints.UserPrivileges
   parent: FastEndpoints
@@ -458,12 +509,6 @@ references:
   name: JsonBindException
   nameWithType: JsonBindException
   fullName: FastEndpoints.JsonBindException
-- uid: FastEndpoints.ParseResult
-  commentId: T:FastEndpoints.ParseResult
-  href: FastEndpoints.ParseResult.html
-  name: ParseResult
-  nameWithType: ParseResult
-  fullName: FastEndpoints.ParseResult
 - uid: FastEndpoints.RequestBinder`1
   commentId: T:FastEndpoints.RequestBinder`1
   href: FastEndpoints.RequestBinder-1.html
@@ -1374,6 +1419,25 @@ references:
   - name: " "
   - name: TMapper
   - name: )
+- uid: FastEndpoints.IdempotencyConfig
+  commentId: T:FastEndpoints.IdempotencyConfig
+  href: FastEndpoints.IdempotencyConfig.html
+  name: IdempotencyConfig
+  nameWithType: IdempotencyConfig
+  fullName: FastEndpoints.IdempotencyConfig
+- uid: FastEndpoints.IdempotencyExtensions
+  commentId: T:FastEndpoints.IdempotencyExtensions
+  href: FastEndpoints.IdempotencyExtensions.html
+  name: IdempotencyExtensions
+  nameWithType: IdempotencyExtensions
+  fullName: FastEndpoints.IdempotencyExtensions
+- uid: FastEndpoints.IdempotencyOptions
+  commentId: T:FastEndpoints.IdempotencyOptions
+  parent: FastEndpoints
+  href: FastEndpoints.IdempotencyOptions.html
+  name: IdempotencyOptions
+  nameWithType: IdempotencyOptions
+  fullName: FastEndpoints.IdempotencyOptions
 - uid: FastEndpoints.IEndpoint
   commentId: T:FastEndpoints.IEndpoint
   parent: FastEndpoints
@@ -1388,13 +1452,6 @@ references:
   name: INoRequest
   nameWithType: INoRequest
   fullName: FastEndpoints.INoRequest
-- uid: FastEndpoints.IHasMapper
-  commentId: T:FastEndpoints.IHasMapper
-  parent: FastEndpoints
-  href: FastEndpoints.IHasMapper.html
-  name: IHasMapper
-  nameWithType: IHasMapper
-  fullName: FastEndpoints.IHasMapper
 - uid: FastEndpoints.IHasMapper`1
   commentId: T:FastEndpoints.IHasMapper`1
   href: FastEndpoints.IHasMapper-1.html
@@ -1434,6 +1491,37 @@ references:
   name: IRequestMapper
   nameWithType: IRequestMapper
   fullName: FastEndpoints.IRequestMapper
+- uid: FastEndpoints.IRequestMapper`2
+  commentId: T:FastEndpoints.IRequestMapper`2
+  href: FastEndpoints.IRequestMapper-2.html
+  name: IRequestMapper<TRequest, TEntity>
+  nameWithType: IRequestMapper<TRequest, TEntity>
+  fullName: FastEndpoints.IRequestMapper<TRequest, TEntity>
+  nameWithType.vb: IRequestMapper(Of TRequest, TEntity)
+  fullName.vb: FastEndpoints.IRequestMapper(Of TRequest, TEntity)
+  name.vb: IRequestMapper(Of TRequest, TEntity)
+  spec.csharp:
+  - uid: FastEndpoints.IRequestMapper`2
+    name: IRequestMapper
+    href: FastEndpoints.IRequestMapper-2.html
+  - name: <
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - name: TEntity
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IRequestMapper`2
+    name: IRequestMapper
+    href: FastEndpoints.IRequestMapper-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TRequest
+  - name: ','
+  - name: " "
+  - name: TEntity
+  - name: )
 - uid: FastEndpoints.IResponseMapper
   commentId: T:FastEndpoints.IResponseMapper
   parent: FastEndpoints
@@ -1441,6 +1529,37 @@ references:
   name: IResponseMapper
   nameWithType: IResponseMapper
   fullName: FastEndpoints.IResponseMapper
+- uid: FastEndpoints.IResponseMapper`2
+  commentId: T:FastEndpoints.IResponseMapper`2
+  href: FastEndpoints.IResponseMapper-2.html
+  name: IResponseMapper<TResponse, TEntity>
+  nameWithType: IResponseMapper<TResponse, TEntity>
+  fullName: FastEndpoints.IResponseMapper<TResponse, TEntity>
+  nameWithType.vb: IResponseMapper(Of TResponse, TEntity)
+  fullName.vb: FastEndpoints.IResponseMapper(Of TResponse, TEntity)
+  name.vb: IResponseMapper(Of TResponse, TEntity)
+  spec.csharp:
+  - uid: FastEndpoints.IResponseMapper`2
+    name: IResponseMapper
+    href: FastEndpoints.IResponseMapper-2.html
+  - name: <
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - name: TEntity
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IResponseMapper`2
+    name: IResponseMapper
+    href: FastEndpoints.IResponseMapper-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResponse
+  - name: ','
+  - name: " "
+  - name: TEntity
+  - name: )
 - uid: FastEndpoints.Mapper`3
   commentId: T:FastEndpoints.Mapper`3
   href: FastEndpoints.Mapper-3.html
@@ -2163,6 +2282,68 @@ references:
   - name: " "
   - name: TResult
   - name: )
+- uid: FastEndpoints.CommandMiddlewareConfig
+  commentId: T:FastEndpoints.CommandMiddlewareConfig
+  href: FastEndpoints.CommandMiddlewareConfig.html
+  name: CommandMiddlewareConfig
+  nameWithType: CommandMiddlewareConfig
+  fullName: FastEndpoints.CommandMiddlewareConfig
+- uid: FastEndpoints.ICommandMiddleware`2
+  commentId: T:FastEndpoints.ICommandMiddleware`2
+  href: FastEndpoints.ICommandMiddleware-2.html
+  name: ICommandMiddleware<TCommand, TResult>
+  nameWithType: ICommandMiddleware<TCommand, TResult>
+  fullName: FastEndpoints.ICommandMiddleware<TCommand, TResult>
+  nameWithType.vb: ICommandMiddleware(Of TCommand, TResult)
+  fullName.vb: FastEndpoints.ICommandMiddleware(Of TCommand, TResult)
+  name.vb: ICommandMiddleware(Of TCommand, TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ICommandMiddleware`2
+    name: ICommandMiddleware
+    href: FastEndpoints.ICommandMiddleware-2.html
+  - name: <
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.ICommandMiddleware`2
+    name: ICommandMiddleware
+    href: FastEndpoints.ICommandMiddleware-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCommand
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FastEndpoints.CommandDelegate`1
+  commentId: T:FastEndpoints.CommandDelegate`1
+  href: FastEndpoints.CommandDelegate-1.html
+  name: CommandDelegate<TResult>
+  nameWithType: CommandDelegate<TResult>
+  fullName: FastEndpoints.CommandDelegate<TResult>
+  nameWithType.vb: CommandDelegate(Of TResult)
+  fullName.vb: FastEndpoints.CommandDelegate(Of TResult)
+  name.vb: CommandDelegate(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate
+    href: FastEndpoints.CommandDelegate-1.html
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.CommandDelegate`1
+    name: CommandDelegate
+    href: FastEndpoints.CommandDelegate-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: FastEndpoints.EventBase
   commentId: T:FastEndpoints.EventBase
   parent: FastEndpoints
@@ -2258,6 +2439,12 @@ references:
   name: IJobResultStorage
   nameWithType: IJobResultStorage
   fullName: FastEndpoints.IJobResultStorage
+- uid: FastEndpoints.IHasCommandType
+  commentId: T:FastEndpoints.IHasCommandType
+  href: FastEndpoints.IHasCommandType.html
+  name: IHasCommandType
+  nameWithType: IHasCommandType
+  fullName: FastEndpoints.IHasCommandType
 - uid: FastEndpoints.JobQueueExtensions
   commentId: T:FastEndpoints.JobQueueExtensions
   href: FastEndpoints.JobQueueExtensions.html
@@ -2270,6 +2457,31 @@ references:
   name: JobQueueOptions
   nameWithType: JobQueueOptions
   fullName: FastEndpoints.JobQueueOptions
+- uid: FastEndpoints.JobResult`1
+  commentId: T:FastEndpoints.JobResult`1
+  href: FastEndpoints.JobResult-1.html
+  name: JobResult<TResult>
+  nameWithType: JobResult<TResult>
+  fullName: FastEndpoints.JobResult<TResult>
+  nameWithType.vb: JobResult(Of TResult)
+  fullName.vb: FastEndpoints.JobResult(Of TResult)
+  name.vb: JobResult(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.JobResult`1
+    name: JobResult
+    href: FastEndpoints.JobResult-1.html
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.JobResult`1
+    name: JobResult
+    href: FastEndpoints.JobResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
 - uid: FastEndpoints.IJobTracker`1
   commentId: T:FastEndpoints.IJobTracker`1
   href: FastEndpoints.IJobTracker-1.html
@@ -2502,12 +2714,19 @@ references:
   - name: " "
   - name: TRequest
   - name: )
-- uid: FastEndpoints.VoidResult
-  commentId: T:FastEndpoints.VoidResult
-  href: FastEndpoints.VoidResult.html
-  name: VoidResult
-  nameWithType: VoidResult
-  fullName: FastEndpoints.VoidResult
+- uid: FastEndpoints.Void
+  commentId: T:FastEndpoints.Void
+  href: FastEndpoints.Void.html
+  name: Void
+  nameWithType: Void
+  fullName: FastEndpoints.Void
+- uid: FastEndpoints.IJobResult
+  commentId: T:FastEndpoints.IJobResult
+  parent: FastEndpoints
+  href: FastEndpoints.IJobResult.html
+  name: IJobResult
+  nameWithType: IJobResult
+  fullName: FastEndpoints.IJobResult
 - uid: FastEndpoints.ICommandBase
   commentId: T:FastEndpoints.ICommandBase
   parent: FastEndpoints
@@ -2542,6 +2761,38 @@ references:
   - uid: FastEndpoints.ICommand`1
     name: ICommand
     href: FastEndpoints.ICommand-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FastEndpoints.IHasTrackingID
+  commentId: T:FastEndpoints.IHasTrackingID
+  parent: FastEndpoints
+  href: FastEndpoints.IHasTrackingID.html
+  name: IHasTrackingID
+  nameWithType: IHasTrackingID
+  fullName: FastEndpoints.IHasTrackingID
+- uid: FastEndpoints.ITrackableJob`1
+  commentId: T:FastEndpoints.ITrackableJob`1
+  href: FastEndpoints.ITrackableJob-1.html
+  name: ITrackableJob<TResult>
+  nameWithType: ITrackableJob<TResult>
+  fullName: FastEndpoints.ITrackableJob<TResult>
+  nameWithType.vb: ITrackableJob(Of TResult)
+  fullName.vb: FastEndpoints.ITrackableJob(Of TResult)
+  name.vb: ITrackableJob(Of TResult)
+  spec.csharp:
+  - uid: FastEndpoints.ITrackableJob`1
+    name: ITrackableJob
+    href: FastEndpoints.ITrackableJob-1.html
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.ITrackableJob`1
+    name: ITrackableJob
+    href: FastEndpoints.ITrackableJob-1.html
   - name: (
   - name: Of
   - name: " "
@@ -2735,6 +2986,56 @@ references:
   - name: " "
   - name: TEvent
   - name: )
+- uid: FastEndpoints.IEventReceiver`1
+  commentId: T:FastEndpoints.IEventReceiver`1
+  href: FastEndpoints.IEventReceiver-1.html
+  name: IEventReceiver<TEvent>
+  nameWithType: IEventReceiver<TEvent>
+  fullName: FastEndpoints.IEventReceiver<TEvent>
+  nameWithType.vb: IEventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.IEventReceiver(Of TEvent)
+  name.vb: IEventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.IEventReceiver`1
+    name: IEventReceiver
+    href: FastEndpoints.IEventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
+- uid: FastEndpoints.EventReceiver`1
+  commentId: T:FastEndpoints.EventReceiver`1
+  href: FastEndpoints.EventReceiver-1.html
+  name: EventReceiver<TEvent>
+  nameWithType: EventReceiver<TEvent>
+  fullName: FastEndpoints.EventReceiver<TEvent>
+  nameWithType.vb: EventReceiver(Of TEvent)
+  fullName.vb: FastEndpoints.EventReceiver(Of TEvent)
+  name.vb: EventReceiver(Of TEvent)
+  spec.csharp:
+  - uid: FastEndpoints.EventReceiver`1
+    name: EventReceiver
+    href: FastEndpoints.EventReceiver-1.html
+  - name: <
+  - name: TEvent
+  - name: '>'
+  spec.vb:
+  - uid: FastEndpoints.EventReceiver`1
+    name: EventReceiver
+    href: FastEndpoints.EventReceiver-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEvent
+  - name: )
 - uid: FastEndpoints.RemoteConnection
   commentId: T:FastEndpoints.RemoteConnection
   href: FastEndpoints.RemoteConnection.html
@@ -2865,6 +3166,12 @@ references:
   name: HandlerServerExtensions
   nameWithType: HandlerServerExtensions
   fullName: FastEndpoints.HandlerServerExtensions
+- uid: FastEndpoints.KestrelExtensions
+  commentId: T:FastEndpoints.KestrelExtensions
+  href: FastEndpoints.KestrelExtensions.html
+  name: KestrelExtensions
+  nameWithType: KestrelExtensions
+  fullName: FastEndpoints.KestrelExtensions
 - uid: FastEndpoints.IEventSubscriberStorageProvider`1
   commentId: T:FastEndpoints.IEventSubscriberStorageProvider`1
   href: FastEndpoints.IEventSubscriberStorageProvider-1.html
